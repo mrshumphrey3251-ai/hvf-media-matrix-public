@@ -1,8 +1,14 @@
 import csv
 import os
+import glob
 
 print("[HVF SYSTEM] Initializing API Broadcast Engine...")
+
+# Auto-purge old payloads
+print("[*] Purging residual payloads from OUTBOX...")
 os.makedirs('OUTBOX', exist_ok=True)
+for old_file in glob.glob("OUTBOX/*_payload.txt"):
+    os.remove(old_file)
 
 with open('FOR_IMMEDIATE_RELEASE_EBONY.md', 'r') as f:
     core_payload = f.read()
