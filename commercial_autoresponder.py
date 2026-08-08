@@ -7,6 +7,9 @@ from email.mime.text import MIMEText
 EMAIL_ACCT = "humphreyvirtualfarm@gmail.com"
 APP_PASS = os.environ.get("GMAIL_APP_PASSWORD")
 
+# Strict Ignore List to prevent infinite loops
+IGNORE_LIST = ["mailer-daemon", "postmaster", "no-reply", "noreply", EMAIL_ACCT.lower()]
+
 def process_inquiries():
     print("[HVF SYSTEM] Scanning inbox for commercial inquiries...")
     if not APP_PASS:
@@ -37,7 +40,14 @@ def process_inquiries():
                 if isinstance(response_part, tuple):
                     msg = email.message_from_bytes(response_part[1])
                     sender = msg['From']
+                    sender_lower = sender.lower()
                     print(f"[*] Processing inquiry from: {sender}")
+                    
+                    # ANTI-LOOP FILTER
+                    is_ignored = any(ignored in sender_lower for ignored in IGNORE_LIST)
+                    if is_ignored:
+                        print(f"    [!] Target {sender} matches Ignore List (Bounce/Self). Skipping to prevent loop.")
+                        continue
                     
                     # Executive Response Payload
                     reply_body = (
