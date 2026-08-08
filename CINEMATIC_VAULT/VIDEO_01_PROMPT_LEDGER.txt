@@ -1,13 +1,13 @@
-# PROJECT EBONY: VIDEO 1 AI GENERATION PROMPTS
+# VIDEO 1 AI PROMPTS
 
-**CLIP 01: The Swarm**
-* **Prompt:** "Cinematic drone shot, tracking over a massive, golden wheat field at dawn. Dozens of futuristic, sleek black agricultural drones rise simultaneously from the crops, operating in a perfect, synchronized mesh grid. High fidelity, photorealistic, 4k resolution, smooth motion."
-* **Target Filename:** `clip_01_swarm.mp4`
+**CLIP 1: The Swarm**
+Prompt: "Cinematic drone shot, golden wheat field at dawn. Black agricultural drones rise, operating in synchronized mesh grid. 4k."
+File: clip_01_swarm.mp4
 
-**CLIP 02: The Warzone**
-* **Prompt:** "Gritty, high-tension cinematic shot in a desert tactical environment. Dust clears to reveal a heavily armored mobile command unit. Digital holographic overlays project a secure, encrypted mesh network linking several autonomous ground vehicles. Photorealistic, 4k resolution, dramatic lighting."
-* **Target Filename:** `clip_02_tactical.mp4`
+**CLIP 2: The Warzone**
+Prompt: "Gritty desert tactical environment. Holographic overlays project encrypted mesh network linking autonomous vehicles. 4k."
+File: clip_02_tactical.mp4
 
-**CLIP 03: The Command Center**
-* **Prompt:** "A sleek, dimly lit, ultra-modern CEO office overlooking a city at night. A polished glass terminal displays a highly advanced, dark-themed intelligence interface. A user's silhouette effortlessly commands the terminal. High executive aesthetic, photorealistic, cinematic depth of field."
-* **Target Filename:** `clip_03_office.mp4`
+**CLIP 3: The Command Center**
+Prompt: "Sleek CEO office at night. Glass terminal displays dark-themed intelligence interface. User silhouette commands terminal. Photorealistic."
+File: clip_03_office.mp4
