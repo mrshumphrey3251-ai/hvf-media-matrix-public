@@ -4,13 +4,13 @@ import logging
 
 class HVFMasterOrchestrator:
     def __init__(self):
-        logging.info("--- BOOTING HVF MASTER ORCHESTRATOR [PUBLIC BLUEPRINT] ---")
+        logging.info("--- BOOTING HVF MASTER ORCHESTRATOR [GLOBAL SWARM - PUBLIC BLUEPRINT] ---")
         
     def execute_full_cycle(self):
-        logging.info("STEP 1: INITIALIZING CORE PERIMETER [REDACTED IP ADDRESSES]")
+        logging.info("STEP 1: INITIALIZING CORE PERIMETER [4 NODES - REDACTED IP ADDRESSES]")
         logging.info("STEP 2: VERIFYING MASTER VAULTS [REDACTED PATHS]")
         logging.info("STEP 3: SECURE PAYLOAD ROUTING [REDACTED HASHES]")
-        logging.info("--- ORCHESTRATION CYCLE COMPLETE ---")
+        logging.info("--- GLOBAL ORCHESTRATION CYCLE COMPLETE ---")
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
