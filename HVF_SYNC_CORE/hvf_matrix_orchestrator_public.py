@@ -1,6 +1,10 @@
 # C:\Users\mrshu\HVF_MEDIA_MATRIX_PUBLIC\HVF_SYNC_CORE\hvf_matrix_orchestrator_public.py
 
+import sys
 import logging
+
+# Hardcode the absolute path for Ghost Process visibility
+sys.path.append("[REDACTED_LOCAL_PATH]\\HVF_SYNC_CORE")
 
 class HVFMasterOrchestrator:
     def __init__(self):
@@ -13,7 +17,6 @@ class HVFMasterOrchestrator:
         logging.info("--- AUTONOMOUS ORCHESTRATION CYCLE COMPLETE ---")
 
 if __name__ == "__main__":
-    # Upgraded to log directly to a physical file for Ghost Process visibility
     log_file = "[REDACTED_LOCAL_PATH]\\HVF_GHOST_LOG.txt"
     logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     orchestrator = HVFMasterOrchestrator()
