@@ -17,7 +17,7 @@ class HVFMasterOrchestrator:
         logging.info("--- AUTONOMOUS ORCHESTRATION CYCLE COMPLETE ---")
 
 if __name__ == "__main__":
-    log_file = "[REDACTED_LOCAL_PATH]\\HVF_GHOST_LOG.txt"
-    logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    # Bypassing Python file locks. Blast to console, let the batch file catch it.
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     orchestrator = HVFMasterOrchestrator()
     orchestrator.execute_full_cycle()
