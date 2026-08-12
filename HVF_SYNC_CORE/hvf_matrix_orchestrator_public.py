@@ -8,13 +8,13 @@ sys.path.append("[REDACTED_LOCAL_PATH]\\HVF_SYNC_CORE")
 
 class HVFMasterOrchestrator:
     def __init__(self):
-        logging.info("--- BOOTING HVF GHOST ORCHESTRATOR [AUTONOMOUS SWARM - PUBLIC BLUEPRINT] ---")
+        logging.info("--- BOOTING HVF GHOST ORCHESTRATOR [LIVE FIRE ASSET MIGRATION - PUBLIC BLUEPRINT] ---")
         
     def execute_full_cycle(self):
         logging.info("STEP 1: INITIALIZING CORE PERIMETER [4 NODES - REDACTED IP ADDRESSES]")
-        logging.info("STEP 2: VERIFYING MASTER VAULTS [REDACTED PATHS]")
-        logging.info("STEP 3: SECURE PAYLOAD ROUTING [REDACTED HASHES]")
-        logging.info("--- AUTONOMOUS ORCHESTRATION CYCLE COMPLETE ---")
+        logging.info("STEP 2: LOCKING LIVE VAULT [REDACTED PATHS]")
+        logging.info("STEP 3: SECURE LIVE PAYLOAD ROUTING [REDACTED HASHES]")
+        logging.info("--- LIVE FIRE ORCHESTRATION CYCLE COMPLETE ---")
 
 if __name__ == "__main__":
     # Bypassing Python file locks. Blast to console, let the batch file catch it.
