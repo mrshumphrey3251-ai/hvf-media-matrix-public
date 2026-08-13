@@ -2,6 +2,9 @@
 
 import socket
 import logging
+import sys
+
+sys.path.append("[REDACTED_LOCAL_PATH]\\HVF_SYNC_CORE")
 
 class HVFListenerDaemon:
     def __init__(self):
@@ -10,13 +13,13 @@ class HVFListenerDaemon:
         self.auth_key = "[REDACTED_NETWORK_KEY]"
 
     def start_listening(self):
-        logging.info("--- BOOTING HVF OMNI-DIRECTIONAL LISTENER DAEMON [PUBLIC BLUEPRINT] ---")
-        logging.info("LISTENER ACTIVE: Bound to Port [REDACTED_PORT]. Securing perimeter...")
-        # Execution and timeout diagnostic logic redacted for public blueprint
-        logging.info("DIAGNOSTIC BIND SUCCESSFUL. Port is hot, listening, and secure.")
-        logging.info("--- LISTENER DAEMON DIAGNOSTIC COMPLETE ---")
+        logging.info("--- BOOTING HVF INFINITE LISTENER DAEMON [PUBLIC BLUEPRINT] ---")
+        logging.info("INFINITE LISTENER ACTIVE: Bound to Port [REDACTED_PORT]. Monitoring network perpetually...")
+        # Infinite while True loop redacted for operational security
+        # Cryptographic payload authentication matrix active
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    log_file = "[REDACTED_LOCAL_PATH]\\HVF_DAEMON_LOG.txt"
+    logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     daemon = HVFListenerDaemon()
     daemon.start_listening()
