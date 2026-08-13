@@ -1,0 +1,4 @@
+@echo off
+echo --- IGNITING GHOST LAUNCHER [PUBLIC BLUEPRINT] --- > [REDACTED_LOCAL_PATH]\HVF_GHOST_LOG.txt
+cd [REDACTED_LOCAL_PATH]\HVF_SYNC_CORE
+python hvf_matrix_orchestrator_public.py >> [REDACTED_LOCAL_PATH]\HVF_GHOST_LOG.txt 2>&1
