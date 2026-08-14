@@ -16,6 +16,9 @@ class MasterOrchestrator:
         self.vault = ConfigVault()
         self.logger.info(f"Config Vault synchronized. System Version: [REDACTED]")
 
+        # TACTICAL EXPANSION: Dynamically register the LinkedIn Engine
+        self.register_engine("LinkedIn_Tactical", "hvf_linkedin_engine", "LinkedInEngine")
+
     def register_engine(self, engine_name, module_path, class_name):
         # [REDACTED: Core engine registration and initialization logic hidden]
         pass 
@@ -30,8 +33,15 @@ class MasterOrchestrator:
         """
         directive = payload_data.get("directive", "UNKNOWN COMMAND")
         self.logger.info(f"[EXECUTIVE DIRECTIVE RECEIVED] {directive}")
-        self.logger.info("[REDACTED: Payload routing and proprietary engine execution hidden]")
+        
+        # Tactical Routing Hub
+        if directive == "Penetration Strike":
+            self.logger.info("Security diagnostic acknowledged. [REDACTED]")
+        elif directive == "LinkedIn Broadcast":
+            self.logger.info("Authorizing LinkedIn Tactical Arm for deployment. [REDACTED]")
+        else:
+            self.logger.info("Directive logged and queued for future engine processing.")
 
 if __name__ == "__main__":
     orchestrator = MasterOrchestrator()
-    orchestrator.process_payload({"directive": "System Boot"})
+    orchestrator.process_payload({"directive": "LinkedIn Broadcast"})
