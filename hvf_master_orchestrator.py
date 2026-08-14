@@ -1,15 +1,17 @@
 # HVF Swarm Matrix - Master Orchestrator (PUBLIC REDACTED)
 # ----------------------------------------------------
 # PROPRIETARY ASSET - REDACTED FOR PUBLIC REPOSITORY
-# Version: 2.2.0 (Zero-Trust Apex)
+# Version: 2.3.0 (Dynamic Compute Apex)
 # 
-# Purpose: Supreme command center, Watchdog Self-Healing, Security Guardian DPI, Workload Dispatch, Media Processing Pipeline, Multi-Channel Outreach, Cryptographic State Ledger & Trinity Orchestration.
-# Architecture: Unified Command Center, Telemetry Pre-check, Persistent Audit Trail, Watchdog Supervision, Deep Packet Inspection, Authenticated Handshake, Workload Dispatcher, Media Processing Pipeline, Multi-Channel Outreach, Cryptographic State Ledger & Trinity Orchestration
-# Modules Integrated: HVFConfigVault, HVFHealthMonitor, HVFLoggerDaemon, HVFWatchdogSupervisor, HVFSecurityGuardian, HVFMeshRouter, HVFNodeAgent, HVFTaskDispatcher, HVFMediaProcessor, HVFOutreachGateway, HVFStateLedger, HVFListenerDaemon, HVFSyncEngine, HVFBroadcastEngine
+# Purpose: Supreme command center, Watchdog Self-Healing, Security Guardian DPI, Dynamic Resource Governor, Workload Dispatch, Media Processing Pipeline, Multi-Channel Outreach, Cryptographic State Ledger & Trinity Orchestration.
+# Architecture: Unified Command Center, Telemetry Pre-check, Persistent Audit Trail, Watchdog Supervision, Deep Packet Inspection, Dynamic Resource Governance, Authenticated Handshake, Workload Dispatcher, Media Processing Pipeline, Multi-Channel Outreach, Cryptographic State Ledger & Trinity Orchestration
+# Modules Integrated: HVFConfigVault, HVFHealthMonitor, HVFLoggerDaemon, HVFWatchdogSupervisor, HVFSecurityGuardian, HVFResourceGovernor, HVFMeshRouter, HVFNodeAgent, HVFTaskDispatcher, HVFMediaProcessor, HVFOutreachGateway, HVFStateLedger, HVFListenerDaemon, HVFSyncEngine, HVFBroadcastEngine
+# Dynamic Resource Governor Compute Gate: [REDACTED]
 # Security Guardian Deep Packet Inspection Gate: [REDACTED]
 # Cryptographic State Snapshot & Ledger Chaining: [REDACTED]
 # Multi-Channel Outreach Routing Logic: [REDACTED]
 # Media Processing Pipeline Execution: [REDACTED]
+# Dynamic Compute Headroom Release Cycle: [REDACTED]
 # Priority Workload Scheduling: [REDACTED]
 # Watchdog Fault Gate & Recovery: [REDACTED]
 # Authenticated Handshake Protocol: [REDACTED]
