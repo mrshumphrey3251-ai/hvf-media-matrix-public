@@ -3,6 +3,7 @@
 
 import importlib
 import logging
+from hvf_config_vault import ConfigVault
 
 class MasterOrchestrator:
     def __init__(self):
@@ -10,6 +11,10 @@ class MasterOrchestrator:
         self.logger = logging.getLogger("HVF_Master")
         logging.basicConfig(level=logging.INFO)
         self.logger.info("HVF Master Orchestrator Initialized [PUBLIC BLUEPRINT].")
+        
+        # INTEGRATION: Securely wire the Config Vault into the core brain
+        self.vault = ConfigVault()
+        self.logger.info(f"Config Vault synchronized. System Version: [REDACTED]")
 
     def register_engine(self, engine_name, module_path, class_name):
         # [REDACTED: Core engine registration and initialization logic hidden]
