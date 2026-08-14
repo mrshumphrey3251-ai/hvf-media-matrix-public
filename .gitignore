@@ -1,2 +1,11 @@
-.stfolder/ 
-*sync-conflict* 
+# HVF Media Matrix - Security Blocklist (.gitignore)
+
+# Classified Environment Credentials
+.env
+.env.local
+.env.*
+
+# Python System Caches (Zero-value artifacts)
+__pycache__/
+*.py[cod]
+*$py.class
