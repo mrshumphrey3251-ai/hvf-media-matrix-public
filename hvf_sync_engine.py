@@ -1,10 +1,12 @@
-# HVF Swarm Matrix - Primary Sync Engine (PUBLIC REDACTED)
+# HVF Swarm Matrix - Sync Engine (PUBLIC REDACTED)
 # ----------------------------------------------------
 # PROPRIETARY ASSET - REDACTED FOR PUBLIC REPOSITORY
-# Version: 1.0.0
+# Version: 1.2.0
 # 
-# Purpose: Manages secure data routing and synchronization across matrix nodes.
-# Architecture: Modular / Extensible [LOGIC REDACTED]
-# Execution Payload: [REDACTED]
+# Purpose: Dynamic cross-node data synchronization and pipeline management.
+# Architecture: Modular / Extensible / Vault-Integrated
+# Integration: HVFConfigVault [LOGIC REDACTED]
+# Synchronization Pipeline: [REDACTED]
+# Target Repositories: [REDACTED]
 #
-# Note: The functional deployment of this modular sync engine is maintained in the secure private vault.
+# Note: The functional deployment of this sync engine is maintained in the secure private vault.
