@@ -63,7 +63,7 @@ To https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public.git
 branch 'master' set up to track 'origin/master'.
 [HVF SYSTEM] Broadcast architecture mathematically sealed in dual-vaults.
 mrshumphrey3251@penguin:~/HVF_MEDIA_MATRIX_PUBLIC$ cd ~/HVF_MEDIA_MATRIX
-export GMAIL_APP_PASSWORD="gdcpowbnsxyarbfj"
+export GMAIL_APP_PASSWORD="[REDACTED_SECURE_VAULT]"
 python3 broadcast_engine.py
 python3 dispatch_engine.py
 echo "[HVF SYSTEM] Secure broadcast test complete. Target airspace is clean."
@@ -96,3 +96,4 @@ cat << 'EOF' > CINEMATIC_VAULT/VIDEO_02_03_EXPANSION.md
 ## SCENE INVENTORY
 * **Visual:** Holographic-style projections of global supply chains and orbital satellite integrations, representing the next phase of the HVF grid.
 * **Text Overlay:** "The Matrix is Expanding. Secure Your Node."
+
