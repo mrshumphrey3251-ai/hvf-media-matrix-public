@@ -4,7 +4,8 @@ import datetime
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VAULT_DIR = os.path.join(BASE_DIR, "knowledge_vault")
-OUTPUT_FILE = os.path.join(BASE_DIR, "ebony_dashboard", "data", "weekly_dispatch_queue.json")
+OUTPUT_DIR = os.path.join(BASE_DIR, "ebony_dashboard", "data")
+OUTPUT_FILE = os.path.join(OUTPUT_DIR, "weekly_dispatch_queue.json")
 REPO_URL = "https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
 
 def load_vault():
@@ -17,7 +18,7 @@ def load_vault():
     return docs
 
 def generate_weekly_queue():
-    vault_data = load_vault()
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
     now = datetime.datetime.now()
     
     dispatches = [
@@ -44,9 +45,9 @@ def generate_weekly_queue():
         }
     ]
     
-    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+    payload = {"generated_at": now.strftime("%Y-%m-%d %H:%M:%S"), "queue": dispatches}
     with open(OUTPUT_FILE, "w", encoding="utf-8") as out:
-        json.dump({"generated_at": now.strftime("%Y-%m-%d %H:%M:%S"), "queue": dispatches}, out, indent=4)
+        json.dump(payload, out, indent=4)
         
     print(f"[*] Generated 3 Scheduled Dispatches -> {OUTPUT_FILE}")
 
