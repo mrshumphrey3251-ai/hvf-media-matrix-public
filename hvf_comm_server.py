@@ -6,7 +6,7 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server
-# Engineered for Diagnostic GPS Bridge, Geofence Shield, & Federal NWS (NOAA) Telemetry
+# Engineered for Asynchronous UI, Federal NWS Telemetry, & Absolute Root Failover
 
 env_path = os.path.join(os.path.dirname(__file__), ".env")
 api_key = None
@@ -35,19 +35,16 @@ def get_nws_telemetry(lat, lon):
         # NOAA requires a strict User-Agent to prevent bot blocking
         headers = {'User-Agent': '(HVF-Media-Matrix-Industrial-Node, ceo@humphreyvirtualfarm.com)'}
         
-        # Phase 1: Translate GPS into Federal Grid Point
         points_url = f"https://api.weather.gov/points/{safe_lat},{safe_lon}"
         req1 = urllib.request.Request(points_url, headers=headers)
         with urllib.request.urlopen(req1, timeout=10) as r1:
             grid_data = json.loads(r1.read().decode('utf-8'))
             
-        # Phase 2: Extract exact forecast for that specific grid
         forecast_url = grid_data['properties']['forecast']
         req2 = urllib.request.Request(forecast_url, headers=headers)
         with urllib.request.urlopen(req2, timeout=10) as r2:
             forecast_data = json.loads(r2.read().decode('utf-8'))
             
-        # Extract the immediate, highly detailed current forecast
         current_weather = forecast_data['properties']['periods'][0]['detailedForecast']
         return f"Federal NWS Telemetry (Lat: {safe_lat}, Lon: {safe_lon}). Current Conditions: {current_weather}"
     except Exception as e:
@@ -71,18 +68,18 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                 prompt = f"System Context: The current local time is {current_time}. {environment}. You are Ebony, the highly intelligent Executive AI assistant for the CEO of Humphrey Virtual Farm. The CEO says: '{user_message}'. Respond directly, professionally, and concisely as an elite AI subordinate. Do not use markdown formatting."
                 
                 try:
-                    # Primary Strike: Bleeding-edge 2.5 architecture
+                    # Primary Strike: The permanent Flash root alias
                     response = client.models.generate_content(
-                        model='gemini-2.5-flash',
+                        model='gemini-flash',
                         contents=prompt
                     )
                     response_text = response.text.strip()
                 except Exception as e:
-                    print(f"Primary model offline. Engaging Next-Gen 2.0 Failover Cascade...")
+                    print(f"Primary model offline. Engaging Absolute Root Pro Failover...")
                     try:
-                        # Rerouted to the stabilized 2.0 cluster
+                        # Secondary Strike: The permanent Pro root alias
                         response_fallback = client.models.generate_content(
-                            model='gemini-2.0-flash',
+                            model='gemini-pro',
                             contents=prompt
                         )
                         response_text = f"[FAILOVER ENGAGED] {response_fallback.text.strip()}"
@@ -99,5 +96,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(os.path.dirname(__file__), "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Federal NWS Comm Server Live on port 8000... Awaiting Executive Directives.")
+    print("Ebony Federal Root Comm Server Live on port 8000... Awaiting Executive Directives.")
     server.serve_forever()
