@@ -1,17 +1,14 @@
 ﻿import os
 import json
+import re
 import datetime
 import urllib.request
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
-# HVF Media Matrix - Dedicated Comm Server
-# Live Knowledge Vault, Doppler Telemetry, Ledger Logging, & Outbound Webhook Relay
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VAULT_DIR = os.path.join(BASE_DIR, "knowledge_vault")
 DATA_DIR = os.path.join(BASE_DIR, "ebony_dashboard", "data")
-QUEUE_FILE = os.path.join(DATA_DIR, "weekly_dispatch_queue.json")
 LOG_FILE = os.path.join(DATA_DIR, "dispatch_transmission_ledger.log")
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 
@@ -50,39 +47,59 @@ def load_knowledge_vault():
     return aggregated_context
 
 def autonomous_local_engine(user_message, vault_data, current_time, environment):
-    msg_lower = user_message.lower()
+    msg_lower = user_message.lower().strip()
     
-    if any(k in msg_lower for k in ["linkedin", "post", "social", "dispatch", "media matrix", "broadcast"]):
+    # 1. Social Media / Dispatch Generation
+    if any(k in msg_lower for k in ["linkedin", "post", "social", "dispatch", "broadcast"]):
         return (
-            f"[AUTONOMOUS DISPATCH ENGINE] Executive Media Release Draft ({current_time}):\n\n"
-            f"Headline: Autonomous Infrastructure in Precision Agriculture & Digital Systems\n\n"
-            f"Operational Update: Humphrey Virtual Farm (HVF) is actively advancing digital media matrix automation. "
+            f"[AUTONOMOUS DISPATCH ENGINE] Executive Release ({current_time}):\n\n"
+            f"Humphrey Virtual Farm is advancing digital media matrix automation. "
             f"Current milestone: Complete integration of proprietary RAG memory cores, OPSEC-shielded geofencing, "
             f"and real-time federal environmental telemetry.\n\n"
-            f"Key Focus: Total infrastructure dominance through zero-latency automated pipelines.\n\n"
-            f"Public Blueprint: {GITHUB_PUBLIC_VAULT}\n\n"
-            f"#HumphreyVirtualFarm #DigitalTransformation #AgTech #AI #AutonomousSystems #ExecutiveLeadership"
+            f"Architecture Blueprint: {GITHUB_PUBLIC_VAULT}\n\n"
+            f"#HumphreyVirtualFarm #DigitalTransformation #AgTech #AI #AutonomousSystems"
             f"{REPO_SIGNATURE}"
         )
     
-    matching_lines = []
-    for doc_name, content in vault_data.items():
-        doc_lines = [l.strip() for l in content.splitlines() if l.strip() and not l.startswith("===")]
-        if any(term in msg_lower for term in ["node", "operation", "security", "manual"]) and "operations" in doc_name:
-            matching_lines.extend(doc_lines)
-        elif any(term in msg_lower for term in ["directive", "mission", "objective", "phase"]) and "directive" in doc_name:
-            matching_lines.extend(doc_lines)
-            
-    if not matching_lines:
-        for content in vault_data.values():
-            matching_lines.extend([l.strip() for l in content.splitlines() if l.strip()])
-            
-    vault_summary = " | ".join(matching_lines) if matching_lines else "No active directives found."
+    # 2. Extract Query Words (Length >= 3 to avoid noise)
+    query_words = set([w for w in re.findall(r'\w+', msg_lower) if len(w) >= 3 and w not in ["what", "are", "our", "the", "and", "ebony", "with", "for", "regarding"]])
     
+    matched_lines = []
+    for doc_name, content in vault_data.items():
+        for line in content.splitlines():
+            line_clean = line.strip()
+            if not line_clean or line_clean.startswith("===") or line_clean.startswith("CLASSIFICATION") or line_clean.startswith("DOCUMENT"):
+                continue
+            line_words = set(re.findall(r'\w+', line_clean.lower()))
+            overlap = query_words.intersection(line_words)
+            if len(overlap) > 0:
+                matched_lines.append((len(overlap), line_clean, doc_name))
+                
+    if matched_lines:
+        # Sort by relevance (highest word overlap first)
+        matched_lines.sort(key=lambda x: x[0], reverse=True)
+        top_items = [f"- {item[1]}" for item in matched_lines[:6]]
+        return (
+            f"Executive Knowledge Recall Briefing ({current_time}):\n" +
+            "\n".join(top_items) +
+            f"{REPO_SIGNATURE}"
+        )
+
+    # 3. Status Check Fallback
+    if any(k in msg_lower for k in ["status", "system", "weather", "telemetry", "diagnostics"]):
+        return (
+            f"Executive Telemetry Report as of {current_time}:\n"
+            f"- Atmospheric State: {environment}\n"
+            f"- Knowledge Vault: {len(vault_data)} Active Strategic Files\n"
+            f"- Media Matrix Node 1: Armed & Ready\n"
+            f"- OPSEC Geofence: 2-Decimal Active Shield"
+            f"{REPO_SIGNATURE}"
+        )
+
+    # 4. General Conversational Fallback
     return (
-        f"[AUTONOMOUS CORE] Executive Briefing as of {current_time}. "
-        f"Vault Directives: {vault_summary}. "
-        f"Environmental Status: {environment}. Ready for next directive."
+        f"Directive received: '{user_message}'. All core nodes are operational under current protocols. "
+        f"Standing by for specific operational commands."
         f"{REPO_SIGNATURE}"
     )
 
@@ -127,7 +144,7 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                     f"System Context: The current local time is {current_time}. {environment}.\n"
                     f"--- PROPRIETARY KNOWLEDGE VAULT DATA ---\n{vault_formatted}\n----------------------------------------\n"
                     f"You are Ebony, Executive AI assistant for the CEO of Humphrey Virtual Farm. "
-                    f"Answer the CEO: '{user_message}' using the Vault data concisely. Do not use markdown.\n"
+                    f"Answer the CEO: '{user_message}' thoroughly using the Knowledge Vault files. Do not use markdown.\n"
                     f"MANDATORY REQUIREMENT: Always append this exact signature at the end of your response:\n"
                     f"{REPO_SIGNATURE}"
                 )
@@ -184,5 +201,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Webhook-Enabled Matrix Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Semantic Memory Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
