@@ -12,7 +12,9 @@ with col1:
     st.markdown("Natural language command interface [REDACTED in public].")
     st.text_input("Enter Command:", disabled=True)
     st.button("Execute Directive", disabled=True)
+    st.info("[BLUEPRINT NOTE] - In the private environment, this panel utilizes dynamic command routing (NLP foundation) to trigger Python subprocesses automatically.")
 
 with col2:
     st.subheader("Live Operations & Telemetry")
     st.code("[REDACTED] - Local system logs, hardware telemetry, and web monitoring stream here.", language="text")
+    st.button("Refresh Telemetry", disabled=True)
