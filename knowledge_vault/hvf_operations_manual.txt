@@ -1,0 +1,7 @@
+﻿DOCUMENT: HVF_OPERATIONS_MANUAL.TXT
+CLASSIFICATION: CONFIDENTIAL
+INFRASTRUCTURE NODES:
+- Node 1: Autonomous Content Generation & Scheduling Engine
+- Node 2: Environmental Telemetry & Doppler Weather Monitor
+- Node 3: Proprietary Knowledge Vault & RAG Memory Core
+SECURITY PROTOCOL: OPSEC geofencing active at 2 decimal places. Zero leakage of private blueprints.

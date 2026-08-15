@@ -6,7 +6,7 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server
-# Engineered with Absolute Path Knowledge Vault Ingestion & Federal NWS Telemetry
+# Multi-Document Knowledge Ingestion Engine & NWS Federal Telemetry
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VAULT_DIR = os.path.join(BASE_DIR, "knowledge_vault")
@@ -43,18 +43,26 @@ def load_knowledge_vault():
 def autonomous_local_engine(user_message, vault_data, current_time, environment):
     msg_lower = user_message.lower()
     
-    extracted_facts = []
+    matching_lines = []
     for doc_name, content in vault_data.items():
-        for line in content.splitlines():
-            line_clean = line.strip()
-            if line_clean and not line_clean.startswith("HUMPHREY") and not line_clean.startswith("==="):
-                extracted_facts.append(line_clean)
-    
-    vault_summary = " | ".join(extracted_facts) if extracted_facts else "No active directives found in vault."
+        doc_lines = [l.strip() for l in content.splitlines() if l.strip() and not l.startswith("===")]
+        # Filter for relevant documents or return all if broad
+        if any(term in msg_lower for term in ["node", "operation", "security", "manual"]) and "operations" in doc_name:
+            matching_lines.extend(doc_lines)
+        elif any(term in msg_lower for term in ["directive", "mission", "objective", "phase"]) and "directive" in doc_name:
+            matching_lines.extend(doc_lines)
+        elif not any(term in msg_lower for term in ["node", "operation", "directive", "mission", "security"]):
+            matching_lines.extend(doc_lines)
+            
+    if not matching_lines:
+        for content in vault_data.values():
+            matching_lines.extend([l.strip() for l in content.splitlines() if l.strip()])
+            
+    vault_summary = " | ".join(matching_lines) if matching_lines else "No active directives found."
     
     return (
         f"[AUTONOMOUS CORE] Executive Briefing as of {current_time}. "
-        f"Proprietary Directives: {vault_summary}. "
+        f"Vault Directives: {vault_summary}. "
         f"Environmental Status: {environment}. Ready for next directive."
     )
 
