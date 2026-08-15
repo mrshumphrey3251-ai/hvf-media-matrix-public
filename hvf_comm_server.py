@@ -61,27 +61,25 @@ def autonomous_local_engine(user_message, vault_data, current_time, environment)
             f"{REPO_SIGNATURE}"
         )
     
-    # 2. Extract Query Words (Length >= 3 to avoid noise)
-    query_words = set([w for w in re.findall(r'\w+', msg_lower) if len(w) >= 3 and w not in ["what", "are", "our", "the", "and", "ebony", "with", "for", "regarding"]])
+    # 2. Block-Aware Semantic Search Across All Vault Documents
+    query_words = set([w for w in re.findall(r'\w+', msg_lower) if len(w) >= 3 and w not in ["what", "are", "our", "the", "and", "ebony", "with", "for", "powering", "regarding"]])
     
-    matched_lines = []
+    matched_blocks = []
     for doc_name, content in vault_data.items():
-        for line in content.splitlines():
-            line_clean = line.strip()
-            if not line_clean or line_clean.startswith("===") or line_clean.startswith("CLASSIFICATION") or line_clean.startswith("DOCUMENT"):
-                continue
-            line_words = set(re.findall(r'\w+', line_clean.lower()))
-            overlap = query_words.intersection(line_words)
+        # Split document by major blocks/sections
+        blocks = [b.strip() for b in content.split("\n\n") if b.strip() and not b.startswith("===") and not b.startswith("CLASSIFICATION")]
+        for block in blocks:
+            block_words = set(re.findall(r'\w+', block.lower()))
+            overlap = query_words.intersection(block_words)
             if len(overlap) > 0:
-                matched_lines.append((len(overlap), line_clean, doc_name))
+                matched_blocks.append((len(overlap), block))
                 
-    if matched_lines:
-        # Sort by relevance (highest word overlap first)
-        matched_lines.sort(key=lambda x: x[0], reverse=True)
-        top_items = [f"- {item[1]}" for item in matched_lines[:6]]
+    if matched_blocks:
+        matched_blocks.sort(key=lambda x: x[0], reverse=True)
+        top_blocks = [item[1] for item in matched_blocks[:2]]
         return (
-            f"Executive Knowledge Recall Briefing ({current_time}):\n" +
-            "\n".join(top_items) +
+            f"Executive Technical & Knowledge Briefing ({current_time}):\n\n" +
+            "\n\n".join(top_blocks) +
             f"{REPO_SIGNATURE}"
         )
 
@@ -201,5 +199,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Semantic Memory Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Block-Aware Semantic Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
