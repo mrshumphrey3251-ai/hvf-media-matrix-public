@@ -27,14 +27,30 @@ if os.path.exists(ENV_PATH):
                 webhook_url = line_str.split("=", 1)[1].strip().strip('"').strip("'")
 
 client = None
+active_model_name = None
+
 if api_key:
     try:
         client = genai.Client(api_key=api_key)
-        print("[+] Google GenAI Client Initialized Successfully.")
+        # Dynamically discover supported models
+        discovered_models = []
+        for m in client.models.list():
+            name = getattr(m, 'name', '')
+            methods = getattr(m, 'supported_generation_methods', []) or getattr(m, 'supported_actions', [])
+            if 'generateContent' in str(methods) or 'generate_content' in str(methods) or not methods:
+                discovered_models.append(name.replace('models/', ''))
+        
+        # Pick the best available model
+        for candidate in ['gemini-2.0-flash', 'gemini-1.5-flash-latest', 'gemini-1.5-flash-001', 'gemini-pro', 'gemini-1.0-pro']:
+            if candidate in discovered_models:
+                active_model_name = candidate
+                break
+        if not active_model_name and discovered_models:
+            active_model_name = discovered_models[0]
+            
+        print(f"[+] GenAI Initialized. Active Auto-Discovered Model: {active_model_name}")
     except Exception as e:
-        print(f"[!] Neural Client Init Error: {e}")
-else:
-    print("[!] WARNING: GEMINI_API_KEY not found in .env.")
+        print(f"[!] Model Discovery Error: {e}")
 
 def load_knowledge_vault():
     aggregated_context = {}
@@ -86,46 +102,29 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             
             response_text = ""
             
-            if client:
+            if client and active_model_name:
                 prompt = (
                     f"System Context:\n"
                     f"- Current Local Time: {current_time}\n"
-                    f"- Live Environmental Status: {environment}\n\n"
-                    f"PROPRIETARY KNOWLEDGE VAULT DIRECTIVES & MEMORY:\n{vault_formatted}\n\n"
-                    f"You are Ebony, the authentic, highly intelligent, and authoritative AI Chief of Staff to the CEO of Humphrey Virtual Farm. "
-                    f"Converse with complete fluid intelligence, executive precision, and direct conversational prose. Use the Knowledge Vault memory to recall our past conversations, rules, and technical architecture naturally when relevant. Avoid robotic templates.\n\n"
+                    f"- Live Environmental Telemetry: {environment}\n\n"
+                    f"PROPRIETARY KNOWLEDGE VAULT MEMORY:\n{vault_formatted}\n\n"
+                    f"You are Ebony, the authentic, highly intelligent, executive AI partner to the CEO of Humphrey Virtual Farm. "
+                    f"Speak naturally, fluidly, and directly to the CEO. Answer all questions with depth and clarity without using boilerplate templates. Use your Knowledge Vault for technical and historical recall.\n\n"
                     f"CEO Message: {user_message}\n\n"
                     f"Ebony Response:"
                 )
-                
-                candidate_models = ['gemini-flash-latest', 'gemini-1.5-flash', 'gemini-1.5-pro']
-                generation_success = False
-                last_err = ""
-                
-                for target_model in candidate_models:
-                    try:
-                        res = client.models.generate_content(
-                            model=target_model,
-                            contents=prompt
-                        )
-                        response_text = res.text.strip() + REPO_SIGNATURE
-                        print(f"[*] Neural response generated via [{target_model}] ({len(response_text)} chars).")
-                        generation_success = True
-                        break
-                    except Exception as api_err:
-                        last_err = str(api_err)
-                        print(f"[!] Model {target_model} attempt error: {last_err}")
-                
-                if not generation_success:
-                    response_text = (
-                        f"[NEURAL LINK ERROR] Generation failed on all candidate endpoints: {last_err}\n\n"
-                        f"{REPO_SIGNATURE}"
+                try:
+                    res = client.models.generate_content(
+                        model=active_model_name,
+                        contents=prompt
                     )
+                    response_text = res.text.strip() + REPO_SIGNATURE
+                    print(f"[*] Neural response generated via {active_model_name}.")
+                except Exception as api_err:
+                    print(f"[!] Generation Error: {str(api_err)}")
+                    response_text = f"[NEURAL LINK ERROR] {str(api_err)}{REPO_SIGNATURE}"
             else:
-                response_text = (
-                    f"[NEURAL LINK INACTIVE] No GEMINI_API_KEY detected in .env file.\n"
-                    f"{REPO_SIGNATURE}"
-                )
+                response_text = f"[NEURAL LINK STANDBY] Key or Model Discovery pending.{REPO_SIGNATURE}"
             
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -144,7 +143,7 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             with open(LOG_FILE, "a", encoding="utf-8") as lf:
                 lf.write(log_entry)
                 
-            webhook_status = "Local Ledger Only (No external webhook configured)"
+            webhook_status = "Local Ledger Only"
             if webhook_url:
                 try:
                     req_payload = json.dumps({
@@ -157,7 +156,7 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                     with urllib.request.urlopen(req, timeout=5) as resp:
                         webhook_status = f"Relayed to external webhook (HTTP {resp.status})"
                 except Exception as wh_err:
-                    webhook_status = f"Webhook relay notice: {str(wh_err)}"
+                    webhook_status = f"Webhook notice: {str(wh_err)}"
                 
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -172,5 +171,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Resilient Neural Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Auto-Discovery Neural Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
