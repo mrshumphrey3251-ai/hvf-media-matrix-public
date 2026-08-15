@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 # HVF Media Matrix - Content Generator (Public/Redacted)
-# Engineered for object-oriented extraction and forward-compatibility
+# Engineered for dynamic temporal tracking
 
 class HVFContentGenerator:
     def __init__(self):
@@ -12,18 +12,14 @@ class HVFContentGenerator:
         os.makedirs(self.vault_path, exist_ok=True)
 
     def generate_content(self):
-        self.logger.info("Content Generation Engine Initialized. Standing by for directive.")
-        self.logger.info("[REDACTED: Target topic isolated]")
-        self.logger.info("Drafting sanitized executive article...")
+        self.logger.info("Content Generation Engine Initialized.")
+        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        draft_file = os.path.join(self.vault_path, f"Draft_{datetime.now().strftime('%H%M%S')}.txt")
         
-        timestamp = datetime.now().strftime("%H%M%S")
-        draft_file = os.path.join(self.vault_path, f"Draft_{timestamp}.txt")
-        
-        payload = "[REDACTED PUBLIC ARCHITECTURE DEMO]"
+        payload = f"[REDACTED PUBLIC ARCHITECTURE DEMO]\n[LIVE INTEL UPDATED: {current_time}]"
         
         with open(draft_file, "w", encoding="utf-8") as f:
             f.write(payload)
             
-        self.logger.info(f"Sanitized article drafted and secured in vault: {draft_file}")
         self.logger.info("Content sequence complete.")
         return payload
