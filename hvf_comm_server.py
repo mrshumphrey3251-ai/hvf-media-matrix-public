@@ -1,18 +1,20 @@
 ﻿import os
 import json
-import re
 import datetime
 import urllib.request
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server
-# Engineered with Knowledge Vault Ingestion, Federal NWS Telemetry, & Autonomous Local Core Fallback
+# Engineered with Absolute Path Knowledge Vault Ingestion & Federal NWS Telemetry
 
-env_path = os.path.join(os.path.dirname(__file__), ".env")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+VAULT_DIR = os.path.join(BASE_DIR, "knowledge_vault")
+ENV_PATH = os.path.join(BASE_DIR, ".env")
+
 api_key = None
-if os.path.exists(env_path):
-    with open(env_path, "r", encoding="utf-8") as f:
+if os.path.exists(ENV_PATH):
+    with open(ENV_PATH, "r", encoding="utf-8") as f:
         for line in f:
             if line.startswith("GEMINI_API_KEY="):
                 api_key = line.strip().split("=", 1)[1]
@@ -26,54 +28,39 @@ if api_key:
         print(f"Neural Client Init Error: {e}")
 
 def load_knowledge_vault():
-    vault_path = os.path.join(os.path.dirname(__file__), "knowledge_vault")
     aggregated_context = {}
-    if os.path.exists(vault_path):
-        for filename in os.listdir(vault_path):
+    if os.path.exists(VAULT_DIR):
+        for filename in os.listdir(VAULT_DIR):
             if filename.endswith(".txt") or filename.endswith(".md"):
-                file_full_path = os.path.join(vault_path, filename)
+                file_full_path = os.path.join(VAULT_DIR, filename)
                 try:
                     with open(file_full_path, "r", encoding="utf-8") as vf:
-                        aggregated_context[filename] = vf.read()
+                        aggregated_context[filename] = vf.read().strip()
                 except Exception as ex:
                     aggregated_context[filename] = f"Error reading file: {str(ex)}"
     return aggregated_context
 
 def autonomous_local_engine(user_message, vault_data, current_time, environment):
-    # Fully autonomous on-premise fallback response engine
     msg_lower = user_message.lower()
-    vault_summary = ""
+    
+    extracted_facts = []
     for doc_name, content in vault_data.items():
-        vault_summary += f"\n--- {doc_name} ---\n{content}\n"
+        for line in content.splitlines():
+            line_clean = line.strip()
+            if line_clean and not line_clean.startswith("HUMPHREY") and not line_clean.startswith("==="):
+                extracted_facts.append(line_clean)
     
-    # Check for direct Knowledge Vault queries
-    if any(k in msg_lower for k in ["directive", "objective", "phase", "mission", "vault", "knowledge"]):
-        extracted_info = []
-        for line in vault_summary.splitlines():
-            if ":" in line and not line.startswith("---"):
-                extracted_info.append(line.strip())
-        
-        details = " ".join(extracted_info) if extracted_info else vault_summary.strip()
-        return (
-            f"[AUTONOMOUS CORE] Executive Report as of {current_time}. "
-            f"Knowledge Vault Telemetry: {details}. "
-            f"Environmental Status: {environment}. Standing by for operational execution."
-        )
+    vault_summary = " | ".join(extracted_facts) if extracted_facts else "No active directives found in vault."
     
-    if any(k in msg_lower for k in ["time", "date", "status"]):
-        return (
-            f"[AUTONOMOUS CORE] Systems operational as of {current_time}. "
-            f"{environment}. Vault Status: {len(vault_data)} documents indexed and ready."
-        )
-
     return (
-        f"[AUTONOMOUS CORE] Directive received: '{user_message}'. "
-        f"Processed locally against {len(vault_data)} Knowledge Vault documents at {current_time}."
+        f"[AUTONOMOUS CORE] Executive Briefing as of {current_time}. "
+        f"Proprietary Directives: {vault_summary}. "
+        f"Environmental Status: {environment}. Ready for next directive."
     )
 
 def get_nws_telemetry(lat, lon):
     if not lat or not lon:
-        return "Location telemetry pending hardware link"
+        return "Location telemetry standby"
     try:
         safe_lat = round(float(lat), 2)
         safe_lon = round(float(lon), 2)
@@ -107,8 +94,6 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             vault_formatted = "\n".join([f"[{k}]: {v}" for k, v in vault_dict.items()])
             
             response_text = ""
-            
-            # Attempt Cloud Engine first if client initialized
             if client:
                 prompt = (
                     f"System Context: The current local time is {current_time}. {environment}.\n"
@@ -120,7 +105,6 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                     res = client.models.generate_content(model='gemini-flash-latest', contents=prompt)
                     response_text = res.text.strip()
                 except Exception:
-                    # Cloud throttled or rate-limited: seamless failover to Autonomous Local Core
                     response_text = autonomous_local_engine(user_message, vault_dict, current_time, environment)
             else:
                 response_text = autonomous_local_engine(user_message, vault_dict, current_time, environment)
@@ -133,7 +117,7 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             self.send_error(404)
 
 if __name__ == "__main__":
-    os.chdir(os.path.join(os.path.dirname(__file__), "ebony_dashboard"))
+    os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Autonomous Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Knowledge Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
