@@ -8,22 +8,25 @@
         body { background-color: #050505; color: #00ffcc; font-family: 'Courier New', Courier, monospace; margin: 0; padding: 20px; }
         h2, h3 { border-bottom: 1px solid #00ffcc; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
         #main-container { display: flex; flex-direction: column; max-width: 900px; margin: 0 auto; gap: 20px; }
-        #chat-box { height: 350px; overflow-y: auto; background: #0a0a0a; border: 1px solid #333; padding: 20px; box-shadow: 0 0 10px rgba(0, 255, 204, 0.1); }
+        #chat-box { height: 320px; overflow-y: auto; background: #0a0a0a; border: 1px solid #333; padding: 20px; box-shadow: 0 0 10px rgba(0, 255, 204, 0.1); }
         .input-group { display: flex; gap: 10px; }
         input { flex-grow: 1; padding: 15px; background: #111; color: #00ffcc; border: 1px solid #333; outline: none; font-size: 16px; }
         button { padding: 15px 30px; background: #00ffcc; color: #000; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
         button:hover { background: #00ccaa; }
-        .btn-small { padding: 8px 15px; font-size: 12px; margin-left: 10px; }
+        .btn-small { padding: 6px 12px; font-size: 11px; margin-left: 10px; }
+        .btn-publish { padding: 6px 14px; font-size: 11px; background: #ffaa00; color: #000; font-weight: bold; border: none; border-radius: 3px; cursor: pointer; }
+        .btn-publish:hover { background: #ffcc00; }
+        .btn-published { padding: 6px 14px; font-size: 11px; background: #222; color: #00ffcc; border: 1px solid #00ffcc; border-radius: 3px; cursor: default; }
         .sys-msg { color: #888; font-style: italic; margin-bottom: 10px; font-size: 14px; }
         .user-msg { color: #fff; margin-bottom: 10px; }
         .ebony-msg { color: #00ffcc; margin-bottom: 20px; border-left: 2px solid #00ffcc; padding-left: 10px; white-space: pre-wrap; }
-        #queue-box { background: #0a0a0a; border: 1px solid #333; padding: 15px; font-size: 13px; max-height: 250px; overflow-y: auto; }
-        .queue-item { border: 1px solid #222; background: #0d0d0d; border-radius: 4px; padding: 12px; margin-bottom: 10px; color: #ccc; }
-        .queue-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        #queue-box { background: #0a0a0a; border: 1px solid #333; padding: 15px; font-size: 13px; max-height: 280px; overflow-y: auto; }
+        .queue-item { border: 1px solid #222; background: #0d0d0d; border-radius: 4px; padding: 12px; margin-bottom: 12px; color: #ccc; }
+        .queue-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
         .queue-tag { display: inline-block; background: #004433; color: #00ffaa; padding: 3px 8px; border-radius: 3px; font-size: 11px; font-weight: bold; }
         .queue-schedule { color: #888; font-size: 12px; }
         .queue-topic { color: #fff; font-weight: bold; font-size: 14px; margin-bottom: 5px; }
-        .queue-content { color: #888; font-size: 12px; white-space: pre-line; border-top: 1px dashed #222; padding-top: 5px; margin-top: 5px; }
+        .queue-content { color: #888; font-size: 12px; white-space: pre-line; border-top: 1px dashed #222; padding-top: 8px; margin-top: 6px; }
         .queue-controls { display: flex; justify-content: space-between; align-items: center; }
     </style>
 </head>
@@ -52,6 +55,7 @@
     <script>
         let currentLat = null;
         let currentLon = null;
+        let publishedDispatches = new Set();
 
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(
@@ -67,6 +71,24 @@
             );
         }
 
+        async function publishDispatch(id, platform, topic) {
+            try {
+                const res = await fetch('/api/publish', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id, platform: platform, topic: topic })
+                });
+                const data = await res.json();
+                publishedDispatches.add(id);
+                loadQueue();
+                const chatBox = document.getElementById("chat-box");
+                chatBox.innerHTML += '<div class="sys-msg" style="color:#ffaa00;"><b>[BROADCAST EXECUTED]:</b> ' + data.message + '</div>';
+                chatBox.scrollTop = chatBox.scrollHeight;
+            } catch (e) {
+                alert("Failed to execute broadcast trigger.");
+            }
+        }
+
         async function loadQueue() {
             const queueBox = document.getElementById("queue-box");
             try {
@@ -76,10 +98,15 @@
                     if (data.queue && data.queue.length > 0) {
                         let html = "";
                         data.queue.forEach(item => {
+                            const isPub = publishedDispatches.has(item.id);
+                            const actionBtn = isPub
+                                ? '<button class="btn-published">TRANSMITTED</button>'
+                                : <button class="btn-publish" onclick="publishDispatch( + item.id + , ' + item.platform + ', ' + item.topic + ')">PUBLISH NOW</button>;
+
                             html += '<div class="queue-item">';
                             html += '  <div class="queue-header">';
-                            html += '    <span class="queue-tag">' + item.platform.toUpperCase() + '</span>';
-                            html += '    <span class="queue-schedule">' + item.schedule + '</span>';
+                            html += '    <div><span class="queue-tag">' + item.platform.toUpperCase() + '</span> <span class="queue-schedule">' + item.schedule + '</span></div>';
+                            html += '    <div>' + actionBtn + '</div>';
                             html += '  </div>';
                             html += '  <div class="queue-topic">' + item.topic + '</div>';
                             html += '  <div class="queue-content">' + item.content + '</div>';
@@ -90,10 +117,9 @@
                     }
                 }
             } catch (e) {
-                console.error("Dynamic queue fetch error:", e);
+                console.error("Queue fetch error:", e);
             }
-            
-            queueBox.innerHTML = '<div class="sys-msg">No active queue data found. Click "Force Refresh Queue" or run batch generator.</div>';
+            queueBox.innerHTML = '<div class="sys-msg">No active queue data found. Click "Force Refresh Queue".</div>';
         }
 
         async function sendMessage() {
@@ -126,7 +152,6 @@
             }
         }
 
-        // Initialize queue on load
         loadQueue();
     </script>
 </body>

@@ -6,10 +6,13 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server
-# Configured with Verified Public Repository Broadcast: mrshumphrey3251-ai
+# Live Knowledge Ingestion, Federal Radar Telemetry, & Interactive Dispatch Dispatcher
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VAULT_DIR = os.path.join(BASE_DIR, "knowledge_vault")
+DATA_DIR = os.path.join(BASE_DIR, "ebony_dashboard", "data")
+QUEUE_FILE = os.path.join(DATA_DIR, "weekly_dispatch_queue.json")
+LOG_FILE = os.path.join(DATA_DIR, "dispatch_transmission_ledger.log")
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 
 GITHUB_PUBLIC_VAULT = "https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
@@ -137,11 +140,29 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps({'reply': response_text}).encode('utf-8'))
+
+        elif self.path == '/api/publish':
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            payload = json.loads(post_data.decode('utf-8'))
+            dispatch_id = payload.get('id')
+            
+            # Update local queue status and record transmission
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            log_entry = f"[{timestamp}] DISPATCH TRANSMITTED: ID {dispatch_id} | Platform: {payload.get('platform')} | Topic: {payload.get('topic')}\n"
+            os.makedirs(DATA_DIR, exist_ok=True)
+            with open(LOG_FILE, "a", encoding="utf-8") as lf:
+                lf.write(log_entry)
+                
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps({'status': 'SUCCESS', 'message': f'Dispatch {dispatch_id} broadcast logged to ledger.'}).encode('utf-8'))
         else:
             self.send_error(404)
 
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Corrected Repository Broadcast Server Live on port 8000... Awaiting Directives.")
+    print("Ebony One-Click Matrix Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
