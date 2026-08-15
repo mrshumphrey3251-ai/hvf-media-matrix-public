@@ -6,7 +6,7 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server
-# Engineered for Dynamic Mobile Hardware GPS Bridge with OPSEC Geofence Shield
+# Engineered for Dynamic Mobile GPS Bridge, Geofence Shield, & Upgraded Failover Cascade
 
 env_path = os.path.join(os.path.dirname(__file__), ".env")
 api_key = None
@@ -29,7 +29,6 @@ def get_environmental_telemetry(lat, lon):
         return "Location data pending user hardware authorization. Cannot verify weather."
     try:
         # OPSEC GEOFENCE SHIELD: Truncate to 2 decimal places (~1km radius)
-        # Prevents exact street-level tracking from external APIs while maintaining neighborhood weather accuracy.
         safe_lat = round(float(lat), 2)
         safe_lon = round(float(lon), 2)
         
@@ -68,9 +67,11 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                     )
                     response_text = response.text.strip()
                 except Exception as e:
+                    print(f"Primary model offline. Engaging Upgraded Failover Cascade...")
                     try:
+                        # Rerouted to stabilized enterprise cluster
                         response_fallback = client.models.generate_content(
-                            model='gemini-2.5-flash-lite',
+                            model='gemini-1.5-flash',
                             contents=prompt
                         )
                         response_text = f"[FAILOVER ENGAGED] {response_fallback.text.strip()}"
