@@ -1,0 +1,35 @@
+﻿================================================================================
+HUMPHREY VIRTUAL FARM (HVF) - TECHNICAL ARCHITECTURE & ENDPOINT SCHEMA
+CLASSIFICATION: CONFIDENTIAL // EYES ONLY
+CORE REPOSITORY: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public
+================================================================================
+
+SYSTEM ARCHITECTURE SCHEMAS & NODES:
+
+1. NODE 1: MEDIA MATRIX & DISPATCH ENGINE
+   - Core Script: hvf_comm_server.py
+   - Batch Generator: generate_batch_dispatches.py
+   - Queue File: ebony_dashboard/data/weekly_dispatch_queue.json
+   - Transmission Ledger: ebony_dashboard/data/dispatch_transmission_ledger.log
+   - Endpoints:
+     * POST /api/chat -> Ingests {message, lat, lon}, returns semantic vault response.
+     * POST /api/publish -> Ingests {id, platform, topic}, appends to ledger, triggers optional webhook.
+
+2. NODE 2: SENSORY TELEMETRY & ENVIRONMENTAL MONITOR
+   - Data Source: Federal National Weather Service (NOAA API: api.weather.gov)
+   - Function: get_nws_telemetry(lat, lon)
+   - OPSEC Geofencing: Lat/Lon coordinates rounded to 2 decimal places before API query.
+
+3. NODE 3: PROPRIETARY KNOWLEDGE VAULT & RAG MEMORY CORE
+   - Directory: /knowledge_vault
+   - Ingested Documents:
+     * hvf_master_directive.txt (Strategic mission, leadership, phase)
+     * hvf_operations_manual.txt (Node definitions, OPSEC geofencing)
+     * hvf_operational_history.txt (Historical rules, 3-step protocol, email contact)
+     * hvf_technical_schema.txt (Technical architecture, endpoints, code structure)
+   - Memory Resolution: Multi-vault word relevance scoring engine with local fallback.
+
+4. AUTOMATED TASK SCHEDULER:
+   - Task Name: HVF_Matrix_Daily_Dispatch_Refresh
+   - Schedule: Daily at 06:00 AM via setup_daily_task.ps1
+================================================================================
