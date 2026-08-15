@@ -6,11 +6,14 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server
-# Multi-Document Knowledge Ingestion, Federal NWS Telemetry, & Matrix Dispatch Engine
+# Engineered with Mandatory Repository Broadcast Signatures on All Outbound Comms
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VAULT_DIR = os.path.join(BASE_DIR, "knowledge_vault")
 ENV_PATH = os.path.join(BASE_DIR, ".env")
+
+GITHUB_PUBLIC_VAULT = "https://github.com/HumphreyVirtualFarm/hvf-media-matrix-public"
+REPO_SIGNATURE = f"\n\n[HVF INFRASTRUCTURE BROADCAST]\nOfficial Architecture Repository: {GITHUB_PUBLIC_VAULT}\nOperational Security: Geofenced & Vault-Verified"
 
 api_key = None
 if os.path.exists(ENV_PATH):
@@ -43,11 +46,7 @@ def load_knowledge_vault():
 def autonomous_local_engine(user_message, vault_data, current_time, environment):
     msg_lower = user_message.lower()
     
-    # Check for Social Media / Dispatch Generation directive
     if any(k in msg_lower for k in ["linkedin", "post", "social", "dispatch", "media matrix", "broadcast"]):
-        directive_doc = vault_data.get("hvf_master_directive.txt", "")
-        ops_doc = vault_data.get("hvf_operations_manual.txt", "")
-        
         return (
             f"[AUTONOMOUS DISPATCH ENGINE] Executive Media Release Draft ({current_time}):\n\n"
             f"Headline: Autonomous Infrastructure in Precision Agriculture & Digital Systems\n\n"
@@ -55,7 +54,9 @@ def autonomous_local_engine(user_message, vault_data, current_time, environment)
             f"Current milestone: Complete integration of proprietary RAG memory cores, OPSEC-shielded geofencing, "
             f"and real-time federal environmental telemetry.\n\n"
             f"Key Focus: Total infrastructure dominance through zero-latency automated pipelines.\n\n"
+            f"Public Blueprint: {GITHUB_PUBLIC_VAULT}\n\n"
             f"#HumphreyVirtualFarm #DigitalTransformation #AgTech #AI #AutonomousSystems #ExecutiveLeadership"
+            f"{REPO_SIGNATURE}"
         )
     
     matching_lines = []
@@ -76,6 +77,7 @@ def autonomous_local_engine(user_message, vault_data, current_time, environment)
         f"[AUTONOMOUS CORE] Executive Briefing as of {current_time}. "
         f"Vault Directives: {vault_summary}. "
         f"Environmental Status: {environment}. Ready for next directive."
+        f"{REPO_SIGNATURE}"
     )
 
 def get_nws_telemetry(lat, lon):
@@ -119,7 +121,9 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                     f"System Context: The current local time is {current_time}. {environment}.\n"
                     f"--- PROPRIETARY KNOWLEDGE VAULT DATA ---\n{vault_formatted}\n----------------------------------------\n"
                     f"You are Ebony, Executive AI assistant for the CEO of Humphrey Virtual Farm. "
-                    f"Answer the CEO: '{user_message}' using the Vault data concisely. Do not use markdown."
+                    f"Answer the CEO: '{user_message}' using the Vault data concisely. Do not use markdown.\n"
+                    f"MANDATORY REQUIREMENT: Always append this exact signature at the end of your response:\n"
+                    f"{REPO_SIGNATURE}"
                 )
                 try:
                     res = client.models.generate_content(model='gemini-flash-latest', contents=prompt)
@@ -139,5 +143,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Matrix Dispatch Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Repository Broadcast Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
