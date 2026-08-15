@@ -6,13 +6,13 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server
-# Engineered with Mandatory Repository Broadcast Signatures on All Outbound Comms
+# Configured with Verified Public Repository Broadcast: mrshumphrey3251-ai
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VAULT_DIR = os.path.join(BASE_DIR, "knowledge_vault")
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 
-GITHUB_PUBLIC_VAULT = "https://github.com/HumphreyVirtualFarm/hvf-media-matrix-public"
+GITHUB_PUBLIC_VAULT = "https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
 REPO_SIGNATURE = f"\n\n[HVF INFRASTRUCTURE BROADCAST]\nOfficial Architecture Repository: {GITHUB_PUBLIC_VAULT}\nOperational Security: Geofenced & Vault-Verified"
 
 api_key = None
@@ -143,5 +143,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Repository Broadcast Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Corrected Repository Broadcast Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
