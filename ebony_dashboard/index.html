@@ -31,16 +31,23 @@
     </div>
 
     <script>
-        // Force asynchronous halt until hardware GPS is locked
         function getSecureCoordinates() {
             return new Promise((resolve) => {
                 if (!("geolocation" in navigator)) {
+                    document.getElementById("chat-box").innerHTML += <div class="sys-msg" style="color:#ffaa00;">Diagnostic: Geolocation API missing in browser.</div>;
                     resolve({lat: null, lon: null});
                 } else {
                     navigator.geolocation.getCurrentPosition(
                         (pos) => resolve({lat: pos.coords.latitude, lon: pos.coords.longitude}),
-                        (err) => resolve({lat: null, lon: null}),
-                        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+                        (err) => {
+                            let reason = "Unknown Error";
+                            if(err.code === 1) reason = "OS or Browser Permission Denied.";
+                            if(err.code === 2) reason = "Hardware Position Unavailable (No GPS/Wi-Fi Adapter).";
+                            if(err.code === 3) reason = "Hardware Timeout.";
+                            document.getElementById("chat-box").innerHTML += <div class="sys-msg" style="color:#ffaa00;">Hardware Diagnostic:  + reason + </div>;
+                            resolve({lat: null, lon: null});
+                        },
+                        { enableHighAccuracy: true, timeout: 60000, maximumAge: 0 }
                     );
                 }
             });
@@ -56,10 +63,9 @@
             input.value = "";
 
             const loadingId = "load-" + Date.now();
-            chatBox.innerHTML += <div id=" + loadingId + " class="sys-msg">Acquiring secure GPS lock...</div>;
+            chatBox.innerHTML += <div id=" + loadingId + " class="sys-msg">Acquiring secure GPS lock (Awaiting Authorization)...</div>;
             chatBox.scrollTop = chatBox.scrollHeight;
 
-            // Execution freezes here until the GPS chip responds
             const coords = await getSecureCoordinates();
 
             document.getElementById(loadingId).innerText = "Processing payload...";
