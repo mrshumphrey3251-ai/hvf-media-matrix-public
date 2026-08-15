@@ -1,10 +1,10 @@
 ﻿import os
 import json
 from http.server import SimpleHTTPRequestHandler, HTTPServer
-import google.generativeai as genai
+from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server (Private)
-# Engineered for live read/write cognitive routing (Universal Model Hotfix)
+# Engineered for Next-Gen Google GenAI SDK routing
 
 env_path = os.path.join(os.path.dirname(__file__), ".env")
 api_key = None
@@ -15,11 +15,12 @@ if os.path.exists(env_path):
                 api_key = line.strip().split("=", 1)[1]
                 break
 
+client = None
 if api_key:
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-pro')
-else:
-    model = None
+    try:
+        client = genai.Client(api_key=api_key)
+    except Exception as e:
+        print(f"Neural Client Init Error: {e}")
 
 class HVFCommHandler(SimpleHTTPRequestHandler):
     def do_POST(self):
@@ -30,10 +31,13 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             user_message = data.get('message', '')
             
             response_text = "ERROR: Cognitive Core Offline."
-            if model:
+            if client:
                 try:
                     prompt = f"You are Ebony, the highly intelligent Executive AI assistant for the CEO of Humphrey Virtual Farm. The CEO says: '{user_message}'. Respond directly, professionally, and concisely as an elite AI subordinate. Do not use markdown formatting."
-                    response = model.generate_content(prompt)
+                    response = client.models.generate_content(
+                        model='gemini-1.5-flash',
+                        contents=prompt
+                    )
                     response_text = response.text.strip()
                 except Exception as e:
                     response_text = f"Transmission Error: {str(e)}"
