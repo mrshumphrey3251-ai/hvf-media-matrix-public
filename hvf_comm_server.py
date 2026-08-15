@@ -4,7 +4,7 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server (Private)
-# Engineered for Next-Gen Google GenAI SDK routing with Universal Model Designation
+# Engineered for Next-Gen Google GenAI SDK routing with Future-Proof Model Designation
 
 env_path = os.path.join(os.path.dirname(__file__), ".env")
 api_key = None
@@ -35,7 +35,7 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                 try:
                     prompt = f"You are Ebony, the highly intelligent Executive AI assistant for the CEO of Humphrey Virtual Farm. The CEO says: '{user_message}'. Respond directly, professionally, and concisely as an elite AI subordinate. Do not use markdown formatting."
                     response = client.models.generate_content(
-                        model='gemini-pro',
+                        model='gemini-flash-latest',
                         contents=prompt
                     )
                     response_text = response.text.strip()
