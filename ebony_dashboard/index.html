@@ -22,7 +22,7 @@
     <div id="chat-container">
         <h2>Ebony // Tactical Comm Link</h2>
         <div id="chat-box">
-            <div class="sys-msg">System Online. Dashboard ready for executive directives.</div>
+            <div class="sys-msg">System Online. Dashboard armed and ready.</div>
         </div>
         <div class="input-group">
             <input type="text" id="user-input" placeholder="Enter executive directive..." onkeypress="if(event.key === 'Enter') sendMessage()">
@@ -31,26 +31,24 @@
     </div>
 
     <script>
-        function getSecureCoordinates() {
-            return new Promise((resolve) => {
-                if (!("geolocation" in navigator)) {
-                    document.getElementById("chat-box").innerHTML += <div class="sys-msg" style="color:#ffaa00;">Diagnostic: Geolocation API missing in browser.</div>;
-                    resolve({lat: null, lon: null});
-                } else {
-                    navigator.geolocation.getCurrentPosition(
-                        (pos) => resolve({lat: pos.coords.latitude, lon: pos.coords.longitude}),
-                        (err) => {
-                            let reason = "Unknown Error";
-                            if(err.code === 1) reason = "OS or Browser Permission Denied.";
-                            if(err.code === 2) reason = "Hardware Position Unavailable (No GPS/Wi-Fi Adapter).";
-                            if(err.code === 3) reason = "Hardware Timeout.";
-                            document.getElementById("chat-box").innerHTML += <div class="sys-msg" style="color:#ffaa00;">Hardware Diagnostic:  + reason + </div>;
-                            resolve({lat: null, lon: null});
-                        },
-                        { enableHighAccuracy: true, timeout: 60000, maximumAge: 0 }
-                    );
-                }
-            });
+        let currentLat = null;
+        let currentLon = null;
+
+        // Asynchronous Background Poll - Does NOT freeze the dashboard
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    currentLat = pos.coords.latitude;
+                    currentLon = pos.coords.longitude;
+                    document.getElementById("chat-box").innerHTML += '<div class="sys-msg">Background GPS Lock Confirmed.</div>';
+                },
+                (err) => {
+                    document.getElementById("chat-box").innerHTML += '<div class="sys-msg" style="color:#ffaa00;">Hardware Diagnostic: GPS unavailable or blocked by OS. Proceeding without weather link.</div>';
+                },
+                { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+            );
+        } else {
+            document.getElementById("chat-box").innerHTML += '<div class="sys-msg" style="color:#ffaa00;">Hardware Diagnostic: Browser lacks Geolocation API.</div>';
         }
 
         async function sendMessage() {
@@ -59,30 +57,26 @@
             if (!message) return;
 
             const chatBox = document.getElementById("chat-box");
-            chatBox.innerHTML += <div class="user-msg"><b>CEO:</b>  + message + </div>;
+            chatBox.innerHTML += '<div class="user-msg"><b>CEO:</b> ' + message + '</div>';
             input.value = "";
 
             const loadingId = "load-" + Date.now();
-            chatBox.innerHTML += <div id=" + loadingId + " class="sys-msg">Acquiring secure GPS lock (Awaiting Authorization)...</div>;
+            chatBox.innerHTML += '<div id="' + loadingId + '" class="sys-msg">Processing payload...</div>';
             chatBox.scrollTop = chatBox.scrollHeight;
-
-            const coords = await getSecureCoordinates();
-
-            document.getElementById(loadingId).innerText = "Processing payload...";
 
             try {
                 const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: message, lat: coords.lat, lon: coords.lon })
+                    body: JSON.stringify({ message: message, lat: currentLat, lon: currentLon })
                 });
                 const data = await response.json();
                 document.getElementById(loadingId).remove();
-                chatBox.innerHTML += <div class="ebony-msg"><b>Ebony:</b>  + data.reply + </div>;
+                chatBox.innerHTML += '<div class="ebony-msg"><b>Ebony:</b> ' + data.reply + '</div>';
                 chatBox.scrollTop = chatBox.scrollHeight;
             } catch (error) {
                 document.getElementById(loadingId).remove();
-                chatBox.innerHTML += <div class="sys-msg" style="color:#ff4444;">Transmission Error. Check terminal.</div>;
+                chatBox.innerHTML += '<div class="sys-msg" style="color:#ff4444;">Transmission Error. Check terminal.</div>';
             }
         }
     </script>
