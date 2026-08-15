@@ -7,7 +7,7 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server
-# Engineered with Knowledge Vault Ingestion & Autonomous 429 Rate-Limit Shield
+# Engineered with Knowledge Vault Ingestion & Verified Active Model Cascade
 
 env_path = os.path.join(os.path.dirname(__file__), ".env")
 api_key = None
@@ -63,7 +63,13 @@ def get_nws_telemetry(lat, lon):
         return f"Federal NWS Telemetry unavailable. Diagnostics: {str(e)}"
 
 def generate_with_shield(prompt):
-    models_to_try = ['gemini-2.5-pro', 'gemini-flash-latest', 'gemini-2.5-flash-lite']
+    # Models strictly verified from the diagnostic list
+    models_to_try = [
+        'gemini-flash-latest',
+        'gemini-3.5-flash',
+        'gemini-3.7-flash',
+        'gemini-pro-latest'
+    ]
     last_error = ""
     for model_name in models_to_try:
         for attempt in range(2):
@@ -75,9 +81,9 @@ def generate_with_shield(prompt):
                 return response.text.strip()
             except Exception as e:
                 err_str = str(e)
-                last_error = err_str
+                last_error = f"[{model_name}] {err_str}"
                 if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
-                    time.sleep(2)  # Automatic backoff delay to clear rate-limit bucket
+                    time.sleep(2)
                     continue
                 else:
                     break
@@ -119,5 +125,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(os.path.dirname(__file__), "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Resilient Knowledge Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Knowledge Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
