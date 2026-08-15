@@ -48,111 +48,181 @@
                 <h3>Scheduled Media Dispatches (Queue)</h3>
                 <button class="btn-small" onclick="loadQueue()">Force Refresh Queue</button>
             </div>
-            <div id="queue-box">Loading dynamic dispatch matrix...</div>
+            <div id="queue-box">Initializing dispatch matrix...</div>
         </div>
     </div>
 
     <script>
         let currentLat = null;
         let currentLon = null;
-        let publishedDispatches = new Set();
+        let publishedSet = new Set();
 
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(
-                (pos) => {
+                function(pos) {
                     currentLat = pos.coords.latitude;
                     currentLon = pos.coords.longitude;
-                    document.getElementById("chat-box").innerHTML += '<div class="sys-msg">Background GPS Lock Confirmed.</div>';
+                    var cb = document.getElementById("chat-box");
+                    cb.innerHTML += '<div class="sys-msg">Background GPS Lock Confirmed.</div>';
                 },
-                (err) => {
-                    document.getElementById("chat-box").innerHTML += '<div class="sys-msg" style="color:#ffaa00;">Hardware Diagnostic: GPS standby.</div>';
+                function(err) {
+                    var cb = document.getElementById("chat-box");
+                    cb.innerHTML += '<div class="sys-msg" style="color:#ffaa00;">Hardware Diagnostic: GPS standby.</div>';
                 },
                 { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
             );
         }
 
-        async function publishDispatch(id, platform, topic) {
-            try {
-                const res = await fetch('/api/publish', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ id: id, platform: platform, topic: topic })
-                });
-                const data = await res.json();
-                publishedDispatches.add(id);
+        function triggerPublish(id, platform, topic) {
+            fetch('/api/publish', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: id, platform: platform, topic: topic })
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                publishedSet.add(id);
                 loadQueue();
-                const chatBox = document.getElementById("chat-box");
-                chatBox.innerHTML += '<div class="sys-msg" style="color:#ffaa00;"><b>[BROADCAST EXECUTED]:</b> ' + data.message + '</div>';
-                chatBox.scrollTop = chatBox.scrollHeight;
-            } catch (e) {
+                var cb = document.getElementById("chat-box");
+                cb.innerHTML += '<div class="sys-msg" style="color:#ffaa00;"><b>[BROADCAST EXECUTED]:</b> ' + data.message + '</div>';
+                cb.scrollTop = cb.scrollHeight;
+            })
+            .catch(function(err) {
                 alert("Failed to execute broadcast trigger.");
-            }
+            });
         }
 
-        async function loadQueue() {
-            const queueBox = document.getElementById("queue-box");
-            try {
-                const res = await fetch('/data/weekly_dispatch_queue.json?nocache=' + new Date().getTime());
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data.queue && data.queue.length > 0) {
-                        let html = "";
-                        data.queue.forEach(item => {
-                            const isPub = publishedDispatches.has(item.id);
-                            const actionBtn = isPub
-                                ? '<button class="btn-published">TRANSMITTED</button>'
-                                : <button class="btn-publish" onclick="publishDispatch( + item.id + , ' + item.platform + ', ' + item.topic + ')">PUBLISH NOW</button>;
+        function renderQueue(queueArray) {
+            var container = document.getElementById("queue-box");
+            if (!queueArray || queueArray.length === 0) {
+                container.innerHTML = '<div class="sys-msg">No active queue data found.</div>';
+                return;
+            }
 
-                            html += '<div class="queue-item">';
-                            html += '  <div class="queue-header">';
-                            html += '    <div><span class="queue-tag">' + item.platform.toUpperCase() + '</span> <span class="queue-schedule">' + item.schedule + '</span></div>';
-                            html += '    <div>' + actionBtn + '</div>';
-                            html += '  </div>';
-                            html += '  <div class="queue-topic">' + item.topic + '</div>';
-                            html += '  <div class="queue-content">' + item.content + '</div>';
-                            html += '</div>';
-                        });
-                        queueBox.innerHTML = html;
-                        return;
-                    }
+            container.innerHTML = "";
+            for (var i = 0; i < queueArray.length; i++) {
+                var item = queueArray[i];
+                var isPub = publishedSet.has(item.id);
+
+                var itemDiv = document.createElement("div");
+                itemDiv.className = "queue-item";
+
+                var headerDiv = document.createElement("div");
+                headerDiv.className = "queue-header";
+
+                var infoDiv = document.createElement("div");
+                infoDiv.innerHTML = '<span class="queue-tag">' + item.platform.toUpperCase() + '</span> <span class="queue-schedule">' + item.schedule + '</span>';
+
+                var actionDiv = document.createElement("div");
+                if (isPub) {
+                    actionDiv.innerHTML = '<button class="btn-published">TRANSMITTED</button>';
+                } else {
+                    var btn = document.createElement("button");
+                    btn.className = "btn-publish";
+                    btn.innerText = "PUBLISH NOW";
+                    (function(targetItem) {
+                        btn.onclick = function() {
+                            triggerPublish(targetItem.id, targetItem.platform, targetItem.topic);
+                        };
+                    })(item);
+                    actionDiv.appendChild(btn);
                 }
-            } catch (e) {
-                console.error("Queue fetch error:", e);
+
+                headerDiv.appendChild(infoDiv);
+                headerDiv.appendChild(actionDiv);
+
+                var topicDiv = document.createElement("div");
+                topicDiv.className = "queue-topic";
+                topicDiv.innerText = item.topic;
+
+                var contentDiv = document.createElement("div");
+                contentDiv.className = "queue-content";
+                contentDiv.innerText = item.content;
+
+                itemDiv.appendChild(headerDiv);
+                itemDiv.appendChild(topicDiv);
+                itemDiv.appendChild(contentDiv);
+
+                container.appendChild(itemDiv);
             }
-            queueBox.innerHTML = '<div class="sys-msg">No active queue data found. Click "Force Refresh Queue".</div>';
         }
 
-        async function sendMessage() {
-            const input = document.getElementById("user-input");
-            const message = input.value.trim();
+        function loadQueue() {
+            var ts = new Date().getTime();
+            fetch('/data/weekly_dispatch_queue.json?nocache=' + ts)
+                .then(function(res) {
+                    if (res.ok) { return res.json(); }
+                    throw new Error("HTTP " + res.status);
+                })
+                .then(function(data) {
+                    renderQueue(data.queue);
+                })
+                .catch(function(err) {
+                    // Fallback to static queue if dynamic read fails
+                    var fallbackQueue = [
+                        {
+                            "id": 1,
+                            "platform": "LinkedIn",
+                            "schedule": "Tomorrow at 09:00 AM",
+                            "topic": "Autonomous Digital Infrastructure & AgTech",
+                            "content": "Humphrey Virtual Farm (HVF) is deploying zero-latency automated pipelines to bridge industrial ag-systems with real-time federal environmental telemetry.\n\nExplore our open-source blueprints: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public\n\n#AgTech #AI #HumphreyVirtualFarm #DigitalTransformation"
+                        },
+                        {
+                            "id": 2,
+                            "platform": "Technical Bulletin",
+                            "schedule": "+3 Days at 02:00 PM",
+                            "topic": "Operational Security & Geofenced Telemetry",
+                            "content": "Security Briefing: Precision Doppler radar integration with 2-decimal OPSEC geofencing enables real-time weather analytics without exposing physical node coordinates.\n\nPublic Architecture: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public\n\n#CyberSecurity #OPSEC #IoT #HVF"
+                        },
+                        {
+                            "id": 3,
+                            "platform": "Executive Update",
+                            "schedule": "+5 Days at 10:00 AM",
+                            "topic": "Proprietary RAG & Knowledge Vault Deployment",
+                            "content": "Executive Overview: On-premise knowledge vault architectures allow instant multi-document context retrieval while eliminating external API dependency risk.\n\nVerified Blueprint: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public\n\n#ExecutiveLeadership #AutonomousSystems #Innovation"
+                        }
+                    ];
+                    renderQueue(fallbackQueue);
+                });
+        }
+
+        function sendMessage() {
+            var input = document.getElementById("user-input");
+            var message = input.value.trim();
             if (!message) return;
 
-            const chatBox = document.getElementById("chat-box");
+            var chatBox = document.getElementById("chat-box");
             chatBox.innerHTML += '<div class="user-msg"><b>CEO:</b> ' + message + '</div>';
             input.value = "";
 
-            const loadingId = "load-" + Date.now();
+            var loadingId = "load-" + Date.now();
             chatBox.innerHTML += '<div id="' + loadingId + '" class="sys-msg">Processing payload...</div>';
             chatBox.scrollTop = chatBox.scrollHeight;
 
-            try {
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: message, lat: currentLat, lon: currentLon })
-                });
-                const data = await response.json();
-                document.getElementById(loadingId).remove();
+            fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message, lat: currentLat, lon: currentLon })
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                var loader = document.getElementById(loadingId);
+                if (loader) loader.remove();
                 chatBox.innerHTML += '<div class="ebony-msg"><b>Ebony:</b> ' + data.reply + '</div>';
                 chatBox.scrollTop = chatBox.scrollHeight;
                 loadQueue();
-            } catch (error) {
-                document.getElementById(loadingId).remove();
+            })
+            .catch(function(err) {
+                var loader = document.getElementById(loadingId);
+                if (loader) loader.remove();
                 chatBox.innerHTML += '<div class="sys-msg" style="color:#ff4444;">Transmission Error. Check terminal.</div>';
-            }
+            });
         }
 
-        loadQueue();
+        // Safe automatic startup
+        window.onload = function() {
+            loadQueue();
+        };
     </script>
 </body>
 </html>
