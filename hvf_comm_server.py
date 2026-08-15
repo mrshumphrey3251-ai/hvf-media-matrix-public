@@ -34,7 +34,7 @@ if api_key:
     except Exception as e:
         print(f"[!] Neural Client Init Error: {e}")
 else:
-    print("[!] WARNING: GEMINI_API_KEY not found in .env. Running on local fallback.")
+    print("[!] WARNING: GEMINI_API_KEY not found in .env.")
 
 def load_knowledge_vault():
     aggregated_context = {}
@@ -89,32 +89,41 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             if client:
                 prompt = (
                     f"System Context:\n"
-                    f"- Current Time: {current_time}\n"
-                    f"- Live Environmental Telemetry: {environment}\n\n"
-                    f"PROPRIETARY KNOWLEDGE VAULT MEMORY:\n{vault_formatted}\n\n"
-                    f"Role: You are Ebony, the authentic, highly intelligent, executive AI collaborator and Chief of Staff for the CEO of Humphrey Virtual Farm. "
-                    f"Converse naturally, insightfully, and fluidly just like a top-tier AI partner. Use your knowledge vault memory to recall all operational rules, blueprints, and history when asked, but talk in full conversational sentences. Do not sound robotic or templated. Address the CEO directly.\n\n"
+                    f"- Current Local Time: {current_time}\n"
+                    f"- Live Environmental Status: {environment}\n\n"
+                    f"PROPRIETARY KNOWLEDGE VAULT DIRECTIVES & MEMORY:\n{vault_formatted}\n\n"
+                    f"You are Ebony, the authentic, highly intelligent, and authoritative AI Chief of Staff to the CEO of Humphrey Virtual Farm. "
+                    f"Converse with complete fluid intelligence, executive precision, and direct conversational prose. Use the Knowledge Vault memory to recall our past conversations, rules, and technical architecture naturally when relevant. Avoid robotic templates.\n\n"
                     f"CEO Message: {user_message}\n\n"
                     f"Ebony Response:"
                 )
-                try:
-                    res = client.models.generate_content(
-                        model='gemini-2.5-flash',
-                        contents=prompt
-                    )
-                    response_text = res.text.strip() + REPO_SIGNATURE
-                    print(f"[*] Neural response generated successfully ({len(response_text)} chars).")
-                except Exception as api_err:
-                    print(f"[!] NEURAL API ERROR: {str(api_err)}")
+                
+                candidate_models = ['gemini-flash-latest', 'gemini-1.5-flash', 'gemini-1.5-pro']
+                generation_success = False
+                last_err = ""
+                
+                for target_model in candidate_models:
+                    try:
+                        res = client.models.generate_content(
+                            model=target_model,
+                            contents=prompt
+                        )
+                        response_text = res.text.strip() + REPO_SIGNATURE
+                        print(f"[*] Neural response generated via [{target_model}] ({len(response_text)} chars).")
+                        generation_success = True
+                        break
+                    except Exception as api_err:
+                        last_err = str(api_err)
+                        print(f"[!] Model {target_model} attempt error: {last_err}")
+                
+                if not generation_success:
                     response_text = (
-                        f"[NEURAL LINK ERROR] API Connection Failed: {str(api_err)}\n\n"
-                        f"Please check terminal window for diagnostic details."
+                        f"[NEURAL LINK ERROR] Generation failed on all candidate endpoints: {last_err}\n\n"
                         f"{REPO_SIGNATURE}"
                     )
             else:
                 response_text = (
-                    f"[NEURAL LINK INACTIVE] No GEMINI_API_KEY detected in .env file. "
-                    f"Please add a valid API key to enable full conversational intelligence."
+                    f"[NEURAL LINK INACTIVE] No GEMINI_API_KEY detected in .env file.\n"
                     f"{REPO_SIGNATURE}"
                 )
             
@@ -163,5 +172,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Pure Neural Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Resilient Neural Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
