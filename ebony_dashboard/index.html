@@ -15,9 +15,23 @@
                 <span id="status-text">SYSTEM ACTIVE</span>
             </div>
         </div>
-        <div class="content-panel">
-            <h3 class="panel-title">LATEST INTELLIGENCE PAYLOAD</h3>
-            <div id="intel-display" class="intel-feed">Awaiting data stream...</div>
+        
+        <div class="grid-layout">
+            <div class="content-panel">
+                <h3 class="panel-title">LATEST INTELLIGENCE PAYLOAD</h3>
+                <div id="intel-display" class="intel-feed">Awaiting data stream...</div>
+            </div>
+            
+            <div class="content-panel comm-panel">
+                <h3 class="panel-title">EBONY COMM LINK</h3>
+                <div id="chat-history" class="chat-feed">
+                    <div class="chat-msg ebony"><strong>Ebony:</strong> Secure Comm Link Established. Standing by for executive directives.</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Enter executive directive..." autocomplete="off">
+                    <button id="send-btn">TRANSMIT</button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

@@ -1,83 +1,39 @@
 ﻿/* HVF Media Matrix - Executive Dashboard UI */
 :root {
-    --bg-dark: #0f172a;
-    --panel-dark: #1e293b;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --accent-blue: #38bdf8;
-    --accent-green: #10b981;
+    --bg-dark: #0f172a; --panel-dark: #1e293b;
+    --text-main: #f8fafc; --text-muted: #94a3b8;
+    --accent-blue: #38bdf8; --accent-green: #10b981; --accent-purple: #8b5cf6;
 }
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
+    background-color: var(--bg-dark); color: var(--text-main);
     font-family: 'Segoe UI', system-ui, sans-serif;
-    margin: 0;
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    margin: 0; padding: 2rem; display: flex; justify-content: center; min-height: 100vh;
 }
 .dashboard-container {
-    background: var(--panel-dark);
-    border-radius: 12px;
-    padding: 2.5rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-    max-width: 900px;
-    width: 100%;
+    background: var(--panel-dark); border-radius: 12px; padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8); max-width: 1200px; width: 100%;
     border-top: 4px solid var(--accent-blue);
 }
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #334155;
-    padding-bottom: 1rem;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 2rem; border-bottom: 1px solid #334155; padding-bottom: 1rem;
 }
-.header h1 {
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 2px;
+.header h1 { margin: 0; font-size: 1.8rem; font-weight: 700; letter-spacing: 2px; }
+.status-indicator { display: flex; align-items: center; gap: 0.6rem; font-weight: bold; color: var(--accent-green); }
+.status-dot { width: 12px; height: 12px; background-color: var(--accent-green); border-radius: 50%; animation: pulse 2s infinite; }
+.grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.panel-title { color: var(--text-muted); margin-top: 0; font-size: 0.9rem; letter-spacing: 1.5px; }
+.intel-feed, .chat-feed {
+    background: #0b1120; padding: 1.5rem; border-radius: 8px; font-family: 'Consolas', monospace;
+    font-size: 1rem; line-height: 1.6; height: 300px; overflow-y: auto;
 }
-.status-indicator {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-weight: bold;
-    color: var(--accent-green);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-.status-dot {
-    width: 12px;
-    height: 12px;
-    background-color: var(--accent-green);
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--accent-green);
-    animation: pulse 2s infinite;
-}
-.panel-title {
-    color: var(--text-muted);
-    margin-top: 0;
-    font-size: 0.9rem;
-    letter-spacing: 1.5px;
-}
-.intel-feed {
-    background: #0b1120;
-    padding: 1.5rem;
-    border-radius: 8px;
-    font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--accent-blue);
-    border-left: 4px solid var(--accent-blue);
-    white-space: pre-wrap;
-    min-height: 150px;
-}
-@keyframes pulse {
-    0% { transform: scale(0.95); opacity: 0.7; }
-    50% { transform: scale(1.2); opacity: 1; }
-    100% { transform: scale(0.95); opacity: 0.7; }
-}
+.intel-feed { color: var(--accent-blue); border-left: 4px solid var(--accent-blue); white-space: pre-wrap; }
+.chat-feed { color: var(--text-main); border-left: 4px solid var(--accent-purple); display: flex; flex-direction: column; gap: 10px; margin-bottom: 1rem; }
+.chat-msg.ebony { color: var(--accent-purple); }
+.chat-msg.ceo { color: var(--accent-green); text-align: right; }
+.chat-input-area { display: flex; gap: 10px; }
+#chat-input { flex-grow: 1; padding: 10px; background: #0b1120; border: 1px solid #334155; color: white; border-radius: 4px; font-family: 'Consolas', monospace; }
+#chat-input:focus { outline: none; border-color: var(--accent-purple); }
+#send-btn { padding: 10px 20px; background: var(--accent-purple); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+#send-btn:hover { background: #7c3aed; }
+@keyframes pulse { 0% { transform: scale(0.95); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.7; } }
