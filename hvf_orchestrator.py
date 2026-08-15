@@ -6,7 +6,7 @@ import json
 import os
 
 # HVF Media Matrix - Central Orchestrator
-# Engineered for multi-stream payload routing
+# Engineered for multi-stream payload routing (Hotfix: Universal Dispatch)
 
 class HVFOrchestrator:
     def __init__(self):
@@ -31,8 +31,8 @@ class HVFOrchestrator:
         
         # 2. Route Executive & Long-Form Intel to Outbound Nodes
         self.logger.info("Engaging outbound API syndication nodes...")
-        self.email_node.send_email(payloads["email"])
-        self.linkedin_node.post_to_linkedin(payloads["linkedin"])
+        self.email_node.dispatch(payloads["email"])
+        self.linkedin_node.dispatch(payloads["linkedin"])
         
         self.logger.info("Matrix protocol execution sequence complete.")
 
