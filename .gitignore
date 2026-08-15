@@ -8,4 +8,4 @@
 # Python System Caches (Zero-value artifacts)
 __pycache__/
 *.py[cod]
-*$py.class
+*$py.class.env
