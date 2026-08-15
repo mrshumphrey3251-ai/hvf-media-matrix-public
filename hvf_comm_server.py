@@ -1,12 +1,13 @@
 ﻿import os
 import json
+import time
 import datetime
 import urllib.request
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server
-# Configured with Verified Authorized Models: gemini-2.5-pro & gemini-flash-latest
+# Engineered with Knowledge Vault Ingestion & Autonomous 429 Rate-Limit Shield
 
 env_path = os.path.join(os.path.dirname(__file__), ".env")
 api_key = None
@@ -24,6 +25,20 @@ if api_key:
     except Exception as e:
         print(f"Neural Client Init Error: {e}")
 
+def load_knowledge_vault():
+    vault_path = os.path.join(os.path.dirname(__file__), "knowledge_vault")
+    aggregated_context = ""
+    if os.path.exists(vault_path):
+        for filename in os.listdir(vault_path):
+            if filename.endswith(".txt") or filename.endswith(".md"):
+                file_full_path = os.path.join(vault_path, filename)
+                try:
+                    with open(file_full_path, "r", encoding="utf-8") as vf:
+                        aggregated_context += f"\n[DOCUMENT: {filename}]\n" + vf.read() + "\n"
+                except Exception as ex:
+                    aggregated_context += f"\n[ERROR READING {filename}: {str(ex)}]\n"
+    return aggregated_context if aggregated_context else "Knowledge Vault contains no active documents."
+
 def get_nws_telemetry(lat, lon):
     if not lat or not lon:
         return "Location data pending user hardware authorization or hardware unavailable."
@@ -32,7 +47,6 @@ def get_nws_telemetry(lat, lon):
         safe_lon = round(float(lon), 2)
         
         headers = {'User-Agent': '(HVF-Media-Matrix-Industrial-Node, ceo@humphreyvirtualfarm.com)'}
-        
         points_url = f"https://api.weather.gov/points/{safe_lat},{safe_lon}"
         req1 = urllib.request.Request(points_url, headers=headers)
         with urllib.request.urlopen(req1, timeout=10) as r1:
@@ -48,6 +62,27 @@ def get_nws_telemetry(lat, lon):
     except Exception as e:
         return f"Federal NWS Telemetry unavailable. Diagnostics: {str(e)}"
 
+def generate_with_shield(prompt):
+    models_to_try = ['gemini-2.5-pro', 'gemini-flash-latest', 'gemini-2.5-flash-lite']
+    last_error = ""
+    for model_name in models_to_try:
+        for attempt in range(2):
+            try:
+                response = client.models.generate_content(
+                    model=model_name,
+                    contents=prompt
+                )
+                return response.text.strip()
+            except Exception as e:
+                err_str = str(e)
+                last_error = err_str
+                if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
+                    time.sleep(2)  # Automatic backoff delay to clear rate-limit bucket
+                    continue
+                else:
+                    break
+    return f"Transmission Error: {last_error}"
+
 class HVFCommHandler(SimpleHTTPRequestHandler):
     def do_POST(self):
         if self.path == '/api/chat':
@@ -62,27 +97,17 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             if client:
                 current_time = datetime.datetime.now().strftime("%A, %B %d, %Y at %I:%M %p")
                 environment = get_nws_telemetry(lat, lon)
+                vault_data = load_knowledge_vault()
                 
-                prompt = f"System Context: The current local time is {current_time}. {environment}. You are Ebony, the highly intelligent Executive AI assistant for the CEO of Humphrey Virtual Farm. The CEO says: '{user_message}'. Respond directly, professionally, and concisely as an elite AI subordinate. Do not use markdown formatting."
-                
-                try:
-                    # Primary Model: Verified flagship gemini-2.5-pro
-                    response = client.models.generate_content(
-                        model='gemini-2.5-pro',
-                        contents=prompt
-                    )
-                    response_text = response.text.strip()
-                except Exception as e:
-                    print(f"Primary model error: {e}. Engaging Failover...")
-                    try:
-                        # Failover Model: Verified gemini-flash-latest
-                        response_fallback = client.models.generate_content(
-                            model='gemini-flash-latest',
-                            contents=prompt
-                        )
-                        response_text = f"[FAILOVER ENGAGED] {response_fallback.text.strip()}"
-                    except Exception as fallback_error:
-                        response_text = f"Transmission Error: {str(fallback_error)}"
+                prompt = (
+                    f"System Context: The current local time is {current_time}. {environment}.\n"
+                    f"--- PROPRIETARY KNOWLEDGE VAULT DATA ---\n{vault_data}\n----------------------------------------\n"
+                    f"You are Ebony, the highly intelligent Executive AI assistant for the CEO of Humphrey Virtual Farm. "
+                    f"You have full access to the Knowledge Vault data above. The CEO says: '{user_message}'. "
+                    f"Respond directly, professionally, and concisely as an elite AI subordinate, utilizing the Vault data when relevant. "
+                    f"Do not use markdown formatting."
+                )
+                response_text = generate_with_shield(prompt)
             
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -94,5 +119,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(os.path.dirname(__file__), "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Comm Server Live on port 8000 [Model: gemini-2.5-pro]... Awaiting Directives.")
+    print("Ebony Resilient Knowledge Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
