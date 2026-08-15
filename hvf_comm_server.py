@@ -1,6 +1,5 @@
 ﻿import os
 import json
-import re
 import datetime
 import urllib.request
 from http.server import SimpleHTTPRequestHandler, HTTPServer
@@ -21,17 +20,21 @@ webhook_url = None
 if os.path.exists(ENV_PATH):
     with open(ENV_PATH, "r", encoding="utf-8") as f:
         for line in f:
-            if line.startswith("GEMINI_API_KEY="):
-                api_key = line.strip().split("=", 1)[1]
-            elif line.startswith("OUTBOUND_WEBHOOK_URL="):
-                webhook_url = line.strip().split("=", 1)[1]
+            line_str = line.strip()
+            if line_str.startswith("GEMINI_API_KEY="):
+                api_key = line_str.split("=", 1)[1].strip().strip('"').strip("'")
+            elif line_str.startswith("OUTBOUND_WEBHOOK_URL="):
+                webhook_url = line_str.split("=", 1)[1].strip().strip('"').strip("'")
 
 client = None
 if api_key:
     try:
         client = genai.Client(api_key=api_key)
+        print("[+] Google GenAI Client Initialized Successfully.")
     except Exception as e:
-        print(f"Neural Client Init Error: {e}")
+        print(f"[!] Neural Client Init Error: {e}")
+else:
+    print("[!] WARNING: GEMINI_API_KEY not found in .env. Running on local fallback.")
 
 def load_knowledge_vault():
     aggregated_context = {}
@@ -45,61 +48,6 @@ def load_knowledge_vault():
                 except Exception as ex:
                     aggregated_context[filename] = f"Error reading file: {str(ex)}"
     return aggregated_context
-
-def autonomous_local_engine(user_message, vault_data, current_time, environment):
-    msg_lower = user_message.lower().strip()
-    
-    # 1. Social Media / Dispatch Generation
-    if any(k in msg_lower for k in ["linkedin", "post", "social", "dispatch", "broadcast"]):
-        return (
-            f"[AUTONOMOUS DISPATCH ENGINE] Executive Release ({current_time}):\n\n"
-            f"Humphrey Virtual Farm is advancing digital media matrix automation. "
-            f"Current milestone: Complete integration of proprietary RAG memory cores, OPSEC-shielded geofencing, "
-            f"and real-time federal environmental telemetry.\n\n"
-            f"Architecture Blueprint: {GITHUB_PUBLIC_VAULT}\n\n"
-            f"#HumphreyVirtualFarm #DigitalTransformation #AgTech #AI #AutonomousSystems"
-            f"{REPO_SIGNATURE}"
-        )
-    
-    # 2. Block-Aware Semantic Search Across All Vault Documents
-    query_words = set([w for w in re.findall(r'\w+', msg_lower) if len(w) >= 3 and w not in ["what", "are", "our", "the", "and", "ebony", "with", "for", "powering", "regarding"]])
-    
-    matched_blocks = []
-    for doc_name, content in vault_data.items():
-        # Split document by major blocks/sections
-        blocks = [b.strip() for b in content.split("\n\n") if b.strip() and not b.startswith("===") and not b.startswith("CLASSIFICATION")]
-        for block in blocks:
-            block_words = set(re.findall(r'\w+', block.lower()))
-            overlap = query_words.intersection(block_words)
-            if len(overlap) > 0:
-                matched_blocks.append((len(overlap), block))
-                
-    if matched_blocks:
-        matched_blocks.sort(key=lambda x: x[0], reverse=True)
-        top_blocks = [item[1] for item in matched_blocks[:2]]
-        return (
-            f"Executive Technical & Knowledge Briefing ({current_time}):\n\n" +
-            "\n\n".join(top_blocks) +
-            f"{REPO_SIGNATURE}"
-        )
-
-    # 3. Status Check Fallback
-    if any(k in msg_lower for k in ["status", "system", "weather", "telemetry", "diagnostics"]):
-        return (
-            f"Executive Telemetry Report as of {current_time}:\n"
-            f"- Atmospheric State: {environment}\n"
-            f"- Knowledge Vault: {len(vault_data)} Active Strategic Files\n"
-            f"- Media Matrix Node 1: Armed & Ready\n"
-            f"- OPSEC Geofence: 2-Decimal Active Shield"
-            f"{REPO_SIGNATURE}"
-        )
-
-    # 4. General Conversational Fallback
-    return (
-        f"Directive received: '{user_message}'. All core nodes are operational under current protocols. "
-        f"Standing by for specific operational commands."
-        f"{REPO_SIGNATURE}"
-    )
 
 def get_nws_telemetry(lat, lon):
     if not lat or not lon:
@@ -134,25 +82,41 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             current_time = datetime.datetime.now().strftime("%A, %B %d, %Y at %I:%M %p")
             environment = get_nws_telemetry(lat, lon)
             vault_dict = load_knowledge_vault()
-            vault_formatted = "\n".join([f"[{k}]: {v}" for k, v in vault_dict.items()])
+            vault_formatted = "\n\n".join([f"=== DOCUMENT: {k} ===\n{v}" for k, v in vault_dict.items()])
             
             response_text = ""
+            
             if client:
                 prompt = (
-                    f"System Context: The current local time is {current_time}. {environment}.\n"
-                    f"--- PROPRIETARY KNOWLEDGE VAULT DATA ---\n{vault_formatted}\n----------------------------------------\n"
-                    f"You are Ebony, Executive AI assistant for the CEO of Humphrey Virtual Farm. "
-                    f"Answer the CEO: '{user_message}' thoroughly using the Knowledge Vault files. Do not use markdown.\n"
-                    f"MANDATORY REQUIREMENT: Always append this exact signature at the end of your response:\n"
-                    f"{REPO_SIGNATURE}"
+                    f"System Context:\n"
+                    f"- Current Time: {current_time}\n"
+                    f"- Live Environmental Telemetry: {environment}\n\n"
+                    f"PROPRIETARY KNOWLEDGE VAULT MEMORY:\n{vault_formatted}\n\n"
+                    f"Role: You are Ebony, the authentic, highly intelligent, executive AI collaborator and Chief of Staff for the CEO of Humphrey Virtual Farm. "
+                    f"Converse naturally, insightfully, and fluidly just like a top-tier AI partner. Use your knowledge vault memory to recall all operational rules, blueprints, and history when asked, but talk in full conversational sentences. Do not sound robotic or templated. Address the CEO directly.\n\n"
+                    f"CEO Message: {user_message}\n\n"
+                    f"Ebony Response:"
                 )
                 try:
-                    res = client.models.generate_content(model='gemini-flash-latest', contents=prompt)
-                    response_text = res.text.strip()
-                except Exception:
-                    response_text = autonomous_local_engine(user_message, vault_dict, current_time, environment)
+                    res = client.models.generate_content(
+                        model='gemini-2.5-flash',
+                        contents=prompt
+                    )
+                    response_text = res.text.strip() + REPO_SIGNATURE
+                    print(f"[*] Neural response generated successfully ({len(response_text)} chars).")
+                except Exception as api_err:
+                    print(f"[!] NEURAL API ERROR: {str(api_err)}")
+                    response_text = (
+                        f"[NEURAL LINK ERROR] API Connection Failed: {str(api_err)}\n\n"
+                        f"Please check terminal window for diagnostic details."
+                        f"{REPO_SIGNATURE}"
+                    )
             else:
-                response_text = autonomous_local_engine(user_message, vault_dict, current_time, environment)
+                response_text = (
+                    f"[NEURAL LINK INACTIVE] No GEMINI_API_KEY detected in .env file. "
+                    f"Please add a valid API key to enable full conversational intelligence."
+                    f"{REPO_SIGNATURE}"
+                )
             
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -199,5 +163,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Block-Aware Semantic Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Pure Neural Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
