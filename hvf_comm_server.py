@@ -6,7 +6,7 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server
-# Live Knowledge Ingestion, Federal Radar Telemetry, & Interactive Dispatch Dispatcher
+# Live Knowledge Vault, Doppler Telemetry, Ledger Logging, & Outbound Webhook Relay
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VAULT_DIR = os.path.join(BASE_DIR, "knowledge_vault")
@@ -19,12 +19,15 @@ GITHUB_PUBLIC_VAULT = "https://github.com/mrshumphrey3251-ai/hvf-media-matrix-pu
 REPO_SIGNATURE = f"\n\n[HVF INFRASTRUCTURE BROADCAST]\nOfficial Architecture Repository: {GITHUB_PUBLIC_VAULT}\nOperational Security: Geofenced & Vault-Verified"
 
 api_key = None
+webhook_url = None
+
 if os.path.exists(ENV_PATH):
     with open(ENV_PATH, "r", encoding="utf-8") as f:
         for line in f:
             if line.startswith("GEMINI_API_KEY="):
                 api_key = line.strip().split("=", 1)[1]
-                break
+            elif line.startswith("OUTBOUND_WEBHOOK_URL="):
+                webhook_url = line.strip().split("=", 1)[1]
 
 client = None
 if api_key:
@@ -147,22 +150,39 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             payload = json.loads(post_data.decode('utf-8'))
             dispatch_id = payload.get('id')
             
-            # Update local queue status and record transmission
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             log_entry = f"[{timestamp}] DISPATCH TRANSMITTED: ID {dispatch_id} | Platform: {payload.get('platform')} | Topic: {payload.get('topic')}\n"
             os.makedirs(DATA_DIR, exist_ok=True)
             with open(LOG_FILE, "a", encoding="utf-8") as lf:
                 lf.write(log_entry)
                 
+            webhook_status = "Local Ledger Only (No external webhook configured)"
+            if webhook_url:
+                try:
+                    req_payload = json.dumps({
+                        "event": "DISPATCH_PUBLISHED",
+                        "timestamp": timestamp,
+                        "dispatch": payload,
+                        "repository": GITHUB_PUBLIC_VAULT
+                    }).encode('utf-8')
+                    req = urllib.request.Request(webhook_url, data=req_payload, headers={'Content-Type': 'application/json'})
+                    with urllib.request.urlopen(req, timeout=5) as resp:
+                        webhook_status = f"Relayed to external webhook (HTTP {resp.status})"
+                except Exception as wh_err:
+                    webhook_status = f"Webhook relay notice: {str(wh_err)}"
+                
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(json.dumps({'status': 'SUCCESS', 'message': f'Dispatch {dispatch_id} broadcast logged to ledger.'}).encode('utf-8'))
+            self.wfile.write(json.dumps({
+                'status': 'SUCCESS',
+                'message': f'Dispatch {dispatch_id} recorded in ledger. {webhook_status}'
+            }).encode('utf-8'))
         else:
             self.send_error(404)
 
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony One-Click Matrix Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Webhook-Enabled Matrix Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
