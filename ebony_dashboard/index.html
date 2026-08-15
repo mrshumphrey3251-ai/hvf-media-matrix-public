@@ -6,27 +6,37 @@
     <title>Ebony Executive Dashboard</title>
     <style>
         body { background-color: #050505; color: #00ffcc; font-family: 'Courier New', Courier, monospace; margin: 0; padding: 20px; }
-        h2 { border-bottom: 1px solid #00ffcc; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
-        #chat-container { width: 100%; max-width: 800px; margin: 0 auto; }
-        #chat-box { height: 500px; overflow-y: auto; background: #0a0a0a; border: 1px solid #333; padding: 20px; margin-bottom: 20px; box-shadow: 0 0 10px rgba(0, 255, 204, 0.1); }
+        h2, h3 { border-bottom: 1px solid #00ffcc; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
+        #main-container { display: flex; flex-direction: column; max-width: 900px; margin: 0 auto; gap: 20px; }
+        #chat-box { height: 400px; overflow-y: auto; background: #0a0a0a; border: 1px solid #333; padding: 20px; box-shadow: 0 0 10px rgba(0, 255, 204, 0.1); }
         .input-group { display: flex; gap: 10px; }
         input { flex-grow: 1; padding: 15px; background: #111; color: #00ffcc; border: 1px solid #333; outline: none; font-size: 16px; }
         button { padding: 15px 30px; background: #00ffcc; color: #000; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
         button:hover { background: #00ccaa; }
-        .sys-msg { color: #888; font-style: italic; margin-bottom: 10px; font-size: 14px;}
+        .sys-msg { color: #888; font-style: italic; margin-bottom: 10px; font-size: 14px; }
         .user-msg { color: #fff; margin-bottom: 10px; }
-        .ebony-msg { color: #00ffcc; margin-bottom: 20px; border-left: 2px solid #00ffcc; padding-left: 10px;}
+        .ebony-msg { color: #00ffcc; margin-bottom: 20px; border-left: 2px solid #00ffcc; padding-left: 10px; white-space: pre-wrap; }
+        #queue-box { background: #0a0a0a; border: 1px solid #333; padding: 15px; font-size: 13px; max-height: 200px; overflow-y: auto; }
+        .queue-item { border-bottom: 1px dashed #222; padding: 8px 0; color: #aaa; }
+        .queue-item b { color: #00ffcc; }
     </style>
 </head>
 <body>
-    <div id="chat-container">
-        <h2>Ebony // Tactical Comm Link</h2>
+    <div id="main-container">
+        <h2>Ebony // Executive Comm Link & Media Matrix</h2>
+        
         <div id="chat-box">
             <div class="sys-msg">System Online. Dashboard armed and ready.</div>
         </div>
+        
         <div class="input-group">
             <input type="text" id="user-input" placeholder="Enter executive directive..." onkeypress="if(event.key === 'Enter') sendMessage()">
             <button onclick="sendMessage()">Transmit</button>
+        </div>
+
+        <div>
+            <h3>Scheduled Media Dispatches (Queue)</h3>
+            <div id="queue-box">Loading dispatch queue...</div>
         </div>
     </div>
 
@@ -34,7 +44,6 @@
         let currentLat = null;
         let currentLon = null;
 
-        // Asynchronous Background Poll - Does NOT freeze the dashboard
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
@@ -43,12 +52,24 @@
                     document.getElementById("chat-box").innerHTML += '<div class="sys-msg">Background GPS Lock Confirmed.</div>';
                 },
                 (err) => {
-                    document.getElementById("chat-box").innerHTML += '<div class="sys-msg" style="color:#ffaa00;">Hardware Diagnostic: GPS unavailable or blocked by OS. Proceeding without weather link.</div>';
+                    document.getElementById("chat-box").innerHTML += '<div class="sys-msg" style="color:#ffaa00;">Hardware Diagnostic: GPS standby.</div>';
                 },
                 { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
             );
-        } else {
-            document.getElementById("chat-box").innerHTML += '<div class="sys-msg" style="color:#ffaa00;">Hardware Diagnostic: Browser lacks Geolocation API.</div>';
+        }
+
+        async function loadQueue() {
+            try {
+                const res = await fetch('/data/weekly_dispatch_queue.json?t=' + Date.now());
+                const data = await res.json();
+                let html = "";
+                data.queue.forEach(item => {
+                    html += <div class="queue-item"><b>[ + item.platform + ]</b>  + item.schedule +  &mdash; <i> + item.topic + </i></div>;
+                });
+                document.getElementById("queue-box").innerHTML = html || "No pending dispatches.";
+            } catch (e) {
+                document.getElementById("queue-box").innerHTML = "Queue data initialized or awaiting generation.";
+            }
         }
 
         async function sendMessage() {
@@ -74,11 +95,14 @@
                 document.getElementById(loadingId).remove();
                 chatBox.innerHTML += '<div class="ebony-msg"><b>Ebony:</b> ' + data.reply + '</div>';
                 chatBox.scrollTop = chatBox.scrollHeight;
+                loadQueue();
             } catch (error) {
                 document.getElementById(loadingId).remove();
                 chatBox.innerHTML += '<div class="sys-msg" style="color:#ff4444;">Transmission Error. Check terminal.</div>';
             }
         }
+
+        loadQueue();
     </script>
 </body>
 </html>
