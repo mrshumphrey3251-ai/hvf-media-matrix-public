@@ -6,7 +6,7 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server
-# Engineered for Diagnostic GPS Bridge, Geofence Shield, & Flawless Pro Failover
+# Engineered for Diagnostic GPS Bridge, Geofence Shield, & Federal NWS (NOAA) Telemetry
 
 env_path = os.path.join(os.path.dirname(__file__), ".env")
 api_key = None
@@ -24,24 +24,34 @@ if api_key:
     except Exception as e:
         print(f"Neural Client Init Error: {e}")
 
-def get_environmental_telemetry(lat, lon):
+def get_nws_telemetry(lat, lon):
     if not lat or not lon:
         return "Location data pending user hardware authorization or hardware unavailable."
     try:
-        # OPSEC GEOFENCE SHIELD: Truncate to 2 decimal places (~1km radius)
+        # Retain OPSEC Geofence (truncate to 2 decimal places, ~1km precision)
         safe_lat = round(float(lat), 2)
         safe_lon = round(float(lon), 2)
         
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-        weather_url = f"https://api.open-meteo.com/v1/forecast?latitude={safe_lat}&longitude={safe_lon}&current_weather=true&temperature_unit=fahrenheit"
-        w_req = urllib.request.Request(weather_url, headers=headers)
-        with urllib.request.urlopen(w_req, timeout=5) as w_response:
-            w_data = json.loads(w_response.read().decode('utf-8'))
+        # NOAA requires a strict User-Agent to prevent bot blocking
+        headers = {'User-Agent': '(HVF-Media-Matrix-Industrial-Node, ceo@humphreyvirtualfarm.com)'}
+        
+        # Phase 1: Translate GPS into Federal Grid Point
+        points_url = f"https://api.weather.gov/points/{safe_lat},{safe_lon}"
+        req1 = urllib.request.Request(points_url, headers=headers)
+        with urllib.request.urlopen(req1, timeout=10) as r1:
+            grid_data = json.loads(r1.read().decode('utf-8'))
             
-        temp = w_data['current_weather']['temperature']
-        return f"Secure Geofenced Coordinates (Truncated for OPSEC): Latitude {safe_lat}, Longitude {safe_lon}. Local Weather: {temp} degrees Fahrenheit."
+        # Phase 2: Extract exact forecast for that specific grid
+        forecast_url = grid_data['properties']['forecast']
+        req2 = urllib.request.Request(forecast_url, headers=headers)
+        with urllib.request.urlopen(req2, timeout=10) as r2:
+            forecast_data = json.loads(r2.read().decode('utf-8'))
+            
+        # Extract the immediate, highly detailed current forecast
+        current_weather = forecast_data['properties']['periods'][0]['detailedForecast']
+        return f"Federal NWS Telemetry (Lat: {safe_lat}, Lon: {safe_lon}). Current Conditions: {current_weather}"
     except Exception as e:
-        return f"Environmental telemetry unavailable. Diagnostics: {str(e)}"
+        return f"Federal NWS Telemetry unavailable. Diagnostics: {str(e)}"
 
 class HVFCommHandler(SimpleHTTPRequestHandler):
     def do_POST(self):
@@ -56,22 +66,23 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             response_text = "ERROR: Cognitive Core Offline."
             if client:
                 current_time = datetime.datetime.now().strftime("%A, %B %d, %Y at %I:%M %p")
-                environment = get_environmental_telemetry(lat, lon)
+                environment = get_nws_telemetry(lat, lon)
                 
                 prompt = f"System Context: The current local time is {current_time}. {environment}. You are Ebony, the highly intelligent Executive AI assistant for the CEO of Humphrey Virtual Farm. The CEO says: '{user_message}'. Respond directly, professionally, and concisely as an elite AI subordinate. Do not use markdown formatting."
                 
                 try:
+                    # Primary Strike: Bleeding-edge 2.5 architecture
                     response = client.models.generate_content(
-                        model='gemini-flash-latest',
+                        model='gemini-2.5-flash',
                         contents=prompt
                     )
                     response_text = response.text.strip()
                 except Exception as e:
-                    print(f"Primary model offline. Engaging Pro Failover Cascade...")
+                    print(f"Primary model offline. Engaging Next-Gen 2.0 Failover Cascade...")
                     try:
-                        # Rerouted to the heavy-duty gemini-1.5-pro-latest model to guarantee execution
+                        # Rerouted to the stabilized 2.0 cluster
                         response_fallback = client.models.generate_content(
-                            model='gemini-1.5-pro-latest',
+                            model='gemini-2.0-flash',
                             contents=prompt
                         )
                         response_text = f"[FAILOVER ENGAGED] {response_fallback.text.strip()}"
@@ -88,5 +99,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(os.path.dirname(__file__), "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Secure Mobile Server Live on port 8000... Awaiting Executive Directives.")
+    print("Ebony Federal NWS Comm Server Live on port 8000... Awaiting Executive Directives.")
     server.serve_forever()
