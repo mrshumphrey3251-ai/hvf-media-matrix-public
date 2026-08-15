@@ -1,4 +1,5 @@
-﻿// HVF Media Matrix - Live Telemetry & Two-Way Comm Engine
+﻿// HVF Media Matrix - Live Telemetry & Cognitive Comm Engine
+
 async function fetchIntelStream() {
     try {
         const response = await fetch('data/stream.json?t=' + new Date().getTime());
@@ -13,16 +14,14 @@ async function fetchIntelStream() {
     }
 }
 
-// Ignition & Polling Loop
 fetchIntelStream();
 setInterval(fetchIntelStream, 5000);
 
-// Comm Link Transmission Logic
 const chatInput = document.getElementById('chat-input');
 const sendBtn = document.getElementById('send-btn');
 const chatHistory = document.getElementById('chat-history');
 
-function transmitMessage() {
+async function transmitMessage() {
     const text = chatInput.value.trim();
     if (text === '') return;
     
@@ -32,18 +31,29 @@ function transmitMessage() {
     ceoMsg.innerHTML = '<strong>CEO:</strong> ' + text;
     chatHistory.appendChild(ceoMsg);
     
-    // Clear input & auto-scroll
     chatInput.value = '';
     chatHistory.scrollTop = chatHistory.scrollHeight;
     
-    // Placeholder for backend API routing
-    setTimeout(() => {
+    // Transmit to Backend API
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: text })
+        });
+        const data = await response.json();
+        
         const ebonyMsg = document.createElement('div');
         ebonyMsg.className = 'chat-msg ebony';
-        ebonyMsg.innerHTML = '<strong>Ebony:</strong> Directive logged. Backend routing API pending deployment.';
+        ebonyMsg.innerHTML = '<strong>Ebony:</strong> ' + data.reply;
         chatHistory.appendChild(ebonyMsg);
         chatHistory.scrollTop = chatHistory.scrollHeight;
-    }, 1000);
+    } catch (error) {
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'chat-msg ebony';
+        errorMsg.innerHTML = '<strong>Ebony:</strong> [SYSTEM ERROR] Neural link severed.';
+        chatHistory.appendChild(errorMsg);
+    }
 }
 
 sendBtn.addEventListener('click', transmitMessage);
