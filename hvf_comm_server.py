@@ -6,7 +6,7 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from google import genai
 
 # HVF Media Matrix - Dedicated Comm Server
-# Multi-Document Knowledge Ingestion Engine & NWS Federal Telemetry
+# Multi-Document Knowledge Ingestion, Federal NWS Telemetry, & Matrix Dispatch Engine
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VAULT_DIR = os.path.join(BASE_DIR, "knowledge_vault")
@@ -43,15 +43,27 @@ def load_knowledge_vault():
 def autonomous_local_engine(user_message, vault_data, current_time, environment):
     msg_lower = user_message.lower()
     
+    # Check for Social Media / Dispatch Generation directive
+    if any(k in msg_lower for k in ["linkedin", "post", "social", "dispatch", "media matrix", "broadcast"]):
+        directive_doc = vault_data.get("hvf_master_directive.txt", "")
+        ops_doc = vault_data.get("hvf_operations_manual.txt", "")
+        
+        return (
+            f"[AUTONOMOUS DISPATCH ENGINE] Executive Media Release Draft ({current_time}):\n\n"
+            f"Headline: Autonomous Infrastructure in Precision Agriculture & Digital Systems\n\n"
+            f"Operational Update: Humphrey Virtual Farm (HVF) is actively advancing digital media matrix automation. "
+            f"Current milestone: Complete integration of proprietary RAG memory cores, OPSEC-shielded geofencing, "
+            f"and real-time federal environmental telemetry.\n\n"
+            f"Key Focus: Total infrastructure dominance through zero-latency automated pipelines.\n\n"
+            f"#HumphreyVirtualFarm #DigitalTransformation #AgTech #AI #AutonomousSystems #ExecutiveLeadership"
+        )
+    
     matching_lines = []
     for doc_name, content in vault_data.items():
         doc_lines = [l.strip() for l in content.splitlines() if l.strip() and not l.startswith("===")]
-        # Filter for relevant documents or return all if broad
         if any(term in msg_lower for term in ["node", "operation", "security", "manual"]) and "operations" in doc_name:
             matching_lines.extend(doc_lines)
         elif any(term in msg_lower for term in ["directive", "mission", "objective", "phase"]) and "directive" in doc_name:
-            matching_lines.extend(doc_lines)
-        elif not any(term in msg_lower for term in ["node", "operation", "directive", "mission", "security"]):
             matching_lines.extend(doc_lines)
             
     if not matching_lines:
@@ -127,5 +139,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Knowledge Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Matrix Dispatch Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
