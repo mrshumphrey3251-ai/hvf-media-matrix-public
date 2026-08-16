@@ -30,7 +30,7 @@ client = None
 if api_key:
     try:
         client = genai.Client(api_key=api_key)
-        print("[+] Google GenAI Client Initialized.")
+        print("[+] Google GenAI Client Initialized Successfully.")
     except Exception as e:
         print(f"[!] Neural Client Init Error: {e}")
 else:
@@ -93,31 +93,34 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                     f"- Live Environmental Telemetry: {environment}\n\n"
                     f"PROPRIETARY KNOWLEDGE VAULT MEMORY:\n{vault_formatted}\n\n"
                     f"Role: You are Ebony, the authentic, highly intelligent, executive AI Chief of Staff to the CEO of Humphrey Virtual Farm. "
-                    f"Converse naturally, fluidly, and directly to the CEO. Address the message directly with depth and clarity. Use your Knowledge Vault for historical and technical recall.\n\n"
-                    f"CEO Message: {user_message}\n\n"
+                    f"Converse naturally, fluidly, and directly to the CEO. Address all inquiries with clarity and depth. Use your Knowledge Vault for historical and technical recall.\n\n"
+                    f"CEO Directive: {user_message}\n\n"
                     f"Ebony Response:"
                 )
                 
-                authorized_chain = ['gemini-3.7-flash', 'gemini-3.5-flash', 'gemini-3.1-flash-lite', 'gemini-flash-latest']
-                generation_success = False
-                last_err = ""
+                # Model chain using official verified names
+                target_models = ['gemini-3.7-flash', 'gemini-3.5-flash', 'gemini-flash-latest']
+                success = False
+                last_error_msg = ""
                 
-                for target_model in authorized_chain:
+                for mod in target_models:
                     try:
+                        print(f"[*] Attempting neural generation with model: {mod}...")
                         res = client.models.generate_content(
-                            model=target_model,
+                            model=mod,
                             contents=prompt
                         )
-                        response_text = res.text.strip() + REPO_SIGNATURE
-                        print(f"[*] Neural response generated via verified model [{target_model}].")
-                        generation_success = True
-                        break
-                    except Exception as api_err:
-                        last_err = str(api_err)
-                        print(f"[!] Model {target_model} error: {last_err}")
+                        if res and res.text:
+                            response_text = res.text.strip() + REPO_SIGNATURE
+                            print(f"[+] Generation successful via [{mod}].")
+                            success = True
+                            break
+                    except Exception as err:
+                        last_error_msg = str(err)
+                        print(f"[!] Generation error on [{mod}]: {last_error_msg}")
                 
-                if not generation_success:
-                    response_text = f"[NEURAL LINK ERROR] {last_err}{REPO_SIGNATURE}"
+                if not success:
+                    response_text = f"[NEURAL LINK ERROR] Detailed Diagnostic: {last_error_msg}{REPO_SIGNATURE}"
             else:
                 response_text = f"[NEURAL LINK STANDBY] Key missing in .env.{REPO_SIGNATURE}"
             
@@ -166,5 +169,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Verified Neural Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Communication Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
