@@ -38,20 +38,20 @@
             <h2>LinkedIn Staging Matrix</h2>
             <textarea id="linkedin-draft" style="flex-grow: 1; margin-bottom: 15px; resize: none;" placeholder="Paste or command Ebony to draft your LinkedIn article here..."></textarea>
             <div class="input-group" style="justify-content: space-between;">
-                <button onclick="refineDraft()" style="background: #ffff00; color: #000;">Refine Draft</button>
-                <button onclick="publishLinkedIn()" style="background: #ff0000; color: #fff;">Execute Publication</button>
+                <button onclick="alert('Refinement sequence initiated.')" style="background: #ffff00; color: #000;">Refine Draft</button>
+                <button onclick="alert('LinkedIn deployment protocol locked. Awaiting backend integration.')" style="background: #ff0000; color: #fff;">Execute Publication</button>
             </div>
         </div>
     </div>
 
     <script>
         function sendMessage() {
-            const input = document.getElementById('user-input');
-            const chatBox = document.getElementById('chat-box');
+            var input = document.getElementById('user-input');
+            var chatBox = document.getElementById('chat-box');
             if (!input.value.trim()) return;
             
-            chatBox.innerHTML += <div class="message user-msg">>  + input.value + </div>;
-            const userText = input.value;
+            var userText = input.value;
+            chatBox.innerHTML += '<div class="message user-msg">&gt; ' + userText + '</div>';
             input.value = '';
             chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -60,22 +60,14 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: userText })
             })
-            .then(res => res.json())
-            .then(data => {
-                chatBox.innerHTML += <div class="message ebony-msg">[EBONY]:  + data.reply + </div>;
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                chatBox.innerHTML += '<div class="message ebony-msg">[EBONY]: ' + data.reply + '</div>';
                 chatBox.scrollTop = chatBox.scrollHeight;
             })
-            .catch(err => {
-                chatBox.innerHTML += <div class="message ebony-msg" style="color: red;">[SYSTEM ERROR]: Communication offline. Check background server.</div>;
+            .catch(function(err) {
+                chatBox.innerHTML += '<div class="message ebony-msg" style="color: red;">[SYSTEM ERROR]: Communication offline. Check background server.</div>';
             });
-        }
-
-        function refineDraft() {
-            alert('Refinement sequence initiated.');
-        }
-
-        function publishLinkedIn() {
-            alert('LinkedIn deployment protocol locked. Awaiting final backend integration.');
         }
     </script>
 </body>

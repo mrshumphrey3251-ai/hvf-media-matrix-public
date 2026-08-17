@@ -1,12 +1,24 @@
-﻿# Purge any existing ghost processes
-Get-Process | Where-Object {$_.Name -match "python"} | Stop-Process -Force -ErrorAction SilentlyContinue
+﻿$Host.UI.RawUI.WindowTitle = 'HVF Ebony Sovereign Server Core'
+Clear-Host
+Write-Host "========================================================" -ForegroundColor DarkGray
+Write-Host " HVF EBONY ENGINE DIAGNOSTIC CONSOLE" -ForegroundColor Yellow
+Write-Host "========================================================" -ForegroundColor DarkGray
 
-# Launch headless Python server (pythonw.exe leaves zero terminal footprint)
-cd C:\HVF_Repos\hvf-media-matrix-private
-Start-Process -FilePath "pythonw.exe" -ArgumentList "hvf_comm_server.py" -WindowStyle Hidden
+# Check if Python is accessible
+$pythonPath = (Get-Command python -ErrorAction SilentlyContinue).Source
+if (-not $pythonPath) {
+    Write-Host "[!] CRITICAL: Python executable not found in system PATH." -ForegroundColor Red
+    Read-Host -Prompt "Press Enter to exit"
+    Exit
+}
 
-# Micro-delay: Allow the headless engine time to mount the server
-Start-Sleep -Seconds 3
+Write-Host "[+] Python engine located: $pythonPath" -ForegroundColor Green
+Write-Host "[*] Launching Flask Server Application..." -ForegroundColor Cyan
 
-# Launch the secure browser gate
-Start-Process "http://127.0.0.1:8085"
+# Navigate to repository and run Python, keeping the window alive to print errors
+cd "C:\HVF_Repos\hvf-media-matrix-private"
+python app.py
+
+Write-Host "
+[!] CRITICAL: Python application crashed or exited unexpectedly." -ForegroundColor Red
+Read-Host -Prompt "Press Enter to close window"
