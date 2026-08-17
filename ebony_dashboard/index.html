@@ -14,56 +14,59 @@
             --text-dim: #9ca3af;
             --border: #1f2937;
         }
+        * { box-sizing: border-box; }
         body {
             margin: 0;
             padding: 0;
             background: var(--bg-primary);
             color: var(--text-main);
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            display: flex;
             height: 100vh;
             overflow: hidden;
+            display: flex;
         }
         #auth-modal {
             position: fixed;
-            inset: 0;
-            background: rgba(10, 14, 23, 0.96);
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #06090f;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
+            z-index: 99999;
         }
         .auth-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            padding: 32px;
+            padding: 36px;
             border-radius: 12px;
-            width: 380px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            width: 400px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
             text-align: center;
         }
-        .auth-card h2 { margin: 0 0 8px 0; color: var(--accent); }
-        .auth-card p { font-size: 13px; color: var(--text-dim); margin-bottom: 24px; }
+        .auth-card h2 { margin: 0 0 10px 0; color: var(--accent); font-size: 20px; }
+        .auth-card p { font-size: 13px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.4; }
         .auth-input {
             width: 100%;
-            box-sizing: border-box;
-            padding: 12px;
+            padding: 14px;
             border-radius: 6px;
             border: 1px solid var(--border);
-            background: #06090f;
-            color: var(--text-main);
-            font-size: 14px;
+            background: #040711;
+            color: #fff;
+            font-size: 15px;
             margin-bottom: 16px;
             text-align: center;
+            outline: none;
         }
+        .auth-input:focus { border-color: var(--accent); }
         .auth-btn {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             border-radius: 6px;
             background: var(--accent);
             border: none;
             color: #000;
             font-weight: bold;
+            font-size: 15px;
             cursor: pointer;
         }
         #main-container {
@@ -125,7 +128,7 @@
             flex: 1;
             padding: 12px 16px;
             border-radius: 6px;
-            background: #06090f;
+            background: #040711;
             border: 1px solid var(--border);
             color: var(--text-main);
             font-size: 14px;
@@ -145,10 +148,10 @@
     <div id="auth-modal">
         <div class="auth-card">
             <h2>HVF Security Gateway</h2>
-            <p>Enter Sovereign Executive Passphrase to unlock Ebony</p>
-            <input type="password" id="passphrase-input" class="auth-input" placeholder="Passphrase..." onkeydown="if(event.key==='Enter') authenticate()" />
+            <p>Cryptographic Access Control Active.<br>Enter your Secret Executive Passphrase to unlock Ebony.</p>
+            <input type="password" id="passphrase-input" class="auth-input" placeholder="Enter passphrase..." autofocus onkeydown="if(event.key==='Enter') authenticate()" />
             <button class="auth-btn" onclick="authenticate()">Unlock Node</button>
-            <div id="auth-err" style="color: var(--accent-alert); font-size: 12px; margin-top: 12px;"></div>
+            <div id="auth-err" style="color: var(--accent-alert); font-size: 13px; margin-top: 14px; min-height: 18px;"></div>
         </div>
     </div>
 
@@ -157,7 +160,7 @@
             <div>
                 <strong style="font-size: 16px;">Humphrey Virtual Farm</strong> | Ebony Chief of Staff
             </div>
-            <div class="status-badge" id="telemetry-badge">OPSEC Gated - Authenticated</div>
+            <div class="status-badge" id="telemetry-badge">OPSEC Gated - Sovereign Node Active</div>
         </header>
         <div id="chat-window">
             <div class="message msg-ebony">Sovereign Node Authenticated. Knowledge Vault memory and telemetry streams ready. Standing by for directives.</div>
@@ -196,10 +199,10 @@
                     document.getElementById('auth-modal').style.display = 'none';
                     document.getElementById('main-container').style.display = 'flex';
                 } else {
-                    errDiv.innerText = data.message || 'Access Denied';
+                    errDiv.innerText = data.message || 'Access Denied: Invalid Passphrase';
                 }
             } catch (err) {
-                errDiv.innerText = 'Gateway Connection Error';
+                errDiv.innerText = 'Gateway Connection Error: Server unreachable';
             }
         }
 
