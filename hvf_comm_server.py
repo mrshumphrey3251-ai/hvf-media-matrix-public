@@ -2,7 +2,6 @@
 import sys
 import json
 import secrets
-import hashlib
 import traceback
 from urllib.parse import parse_qs
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -13,8 +12,7 @@ VAULT_DIR = os.path.join(BASE_DIR, "knowledge_vault")
 DATA_DIR = os.path.join(BASE_DIR, "ebony_dashboard", "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 
-# GHOST MODE SAFETY: Redirect all terminal output to a silent background log file
-# This prevents pythonw.exe from crashing when trying to print without a visible terminal
+# GHOST MODE SAFETY: Redirect terminal output
 GHOST_LOG = os.path.join(DATA_DIR, "ghost_server.log")
 sys.stdout = open(GHOST_LOG, 'a', encoding='utf-8')
 sys.stderr = open(GHOST_LOG, 'a', encoding='utf-8')
@@ -22,27 +20,24 @@ sys.stderr = open(GHOST_LOG, 'a', encoding='utf-8')
 LOG_FILE = os.path.join(DATA_DIR, "dispatch_transmission_ledger.log")
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 
+# TEST KEY ACTIVE
+MASTER_PASSPHRASE = "HVF-Test-2026"
 active_tokens = set()
 
 api_key = None
-auth_hash = None
-
 if os.path.exists(ENV_PATH):
     with open(ENV_PATH, "r", encoding="utf-8") as f:
         for line in f:
-            line_str = line.strip()
-            if line_str.startswith("GEMINI_API_KEY="):
-                api_key = line_str.split("=", 1)[1].strip().strip('"').strip("'")
-            elif line_str.startswith("EBONY_AUTH_HASH="):
-                auth_hash = line_str.split("=", 1)[1].strip().strip('"').strip("'")
+            if line.strip().startswith("GEMINI_API_KEY="):
+                api_key = line.split("=", 1)[1].strip().strip('"').strip("'")
 
 client = None
 if api_key:
     try:
         client = genai.Client(api_key=api_key)
-        print("[+] Google GenAI Client Connected.")
+        print("[+] Google GenAI Client Connected.", flush=True)
     except Exception as e:
-        print(f"[!] Neural Client Init Error: {e}")
+        print(f"[!] Neural Client Init Error: {e}", flush=True)
 
 LOGIN_HTML = r'''<!DOCTYPE html>
 <html lang="en">
@@ -64,7 +59,7 @@ LOGIN_HTML = r'''<!DOCTYPE html>
 <body>
     <form class="auth-card" method="POST" action="/login">
         <h2>HVF Security Gateway</h2>
-        <p>Cryptographic Authentication Active.<br>Enter Passphrase to unlock Ebony.</p>
+        <p>Ghost Mode Test Active.<br>Enter Passphrase to unlock Ebony.</p>
         <input type="text" name="passphrase" class="stealth-input" placeholder="Enter passphrase..." autofocus autocomplete="off" spellcheck="false" required />
         <button type="submit">Unlock Node</button>
         <div class="err">{{ERROR}}</div>
@@ -207,9 +202,9 @@ class HVFCommHandler(BaseHTTPRequestHandler):
                 passphrase = parsed.get('passphrase', [''])[0].strip()
                 
                 print(f"[*] Gateway Auth Attempt Logged", flush=True)
-                entered_hash = hashlib.sha256(passphrase.encode('utf-8')).hexdigest()
                 
-                if auth_hash and entered_hash == auth_hash:
+                # DIRECT TEST KEY CHECK
+                if passphrase == MASTER_PASSPHRASE:
                     token = secrets.token_hex(24)
                     active_tokens.add(token)
                     print("[+] PASS MATCH: Session Cookie Issued!", flush=True)
@@ -267,8 +262,13 @@ class HVFCommHandler(BaseHTTPRequestHandler):
             traceback.print_exc()
 
 if __name__ == "__main__":
-    server = ThreadingHTTPServer(('127.0.0.1', 8085), HVFCommHandler)
-    print("=====================================================")
-    print(" EBONY GHOST-SAFE SERVER LIVE ON PORT 8085")
-    print("=====================================================")
-    server.serve_forever()
+    try:
+        server = ThreadingHTTPServer(('127.0.0.1', 8085), HVFCommHandler)
+        print("=====================================================")
+        print(" EBONY GHOST-SAFE SERVER LIVE ON PORT 8085")
+        print("=====================================================")
+        server.serve_forever()
+    except Exception as e:
+        print("\n[!] CRITICAL ERROR: SERVER FAILED TO START", flush=True)
+        print(f"Details: {e}", flush=True)
+        traceback.print_exc()
