@@ -40,10 +40,10 @@ LOGIN_HTML = r'''<!DOCTYPE html>
         .auth-card { background: #111827; border: 1px solid #1f2937; padding: 36px; border-radius: 12px; width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.9); }
         h2 { color: #10b981; margin-top: 0; }
         p { color: #9ca3af; font-size: 13px; margin-bottom: 24px; line-height: 1.4; }
-        /* type="text" + stealth mask completely defeats the browser password manager prompt */
         .stealth-input { -webkit-text-security: disc; width: 100%; padding: 14px; border-radius: 6px; border: 1px solid #1f2937; background: #040711; color: #fff; font-size: 15px; margin-bottom: 16px; text-align: center; box-sizing: border-box; outline: none; }
         .stealth-input:focus { border-color: #10b981; }
-        button { width: 100%; padding: 14px; border-radius: 6px; background: #10b981; border: none; color: #000; font-weight: bold; font-size: 15px; cursor: pointer; }
+        button { width: 100%; padding: 14px; border-radius: 6px; background: #10b981; border: none; color: #000; font-weight: bold; font-size: 15px; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: #0ea5e9; }
         .err { color: #ef4444; font-size: 13px; margin-top: 14px; font-weight: bold; }
     </style>
 </head>
@@ -67,26 +67,32 @@ DASHBOARD_HTML = r'''<!DOCTYPE html>
         body { margin: 0; background: #0a0e17; color: #f9fafb; font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; }
         header { padding: 16px 24px; background: #111827; border-bottom: 1px solid #1f2937; display: flex; justify-content: space-between; align-items: center; }
         .badge { background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 4px 10px; border-radius: 20px; font-size: 12px; border: 1px solid #10b981; }
+        .lock-btn { background: transparent; border: 1px solid #ef4444; color: #ef4444; padding: 4px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; font-weight: bold; transition: all 0.2s; }
+        .lock-btn:hover { background: #ef4444; color: #fff; }
         #chat-window { flex: 1; padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
         .message { max-width: 75%; padding: 14px 18px; border-radius: 8px; line-height: 1.5; font-size: 14px; white-space: pre-wrap; }
         .msg-ceo { align-self: flex-end; background: #1e293b; border-left: 3px solid #3b82f6; }
         .msg-ebony { align-self: flex-start; background: #111827; border-left: 3px solid #10b981; }
         #input-panel { padding: 16px 24px; background: #111827; border-top: 1px solid #1f2937; display: flex; gap: 12px; }
         input { flex: 1; padding: 12px 16px; border-radius: 6px; background: #040711; border: 1px solid #1f2937; color: #fff; font-size: 14px; outline: none; }
-        button { padding: 12px 24px; border-radius: 6px; background: #10b981; border: none; color: #000; font-weight: bold; cursor: pointer; }
+        .tx-btn { padding: 12px 24px; border-radius: 6px; background: #10b981; border: none; color: #000; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+        .tx-btn:hover { background: #0ea5e9; }
     </style>
 </head>
 <body>
     <header>
         <div><strong style="font-size: 16px;">Humphrey Virtual Farm</strong> | Ebony Chief of Staff</div>
-        <div class="badge">OPSEC Gated - Sovereign Node Active</div>
+        <div style="display: flex; gap: 16px; align-items: center;">
+            <div class="badge">OPSEC Gated - Sovereign Node Active</div>
+            <button class="lock-btn" onclick="window.location.href='/logout'">Lock Node</button>
+        </div>
     </header>
     <div id="chat-window">
         <div class="message msg-ebony">Sovereign Node Authenticated. Knowledge Vault memory ready. Standing by.</div>
     </div>
     <div id="input-panel">
-        <input type="text" id="user-msg" placeholder="Transmit directive to Ebony..." onkeydown="if(event.key==='Enter') sendDirective()" />
-        <button onclick="sendDirective()">Transmit</button>
+        <input type="text" id="user-msg" placeholder="Transmit directive to Ebony..." onkeydown="if(event.key==='Enter') sendDirective()" autofocus />
+        <button class="tx-btn" onclick="sendDirective()">Transmit</button>
     </div>
     <script>
         async function sendDirective() {
@@ -149,9 +155,18 @@ class HVFCommHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         try:
-            # Silently handle the favicon so it stops spamming the terminal logs
             if self.path == '/favicon.ico':
                 self.send_response(204)
+                self.end_headers()
+                return
+
+            # Lock Node Endpoint - Shreds the cookie
+            if self.path == '/logout':
+                print("[*] Lock Node Triggered: Shredding session cookie.")
+                self.send_response(303)
+                self.send_header('Location', '/')
+                # Force browser to expire the cookie immediately
+                self.send_header('Set-Cookie', 'hvf_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT')
                 self.end_headers()
                 return
 
@@ -241,6 +256,6 @@ class HVFCommHandler(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     server = ThreadingHTTPServer(('127.0.0.1', 8085), HVFCommHandler)
     print("=====================================================")
-    print(" EBONY HYBRID SERVER LIVE ON PORT 8085")
+    print(" EBONY SECURE SERVER LIVE ON PORT 8085")
     print("=====================================================")
     server.serve_forever()
