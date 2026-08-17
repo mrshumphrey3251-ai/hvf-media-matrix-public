@@ -3,7 +3,7 @@ import json
 import secrets
 import datetime
 import urllib.request
-from http.server import SimpleHTTPRequestHandler, HTTPServer
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from google import genai
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -68,6 +68,16 @@ def get_nws_telemetry(lat, lon):
         return "Federal NWS telemetry standby"
 
 class HVFCommHandler(SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        super().end_headers()
+
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.end_headers()
+
     def is_authenticated(self):
         auth_header = self.headers.get('Authorization', '')
         if auth_header.startswith("Bearer "):
@@ -79,20 +89,23 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
         if self.path == '/api/auth':
             content_length = int(self.headers.get('Content-Length', 0))
             post_data = self.rfile.read(content_length)
-            payload = json.loads(post_data.decode('utf-8'))
+            try:
+                payload = json.loads(post_data.decode('utf-8'))
+            except Exception:
+                payload = {}
             passphrase = payload.get('passphrase', '').strip()
             
-            print(f"[*] Gateway received passphrase attempt: '{passphrase}'")
+            print(f"[*] Auth attempt received: '{passphrase}'")
             if passphrase == MASTER_PASSPHRASE:
                 token = secrets.token_hex(24)
                 active_tokens.add(token)
-                print("[+] PASS MATCH: Sovereign Node Unlocked! Token issued.")
+                print("[+] MATCH: Passphrase verified. Access Granted.")
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
                 self.wfile.write(json.dumps({'status': 'SUCCESS', 'token': token}).encode('utf-8'))
             else:
-                print("[!] PASS MISMATCH: Access Denied.")
+                print("[!] MISMATCH: Invalid Passphrase.")
                 self.send_response(401)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
@@ -108,9 +121,12 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                 return
 
         if self.path == '/api/chat':
-            content_length = int(self.headers['Content-Length'])
+            content_length = int(self.headers.get('Content-Length', 0))
             post_data = self.rfile.read(content_length)
-            data = json.loads(post_data.decode('utf-8'))
+            try:
+                data = json.loads(post_data.decode('utf-8'))
+            except Exception:
+                data = {}
             user_message = data.get('message', '')
             lat = data.get('lat')
             lon = data.get('lon')
@@ -151,9 +167,12 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps({'reply': response_text}).encode('utf-8'))
 
         elif self.path == '/api/publish':
-            content_length = int(self.headers['Content-Length'])
+            content_length = int(self.headers.get('Content-Length', 0))
             post_data = self.rfile.read(content_length)
-            payload = json.loads(post_data.decode('utf-8'))
+            try:
+                payload = json.loads(post_data.decode('utf-8'))
+            except Exception:
+                payload = {}
             dispatch_id = payload.get('id')
             
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -170,6 +189,6 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
-    server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Gate Live on port 8000... Passphrase Enforcement Active.")
+    server = ThreadingHTTPServer(('127.0.0.1', 8000), HVFCommHandler)
+    print("Ebony Threaded Server Live on http://127.0.0.1:8000... Passphrase Enforcement Active.")
     server.serve_forever()

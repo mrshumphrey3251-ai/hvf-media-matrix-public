@@ -68,9 +68,7 @@
             font-weight: bold;
             font-size: 15px;
             cursor: pointer;
-            transition: 0.2s ease;
         }
-        .auth-btn:active { transform: scale(0.98); }
         #main-container {
             display: none;
             flex: 1;
@@ -153,7 +151,7 @@
             <h2>HVF Security Gateway</h2>
             <p>Cryptographic Access Control Active.<br>Enter your Secret Executive Passphrase to unlock Ebony.</p>
             <input type="password" id="passphrase-input" class="auth-input" placeholder="Enter passphrase..." autofocus autocomplete="off" />
-            <button type="button" class="auth-btn" id="unlock-btn" onclick="executeUnlock()">Unlock Node</button>
+            <button type="button" class="auth-btn" id="unlock-btn">Unlock Node</button>
             <div id="auth-err" style="color: var(--accent-alert); font-size: 13px; margin-top: 14px; min-height: 18px; font-weight: 500;"></div>
         </div>
     </div>
@@ -175,7 +173,7 @@
     </div>
 
     <script>
-        let authToken = sessionStorage.getItem('hvf_auth_token');
+        let authToken = null;
         let coords = { lat: null, lon: null };
 
         if (navigator.geolocation) {
@@ -185,69 +183,69 @@
             );
         }
 
-        if (authToken) {
-            unlockInterface();
-        }
+        const passInput = document.getElementById('passphrase-input');
+        const unlockBtn = document.getElementById('unlock-btn');
+        const errDiv = document.getElementById('auth-err');
 
-        document.getElementById('passphrase-input').addEventListener('keydown', function(e) {
+        unlockBtn.addEventListener('click', performAuth);
+        passInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                executeUnlock();
+                performAuth();
             }
         });
 
-        document.getElementById('user-msg').addEventListener('keydown', function(e) {
+        document.getElementById('user-msg').addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 sendDirective();
             }
         });
 
-        function unlockInterface() {
-            document.getElementById('auth-modal').style.setProperty('display', 'none', 'important');
-            document.getElementById('main-container').style.setProperty('display', 'flex', 'important');
-            document.getElementById('user-msg').focus();
-        }
-
-        async function executeUnlock() {
-            const passInput = document.getElementById('passphrase-input');
+        function performAuth() {
             const pass = passInput.value.trim();
-            const errDiv = document.getElementById('auth-err');
-            const btn = document.getElementById('unlock-btn');
-
             if (!pass) {
                 errDiv.innerText = 'Passphrase required.';
                 return;
             }
 
-            btn.innerText = 'Verifying...';
-            btn.disabled = true;
-            errDiv.innerText = '';
+            unlockBtn.innerText = 'Verifying...';
+            unlockBtn.disabled = true;
+            errDiv.innerText = 'Connecting to gateway...';
 
-            try {
-                const res = await fetch('/api/auth', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ passphrase: pass })
-                });
-                const data = await res.json();
-
-                if (res.ok && data.token) {
-                    authToken = data.token;
-                    sessionStorage.setItem('hvf_auth_token', authToken);
-                    unlockInterface();
-                } else {
-                    errDiv.innerText = data.message || 'Access Denied: Invalid Passphrase';
-                    btn.innerText = 'Unlock Node';
-                    btn.disabled = false;
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://127.0.0.1:8000/api/auth', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    unlockBtn.disabled = false;
+                    unlockBtn.innerText = 'Unlock Node';
+                    if (xhr.status === 200) {
+                        try {
+                            const res = JSON.parse(xhr.responseText);
+                            if (res.token) {
+                                authToken = res.token;
+                                document.getElementById('auth-modal').style.display = 'none';
+                                document.getElementById('main-container').style.display = 'flex';
+                                document.getElementById('user-msg').focus();
+                                return;
+                            }
+                        } catch(e) {}
+                    }
+                    errDiv.innerText = 'Access Denied: Invalid Passphrase';
                     passInput.value = '';
                     passInput.focus();
                 }
-            } catch (err) {
-                errDiv.innerText = 'Gateway Error: ' + err.message;
-                btn.innerText = 'Unlock Node';
-                btn.disabled = false;
-            }
+            };
+            
+            xhr.onerror = function() {
+                unlockBtn.disabled = false;
+                unlockBtn.innerText = 'Unlock Node';
+                errDiv.innerText = 'Gateway Connection Error: Server unreachable';
+            };
+
+            xhr.send(JSON.stringify({ passphrase: pass }));
         }
 
         async function sendDirective() {
@@ -261,7 +259,7 @@
             chat.scrollTop = chat.scrollHeight;
 
             try {
-                const res = await fetch('/api/chat', {
+                const res = await fetch('http://127.0.0.1:8000/api/chat', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
