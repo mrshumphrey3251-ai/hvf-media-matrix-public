@@ -97,7 +97,6 @@ DASHBOARD_HTML = r'''<!DOCTYPE html>
             input.value = '';
             chat.scrollTop = chat.scrollHeight;
             try {
-                // The browser automatically sends the secure HTTP cookie with this request
                 const res = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -142,24 +141,32 @@ class HVFCommHandler(BaseHTTPRequestHandler):
         return token in active_tokens
 
     def do_GET(self):
+        # 1. Silently ignore browser icon requests so they don't trigger errors
+        if self.path == '/favicon.ico':
+            self.send_response(204)
+            self.end_headers()
+            return
+
+        # 2. Serve the main app route
         if self.path == '/' or self.path.startswith('/?'):
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
+            # Force browser to never cache this page
+            self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate')
             self.end_headers()
             
-            # If the browser already has the valid cookie, show the dashboard immediately
             if self.is_authenticated():
                 self.wfile.write(DASHBOARD_HTML.encode('utf-8'))
             else:
-                # If no valid cookie, show the login form
                 error_msg = "Invalid Passphrase." if "error=1" in self.path else ""
                 self.wfile.write(LOGIN_HTML.replace("{{ERROR}}", error_msg).encode('utf-8'))
         else:
-            self.send_response(404)
+            # 3. SELF-HEALING REDIRECT: Force all stray URL requests back to the main dashboard
+            self.send_response(303)
+            self.send_header('Location', '/')
             self.end_headers()
 
     def do_POST(self):
-        # 1. Native Form Submission Endpoint
         if self.path == '/login':
             content_length = int(self.headers.get('Content-Length', 0))
             post_data = self.rfile.read(content_length).decode('utf-8')
@@ -171,7 +178,6 @@ class HVFCommHandler(BaseHTTPRequestHandler):
                 token = secrets.token_hex(24)
                 active_tokens.add(token)
                 print("[+] PASS MATCH: Session Cookie Issued!")
-                # Issue secure cookie and physically redirect the browser to the root page
                 self.send_response(303)
                 self.send_header('Location', '/')
                 self.send_header('Set-Cookie', f'hvf_session={token}; Path=/')
@@ -183,7 +189,6 @@ class HVFCommHandler(BaseHTTPRequestHandler):
                 self.end_headers()
             return
 
-        # 2. Chat API Endpoint
         if self.path == '/api/chat':
             if not self.is_authenticated():
                 self.send_response(403)
@@ -222,6 +227,6 @@ class HVFCommHandler(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     server = ThreadingHTTPServer(('127.0.0.1', 8080), HVFCommHandler)
     print("=====================================================")
-    print(" EBONY NATIVE FORM SERVER LIVE ON PORT 8080")
+    print(" EBONY SELF-HEALING SERVER LIVE ON PORT 8080")
     print("=====================================================")
     server.serve_forever()
