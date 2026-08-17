@@ -2,6 +2,7 @@
 import sys
 import json
 import secrets
+import hashlib
 import traceback
 from urllib.parse import parse_qs
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -20,16 +21,19 @@ sys.stderr = open(GHOST_LOG, 'a', encoding='utf-8')
 LOG_FILE = os.path.join(DATA_DIR, "dispatch_transmission_ledger.log")
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 
-# TEST KEY ACTIVE
-MASTER_PASSPHRASE = "HVF-Test-2026"
 active_tokens = set()
 
 api_key = None
+auth_hash = None
+
 if os.path.exists(ENV_PATH):
     with open(ENV_PATH, "r", encoding="utf-8") as f:
         for line in f:
-            if line.strip().startswith("GEMINI_API_KEY="):
-                api_key = line.split("=", 1)[1].strip().strip('"').strip("'")
+            line_str = line.strip()
+            if line_str.startswith("GEMINI_API_KEY="):
+                api_key = line_str.split("=", 1)[1].strip().strip('"').strip("'")
+            elif line_str.startswith("EBONY_AUTH_HASH="):
+                auth_hash = line_str.split("=", 1)[1].strip().strip('"').strip("'")
 
 client = None
 if api_key:
@@ -59,7 +63,7 @@ LOGIN_HTML = r'''<!DOCTYPE html>
 <body>
     <form class="auth-card" method="POST" action="/login">
         <h2>HVF Security Gateway</h2>
-        <p>Ghost Mode Test Active.<br>Enter Passphrase to unlock Ebony.</p>
+        <p>Cryptographic Authentication Active.<br>Enter Passphrase to unlock Ebony.</p>
         <input type="text" name="passphrase" class="stealth-input" placeholder="Enter passphrase..." autofocus autocomplete="off" spellcheck="false" required />
         <button type="submit">Unlock Node</button>
         <div class="err">{{ERROR}}</div>
@@ -203,8 +207,10 @@ class HVFCommHandler(BaseHTTPRequestHandler):
                 
                 print(f"[*] Gateway Auth Attempt Logged", flush=True)
                 
-                # DIRECT TEST KEY CHECK
-                if passphrase == MASTER_PASSPHRASE:
+                # FINAL CRYPTOGRAPHIC CHECK
+                entered_hash = hashlib.sha256(passphrase.encode('utf-8')).hexdigest()
+                
+                if auth_hash and entered_hash == auth_hash:
                     token = secrets.token_hex(24)
                     active_tokens.add(token)
                     print("[+] PASS MATCH: Session Cookie Issued!", flush=True)
@@ -265,7 +271,7 @@ if __name__ == "__main__":
     try:
         server = ThreadingHTTPServer(('127.0.0.1', 8085), HVFCommHandler)
         print("=====================================================")
-        print(" EBONY GHOST-SAFE SERVER LIVE ON PORT 8085")
+        print(" EBONY CRYPTOGRAPHIC SERVER LIVE ON PORT 8085")
         print("=====================================================")
         server.serve_forever()
     except Exception as e:
