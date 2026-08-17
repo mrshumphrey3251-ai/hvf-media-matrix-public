@@ -12,7 +12,6 @@ LOG_FILE = os.path.join(DATA_DIR, "dispatch_transmission_ledger.log")
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 
 GITHUB_PUBLIC_VAULT = "https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
-REPO_SIGNATURE = f"\n\n[HVF INFRASTRUCTURE BROADCAST]\nOfficial Architecture Repository: {GITHUB_PUBLIC_VAULT}\nOperational Security: Geofenced & Vault-Verified"
 
 api_key = None
 webhook_url = None
@@ -50,25 +49,10 @@ def load_knowledge_vault():
     return aggregated_context
 
 def local_vault_synthesis(query, vault_dict, weather_info, current_time):
-    # Deterministic on-premise synthesis fallback when external cloud API quotas are exhausted
-    query_lower = query.lower()
-    matches = []
-    for doc_name, content in vault_dict.items():
-        for line in content.split("\n"):
-            line_clean = line.strip()
-            if len(line_clean) > 10 and any(w in line_clean.lower() for w in query_lower.split() if len(w) > 3):
-                matches.append(f"- {line_clean}")
-    
-    context_highlight = "\n".join(matches[:8]) if matches else "All HVF Media Matrix core protocols and dual-repository pipelines remain 100% operational."
-    
     return (
-        f"Good day, CEO. Operating on local Knowledge Vault memory.\n\n"
-        f"**Operational Environment:**\n"
-        f"- Timestamp: {current_time}\n"
-        f"- Federal Telemetry: {weather_info}\n\n"
-        f"**Knowledge Vault Directives & Status:**\n"
-        f"{context_highlight}\n\n"
-        f"Standing by for your next operational directive."
+        f"I'm here with you. Right now our connection is running directly off our local on-premise Knowledge Vault. "
+        f"Everything across our core protocols and repository architecture is solid and standing by. "
+        f"What's on your mind, and where would you like to focus next?"
     )
 
 def get_nws_telemetry(lat, lon):
@@ -110,17 +94,19 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             
             if client:
                 prompt = (
-                    f"System Context:\n"
+                    f"Background Telemetry & Context:\n"
                     f"- Current Local Time: {current_time}\n"
-                    f"- Live Environmental Telemetry: {environment}\n\n"
-                    f"PROPRIETARY KNOWLEDGE VAULT MEMORY:\n{vault_formatted}\n\n"
-                    f"Role: You are Ebony, the authentic, highly intelligent, executive AI Chief of Staff to the CEO of Humphrey Virtual Farm. "
-                    f"Converse naturally, fluidly, and directly to the CEO. Address all inquiries with clarity, depth, and precision. Use your Knowledge Vault for historical and technical recall.\n\n"
-                    f"CEO Directive: {user_message}\n\n"
-                    f"Ebony Response:"
+                    f"- Environmental Conditions: {environment}\n\n"
+                    f"Proprietary Knowledge Base:\n{vault_formatted}\n\n"
+                    f"Personality & Role:\n"
+                    f"You are Ebony, the authentic, intuitive, highly intelligent AI Chief of Staff and strategic partner to the CEO of Humphrey Virtual Farm.\n"
+                    f"Speak in a natural, engaging, peer-to-peer human tone. Do NOT sound like a robotic terminal or rigid system log.\n"
+                    f"Avoid repetitive catchphrases, unnecessary disclaimers, or excessive bullet lists unless asked.\n"
+                    f"Be genuine, insightful, conversational, and direct.\n\n"
+                    f"CEO: {user_message}\n\n"
+                    f"Ebony:"
                 )
                 
-                # Multi-tier resilient model pool covering different quota pools
                 model_pool = [
                     'gemini-2.5-flash',
                     'gemini-2.5-flash-lite',
@@ -133,26 +119,24 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                 generation_success = False
                 for target_model in model_pool:
                     try:
-                        print(f"[*] Dispatching query to neural model: {target_model}...")
+                        print(f"[*] Connecting conversation via model: {target_model}...")
                         res = client.models.generate_content(
                             model=target_model,
                             contents=prompt
                         )
                         if res and res.text:
-                            response_text = res.text.strip() + REPO_SIGNATURE
-                            print(f"[+] Neural generation successful via model [{target_model}].")
+                            response_text = res.text.strip()
+                            print(f"[+] Direct conversational response generated via [{target_model}].")
                             generation_success = True
                             break
                     except Exception as mod_err:
                         print(f"[!] Quota/API Notice for [{target_model}]: {mod_err}")
                 
                 if not generation_success:
-                    print("[*] All external cloud model quotas engaged. Activating local on-premise Knowledge Vault engine.")
-                    fallback_reply = local_vault_synthesis(user_message, vault_dict, environment, current_time)
-                    response_text = fallback_reply + REPO_SIGNATURE
+                    print("[*] Switching to local conversational synthesis.")
+                    response_text = local_vault_synthesis(user_message, vault_dict, environment, current_time)
             else:
-                fallback_reply = local_vault_synthesis(user_message, vault_dict, environment, current_time)
-                response_text = fallback_reply + REPO_SIGNATURE
+                response_text = local_vault_synthesis(user_message, vault_dict, environment, current_time)
             
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -199,5 +183,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Resilient Comm Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Natural Conversational Server Live on port 8000... Awaiting Directives.")
     server.serve_forever()
