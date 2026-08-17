@@ -8,9 +8,7 @@ $envPath = "C:\HVF_Repos\hvf-media-matrix-private\.env"
 $validHash = ""
 if (Test-Path $envPath) {
     $envLines = Get-Content $envPath
-    foreach ($line in $envLines) {
-        if ($line -match "^EBONY_AUTH_HASH=(.*)") { $validHash = $matches[1] }
-    }
+    foreach ($line in $envLines) { if ($line -match "^EBONY_AUTH_HASH=(.*)") { $validHash = $matches[1] } }
 }
 
 $SecureInput = Read-Host -Prompt "Enter Executive Passphrase to Toggle Shell Locks" -AsSecureString
@@ -34,21 +32,20 @@ Write-Host "
 Write-Host "[2] UNLOCK Alternative Shells (Maintenance Mode)"
 $choice = Read-Host -Prompt "Select operational mode (1 or 2)"
 
+$AppsToLock = @("cmd.exe", "powershell_ise.exe", "wt.exe")
 if ($choice -eq '2') {
-    Remove-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\System" -Name "DisableCMD" -ErrorAction SilentlyContinue
-    Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "DisallowRun" -ErrorAction SilentlyContinue
-    Write-Host "[+] Shells UNLOCKED. Restarting Windows Explorer..." -ForegroundColor Green
+    foreach ($App in $AppsToLock) {
+        $RegPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\$App"
+        if (Test-Path $RegPath) { Remove-ItemProperty -Path $RegPath -Name "Debugger" -ErrorAction SilentlyContinue }
+    }
+    Write-Host "[+] IFEO Kernel Locks REMOVED. Shells UNLOCKED." -ForegroundColor Green
 } else {
-    Set-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\System" -Name "DisableCMD" -Value 2 -Type DWord -Force
-    $expPolPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"
-    if (-not (Test-Path $expPolPath)) { New-Item -Path $expPolPath -Force | Out-Null }
-    Set-ItemProperty -Path $expPolPath -Name "DisallowRun" -Value 1 -Type DWord -Force
-    $disallowPath = "$expPolPath\DisallowRun"
-    if (-not (Test-Path $disallowPath)) { New-Item -Path $disallowPath -Force | Out-Null }
-    Set-ItemProperty -Path $disallowPath -Name "1" -Value "powershell_ise.exe" -Type String -Force
-    Set-ItemProperty -Path $disallowPath -Name "2" -Value "wt.exe" -Type String -Force
-    Set-ItemProperty -Path $disallowPath -Name "3" -Value "pwsh.exe" -Type String -Force
-    Write-Host "[+] Shells LOCKED. Restarting Windows Explorer..." -ForegroundColor Green
+    $DebuggerString = "powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Normal -File ""C:\HVF_Repos\hvf-media-matrix-private\hvf_shell_bouncer.ps1"""
+    foreach ($App in $AppsToLock) {
+        $RegPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\$App"
+        if (-not (Test-Path $RegPath)) { New-Item -Path $RegPath -Force | Out-Null }
+        Set-ItemProperty -Path $RegPath -Name "Debugger" -Value $DebuggerString -Force
+    }
+    Write-Host "[+] IFEO Kernel Locks ENGAGED. Shells LOCKED." -ForegroundColor Green
 }
-
-Stop-Process -Name explorer -Force
+Start-Sleep -Seconds 2
