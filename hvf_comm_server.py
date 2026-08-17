@@ -1,6 +1,8 @@
 ﻿import os
+import sys
 import json
 import secrets
+import hashlib
 import traceback
 from urllib.parse import parse_qs
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -9,18 +11,30 @@ from google import genai
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VAULT_DIR = os.path.join(BASE_DIR, "knowledge_vault")
 DATA_DIR = os.path.join(BASE_DIR, "ebony_dashboard", "data")
+os.makedirs(DATA_DIR, exist_ok=True)
+
+# GHOST MODE SAFETY: Redirect all terminal output to a silent background log file
+# This prevents pythonw.exe from crashing when trying to print without a visible terminal
+GHOST_LOG = os.path.join(DATA_DIR, "ghost_server.log")
+sys.stdout = open(GHOST_LOG, 'a', encoding='utf-8')
+sys.stderr = open(GHOST_LOG, 'a', encoding='utf-8')
+
 LOG_FILE = os.path.join(DATA_DIR, "dispatch_transmission_ledger.log")
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 
-MASTER_PASSPHRASE = "HVF-Test-2026"
 active_tokens = set()
 
 api_key = None
+auth_hash = None
+
 if os.path.exists(ENV_PATH):
     with open(ENV_PATH, "r", encoding="utf-8") as f:
         for line in f:
-            if line.strip().startswith("GEMINI_API_KEY="):
-                api_key = line.split("=", 1)[1].strip().strip('"').strip("'")
+            line_str = line.strip()
+            if line_str.startswith("GEMINI_API_KEY="):
+                api_key = line_str.split("=", 1)[1].strip().strip('"').strip("'")
+            elif line_str.startswith("EBONY_AUTH_HASH="):
+                auth_hash = line_str.split("=", 1)[1].strip().strip('"').strip("'")
 
 client = None
 if api_key:
@@ -50,7 +64,7 @@ LOGIN_HTML = r'''<!DOCTYPE html>
 <body>
     <form class="auth-card" method="POST" action="/login">
         <h2>HVF Security Gateway</h2>
-        <p>Native Server-Side Authentication Active.<br>Enter Passphrase to unlock Ebony.</p>
+        <p>Cryptographic Authentication Active.<br>Enter Passphrase to unlock Ebony.</p>
         <input type="text" name="passphrase" class="stealth-input" placeholder="Enter passphrase..." autofocus autocomplete="off" spellcheck="false" required />
         <button type="submit">Unlock Node</button>
         <div class="err">{{ERROR}}</div>
@@ -109,7 +123,6 @@ DASHBOARD_HTML = r'''<!DOCTYPE html>
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: msg })
                 });
-                
                 const rawText = await res.text();
                 try {
                     const data = JSON.parse(rawText);
@@ -160,12 +173,10 @@ class HVFCommHandler(BaseHTTPRequestHandler):
                 self.end_headers()
                 return
 
-            # Lock Node Endpoint - Shreds the cookie
             if self.path == '/logout':
-                print("[*] Lock Node Triggered: Shredding session cookie.")
+                print("[*] Lock Node Triggered: Shredding session cookie.", flush=True)
                 self.send_response(303)
                 self.send_header('Location', '/')
-                # Force browser to expire the cookie immediately
                 self.send_header('Set-Cookie', 'hvf_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT')
                 self.end_headers()
                 return
@@ -195,17 +206,19 @@ class HVFCommHandler(BaseHTTPRequestHandler):
                 parsed = parse_qs(post_data)
                 passphrase = parsed.get('passphrase', [''])[0].strip()
                 
-                print(f"[*] Native Form Auth attempt received")
-                if passphrase == MASTER_PASSPHRASE:
+                print(f"[*] Gateway Auth Attempt Logged", flush=True)
+                entered_hash = hashlib.sha256(passphrase.encode('utf-8')).hexdigest()
+                
+                if auth_hash and entered_hash == auth_hash:
                     token = secrets.token_hex(24)
                     active_tokens.add(token)
-                    print("[+] PASS MATCH: Session Cookie Issued!")
+                    print("[+] PASS MATCH: Session Cookie Issued!", flush=True)
                     self.send_response(303)
                     self.send_header('Location', '/')
                     self.send_header('Set-Cookie', f'hvf_session={token}; Path=/')
                     self.end_headers()
                 else:
-                    print("[!] PASS MISMATCH: Redirecting back to login")
+                    print("[!] PASS MISMATCH: Redirecting back to login", flush=True)
                     self.send_response(303)
                     self.send_header('Location', '/?error=1')
                     self.end_headers()
@@ -250,12 +263,12 @@ class HVFCommHandler(BaseHTTPRequestHandler):
             self.wfile.write(b'{"error": "Endpoint Not Found"}')
 
         except Exception as e:
-            print(f"[!] INTERNAL ERROR: {str(e)}")
+            print(f"[!] INTERNAL ERROR: {str(e)}", flush=True)
             traceback.print_exc()
 
 if __name__ == "__main__":
     server = ThreadingHTTPServer(('127.0.0.1', 8085), HVFCommHandler)
     print("=====================================================")
-    print(" EBONY SECURE SERVER LIVE ON PORT 8085")
+    print(" EBONY GHOST-SAFE SERVER LIVE ON PORT 8085")
     print("=====================================================")
     server.serve_forever()
