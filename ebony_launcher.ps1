@@ -1,12 +1,9 @@
-﻿$host.UI.RawUI.WindowTitle = 'Ebony Live Production Server'
-Write-Host "[*] Initiating Sovereign Ignition Sequence..." -ForegroundColor Cyan
-
-# Purge any ghost processes
+﻿# Purge any existing ghost processes
 Get-Process | Where-Object {$_.Name -match "python"} | Stop-Process -Force -ErrorAction SilentlyContinue
 
-# Launch the browser
-Start-Process "http://127.0.0.1:8085"
-
-# Boot the server
+# Launch headless Python server (pythonw.exe leaves zero terminal footprint)
 cd C:\HVF_Repos\hvf-media-matrix-private
-python hvf_comm_server.py
+Start-Process -FilePath "pythonw.exe" -ArgumentList "hvf_comm_server.py" -WindowStyle Hidden
+
+# Launch the secure browser gate
+Start-Process "http://127.0.0.1:8085"
