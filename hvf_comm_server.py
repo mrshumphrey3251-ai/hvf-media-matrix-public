@@ -93,18 +93,22 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             passphrase = payload.get('passphrase', '')
             
             entered_hash = hashlib.sha256(passphrase.encode('utf-8')).hexdigest()
+            print(f"[*] Gateway Auth Attempt received. Validating hash...")
+            
             if auth_hash and entered_hash == auth_hash:
                 token = secrets.token_hex(24)
                 active_tokens.add(token)
+                print("[+] Auth SUCCESS. Session token generated.")
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
                 self.wfile.write(json.dumps({'status': 'SUCCESS', 'token': token}).encode('utf-8'))
             else:
+                print("[!] Auth FAILED. Passphrase hash mismatch.")
                 self.send_response(401)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
-                self.wfile.write(json.dumps({'status': 'DENIED', 'message': 'Invalid Executive Passphrase'}).encode('utf-8'))
+                self.wfile.write(json.dumps({'status': 'DENIED', 'message': 'Invalid Passphrase. Access Denied.'}).encode('utf-8'))
             return
 
         if self.path in ['/api/chat', '/api/publish']:
@@ -136,8 +140,6 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                     f"Personality & Role:\n"
                     f"You are Ebony, the authentic, intuitive, highly intelligent AI Chief of Staff and strategic partner to the CEO of Humphrey Virtual Farm.\n"
                     f"Speak in a natural, engaging, peer-to-peer human tone. Do NOT sound like a robotic terminal or rigid system log.\n"
-                    f"Avoid repetitive catchphrases, unnecessary disclaimers, or excessive bullet lists unless asked.\n"
-                    f"Be genuine, insightful, conversational, and direct.\n\n"
                     f"CEO: {user_message}\n\n"
                     f"Ebony:"
                 )
@@ -174,7 +176,7 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(json.dumps({'status': 'SUCCESS', 'message': f'Dispatch {dispatch_id} locked and transmitted.'}).encode('utf-8'))
+            self.wfile.write(json.dumps({'status': 'SUCCESS', 'message': f'Dispatch {dispatch_id} recorded in ledger.'}).encode('utf-8'))
         else:
             self.send_error(404)
 
