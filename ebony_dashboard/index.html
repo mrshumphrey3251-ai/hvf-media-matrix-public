@@ -202,7 +202,7 @@
             }
         });
 
-        function performAuth() {
+        async function performAuth() {
             const pass = passInput.value.trim();
             if (!pass) {
                 errDiv.innerText = 'Passphrase required.';
@@ -211,41 +211,34 @@
 
             unlockBtn.innerText = 'Verifying...';
             unlockBtn.disabled = true;
-            errDiv.innerText = 'Connecting to gateway...';
+            errDiv.innerText = '';
 
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://127.0.0.1:8000/api/auth', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4) {
-                    unlockBtn.disabled = false;
+            try {
+                // Using relative path to completely avoid browser CORS blocking
+                const res = await fetch('/api/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ passphrase: pass })
+                });
+                const data = await res.json();
+
+                if (res.ok && data.token) {
+                    authToken = data.token;
+                    document.getElementById('auth-modal').style.display = 'none';
+                    document.getElementById('main-container').style.display = 'flex';
+                    document.getElementById('user-msg').focus();
+                } else {
+                    errDiv.innerText = data.message || 'Access Denied: Invalid Passphrase';
                     unlockBtn.innerText = 'Unlock Node';
-                    if (xhr.status === 200) {
-                        try {
-                            const res = JSON.parse(xhr.responseText);
-                            if (res.token) {
-                                authToken = res.token;
-                                document.getElementById('auth-modal').style.display = 'none';
-                                document.getElementById('main-container').style.display = 'flex';
-                                document.getElementById('user-msg').focus();
-                                return;
-                            }
-                        } catch(e) {}
-                    }
-                    errDiv.innerText = 'Access Denied: Invalid Passphrase';
+                    unlockBtn.disabled = false;
                     passInput.value = '';
                     passInput.focus();
                 }
-            };
-            
-            xhr.onerror = function() {
-                unlockBtn.disabled = false;
+            } catch (err) {
+                errDiv.innerText = 'Gateway Error: ' + err.message;
                 unlockBtn.innerText = 'Unlock Node';
-                errDiv.innerText = 'Gateway Connection Error: Server unreachable';
-            };
-
-            xhr.send(JSON.stringify({ passphrase: pass }));
+                unlockBtn.disabled = false;
+            }
         }
 
         async function sendDirective() {
@@ -259,7 +252,8 @@
             chat.scrollTop = chat.scrollHeight;
 
             try {
-                const res = await fetch('http://127.0.0.1:8000/api/chat', {
+                // Using relative path for the chat API as well
+                const res = await fetch('/api/chat', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
