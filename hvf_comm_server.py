@@ -93,18 +93,18 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             passphrase = payload.get('passphrase', '')
             
             entered_hash = hashlib.sha256(passphrase.encode('utf-8')).hexdigest()
-            print(f"[*] Gateway Auth Attempt received. Validating hash...")
+            print(f"[*] Gateway Auth Attempt: Entered Hash [{entered_hash[:8]}...] vs Stored [{auth_hash[:8] if auth_hash else 'NONE'}...]")
             
             if auth_hash and entered_hash == auth_hash:
                 token = secrets.token_hex(24)
                 active_tokens.add(token)
-                print("[+] Auth SUCCESS. Session token generated.")
+                print("[+] PASS MATCH: Auth granted. Session token issued.")
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
                 self.wfile.write(json.dumps({'status': 'SUCCESS', 'token': token}).encode('utf-8'))
             else:
-                print("[!] Auth FAILED. Passphrase hash mismatch.")
+                print("[!] PASS MISMATCH: Access Denied.")
                 self.send_response(401)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
