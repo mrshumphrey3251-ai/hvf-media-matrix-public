@@ -3,226 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ebony Executive Dashboard</title>
+    <title>HVF Ebony - Industrial Chief of Staff</title>
     <style>
-        body { background-color: #050505; color: #00ffcc; font-family: 'Courier New', Courier, monospace; margin: 0; padding: 20px; }
-        h2, h3 { border-bottom: 1px solid #00ffcc; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
-        #main-container { display: flex; flex-direction: column; max-width: 900px; margin: 0 auto; gap: 20px; }
-        #chat-box { height: 320px; overflow-y: auto; background: #0a0a0a; border: 1px solid #333; padding: 20px; box-shadow: 0 0 10px rgba(0, 255, 204, 0.1); }
-        .input-group { display: flex; gap: 10px; }
-        input { flex-grow: 1; padding: 15px; background: #111; color: #00ffcc; border: 1px solid #333; outline: none; font-size: 16px; }
-        button { padding: 15px 30px; background: #00ffcc; color: #000; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
-        button:hover { background: #00ccaa; }
-        .btn-small { padding: 6px 12px; font-size: 11px; margin-left: 10px; }
-        .btn-publish { padding: 6px 14px; font-size: 11px; background: #ffaa00; color: #000; font-weight: bold; border: none; border-radius: 3px; cursor: pointer; }
-        .btn-publish:hover { background: #ffcc00; }
-        .btn-published { padding: 6px 14px; font-size: 11px; background: #222; color: #00ffcc; border: 1px solid #00ffcc; border-radius: 3px; cursor: default; }
-        .sys-msg { color: #888; font-style: italic; margin-bottom: 10px; font-size: 14px; }
-        .user-msg { color: #fff; margin-bottom: 10px; }
-        .ebony-msg { color: #00ffcc; margin-bottom: 20px; border-left: 2px solid #00ffcc; padding-left: 10px; white-space: pre-wrap; }
-        #queue-box { background: #0a0a0a; border: 1px solid #333; padding: 15px; font-size: 13px; max-height: 280px; overflow-y: auto; }
-        .queue-item { border: 1px solid #222; background: #0d0d0d; border-radius: 4px; padding: 12px; margin-bottom: 12px; color: #ccc; }
-        .queue-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-        .queue-tag { display: inline-block; background: #004433; color: #00ffaa; padding: 3px 8px; border-radius: 3px; font-size: 11px; font-weight: bold; }
-        .queue-schedule { color: #888; font-size: 12px; }
-        .queue-topic { color: #fff; font-weight: bold; font-size: 14px; margin-bottom: 5px; }
-        .queue-content { color: #888; font-size: 12px; white-space: pre-line; border-top: 1px dashed #222; padding-top: 8px; margin-top: 6px; }
-        .queue-controls { display: flex; justify-content: space-between; align-items: center; }
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-card: #111827;
+            --accent: #10b981;
+            --accent-alert: #ef4444;
+            --text-main: #f9fafb;
+            --text-dim: #9ca3af;
+            --border: #1f2937;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-primary);
+            color: var(--text-main);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #auth-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 14, 23, 0.96);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .auth-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 32px;
+            border-radius: 12px;
+            width: 380px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            text-align: center;
+        }
+        .auth-card h2 { margin: 0 0 8px 0; color: var(--accent); }
+        .auth-card p { font-size: 13px; color: var(--text-dim); margin-bottom: 24px; }
+        .auth-input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: #06090f;
+            color: var(--text-main);
+            font-size: 14px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .auth-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            background: var(--accent);
+            border: none;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #main-container {
+            display: none;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        header {
+            padding: 16px 24px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .status-badge {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            border: 1px solid var(--accent);
+        }
+        #chat-window {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .message {
+            max-width: 75%;
+            padding: 14px 18px;
+            border-radius: 8px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        .msg-ceo {
+            align-self: flex-end;
+            background: #1e293b;
+            border-left: 3px solid #3b82f6;
+        }
+        .msg-ebony {
+            align-self: flex-start;
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent);
+        }
+        #input-panel {
+            padding: 16px 24px;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+        }
+        #user-msg {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: 6px;
+            background: #06090f;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            font-size: 14px;
+        }
+        #send-btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            background: var(--accent);
+            border: none;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <div id="main-container">
-        <h2>Ebony // Executive Comm Link & Media Matrix</h2>
-        
-        <div id="chat-box">
-            <div class="sys-msg">System Online. Dashboard armed and ready.</div>
+    <div id="auth-modal">
+        <div class="auth-card">
+            <h2>HVF Security Gateway</h2>
+            <p>Enter Sovereign Executive Passphrase to unlock Ebony</p>
+            <input type="password" id="passphrase-input" class="auth-input" placeholder="Passphrase..." />
+            <button class="auth-btn" onclick="authenticate()">Unlock Node</button>
+            <div id="auth-err" style="color: var(--accent-alert); font-size: 12px; margin-top: 12px;"></div>
         </div>
-        
-        <div class="input-group">
-            <input type="text" id="user-input" placeholder="Enter executive directive..." onkeypress="if(event.key === 'Enter') sendMessage()">
-            <button onclick="sendMessage()">Transmit</button>
-        </div>
+    </div>
 
-        <div>
-            <div class="queue-controls">
-                <h3>Scheduled Media Dispatches (Queue)</h3>
-                <button class="btn-small" onclick="loadQueue()">Force Refresh Queue</button>
+    <div id="main-container">
+        <header>
+            <div>
+                <strong style="font-size: 16px;">Humphrey Virtual Farm</strong> | Ebony Chief of Staff
             </div>
-            <div id="queue-box">Initializing dispatch matrix...</div>
+            <div class="status-badge" id="telemetry-badge">OPSEC Gated - Secure</div>
+        </header>
+        <div id="chat-window">
+            <div class="message msg-ebony">
+                Sovereign Node Authenticated. Knowledge Vault memory and telemetry streams ready. Standing by for directives.
+            </div>
+        </div>
+        <div id="input-panel">
+            <input type="text" id="user-msg" placeholder="Transmit directive to Ebony..." onkeydown="if(event.key==='Enter') sendDirective()" />
+            <button id="send-btn" onclick="sendDirective()">Transmit</button>
         </div>
     </div>
 
     <script>
-        let currentLat = null;
-        let currentLon = null;
-        let publishedSet = new Set();
+        let authToken = null;
+        let coords = { lat: null, lon: null };
 
-        if ("geolocation" in navigator) {
+        if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-                function(pos) {
-                    currentLat = pos.coords.latitude;
-                    currentLon = pos.coords.longitude;
-                    var cb = document.getElementById("chat-box");
-                    cb.innerHTML += '<div class="sys-msg">Background GPS Lock Confirmed.</div>';
-                },
-                function(err) {
-                    var cb = document.getElementById("chat-box");
-                    cb.innerHTML += '<div class="sys-msg" style="color:#ffaa00;">Hardware Diagnostic: GPS standby.</div>';
-                },
-                { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+                (pos) => { coords.lat = pos.coords.latitude; coords.lon = pos.coords.longitude; },
+                () => { console.log('Location standby'); }
             );
         }
 
-        function triggerPublish(id, platform, topic) {
-            fetch('/api/publish', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id: id, platform: platform, topic: topic })
-            })
-            .then(function(res) { return res.json(); })
-            .then(function(data) {
-                publishedSet.add(id);
-                loadQueue();
-                var cb = document.getElementById("chat-box");
-                cb.innerHTML += '<div class="sys-msg" style="color:#ffaa00;"><b>[BROADCAST EXECUTED]:</b> ' + data.message + '</div>';
-                cb.scrollTop = cb.scrollHeight;
-            })
-            .catch(function(err) {
-                alert("Failed to execute broadcast trigger.");
-            });
-        }
+        async function authenticate() {
+            const pass = document.getElementById('passphrase-input').value;
+            const errDiv = document.getElementById('auth-err');
+            errDiv.innerText = '';
 
-        function renderQueue(queueArray) {
-            var container = document.getElementById("queue-box");
-            if (!queueArray || queueArray.length === 0) {
-                container.innerHTML = '<div class="sys-msg">No active queue data found.</div>';
-                return;
-            }
-
-            container.innerHTML = "";
-            for (var i = 0; i < queueArray.length; i++) {
-                var item = queueArray[i];
-                var isPub = publishedSet.has(item.id);
-
-                var itemDiv = document.createElement("div");
-                itemDiv.className = "queue-item";
-
-                var headerDiv = document.createElement("div");
-                headerDiv.className = "queue-header";
-
-                var infoDiv = document.createElement("div");
-                infoDiv.innerHTML = '<span class="queue-tag">' + item.platform.toUpperCase() + '</span> <span class="queue-schedule">' + item.schedule + '</span>';
-
-                var actionDiv = document.createElement("div");
-                if (isPub) {
-                    actionDiv.innerHTML = '<button class="btn-published">TRANSMITTED</button>';
-                } else {
-                    var btn = document.createElement("button");
-                    btn.className = "btn-publish";
-                    btn.innerText = "PUBLISH NOW";
-                    (function(targetItem) {
-                        btn.onclick = function() {
-                            triggerPublish(targetItem.id, targetItem.platform, targetItem.topic);
-                        };
-                    })(item);
-                    actionDiv.appendChild(btn);
-                }
-
-                headerDiv.appendChild(infoDiv);
-                headerDiv.appendChild(actionDiv);
-
-                var topicDiv = document.createElement("div");
-                topicDiv.className = "queue-topic";
-                topicDiv.innerText = item.topic;
-
-                var contentDiv = document.createElement("div");
-                contentDiv.className = "queue-content";
-                contentDiv.innerText = item.content;
-
-                itemDiv.appendChild(headerDiv);
-                itemDiv.appendChild(topicDiv);
-                itemDiv.appendChild(contentDiv);
-
-                container.appendChild(itemDiv);
-            }
-        }
-
-        function loadQueue() {
-            var ts = new Date().getTime();
-            fetch('/data/weekly_dispatch_queue.json?nocache=' + ts)
-                .then(function(res) {
-                    if (res.ok) { return res.json(); }
-                    throw new Error("HTTP " + res.status);
-                })
-                .then(function(data) {
-                    renderQueue(data.queue);
-                })
-                .catch(function(err) {
-                    // Fallback to static queue if dynamic read fails
-                    var fallbackQueue = [
-                        {
-                            "id": 1,
-                            "platform": "LinkedIn",
-                            "schedule": "Tomorrow at 09:00 AM",
-                            "topic": "Autonomous Digital Infrastructure & AgTech",
-                            "content": "Humphrey Virtual Farm (HVF) is deploying zero-latency automated pipelines to bridge industrial ag-systems with real-time federal environmental telemetry.\n\nExplore our open-source blueprints: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public\n\n#AgTech #AI #HumphreyVirtualFarm #DigitalTransformation"
-                        },
-                        {
-                            "id": 2,
-                            "platform": "Technical Bulletin",
-                            "schedule": "+3 Days at 02:00 PM",
-                            "topic": "Operational Security & Geofenced Telemetry",
-                            "content": "Security Briefing: Precision Doppler radar integration with 2-decimal OPSEC geofencing enables real-time weather analytics without exposing physical node coordinates.\n\nPublic Architecture: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public\n\n#CyberSecurity #OPSEC #IoT #HVF"
-                        },
-                        {
-                            "id": 3,
-                            "platform": "Executive Update",
-                            "schedule": "+5 Days at 10:00 AM",
-                            "topic": "Proprietary RAG & Knowledge Vault Deployment",
-                            "content": "Executive Overview: On-premise knowledge vault architectures allow instant multi-document context retrieval while eliminating external API dependency risk.\n\nVerified Blueprint: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public\n\n#ExecutiveLeadership #AutonomousSystems #Innovation"
-                        }
-                    ];
-                    renderQueue(fallbackQueue);
+            try {
+                const res = await fetch('/api/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ passphrase: pass })
                 });
+                const data = await res.json();
+                if (res.ok && data.token) {
+                    authToken = data.token;
+                    document.getElementById('auth-modal').style.display = 'none';
+                    document.getElementById('main-container').style.display = 'flex';
+                } else {
+                    errDiv.innerText = data.message || 'Access Denied';
+                }
+            } catch (err) {
+                errDiv.innerText = 'Gateway Connection Error';
+            }
         }
 
-        function sendMessage() {
-            var input = document.getElementById("user-input");
-            var message = input.value.trim();
-            if (!message) return;
+        async function sendDirective() {
+            const input = document.getElementById('user-msg');
+            const msg = input.value.trim();
+            if (!msg || !authToken) return;
 
-            var chatBox = document.getElementById("chat-box");
-            chatBox.innerHTML += '<div class="user-msg"><b>CEO:</b> ' + message + '</div>';
-            input.value = "";
+            const chat = document.getElementById('chat-window');
+            chat.innerHTML += <div class="message msg-ceo"></div>;
+            input.value = '';
+            chat.scrollTop = chat.scrollHeight;
 
-            var loadingId = "load-" + Date.now();
-            chatBox.innerHTML += '<div id="' + loadingId + '" class="sys-msg">Processing payload...</div>';
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            fetch('/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: message, lat: currentLat, lon: currentLon })
-            })
-            .then(function(res) { return res.json(); })
-            .then(function(data) {
-                var loader = document.getElementById(loadingId);
-                if (loader) loader.remove();
-                chatBox.innerHTML += '<div class="ebony-msg"><b>Ebony:</b> ' + data.reply + '</div>';
-                chatBox.scrollTop = chatBox.scrollHeight;
-                loadQueue();
-            })
-            .catch(function(err) {
-                var loader = document.getElementById(loadingId);
-                if (loader) loader.remove();
-                chatBox.innerHTML += '<div class="sys-msg" style="color:#ff4444;">Transmission Error. Check terminal.</div>';
-            });
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': Bearer 
+                    },
+                    body: JSON.stringify({ message: msg, lat: coords.lat, lon: coords.lon })
+                });
+                const data = await res.json();
+                chat.innerHTML += <div class="message msg-ebony"></div>;
+                chat.scrollTop = chat.scrollHeight;
+            } catch (err) {
+                chat.innerHTML += <div class="message msg-ebony" style="color:var(--accent-alert);">Transmission failed: </div>;
+            }
         }
-
-        // Safe automatic startup
-        window.onload = function() {
-            loadQueue();
-        };
     </script>
 </body>
 </html>

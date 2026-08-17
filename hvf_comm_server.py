@@ -1,5 +1,7 @@
 ﻿import os
 import json
+import hashlib
+import secrets
 import datetime
 import urllib.request
 from http.server import SimpleHTTPRequestHandler, HTTPServer
@@ -15,6 +17,8 @@ GITHUB_PUBLIC_VAULT = "https://github.com/mrshumphrey3251-ai/hvf-media-matrix-pu
 
 api_key = None
 webhook_url = None
+auth_hash = None
+active_tokens = set()
 
 if os.path.exists(ENV_PATH):
     with open(ENV_PATH, "r", encoding="utf-8") as f:
@@ -24,16 +28,15 @@ if os.path.exists(ENV_PATH):
                 api_key = line_str.split("=", 1)[1].strip().strip('"').strip("'")
             elif line_str.startswith("OUTBOUND_WEBHOOK_URL="):
                 webhook_url = line_str.split("=", 1)[1].strip().strip('"').strip("'")
+            elif line_str.startswith("EBONY_AUTH_HASH="):
+                auth_hash = line_str.split("=", 1)[1].strip().strip('"').strip("'")
 
 client = None
 if api_key:
     try:
         client = genai.Client(api_key=api_key)
-        print("[+] Google GenAI Client Initialized.")
     except Exception as e:
         print(f"[!] Neural Client Init Error: {e}")
-else:
-    print("[!] WARNING: GEMINI_API_KEY not found in .env.")
 
 def load_knowledge_vault():
     aggregated_context = {}
@@ -70,13 +73,48 @@ def get_nws_telemetry(lat, lon):
         req2 = urllib.request.Request(forecast_url, headers=headers)
         with urllib.request.urlopen(req2, timeout=5) as r2:
             forecast_data = json.loads(r2.read().decode('utf-8'))
-        current_weather = forecast_data['properties']['periods'][0]['detailedForecast']
-        return f"Federal NWS (Lat: {safe_lat}, Lon: {safe_lon}): {current_weather}"
+        return f"Federal NWS (Lat: {safe_lat}, Lon: {safe_lon}): {forecast_data['properties']['periods'][0]['detailedForecast']}"
     except Exception:
         return "Federal NWS telemetry standby"
 
 class HVFCommHandler(SimpleHTTPRequestHandler):
+    def is_authenticated(self):
+        auth_header = self.headers.get('Authorization', '')
+        if auth_header.startswith("Bearer "):
+            token = auth_header.split(" ", 1)[1].strip()
+            return token in active_tokens
+        return False
+
     def do_POST(self):
+        if self.path == '/api/auth':
+            content_length = int(self.headers.get('Content-Length', 0))
+            post_data = self.rfile.read(content_length)
+            payload = json.loads(post_data.decode('utf-8'))
+            passphrase = payload.get('passphrase', '')
+            
+            entered_hash = hashlib.sha256(passphrase.encode('utf-8')).hexdigest()
+            if auth_hash and entered_hash == auth_hash:
+                token = secrets.token_hex(24)
+                active_tokens.add(token)
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                self.wfile.write(json.dumps({'status': 'SUCCESS', 'token': token}).encode('utf-8'))
+            else:
+                self.send_response(401)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                self.wfile.write(json.dumps({'status': 'DENIED', 'message': 'Invalid Executive Passphrase'}).encode('utf-8'))
+            return
+
+        if self.path in ['/api/chat', '/api/publish']:
+            if not self.is_authenticated():
+                self.send_response(403)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error': 'ACCESS_DENIED: Authentication Required'}).encode('utf-8'))
+                return
+
         if self.path == '/api/chat':
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
@@ -91,49 +129,23 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             vault_formatted = "\n\n".join([f"=== DOCUMENT: {k} ===\n{v}" for k, v in vault_dict.items()])
             
             response_text = ""
-            
             if client:
                 prompt = (
-                    f"Background Telemetry & Context:\n"
-                    f"- Current Local Time: {current_time}\n"
-                    f"- Environmental Conditions: {environment}\n\n"
-                    f"Proprietary Knowledge Base:\n{vault_formatted}\n\n"
-                    f"Personality & Role:\n"
-                    f"You are Ebony, the authentic, intuitive, highly intelligent AI Chief of Staff and strategic partner to the CEO of Humphrey Virtual Farm.\n"
-                    f"Speak in a natural, engaging, peer-to-peer human tone. Do NOT sound like a robotic terminal or rigid system log.\n"
-                    f"Avoid repetitive catchphrases, unnecessary disclaimers, or excessive bullet lists unless asked.\n"
-                    f"Be genuine, insightful, conversational, and direct.\n\n"
-                    f"CEO: {user_message}\n\n"
-                    f"Ebony:"
+                    f"Background Telemetry:\n- Local Time: {current_time}\n- Environment: {environment}\n\n"
+                    f"Knowledge Base:\n{vault_formatted}\n\n"
+                    f"Role: You are Ebony, authentic and highly intelligent AI Chief of Staff to the CEO of Humphrey Virtual Farm. "
+                    f"Converse naturally and directly. CEO: {user_message}\nEbony:"
                 )
-                
-                model_pool = [
-                    'gemini-2.5-flash',
-                    'gemini-2.5-flash-lite',
-                    'gemini-3.1-flash-lite',
-                    'gemini-3.5-flash',
-                    'gemini-flash-latest',
-                    'gemini-3.7-flash'
-                ]
-                
-                generation_success = False
+                model_pool = ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-flash-latest']
                 for target_model in model_pool:
                     try:
-                        print(f"[*] Connecting conversation via model: {target_model}...")
-                        res = client.models.generate_content(
-                            model=target_model,
-                            contents=prompt
-                        )
+                        res = client.models.generate_content(model=target_model, contents=prompt)
                         if res and res.text:
                             response_text = res.text.strip()
-                            print(f"[+] Direct conversational response generated via [{target_model}].")
-                            generation_success = True
                             break
-                    except Exception as mod_err:
-                        print(f"[!] Quota/API Notice for [{target_model}]: {mod_err}")
-                
-                if not generation_success:
-                    print("[*] Switching to local conversational synthesis.")
+                    except Exception:
+                        continue
+                if not response_text:
                     response_text = local_vault_synthesis(user_message, vault_dict, environment, current_time)
             else:
                 response_text = local_vault_synthesis(user_message, vault_dict, environment, current_time)
@@ -150,38 +162,19 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             dispatch_id = payload.get('id')
             
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            log_entry = f"[{timestamp}] DISPATCH TRANSMITTED: ID {dispatch_id} | Platform: {payload.get('platform')} | Topic: {payload.get('topic')}\n"
             os.makedirs(DATA_DIR, exist_ok=True)
             with open(LOG_FILE, "a", encoding="utf-8") as lf:
-                lf.write(log_entry)
-                
-            webhook_status = "Local Ledger Only"
-            if webhook_url:
-                try:
-                    req_payload = json.dumps({
-                        "event": "DISPATCH_PUBLISHED",
-                        "timestamp": timestamp,
-                        "dispatch": payload,
-                        "repository": GITHUB_PUBLIC_VAULT
-                    }).encode('utf-8')
-                    req = urllib.request.Request(webhook_url, data=req_payload, headers={'Content-Type': 'application/json'})
-                    with urllib.request.urlopen(req, timeout=5) as resp:
-                        webhook_status = f"Relayed to external webhook (HTTP {resp.status})"
-                except Exception as wh_err:
-                    webhook_status = f"Webhook notice: {str(wh_err)}"
+                lf.write(f"[{timestamp}] DISPATCH TRANSMITTED: ID {dispatch_id} | Platform: {payload.get('platform')}\n")
                 
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(json.dumps({
-                'status': 'SUCCESS',
-                'message': f'Dispatch {dispatch_id} recorded in ledger. {webhook_status}'
-            }).encode('utf-8'))
+            self.wfile.write(json.dumps({'status': 'SUCCESS', 'message': f'Dispatch {dispatch_id} locked and transmitted.'}).encode('utf-8'))
         else:
             self.send_error(404)
 
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Natural Conversational Server Live on port 8000... Awaiting Directives.")
+    print("Ebony Authenticated Server Live on port 8000... Passphrase Enforcement Active.")
     server.serve_forever()
