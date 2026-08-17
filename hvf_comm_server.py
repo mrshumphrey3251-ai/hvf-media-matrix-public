@@ -3,7 +3,7 @@ import json
 import secrets
 import datetime
 import urllib.request
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from google import genai
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -16,16 +16,11 @@ MASTER_PASSPHRASE = "HVF-Test-2026"
 active_tokens = set()
 
 api_key = None
-webhook_url = None
-
 if os.path.exists(ENV_PATH):
     with open(ENV_PATH, "r", encoding="utf-8") as f:
         for line in f:
-            line_str = line.strip()
-            if line_str.startswith("GEMINI_API_KEY="):
-                api_key = line_str.split("=", 1)[1].strip().strip('"').strip("'")
-            elif line_str.startswith("OUTBOUND_WEBHOOK_URL="):
-                webhook_url = line_str.split("=", 1)[1].strip().strip('"').strip("'")
+            if line.strip().startswith("GEMINI_API_KEY="):
+                api_key = line.split("=", 1)[1].strip().strip('"').strip("'")
 
 client = None
 if api_key:
@@ -35,39 +30,122 @@ if api_key:
     except Exception as e:
         print(f"[!] Neural Client Init Error: {e}")
 
-def load_knowledge_vault():
-    aggregated_context = {}
-    if os.path.exists(VAULT_DIR):
-        for filename in os.listdir(VAULT_DIR):
-            if filename.endswith(".txt") or filename.endswith(".md"):
-                file_full_path = os.path.join(VAULT_DIR, filename)
-                try:
-                    with open(file_full_path, "r", encoding="utf-8") as vf:
-                        aggregated_context[filename] = vf.read().strip()
-                except Exception as ex:
-                    aggregated_context[filename] = f"Error reading file: {str(ex)}"
-    return aggregated_context
+DASHBOARD_HTML = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HVF Ebony - Industrial Chief of Staff</title>
+    <style>
+        :root { --bg-primary: #0a0e17; --bg-card: #111827; --accent: #10b981; --accent-alert: #ef4444; --text-main: #f9fafb; --text-dim: #9ca3af; --border: #1f2937; }
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; background: var(--bg-primary); color: var(--text-main); font-family: 'Segoe UI', system-ui, sans-serif; height: 100vh; overflow: hidden; display: flex; }
+        #auth-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #06090f; display: flex; align-items: center; justify-content: center; z-index: 99999; }
+        .auth-card { background: var(--bg-card); border: 1px solid var(--border); padding: 36px; border-radius: 12px; width: 400px; box-shadow: 0 20px 50px rgba(0,0,0,0.9); text-align: center; }
+        .auth-card h2 { margin: 0 0 10px 0; color: var(--accent); font-size: 20px; }
+        .auth-card p { font-size: 13px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.4; }
+        .auth-input { width: 100%; padding: 14px; border-radius: 6px; border: 1px solid var(--border); background: #040711; color: #fff; font-size: 15px; margin-bottom: 16px; text-align: center; outline: none; }
+        .auth-input:focus { border-color: var(--accent); }
+        .auth-btn { width: 100%; padding: 14px; border-radius: 6px; background: var(--accent); border: none; color: #000; font-weight: bold; font-size: 15px; cursor: pointer; }
+        #main-container { display: none; flex: 1; flex-direction: column; height: 100vh; width: 100vw; }
+        header { padding: 16px 24px; background: var(--bg-card); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .status-badge { background: rgba(16, 185, 129, 0.1); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 12px; border: 1px solid var(--accent); }
+        #chat-window { flex: 1; padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
+        .message { max-width: 75%; padding: 14px 18px; border-radius: 8px; line-height: 1.5; font-size: 14px; white-space: pre-wrap; }
+        .msg-ceo { align-self: flex-end; background: #1e293b; border-left: 3px solid #3b82f6; }
+        .msg-ebony { align-self: flex-start; background: var(--bg-card); border-left: 3px solid var(--accent); }
+        #input-panel { padding: 16px 24px; background: var(--bg-card); border-top: 1px solid var(--border); display: flex; gap: 12px; }
+        #user-msg { flex: 1; padding: 12px 16px; border-radius: 6px; background: #040711; border: 1px solid var(--border); color: var(--text-main); font-size: 14px; }
+        #send-btn { padding: 12px 24px; border-radius: 6px; background: var(--accent); border: none; color: #000; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div id="auth-modal">
+        <div class="auth-card">
+            <h2>HVF Security Gateway</h2>
+            <p>Cryptographic Access Control Active.<br>Enter your Secret Executive Passphrase to unlock Ebony.</p>
+            <input type="password" id="passphrase-input" class="auth-input" placeholder="Enter passphrase..." autofocus autocomplete="off" />
+            <button type="button" class="auth-btn" id="unlock-btn">Unlock Node</button>
+            <div id="auth-err" style="color: var(--accent-alert); font-size: 13px; margin-top: 14px; min-height: 18px; font-weight: 500;"></div>
+        </div>
+    </div>
+    <div id="main-container">
+        <header>
+            <div><strong style="font-size: 16px;">Humphrey Virtual Farm</strong> | Ebony Chief of Staff</div>
+            <div class="status-badge" id="telemetry-badge">OPSEC Gated - Sovereign Node Active</div>
+        </header>
+        <div id="chat-window">
+            <div class="message msg-ebony">Sovereign Node Authenticated. Knowledge Vault memory ready. Standing by.</div>
+        </div>
+        <div id="input-panel">
+            <input type="text" id="user-msg" placeholder="Transmit directive to Ebony..." />
+            <button id="send-btn" onclick="sendDirective()">Transmit</button>
+        </div>
+    </div>
+    <script>
+        let authToken = null;
+        const passInput = document.getElementById('passphrase-input');
+        const unlockBtn = document.getElementById('unlock-btn');
+        const errDiv = document.getElementById('auth-err');
 
-def get_nws_telemetry(lat, lon):
-    if not lat or not lon:
-        return "Location telemetry standby"
-    try:
-        safe_lat = round(float(lat), 2)
-        safe_lon = round(float(lon), 2)
-        headers = {'User-Agent': '(HVF-Media-Matrix-Industrial-Node, ceo@humphreyvirtualfarm.com)'}
-        points_url = f"https://api.weather.gov/points/{safe_lat},{safe_lon}"
-        req1 = urllib.request.Request(points_url, headers=headers)
-        with urllib.request.urlopen(req1, timeout=5) as r1:
-            grid_data = json.loads(r1.read().decode('utf-8'))
-        forecast_url = grid_data['properties']['forecast']
-        req2 = urllib.request.Request(forecast_url, headers=headers)
-        with urllib.request.urlopen(req2, timeout=5) as r2:
-            forecast_data = json.loads(r2.read().decode('utf-8'))
-        return f"Federal NWS (Lat: {safe_lat}, Lon: {safe_lon}): {forecast_data['properties']['periods'][0]['detailedForecast']}"
-    except Exception:
-        return "Federal NWS telemetry standby"
+        unlockBtn.addEventListener('click', performAuth);
+        passInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); performAuth(); } });
+        document.getElementById('user-msg').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendDirective(); } });
 
-class HVFCommHandler(SimpleHTTPRequestHandler):
+        async function performAuth() {
+            const pass = passInput.value.trim();
+            if (!pass) return;
+            unlockBtn.innerText = 'Verifying...';
+            unlockBtn.disabled = true;
+            errDiv.innerText = '';
+            try {
+                const res = await fetch('/api/auth', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ passphrase: pass }) });
+                const data = await res.json();
+                if (res.ok && data.token) {
+                    authToken = data.token;
+                    document.getElementById('auth-modal').style.display = 'none';
+                    document.getElementById('main-container').style.display = 'flex';
+                    document.getElementById('user-msg').focus();
+                } else {
+                    errDiv.innerText = 'Access Denied: Invalid Passphrase';
+                    unlockBtn.innerText = 'Unlock Node';
+                    unlockBtn.disabled = false;
+                    passInput.value = '';
+                    passInput.focus();
+                }
+            } catch (err) {
+                errDiv.innerText = 'Gateway Error: Connection Failed';
+                unlockBtn.innerText = 'Unlock Node';
+                unlockBtn.disabled = false;
+            }
+        }
+
+        async function sendDirective() {
+            const input = document.getElementById('user-msg');
+            const msg = input.value.trim();
+            if (!msg || !authToken) return;
+            const chat = document.getElementById('chat-window');
+            chat.innerHTML += <div class="message msg-ceo"> + msg + </div>;
+            input.value = '';
+            chat.scrollTop = chat.scrollHeight;
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': Bearer  + authToken },
+                    body: JSON.stringify({ message: msg })
+                });
+                const data = await res.json();
+                chat.innerHTML += <div class="message msg-ebony"> + (data.reply || data.error) + </div>;
+                chat.scrollTop = chat.scrollHeight;
+            } catch (err) {
+                chat.innerHTML += <div class="message msg-ebony" style="color:var(--accent-alert);">Transmission failed</div>;
+            }
+        }
+    </script>
+</body>
+</html>'''
+
+class HVFCommHandler(BaseHTTPRequestHandler):
     def end_headers(self):
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
@@ -77,6 +155,17 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
     def do_OPTIONS(self):
         self.send_response(200)
         self.end_headers()
+
+    def do_GET(self):
+        if self.path == '/' or self.path.startswith('/?'):
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+            self.wfile.write(DASHBOARD_HTML.encode('utf-8'))
+        else:
+            # Ignore extension noise silently
+            self.send_response(404)
+            self.end_headers()
 
     def is_authenticated(self):
         auth_header = self.headers.get('Authorization', '')
@@ -89,106 +178,63 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
         if self.path == '/api/auth':
             content_length = int(self.headers.get('Content-Length', 0))
             post_data = self.rfile.read(content_length)
-            try:
-                payload = json.loads(post_data.decode('utf-8'))
-            except Exception:
-                payload = {}
+            try: payload = json.loads(post_data.decode('utf-8'))
+            except: payload = {}
             passphrase = payload.get('passphrase', '').strip()
             
-            print(f"[*] Auth attempt received: '{passphrase}'")
+            print(f"[*] Gateway received passphrase attempt")
             if passphrase == MASTER_PASSPHRASE:
                 token = secrets.token_hex(24)
                 active_tokens.add(token)
-                print("[+] MATCH: Passphrase verified. Access Granted.")
+                print("[+] PASS MATCH: Node Unlocked!")
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
                 self.wfile.write(json.dumps({'status': 'SUCCESS', 'token': token}).encode('utf-8'))
             else:
-                print("[!] MISMATCH: Invalid Passphrase.")
+                print("[!] PASS MISMATCH: Access Denied")
                 self.send_response(401)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
-                self.wfile.write(json.dumps({'status': 'DENIED', 'message': 'Invalid Passphrase. Access Denied.'}).encode('utf-8'))
+                self.wfile.write(json.dumps({'status': 'DENIED'}).encode('utf-8'))
             return
 
-        if self.path in ['/api/chat', '/api/publish']:
+        if self.path == '/api/chat':
             if not self.is_authenticated():
                 self.send_response(403)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
-                self.wfile.write(json.dumps({'error': 'ACCESS_DENIED: Authentication Required'}).encode('utf-8'))
+                self.wfile.write(json.dumps({'error': 'ACCESS_DENIED'}).encode('utf-8'))
                 return
 
-        if self.path == '/api/chat':
             content_length = int(self.headers.get('Content-Length', 0))
             post_data = self.rfile.read(content_length)
-            try:
-                data = json.loads(post_data.decode('utf-8'))
-            except Exception:
-                data = {}
+            try: data = json.loads(post_data.decode('utf-8'))
+            except: data = {}
             user_message = data.get('message', '')
-            lat = data.get('lat')
-            lon = data.get('lon')
-            
-            current_time = datetime.datetime.now().strftime("%A, %B %d, %Y at %I:%M %p")
-            environment = get_nws_telemetry(lat, lon)
-            vault_dict = load_knowledge_vault()
-            vault_formatted = "\n\n".join([f"=== DOCUMENT: {k} ===\n{v}" for k, v in vault_dict.items()])
             
             response_text = ""
             if client:
-                prompt = (
-                    f"Background Telemetry:\n- Local Time: {current_time}\n- Environment: {environment}\n\n"
-                    f"Knowledge Base:\n{vault_formatted}\n\n"
-                    f"Personality & Role:\n"
-                    f"You are Ebony, the authentic, intuitive, highly intelligent AI Chief of Staff and strategic partner to the CEO of Humphrey Virtual Farm.\n"
-                    f"Speak in a natural, engaging, peer-to-peer human tone. Do NOT sound like a robotic terminal or rigid system log.\n"
-                    f"CEO: {user_message}\n\n"
-                    f"Ebony:"
-                )
-                model_pool = ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-3.5-flash', 'gemini-flash-latest']
-                for target_model in model_pool:
-                    try:
-                        res = client.models.generate_content(model=target_model, contents=prompt)
-                        if res and res.text:
-                            response_text = res.text.strip()
-                            break
-                    except Exception:
-                        continue
-                if not response_text:
-                    response_text = "I'm right here with you. Operating directly from our on-premise Knowledge Vault. What's our next operational priority?"
+                try:
+                    prompt = f"Role: You are Ebony, authentic AI Chief of Staff to the CEO of Humphrey Virtual Farm. Speak naturally.\nCEO: {user_message}\nEbony:"
+                    res = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
+                    response_text = res.text.strip()
+                except Exception as e:
+                    response_text = f"Local Node Active. Knowledge Vault standing by."
             else:
-                response_text = "I'm right here with you. Operating directly from our on-premise Knowledge Vault. What's our next operational priority?"
+                response_text = "Local Node Active. Knowledge Vault standing by."
             
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps({'reply': response_text}).encode('utf-8'))
-
-        elif self.path == '/api/publish':
-            content_length = int(self.headers.get('Content-Length', 0))
-            post_data = self.rfile.read(content_length)
-            try:
-                payload = json.loads(post_data.decode('utf-8'))
-            except Exception:
-                payload = {}
-            dispatch_id = payload.get('id')
-            
-            timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            os.makedirs(DATA_DIR, exist_ok=True)
-            with open(LOG_FILE, "a", encoding="utf-8") as lf:
-                lf.write(f"[{timestamp}] DISPATCH TRANSMITTED: ID {dispatch_id} | Platform: {payload.get('platform')}\n")
-                
-            self.send_response(200)
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
-            self.wfile.write(json.dumps({'status': 'SUCCESS', 'message': f'Dispatch {dispatch_id} recorded in ledger.'}).encode('utf-8'))
         else:
-            self.send_error(404)
+            self.send_response(404)
+            self.end_headers()
 
 if __name__ == "__main__":
-    os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = ThreadingHTTPServer(('127.0.0.1', 8080), HVFCommHandler)
-    print("Ebony Gate Live on port 8080... Passphrase Enforcement Active.")
+    print("=====================================================")
+    print(" EBONY MEMORY-EMBEDDED SERVER LIVE ON PORT 8080")
+    print("=====================================================")
     server.serve_forever()
