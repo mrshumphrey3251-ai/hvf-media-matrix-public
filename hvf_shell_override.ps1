@@ -58,20 +58,23 @@ if ($choice -eq '2') {
     if (-not (Test-Path $SaferPath)) { New-Item -Path $SaferPath -Force | Out-Null }
     Set-ItemProperty -Path $SaferPath -Name "TransparentEnabled" -Value 1 -Type DWord -Force
     
-    # Remove LNK (shortcuts) from strict executable blocking so taskbar icons still function
     $ExecTypes = @("WSC","VB","URL","SHS","SCR","REG","PIF","PCD","OCX","MST","MSP","MSI","MDT","MDA","ISP","INS","INF","HTA","HLP","EXE","CRT","CPL","COM","CMD","CHM","BAT","BAS","APP","ADP","ADE")
     Set-ItemProperty -Path $SaferPath -Name "ExecutableTypes" -Value $ExecTypes -Type MultiString -Force
     
     $UnrestrictedPath = "$SaferPath\262144\Paths"
     if (-not (Test-Path $UnrestrictedPath)) { New-Item -Path $UnrestrictedPath -Force | Out-Null }
     
+    # We dynamically fetch your exact user profile paths so there is zero ambiguity
+    $localApp = [System.Environment]::GetFolderPath('LocalApplicationData')
+    $roamingApp = [System.Environment]::GetFolderPath('ApplicationData')
+    
     $SafeZones = @{
-        "{11111111-1111-1111-1111-111111111111}" = "%WINDIR%"
-        "{22222222-2222-2222-2222-222222222222}" = "%PROGRAMFILES%"
+        "{11111111-1111-1111-1111-111111111111}" = "C:\Windows"
+        "{22222222-2222-2222-2222-222222222222}" = "C:\Program Files"
         "{33333333-3333-3333-3333-333333333333}" = "C:\HVF_Repos"
         "{44444444-4444-4444-4444-444444444444}" = "C:\Program Files (x86)"
-        "{55555555-5555-5555-5555-555555555555}" = "$env:USERPROFILE\AppData\Local"
-        "{66666666-6666-6666-6666-666666666666}" = "$env:USERPROFILE\AppData\Roaming"
+        "{55555555-5555-5555-5555-555555555555}" = $localApp
+        "{66666666-6666-6666-6666-666666666666}" = $roamingApp
     }
     
     foreach ($Zone in $SafeZones.GetEnumerator()) {
