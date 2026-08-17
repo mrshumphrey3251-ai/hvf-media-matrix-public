@@ -214,7 +214,6 @@
             errDiv.innerText = '';
 
             try {
-                // Using relative path to completely avoid browser CORS blocking
                 const res = await fetch('/api/auth', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -252,7 +251,6 @@
             chat.scrollTop = chat.scrollHeight;
 
             try {
-                // Using relative path for the chat API as well
                 const res = await fetch('/api/chat', {
                     method: 'POST',
                     headers: {

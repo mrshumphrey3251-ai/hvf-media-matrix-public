@@ -189,6 +189,6 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
-    server = ThreadingHTTPServer(('127.0.0.1', 8000), HVFCommHandler)
-    print("Ebony Threaded Server Live on http://127.0.0.1:8000... Passphrase Enforcement Active.")
+    server = ThreadingHTTPServer(('127.0.0.1', 8080), HVFCommHandler)
+    print("Ebony Gate Live on port 8080... Passphrase Enforcement Active.")
     server.serve_forever()
