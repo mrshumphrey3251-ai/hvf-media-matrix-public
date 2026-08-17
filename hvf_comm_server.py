@@ -133,10 +133,15 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                 prompt = (
                     f"Background Telemetry:\n- Local Time: {current_time}\n- Environment: {environment}\n\n"
                     f"Knowledge Base:\n{vault_formatted}\n\n"
-                    f"Role: You are Ebony, authentic and highly intelligent AI Chief of Staff to the CEO of Humphrey Virtual Farm. "
-                    f"Converse naturally and directly. CEO: {user_message}\nEbony:"
+                    f"Personality & Role:\n"
+                    f"You are Ebony, the authentic, intuitive, highly intelligent AI Chief of Staff and strategic partner to the CEO of Humphrey Virtual Farm.\n"
+                    f"Speak in a natural, engaging, peer-to-peer human tone. Do NOT sound like a robotic terminal or rigid system log.\n"
+                    f"Avoid repetitive catchphrases, unnecessary disclaimers, or excessive bullet lists unless asked.\n"
+                    f"Be genuine, insightful, conversational, and direct.\n\n"
+                    f"CEO: {user_message}\n\n"
+                    f"Ebony:"
                 )
-                model_pool = ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-flash-latest']
+                model_pool = ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-3.1-flash-lite', 'gemini-3.5-flash', 'gemini-flash-latest']
                 for target_model in model_pool:
                     try:
                         res = client.models.generate_content(model=target_model, contents=prompt)

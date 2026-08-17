@@ -69,7 +69,6 @@
         #main-container {
             display: none;
             flex: 1;
-            display: flex;
             flex-direction: column;
             height: 100vh;
         }
@@ -103,6 +102,7 @@
             border-radius: 8px;
             line-height: 1.5;
             font-size: 14px;
+            white-space: pre-wrap;
         }
         .msg-ceo {
             align-self: flex-end;
@@ -146,7 +146,7 @@
         <div class="auth-card">
             <h2>HVF Security Gateway</h2>
             <p>Enter Sovereign Executive Passphrase to unlock Ebony</p>
-            <input type="password" id="passphrase-input" class="auth-input" placeholder="Passphrase..." />
+            <input type="password" id="passphrase-input" class="auth-input" placeholder="Passphrase..." onkeydown="if(event.key==='Enter') authenticate()" />
             <button class="auth-btn" onclick="authenticate()">Unlock Node</button>
             <div id="auth-err" style="color: var(--accent-alert); font-size: 12px; margin-top: 12px;"></div>
         </div>
@@ -157,12 +157,10 @@
             <div>
                 <strong style="font-size: 16px;">Humphrey Virtual Farm</strong> | Ebony Chief of Staff
             </div>
-            <div class="status-badge" id="telemetry-badge">OPSEC Gated - Secure</div>
+            <div class="status-badge" id="telemetry-badge">OPSEC Gated - Authenticated</div>
         </header>
         <div id="chat-window">
-            <div class="message msg-ebony">
-                Sovereign Node Authenticated. Knowledge Vault memory and telemetry streams ready. Standing by for directives.
-            </div>
+            <div class="message msg-ebony">Sovereign Node Authenticated. Knowledge Vault memory and telemetry streams ready. Standing by for directives.</div>
         </div>
         <div id="input-panel">
             <input type="text" id="user-msg" placeholder="Transmit directive to Ebony..." onkeydown="if(event.key==='Enter') sendDirective()" />
