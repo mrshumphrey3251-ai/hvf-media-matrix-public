@@ -1,6 +1,5 @@
 ﻿import os
 import json
-import hashlib
 import secrets
 import datetime
 import urllib.request
@@ -13,12 +12,11 @@ DATA_DIR = os.path.join(BASE_DIR, "ebony_dashboard", "data")
 LOG_FILE = os.path.join(DATA_DIR, "dispatch_transmission_ledger.log")
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 
-GITHUB_PUBLIC_VAULT = "https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
+MASTER_PASSPHRASE = "HVF-Test-2026"
+active_tokens = set()
 
 api_key = None
 webhook_url = None
-auth_hash = None
-active_tokens = set()
 
 if os.path.exists(ENV_PATH):
     with open(ENV_PATH, "r", encoding="utf-8") as f:
@@ -28,13 +26,12 @@ if os.path.exists(ENV_PATH):
                 api_key = line_str.split("=", 1)[1].strip().strip('"').strip("'")
             elif line_str.startswith("OUTBOUND_WEBHOOK_URL="):
                 webhook_url = line_str.split("=", 1)[1].strip().strip('"').strip("'")
-            elif line_str.startswith("EBONY_AUTH_HASH="):
-                auth_hash = line_str.split("=", 1)[1].strip().strip('"').strip("'")
 
 client = None
 if api_key:
     try:
         client = genai.Client(api_key=api_key)
+        print("[+] Google GenAI Client Connected.")
     except Exception as e:
         print(f"[!] Neural Client Init Error: {e}")
 
@@ -50,13 +47,6 @@ def load_knowledge_vault():
                 except Exception as ex:
                     aggregated_context[filename] = f"Error reading file: {str(ex)}"
     return aggregated_context
-
-def local_vault_synthesis(query, vault_dict, weather_info, current_time):
-    return (
-        f"I'm here with you. Right now our connection is running directly off our local on-premise Knowledge Vault. "
-        f"Everything across our core protocols and repository architecture is solid and standing by. "
-        f"What's on your mind, and where would you like to focus next?"
-    )
 
 def get_nws_telemetry(lat, lon):
     if not lat or not lon:
@@ -90,15 +80,13 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
             content_length = int(self.headers.get('Content-Length', 0))
             post_data = self.rfile.read(content_length)
             payload = json.loads(post_data.decode('utf-8'))
-            passphrase = payload.get('passphrase', '')
+            passphrase = payload.get('passphrase', '').strip()
             
-            entered_hash = hashlib.sha256(passphrase.encode('utf-8')).hexdigest()
-            print(f"[*] Gateway Auth Attempt: Entered Hash [{entered_hash[:8]}...] vs Stored [{auth_hash[:8] if auth_hash else 'NONE'}...]")
-            
-            if auth_hash and entered_hash == auth_hash:
+            print(f"[*] Gateway received passphrase attempt: '{passphrase}'")
+            if passphrase == MASTER_PASSPHRASE:
                 token = secrets.token_hex(24)
                 active_tokens.add(token)
-                print("[+] PASS MATCH: Auth granted. Session token issued.")
+                print("[+] PASS MATCH: Sovereign Node Unlocked! Token issued.")
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
@@ -153,9 +141,9 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
                     except Exception:
                         continue
                 if not response_text:
-                    response_text = local_vault_synthesis(user_message, vault_dict, environment, current_time)
+                    response_text = "I'm right here with you. Operating directly from our on-premise Knowledge Vault. What's our next operational priority?"
             else:
-                response_text = local_vault_synthesis(user_message, vault_dict, environment, current_time)
+                response_text = "I'm right here with you. Operating directly from our on-premise Knowledge Vault. What's our next operational priority?"
             
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -183,5 +171,5 @@ class HVFCommHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     os.chdir(os.path.join(BASE_DIR, "ebony_dashboard"))
     server = HTTPServer(('localhost', 8000), HVFCommHandler)
-    print("Ebony Authenticated Server Live on port 8000... Passphrase Enforcement Active.")
+    print("Ebony Gate Live on port 8000... Passphrase Enforcement Active.")
     server.serve_forever()

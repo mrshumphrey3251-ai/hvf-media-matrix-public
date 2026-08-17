@@ -149,13 +149,13 @@
 </head>
 <body>
     <div id="auth-modal">
-        <div class="auth-card">
+        <form class="auth-card" id="auth-form" onsubmit="handleAuth(event)">
             <h2>HVF Security Gateway</h2>
             <p>Cryptographic Access Control Active.<br>Enter your Secret Executive Passphrase to unlock Ebony.</p>
-            <input type="password" id="passphrase-input" class="auth-input" placeholder="Enter passphrase..." autofocus onkeydown="if(event.key==='Enter') authenticate()" />
-            <button class="auth-btn" id="unlock-btn" onclick="authenticate()">Unlock Node</button>
+            <input type="password" id="passphrase-input" class="auth-input" placeholder="Enter passphrase..." autofocus required autocomplete="off" />
+            <button type="submit" class="auth-btn" id="unlock-btn">Unlock Node</button>
             <div id="auth-err" style="color: var(--accent-alert); font-size: 13px; margin-top: 14px; min-height: 18px; font-weight: 500;"></div>
-        </div>
+        </form>
     </div>
 
     <div id="main-container">
@@ -181,21 +181,19 @@
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (pos) => { coords.lat = pos.coords.latitude; coords.lon = pos.coords.longitude; },
-                () => { console.log('Location standby'); }
+                () => { console.log('Location telemetry standby'); }
             );
         }
 
-        async function authenticate() {
+        async function handleAuth(e) {
+            if (e) e.preventDefault();
             const passInput = document.getElementById('passphrase-input');
             const pass = passInput.value.trim();
             const errDiv = document.getElementById('auth-err');
             const btn = document.getElementById('unlock-btn');
-            
-            if (!pass) {
-                errDiv.innerText = 'Please enter your passphrase.';
-                return;
-            }
-            
+
+            if (!pass) return;
+
             btn.innerText = 'Verifying...';
             btn.disabled = true;
             errDiv.innerText = '';
@@ -207,13 +205,11 @@
                     body: JSON.stringify({ passphrase: pass })
                 });
                 const data = await res.json();
-                
+
                 if (res.ok && data.token) {
                     authToken = data.token;
-                    const modal = document.getElementById('auth-modal');
-                    const main = document.getElementById('main-container');
-                    modal.style.setProperty('display', 'none', 'important');
-                    main.style.setProperty('display', 'flex', 'important');
+                    document.getElementById('auth-modal').style.display = 'none';
+                    document.getElementById('main-container').style.display = 'flex';
                 } else {
                     errDiv.innerText = data.message || 'Access Denied: Invalid Passphrase';
                     btn.innerText = 'Unlock Node';
@@ -222,7 +218,7 @@
                     passInput.focus();
                 }
             } catch (err) {
-                errDiv.innerText = 'Gateway Error: Server unreachable';
+                errDiv.innerText = 'Gateway Error: Connection Failed';
                 btn.innerText = 'Unlock Node';
                 btn.disabled = false;
             }
