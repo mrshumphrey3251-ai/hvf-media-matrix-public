@@ -149,13 +149,13 @@
 </head>
 <body>
     <div id="auth-modal">
-        <form class="auth-card" id="auth-form" onsubmit="handleAuth(event)">
+        <div class="auth-card">
             <h2>HVF Security Gateway</h2>
             <p>Cryptographic Access Control Active.<br>Enter your Secret Executive Passphrase to unlock Ebony.</p>
-            <input type="password" id="passphrase-input" class="auth-input" placeholder="Enter passphrase..." autofocus required autocomplete="off" />
-            <button type="submit" class="auth-btn" id="unlock-btn">Unlock Node</button>
+            <input type="password" id="passphrase-input" class="auth-input" placeholder="Enter passphrase..." autofocus autocomplete="off" />
+            <button type="button" class="auth-btn" id="unlock-btn" onclick="executeUnlock()">Unlock Node</button>
             <div id="auth-err" style="color: var(--accent-alert); font-size: 13px; margin-top: 14px; min-height: 18px; font-weight: 500;"></div>
-        </form>
+        </div>
     </div>
 
     <div id="main-container">
@@ -169,30 +169,56 @@
             <div class="message msg-ebony">Sovereign Node Authenticated. Knowledge Vault memory and telemetry streams ready. Standing by for directives.</div>
         </div>
         <div id="input-panel">
-            <input type="text" id="user-msg" placeholder="Transmit directive to Ebony..." onkeydown="if(event.key==='Enter') sendDirective()" />
+            <input type="text" id="user-msg" placeholder="Transmit directive to Ebony..." />
             <button id="send-btn" onclick="sendDirective()">Transmit</button>
         </div>
     </div>
 
     <script>
-        let authToken = null;
+        let authToken = sessionStorage.getItem('hvf_auth_token');
         let coords = { lat: null, lon: null };
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (pos) => { coords.lat = pos.coords.latitude; coords.lon = pos.coords.longitude; },
-                () => { console.log('Location telemetry standby'); }
+                () => { console.log('Location standby'); }
             );
         }
 
-        async function handleAuth(e) {
-            if (e) e.preventDefault();
+        if (authToken) {
+            unlockInterface();
+        }
+
+        document.getElementById('passphrase-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                executeUnlock();
+            }
+        });
+
+        document.getElementById('user-msg').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendDirective();
+            }
+        });
+
+        function unlockInterface() {
+            document.getElementById('auth-modal').style.setProperty('display', 'none', 'important');
+            document.getElementById('main-container').style.setProperty('display', 'flex', 'important');
+            document.getElementById('user-msg').focus();
+        }
+
+        async function executeUnlock() {
             const passInput = document.getElementById('passphrase-input');
             const pass = passInput.value.trim();
             const errDiv = document.getElementById('auth-err');
             const btn = document.getElementById('unlock-btn');
 
-            if (!pass) return;
+            if (!pass) {
+                errDiv.innerText = 'Passphrase required.';
+                return;
+            }
 
             btn.innerText = 'Verifying...';
             btn.disabled = true;
@@ -208,8 +234,8 @@
 
                 if (res.ok && data.token) {
                     authToken = data.token;
-                    document.getElementById('auth-modal').style.display = 'none';
-                    document.getElementById('main-container').style.display = 'flex';
+                    sessionStorage.setItem('hvf_auth_token', authToken);
+                    unlockInterface();
                 } else {
                     errDiv.innerText = data.message || 'Access Denied: Invalid Passphrase';
                     btn.innerText = 'Unlock Node';
@@ -218,7 +244,7 @@
                     passInput.focus();
                 }
             } catch (err) {
-                errDiv.innerText = 'Gateway Error: Connection Failed';
+                errDiv.innerText = 'Gateway Error: ' + err.message;
                 btn.innerText = 'Unlock Node';
                 btn.disabled = false;
             }
