@@ -1,30 +1,92 @@
-﻿from flask import Flask, render_template, request, jsonify
-from dotenv import load_dotenv
+﻿from flask import Flask, request, jsonify, render_template_string
 import os
 
-# Load environment variables (security hashes, future API keys)
-load_dotenv()
-
-# Initialize the Sovereign Server
 app = Flask(__name__)
 
-# Route 1: Serve the Dual-Pane Dashboard
+# The HTML is now hardcoded directly inside the Python brain. 
+# It is immune to folder caching and syntax swallowing.
+DASHBOARD_HTML = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HVF Sovereign Node: Ebony</title>
+    <style>
+        body { background-color: #0d0d0d; color: #00ff00; font-family: 'Courier New', Courier, monospace; margin: 0; padding: 20px; display: flex; height: 100vh; box-sizing: border-box; }
+        .matrix-container { display: flex; width: 100%; gap: 20px; }
+        .comms-panel, .staging-panel { border: 1px solid #00ff00; padding: 20px; display: flex; flex-direction: column; background: #1a1a1a; }
+        .comms-panel { flex: 1; }
+        .staging-panel { flex: 1; }
+        h2 { border-bottom: 1px solid #00ff00; padding-bottom: 10px; margin-top: 0; text-transform: uppercase; letter-spacing: 2px; }
+        #chat-box { flex-grow: 1; overflow-y: auto; margin-bottom: 20px; border: 1px solid #333; padding: 10px; background: #000; }
+        .input-group { display: flex; gap: 10px; }
+        input[type="text"], textarea { flex-grow: 1; background: #000; border: 1px solid #00ff00; color: #00ff00; padding: 10px; font-family: inherit; }
+        button { background: #00ff00; color: #000; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        button:hover { background: #00cc00; }
+        .message { margin-bottom: 10px; }
+        .user-msg { color: #00ffff; }
+        .ebony-msg { color: #00ff00; }
+    </style>
+</head>
+<body>
+    <div class="matrix-container">
+        <div class="comms-panel">
+            <h2>Ebony Comms Interface</h2>
+            <div id="chat-box"></div>
+            <div class="input-group">
+                <input type="text" id="user-input" placeholder="Enter directive..." onkeypress="if(event.key === 'Enter') document.getElementById('transmit-btn').click();">
+                <button id="transmit-btn" onclick="sendMessage()">Transmit</button>
+            </div>
+        </div>
+        <div class="staging-panel">
+            <h2>LinkedIn Staging Matrix</h2>
+            <textarea id="linkedin-draft" placeholder="Paste or command Ebony to draft your LinkedIn article here..." style="flex-grow: 1; margin-bottom: 15px; resize: none;"></textarea>
+            <div class="input-group" style="justify-content: space-between;">
+                <button onclick="alert('Refinement sequence initiated.')" style="background: #ffff00; color: #000;">Refine Draft</button>
+                <button onclick="alert('LinkedIn deployment protocol locked.')" style="background: #ff0000; color: #fff;">Execute Publication</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            var input = document.getElementById('user-input');
+            var chatBox = document.getElementById('chat-box');
+            var text = input.value.trim();
+            if (!text) return;
+            
+            chatBox.innerHTML += '<div class="message user-msg">&gt; ' + text + '</div>';
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text })
+            })
+            .then(r => r.json())
+            .then(data => {
+                chatBox.innerHTML += '<div class="message ebony-msg">[EBONY]: ' + data.reply + '</div>';
+                chatBox.scrollTop = chatBox.scrollHeight;
+            })
+            .catch(err => {
+                chatBox.innerHTML += '<div class="message ebony-msg" style="color: red;">[SYSTEM ERROR]: Offline.</div>';
+            });
+        }
+    </script>
+</body>
+</html>
+"""
+
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template_string(DASHBOARD_HTML)
 
-# Route 2: The Ebony Communications Matrix
 @app.route('/api/chat', methods=['POST'])
 def chat():
     data = request.json
-    user_message = data.get('message', '')
-    
-    # Core logic placeholder: Currently set to acknowledge receipt of directive
-    # Future integration: This block will route to the AI inference engine
-    reply = f"Directive confirmed: '{user_message}'. Awaiting full cognitive integration."
-    
-    return jsonify({"reply": reply})
+    msg = data.get('message', '')
+    return jsonify({"reply": f"Directive confirmed: '{msg}'. Awaiting full cognitive integration."})
 
 if __name__ == '__main__':
-    # Ignite the server on local port 5000
     app.run(host='127.0.0.1', port=5000, debug=False)
