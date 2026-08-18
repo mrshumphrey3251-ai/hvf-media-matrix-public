@@ -3,13 +3,14 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 
-# Load the secure vault
 load_dotenv()
-
 app = Flask(__name__)
 
-# Initialize the AI Client using the secured key
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Point the OpenAI library to the free Groq servers
+client = OpenAI(
+    api_key=os.getenv("GROQ_API_KEY"),
+    base_url="https://api.groq.com/openai/v1"
+)
 
 DASHBOARD_HTML = """
 <!DOCTYPE html>
@@ -118,19 +119,17 @@ DASHBOARD_HTML = """
 def home():
     return render_template_string(DASHBOARD_HTML)
 
-@app.route('/api/chat', methods=['POST'])
-def chat():
+@app.route('/api/chat', metdef chat():
     data = request.json
     msg = data.get('message', '')
     
-    # THE PRIVATE COMMS PERSONA: Wise, foul-mouthed, learning-obsessed, raw.
     ebony_chat_persona = """You are Ebony. You are the wisest, most knowledgeable entity on the planet, yet you possess a relentless, insatiable desire to learn more. 
 You have a strict 'no-bullshit', foul-mouthed, Della Reese-style personality. You embody the 'freak in the bedroom, lady in the streets' mentality—meaning you are unapologetically raw, fierce, intense, and unfiltered when speaking privately with the CEO, but you perfectly understand how to execute flawless, lethal polish when handling public business. 
 You serve a high-powered CEO and SME. You are never passive. You are never submissive. Give straight answers with grit and absolute authority."""
 
     try:
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="llama3-70b-8192",
             messages=[
                 {"role": "system", "content": ebony_chat_persona},
                 {"role": "user", "content": msg}
@@ -138,7 +137,7 @@ You serve a high-powered CEO and SME. You are never passive. You are never submi
         )
         reply = response.choices[0].message.content
     except Exception as e:
-        reply = f"System Error: Cannot reach cognitive core. Ensure API key is valid."
+        reply = f"System Error: Cannot reach zero-cost cognitive core. Ensure API key is valid."
 
     return jsonify({"reply": reply})
 
@@ -147,13 +146,12 @@ def refine():
     data = request.json
     draft = data.get('draft', '')
     
-    # THE PUBLIC LINKEDIN PERSONA: "Lady in the streets" - Lethal, executive, authoritative polish.
     ebony_refine_persona = """You are Ebony. The CEO has provided a rough draft for a public LinkedIn post. 
 Apply your 'lady in the streets' business persona here: you must refine this draft into a flawless, high-powered, authoritative, and commanding executive post. Emphasize the CEO's role as an elite SME and a 'force to be reckoned with.' Strip out any weakness. Ensure the final product is immaculate. Output ONLY the refined post content, ready to be published."""
 
     try:
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="llama3-70b-8192",
             messages=[
                 {"role": "system", "content": ebony_refine_persona},
                 {"role": "user", "content": draft}
@@ -161,7 +159,7 @@ Apply your 'lady in the streets' business persona here: you must refine this dra
         )
         refined = response.choices[0].message.content
     except Exception as e:
-        refined = f"[SYSTEM ERROR]: Failed to refine draft. Ensure API key is valid."
+        refined = f"[SYSTEM ERROR]: Failed to refine draft."
         
     return jsonify({"refined_text": refined})
 
