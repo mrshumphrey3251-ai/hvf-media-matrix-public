@@ -1,24 +1,11 @@
-﻿$Host.UI.RawUI.WindowTitle = 'HVF Ebony Sovereign Server Core'
-Clear-Host
-Write-Host "========================================================" -ForegroundColor DarkGray
-Write-Host " HVF EBONY ENGINE DIAGNOSTIC CONSOLE" -ForegroundColor Yellow
-Write-Host "========================================================" -ForegroundColor DarkGray
+﻿# 1. Neutralize background ghost engines
+Get-Process | Where-Object {$_.Name -match "python"} | Stop-Process -Force -ErrorAction SilentlyContinue
 
-# Check if Python is accessible
-$pythonPath = (Get-Command python -ErrorAction SilentlyContinue).Source
-if (-not $pythonPath) {
-    Write-Host "[!] CRITICAL: Python executable not found in system PATH." -ForegroundColor Red
-    Read-Host -Prompt "Press Enter to exit"
-    Exit
-}
+# 2. Launch the monolithic server directly in the background (Invisible)
+Start-Process python -ArgumentList "app.py" -WorkingDirectory "C:\HVF_Repos\hvf-media-matrix-private" -WindowStyle Hidden
 
-Write-Host "[+] Python engine located: $pythonPath" -ForegroundColor Green
-Write-Host "[*] Launching Flask Server Application..." -ForegroundColor Cyan
+# 3. Wait 2 seconds for engine ignition
+Start-Sleep -Seconds 2
 
-# Navigate to repository and run Python, keeping the window alive to print errors
-cd "C:\HVF_Repos\hvf-media-matrix-private"
-python app.py
-
-Write-Host "
-[!] CRITICAL: Python application crashed or exited unexpectedly." -ForegroundColor Red
-Read-Host -Prompt "Press Enter to close window"
+# 4. Open the web browser securely to the local dashboard
+Start-Process "http://127.0.0.1:5000"
