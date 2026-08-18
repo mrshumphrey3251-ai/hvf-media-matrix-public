@@ -1,10 +1,7 @@
 ﻿from flask import Flask, request, jsonify, render_template_string
-import os
 
 app = Flask(__name__)
 
-# The HTML is now hardcoded directly inside the Python brain. 
-# It is immune to folder caching and syntax swallowing.
 DASHBOARD_HTML = """
 <!DOCTYPE html>
 <html lang="en">
@@ -64,12 +61,12 @@ DASHBOARD_HTML = """
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: text })
             })
-            .then(r => r.json())
-            .then(data => {
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
                 chatBox.innerHTML += '<div class="message ebony-msg">[EBONY]: ' + data.reply + '</div>';
                 chatBox.scrollTop = chatBox.scrollHeight;
             })
-            .catch(err => {
+            .catch(function(err) {
                 chatBox.innerHTML += '<div class="message ebony-msg" style="color: red;">[SYSTEM ERROR]: Offline.</div>';
             });
         }
