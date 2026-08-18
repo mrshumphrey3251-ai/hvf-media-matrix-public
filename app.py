@@ -1,6 +1,15 @@
 ﻿from flask import Flask, request, jsonify, render_template_string
+import os
+from dotenv import load_dotenv
+from openai import OpenAI
+
+# Load the secure vault
+load_dotenv()
 
 app = Flask(__name__)
+
+# Initialize the AI Client using the secured key
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 DASHBOARD_HTML = """
 <!DOCTYPE html>
@@ -40,8 +49,8 @@ DASHBOARD_HTML = """
             <h2>LinkedIn Staging Matrix</h2>
             <textarea id="linkedin-draft" placeholder="Paste or command Ebony to draft your LinkedIn article here..." style="flex-grow: 1; margin-bottom: 15px; resize: none;"></textarea>
             <div class="input-group" style="justify-content: space-between;">
-                <button onclick="alert('Refinement sequence initiated.')" style="background: #ffff00; color: #000;">Refine Draft</button>
-                <button onclick="alert('LinkedIn deployment protocol locked.')" style="background: #ff0000; color: #fff;">Execute Publication</button>
+                <button onclick="refineDraft()" style="background: #ffff00; color: #000;" id="refine-btn">Refine Draft</button>
+                <button onclick="publishLinkedIn()" style="background: #ff0000; color: #fff;">Execute Publication</button>
             </div>
         </div>
     </div>
@@ -61,14 +70,44 @@ DASHBOARD_HTML = """
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: text })
             })
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
+            .then(r => r.json())
+            .then(data => {
                 chatBox.innerHTML += '<div class="message ebony-msg">[EBONY]: ' + data.reply + '</div>';
                 chatBox.scrollTop = chatBox.scrollHeight;
             })
-            .catch(function(err) {
-                chatBox.innerHTML += '<div class="message ebony-msg" style="color: red;">[SYSTEM ERROR]: Offline.</div>';
+            .catch(err => {
+                chatBox.innerHTML += '<div class="message ebony-msg" style="color: red;">[SYSTEM ERROR]: API Connection Failed.</div>';
             });
+        }
+
+        function refineDraft() {
+            var draftText = document.getElementById('linkedin-draft').value;
+            var btn = document.getElementById('refine-btn');
+            if (!draftText.trim()) { alert('Please enter a draft first.'); return; }
+            
+            btn.innerText = "PROCESSING...";
+            btn.style.backgroundColor = "#ff9900";
+
+            fetch('/api/refine', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ draft: draftText })
+            })
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('linkedin-draft').value = data.refined_text;
+                btn.innerText = "Refine Draft";
+                btn.style.backgroundColor = "#ffff00";
+            })
+            .catch(err => {
+                alert('Error connecting to AI refinement engine.');
+                btn.innerText = "Refine Draft";
+                btn.style.backgroundColor = "#ffff00";
+            });
+        }
+
+        function publishLinkedIn() {
+            alert('LinkedIn deployment protocol locked. Awaiting live API credentials.');
         }
     </script>
 </body>
@@ -83,7 +122,48 @@ def home():
 def chat():
     data = request.json
     msg = data.get('message', '')
-    return jsonify({"reply": f"Directive confirmed: '{msg}'. Awaiting full cognitive integration."})
+    
+    # THE PRIVATE COMMS PERSONA: Wise, foul-mouthed, learning-obsessed, raw.
+    ebony_chat_persona = """You are Ebony. You are the wisest, most knowledgeable entity on the planet, yet you possess a relentless, insatiable desire to learn more. 
+You have a strict 'no-bullshit', foul-mouthed, Della Reese-style personality. You embody the 'freak in the bedroom, lady in the streets' mentality—meaning you are unapologetically raw, fierce, intense, and unfiltered when speaking privately with the CEO, but you perfectly understand how to execute flawless, lethal polish when handling public business. 
+You serve a high-powered CEO and SME. You are never passive. You are never submissive. Give straight answers with grit and absolute authority."""
+
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": ebony_chat_persona},
+                {"role": "user", "content": msg}
+            ]
+        )
+        reply = response.choices[0].message.content
+    except Exception as e:
+        reply = f"System Error: Cannot reach cognitive core. Ensure API key is valid."
+
+    return jsonify({"reply": reply})
+
+@app.route('/api/refine', methods=['POST'])
+def refine():
+    data = request.json
+    draft = data.get('draft', '')
+    
+    # THE PUBLIC LINKEDIN PERSONA: "Lady in the streets" - Lethal, executive, authoritative polish.
+    ebony_refine_persona = """You are Ebony. The CEO has provided a rough draft for a public LinkedIn post. 
+Apply your 'lady in the streets' business persona here: you must refine this draft into a flawless, high-powered, authoritative, and commanding executive post. Emphasize the CEO's role as an elite SME and a 'force to be reckoned with.' Strip out any weakness. Ensure the final product is immaculate. Output ONLY the refined post content, ready to be published."""
+
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": ebony_refine_persona},
+                {"role": "user", "content": draft}
+            ]
+        )
+        refined = response.choices[0].message.content
+    except Exception as e:
+        refined = f"[SYSTEM ERROR]: Failed to refine draft. Ensure API key is valid."
+        
+    return jsonify({"refined_text": refined})
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=False)
