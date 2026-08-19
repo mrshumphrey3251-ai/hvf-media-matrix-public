@@ -13,9 +13,12 @@ The market is flooded with passive, cloud-dependent wrappers. We built a weapon.
 - **Live Autonomous Strike:** Direct, REST API-driven execution without middlemen.
 
 ## /// ACCESS DENIED
-The operational blueprints, neural memory arrays, and core Python scripts (ebony_console.py, ebony_launch.py) are currently **classified**. 
+The operational blueprints, neural memory arrays, and core Python scripts are currently **classified**. The public architecture will be unsealed and published to this repository only when the CEO authorizes the Gold Master release.
 
-The public architecture will be unsealed and published to this repository only when the CEO authorizes the Gold Master release.
+## /// EXECUTIVE CONTACT
+For strategic alignment, manufacturing partnerships, or defense-grade inquiries regarding the HVF Nexus Core:
+
+**Direct Line:** humphreyvirtualfarm@gmail.com
 
 ---
 *Watch this space. The rules of engagement are about to change.*
