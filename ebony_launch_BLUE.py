@@ -6,7 +6,7 @@ from datetime import datetime
 
 def execute_strike():
     print("==================================================")
-    print("⚡ BLUE DEV: DYNAMIC ARSENAL + SIGNATURE PROTOCOL ⚡")
+    print("⚡ BLUE DEV: DYNAMIC ARSENAL + CALIBRATED ENGINES ⚡")
     print("==================================================")
     
     topics = [
@@ -36,7 +36,8 @@ def execute_strike():
     Tone: Unfiltered, executive, sharp. No hashtags. No emojis. Pure impact.
     """
     
-    target_models = ["llama-3.1-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768", "llama3-8b-8192"]
+    # EXACT ENGINES PULLED FROM YOUR CONSOLE READOUT
+    target_models = ["openai/gpt-oss-120b", "qwen/qwen3.6-27b", "openai/gpt-oss-20b"]
     active_engine = None
     
     for model_id in target_models:
@@ -46,21 +47,17 @@ def execute_strike():
                 model=model_id
             )
             
-            # Extract AI content
             ai_content = response.choices[0].message.content
             
-            # HARDCODE THE EXECUTIVE SIGNATURE
             signature = "\n\n---\n"
             signature += "Contact: humphreyvirtualfarm@gmail.com\n"
             signature += "GitHub Open-Source Matrix: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
             
-            # Fuse the content and signature
             post_content = ai_content + signature
             
             print(f"\n[SYSTEM]: Engine locked onto active model: {model_id}")
             print("[SYSTEM]: Executive signature stamped.")
             
-            # Vaulting the payload
             os.makedirs("content_vault", exist_ok=True)
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filepath = os.path.join("content_vault", f"Blue_Strike_{timestamp}.txt")
@@ -74,11 +71,12 @@ def execute_strike():
             print(f"\n[SYSTEM]: Payload secured in vault: {filepath}")
             active_engine = model_id
             break
-        except Exception:
+        except Exception as e:
+            print(f"[SYSTEM]: Engine {model_id} misfire. Retrying next...")
             continue
             
     if not active_engine:
-        print("\n[CRITICAL FAILURE]: Groq rejected all primary text engines. API Key limits may be exhausted.")
+        print("\n[CRITICAL FAILURE]: Groq rejected the calibrated text engines. Check API token limits.")
 
 if __name__ == "__main__":
     execute_strike()
