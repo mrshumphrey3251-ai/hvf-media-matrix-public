@@ -1,7 +1,7 @@
 ﻿"""
-/// PUBLIC BROADCAST ENGINE BLUEPRINT (FAULT-TOLERANT) ///
+/// PUBLIC BROADCAST ENGINE BLUEPRINT (LIVE-FIRE PUBLISHING) ///
 Sector: global_comms
-Purpose: Blueprint for deployment sweep and payload quarantine logic.
+Purpose: Blueprint for formatting JSON payloads and deploying to network.
 Note: SANITIZED BLUEPRINT.
 """
 import sys
@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 
 def deploy_outbox():
     logging.info("Sweeping outbox for deployment...")
-    logging.info("[HALT]: Architecture requires live API authorization to prevent quarantines.")
+    logging.info("[HALT]: Architecture requires live API authorization and valid URN to execute POST protocol.")
 
 if __name__ == "__main__":
     deploy_outbox()
