@@ -1,0 +1,114 @@
+﻿AWSTemplateFormatVersion: '2010-09-09'
+Description: 'HVF Sovereign Matrix - Locked-Down S3 Data Vault & Training IAM Roles'
+
+Parameters:
+  VaultBucketNamePrefix:
+    Type: String
+    Default: 'hvf-sovereign-ai-vault'
+    Description: 'Base prefix for the encrypted training data bucket'
+
+Resources:
+  # Master KMS Key for Hardware-Level Encryption
+  HVFVaultKmsKey:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: 'KMS Key for HVF Sovereign AI Vault'
+      EnableKeyRotation: true
+      KeyPolicy:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: EnableRootAccess
+            Effect: Allow
+            Principal:
+              AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
+            Action: 'kms:*'
+            Resource: '*'
+
+  # Encrypted, Version-Controlled Data Vault
+  HVFAIDataVault:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${VaultBucketNamePrefix}-${AWS::AccountId}'
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
+              KMSMasterKeyId: !Ref HVFVaultKmsKey
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  # Model Weights & Checkpoints Registry
+  HVFModelRegistryVault:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${VaultBucketNamePrefix}-model-registry-${AWS::AccountId}'
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
+              KMSMasterKeyId: !Ref HVFVaultKmsKey
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  # IAM Sovereign Execution Role for GPU Fleet & SageMaker
+  HVFComputeExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: HVF-Compute-Execution-Role
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+                - sagemaker.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+      Policies:
+        - PolicyName: HVF-KMS-Decrypt-Policy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - kms:Decrypt
+                  - kms:DescribeKey
+                  - kms:GenerateDataKey*
+                Resource: !GetAtt HVFVaultKmsKey.Arn
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObject
+                Resource:
+                  - !Sub '${HVFModelRegistryVault.Arn}/*'
+
+  # Instance Profile to attach Role directly to EC2 Instances
+  HVFComputeInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      InstanceProfileName: HVF-Compute-Instance-Profile
+      Roles:
+        - !Ref HVFComputeExecutionRole
+
+Outputs:
+  DataVaultBucket:
+    Description: 'S3 Data Vault Bucket Name'
+    Value: !Ref HVFAIDataVault
+  ModelRegistryBucket:
+    Description: 'S3 Model Registry Bucket Name'
+    Value: !Ref HVFModelRegistryVault
+  ExecutionRoleArn:
+    Description: 'IAM Role ARN for Training Fleet'
+    Value: !GetAtt HVFComputeExecutionRole.Arn
