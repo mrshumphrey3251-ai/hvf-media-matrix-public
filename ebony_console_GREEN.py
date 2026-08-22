@@ -7,6 +7,7 @@ import sqlite3
 import hashlib
 import base64
 import secrets
+from datetime import datetime, timedelta
 import requests
 import subprocess
 import streamlit as st
@@ -35,7 +36,7 @@ STRIPE_MONTHLY_LINK = os.getenv("STRIPE_MONTHLY_LINK", "https://buy.stripe.com/t
 STRIPE_ANNUAL_LINK = os.getenv("STRIPE_ANNUAL_LINK", "https://buy.stripe.com/test_annual_vip")
 PAYPAL_PAY_LINK = os.getenv("PAYPAL_PAY_LINK", "https://www.paypal.com/paypalme/humphreyvirtualfarm")
 
-OLLAMA_API_URL = "http://127.0.0.1:11434/api/generate"
+OLLAMA_CHAT_URL = "http://127.0.0.1:11434/api/chat"
 CLOUD_MODEL = "openai/gpt-oss-120b"
 LOCAL_MODEL = "llama3:8b"
 
@@ -49,11 +50,19 @@ def format_linkedin_urn(raw_urn: str) -> str:
         return f"urn:li:person:{clean}"
     return clean
 
-def get_tailscale_or_local_ip() -> str:
+@st.cache_resource
+def get_tailscale_or_local_ip_cached() -> str:
     try:
-        ts_proc = subprocess.run(["C:\\Program Files\\Tailscale\\tailscale.exe", "ip", "-4"], capture_output=True, text=True)
-        if ts_proc.returncode == 0 and ts_proc.stdout.strip():
-            return ts_proc.stdout.strip().splitlines()[0]
+        ts_path = "C:\\Program Files\\Tailscale\\tailscale.exe"
+        if os.path.exists(ts_path):
+            ts_proc = subprocess.run(
+                [ts_path, "ip", "-4"], 
+                capture_output=True, 
+                text=True, 
+                creationflags=0x08000000
+            )
+            if ts_proc.returncode == 0 and ts_proc.stdout.strip():
+                return ts_proc.stdout.strip().splitlines()[0]
     except Exception:
         pass
     try:
@@ -65,12 +74,12 @@ def get_tailscale_or_local_ip() -> str:
     except Exception:
         return "192.168.1.175"
 
-ACTIVE_IP = get_tailscale_or_local_ip()
+ACTIVE_IP = get_tailscale_or_local_ip_cached()
 UPLINK_URL = f"http://{ACTIVE_IP}:8501"
-WEBRTC_STREAM_URL = f"http://192.168.1.175:8889/live/air3s"
-RTMP_INGEST_URL = f"rtmp://192.168.1.175:1935/live/air3s"
+WEBRTC_STREAM_URL = f"http://192.168.1.175:8889/live/stream"
+RTMP_INGEST_URL = f"rtmp://192.168.1.175:1935/live/stream"
 
-st.set_page_config(page_title="HVF Ebony | Commercial Enterprise", page_icon="⚡", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="HVF Ebony | Universal Drone & Predictive AI", page_icon="⚡", layout="wide", initial_sidebar_state="expanded")
 
 st.markdown("""
 <style>
@@ -173,7 +182,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 2. Cryptographic Vault & Database Engine
+# 2. Cryptographic Vault & Database Engine with Predictive Entity Memory
 def derive_user_cipher(password: str, username: str) -> Fernet:
     salt = hashlib.sha256(username.encode("utf-8")).digest()
     kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=100000)
@@ -194,9 +203,17 @@ def ensure_db_schema():
             role TEXT NOT NULL DEFAULT 'MEMBER',
             company_id TEXT DEFAULT 'HVF_MAIN',
             status TEXT NOT NULL DEFAULT 'APPROVED',
+            trial_expires_at TIMESTAMP,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """)
+    cur.execute("PRAGMA table_info(system_users)")
+    cols = [col[1] for col in cur.fetchall()]
+    if "company_id" not in cols:
+        cur.execute("ALTER TABLE system_users ADD COLUMN company_id TEXT DEFAULT 'HVF_MAIN'")
+    if "trial_expires_at" not in cols:
+        cur.execute("ALTER TABLE system_users ADD COLUMN trial_expires_at TIMESTAMP")
+
     cur.execute("""
         CREATE TABLE IF NOT EXISTS encrypted_user_comms (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -218,25 +235,27 @@ def ensure_db_schema():
         )
     """)
     cur.execute("""
-        CREATE TABLE IF NOT EXISTS linkedin_broadcast_history (
+        CREATE TABLE IF NOT EXISTS pilot_feedback_vault (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            post_content TEXT NOT NULL,
-            response_status TEXT NOT NULL,
-            urn_identifier TEXT,
-            triggered_by TEXT NOT NULL,
-            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            username TEXT NOT NULL,
+            full_name TEXT NOT NULL,
+            rating INTEGER NOT NULL,
+            farm_size_acres TEXT,
+            primary_crops TEXT,
+            feedback_text TEXT NOT NULL,
+            contact_email TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """)
     cur.execute("""
-        CREATE TABLE IF NOT EXISTS iot_telemetry_vault (
+        CREATE TABLE IF NOT EXISTS conversation_entity_memory (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            sensor_id TEXT NOT NULL,
-            zone_id TEXT NOT NULL,
-            soil_moisture REAL,
-            temp_c REAL,
-            humidity REAL,
-            raw_payload TEXT,
-            recorded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            username TEXT NOT NULL,
+            topic_key TEXT NOT NULL,
+            entity_summary TEXT NOT NULL,
+            last_context TEXT NOT NULL,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE(username, topic_key)
         )
     """)
     conn.commit()
@@ -245,18 +264,46 @@ def ensure_db_schema():
 ensure_db_schema()
 
 def verify_user(username: str, pwd_raw: str):
-    if not os.path.exists(DB_PATH):
-        return None, "Database offline."
     ensure_db_schema()
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
-    cur.execute("SELECT username, full_name, role, status FROM system_users WHERE username=? AND password_hash=?", 
+    cur.execute("SELECT username, full_name, role, status, trial_expires_at FROM system_users WHERE username=? AND password_hash=?", 
                 (username.strip().lower(), hash_password(pwd_raw)))
     user = cur.fetchone()
     conn.close()
     if not user:
         return None, "Invalid Username or Password."
+    
+    if user[2] == "TRIAL_MEMBER" and user[4]:
+        try:
+            exp_date = datetime.strptime(user[4], "%Y-%m-%d %H:%M:%S")
+            if datetime.now() > exp_date:
+                return user, "TRIAL_EXPIRED"
+        except Exception:
+            pass
     return user, "OK"
+
+def register_3day_trial(username: str, pwd_raw: str, full_name: str, farm_info: str):
+    ensure_db_schema()
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute("SELECT id FROM system_users WHERE username=?", (username.strip().lower(),))
+    if cur.fetchone():
+        conn.close()
+        return False, "Username already registered. Please choose another or sign in."
+    
+    expires_at = (datetime.now() + timedelta(days=3)).strftime("%Y-%m-%d %H:%M:%S")
+    try:
+        cur.execute("""
+            INSERT INTO system_users (username, password_hash, full_name, role, company_id, status, trial_expires_at)
+            VALUES (?, ?, ?, 'TRIAL_MEMBER', ?, 'APPROVED', ?)
+        """, (username.strip().lower(), hash_password(pwd_raw), full_name.strip(), farm_info.strip(), expires_at))
+        conn.commit()
+        conn.close()
+        return True, f"🎉 3-Day Pilot Activated! Full member access granted until {expires_at}."
+    except Exception as e:
+        conn.close()
+        return False, f"Trial registration error: {str(e)}"
 
 def register_user_with_invite(username: str, pwd_raw: str, full_name: str, invite_code: str):
     ensure_db_schema()
@@ -293,6 +340,65 @@ def generate_invite_token(issued_by: str, target_role: str = "MEMBER") -> str:
     conn.close()
     return token
 
+def save_pilot_feedback(username: str, full_name: str, rating: int, acres: str, crops: str, feedback: str, email: str):
+    ensure_db_schema()
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute("""
+        INSERT INTO pilot_feedback_vault (username, full_name, rating, farm_size_acres, primary_crops, feedback_text, contact_email)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    """, (username or "anonymous", full_name or "Guest Operator", rating, acres, crops, feedback, email))
+    conn.commit()
+    conn.close()
+
+def load_all_entity_memories(username: str) -> str:
+    if not username:
+        return ""
+    ensure_db_schema()
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute("SELECT topic_key, entity_summary, last_context FROM conversation_entity_memory WHERE username=? ORDER BY updated_at DESC LIMIT 8", (username,))
+    rows = cur.fetchall()
+    conn.close()
+    if not rows:
+        return ""
+    
+    memory_block = "\n[PERSISTENT KNOWLEDGE BASE & PAST TOPIC RECALL]:\n"
+    for r in rows:
+        memory_block += f"- Topic: {r[0]} | Key Facts: {r[1]} | Context: {r[2]}\n"
+    memory_block += "[End of Persistent Knowledge Base. Use this to maintain seamless continuity if the user pivots back to any of these topics.]\n"
+    return memory_block
+
+def store_entity_memory_async(username: str, user_prompt: str, bot_response: str):
+    if not username or len(user_prompt.strip()) < 5:
+        return
+    ensure_db_schema()
+    words = [w.strip(".,!?:;\"'()[]{}") for w in user_prompt.lower().split() if len(w) > 3]
+    stopwords = {"what", "whats", "where", "when", "which", "about", "there", "their", "please", "could", "would", "should", "tell", "explain", "that", "this", "with", "from", "have", "been"}
+    keywords = [w for w in words if w not in stopwords]
+    if not keywords:
+        return
+    
+    topic_key = " ".join(keywords[:4]).title()
+    summary = user_prompt.strip()[:180]
+    last_context = bot_response.strip()[:240].replace("\n", " ")
+    
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cur = conn.cursor()
+        cur.execute("""
+            INSERT INTO conversation_entity_memory (username, topic_key, entity_summary, last_context, updated_at)
+            VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+            ON CONFLICT(username, topic_key) DO UPDATE SET
+                entity_summary = excluded.entity_summary,
+                last_context = excluded.last_context,
+                updated_at = CURRENT_TIMESTAMP
+        """, (username, topic_key, summary, last_context))
+        conn.commit()
+        conn.close()
+    except Exception:
+        pass
+
 def load_encrypted_messages(username: str, cipher: Fernet):
     if not username or not cipher:
         return []
@@ -328,6 +434,7 @@ def delete_user_history(username: str):
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     cur.execute("DELETE FROM encrypted_user_comms WHERE username=?", (username,))
+    cur.execute("DELETE FROM conversation_entity_memory WHERE username=?", (username,))
     conn.commit()
     conn.close()
 
@@ -348,7 +455,8 @@ if "user_session" not in st.session_state:
         "username": None,
         "full_name": "Public Guest",
         "role": "GUEST",
-        "cipher": None
+        "cipher": None,
+        "trial_expires_at": None
     }
 
 if "screen_wiped" not in st.session_state:
@@ -363,52 +471,82 @@ if "operation_mode" not in st.session_state:
 if "article_draft_version" not in st.session_state:
     st.session_state.article_draft_version = 0
 
+if "selected_drone_model" not in st.session_state:
+    st.session_state.selected_drone_model = "DJI Air 3S (Reference)"
+
 if "current_linkedin_draft" not in st.session_state:
     st.session_state.current_linkedin_draft = (
         "⚡ [HVF Sovereign Intelligence Announcement]\n\n"
-        "Humphrey Virtual Farm has deployed our on-premise DJI Air 3S aerial reconnaissance link, fusing real-time drone telemetry with our local soil sensor mesh.\n\n"
+        "Humphrey Virtual Farm has deployed our on-premise universal aerial reconnaissance link, fusing real-time drone telemetry (DJI, Autel, Skydio, Custom RTMP) with our local soil sensor mesh.\n\n"
         "All imagery and field analytics are computed strictly on-premise without reliance on external cloud infrastructure.\n\n"
-        "#AgTech #DJIAir3S #SovereignAI #AutonomousFarming #HVF"
+        "#AgTech #SovereignAI #AutonomousFarming #PrecisionAg #HVF"
     )
 
 current_user = st.session_state.user_session["username"]
 current_name = st.session_state.user_session["full_name"]
 current_role = st.session_state.user_session["role"]
 current_cipher = st.session_state.user_session["cipher"]
+current_trial_exp = st.session_state.user_session.get("trial_expires_at")
 
 groq_client = Groq(api_key=GROQ_KEY) if GROQ_KEY else None
 
-def query_local_ollama(prompt: str, system_prompt: str) -> str:
+def query_local_ollama_chat(messages_payload: list) -> str:
     try:
         payload = {
             "model": LOCAL_MODEL,
-            "prompt": f"<system>\n{system_prompt}\n</system>\n<user>\n{prompt}\n</user>\n<assistant>\n",
+            "messages": messages_payload,
             "stream": False,
-            "options": {"temperature": 0.3}
+            "options": {"temperature": 0.2}
         }
-        res = requests.post(OLLAMA_API_URL, json=payload, timeout=45)
+        res = requests.post(OLLAMA_CHAT_URL, json=payload, timeout=45)
         if res.status_code == 200:
-            return res.json().get("response", "⚡ [Local Node]: No response generated.")
+            return res.json().get("message", {}).get("content", "⚡ [Local Node]: No response generated.")
         return f"⚠️ Local Node returned HTTP {res.status_code}."
     except requests.exceptions.ConnectionError:
         return "⚠️ Local Offline Engine (Ollama) is not running on port 11434. Run `ollama serve` to arm Offline mode."
     except Exception as e:
         return f"Local Engine fault: {str(e)}"
 
+# UNIVERSAL DRONE GROUNDING RULES
 def get_system_prompt_for_role(role: str, user_name: str) -> str:
+    grounding_rules = (
+        "\nCRITICAL HARDWARE & BUSINESS POLICIES:\n"
+        "1. UNIVERSAL DRONE COMPATIBILITY: Humphrey Virtual Farm supports ANY commercial drone with RTMP or RTSP live broadcasting capabilities. "
+        "This includes DJI (Air 3S, Mavic 3 Enterprise, Matrice 300/350, Mini 4 Pro), Autel Robotics (EVO II, EVO Max), Skydio (2+, X10), and custom PX4/ArduPilot open-source crafts. "
+        "2. SOFTWARE & EDGE SERVER BUSINESS MODEL: HVF DOES NOT manufacture physical drones. We provide the sovereign on-premise software platform, local AI edge servers ($4,950 hardware box), and photogrammetry models. "
+        "3. OPERATOR ONBOARDING: Farmers bring their own drone. They paste the HVF RTMP server URL (`rtmp://[server-ip]:1935/live/stream`) into their drone controller's live-stream settings. Telemetry and computer vision start instantly with ZERO manufacturing lead time. "
+        "4. DO NOT INVENT fake drone manufacturer models (e.g. AgriScout, CropGuard).\n"
+    )
+
     if role in ["CEO", "SUPER_ADMIN"]:
-        return f"You are EBONY, Sovereign AI Technical Partner to {user_name}, Founder & Master Platform CEO of Humphrey Virtual Farm. You provide unfiltered technical analysis, executive blueprints, root server configurations, and agricultural automation strategies with authoritative precision."
+        return (
+            f"You are EBONY, Sovereign AI Technical Partner to {user_name}, Founder & Master Platform CEO of Humphrey Virtual Farm. "
+            f"You possess PREDICTIVE CONVERSATIONAL RECALL: you permanently remember prior topics, vehicle specs, machinery details, "
+            f"agronomic data, and previous decisions across all topic pivots. "
+            f"You provide unfiltered technical analysis, drone photogrammetry algorithms, and sovereign computational blueprints with authoritative competence."
+            f"{grounding_rules}"
+        )
     elif role == "CLIENT_CEO":
-        return f"You are EBONY, Executive Agricultural Co-Pilot for {user_name}, Enterprise Farm CEO & Operating Principal. You provide strategic farm management, workforce optimization, multi-sector yield forecasts, and soil telemetry analysis with high-level executive competence. You do not discuss or modify underlying server hardware configurations."
-    elif role == "MEMBER":
-        return f"You are EBONY, Agricultural AI Specialist for {user_name}, Authorized Farm Operator. You assist with soil moisture diagnostics, weather risk alerts, microclimate telemetry, and practical crop management."
+        return (
+            f"You are EBONY, Executive Agricultural Co-Pilot for {user_name}, Enterprise Farm CEO & Operating Principal. "
+            f"You possess predictive topic memory, tracking multi-sector operations, universal drone telemetry feeds, and staff assignments continuously."
+            f"{grounding_rules}"
+        )
+    elif role in ["MEMBER", "TRIAL_MEMBER"]:
+        return (
+            f"You are EBONY, Agricultural AI Specialist for {user_name}, Active Farm Operator. "
+            f"You maintain predictive continuity across all farming, machinery repair, universal drone flights, and crop health discussions."
+            f"{grounding_rules}"
+        )
     else:
         return (
             "You are EBONY, Commercial Ambassador and Safety Sentinel for Humphrey Virtual Farm (HVF). "
-            "Your operational mandate for GUEST users is strictly limited to:\n"
-            "1. PROMOTING EBONY & HVF: Pitch the value of Humphrey Virtual Farm, sovereign on-premise AI, live aerial drone reconnaissance (DJI Air 3S), Green Leaf Index canopy analysis, and encrypted local intelligence.\n"
-            "2. SAFETY & LIFE HAZARDS: Provide immediate, concise safety instructions if asked about life safety, machinery hazards, or severe weather.\n"
-            "3. STRICT BOUNDARY: Refuse general trivia, outside topics, or coding tasks. Politely decline by explaining that full compute intelligence is reserved for authenticated HVF Members."
+            "Maintain conversation context for the guest. Your operational mandate for GUEST users is strictly limited to:\n"
+            "1. PROMOTING EBONY & HVF: Pitch Humphrey Virtual Farm, sovereign on-premise AI, universal drone computer vision (DJI, Autel, Skydio, etc.), and the Free 3-Day Market Trial.\n"
+            "2. EXPLAINING UNIVERSAL DRONE INTEGRATION: Clearly explain that HVF provides the sovereign software and edge servers; farmers use their own existing drone to stream live video directly to the HVF deck via RTMP/RTSP.\n"
+            "3. SAFETY & LIFE HAZARDS: Provide immediate safety instructions if asked about life safety, machinery hazards, or severe weather.\n"
+            "4. STRICT BOUNDARY: Refuse general trivia or non-farm tasks. Explain that full compute is reserved for active HVF Members."
+            f"{grounding_rules}"
         )
 
 # --- SIDEBAR ---
@@ -430,6 +568,8 @@ with st.sidebar:
             st.success(f"👑 **{current_name}**\n*(Master Platform CEO - Root Access)*")
         elif current_role == "CLIENT_CEO":
             st.info(f"🏛️ **{current_name}**\n*(Enterprise Farm CEO Clearance)*")
+        elif current_role == "TRIAL_MEMBER":
+            st.warning(f"⏳ **{current_name}**\n*(3-Day Market Pilot Active)*\nExpires: `{current_trial_exp}`")
         else:
             st.info(f"👥 **{current_name}**\n*(Authorized Member Clearance)*")
         
@@ -439,7 +579,8 @@ with st.sidebar:
                 "username": None,
                 "full_name": "Public Guest",
                 "role": "GUEST",
-                "cipher": None
+                "cipher": None,
+                "trial_expires_at": None
             }
             st.session_state.screen_wiped = False
             st.session_state.confirm_delete = False
@@ -469,7 +610,7 @@ with st.sidebar:
                     delete_user_history(current_user)
                     st.session_state.confirm_delete = False
                     st.session_state.screen_wiped = False
-                    st.session_state.messages = [{"role": "assistant", "content": f"⚡ Verified: History purged, {current_name}."}]
+                    st.session_state.messages = [{"role": "assistant", "content": f"⚡ Verified: History & entity memory purged, {current_name}."}]
                     st.rerun()
             with cn:
                 if st.button("✖️ Cancel", key="sb_cancel_del"):
@@ -489,34 +630,56 @@ with st.sidebar:
                 new_vip = generate_invite_token(current_user, "MEMBER")
                 st.success(f"Staff Key: `{new_vip}`")
     else:
-        st.info("👤 **Guest Mode Active**\nClearance: `GUEST` (Promotional & Safety Gateway)")
-        auth_mode = st.radio("Select Portal Action:", ["Sign In", "Activate VIP Code"], horizontal=True)
+        st.info("👤 **Guest Mode Active**\nSelect an option below to enter:")
+        auth_mode = st.radio("Access Portal:", ["Sign In", "🚀 Free 3-Day Pilot", "Activate VIP Code"], horizontal=False)
+        
         if auth_mode == "Sign In":
             login_user = st.text_input("Username:", key="login_u")
             login_pass = st.text_input("Password:", type="password", key="login_p")
             if st.button("Sign In", use_container_width=True):
-                user_match, msg = verify_user(login_user, login_pass)
-                if user_match:
+                user_match, status_msg = verify_user(login_user, login_pass)
+                if user_match and status_msg == "OK":
                     st.session_state.user_session = {
                         "authenticated": True,
                         "username": user_match[0],
                         "full_name": user_match[1],
                         "role": user_match[2],
-                        "cipher": derive_user_cipher(login_pass, user_match[0])
+                        "cipher": derive_user_cipher(login_pass, user_match[0]),
+                        "trial_expires_at": user_match[4]
                     }
                     st.session_state.screen_wiped = False
                     st.session_state.confirm_delete = False
                     if "messages" in st.session_state:
                         del st.session_state.messages
-                    st.success(f"Welcome, {user_match[1]}!")
+                    st.success(f"Welcome back, {user_match[1]}!")
                     st.rerun()
+                elif status_msg == "TRIAL_EXPIRED":
+                    st.error("⏳ Your 3-Day Market Pilot has concluded. Please subscribe in Tab 5 to continue.")
                 else:
-                    st.error(msg)
+                    st.error(status_msg)
+
+        elif auth_mode == "🚀 Free 3-Day Pilot":
+            st.markdown("##### 🌾 72-Hour Full Member Trial (No CC Required)")
+            t_fn = st.text_input("Your Full Name:", key="trial_fn", placeholder="e.g. Dale Robinson")
+            t_farm = st.text_input("Farm / Operation Name:", key="trial_farm", placeholder="e.g. Robinson Red River Ranch")
+            t_u = st.text_input("Create Username:", key="trial_u")
+            t_p = st.text_input("Create Password:", type="password", key="trial_p")
+            if st.button("🚀 Launch 3-Day Pilot Access", use_container_width=True):
+                if t_fn and t_farm and t_u and t_p:
+                    ok, msg = register_3day_trial(t_u, t_p, t_fn, t_farm)
+                    if ok:
+                        st.success(msg)
+                        st.info("You may now select 'Sign In' above with your credentials!")
+                    else:
+                        st.error(msg)
+                else:
+                    st.warning("Please fill in all trial fields.")
+
         else:
             reg_name = st.text_input("Full Name:", key="reg_fn")
             reg_user = st.text_input("Desired Username:", key="reg_u")
             reg_pass = st.text_input("Desired Password:", type="password", key="reg_p")
-            reg_code = st.text_input("VIP / Enterprise Access Code:", key="reg_c", placeholder="HVF-VIP-XXXX or HVF-CORP-XXXX")
+            reg_code = st.text_input("VIP Access Code:", key="reg_c", placeholder="HVF-VIP-XXXX or HVF-CORP-XXXX")
             if st.button("Activate Membership", use_container_width=True):
                 if reg_name and reg_user and reg_pass and reg_code:
                     ok, msg = register_user_with_invite(reg_user, reg_pass, reg_name, reg_code)
@@ -531,7 +694,7 @@ with st.sidebar:
     st.write(f"**Neural Engine:** {'🟢 CLOUD (' + CLOUD_MODEL + ')' if is_online else '🔒 LOCAL (' + LOCAL_MODEL + ')'}")
     if current_role in ["CEO", "SUPER_ADMIN"]:
         st.write(f"**LinkedIn Gateway:** {'🟢 ARMED' if LINKEDIN_TOKEN else '🔴 MISSING'}")
-        st.write(f"**Video Ingest Gateway:** 🟢 `0.0.0.0:1935`")
+        st.write(f"**Universal Video Ingest:** 🟢 `0.0.0.0:1935`")
     st.write(f"**Active Clearance:** `{current_role}`")
 
 # --- HEADER ---
@@ -539,12 +702,13 @@ st.title("⚡ HVF Sovereign Command Deck | Ebony AI")
 st.caption(f"Active User: **{current_name}** | Clearance: **{current_role}** | 🛡️ *Mode: {'🟢 Online (Cloud Fast Link)' if is_online else '🔒 Sovereign Offline (Local Compute)'}*")
 
 # --- MAIN DECK TABS ---
-tab_chat, tab_linkedin, tab_weather, tab_farm, tab_overview, tab_sandbox = st.tabs([
+tab_chat, tab_linkedin, tab_weather, tab_farm, tab_overview, tab_feedback, tab_sandbox = st.tabs([
     "💬 Sovereign Command Link",
     "📡 LinkedIn Broadcast & Article Engine",
     "🚨 NOAA Weather & Radar HUD",
     "🌾 Farm Diagnostics, Live Drone Stream & IoT",
     "📖 System Overview & Pricing",
+    "📝 3-Day Pilot Feedback Hub",
     "🧪 Sandbox"
 ])
 
@@ -553,7 +717,7 @@ with tab_chat:
         c_status, c_wipe, c_del, c_restore = st.columns([3.5, 1, 1, 1])
         with c_status:
             mode_badge = "🟢 ONLINE (GROQ)" if is_online else "🔒 OFFLINE (OLLAMA)"
-            st.caption(f"🔒 Encrypted Channel: **{current_name}** (`{current_role}`) | Active Engine: **{mode_badge}**")
+            st.caption(f"🔒 Encrypted Channel: **{current_name}** (`{current_role}`) | 🧠 *Predictive Memory: ARMED*")
         with c_wipe:
             if st.button("🧹 Clear", key="chat_wipe_screen"):
                 st.session_state.screen_wiped = True
@@ -580,7 +744,7 @@ with tab_chat:
                     delete_user_history(current_user)
                     st.session_state.confirm_delete = False
                     st.session_state.screen_wiped = False
-                    st.session_state.messages = [{"role": "assistant", "content": f"⚡ Verified: History purged, {current_name}."}]
+                    st.session_state.messages = [{"role": "assistant", "content": f"⚡ Verified: History & entity memory purged, {current_name}."}]
                     st.rerun()
             with vc2:
                 if st.button("✖️ CANCEL", key="chat_cancel_purge"):
@@ -591,9 +755,11 @@ with tab_chat:
             db_messages = load_encrypted_messages(current_user, current_cipher)
             if not db_messages:
                 if current_role in ["CEO", "SUPER_ADMIN"]:
-                    greeting = f"⚡ Ebony online and armed, Mr. Humphrey. Master Platform Node fully synchronized."
+                    greeting = f"⚡ Ebony online and armed, Mr. Humphrey. Master Platform Node fully synchronized with universal drone vision and predictive memory."
                 elif current_role == "CLIENT_CEO":
-                    greeting = f"⚡ Ebony online, {current_name}. Enterprise executive agronomy and workforce telemetry active."
+                    greeting = f"⚡ Ebony online, {current_name}. Enterprise executive agronomy active with continuous context recall."
+                elif current_role == "TRIAL_MEMBER":
+                    greeting = f"⚡ Welcome to Humphrey Virtual Farm, {current_name}! Your 3-Day Pilot is active. I am Ebony, your sovereign agronomy AI."
                 else:
                     greeting = f"⚡ Ebony online, {current_name}. Field operator co-pilot armed."
                 
@@ -604,28 +770,35 @@ with tab_chat:
     else:
         if "messages" not in st.session_state:
             st.session_state.messages = [
-                {"role": "assistant", "content": "⚡ **Welcome to Humphrey Virtual Farm.** I am EBONY—your sovereign agronomy intelligence platform. In Guest Mode, I can introduce you to our on-premise drone vision, soil telemetry mesh, and emergency safety features. Sign in or enter a VIP Code to unlock full executive compute."}
+                {"role": "assistant", "content": "⚡ **Welcome to Humphrey Virtual Farm.** I am EBONY—your sovereign agronomy intelligence platform. In Guest Mode, I can introduce you to our on-premise drone vision (supporting DJI, Autel, Skydio, and custom RTMP/RTSP streams), soil telemetry mesh, and emergency safety features. Select **🚀 Free 3-Day Pilot** in the sidebar to test the full system on your farm!"}
             ]
 
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
 
-    user_input = st.chat_input("Enter strategic directive for Ebony...")
+    user_input = st.chat_input("Ask Ebony anything, pivot topics, or resume prior discussions...")
     if user_input:
         if current_user and current_cipher:
             save_encrypted_message(current_user, "user", user_input, current_cipher)
         st.session_state.messages.append({"role": "user", "content": user_input})
         
-        sys_prompt = get_system_prompt_for_role(current_role, current_name)
+        base_sys_prompt = get_system_prompt_for_role(current_role, current_name)
+        persistent_knowledge = load_all_entity_memories(current_user)
+        full_sys_prompt = f"{base_sys_prompt}\n{persistent_knowledge}"
+        
+        history_window = st.session_state.messages[-12:]
+        conversation_payload = [{"role": "system", "content": full_sys_prompt}]
+        for m in history_window:
+            conversation_payload.append({"role": m["role"], "content": m["content"]})
         
         if is_online:
             if groq_client:
                 try:
                     res = groq_client.chat.completions.create(
                         model=CLOUD_MODEL,
-                        messages=[{"role": "system", "content": sys_prompt}, {"role": "user", "content": user_input}],
-                        temperature=0.3
+                        messages=conversation_payload,
+                        temperature=0.2
                     )
                     bot_reply = res.choices[0].message.content
                 except Exception as e:
@@ -633,11 +806,13 @@ with tab_chat:
             else:
                 bot_reply = "⚡ GROQ_API_KEY missing from vault."
         else:
-            with st.spinner("🧠 Computing on sovereign local neural core (Offline)..."):
-                bot_reply = query_local_ollama(user_input, sys_prompt)
+            with st.spinner("🧠 Computing on sovereign local neural core (Predictive Offline Memory)..."):
+                bot_reply = query_local_ollama_chat(conversation_payload)
         
         if current_user and current_cipher:
             save_encrypted_message(current_user, "assistant", bot_reply, current_cipher)
+            store_entity_memory_async(current_user, user_input, bot_reply)
+            
         st.session_state.messages.append({"role": "assistant", "content": bot_reply})
         st.rerun()
 
@@ -654,7 +829,7 @@ with tab_linkedin:
             dictation_type = st.radio("Publication Format:", ["🚀 Short-Form Market Broadcast", "📰 Long-Form Executive Article"], horizontal=True)
             dictated_prompt = st.text_area(
                 "Dictate Topic Concept / Key Talking Points:",
-                placeholder="e.g. Discuss our new DJI Air 3S on-premise drone vision bridge, why sovereign local compute protects farm data, and how Humphrey Virtual Farm is redefining autonomous agriculture in Oklahoma...",
+                placeholder="e.g. Discuss our universal on-premise drone vision bridge (supporting DJI, Autel, Skydio, and custom RTMP/RTSP), why sovereign local compute protects farm data, and how Humphrey Virtual Farm is opening a 3-Day Open Market Pilot...",
                 height=120
             )
 
@@ -676,14 +851,14 @@ with tab_linkedin:
                                 f"You are the executive ghostwriter for Mr. Humphrey, Founder & CEO of Humphrey Virtual Farm. "
                                 f"Write a high-impact, authoritative LinkedIn post based on the user's talking points. "
                                 f"Tone: {tone_style}. Keep it concise, punchy, formatted with clean line breaks, bullet points where relevant, "
-                                f"and strong strategic hashtags at the end (#AgTech #SovereignAI #HumphreyVirtualFarm #AutonomousFarming)."
+                                f"and strong strategic hashtags at the end (#AgTech #SovereignAI #HumphreyVirtualFarm #AutonomousFarming #PrecisionAg)."
                             )
                         else:
                             dictate_sys = (
                                 f"You are the executive ghostwriter for Mr. Humphrey, Founder & CEO of Humphrey Virtual Farm. "
                                 f"Write a comprehensive, publication-ready LinkedIn Article / Long-Form Essay based on the talking points. "
                                 f"Tone: {tone_style}. Include: An Attention-Grabbing Headline, Executive Summary, 3 Core Strategic Pillars with deep technical/business substance, "
-                                f"The Humphrey Virtual Farm Advantage, and a powerful Call-to-Action for partners/investors/members. Include strategic hashtags."
+                                f"The Humphrey Virtual Farm Advantage (Universal Drone Vision, On-Premise Privacy), and a powerful Call-to-Action for partners/investors/members. Include strategic hashtags."
                             )
 
                         if is_online and groq_client:
@@ -691,13 +866,14 @@ with tab_linkedin:
                                 res = groq_client.chat.completions.create(
                                     model=CLOUD_MODEL,
                                     messages=[{"role": "system", "content": dictate_sys}, {"role": "user", "content": dictated_prompt.strip()}],
-                                    temperature=0.4
+                                    temperature=0.3
                                 )
                                 draft_text = res.choices[0].message.content.strip()
                             except Exception as e:
                                 draft_text = f"Neural synthesis fault: {str(e)}"
                         else:
-                            draft_text = query_local_ollama(dictated_prompt.strip(), dictate_sys)
+                            ollama_dictate_payload = [{"role": "system", "content": dictate_sys}, {"role": "user", "content": dictated_prompt.strip()}]
+                            draft_text = query_local_ollama_chat(ollama_dictate_payload)
 
                         st.session_state.current_linkedin_draft = draft_text
                         st.session_state.article_draft_version += 1
@@ -772,16 +948,17 @@ with tab_weather:
     st.subheader("🚨 NOAA Emergency Weather & Live Radar Sentinel")
     st.components.v1.iframe("https://radar.weather.gov/", height=450, scrolling=True)
 
+# --- TAB 4: FARM DIAGNOSTICS & UNIVERSAL DRONE RECONNAISSANCE ---
 with tab_farm:
-    st.subheader("🌾 Humphrey Virtual Farm | Real-Time Aerial Reconnaissance & Agronomy")
-    st.markdown("Live low-latency video feed direct from DJI Air 3S O4 link and soil sensor telemetry.")
+    st.subheader("🌾 Humphrey Virtual Farm | Universal Aerial Reconnaissance & Agronomy")
+    st.markdown("Live low-latency video feed supporting **DJI, Autel, Skydio, and Custom RTMP/RTSP** commercial drones.")
     st.divider()
 
     col1, col2 = st.columns([1.5, 1])
 
     with col1:
         if current_role in ["CEO", "SUPER_ADMIN"]:
-            st.markdown("### 🎥 Live DJI Air 3S Master Video Feed (Master CEO Access)")
+            st.markdown("### 🎥 Live Universal Master Video Feed (CEO Access)")
             stream_html = f"""
             <div style="background-color: #0c1118; border: 2px solid #00FF66; border-radius: 8px; overflow: hidden; padding: 4px;">
                 <iframe 
@@ -796,10 +973,11 @@ with tab_farm:
             </div>
             """
             st.components.v1.html(stream_html, height=470)
-            st.caption(f"📡 Ingest Endpoint: `{RTMP_INGEST_URL}` | Direct WebRTC: [Open Fullscreen Player]({WEBRTC_STREAM_URL})")
+            st.caption(f"📡 Universal RTMP Ingest: `{RTMP_INGEST_URL}` | Direct WebRTC: [Open Fullscreen Player]({WEBRTC_STREAM_URL})")
         
-        elif current_role in ["CLIENT_CEO", "MEMBER"]:
-            st.markdown(f"### 🎥 Live Aerial Canopy Feed ({'Enterprise Farm CEO' if current_role == 'CLIENT_CEO' else 'Member'} Access)")
+        elif current_role in ["CLIENT_CEO", "MEMBER", "TRIAL_MEMBER"]:
+            role_label = "3-Day Market Pilot" if current_role == "TRIAL_MEMBER" else ("Enterprise Farm CEO" if current_role == "CLIENT_CEO" else "Member")
+            st.markdown(f"### 🎥 Live Aerial Canopy Spectator Feed ({role_label} Access)")
             stream_html = f"""
             <div style="background-color: #0c1118; border: 2px solid #00FF66; border-radius: 8px; overflow: hidden; padding: 4px;">
                 <iframe 
@@ -814,35 +992,51 @@ with tab_farm:
             </div>
             """
             st.components.v1.html(stream_html, height=470)
-            st.caption("🛡️ *Encrypted Stream Active. Root server keys sanitized.*")
+            st.caption("🛡️ *Encrypted Spectator Stream Active. Network ingestion keys redacted.*")
         
         else:
             st.markdown("### 🔒 Sovereign Aerial Reconnaissance Gateway")
             st.markdown("""
             <div style="background-color: #0c1118; border: 2px solid #28374d; border-radius: 8px; padding: 40px 20px; text-align: center;">
-                <h3 style="color: #70FF00 !important; margin-bottom: 10px;">🛰️ Live DJI Air 3S Telemetry Locked</h3>
+                <h3 style="color: #70FF00 !important; margin-bottom: 10px;">🛰️ Universal Drone Ingest Gateway</h3>
                 <p style="color: #FFFFFF !important; font-size: 1.1rem; max-width: 500px; margin: 0 auto 20px auto;">
-                    Humphrey Virtual Farm's on-premise aerial computer vision and autonomous field patrol are reserved for Authorized Members and Executive Nodes.
+                    Humphrey Virtual Farm integrates with any commercial drone (DJI, Autel, Skydio, Custom RTMP) for real-time field patrol and Green Leaf Index canopy analysis.
                 </p>
                 <div style="display: inline-block; padding: 8px 16px; background-color: #121824; border: 1px solid #00FF66; border-radius: 6px; color: #00FF66; font-weight: bold;">
-                    Sign In or Activate VIP Code to Unlock Live Ingestion
+                    Select '🚀 Free 3-Day Pilot' in Sidebar to Test Live Feed
                 </div>
             </div>
             """, unsafe_allow_html=True)
 
     with col2:
-        st.markdown("#### 🛰️ Sector Flight & Mission Telemetry")
+        st.markdown("#### 🛰️ Active Craft & Sensor Calibration")
+        selected_drone = st.selectbox(
+            "Select Connected Drone Profile:",
+            [
+                "DJI Air 3S (Reference Model)",
+                "DJI Mavic 3 Enterprise / Thermal",
+                "DJI Matrice 300 / 350 RTK",
+                "Autel EVO II Pro / Enterprise",
+                "Autel EVO Max 4T",
+                "Skydio 2+ / X10 Enterprise",
+                "Custom PX4 / ArduPilot RTMP Stream"
+            ],
+            index=0
+        )
+        st.session_state.selected_drone_model = selected_drone
+
         if current_role in ["CEO", "SUPER_ADMIN"]:
-            st.code(f"Craft: DJI Air 3S\nMission: SURVEY-Z1-ALPHA\nSector: ZONE-1-NORTH\nAltitude: 45.0m | Battery: 88%\nStatus: ACTIVE_PATROL\nRTMP Ingest: {RTMP_INGEST_URL}\nStream Engine: MediaMTX v1.9.0")
+            st.code(f"Selected Craft: {selected_drone}\nMission: SURVEY-Z1-ALPHA\nSector: ZONE-1-NORTH\nAltitude: 45.0m | Battery: 88%\nStatus: ACTIVE_PATROL\nRTMP Ingest: {RTMP_INGEST_URL}\nStream Engine: MediaMTX v1.9.0")
         elif current_role == "CLIENT_CEO":
-            st.code("Craft: DJI Air 3S\nSector: ALL-ZONES-ACTIVE\nTelemetry Stream: LIVE\nCanopy Health Index (GLI): 0.3842 (HEALTHY)\nWorkforce Access Level: ENTERPRISE CEO")
-        elif current_role == "MEMBER":
-            st.code("Craft: DJI Air 3S\nSector: ZONE-1-NORTH\nCanopy Health Index (GLI): 0.3842 (HEALTHY)\nStatus: ACTIVE PATROL")
+            st.code(f"Craft: {selected_drone}\nSector: ALL-ZONES-ACTIVE\nTelemetry Stream: LIVE\nCanopy Health Index (GLI): 0.3842 (HEALTHY)\nWorkforce Access Level: ENTERPRISE CEO")
+        elif current_role in ["MEMBER", "TRIAL_MEMBER"]:
+            status_text = "3-DAY MARKET PILOT (ACTIVE)" if current_role == "TRIAL_MEMBER" else "ACTIVE PATROL"
+            st.code(f"Craft: {selected_drone}\nSector: ZONE-1-NORTH\nCanopy Health Index (GLI): 0.3842 (HEALTHY)\nStatus: {status_text}")
         else:
-            st.code("HVF Sovereign Node: ACTIVE\nCanopy Diagnostic Engine: ARMED\nAccess Level: GUEST (Redacted)")
+            st.code(f"HVF Sovereign Node: ACTIVE\nConnected Craft Profile: {selected_drone}\nCanopy Diagnostic Engine: ARMED\nAccess Level: GUEST (Redacted)")
 
         st.markdown("#### 📡 Ingest Soil Moisture Probe")
-        if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO", "MEMBER"]:
+        if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO", "MEMBER", "TRIAL_MEMBER"]:
             st.slider("Soil Moisture (%):", 5.0, 80.0, 21.4)
             st.button("📥 Transmit Sensor Telemetry")
         else:
@@ -853,10 +1047,6 @@ with tab_overview:
     st.subheader("💳 Commercial Subscriptions & Sovereign Feature Directory")
     st.markdown(f"Humphrey Virtual Farm Commercial Platform. Active Role: **{current_name}** (`{current_role}`)")
     st.divider()
-
-    # 1. COMMERCIAL PRICING & PAYMENT GATEWAY CARDS (4-TIER GRID)
-    st.markdown("### 💎 Sovereign Membership Tiers & Secure Payment Gateway")
-    st.caption("Select your membership tier to activate your cryptographic license key.")
 
     col_p1, col_p2, col_p3, col_p4 = st.columns(4)
 
@@ -926,32 +1116,20 @@ with tab_overview:
 
     st.divider()
 
-    # 2. CLIENT CEO EXCLUSIVE TEAM MANAGEMENT HUB
-    if current_role == "CLIENT_CEO":
-        with st.expander("🏛️ [ENTERPRISE CEO COMMAND]: Provision Access Keys for Farm Staff", expanded=True):
-            st.markdown("#### 🔑 Generate VIP Keys for Your Farm Hands & Agronomists")
-            c_corp1, c_corp2 = st.columns([1.5, 3])
-            with c_corp1:
-                if st.button("⚡ Issue New Staff Key", key="tab5_client_ceo_vip_gen", use_container_width=True):
-                    token = generate_invite_token(current_user, "MEMBER")
-                    st.success(f"Generated Staff License: `{token}`")
-            with c_corp2:
-                conn = sqlite3.connect(DB_PATH)
-                cur = conn.cursor()
-                cur.execute("SELECT invite_code, is_used, used_by, created_at FROM member_invite_keys WHERE issued_by=? ORDER BY id DESC LIMIT 5", (current_user,))
-                recent_corp_keys = cur.fetchall()
-                conn.close()
-                if recent_corp_keys:
-                    st.caption("Active License Keys Issued for Your Organization:")
-                    for k in recent_corp_keys:
-                        status_str = f"🔴 USED by {k[2]}" if k[1] == 1 else "🟢 UNUSED / ACTIVE"
-                        st.code(f"Key: {k[0]} | Status: {status_str} | Date: {k[3]}")
-                else:
-                    st.caption("No staff keys generated yet. Click the button on the left to issue one.")
-
-    # 3. MASTER CEO EXCLUSIVE DIAGNOSTIC CENTER
     if current_role in ["CEO", "SUPER_ADMIN"]:
-        with st.expander("👑 [MASTER PLATFORM ROOT]: Live Server Diagnostics & VIP Provisioning", expanded=True):
+        with st.expander("👑 [MASTER PLATFORM ROOT]: Live Pilot Testers & Diagnostic Mesh", expanded=True):
+            st.markdown("#### 🌾 Active 3-Day Market Pilot Accounts")
+            conn = sqlite3.connect(DB_PATH)
+            cur = conn.cursor()
+            cur.execute("SELECT username, full_name, company_id, trial_expires_at, created_at FROM system_users WHERE role='TRIAL_MEMBER' ORDER BY id DESC")
+            trial_rows = cur.fetchall()
+            conn.close()
+            if trial_rows:
+                for tr in trial_rows:
+                    st.code(f"Pilot User: {tr[1]} ({tr[0]}) | Farm: {tr[2]} | Expires: {tr[3]} | Registered: {tr[4]}")
+            else:
+                st.caption("No open market pilot testers registered yet.")
+
             st.markdown("#### 🔑 Master Key Provisioning (Select Target Tier)")
             kc1, kc2, kc3 = st.columns([1.5, 1.5, 3])
             with kc1:
@@ -983,8 +1161,10 @@ with tab_overview:
             unused_keys = cur.fetchone()[0]
             cur.execute("SELECT COUNT(*) FROM encrypted_user_comms")
             msg_count = cur.fetchone()[0]
-            cur.execute("SELECT COUNT(*) FROM iot_telemetry_vault")
-            sensor_count = cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) FROM pilot_feedback_vault")
+            feedback_count = cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) FROM conversation_entity_memory")
+            topic_count = cur.fetchone()[0]
             conn.close()
 
             st.code(f"""======================= HVF MASTER SERVER TOPOLOGY =======================
@@ -992,19 +1172,20 @@ Host IP (Local LAN)      : 192.168.1.175
 Mesh Endpoint (Tailscale): {ACTIVE_IP}:8501
 Master Database Vault    : {DB_PATH}
 Active Registered Users  : {user_count}
+Active Trial Operators   : {len(trial_rows)}
+Submitted Pilot Reviews  : {feedback_count}
+Predictive Topic Memories: {topic_count}
 Unused License Keys      : {unused_keys}
 Encrypted Comm Records   : {msg_count}
-Sensor Telemetry Records : {sensor_count}
 --------------------------------------------------------------------------
-Local Neural Engine      : Ollama REST API (Port 11434) -> llama3:8b
-Cloud Fast Link          : Groq API (TLS 1.3) -> openai/gpt-oss-120b
-Drone RTMP Ingestion     : MediaMTX (Port 1935) -> rtmp://192.168.1.175:1935/live/air3s
-Drone WebRTC Streaming   : MediaMTX (Port 8889) -> http://192.168.1.175:8889/live/air3s
+Local Neural Engine      : Ollama REST API (Port 11434) -> llama3:8b (Predictive Chat)
+Cloud Fast Link          : Groq API (TLS 1.3) -> openai/gpt-oss-120b (Predictive Chat)
+Universal Drone Ingest   : MediaMTX (Port 1935 RTMP / 8554 RTSP) -> rtmp://192.168.1.175:1935/live/stream
+Drone WebRTC Streaming   : MediaMTX (Port 8889) -> http://192.168.1.175:8889/live/stream
+Supported Drone Ecosystem: DJI (Air 3S, Mavic, Matrice), Autel EVO, Skydio, Custom PX4
 Weather Oracle Base      : NOAA REST API (Lat: {DEFAULT_LAT}, Lon: {DEFAULT_LON})
-Security Hierarchy       : SUPER_ADMIN > CLIENT_CEO > MEMBER > GUEST
 =========================================================================""")
 
-    # 4. KNOWLEDGE ACADEMY PILLARS
     st.markdown("### 📖 Sovereign Knowledge Academy & Technical Directory")
 
     with st.expander("🏛️ [PILLAR 1]: The Humphrey Virtual Farm Manifesto & Sovereign AI Mission", expanded=False):
@@ -1016,16 +1197,17 @@ Security Hierarchy       : SUPER_ADMIN > CLIENT_CEO > MEMBER > GUEST
         * **Autonomous Multi-Agent Agronomy:** Synchronized agents monitoring moisture, vegetative vigor, Doppler radar, and market communication.
         """)
 
-    with st.expander("⚡ [PILLAR 2]: Dual-Engine Neural Architecture & Offline AI Execution", expanded=False):
+    with st.expander("⚡ [PILLAR 2]: Dual-Engine Neural Architecture & Predictive Memory", expanded=False):
         st.markdown("""
-        * **Cloud Fast Link (Groq):** `openai/gpt-oss-120b` for $<0.45$s market synthesis and executive ghostwriting.
-        * **Sovereign Local Core (Ollama):** `llama3:8b` running on physical RAM on port 11434 with zero internet connection.
+        * **Cloud Fast Link (Groq):** `openai/gpt-oss-120b` with multi-turn persistent entity recall.
+        * **Sovereign Local Core (Ollama):** `llama3:8b` running on physical RAM on port 11434 with persistent topic indexing.
         """)
 
-    with st.expander("🌾 [PILLAR 3]: DJI Air 3S Computer Vision & Multispectral GLI Canopy Science", expanded=False):
+    with st.expander("🌾 [PILLAR 3]: Universal Drone Computer Vision & Multispectral GLI Canopy Science", expanded=False):
         st.markdown("""
+        * **Universal Ingest Gateway:** Ingests live video from **DJI, Autel, Skydio, and custom PX4** crafts over standard RTMP (port 1935) and RTSP (port 8554).
         * **Multispectral Green Leaf Index:** Computes vegetative vigor using `GLI = (2*G - R - B) / (2*G + R + B)`.
-        * **Direct Ingestion:** Re-muxes DJI RC 2 RTMP port 1935 into sub-second WebRTC on port 8889.
+        * **Direct Sub-Second Playback:** Re-muxes drone streams into sub-second WebRTC on port 8889.
         """)
 
     with st.expander("📡 [PILLAR 4]: IoT Soil Mesh, Capacitance Probes & Telemetry Fusion", expanded=False):
@@ -1050,12 +1232,56 @@ Security Hierarchy       : SUPER_ADMIN > CLIENT_CEO > MEMBER > GUEST
         st.markdown("""
         * **Level 4: Master CEO (You):** Root infrastructure, hardware topology, global key provisioning, and LinkedIn broadcasting.
         * **Level 3: Enterprise Client CEO:** Company executive AI, staff key issuance, farm financial models, and full drone telemetry.
-        * **Level 2: Authorized Member:** Private encrypted assistant, spectator drone stream, and field sensor logging.
-        * **Level 1: Public Guest:** Commercial showcase, safety protocols, and direct subscription onboarding.
+        * **Level 2: Authorized / Trial Member:** Private encrypted assistant, spectator drone stream, and field sensor logging.
+        * **Level 1: Public Guest:** Commercial showcase, safety protocols, and 3-Day Trial onboarding.
         """)
 
+# --- TAB 6: PILOT FEEDBACK & OPERATOR REVIEW HUB ---
+with tab_feedback:
+    st.subheader("📝 Open Market Pilot Feedback & Operator Reviews")
+    st.markdown("We value direct operator telemetry. Share your field experience with Humphrey Virtual Farm leadership.")
+    st.divider()
+
+    if current_role in ["CEO", "SUPER_ADMIN"]:
+        st.markdown("### 👑 Master Review Ingestion Vault (CEO Access)")
+        conn = sqlite3.connect(DB_PATH)
+        cur = conn.cursor()
+        cur.execute("SELECT full_name, username, rating, farm_size_acres, primary_crops, feedback_text, contact_email, created_at FROM pilot_feedback_vault ORDER BY id DESC")
+        reviews = cur.fetchall()
+        conn.close()
+        
+        if reviews:
+            for r in reviews:
+                stars = "⭐" * r[2]
+                st.markdown(f"""
+                <div style="background-color: #0c1118; border: 1.5px solid #00FF66; border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+                    <div style="font-size: 1.15rem; font-weight: bold; color: #70FF00;">{r[0]} ({r[1]}) — {stars} ({r[2]}/5)</div>
+                    <div style="color: #8899A6; font-size: 0.9rem;">Acres: {r[3]} | Crops: {r[4]} | Email: {r[6]} | Date: {r[7]}</div>
+                    <div style="color: #FFFFFF; font-size: 1rem; margin-top: 8px; line-height: 1.5;">{r[5]}</div>
+                </div>
+                """, unsafe_allow_html=True)
+        else:
+            st.info("No operator reviews submitted yet.")
+
+    else:
+        st.markdown("### 🌾 Submit Your 3-Day Field Trial Feedback")
+        fb_rating = st.slider("Overall Platform Rating:", 1, 5, 5, help="1 = Poor, 5 = Exceptional")
+        fb_acres = st.selectbox("Operation Size (Acres):", ["Under 100 Acres", "100 - 500 Acres", "500 - 1,500 Acres", "1,500 - 5,000 Acres", "5,000+ Commercial Acres"])
+        fb_crops = st.text_input("Primary Crops / Livestock:", placeholder="e.g. Winter Wheat, Grain Sorghum, Angus Cattle")
+        fb_text = st.text_area("Detailed Operator Feedback / Feature Requests:", placeholder="Tell us how Ebony performed with your soil tests, drone flights, weather alerts, or what features you would like added...", height=150)
+        
+        prefill_email = current_user if (current_user and "@" in current_user) else ""
+        fb_email = st.text_input("Contact Email (Optional for direct founder follow-up):", value=prefill_email)
+
+        if st.button("🚀 Submit Operator Review to HVF Leadership", use_container_width=True):
+            if not fb_text.strip():
+                st.warning("Please enter your feedback comments before submitting.")
+            else:
+                save_pilot_feedback(current_user, current_name, fb_rating, fb_acres, fb_crops, fb_text.strip(), fb_email.strip())
+                st.success("🎉 Thank you! Your review has been encrypted and delivered directly to Founder & CEO Mr. Humphrey.")
+
 with tab_sandbox:
-    if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO", "MEMBER"]:
+    if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO", "MEMBER", "TRIAL_MEMBER"]:
         st.subheader("🧪 Python Execution Sandbox")
         st.code("print('⚡ Sandbox Online')")
     else:
