@@ -30,6 +30,11 @@ DEFAULT_LAT = os.getenv("HVF_LATITUDE", "35.47")
 DEFAULT_LON = os.getenv("HVF_LONGITUDE", "-98.35")
 USER_AGENT = "HumphreyVirtualFarm/2026.1 (humphreyvirtualfarm@gmail.com)"
 
+STRIPE_PERSONAL_LINK = os.getenv("STRIPE_PERSONAL_LINK", "https://buy.stripe.com/test_personal_1999")
+STRIPE_MONTHLY_LINK = os.getenv("STRIPE_MONTHLY_LINK", "https://buy.stripe.com/test_monthly_vip")
+STRIPE_ANNUAL_LINK = os.getenv("STRIPE_ANNUAL_LINK", "https://buy.stripe.com/test_annual_vip")
+PAYPAL_PAY_LINK = os.getenv("PAYPAL_PAY_LINK", "https://www.paypal.com/paypalme/humphreyvirtualfarm")
+
 OLLAMA_API_URL = "http://127.0.0.1:11434/api/generate"
 CLOUD_MODEL = "openai/gpt-oss-120b"
 LOCAL_MODEL = "llama3:8b"
@@ -65,7 +70,7 @@ UPLINK_URL = f"http://{ACTIVE_IP}:8501"
 WEBRTC_STREAM_URL = f"http://192.168.1.175:8889/live/air3s"
 RTMP_INGEST_URL = f"rtmp://192.168.1.175:1935/live/air3s"
 
-st.set_page_config(page_title="HVF Ebony | Commercial Edition", page_icon="⚡", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="HVF Ebony | Commercial Enterprise", page_icon="⚡", layout="wide", initial_sidebar_state="expanded")
 
 st.markdown("""
 <style>
@@ -135,6 +140,30 @@ st.markdown("""
         border-radius: 8px !important;
         margin-bottom: 1rem !important;
     }
+    .pricing-card {
+        background-color: #0c1118;
+        border: 2px solid #00FF66;
+        border-radius: 10px;
+        padding: 20px 14px;
+        text-align: center;
+        margin-bottom: 12px;
+        min-height: 290px;
+    }
+    .pricing-tier {
+        color: #70FF00;
+        font-size: 1.15rem;
+        font-weight: 800;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .pricing-price {
+        color: #FFFFFF;
+        font-size: 1.85rem;
+        font-weight: 900;
+        margin: 10px 0;
+    }
     pre, code {
         background-color: #000000 !important;
         color: #00FF66 !important;
@@ -163,6 +192,7 @@ def ensure_db_schema():
             password_hash TEXT NOT NULL,
             full_name TEXT NOT NULL,
             role TEXT NOT NULL DEFAULT 'MEMBER',
+            company_id TEXT DEFAULT 'HVF_MAIN',
             status TEXT NOT NULL DEFAULT 'APPROVED',
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
@@ -181,6 +211,7 @@ def ensure_db_schema():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             invite_code TEXT UNIQUE NOT NULL,
             issued_by TEXT NOT NULL,
+            grant_role TEXT NOT NULL DEFAULT 'MEMBER',
             is_used INTEGER DEFAULT 0,
             used_by TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -231,30 +262,33 @@ def register_user_with_invite(username: str, pwd_raw: str, full_name: str, invit
     ensure_db_schema()
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
-    cur.execute("SELECT id, is_used FROM member_invite_keys WHERE invite_code=?", (invite_code.strip().upper(),))
+    cur.execute("SELECT id, grant_role, is_used FROM member_invite_keys WHERE invite_code=?", (invite_code.strip().upper(),))
     token_row = cur.fetchone()
     if not token_row:
         conn.close()
         return False, "Invalid Invite Code."
-    if token_row[1] == 1:
+    if token_row[2] == 1:
         conn.close()
         return False, "Invite code already used."
+    assigned_role = token_row[1] if token_row[1] else "MEMBER"
     try:
-        cur.execute("INSERT INTO system_users (username, password_hash, full_name, role, status) VALUES (?, ?, ?, 'MEMBER', 'APPROVED')",
-                    (username.strip().lower(), hash_password(pwd_raw), full_name.strip()))
+        cur.execute("INSERT INTO system_users (username, password_hash, full_name, role, status) VALUES (?, ?, ?, ?, 'APPROVED')",
+                    (username.strip().lower(), hash_password(pwd_raw), full_name.strip(), assigned_role))
         cur.execute("UPDATE member_invite_keys SET is_used=1, used_by=? WHERE id=?", (username.strip().lower(), token_row[0]))
         conn.commit()
         conn.close()
-        return True, "Membership activated successfully!"
+        return True, f"Registration successful! Role: {assigned_role} granted."
     except Exception as e:
         conn.close()
         return False, f"Registration error: {str(e)}"
 
-def generate_invite_token(issued_by: str) -> str:
-    token = f"HVF-VIP-{secrets.token_hex(3).upper()}"
+def generate_invite_token(issued_by: str, target_role: str = "MEMBER") -> str:
+    prefix = "HVF-CORP" if target_role == "CLIENT_CEO" else "HVF-VIP"
+    token = f"{prefix}-{secrets.token_hex(3).upper()}"
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
-    cur.execute("INSERT INTO member_invite_keys (invite_code, issued_by, is_used) VALUES (?, ?, 0)", (token, issued_by))
+    cur.execute("INSERT INTO member_invite_keys (invite_code, issued_by, grant_role, is_used) VALUES (?, ?, ?, 0)", 
+                (token, issued_by, target_role))
     conn.commit()
     conn.close()
     return token
@@ -361,11 +395,13 @@ def query_local_ollama(prompt: str, system_prompt: str) -> str:
     except Exception as e:
         return f"Local Engine fault: {str(e)}"
 
-def get_system_prompt_for_role(role: str) -> str:
-    if role == "CEO":
-        return "You are EBONY, Sovereign AI Technical Partner to Mr. Humphrey, Founder & CEO of Humphrey Virtual Farm. You provide unfiltered technical analysis, executive blueprints, drone telemetry interpretation, and agricultural automation strategies with authoritative competence."
+def get_system_prompt_for_role(role: str, user_name: str) -> str:
+    if role in ["CEO", "SUPER_ADMIN"]:
+        return f"You are EBONY, Sovereign AI Technical Partner to {user_name}, Founder & Master Platform CEO of Humphrey Virtual Farm. You provide unfiltered technical analysis, executive blueprints, root server configurations, and agricultural automation strategies with authoritative precision."
+    elif role == "CLIENT_CEO":
+        return f"You are EBONY, Executive Agricultural Co-Pilot for {user_name}, Enterprise Farm CEO & Operating Principal. You provide strategic farm management, workforce optimization, multi-sector yield forecasts, and soil telemetry analysis with high-level executive competence. You do not discuss or modify underlying server hardware configurations."
     elif role == "MEMBER":
-        return "You are EBONY, Agricultural AI Co-Pilot for Authorized Members of Humphrey Virtual Farm. You assist with soil health diagnostics, weather risk alerts, microclimate telemetry, and sustainable farm management."
+        return f"You are EBONY, Agricultural AI Specialist for {user_name}, Authorized Farm Operator. You assist with soil moisture diagnostics, weather risk alerts, microclimate telemetry, and practical crop management."
     else:
         return (
             "You are EBONY, Commercial Ambassador and Safety Sentinel for Humphrey Virtual Farm (HVF). "
@@ -390,8 +426,10 @@ with st.sidebar:
     st.header("🔐 Terminal Access")
 
     if st.session_state.user_session["authenticated"]:
-        if current_role == "CEO":
-            st.success(f"👑 **{current_name}**\n*(CEO Clearance - Master Node)*")
+        if current_role in ["CEO", "SUPER_ADMIN"]:
+            st.success(f"👑 **{current_name}**\n*(Master Platform CEO - Root Access)*")
+        elif current_role == "CLIENT_CEO":
+            st.info(f"🏛️ **{current_name}**\n*(Enterprise Farm CEO Clearance)*")
         else:
             st.info(f"👥 **{current_name}**\n*(Authorized Member Clearance)*")
         
@@ -438,18 +476,18 @@ with st.sidebar:
                     st.session_state.confirm_delete = False
                     st.rerun()
 
-        if current_role == "CEO":
+        if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO"]:
             st.divider()
-            st.header("📲 Swarm Uplink (CEO Only)")
-            st.caption(f"Scan on mobile/tablet:\n`{UPLINK_URL}`")
+            st.header("📲 Swarm Uplink")
+            st.caption(f"Scan to access node:\n`{UPLINK_URL}`")
             qr_buf = generate_qr_image(UPLINK_URL)
             st.image(qr_buf, width=180)
             
             st.divider()
-            st.header("🔑 One-Time VIP Code")
-            if st.button("⚡ Generate VIP Code", key="sidebar_gen_code"):
-                new_vip = generate_invite_token(current_user)
-                st.success(f"Code: `{new_vip}`")
+            st.header("🔑 Staff VIP Code")
+            if st.button("⚡ Issue Team VIP Code", key="sidebar_gen_code"):
+                new_vip = generate_invite_token(current_user, "MEMBER")
+                st.success(f"Staff Key: `{new_vip}`")
     else:
         st.info("👤 **Guest Mode Active**\nClearance: `GUEST` (Promotional & Safety Gateway)")
         auth_mode = st.radio("Select Portal Action:", ["Sign In", "Activate VIP Code"], horizontal=True)
@@ -478,7 +516,7 @@ with st.sidebar:
             reg_name = st.text_input("Full Name:", key="reg_fn")
             reg_user = st.text_input("Desired Username:", key="reg_u")
             reg_pass = st.text_input("Desired Password:", type="password", key="reg_p")
-            reg_code = st.text_input("One-Time VIP Code:", key="reg_c", placeholder="HVF-VIP-XXXX")
+            reg_code = st.text_input("VIP / Enterprise Access Code:", key="reg_c", placeholder="HVF-VIP-XXXX or HVF-CORP-XXXX")
             if st.button("Activate Membership", use_container_width=True):
                 if reg_name and reg_user and reg_pass and reg_code:
                     ok, msg = register_user_with_invite(reg_user, reg_pass, reg_name, reg_code)
@@ -491,7 +529,7 @@ with st.sidebar:
 
     st.divider()
     st.write(f"**Neural Engine:** {'🟢 CLOUD (' + CLOUD_MODEL + ')' if is_online else '🔒 LOCAL (' + LOCAL_MODEL + ')'}")
-    if current_role == "CEO":
+    if current_role in ["CEO", "SUPER_ADMIN"]:
         st.write(f"**LinkedIn Gateway:** {'🟢 ARMED' if LINKEDIN_TOKEN else '🔴 MISSING'}")
         st.write(f"**Video Ingest Gateway:** 🟢 `0.0.0.0:1935`")
     st.write(f"**Active Clearance:** `{current_role}`")
@@ -506,7 +544,7 @@ tab_chat, tab_linkedin, tab_weather, tab_farm, tab_overview, tab_sandbox = st.ta
     "📡 LinkedIn Broadcast & Article Engine",
     "🚨 NOAA Weather & Radar HUD",
     "🌾 Farm Diagnostics, Live Drone Stream & IoT",
-    "📖 System Overview",
+    "📖 System Overview & Pricing",
     "🧪 Sandbox"
 ])
 
@@ -552,7 +590,13 @@ with tab_chat:
         if "messages" not in st.session_state or not st.session_state.screen_wiped:
             db_messages = load_encrypted_messages(current_user, current_cipher)
             if not db_messages:
-                greeting = f"⚡ Ebony online and armed, Mr. Humphrey. All systems operational." if current_role == "CEO" else f"⚡ Ebony online, {current_name}."
+                if current_role in ["CEO", "SUPER_ADMIN"]:
+                    greeting = f"⚡ Ebony online and armed, Mr. Humphrey. Master Platform Node fully synchronized."
+                elif current_role == "CLIENT_CEO":
+                    greeting = f"⚡ Ebony online, {current_name}. Enterprise executive agronomy and workforce telemetry active."
+                else:
+                    greeting = f"⚡ Ebony online, {current_name}. Field operator co-pilot armed."
+                
                 initial_msg = {"role": "assistant", "content": greeting}
                 save_encrypted_message(current_user, "assistant", initial_msg["content"], current_cipher)
                 db_messages = [initial_msg]
@@ -567,13 +611,13 @@ with tab_chat:
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
 
-    user_input = st.chat_input("Enter message for Ebony...")
+    user_input = st.chat_input("Enter strategic directive for Ebony...")
     if user_input:
         if current_user and current_cipher:
             save_encrypted_message(current_user, "user", user_input, current_cipher)
         st.session_state.messages.append({"role": "user", "content": user_input})
         
-        sys_prompt = get_system_prompt_for_role(current_role)
+        sys_prompt = get_system_prompt_for_role(current_role, current_name)
         
         if is_online:
             if groq_client:
@@ -598,7 +642,7 @@ with tab_chat:
         st.rerun()
 
 with tab_linkedin:
-    if current_role == "CEO":
+    if current_role in ["CEO", "SUPER_ADMIN"]:
         st.subheader("📡 LinkedIn Executive Article & Broadcast Dictation Engine")
         st.markdown("Dictate, generate, refine, and deploy authoritative thought leadership directly to your LinkedIn profile.")
         st.divider()
@@ -722,7 +766,7 @@ with tab_linkedin:
     else:
         st.subheader("📡 LinkedIn Thought Leadership & Broadcast Channel")
         st.markdown("Official corporate broadcasts from Humphrey Virtual Farm leadership.")
-        st.info("🔒 Executive Article Dictation & Live Deployment Gateway is restricted to CEO Clearance.")
+        st.info("🔒 Executive Article Dictation & Live Deployment Gateway is reserved for Master Platform CEO.")
 
 with tab_weather:
     st.subheader("🚨 NOAA Emergency Weather & Live Radar Sentinel")
@@ -736,8 +780,8 @@ with tab_farm:
     col1, col2 = st.columns([1.5, 1])
 
     with col1:
-        if current_role == "CEO":
-            st.markdown("### 🎥 Live DJI Air 3S Master Video Feed (CEO Access)")
+        if current_role in ["CEO", "SUPER_ADMIN"]:
+            st.markdown("### 🎥 Live DJI Air 3S Master Video Feed (Master CEO Access)")
             stream_html = f"""
             <div style="background-color: #0c1118; border: 2px solid #00FF66; border-radius: 8px; overflow: hidden; padding: 4px;">
                 <iframe 
@@ -754,8 +798,8 @@ with tab_farm:
             st.components.v1.html(stream_html, height=470)
             st.caption(f"📡 Ingest Endpoint: `{RTMP_INGEST_URL}` | Direct WebRTC: [Open Fullscreen Player]({WEBRTC_STREAM_URL})")
         
-        elif current_role == "MEMBER":
-            st.markdown("### 🎥 Live Aerial Canopy Spectator Feed (Member Access)")
+        elif current_role in ["CLIENT_CEO", "MEMBER"]:
+            st.markdown(f"### 🎥 Live Aerial Canopy Feed ({'Enterprise Farm CEO' if current_role == 'CLIENT_CEO' else 'Member'} Access)")
             stream_html = f"""
             <div style="background-color: #0c1118; border: 2px solid #00FF66; border-radius: 8px; overflow: hidden; padding: 4px;">
                 <iframe 
@@ -770,7 +814,7 @@ with tab_farm:
             </div>
             """
             st.components.v1.html(stream_html, height=470)
-            st.caption("🛡️ *Encrypted Spectator Stream Active. Network ingestion keys redacted.*")
+            st.caption("🛡️ *Encrypted Stream Active. Root server keys sanitized.*")
         
         else:
             st.markdown("### 🔒 Sovereign Aerial Reconnaissance Gateway")
@@ -788,171 +832,147 @@ with tab_farm:
 
     with col2:
         st.markdown("#### 🛰️ Sector Flight & Mission Telemetry")
-        if current_role == "CEO":
+        if current_role in ["CEO", "SUPER_ADMIN"]:
             st.code(f"Craft: DJI Air 3S\nMission: SURVEY-Z1-ALPHA\nSector: ZONE-1-NORTH\nAltitude: 45.0m | Battery: 88%\nStatus: ACTIVE_PATROL\nRTMP Ingest: {RTMP_INGEST_URL}\nStream Engine: MediaMTX v1.9.0")
+        elif current_role == "CLIENT_CEO":
+            st.code("Craft: DJI Air 3S\nSector: ALL-ZONES-ACTIVE\nTelemetry Stream: LIVE\nCanopy Health Index (GLI): 0.3842 (HEALTHY)\nWorkforce Access Level: ENTERPRISE CEO")
         elif current_role == "MEMBER":
             st.code("Craft: DJI Air 3S\nSector: ZONE-1-NORTH\nCanopy Health Index (GLI): 0.3842 (HEALTHY)\nStatus: ACTIVE PATROL")
         else:
             st.code("HVF Sovereign Node: ACTIVE\nCanopy Diagnostic Engine: ARMED\nAccess Level: GUEST (Redacted)")
 
         st.markdown("#### 📡 Ingest Soil Moisture Probe")
-        if current_role in ["CEO", "MEMBER"]:
+        if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO", "MEMBER"]:
             st.slider("Soil Moisture (%):", 5.0, 80.0, 21.4)
             st.button("📥 Transmit Sensor Telemetry")
         else:
             st.info("🔒 Sensor telemetry transmission is reserved for authenticated accounts.")
 
-# --- TAB 5: COMPREHENSIVE KNOWLEDGE ACADEMY & FEATURE DIRECTORY ---
+# --- TAB 5: SYSTEM OVERVIEW & COMMERCIAL PRICING HUB ---
 with tab_overview:
-    st.subheader("📖 System Overview | Sovereign Knowledge Academy & Feature Directory")
-    st.markdown(f"Interactive training manual, technical blueprints, and operational directories. Currently viewing as: **{current_name}** (`{current_role}`)")
+    st.subheader("💳 Commercial Subscriptions & Sovereign Feature Directory")
+    st.markdown(f"Humphrey Virtual Farm Commercial Platform. Active Role: **{current_name}** (`{current_role}`)")
     st.divider()
 
-    # ACADEMY MODULE 1: PLATFORM MANIFESTO & WHY EBONY EXISTS
-    with st.expander("🏛️ [ACADEMY PILLAR 1]: The Humphrey Virtual Farm Manifesto & Sovereign AI Mission", expanded=True):
+    # 1. COMMERCIAL PRICING & PAYMENT GATEWAY CARDS (4-TIER GRID)
+    st.markdown("### 💎 Sovereign Membership Tiers & Secure Payment Gateway")
+    st.caption("Select your membership tier to activate your cryptographic license key.")
+
+    col_p1, col_p2, col_p3, col_p4 = st.columns(4)
+
+    with col_p1:
         st.markdown("""
-        ### What is Humphrey Virtual Farm (HVF)?
-        **Humphrey Virtual Farm** is an on-premise, air-gapped agtech intelligence ecosystem engineered to liberate agricultural producers from centralized Big Ag cloud lock-in. 
-        
-        Traditional agricultural platforms force farmers to upload their proprietary soil data, field yields, drone imagery, and financial models to third-party corporate servers. That data is commoditized, sold to speculative commodity traders, and used against producers in market negotiations.
+        <div class="pricing-card">
+            <div class="pricing-tier">🌱 PERSONAL SOVEREIGN</div>
+            <div class="pricing-price">$19.99 <span style="font-size: 0.85rem; color: #8899A6;">/ mo</span></div>
+            <p style="text-align: left; font-size: 0.85rem; line-height: 1.5;">
+                ✔ Single-User Personal Node<br>
+                ✔ Dual-Engine AI (Groq + Ollama)<br>
+                ✔ Encrypted Private Vault<br>
+                ✔ Basic Weather & Crop Guidance<br>
+                ✔ Zero Big Ag Cloud Lock-In
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.link_button("🌱 Personal ($19.99/mo)", STRIPE_PERSONAL_LINK, use_container_width=True)
 
-        ### The Three Sovereign Core Tenets:
-        1. **100% On-Premise Compute Sovereignty:** All neural inference, telemetry databases, and drone photogrammetry execute locally on your physical farm hardware. Your data never leaves your perimeter.
-        2. **Dual-Engine Operational Continuity:** Agriculture does not stop when cellular towers fail or internet grids go dark. Ebony operates with zero degradation during complete offline blackout conditions.
-        3. **Autonomous Multi-Agent Agronomy:** A synchronized agent matrix that monitors sub-surface moisture, aerial vegetative vigor, real-time Doppler hazards, and market communication automatically.
-        """)
-
-    # ACADEMY MODULE 2: DUAL-ENGINE NEURAL ROUTER
-    with st.expander("⚡ [ACADEMY PILLAR 2]: Dual-Engine Neural Architecture & Offline AI Execution", expanded=False):
+    with col_p2:
         st.markdown("""
-        ### How Ebony Thinks: The Hybrid Intelligence Mesh
-        Ebony is not a single cloud chatbot; it is a **Dual-Engine Neural Router** capable of instantaneous hot-switching between high-speed cloud clusters and local silicon:
+        <div class="pricing-card">
+            <div class="pricing-tier">💎 VIP MEMBER (MONTHLY)</div>
+            <div class="pricing-price">$249 <span style="font-size: 0.85rem; color: #8899A6;">/ mo</span></div>
+            <p style="text-align: left; font-size: 0.85rem; line-height: 1.5;">
+                ✔ Everything in Personal<br>
+                ✔ Live Drone Spectator Stream<br>
+                ✔ GLI Crop Health Analytics<br>
+                ✔ Multi-Zone IoT Sensor Vault<br>
+                ✔ NOAA Severe Weather HUD
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.link_button("💎 VIP ($249/mo)", STRIPE_MONTHLY_LINK, use_container_width=True)
 
-        * **Engine 1: Cloud Fast Link (`Groq Neural Acceleration`)**
-          * **Model:** `openai/gpt-oss-120b` & `llama-3.3-70b-versatile`
-          * **Latency:** $<0.45$ seconds response speed.
-          * **Protocol:** TLS 1.3 encrypted transport layer.
-          * **Role:** High-speed complex market synthesis, long-form ghostwriting, and advanced economic simulations when network uplinks are active.
-
-        * **Engine 2: Sovereign Local Core (`Ollama On-Premise Runner`)**
-          * **Model:** `llama3:8b` (Quantized 4-bit local weights)
-          * **Endpoint:** `http://127.0.0.1:11434/api/generate`
-          * **Hardware:** Native CPU/GPU physical RAM execution.
-          * **Role:** 100% offline, air-gapped agricultural intelligence, crop emergency diagnostics, and equipment safety protocols with zero internet connection.
-        """)
-
-    # ACADEMY MODULE 3: DJI AIR 3S COMPUTER VISION & PHOTOGRAMMETRY
-    with st.expander("🌾 [ACADEMY PILLAR 3]: DJI Air 3S Computer Vision & Multispectral GLI Canopy Science", expanded=False):
+    with col_p3:
         st.markdown("""
-        ### Aerial Reconnaissance & Crop Stress Calculation
-        Ebony integrates with the **DJI Air 3S** dual-camera drone platform over the ultra-long-range **DJI O4 video link** to perform real-time vegetative health indexing directly from aerial frames.
+        <div class="pricing-card" style="border-color: #70FF00; box-shadow: 0 0 12px rgba(0,255,102,0.25);">
+            <div class="pricing-tier">🏛️ ENTERPRISE FARM CEO</div>
+            <div class="pricing-price">$2,499 <span style="font-size: 0.85rem; color: #8899A6;">/ yr</span></div>
+            <p style="text-align: left; font-size: 0.85rem; line-height: 1.5;">
+                ✔ <strong>Client CEO Dashboard</strong><br>
+                ✔ <strong>Issue Staff VIP Sub-Keys</strong><br>
+                ✔ Multi-Ranch Yield Models<br>
+                ✔ 12-Month Telemetry Trends<br>
+                ✔ Direct Agronomic Hotline
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.link_button("🏛️ Enterprise Annual", STRIPE_ANNUAL_LINK, use_container_width=True)
 
-        #### The Multispectral Green Leaf Index (GLI) Mathematical Formula:
-        """)
-        st.latex(r"\text{GLI} = \frac{2 \cdot G - R - B}{2 \cdot G + R + B}")
+    with col_p4:
         st.markdown("""
-        Where:
-        * $G$ = Green Spectral Channel Reflectance Value ($0 - 255$)
-        * $R$ = Red Spectral Channel Reflectance Value ($0 - 255$)
-        * $B$ = Blue Spectral Channel Reflectance Value ($0 - 255$)
+        <div class="pricing-card">
+            <div class="pricing-tier">📦 HARDWARE APPLIANCE</div>
+            <div class="pricing-price">$4,950 <span style="font-size: 0.85rem; color: #8899A6;">setup</span></div>
+            <p style="text-align: left; font-size: 0.85rem; line-height: 1.5;">
+                ✔ Pre-Configured Physical Server<br>
+                ✔ 100% Air-Gapped Farm Node<br>
+                ✔ Local MediaMTX + Ollama Core<br>
+                ✔ + $299/mo Maintenance<br>
+                ✔ Total Data Sovereignty
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.link_button("📦 Order Hardware", PAYPAL_PAY_LINK, use_container_width=True)
 
-        #### Diagnostic Classification Thresholds:
-        | Calculated Index ($\text{GLI}$) | Canopy State | Agronomic Interpretation & Action Required |
-        | :--- | :--- | :--- |
-        | **$> +0.2500$** | 🟢 **Vigorous & Healthy** | Optimal chlorophyll absorption. Photosynthesis at peak capacity. Standard irrigation schedule. |
-        | **$+0.1000 \text{ to } +0.2500$** | 🟡 **Moderate Stress / Thinning** | Early nitrogen deficit, sub-surface dry spots, or early pest emergence. Soil probe verification recommended. |
-        | **$< +0.1000$** | 🔴 **High Stress / Severe Deficit** | Severe drought stress, root damage, or ground exposure. Immediate valve actuation required. |
+    st.divider()
 
-        #### Video Ingestion Architecture:
-        1. **Craft Transmitter:** DJI RC 2 broadcasts live stream via local Wi-Fi to PC port `1935`.
-        2. **MediaMTX Video Server:** Ingests `rtmp://192.168.1.175:1935/live/air3s` and re-muxes the signal to WebRTC.
-        3. **Ebony Console HUD:** Renders sub-second video feed in Tab 4 on `http://192.168.1.175:8889/live/air3s`.
-        """)
-
-    # ACADEMY MODULE 4: IOT SENSOR MESH & VOLUMETRIC SOIL THERMODYNAMICS
-    with st.expander("📡 [ACADEMY PILLAR 4]: IoT Soil Mesh, Capacitance Probes & Telemetry Fusion", expanded=False):
-        st.markdown("""
-        ### Sub-Surface Agronomy & Precision Moisture Sensing
-        Aerial imagery shows the surface canopy; ground sensors measure the root zone. Ebony unifies both layers into a single telemetry vault.
-
-        #### Volumetric Water Content (VWC) Matrix:
-        * **Target Crop Root Zone (Corn, Wheat, Alfalfa):**
-          * **Field Capacity (Optimal):** $28\% - 38\%$ VWC
-          * **Managed Depletion Threshold:** $18\% - 24\%$ VWC *(Trigger irrigation)*
-          * **Permanent Wilting Point:** $<12\%$ VWC *(Irreversible plant stress)*
-
-        #### Multi-Sector Zone Architecture:
-        * **`ZONE-1-NORTH`:** Primary cultivation sector (Continuous capacitance probe sampling).
-        * **`ZONE-2-SOUTH`:** Secondary sector (Microclimate temperature & humidity tracking).
-        * **`ZONE-3-EAST`:** High-elevation drainage monitoring.
-        * **`ZONE-4-WEST`:** Lowland riparian & moisture collection basin.
-        """)
-
-    # ACADEMY MODULE 5: NOAA EMERGENCY SENTINEL & LIFE SAFETY PROTOCOLS
-    with st.expander("🚨 [ACADEMY PILLAR 5]: NOAA Emergency Radar Sentinel & Farm Life Safety Protocols", expanded=False):
-        st.markdown("""
-        ### Severe Weather Defense & Life Safety Boundaries
-        Ebony’s Sentinel monitors National Weather Service Doppler feeds and coordinates emergency actions across your farm.
-
-        #### Immediate Life Safety Operating Procedures (Guest & Member Active):
-        1. **Severe Tornado / High Wind Warnings ($>60\text{ mph}$):**
-           * Immediately ground all drone operations (DJI Air 3S wind limit is $27\text{ mph}$).
-           * Disengage PTO shafts, power down high-profile machinery, and seek interior shelter.
-        2. **Anhydrous Ammonia ($\text{NH}_3$) Pressurized Line Rupture:**
-           * Evacuate immediately **upwind** and **crosswind**.
-           * Flush contaminated skin/eyes with cold water for a minimum of 15 continuous minutes.
-           * Do NOT apply salves or ointments without medical authorization.
-        3. **Power Take-Off (PTO) Entanglement Hazard:**
-           * Always disengage tractor master clutch and kill engine before dismounting to inspect implement drivelines.
-        """)
-
-    # ACADEMY MODULE 6: LINKEDIN EXECUTIVE BROADCAST HUB
-    with st.expander("📰 [ACADEMY PILLAR 6]: LinkedIn Thought Leadership Engine & Live UGC Broadcasting", expanded=False):
-        st.markdown("""
-        ### Automated Corporate Voice & Market Visibility
-        Position Humphrey Virtual Farm as the preeminent agtech authority by transforming raw field telemetry into polished thought leadership.
-
-        #### How the Dictation Engine Operates:
-        1. **Dictate Talking Points:** Dictate field discoveries, drone findings, or sovereign AI breakthroughs.
-        2. **Multi-Tone Ghostwriter:** Choose between *Authoritative CEO*, *Technical SME*, *Commercial Investor*, or *Field Agronomist*.
-        3. **One-Click Deploy:** Dispatches directly through the official LinkedIn UGC API (`v2/ugcPosts`) with verified token handshakes.
-        """)
-
-    # ACADEMY MODULE 7: CRYPTOGRAPHIC VAULT & THREE-TIER CLEARANCE
-    with st.expander("🔐 [ACADEMY PILLAR 7]: Cryptographic Vault, User Isolation & Clearance Matrix", expanded=False):
-        st.markdown("""
-        ### Three-Tier Clearance & Zero-Knowledge Architecture
-        | Clearance Tier | Who It Is For | Access Permissions & Boundaries |
-        | :--- | :--- | :--- |
-        | **👑 Level 3: CEO Node** | Founder & Farm Owner | Unrestricted hardware control, live video ingest, VIP code generation, full multi-agent agronomy, raw network IPs, and LinkedIn publishing. |
-        | **👥 Level 2: Member Node** | Verified Partners & Operators | Private encrypted chat vault, live spectator drone streams, crop diagnostics, and soil telemetry ingestion. System keys redacted. |
-        | **👤 Level 1: Guest Node** | Public Visitors & Evaluators | Commercial platform overview, emergency safety sentinel, and automated VIP registration pathway. Compute restricted. |
-
-        #### Cryptographic Standard:
-        * User sessions derive unique encryption keys via **PBKDF2-HMAC-SHA256** (100,000 iterations).
-        * Chat logs and operational directives are encrypted using **Fernet (AES-128 in CBC mode with PKCS7 padding and HMAC-SHA256 authentication)**.
-        """)
-
-    # ACADEMY MODULE 8: CEO EXCLUSIVE NODE DIAGNOSTICS & VIP PROVISIONING
-    if current_role == "CEO":
-        with st.expander("👑 [MASTER NODE ONLY]: Live Infrastructure Diagnostics & VIP Key Provisioning Engine", expanded=True):
-            st.markdown("#### 🔑 Provision VIP Member Codes")
-            c_vip1, c_vip2 = st.columns([1.5, 3])
-            with c_vip1:
-                if st.button("⚡ Generate New VIP Key", key="tab5_vip_gen_exhaustive", use_container_width=True):
-                    token = generate_invite_token(current_user)
-                    st.success(f"Generated Key: `{token}`")
-            with c_vip2:
+    # 2. CLIENT CEO EXCLUSIVE TEAM MANAGEMENT HUB
+    if current_role == "CLIENT_CEO":
+        with st.expander("🏛️ [ENTERPRISE CEO COMMAND]: Provision Access Keys for Farm Staff", expanded=True):
+            st.markdown("#### 🔑 Generate VIP Keys for Your Farm Hands & Agronomists")
+            c_corp1, c_corp2 = st.columns([1.5, 3])
+            with c_corp1:
+                if st.button("⚡ Issue New Staff Key", key="tab5_client_ceo_vip_gen", use_container_width=True):
+                    token = generate_invite_token(current_user, "MEMBER")
+                    st.success(f"Generated Staff License: `{token}`")
+            with c_corp2:
                 conn = sqlite3.connect(DB_PATH)
                 cur = conn.cursor()
-                cur.execute("SELECT invite_code, issued_by, is_used, used_by, created_at FROM member_invite_keys ORDER BY id DESC LIMIT 5")
+                cur.execute("SELECT invite_code, is_used, used_by, created_at FROM member_invite_keys WHERE issued_by=? ORDER BY id DESC LIMIT 5", (current_user,))
+                recent_corp_keys = cur.fetchall()
+                conn.close()
+                if recent_corp_keys:
+                    st.caption("Active License Keys Issued for Your Organization:")
+                    for k in recent_corp_keys:
+                        status_str = f"🔴 USED by {k[2]}" if k[1] == 1 else "🟢 UNUSED / ACTIVE"
+                        st.code(f"Key: {k[0]} | Status: {status_str} | Date: {k[3]}")
+                else:
+                    st.caption("No staff keys generated yet. Click the button on the left to issue one.")
+
+    # 3. MASTER CEO EXCLUSIVE DIAGNOSTIC CENTER
+    if current_role in ["CEO", "SUPER_ADMIN"]:
+        with st.expander("👑 [MASTER PLATFORM ROOT]: Live Server Diagnostics & VIP Provisioning", expanded=True):
+            st.markdown("#### 🔑 Master Key Provisioning (Select Target Tier)")
+            kc1, kc2, kc3 = st.columns([1.5, 1.5, 3])
+            with kc1:
+                if st.button("⚡ Gen Member VIP Key", key="tab5_vip_gen_member", use_container_width=True):
+                    token = generate_invite_token(current_user, "MEMBER")
+                    st.success(f"Member Key: `{token}`")
+            with kc2:
+                if st.button("⚡ Gen Enterprise CEO Key", key="tab5_vip_gen_client_ceo", use_container_width=True):
+                    token = generate_invite_token(current_user, "CLIENT_CEO")
+                    st.success(f"Enterprise CEO Key: `{token}`")
+            with kc3:
+                conn = sqlite3.connect(DB_PATH)
+                cur = conn.cursor()
+                cur.execute("SELECT invite_code, grant_role, is_used, used_by FROM member_invite_keys ORDER BY id DESC LIMIT 5")
                 recent_keys = cur.fetchall()
                 conn.close()
                 if recent_keys:
-                    st.caption("Recent VIP License Keys Issued:")
+                    st.caption("Recent Global Keys Issued:")
                     for k in recent_keys:
-                        status_str = f"🔴 USED by {k[3]}" if k[2] == 1 else "🟢 UNUSED / ACTIVE"
-                        st.code(f"Key: {k[0]} | Status: {status_str} | Date: {k[4]}")
+                        status_str = f"🔴 USED ({k[3]})" if k[2] == 1 else "🟢 UNUSED"
+                        st.code(f"Key: {k[0]} | Role: {k[1]} | {status_str}")
 
             st.markdown("#### 🖥️ Master Node Diagnostic Readout")
             conn = sqlite3.connect(DB_PATH)
@@ -972,7 +992,7 @@ Host IP (Local LAN)      : 192.168.1.175
 Mesh Endpoint (Tailscale): {ACTIVE_IP}:8501
 Master Database Vault    : {DB_PATH}
 Active Registered Users  : {user_count}
-Unused VIP Invite Codes  : {unused_keys}
+Unused License Keys      : {unused_keys}
 Encrypted Comm Records   : {msg_count}
 Sensor Telemetry Records : {sensor_count}
 --------------------------------------------------------------------------
@@ -981,12 +1001,61 @@ Cloud Fast Link          : Groq API (TLS 1.3) -> openai/gpt-oss-120b
 Drone RTMP Ingestion     : MediaMTX (Port 1935) -> rtmp://192.168.1.175:1935/live/air3s
 Drone WebRTC Streaming   : MediaMTX (Port 8889) -> http://192.168.1.175:8889/live/air3s
 Weather Oracle Base      : NOAA REST API (Lat: {DEFAULT_LAT}, Lon: {DEFAULT_LON})
-Cryptographic Standard   : Fernet PBKDF2HMAC (SHA-256 with Per-User Salt)
-Release Status           : Commercial MVCP 1.0 (Master Academy Armed)
+Security Hierarchy       : SUPER_ADMIN > CLIENT_CEO > MEMBER > GUEST
 =========================================================================""")
 
+    # 4. KNOWLEDGE ACADEMY PILLARS
+    st.markdown("### 📖 Sovereign Knowledge Academy & Technical Directory")
+
+    with st.expander("🏛️ [PILLAR 1]: The Humphrey Virtual Farm Manifesto & Sovereign AI Mission", expanded=False):
+        st.markdown("""
+        **Humphrey Virtual Farm (HVF)** is an on-premise, air-gapped agtech ecosystem engineered to liberate agricultural producers from centralized Big Ag cloud lock-in. 
+        
+        * **100% On-Premise Compute Sovereignty:** All neural inference, telemetry databases, and drone photogrammetry execute locally on physical hardware.
+        * **Dual-Engine Operational Continuity:** Operates with zero degradation during complete offline blackout or severe grid outages.
+        * **Autonomous Multi-Agent Agronomy:** Synchronized agents monitoring moisture, vegetative vigor, Doppler radar, and market communication.
+        """)
+
+    with st.expander("⚡ [PILLAR 2]: Dual-Engine Neural Architecture & Offline AI Execution", expanded=False):
+        st.markdown("""
+        * **Cloud Fast Link (Groq):** `openai/gpt-oss-120b` for $<0.45$s market synthesis and executive ghostwriting.
+        * **Sovereign Local Core (Ollama):** `llama3:8b` running on physical RAM on port 11434 with zero internet connection.
+        """)
+
+    with st.expander("🌾 [PILLAR 3]: DJI Air 3S Computer Vision & Multispectral GLI Canopy Science", expanded=False):
+        st.markdown("""
+        * **Multispectral Green Leaf Index:** Computes vegetative vigor using `GLI = (2*G - R - B) / (2*G + R + B)`.
+        * **Direct Ingestion:** Re-muxes DJI RC 2 RTMP port 1935 into sub-second WebRTC on port 8889.
+        """)
+
+    with st.expander("📡 [PILLAR 4]: IoT Soil Mesh, Capacitance Probes & Telemetry Fusion", expanded=False):
+        st.markdown("""
+        * **Volumetric Water Content (VWC %):** Tracks field capacity ($28\%-38\%$) and managed depletion thresholds ($18\%-24\%$).
+        * **Multi-Zone Storage:** Automatically records ground readings into encrypted SQLite tables.
+        """)
+
+    with st.expander("🚨 [PILLAR 5]: NOAA Emergency Radar Sentinel & Farm Life Safety Protocols", expanded=False):
+        st.markdown("""
+        * **Doppler Radar Overlay:** Live interactive NOAA radar feed for Oklahoma microclimates.
+        * **Hazard Containment:** Instant protocol guidance for high winds, anhydrous ammonia leaks, and PTO drivelines.
+        """)
+
+    with st.expander("📰 [PILLAR 6]: LinkedIn Executive Article & Thought Leadership Hub", expanded=False):
+        st.markdown("""
+        * **Executive Dictation:** Ghostwrites articles and market releases in visionary CEO, SME, or Agronomist tones.
+        * **Direct Deployment:** Dispatches posts live to LinkedIn using official OAuth UGC API endpoints.
+        """)
+
+    with st.expander("🔐 [PILLAR 7]: Cryptographic Vault, User Isolation & 4-Tier Security Matrix", expanded=False):
+        st.markdown("""
+        * **Level 4: Master CEO (You):** Root infrastructure, hardware topology, global key provisioning, and LinkedIn broadcasting.
+        * **Level 3: Enterprise Client CEO:** Company executive AI, staff key issuance, farm financial models, and full drone telemetry.
+        * **Level 2: Authorized Member:** Private encrypted assistant, spectator drone stream, and field sensor logging.
+        * **Level 1: Public Guest:** Commercial showcase, safety protocols, and direct subscription onboarding.
+        """)
+
 with tab_sandbox:
-    if current_role in ["CEO", "MEMBER"]:
+    if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO", "MEMBER"]:
         st.subheader("🧪 Python Execution Sandbox")
         st.code("print('⚡ Sandbox Online')")
     else:
