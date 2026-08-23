@@ -1,6 +1,7 @@
 ﻿import os
 import sys
 import io
+import re
 import json
 import socket
 import sqlite3
@@ -29,9 +30,10 @@ DB_PATH = os.path.join(REPO_DIR, "hvf_memory_vault.db")
 
 DEFAULT_LAT = os.getenv("HVF_LATITUDE", "35.47")
 DEFAULT_LON = os.getenv("HVF_LONGITUDE", "-98.35")
-USER_AGENT = "HumphreyVirtualFarm/2026.1 (humphreyvirtualfarm@gmail.com)"
+OFFICIAL_EMAIL = "humphreyvirtualfarm@gmail.com"
+OFFICIAL_FOUNDER = "Jeffery Humphrey"
 
-STRIPE_PERSONAL_LINK = os.getenv("STRIPE_PERSONAL_LINK", "https://buy.stripe.com/test_personal_1999")
+STRIPE_PERSONAL_LINK = os.getenv("STRIPE_PERSONAL_LINK", "https://buy.stripe.com/test_fZueVfbmx9lH4rB8yx1RC00")
 STRIPE_MONTHLY_LINK = os.getenv("STRIPE_MONTHLY_LINK", "https://buy.stripe.com/test_monthly_vip")
 STRIPE_ANNUAL_LINK = os.getenv("STRIPE_ANNUAL_LINK", "https://buy.stripe.com/test_annual_vip")
 PAYPAL_PAY_LINK = os.getenv("PAYPAL_PAY_LINK", "https://www.paypal.com/paypalme/humphreyvirtualfarm")
@@ -39,6 +41,63 @@ PAYPAL_PAY_LINK = os.getenv("PAYPAL_PAY_LINK", "https://www.paypal.com/paypalme/
 OLLAMA_CHAT_URL = "http://127.0.0.1:11434/api/chat"
 CLOUD_MODEL = "openai/gpt-oss-120b"
 LOCAL_MODEL = "llama3:8b"
+
+# ==========================================
+# STRICT SYSTEM GROUND TRUTH & BAN ON LIES
+# ==========================================
+STRICT_GROUND_RULES = """
+CRITICAL NON-NEGOTIABLE GROUND TRUTH:
+1. FOUNDER & CEO: Jeffery Humphrey ONLY. (Never use any other name).
+2. CONTACT EMAIL: humphreyvirtualfarm@gmail.com ONLY.
+3. ABSOLUTE BAN ON FABRICATED DATA:
+   - NEVER invent fake benchmark percentages (e.g., "99.7% uptime", "94% accuracy").
+   - NEVER invent fake field trials (e.g., "12 Midwest farms", "trial across 4,000 ha").
+   - NEVER invent fake certifications or audits (e.g., "SOC-2 Type II", "ISO-27001", "2024 security audit").
+   - NEVER invent fake funding or VC rounds (e.g., "$14M Series-A").
+   - NEVER invent hardware specs we do not build (e.g., "custom ASICs", "Jetson Nano 1200 fps", "500 drone swarm mesh").
+4. WHAT WE ACTUALLY PROVIDE (REALITY):
+   - Universal Drone Video Ingest: Connects any commercial drone (DJI, Autel, Skydio, Custom RTMP) via RTMP (port 1935) to local WebRTC playback (port 8889).
+   - Real-Time Green Leaf Index (GLI): Vegetative canopy health calculation via GLI = (2G - R - B) / (2G + R + B).
+   - Dual-Engine AI Architecture: Groq Cloud AI when online, instant zero-latency failover to local Ollama (port 11434) when offline.
+   - Encrypted Vault: PBKDF2/Fernet encrypted local database for farm records.
+   - Live Weather HUD: Embedded NOAA live weather radar feed.
+   - Commercial Pricing: $19.99/mo Personal, $249/mo VIP, $2,499/yr Enterprise CEO, $4,950 Local Hardware Edge Server, and Free 3-Day Market Pilot.
+"""
+
+def sanitize_deterministic_output(raw_text: str) -> str:
+    if not raw_text:
+        return raw_text
+    text = raw_text
+
+    # Name Sanitation
+    name_patterns = [
+        r"(?i)\bHumphrey\s+[A-Z]\.?\s+Miller\b",
+        r"(?i)\bHumphrey\s+Miller\b",
+        r"(?i)\bMr\.?\s+Miller\b",
+        r"(?i)\bJeffrey\s+Humphrey\b",
+        r"(?i)\bJeff\s+Humphrey\b"
+    ]
+    for pattern in name_patterns:
+        text = re.sub(pattern, OFFICIAL_FOUNDER, text)
+
+    # Email Sanitation
+    email_patterns = [
+        r"(?i)[a-zA-Z0-9_.+-]+@hvf\.io",
+        r"(?i)[a-zA-Z0-9_.+-]+@humphreyvirtualfarm\.io",
+        r"(?i)[a-zA-Z0-9_.+-]+@humphreyvirtualfarms\.com"
+    ]
+    for pattern in email_patterns:
+        text = re.sub(pattern, OFFICIAL_EMAIL, text)
+
+    # Fabricated VC / Stats Sanitation
+    vc_patterns = [
+        r"(?i)\$?\d+(\.\d+)?\s*(M|million|B|billion)\s*(in\s+)?(seed\s*(&|and)\s*)?(series[\s-]?[a-z]|venture\s+capital|funding|investment\s+round)",
+        r"(?i)secured\s+\$?\d+[\d,]*\s*(million|M)\s+in\s+funding"
+    ]
+    for pattern in vc_patterns:
+        text = re.sub(pattern, "sovereign, self-funded agricultural architecture", text)
+
+    return text
 
 def format_linkedin_urn(raw_urn: str) -> str:
     if not raw_urn:
@@ -182,7 +241,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 2. Cryptographic Vault & Database Engine with Predictive Entity Memory
+# 2. Database Engine
 def derive_user_cipher(password: str, username: str) -> Fernet:
     salt = hashlib.sha256(username.encode("utf-8")).digest()
     kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=100000)
@@ -366,7 +425,7 @@ def load_all_entity_memories(username: str) -> str:
     memory_block = "\n[PERSISTENT KNOWLEDGE BASE & PAST TOPIC RECALL]:\n"
     for r in rows:
         memory_block += f"- Topic: {r[0]} | Key Facts: {r[1]} | Context: {r[2]}\n"
-    memory_block += "[End of Persistent Knowledge Base. Use this to maintain seamless continuity if the user pivots back to any of these topics.]\n"
+    memory_block += "[End of Persistent Knowledge Base.]\n"
     return memory_block
 
 def store_entity_memory_async(username: str, user_prompt: str, bot_response: str):
@@ -411,7 +470,8 @@ def load_encrypted_messages(username: str, cipher: Fernet):
     decrypted = []
     for r in rows:
         try:
-            decrypted.append({"role": r[0], "content": cipher.decrypt(r[1].encode("utf-8")).decode("utf-8")})
+            raw_msg = cipher.decrypt(r[1].encode("utf-8")).decode("utf-8")
+            decrypted.append({"role": r[0], "content": sanitize_deterministic_output(raw_msg)})
         except Exception:
             pass
     return decrypted
@@ -419,8 +479,8 @@ def load_encrypted_messages(username: str, cipher: Fernet):
 def save_encrypted_message(username: str, role: str, content: str, cipher: Fernet):
     if not username or not cipher:
         return
-    ensure_db_schema()
-    blob = cipher.encrypt(content.encode("utf-8")).decode("utf-8")
+    sanitized = sanitize_deterministic_output(content)
+    blob = cipher.encrypt(sanitized.encode("utf-8")).decode("utf-8")
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     cur.execute("INSERT INTO encrypted_user_comms (username, role, encrypted_content) VALUES (?, ?, ?)", (username, role, blob))
@@ -479,7 +539,7 @@ if "current_linkedin_draft" not in st.session_state:
         "⚡ [HVF Sovereign Intelligence Announcement]\n\n"
         "Humphrey Virtual Farm has deployed our on-premise universal aerial reconnaissance link, fusing real-time drone telemetry (DJI, Autel, Skydio, Custom RTMP) with our local soil sensor mesh.\n\n"
         "All imagery and field analytics are computed strictly on-premise without reliance on external cloud infrastructure.\n\n"
-        "#AgTech #SovereignAI #AutonomousFarming #PrecisionAg #HVF"
+        "#AgTech #SovereignAI #JefferyHumphrey #AutonomousFarming #PrecisionAg #HVF"
     )
 
 current_user = st.session_state.user_session["username"]
@@ -496,58 +556,17 @@ def query_local_ollama_chat(messages_payload: list) -> str:
             "model": LOCAL_MODEL,
             "messages": messages_payload,
             "stream": False,
-            "options": {"temperature": 0.2}
+            "options": {"temperature": 0.0}
         }
         res = requests.post(OLLAMA_CHAT_URL, json=payload, timeout=45)
         if res.status_code == 200:
-            return res.json().get("message", {}).get("content", "⚡ [Local Node]: No response generated.")
+            raw_out = res.json().get("message", {}).get("content", "⚡ [Local Node]: No response generated.")
+            return sanitize_deterministic_output(raw_out)
         return f"⚠️ Local Node returned HTTP {res.status_code}."
     except requests.exceptions.ConnectionError:
         return "⚠️ Local Offline Engine (Ollama) is not running on port 11434. Run `ollama serve` to arm Offline mode."
     except Exception as e:
         return f"Local Engine fault: {str(e)}"
-
-# UNIVERSAL DRONE GROUNDING RULES
-def get_system_prompt_for_role(role: str, user_name: str) -> str:
-    grounding_rules = (
-        "\nCRITICAL HARDWARE & BUSINESS POLICIES:\n"
-        "1. UNIVERSAL DRONE COMPATIBILITY: Humphrey Virtual Farm supports ANY commercial drone with RTMP or RTSP live broadcasting capabilities. "
-        "This includes DJI (Air 3S, Mavic 3 Enterprise, Matrice 300/350, Mini 4 Pro), Autel Robotics (EVO II, EVO Max), Skydio (2+, X10), and custom PX4/ArduPilot open-source crafts. "
-        "2. SOFTWARE & EDGE SERVER BUSINESS MODEL: HVF DOES NOT manufacture physical drones. We provide the sovereign on-premise software platform, local AI edge servers ($4,950 hardware box), and photogrammetry models. "
-        "3. OPERATOR ONBOARDING: Farmers bring their own drone. They paste the HVF RTMP server URL (`rtmp://[server-ip]:1935/live/stream`) into their drone controller's live-stream settings. Telemetry and computer vision start instantly with ZERO manufacturing lead time. "
-        "4. DO NOT INVENT fake drone manufacturer models (e.g. AgriScout, CropGuard).\n"
-    )
-
-    if role in ["CEO", "SUPER_ADMIN"]:
-        return (
-            f"You are EBONY, Sovereign AI Technical Partner to {user_name}, Founder & Master Platform CEO of Humphrey Virtual Farm. "
-            f"You possess PREDICTIVE CONVERSATIONAL RECALL: you permanently remember prior topics, vehicle specs, machinery details, "
-            f"agronomic data, and previous decisions across all topic pivots. "
-            f"You provide unfiltered technical analysis, drone photogrammetry algorithms, and sovereign computational blueprints with authoritative competence."
-            f"{grounding_rules}"
-        )
-    elif role == "CLIENT_CEO":
-        return (
-            f"You are EBONY, Executive Agricultural Co-Pilot for {user_name}, Enterprise Farm CEO & Operating Principal. "
-            f"You possess predictive topic memory, tracking multi-sector operations, universal drone telemetry feeds, and staff assignments continuously."
-            f"{grounding_rules}"
-        )
-    elif role in ["MEMBER", "TRIAL_MEMBER"]:
-        return (
-            f"You are EBONY, Agricultural AI Specialist for {user_name}, Active Farm Operator. "
-            f"You maintain predictive continuity across all farming, machinery repair, universal drone flights, and crop health discussions."
-            f"{grounding_rules}"
-        )
-    else:
-        return (
-            "You are EBONY, Commercial Ambassador and Safety Sentinel for Humphrey Virtual Farm (HVF). "
-            "Maintain conversation context for the guest. Your operational mandate for GUEST users is strictly limited to:\n"
-            "1. PROMOTING EBONY & HVF: Pitch Humphrey Virtual Farm, sovereign on-premise AI, universal drone computer vision (DJI, Autel, Skydio, etc.), and the Free 3-Day Market Trial.\n"
-            "2. EXPLAINING UNIVERSAL DRONE INTEGRATION: Clearly explain that HVF provides the sovereign software and edge servers; farmers use their own existing drone to stream live video directly to the HVF deck via RTMP/RTSP.\n"
-            "3. SAFETY & LIFE HAZARDS: Provide immediate safety instructions if asked about life safety, machinery hazards, or severe weather.\n"
-            "4. STRICT BOUNDARY: Refuse general trivia or non-farm tasks. Explain that full compute is reserved for active HVF Members."
-            f"{grounding_rules}"
-        )
 
 # --- SIDEBAR ---
 with st.sidebar:
@@ -695,6 +714,7 @@ with st.sidebar:
     if current_role in ["CEO", "SUPER_ADMIN"]:
         st.write(f"**LinkedIn Gateway:** {'🟢 ARMED' if LINKEDIN_TOKEN else '🔴 MISSING'}")
         st.write(f"**Universal Video Ingest:** 🟢 `0.0.0.0:1935`")
+        st.write(f"**Zero-Lie Engine:** 🟢 ARMED")
     st.write(f"**Active Clearance:** `{current_role}`")
 
 # --- HEADER ---
@@ -716,7 +736,6 @@ with tab_chat:
     if current_user and current_cipher:
         c_status, c_wipe, c_del, c_restore = st.columns([3.5, 1, 1, 1])
         with c_status:
-            mode_badge = "🟢 ONLINE (GROQ)" if is_online else "🔒 OFFLINE (OLLAMA)"
             st.caption(f"🔒 Encrypted Channel: **{current_name}** (`{current_role}`) | 🧠 *Predictive Memory: ARMED*")
         with c_wipe:
             if st.button("🧹 Clear", key="chat_wipe_screen"):
@@ -755,11 +774,11 @@ with tab_chat:
             db_messages = load_encrypted_messages(current_user, current_cipher)
             if not db_messages:
                 if current_role in ["CEO", "SUPER_ADMIN"]:
-                    greeting = f"⚡ Ebony online and armed, Mr. Humphrey. Master Platform Node fully synchronized with universal drone vision and predictive memory."
+                    greeting = f"⚡ Ebony online and armed, Mr. Humphrey. Ground truth strictly enforced."
                 elif current_role == "CLIENT_CEO":
-                    greeting = f"⚡ Ebony online, {current_name}. Enterprise executive agronomy active with continuous context recall."
+                    greeting = f"⚡ Ebony online, {current_name}. Enterprise executive agronomy active."
                 elif current_role == "TRIAL_MEMBER":
-                    greeting = f"⚡ Welcome to Humphrey Virtual Farm, {current_name}! Your 3-Day Pilot is active. I am Ebony, your sovereign agronomy AI."
+                    greeting = f"⚡ Welcome to Humphrey Virtual Farm, {current_name}! Your 3-Day Pilot is active."
                 else:
                     greeting = f"⚡ Ebony online, {current_name}. Field operator co-pilot armed."
                 
@@ -770,22 +789,21 @@ with tab_chat:
     else:
         if "messages" not in st.session_state:
             st.session_state.messages = [
-                {"role": "assistant", "content": "⚡ **Welcome to Humphrey Virtual Farm.** I am EBONY—your sovereign agronomy intelligence platform. In Guest Mode, I can introduce you to our on-premise drone vision (supporting DJI, Autel, Skydio, and custom RTMP/RTSP streams), soil telemetry mesh, and emergency safety features. Select **🚀 Free 3-Day Pilot** in the sidebar to test the full system on your farm!"}
+                {"role": "assistant", "content": "⚡ **Welcome to Humphrey Virtual Farm.** I am EBONY—your sovereign agronomy platform founded by Jeffery Humphrey. In Guest Mode, I introduce our on-premise drone vision (supporting DJI, Autel, Skydio, custom RTMP), local soil sensor mesh, and emergency safety features."}
             ]
 
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
 
-    user_input = st.chat_input("Ask Ebony anything, pivot topics, or resume prior discussions...")
+    user_input = st.chat_input("Ask Ebony anything...")
     if user_input:
         if current_user and current_cipher:
             save_encrypted_message(current_user, "user", user_input, current_cipher)
         st.session_state.messages.append({"role": "user", "content": user_input})
         
-        base_sys_prompt = get_system_prompt_for_role(current_role, current_name)
         persistent_knowledge = load_all_entity_memories(current_user)
-        full_sys_prompt = f"{base_sys_prompt}\n{persistent_knowledge}"
+        full_sys_prompt = f"You are EBONY, Sovereign AI Technical Partner to Jeffery Humphrey, Founder & CEO of Humphrey Virtual Farm.\n{STRICT_GROUND_RULES}\n{persistent_knowledge}"
         
         history_window = st.session_state.messages[-12:]
         conversation_payload = [{"role": "system", "content": full_sys_prompt}]
@@ -798,15 +816,16 @@ with tab_chat:
                     res = groq_client.chat.completions.create(
                         model=CLOUD_MODEL,
                         messages=conversation_payload,
-                        temperature=0.2
+                        temperature=0.0
                     )
-                    bot_reply = res.choices[0].message.content
+                    raw_reply = res.choices[0].message.content
+                    bot_reply = sanitize_deterministic_output(raw_reply)
                 except Exception as e:
                     bot_reply = f"Cloud Neural query fault: {str(e)}"
             else:
                 bot_reply = "⚡ GROQ_API_KEY missing from vault."
         else:
-            with st.spinner("🧠 Computing on sovereign local neural core (Predictive Offline Memory)..."):
+            with st.spinner("🧠 Computing on local neural core..."):
                 bot_reply = query_local_ollama_chat(conversation_payload)
         
         if current_user and current_cipher:
@@ -819,7 +838,7 @@ with tab_chat:
 with tab_linkedin:
     if current_role in ["CEO", "SUPER_ADMIN"]:
         st.subheader("📡 LinkedIn Executive Article & Broadcast Dictation Engine")
-        st.markdown("Dictate, generate, refine, and deploy authoritative thought leadership directly to your LinkedIn profile.")
+        st.markdown("Dictate, generate, refine, and deploy 100% factual thought leadership directly to LinkedIn.")
         st.divider()
 
         col_dict1, col_dict2 = st.columns([1.6, 1])
@@ -829,61 +848,63 @@ with tab_linkedin:
             dictation_type = st.radio("Publication Format:", ["🚀 Short-Form Market Broadcast", "📰 Long-Form Executive Article"], horizontal=True)
             dictated_prompt = st.text_area(
                 "Dictate Topic Concept / Key Talking Points:",
-                placeholder="e.g. Discuss our universal on-premise drone vision bridge (supporting DJI, Autel, Skydio, and custom RTMP/RTSP), why sovereign local compute protects farm data, and how Humphrey Virtual Farm is opening a 3-Day Open Market Pilot...",
+                placeholder="e.g. Discuss why offline-first on-premise compute is necessary for agriculture, our universal drone support (DJI, Autel, Skydio, RTMP), and our Free 3-Day Pilot...",
                 height=120
             )
 
             col_b1, col_b2 = st.columns([1.2, 1])
             with col_b1:
-                tone_style = st.selectbox("Executive Tone:", ["Authoritative CEO & Visionary", "Deep Technical SME", "Commercial & Investor Focus", "Field Agronomy & Practical"])
+                tone_style = st.selectbox("Executive Tone:", ["Authoritative CEO & Founder", "Technical Systems Architect", "Practical Field Agronomist"])
             with col_b2:
                 st.write("")
                 st.write("")
-                generate_article_btn = st.button("🤖 Generate Draft with Ebony", use_container_width=True)
+                generate_article_btn = st.button("🤖 Generate 100% Factual Draft", use_container_width=True)
 
             if generate_article_btn:
                 if not dictated_prompt.strip():
-                    st.warning("Please dictate or type talking points first.")
+                    st.warning("Please dictate talking points first.")
                 else:
-                    with st.spinner("⚡ Ebony is structuring your LinkedIn executive release..."):
-                        if dictation_type == "🚀 Short-Form Market Broadcast":
-                            dictate_sys = (
-                                f"You are the executive ghostwriter for Mr. Humphrey, Founder & CEO of Humphrey Virtual Farm. "
-                                f"Write a high-impact, authoritative LinkedIn post based on the user's talking points. "
-                                f"Tone: {tone_style}. Keep it concise, punchy, formatted with clean line breaks, bullet points where relevant, "
-                                f"and strong strategic hashtags at the end (#AgTech #SovereignAI #HumphreyVirtualFarm #AutonomousFarming #PrecisionAg)."
-                            )
-                        else:
-                            dictate_sys = (
-                                f"You are the executive ghostwriter for Mr. Humphrey, Founder & CEO of Humphrey Virtual Farm. "
-                                f"Write a comprehensive, publication-ready LinkedIn Article / Long-Form Essay based on the talking points. "
-                                f"Tone: {tone_style}. Include: An Attention-Grabbing Headline, Executive Summary, 3 Core Strategic Pillars with deep technical/business substance, "
-                                f"The Humphrey Virtual Farm Advantage (Universal Drone Vision, On-Premise Privacy), and a powerful Call-to-Action for partners/investors/members. Include strategic hashtags."
-                            )
+                    with st.spinner("⚡ Structuring verified factual release (Zero Hallucination Mode)..."):
+                        dictate_sys = f"""
+You are the executive ghostwriter for Jeffery Humphrey, Founder & CEO of Humphrey Virtual Farm.
+{STRICT_GROUND_RULES}
+
+INSTRUCTIONS FOR GENERATION:
+1. Tone: {tone_style}. Write strictly based on the user's prompt and our REAL architecture.
+2. DO NOT invent fake numbers, trial results, percentages, or audits.
+3. If writing a Short Broadcast: Make it punchy, direct, and under 250 words.
+4. If writing a Long Article: Organize with clean markdown headers (# Headline, ## Executive Summary, ## Core Pillars, ## Call to Action).
+5. Always end with:
+Founder & CEO: Jeffery Humphrey
+Contact: humphreyvirtualfarm@gmail.com
+GitHub: https://github.com/humphreyvirtualfarm
+Hashtags: #AgTech #SovereignAI #JefferyHumphrey #HumphreyVirtualFarm #PrecisionFarming
+"""
 
                         if is_online and groq_client:
                             try:
                                 res = groq_client.chat.completions.create(
                                     model=CLOUD_MODEL,
                                     messages=[{"role": "system", "content": dictate_sys}, {"role": "user", "content": dictated_prompt.strip()}],
-                                    temperature=0.3
+                                    temperature=0.0
                                 )
-                                draft_text = res.choices[0].message.content.strip()
+                                raw_draft = res.choices[0].message.content.strip()
+                                draft_text = sanitize_deterministic_output(raw_draft)
                             except Exception as e:
                                 draft_text = f"Neural synthesis fault: {str(e)}"
                         else:
                             ollama_dictate_payload = [{"role": "system", "content": dictate_sys}, {"role": "user", "content": dictated_prompt.strip()}]
-                            draft_text = query_local_ollama_chat(ollama_dictate_payload)
+                            raw_draft = query_local_ollama_chat(ollama_dictate_payload)
+                            draft_text = sanitize_deterministic_output(raw_draft)
 
                         st.session_state.current_linkedin_draft = draft_text
                         st.session_state.article_draft_version += 1
                         st.rerun()
 
         with col_dict2:
-            st.markdown("#### ⚙️ LinkedIn Pipeline Health")
+            st.markdown("#### ⚙️ Pipeline Status")
             formatted_urn = format_linkedin_urn(LINKEDIN_URN) if LINKEDIN_URN else "NOT_SET"
-            token_preview = f"{LINKEDIN_TOKEN[:12]}...{LINKEDIN_TOKEN[-6:]}" if LINKEDIN_TOKEN and len(LINKEDIN_TOKEN) > 20 else "NOT_SET"
-            st.code(f"Author URN: {formatted_urn}\nToken: {token_preview}\nAPI Gateway: v2/ugcPosts (Active)\nProtocol: X-Restli-Protocol-Version: 2.0.0")
+            st.code(f"Author URN: {formatted_urn}\nZero-Hallucination: STRICT (Temp 0.0)\nFounder: Jeffery Humphrey\nEmail: {OFFICIAL_EMAIL}")
 
         st.divider()
         st.markdown("#### 📝 Live Broadcast & Article Editor")
@@ -893,9 +914,10 @@ with tab_linkedin:
         col_dep1, col_dep2 = st.columns([2, 1])
         with col_dep1:
             if st.button("🚀 Authorize & Deploy Live to LinkedIn Profile", use_container_width=True):
+                sanitized_deployment = sanitize_deterministic_output(final_post_text.strip())
                 if not LINKEDIN_TOKEN or not LINKEDIN_URN:
-                    st.error("❌ LinkedIn Access Token or Author URN missing from environment vault (.env).")
-                elif not final_post_text.strip():
+                    st.error("❌ LinkedIn credentials missing from .env.")
+                elif not sanitized_deployment:
                     st.warning("Cannot deploy an empty broadcast.")
                 else:
                     with st.spinner("📡 Broadcasting to LinkedIn UGC Gateway..."):
@@ -911,7 +933,7 @@ with tab_linkedin:
                             "lifecycleState": "PUBLISHED",
                             "specificContent": {
                                 "com.linkedin.ugc.ShareContent": {
-                                    "shareCommentary": {"text": final_post_text.strip()},
+                                    "shareCommentary": {"text": sanitized_deployment},
                                     "shareMediaCategory": "NONE"
                                 }
                             },
@@ -926,29 +948,27 @@ with tab_linkedin:
                                 cur = conn.cursor()
                                 cur.execute(
                                     "INSERT INTO linkedin_broadcast_history (post_content, response_status, urn_identifier, triggered_by) VALUES (?, 'SUCCESS', ?, ?)",
-                                    (final_post_text.strip()[:200], clean_urn, current_name)
+                                    (sanitized_deployment[:200], clean_urn, current_name)
                                 )
                                 conn.commit()
                                 conn.close()
-                                st.success(f"🎉 **Live Deployment Confirmed!**\nLinkedIn UGC Post ID: `{post_id}`")
+                                st.success(f"🎉 **Live Deployment Confirmed!**\nPost ID: `{post_id}`")
                             else:
-                                st.error(f"⚠️ LinkedIn API Rejected Request (HTTP {resp.status_code}):\n`{resp.text}`")
+                                st.error(f"⚠️ LinkedIn API Error (HTTP {resp.status_code}):\n`{resp.text}`")
                         except Exception as err:
                             st.error(f"Deployment transmission error: {str(err)}")
 
         with col_dep2:
             if st.button("📋 Copy Text to Clipboard", use_container_width=True):
-                st.info("Text is selected in the editor above. Press `Ctrl+C` to copy.")
+                st.info("Text selected above. Press `Ctrl+C` to copy.")
     else:
-        st.subheader("📡 LinkedIn Thought Leadership & Broadcast Channel")
-        st.markdown("Official corporate broadcasts from Humphrey Virtual Farm leadership.")
-        st.info("🔒 Executive Article Dictation & Live Deployment Gateway is reserved for Master Platform CEO.")
+        st.subheader("📡 LinkedIn Broadcast Channel")
+        st.info("🔒 Executive Article Dictation is reserved for Master Platform CEO.")
 
 with tab_weather:
     st.subheader("🚨 NOAA Emergency Weather & Live Radar Sentinel")
     st.components.v1.iframe("https://radar.weather.gov/", height=450, scrolling=True)
 
-# --- TAB 4: FARM DIAGNOSTICS & UNIVERSAL DRONE RECONNAISSANCE ---
 with tab_farm:
     st.subheader("🌾 Humphrey Virtual Farm | Universal Aerial Reconnaissance & Agronomy")
     st.markdown("Live low-latency video feed supporting **DJI, Autel, Skydio, and Custom RTMP/RTSP** commercial drones.")
@@ -992,7 +1012,7 @@ with tab_farm:
             </div>
             """
             st.components.v1.html(stream_html, height=470)
-            st.caption("🛡️ *Encrypted Spectator Stream Active. Network ingestion keys redacted.*")
+            st.caption("🛡️ *Encrypted Spectator Stream Active.*")
         
         else:
             st.markdown("### 🔒 Sovereign Aerial Reconnaissance Gateway")
@@ -1042,7 +1062,6 @@ with tab_farm:
         else:
             st.info("🔒 Sensor telemetry transmission is reserved for authenticated accounts.")
 
-# --- TAB 5: SYSTEM OVERVIEW & COMMERCIAL PRICING HUB ---
 with tab_overview:
     st.subheader("💳 Commercial Subscriptions & Sovereign Feature Directory")
     st.markdown(f"Humphrey Virtual Farm Commercial Platform. Active Role: **{current_name}** (`{current_role}`)")
@@ -1178,8 +1197,8 @@ Predictive Topic Memories: {topic_count}
 Unused License Keys      : {unused_keys}
 Encrypted Comm Records   : {msg_count}
 --------------------------------------------------------------------------
-Local Neural Engine      : Ollama REST API (Port 11434) -> llama3:8b (Predictive Chat)
-Cloud Fast Link          : Groq API (TLS 1.3) -> openai/gpt-oss-120b (Predictive Chat)
+Local Neural Engine      : Ollama REST API (Port 11434) -> llama3:8b (Deterministic Chat)
+Cloud Fast Link          : Groq API (TLS 1.3) -> openai/gpt-oss-120b (Deterministic Chat)
 Universal Drone Ingest   : MediaMTX (Port 1935 RTMP / 8554 RTSP) -> rtmp://192.168.1.175:1935/live/stream
 Drone WebRTC Streaming   : MediaMTX (Port 8889) -> http://192.168.1.175:8889/live/stream
 Supported Drone Ecosystem: DJI (Air 3S, Mavic, Matrice), Autel EVO, Skydio, Custom PX4
@@ -1190,7 +1209,7 @@ Weather Oracle Base      : NOAA REST API (Lat: {DEFAULT_LAT}, Lon: {DEFAULT_LON}
 
     with st.expander("🏛️ [PILLAR 1]: The Humphrey Virtual Farm Manifesto & Sovereign AI Mission", expanded=False):
         st.markdown("""
-        **Humphrey Virtual Farm (HVF)** is an on-premise, air-gapped agtech ecosystem engineered to liberate agricultural producers from centralized Big Ag cloud lock-in. 
+        **Humphrey Virtual Farm (HVF)** is an on-premise, air-gapped agtech ecosystem engineered by Founder & CEO **Jeffery Humphrey** to liberate agricultural producers from centralized Big Ag cloud lock-in. 
         
         * **100% On-Premise Compute Sovereignty:** All neural inference, telemetry databases, and drone photogrammetry execute locally on physical hardware.
         * **Dual-Engine Operational Continuity:** Operates with zero degradation during complete offline blackout or severe grid outages.
@@ -1224,19 +1243,18 @@ Weather Oracle Base      : NOAA REST API (Lat: {DEFAULT_LAT}, Lon: {DEFAULT_LON}
 
     with st.expander("📰 [PILLAR 6]: LinkedIn Executive Article & Thought Leadership Hub", expanded=False):
         st.markdown("""
-        * **Executive Dictation:** Ghostwrites articles and market releases in visionary CEO, SME, or Agronomist tones.
+        * **Executive Dictation:** Ghostwrites articles and market releases in visionary CEO, SME, or Agronomist tones for Founder **Jeffery Humphrey**.
         * **Direct Deployment:** Dispatches posts live to LinkedIn using official OAuth UGC API endpoints.
         """)
 
     with st.expander("🔐 [PILLAR 7]: Cryptographic Vault, User Isolation & 4-Tier Security Matrix", expanded=False):
         st.markdown("""
-        * **Level 4: Master CEO (You):** Root infrastructure, hardware topology, global key provisioning, and LinkedIn broadcasting.
+        * **Level 4: Master CEO (Jeffery Humphrey):** Root infrastructure, hardware topology, global key provisioning, and LinkedIn broadcasting.
         * **Level 3: Enterprise Client CEO:** Company executive AI, staff key issuance, farm financial models, and full drone telemetry.
         * **Level 2: Authorized / Trial Member:** Private encrypted assistant, spectator drone stream, and field sensor logging.
         * **Level 1: Public Guest:** Commercial showcase, safety protocols, and 3-Day Trial onboarding.
         """)
 
-# --- TAB 6: PILOT FEEDBACK & OPERATOR REVIEW HUB ---
 with tab_feedback:
     st.subheader("📝 Open Market Pilot Feedback & Operator Reviews")
     st.markdown("We value direct operator telemetry. Share your field experience with Humphrey Virtual Farm leadership.")
@@ -1278,7 +1296,7 @@ with tab_feedback:
                 st.warning("Please enter your feedback comments before submitting.")
             else:
                 save_pilot_feedback(current_user, current_name, fb_rating, fb_acres, fb_crops, fb_text.strip(), fb_email.strip())
-                st.success("🎉 Thank you! Your review has been encrypted and delivered directly to Founder & CEO Mr. Humphrey.")
+                st.success("🎉 Thank you! Your review has been encrypted and delivered directly to Founder & CEO Jeffery Humphrey.")
 
 with tab_sandbox:
     if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO", "MEMBER", "TRIAL_MEMBER"]:
