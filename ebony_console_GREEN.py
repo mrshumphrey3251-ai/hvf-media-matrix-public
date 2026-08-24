@@ -531,66 +531,75 @@ Universal Drone Ingest   : MediaMTX (Port 1935 RTMP)
     st.markdown(f"### 📖 Sovereign Knowledge Academy & Technical Directory")
 
     with st.expander(f"🏛️ [PILLAR 1]: The {EMPIRE['FARM_NAME']} Manifesto & Sovereign Architecture", expanded=False):
-        st.markdown(f"""
-**The Strategic Problem:** Modern agriculture has been forced into absolute dependency on centralized cloud infrastructure. When rural broadband fails, the farm's digital ecosystem stops operating. Furthermore, proprietary agricultural data is routinely aggregated, analyzed, and monetized by external entities without the operator's consent.
-
-**The Sovereign Solution:** Engineered by Founder & CEO **{EMPIRE['FOUNDER_NAME']}**, this platform aggressively reclaims operational dominance.
-* **100% Air-Gapped Compute:** The architecture is designed to execute all neural inferences, telemetry processing, and video routing entirely on local, physical hardware. It requires zero external internet connection to keep the farm running.
-* **Absolute Data Ownership:** Every byte of data—from soil moisture to drone video to encrypted chat logs—is written exclusively to a localized SQLite vault on your hardware. It is mathematically impossible for third parties to scrape your proprietary yield data.
-        """)
+        st.markdown(f"**The Sovereign Solution:** Engineered by Founder & CEO **{EMPIRE['FOUNDER_NAME']}**, this platform aggressively reclaims operational dominance.\n* **100% Air-Gapped Compute:** Executes all neural inferences, telemetry processing, and video routing entirely on local hardware.\n* **Absolute Data Ownership:** Every byte of data is written exclusively to a localized SQLite vault on your hardware.")
 
     with st.expander(f"⚡ [PILLAR 2]: {EMPIRE['AI_PERSONA']} - Neural Processing & Predictive Memory", expanded=False):
-        st.markdown(f"""
-**{EMPIRE['AI_PERSONA']}** is not a standard chatbot; it is a highly specialized, dual-engine agronomic intelligence designed for maximum resilience.
-* **Cloud Fast Link (Groq - `openai/gpt-oss-120b`):** When internet is available, {EMPIRE['AI_PERSONA']} routes logic through Groq's specialized LPU (Language Processing Unit) architecture. This delivers the ultra-low latency inference critical for real-time decision-making.
-* **Sovereign Local Core (Ollama - `llama3:8b`):** If the network connection severs, the system instantly fails over to local execution via Ollama on Port 11434. The model runs entirely within your hardware's RAM/VRAM, ensuring absolute zero downtime.
-* **Persistent Entity Memory:** The AI dynamically parses your inputs, extracts key agronomic entities (e.g., crop types, field zones, drone models), and writes them to the `conversation_entity_memory` table. This provides a persistent context window across all future interactions without ever sending that data to an external provider.
-        """)
+        st.markdown(f"**{EMPIRE['AI_PERSONA']}** is a highly specialized, dual-engine agronomic intelligence.\n* **Cloud Fast Link:** `openai/gpt-oss-120b` via Groq LPU for high-speed online inference.\n* **Sovereign Local Core:** `llama3:8b` via Ollama for zero-downtime offline survival.\n* **Persistent Entity Memory:** Dynamically extracts and memorizes agronomic entities.")
 
     with st.expander("🌾 [PILLAR 3]: Universal Drone Computer Vision & Multispectral Analysis", expanded=False):
-        st.markdown("""
-To achieve total aerial dominance, the platform breaks free from proprietary drone ecosystems and centralizes all visual telemetry.
-* **Universal RTMP/RTSP Ingest:** The integrated MediaMTX engine binds to Port 1935, capable of receiving live telemetry and high-definition video from DJI, Autel, Skydio, or custom PX4 ArduPilot drones.
-* **WebRTC Ultra-Low Latency:** The ingest stream is re-muxed on-the-fly and broadcast over Port 8889 via WebRTC, delivering sub-second glass-to-glass latency directly to the operator's command deck.
-* **Green Leaf Index (GLI):** We utilize localized computer vision to calculate canopy health using visible light (RGB) spectrums without requiring expensive multispectral cameras. The formula evaluates vegetative vigor:
-$$ GLI = \\frac{2G - R - B}{2G + R + B} $$
-This allows the immediate identification of nitrogen deficiency or irrigation failure directly from the live feed.
-        """)
+        st.markdown("* **Universal RTMP/RTSP Ingest:** Capable of receiving live telemetry from DJI, Autel, Skydio, or PX4 drones.\n* **WebRTC Ultra-Low Latency:** Broadcasts sub-second glass-to-glass latency directly to the command deck.\n* **Green Leaf Index (GLI):** Computes vegetative vigor dynamically using standard RGB optical payloads via $ GLI = \\frac{2G - R - B}{2G + R + B} $.")
 
     with st.expander("📡 [PILLAR 4]: IoT Soil Mesh & Capacitance Telemetry", expanded=False):
-        st.markdown(f"""
-A farm's yield is dictated by subsurface metrics. The IoT Soil Mesh integrates ground-truth data directly into the executive dashboard.
-* **Dielectric Permittivity Sensors:** By measuring the soil's dielectric constant, the system accurately calculates Volumetric Water Content (VWC %).
-* **Actionable Thresholds:** The platform monitors Field Capacity (the maximum water the soil can hold against gravity, typically 28%-38%) and the Permanent Wilting Point (where plants can no longer extract moisture).
-* **Cryptographic Storage:** Sensor telemetry is aggregated and written into the local SQLite vault, allowing **{EMPIRE['AI_PERSONA']}** to cross-reference historical moisture levels against upcoming weather patterns to predict exact irrigation requirements.
-        """)
+        st.markdown("* **Dielectric Permittivity Sensors:** Accurately calculates Volumetric Water Content (VWC %).\n* **Actionable Thresholds:** Monitors Field Capacity and Permanent Wilting Point to manage precision irrigation schedules.\n* **Cryptographic Storage:** Aggregated and locked in the local SQLite vault.")
 
     with st.expander("🚨 [PILLAR 5]: NOAA Emergency Radar & Hazard Protocols", expanded=False):
-        st.markdown("""
-Environmental unpredictability is the highest risk factor in agriculture. The Sentinel system provides immediate tactical awareness to protect both personnel and assets.
-* **NEXRAD Doppler Overlay:** A live, interactive connection to the National Oceanic and Atmospheric Administration (NOAA) radar network. It tracks micro-cell storms, hail signatures, and severe wind shears in real-time.
-* **Hazard Containment:** The system provides instant, deterministic safety protocols for critical farm emergencies—including anhydrous ammonia leaks, high-voltage equipment strikes, and PTO driveline entanglements—ensuring operator safety is prioritized above all else.
-        """)
+        st.markdown("* **NEXRAD Doppler Overlay:** Live connection tracking micro-cell storms and severe wind shears.\n* **Hazard Containment:** Instant deterministic safety protocols for critical farm emergencies (ammonia leaks, high-voltage strikes).")
 
     with st.expander("📰 [PILLAR 6]: Executive Broadcast & Thought Leadership Engine", expanded=False):
-        st.markdown(f"""
-Market dominance requires a commanding digital presence. This engine transforms the CEO into a highly visible industry thought leader.
-* **Zero-Hallucination Dictation:** The underlying LLM is mathematically locked to a Temperature of 0.0, strictly enforcing deterministic, highly factual outputs based solely on the operator's prompt. It will never invent fake metrics, yields, or trial data.
-* **OAuth 2.0 Integration:** By leveraging the LinkedIn UGC (User Generated Content) API, the platform authenticates via a secure gateway token and URN.
-* **Direct Deployment:** The Master CEO can draft, review, and deploy professional market updates directly from the command deck without ever opening a social media browser, maintaining absolute focus on farm operations.
-        """)
+        st.markdown(f"* **Zero-Hallucination Dictation:** The LLM is mathematically locked to a Temperature of 0.0 to prevent fabricated metrics.\n* **OAuth 2.0 Integration:** Securely authenticates via LinkedIn UGC API.\n* **Direct Deployment:** Deploy professional market updates seamlessly from the command deck.")
 
     with st.expander("🔐 [PILLAR 7]: Cryptographic Vault & Security Matrix", expanded=False):
-        st.markdown("""
-Enterprise-grade security is hardcoded into the platform's DNA to protect proprietary agricultural and financial data from extraction.
-* **Key Derivation (PBKDF2):** Passwords are never stored in plain text. The system hashes credentials using SHA-256 and derives a unique encryption key using PBKDF2 with 100,000 algorithmic iterations.
-* **Symmetric Encryption (Fernet):** All private communications and field strategies are encrypted at rest in the database using the Fernet symmetric encryption protocol. Even if the physical hard drive is compromised or stolen, the data remains mathematically unreadable.
-* **Role-Based Access Control (RBAC):** 
-    * **Level 4 (Master CEO):** Total platform control, global key issuance, identity configuration.
-    * **Level 3 (Enterprise Client CEO):** Full telemetry access, staff provisioning.
-    * **Level 2 (Authorized Member):** Private encrypted workspace and spectator feeds.
-    * **Level 1 (Guest):** Restricted commercial showcase and 7-Day Pilot onboarding.
-        """)
+        st.markdown("* **Key Derivation (PBKDF2):** Passwords hashed using SHA-256 and PBKDF2 with 100,000 iterations.\n* **Symmetric Encryption (Fernet):** All private communications and data are encrypted at rest.\n* **Role-Based Access Control (RBAC):** Strict clearance hierarchy from Guest up to Master CEO.")
+
+    st.divider()
+    
+    # NEW: DYNAMIC PUBLIC REDACTION ENGINE
+    st.markdown("### 🔍 Source Code Transparency & Architectural Audit")
+    
+    if current_role in ["CEO", "SUPER_ADMIN"]:
+        st.markdown("Enterprise transparency mandates that our underlying architecture is fully auditable. Review the exact operational source code powering this node below. *(OPSEC Protocol: Sensitive IPs and Paths are masked dynamically if Demo Mode is active).*")
+    else:
+        st.markdown("Enterprise transparency mandates architectural visibility. You are viewing the **Publicly Cleared** source code. Proprietary cryptographic and routing logic has been strictly redacted.")
+        
+    target_files = ["ebony_console_GREEN.py", "Deploy_Ebony.bat", "requirements.txt", ".gitignore"]
+    
+    for file_name in target_files:
+        file_path = os.path.join(REPO_DIR, file_name)
+        if os.path.exists(file_path):
+            with st.expander(f"📄 Raw Code Review: {file_name}", expanded=False):
+                try:
+                    with open(file_path, "r", encoding="utf-8") as file_read:
+                        raw_content = file_read.read()
+                    
+                    if current_role in ["CEO", "SUPER_ADMIN"] and st.session_state.demo_mode:
+                        raw_content = re.sub(r'(?:[0-9]{1,3}\.){3}[0-9]{1,3}', '[REDACTED_LOCAL_IP]', raw_content)
+                        raw_content = re.sub(r'C:\\[^\n]*HVF_Repos[^\n]*', 'C:\\[REDACTED_VAULT_PATH]', raw_content)
+                        raw_content = raw_content.replace(DEFAULT_LAT, "[REDACTED_LAT]").replace(DEFAULT_LON, "[REDACTED_LON]")
+                        
+                    elif current_role not in ["CEO", "SUPER_ADMIN"]:
+                        # Strict Public Redaction
+                        raw_content = re.sub(r'(?:[0-9]{1,3}\.){3}[0-9]{1,3}', '[REDACTED_LOCAL_IP]', raw_content)
+                        raw_content = re.sub(r'C:\\[^\n]*HVF_Repos[^\n]*', 'C:\\[REDACTED_VAULT_PATH]', raw_content)
+                        raw_content = raw_content.replace(DEFAULT_LAT, "[REDACTED_LAT]").replace(DEFAULT_LON, "[REDACTED_LON]")
+                        
+                        # Scrub IPs
+                        raw_content = raw_content.replace("127.0.0.1", "[LOCAL_HOST_REDACTED]")
+                        
+                        # Scrub DB schema creations
+                        raw_content = re.sub(r'CREATE TABLE IF NOT EXISTS [^\)]*\)', '[DATABASE_SCHEMA_CLASSIFIED]', raw_content)
+                        
+                        # Scrub SQL Queries
+                        raw_content = re.sub(r'SELECT [^"]*', 'SELECT [PROPRIETARY_FIELDS_REDACTED] FROM [TABLE_REDACTED] ', raw_content)
+                        raw_content = re.sub(r'INSERT INTO [^"]*', 'INSERT INTO [TABLE_REDACTED] [FIELDS_REDACTED] ', raw_content)
+                        
+                        # Scrub Cryptography
+                        raw_content = raw_content.replace('Fernet', '[CLASSIFIED_CRYPTO_ENGINE]')
+                        raw_content = raw_content.replace('PBKDF2HMAC', '[CLASSIFIED_KEY_DERIVATION]')
+                        
+                    lang = "python" if file_name.endswith(".py") else "bash" if file_name.endswith(".bat") else "text"
+                    st.code(raw_content, language=lang)
+                except Exception as e:
+                    st.error(f"⚠️ Transparency Engine Fault: Cannot parse {file_name}. Reason: {e}")
 
 with tab_feedback:
     st.subheader("📝 Open Market Pilot Feedback Hub")
