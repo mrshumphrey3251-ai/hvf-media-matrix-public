@@ -482,7 +482,7 @@ with tab_farm:
         
         c_vid, c_inst = st.columns([1.5, 1])
         with c_vid:
-            st.components.v1.html('<iframe width="100%" height="315" src="https://www.youtube-nocookie.com/embed/uK1z7nIqWjQ?rel=0&modestbranding=1&loop=1&playlist=uK1z7nIqWjQ&disablekb=1&fs=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px;"></iframe>', height=325)
+            st.markdown('<iframe width="100%" height="315" src="https://www.youtube-nocookie.com/embed/uK1z7nIqWjQ?rel=0&modestbranding=1&loop=1&playlist=uK1z7nIqWjQ&disablekb=1&fs=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px;"></iframe>', unsafe_allow_html=True)
             st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
         
         with c_inst:
@@ -608,7 +608,7 @@ The platform will launch as a full-screen native app, bypassing the Google Play 
     
     st.markdown("### 🔍 Source Code Transparency & Architectural Audit")
     
-    is_master_founder = (current_name == "Jeffery Humphrey")
+    is_master_founder = (current_name and current_name.strip().title() == "Jeffery Humphrey")
     
     if is_master_founder:
         st.markdown("👑 **Master CEO Clearance Acknowledged.** You have unrestricted access to the raw architecture. *(OPSEC Protocol: Sensitive IPs and Paths are masked dynamically if Demo Mode is active).*")
@@ -665,6 +665,7 @@ with tab_feedback:
             else:
                 save_pilot_feedback(current_user, current_name, fb_rating, "", "", fb_text, "")
                 st.success("Review Submitted. Commercial tiers unlocked in Tab 5.")
+                st.rerun()
 
 with tab_sandbox:
     if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO", "MEMBER", "TRIAL_MEMBER"]:
