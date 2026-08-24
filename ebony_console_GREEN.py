@@ -61,61 +61,14 @@ def ensure_db_schema():
     """)
     cur.execute("PRAGMA table_info(system_users)")
     cols = [col[1] for col in cur.fetchall()]
-    if "company_id" not in cols:
-        cur.execute("ALTER TABLE system_users ADD COLUMN company_id TEXT DEFAULT 'HVF_MAIN'")
-    if "trial_expires_at" not in cols:
-        cur.execute("ALTER TABLE system_users ADD COLUMN trial_expires_at TIMESTAMP")
+    if "company_id" not in cols: cur.execute("ALTER TABLE system_users ADD COLUMN company_id TEXT DEFAULT 'HVF_MAIN'")
+    if "trial_expires_at" not in cols: cur.execute("ALTER TABLE system_users ADD COLUMN trial_expires_at TIMESTAMP")
 
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS encrypted_user_comms (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            role TEXT NOT NULL,
-            encrypted_content TEXT NOT NULL,
-            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS member_invite_keys (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            invite_code TEXT UNIQUE NOT NULL,
-            issued_by TEXT NOT NULL,
-            grant_role TEXT NOT NULL DEFAULT 'MEMBER',
-            is_used INTEGER DEFAULT 0,
-            used_by TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS pilot_feedback_vault (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            full_name TEXT NOT NULL,
-            rating INTEGER NOT NULL,
-            farm_size_acres TEXT,
-            primary_crops TEXT,
-            feedback_text TEXT NOT NULL,
-            contact_email TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS conversation_entity_memory (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            topic_key TEXT NOT NULL,
-            entity_summary TEXT NOT NULL,
-            last_context TEXT NOT NULL,
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            UNIQUE(username, topic_key)
-        )
-    """)
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS empire_config (
-            config_key TEXT PRIMARY KEY,
-            config_value TEXT NOT NULL
-        )
-    """)
+    cur.execute("CREATE TABLE IF NOT EXISTS encrypted_user_comms (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, role TEXT NOT NULL, encrypted_content TEXT NOT NULL, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+    cur.execute("CREATE TABLE IF NOT EXISTS member_invite_keys (id INTEGER PRIMARY KEY AUTOINCREMENT, invite_code TEXT UNIQUE NOT NULL, issued_by TEXT NOT NULL, grant_role TEXT NOT NULL DEFAULT 'MEMBER', is_used INTEGER DEFAULT 0, used_by TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+    cur.execute("CREATE TABLE IF NOT EXISTS pilot_feedback_vault (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, full_name TEXT NOT NULL, rating INTEGER NOT NULL, farm_size_acres TEXT, primary_crops TEXT, feedback_text TEXT NOT NULL, contact_email TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+    cur.execute("CREATE TABLE IF NOT EXISTS conversation_entity_memory (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, topic_key TEXT NOT NULL, entity_summary TEXT NOT NULL, last_context TEXT NOT NULL, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, UNIQUE(username, topic_key))")
+    cur.execute("CREATE TABLE IF NOT EXISTS empire_config (config_key TEXT PRIMARY KEY, config_value TEXT NOT NULL)")
     conn.commit()
     conn.close()
 
@@ -138,15 +91,7 @@ def get_empire_config():
 def update_empire_config(farm_name, founder, persona, email):
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
-    cur.executemany("""
-        INSERT INTO empire_config (config_key, config_value) VALUES (?, ?)
-        ON CONFLICT(config_key) DO UPDATE SET config_value=excluded.config_value
-    """, [
-        ("FARM_NAME", farm_name),
-        ("FOUNDER_NAME", founder),
-        ("AI_PERSONA", persona),
-        ("CONTACT_EMAIL", email)
-    ])
+    cur.executemany("INSERT INTO empire_config (config_key, config_value) VALUES (?, ?) ON CONFLICT(config_key) DO UPDATE SET config_value=excluded.config_value", [("FARM_NAME", farm_name), ("FOUNDER_NAME", founder), ("AI_PERSONA", persona), ("CONTACT_EMAIL", email)])
     conn.commit()
     conn.close()
 
@@ -159,22 +104,13 @@ CRITICAL NON-NEGOTIABLE GROUND TRUTH:
 3. YOUR IDENTITY: You are {EMPIRE["AI_PERSONA"]}, the sovereign AI platform.
 4. CONTACT EMAIL: {EMPIRE["CONTACT_EMAIL"]} ONLY.
 5. ABSOLUTE BAN ON FABRICATED DATA: Never invent fake benchmark percentages, fake field trials, fake audits, or fake VC funding rounds.
-6. WHAT WE ACTUALLY PROVIDE (REALITY):
-   - Universal Drone Video Ingest: Connects any commercial drone (DJI, Autel, Skydio, Custom RTMP) via RTMP (port 1935).
-   - Real-Time Green Leaf Index (GLI).
-   - Dual-Engine AI Architecture: Groq Cloud AI when online, instant zero-latency failover to local Ollama (port 11434).
-   - Encrypted Vault: PBKDF2/Fernet encrypted local database.
+6. WHAT WE ACTUALLY PROVIDE (REALITY): Universal Drone Video Ingest, Real-Time Green Leaf Index (GLI), Dual-Engine AI Architecture, Encrypted Vault.
 """
 
 def sanitize_deterministic_output(raw_text: str) -> str:
-    if not raw_text:
-        return raw_text
+    if not raw_text: return raw_text
     text = raw_text
-    vc_patterns = [
-        r"(?i)\$?\d+(\.\d+)?\s*(M|million|B|billion)\s*(in\s+)?(seed\s*(&|and)\s*)?(series[\s-]?[a-z]|venture\s+capital|funding|investment\s+round)",
-        r"(?i)secured\s+\$?\d+[\d,]*\s*(million|M)\s+in\s+funding"
-    ]
-    for pattern in vc_patterns:
+    for pattern in [r"(?i)\$?\d+(\.\d+)?\s*(M|million|B|billion)\s*(in\s+)?(seed\s*(&|and)\s*)?(series[\s-]?[a-z]|venture\s+capital|funding|investment\s+round)"]:
         text = re.sub(pattern, "sovereign, self-funded agricultural architecture", text)
     return text
 
@@ -183,38 +119,31 @@ def derive_user_cipher(password: str, username: str) -> Fernet:
     kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=100000)
     return Fernet(base64.urlsafe_b64encode(kdf.derive(password.encode("utf-8"))))
 
-def hash_password(pwd: str) -> str:
-    return hashlib.sha256(pwd.encode('utf-8')).hexdigest()
+def hash_password(pwd: str) -> str: return hashlib.sha256(pwd.encode('utf-8')).hexdigest()
 
 def verify_user(username: str, pwd_raw: str):
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
-    cur.execute("SELECT username, full_name, role, status, trial_expires_at FROM system_users WHERE username=? AND password_hash=?", 
-                (username.strip().lower(), hash_password(pwd_raw)))
+    cur.execute("SELECT username, full_name, role, status, trial_expires_at FROM system_users WHERE username=? AND password_hash=?", (username.strip().lower(), hash_password(pwd_raw)))
     user = cur.fetchone()
     conn.close()
-    if not user:
-        return None, "Invalid Username or Password."
+    if not user: return None, "Invalid Username or Password."
     if user[2] == "TRIAL_MEMBER" and user[4]:
         try:
-            exp_date = datetime.strptime(user[4], "%Y-%m-%d %H:%M:%S")
-            if datetime.now() > exp_date:
-                return user, "TRIAL_EXPIRED"
-        except Exception:
-            pass
+            if datetime.now() > datetime.strptime(user[4], "%Y-%m-%d %H:%M:%S"): return user, "TRIAL_EXPIRED"
+        except: pass
     return user, "OK"
 
-def register_3day_trial(username: str, pwd_raw: str, full_name: str, farm_info: str):
+def register_7day_trial(username: str, pwd_raw: str, full_name: str, farm_info: str):
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     cur.execute("SELECT id FROM system_users WHERE username=?", (username.strip().lower(),))
     if cur.fetchone():
         conn.close()
         return False, "Username already registered."
-    expires_at = (datetime.now() + timedelta(days=3)).strftime("%Y-%m-%d %H:%M:%S")
+    expires_at = (datetime.now() + timedelta(days=7)).strftime("%Y-%m-%d %H:%M:%S")
     try:
-        cur.execute("INSERT INTO system_users (username, password_hash, full_name, role, company_id, status, trial_expires_at) VALUES (?, ?, ?, 'TRIAL_MEMBER', ?, 'APPROVED', ?)",
-                    (username.strip().lower(), hash_password(pwd_raw), full_name.strip(), farm_info.strip(), expires_at))
+        cur.execute("INSERT INTO system_users (username, password_hash, full_name, role, company_id, status, trial_expires_at) VALUES (?, ?, ?, 'TRIAL_MEMBER', ?, 'APPROVED', ?)", (username.strip().lower(), hash_password(pwd_raw), full_name.strip(), farm_info.strip(), expires_at))
         conn.commit()
         conn.close()
         return True, f"🎉 Pilot Activated! Full member access granted until {expires_at}."
@@ -227,16 +156,11 @@ def register_user_with_invite(username: str, pwd_raw: str, full_name: str, invit
     cur = conn.cursor()
     cur.execute("SELECT id, grant_role, is_used FROM member_invite_keys WHERE invite_code=?", (invite_code.strip().upper(),))
     token_row = cur.fetchone()
-    if not token_row:
-        conn.close()
-        return False, "Invalid Invite Code."
-    if token_row[2] == 1:
-        conn.close()
-        return False, "Invite code already used."
+    if not token_row: return False, "Invalid Invite Code."
+    if token_row[2] == 1: return False, "Invite code already used."
     assigned_role = token_row[1] if token_row[1] else "MEMBER"
     try:
-        cur.execute("INSERT INTO system_users (username, password_hash, full_name, role, status) VALUES (?, ?, ?, ?, 'APPROVED')",
-                    (username.strip().lower(), hash_password(pwd_raw), full_name.strip(), assigned_role))
+        cur.execute("INSERT INTO system_users (username, password_hash, full_name, role, status) VALUES (?, ?, ?, ?, 'APPROVED')", (username.strip().lower(), hash_password(pwd_raw), full_name.strip(), assigned_role))
         cur.execute("UPDATE member_invite_keys SET is_used=1, used_by=? WHERE id=?", (username.strip().lower(), token_row[0]))
         conn.commit()
         conn.close()
@@ -246,8 +170,7 @@ def register_user_with_invite(username: str, pwd_raw: str, full_name: str, invit
         return False, str(e)
 
 def generate_invite_token(issued_by: str, target_role: str = "MEMBER") -> str:
-    prefix = "EMP-CORP" if target_role == "CLIENT_CEO" else "EMP-VIP"
-    token = f"{prefix}-{secrets.token_hex(3).upper()}"
+    token = f"{'EMP-CORP' if target_role == 'CLIENT_CEO' else 'EMP-VIP'}-{secrets.token_hex(3).upper()}"
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     cur.execute("INSERT INTO member_invite_keys (invite_code, issued_by, grant_role, is_used) VALUES (?, ?, ?, 0)", (token, issued_by, target_role))
@@ -256,19 +179,14 @@ def generate_invite_token(issued_by: str, target_role: str = "MEMBER") -> str:
     return token
 
 def load_all_entity_memories(username: str) -> str:
-    if not username:
-        return ""
+    if not username: return ""
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     cur.execute("SELECT topic_key, entity_summary, last_context FROM conversation_entity_memory WHERE username=? ORDER BY updated_at DESC LIMIT 8", (username,))
     rows = cur.fetchall()
     conn.close()
-    if not rows:
-        return ""
-    memory_block = "\n[PERSISTENT KNOWLEDGE BASE]:\n"
-    for r in rows:
-        memory_block += f"- Topic: {r[0]} | Key Facts: {r[1]} | Context: {r[2]}\n"
-    return memory_block
+    if not rows: return ""
+    return "\n[PERSISTENT KNOWLEDGE BASE]:\n" + "".join([f"- Topic: {r[0]} | Key Facts: {r[1]} | Context: {r[2]}\n" for r in rows])
 
 def store_entity_memory_async(username: str, user_prompt: str, bot_response: str):
     if not username or len(user_prompt.strip()) < 5: return
@@ -277,23 +195,13 @@ def store_entity_memory_async(username: str, user_prompt: str, bot_response: str
     keywords = [w for w in words if w not in stopwords]
     if not keywords: return
     topic_key = " ".join(keywords[:4]).title()
-    summary = user_prompt.strip()[:180]
-    last_context = bot_response.strip()[:240].replace("\n", " ")
     try:
         conn = sqlite3.connect(DB_PATH)
         cur = conn.cursor()
-        cur.execute("""
-            INSERT INTO conversation_entity_memory (username, topic_key, entity_summary, last_context, updated_at)
-            VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
-            ON CONFLICT(username, topic_key) DO UPDATE SET
-                entity_summary = excluded.entity_summary,
-                last_context = excluded.last_context,
-                updated_at = CURRENT_TIMESTAMP
-        """, (username, topic_key, summary, last_context))
+        cur.execute("INSERT INTO conversation_entity_memory (username, topic_key, entity_summary, last_context, updated_at) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP) ON CONFLICT(username, topic_key) DO UPDATE SET entity_summary = excluded.entity_summary, last_context = excluded.last_context, updated_at = CURRENT_TIMESTAMP", (username, topic_key, user_prompt.strip()[:180], bot_response.strip()[:240].replace("\n", " ")))
         conn.commit()
         conn.close()
-    except:
-        pass
+    except: pass
 
 def load_encrypted_messages(username: str, cipher: Fernet):
     if not username or not cipher: return []
@@ -305,37 +213,34 @@ def load_encrypted_messages(username: str, cipher: Fernet):
     decrypted = []
     for r in rows:
         try:
-            raw_msg = cipher.decrypt(r[1].encode("utf-8")).decode("utf-8")
-            decrypted.append({"role": r[0], "content": sanitize_deterministic_output(raw_msg)})
-        except:
-            pass
+            decrypted.append({"role": r[0], "content": sanitize_deterministic_output(cipher.decrypt(r[1].encode("utf-8")).decode("utf-8"))})
+        except: pass
     return decrypted
 
 def save_encrypted_message(username: str, role: str, content: str, cipher: Fernet):
     if not username or not cipher: return
-    sanitized = sanitize_deterministic_output(content)
-    blob = cipher.encrypt(sanitized.encode("utf-8")).decode("utf-8")
+    blob = cipher.encrypt(sanitize_deterministic_output(content).encode("utf-8")).decode("utf-8")
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     cur.execute("INSERT INTO encrypted_user_comms (username, role, encrypted_content) VALUES (?, ?, ?)", (username, role, blob))
     conn.commit()
     conn.close()
 
-def delete_user_history(username: str):
-    if not username: return
+def save_pilot_feedback(username: str, full_name: str, rating: int, acres: str, crops: str, feedback: str, email: str):
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
-    cur.execute("DELETE FROM encrypted_user_comms WHERE username=?", (username,))
-    cur.execute("DELETE FROM conversation_entity_memory WHERE username=?", (username,))
+    cur.execute("INSERT INTO pilot_feedback_vault (username, full_name, rating, farm_size_acres, primary_crops, feedback_text, contact_email) VALUES (?, ?, ?, ?, ?, ?, ?)", (username or "anonymous", full_name or "Guest Operator", rating, acres, crops, feedback, email))
     conn.commit()
     conn.close()
 
-def format_linkedin_urn(raw_urn: str) -> str:
-    if not raw_urn: return ""
-    clean = raw_urn.strip().strip('"').strip("'")
-    if clean.startswith("urn:li:member:") or clean.startswith("urn:li:person:") or clean.startswith("urn:li:organization:"): return clean
-    if clean.isdigit(): return f"urn:li:person:{clean}"
-    return clean
+def generate_qr_image(url: str):
+    qr = qrcode.QRCode(version=1, box_size=4, border=2)
+    qr.add_data(url)
+    qr.make(fit=True)
+    buf = io.BytesIO()
+    qr.make_image(fill_color="#00FF66", back_color="#0c1118").save(buf, format="PNG")
+    buf.seek(0)
+    return buf
 
 @st.cache_resource
 def get_tailscale_or_local_ip_cached() -> str:
@@ -378,8 +283,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-if "user_session" not in st.session_state:
-    st.session_state.user_session = {"authenticated": False, "username": None, "full_name": "Public Guest", "role": "GUEST", "cipher": None, "trial_expires_at": None}
+if "user_session" not in st.session_state: st.session_state.user_session = {"authenticated": False, "username": None, "full_name": "Public Guest", "role": "GUEST", "cipher": None, "trial_expires_at": None}
 if "screen_wiped" not in st.session_state: st.session_state.screen_wiped = False
 if "confirm_delete" not in st.session_state: st.session_state.confirm_delete = False
 if "operation_mode" not in st.session_state: st.session_state.operation_mode = "🟢 Online (Cloud Fast Link)"
@@ -393,7 +297,6 @@ current_name = st.session_state.user_session["full_name"]
 current_role = st.session_state.user_session["role"]
 current_cipher = st.session_state.user_session["cipher"]
 current_trial_exp = st.session_state.user_session.get("trial_expires_at")
-
 groq_client = Groq(api_key=GROQ_KEY) if GROQ_KEY else None
 
 def query_local_ollama_chat(messages_payload: list) -> str:
@@ -403,7 +306,7 @@ def query_local_ollama_chat(messages_payload: list) -> str:
         return f"⚠️ Local Node returned HTTP {res.status_code}."
     except: return "⚠️ Local Engine fault."
 
-# --- SIDEBAR & DEMO SECURITY ---
+# --- SIDEBAR ---
 with st.sidebar:
     st.header("🛡️ Presentation OPSEC")
     is_demo_mode = st.toggle("Activate Demo Mode (Mask Secrets)", value=st.session_state.demo_mode)
@@ -428,14 +331,21 @@ with st.sidebar:
         if st.button("🚪 Disconnect Session", use_container_width=True):
             st.session_state.user_session = {"authenticated": False, "username": None, "full_name": "Public Guest", "role": "GUEST", "cipher": None, "trial_expires_at": None}
             st.rerun()
+            
         if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO"]:
+            st.divider()
+            st.header("📲 Swarm Uplink")
+            st.caption(f"Scan to access node:\n`{mask_secret(UPLINK_URL, 'URL')}`")
+            if not st.session_state.demo_mode: st.image(generate_qr_image(UPLINK_URL), width=180)
+            else: st.info("QR Code hidden during Demo Mode.")
+            
             st.divider()
             if st.button("⚡ Issue Team VIP Code"):
                 if st.session_state.demo_mode: st.warning("Blocked in Demo Mode.")
                 else: st.success(f"Staff Key: `{generate_invite_token(current_user, 'MEMBER')}`")
     else:
         st.info("👤 **Guest Mode**")
-        auth_mode = st.radio("Access Portal:", ["Sign In", "🚀 Free 3-Day Pilot"], horizontal=False)
+        auth_mode = st.radio("Access Portal:", ["Sign In", "🚀 Free 7-Day Pilot"], horizontal=False)
         if auth_mode == "Sign In":
             login_user = st.text_input("Username:")
             login_pass = st.text_input("Password:", type="password")
@@ -444,21 +354,32 @@ with st.sidebar:
                 if user_match and status_msg == "OK":
                     st.session_state.user_session = {"authenticated": True, "username": user_match[0], "full_name": user_match[1], "role": user_match[2], "cipher": derive_user_cipher(login_pass, user_match[0]), "trial_expires_at": user_match[4]}
                     st.rerun()
+                elif status_msg == "TRIAL_EXPIRED": st.error("⏳ Your 7-Day Market Pilot has concluded. Please subscribe to continue.")
                 else: st.error(status_msg)
         else:
             t_fn = st.text_input("Full Name:")
             t_farm = st.text_input("Farm Name:")
             t_u = st.text_input("Create Username:")
             t_p = st.text_input("Create Password:", type="password")
-            if st.button("Launch Pilot"):
-                ok, msg = register_3day_trial(t_u, t_p, t_fn, t_farm)
+            if st.button("Launch 7-Day Pilot"):
+                ok, msg = register_7day_trial(t_u, t_p, t_fn, t_farm)
                 if ok: st.success(msg)
                 else: st.error(msg)
 
 st.title(f"⚡ {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
 st.caption(f"Active User: **{current_name}** | 🛡️ *Mode: {st.session_state.operation_mode}*")
 
-tab_chat, tab_linkedin, tab_farm, tab_overview = st.tabs(["💬 Sovereign Command", "📡 LinkedIn Engine", "🌾 Drone Diagnostics", "📖 Empire Configuration"])
+# RE-ESTABLISHED FULL 8-TAB MATRIX
+tab_chat, tab_linkedin, tab_weather, tab_farm, tab_overview, tab_feedback, tab_sandbox, tab_empire = st.tabs([
+    "💬 Sovereign Command", 
+    "📡 LinkedIn Engine", 
+    "🚨 NOAA Radar",
+    "🌾 Drone Diagnostics", 
+    "📖 System Overview",
+    "📝 Feedback Hub",
+    "🧪 Sandbox",
+    "⚙️ Empire Config"
+])
 
 with tab_chat:
     if current_user and current_cipher:
@@ -489,8 +410,7 @@ with tab_chat:
                 res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=conversation_payload, temperature=0.0)
                 bot_reply = sanitize_deterministic_output(res.choices[0].message.content)
             except Exception as e: bot_reply = f"Cloud fault: {str(e)}"
-        else:
-            bot_reply = query_local_ollama_chat(conversation_payload)
+        else: bot_reply = query_local_ollama_chat(conversation_payload)
         
         if current_user and current_cipher:
             save_encrypted_message(current_user, "assistant", bot_reply, current_cipher)
@@ -501,26 +421,68 @@ with tab_chat:
 
 with tab_linkedin:
     if current_role in ["CEO", "SUPER_ADMIN"]:
+        st.subheader("📡 Executive Broadcast Engine")
         dictated_prompt = st.text_area("Dictate LinkedIn Concept:")
         if st.button("🤖 Generate Factual Draft"):
             sys_msg = f"You are ghostwriting for {EMPIRE['FOUNDER_NAME']}, CEO of {EMPIRE['FARM_NAME']}. Strict factual accuracy."
             if is_online:
                 res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=[{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}], temperature=0.0)
                 st.session_state.current_linkedin_draft = sanitize_deterministic_output(res.choices[0].message.content.strip())
-            else:
-                st.session_state.current_linkedin_draft = query_local_ollama_chat([{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}])
+            else: st.session_state.current_linkedin_draft = query_local_ollama_chat([{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}])
             st.rerun()
         st.text_area("Review Editor:", value=st.session_state.current_linkedin_draft, height=200)
+
+with tab_weather:
+    st.subheader("🚨 NOAA Emergency Weather & Live Radar Sentinel")
+    st.components.v1.iframe("https://radar.weather.gov/", height=450, scrolling=True)
 
 with tab_farm:
     st.subheader(f"🌾 {EMPIRE['FARM_NAME']} | Aerial Ingest")
     st.components.v1.html(f'<iframe src="{WEBRTC_STREAM_URL}" width="100%" height="450" frameborder="0" allowfullscreen></iframe>', height=470)
 
 with tab_overview:
+    st.subheader("💳 Commercial Subscriptions & Features")
+    col_p1, col_p2, col_p3, col_p4 = st.columns(4)
+    with col_p1:
+        st.markdown(f'<div class="pricing-card"><div class="pricing-tier">🌱 PERSONAL</div><div class="pricing-price">$19.99<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Single-User Node<br>✔ Dual-Engine AI<br>✔ Encrypted Vault</p></div>', unsafe_allow_html=True)
+        st.link_button("🌱 Personal ($19.99/mo)", STRIPE_PERSONAL_LINK, use_container_width=True)
+    with col_p2:
+        st.markdown(f'<div class="pricing-card"><div class="pricing-tier">💎 VIP MEMBER</div><div class="pricing-price">$249<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Everything in Personal<br>✔ Drone Spectator<br>✔ GLI Analytics</p></div>', unsafe_allow_html=True)
+        st.link_button("💎 VIP ($249/mo)", STRIPE_MONTHLY_LINK, use_container_width=True)
+    with col_p3:
+        st.markdown(f'<div class="pricing-card" style="border-color:#70FF00;"><div class="pricing-tier">🏛️ ENTERPRISE CEO</div><div class="pricing-price">$2,499<span style="font-size:0.85rem;color:#8899A6;">/yr</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Client Dashboard<br>✔ Issue Staff Keys<br>✔ Multi-Ranch Yield</p></div>', unsafe_allow_html=True)
+        st.link_button("🏛️ Enterprise Annual", STRIPE_ANNUAL_LINK, use_container_width=True)
+    with col_p4:
+        st.markdown(f'<div class="pricing-card"><div class="pricing-tier">📦 HARDWARE APPLIANCE</div><div class="pricing-price">$4,950<span style="font-size:0.85rem;color:#8899A6;">setup</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Physical Server<br>✔ 100% Air-Gapped<br>✔ + $299/mo Maint.</p></div>', unsafe_allow_html=True)
+        st.link_button("📦 Order Hardware", PAYPAL_PAY_LINK, use_container_width=True)
+
+with tab_feedback:
+    st.subheader("📝 Open Market Pilot Feedback Hub")
+    if current_role in ["CEO", "SUPER_ADMIN"]:
+        conn = sqlite3.connect(DB_PATH)
+        cur = conn.cursor()
+        cur.execute("SELECT full_name, username, rating, feedback_text FROM pilot_feedback_vault ORDER BY id DESC")
+        reviews = cur.fetchall()
+        conn.close()
+        if reviews:
+            for r in reviews: st.info(f"**{r[0]} ({r[1]}) - {r[2]}/5 Stars**\n\n{r[3]}")
+        else: st.caption("No reviews yet.")
+    else:
+        fb_rating = st.slider("Rating:", 1, 5, 5)
+        fb_text = st.text_area("Feedback:")
+        if st.button("Submit Review"):
+            save_pilot_feedback(current_user, current_name, fb_rating, "", "", fb_text, "")
+            st.success("Review Submitted.")
+
+with tab_sandbox:
+    if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO", "MEMBER", "TRIAL_MEMBER"]:
+        st.subheader("🧪 Python Execution Sandbox")
+        st.code("print('⚡ Sandbox Online')")
+    else: st.warning("🔒 Sandbox restricted.")
+
+with tab_empire:
     if current_role in ["CEO", "SUPER_ADMIN"]:
         st.subheader("⚙️ Sovereign Empire Configuration (White-Label Settings)")
-        st.markdown("Customize this node's core identity. Changes apply immediately and rewrite the AI's foundational prompt.")
-        
         with st.form("empire_config_form"):
             new_farm = st.text_input("Empire / Farm Name:", value=EMPIRE["FARM_NAME"])
             new_founder = st.text_input("Master CEO / Founder Name:", value=EMPIRE["FOUNDER_NAME"])
@@ -531,5 +493,4 @@ with tab_overview:
                 update_empire_config(new_farm, new_founder, new_persona, new_email)
                 st.success(f"Identity locked. System rebranded to {new_farm} with AI {new_persona}.")
                 st.rerun()
-    else:
-        st.info("System Configuration is locked to the Master CEO.")
+    else: st.info("🔒 System Configuration is locked to the Master CEO.")
