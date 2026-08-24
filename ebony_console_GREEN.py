@@ -68,8 +68,6 @@ def sanitize_deterministic_output(raw_text: str) -> str:
     if not raw_text:
         return raw_text
     text = raw_text
-
-    # Name Sanitation
     name_patterns = [
         r"(?i)\bHumphrey\s+[A-Z]\.?\s+Miller\b",
         r"(?i)\bHumphrey\s+Miller\b",
@@ -79,8 +77,6 @@ def sanitize_deterministic_output(raw_text: str) -> str:
     ]
     for pattern in name_patterns:
         text = re.sub(pattern, OFFICIAL_FOUNDER, text)
-
-    # Email Sanitation
     email_patterns = [
         r"(?i)[a-zA-Z0-9_.+-]+@hvf\.io",
         r"(?i)[a-zA-Z0-9_.+-]+@humphreyvirtualfarm\.io",
@@ -88,15 +84,12 @@ def sanitize_deterministic_output(raw_text: str) -> str:
     ]
     for pattern in email_patterns:
         text = re.sub(pattern, OFFICIAL_EMAIL, text)
-
-    # Fabricated VC / Stats Sanitation
     vc_patterns = [
         r"(?i)\$?\d+(\.\d+)?\s*(M|million|B|billion)\s*(in\s+)?(seed\s*(&|and)\s*)?(series[\s-]?[a-z]|venture\s+capital|funding|investment\s+round)",
         r"(?i)secured\s+\$?\d+[\d,]*\s*(million|M)\s+in\s+funding"
     ]
     for pattern in vc_patterns:
         text = re.sub(pattern, "sovereign, self-funded agricultural architecture", text)
-
     return text
 
 def format_linkedin_urn(raw_urn: str) -> str:
@@ -138,7 +131,7 @@ UPLINK_URL = f"http://{ACTIVE_IP}:8501"
 WEBRTC_STREAM_URL = f"http://192.168.1.175:8889/live/stream"
 RTMP_INGEST_URL = f"rtmp://192.168.1.175:1935/live/stream"
 
-st.set_page_config(page_title="HVF Ebony | Universal Drone & Predictive AI", page_icon="⚡", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="HVF Ebony | Universal Drone & Predictive AI", page_icon="⚡", layout="wide", initial_sidebar_state="collapsed")
 
 st.markdown("""
 <style>
@@ -237,6 +230,26 @@ st.markdown("""
         color: #00FF66 !important;
         font-size: 1rem !important;
         border: 1px solid #243042 !important;
+    }
+    @media (max-width: 900px) {
+        .pricing-card {
+            min-height: auto !important;
+            margin-bottom: 16px !important;
+            padding: 14px !important;
+        }
+        div[data-testid="column"] {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+            min-width: 100% !important;
+        }
+        .stButton>button {
+            padding: 12px 16px !important;
+            font-size: 1.05rem !important;
+            width: 100% !important;
+        }
+        iframe {
+            height: 320px !important;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
@@ -534,6 +547,9 @@ if "article_draft_version" not in st.session_state:
 if "selected_drone_model" not in st.session_state:
     st.session_state.selected_drone_model = "DJI Air 3S (Reference)"
 
+if "demo_mode" not in st.session_state:
+    st.session_state.demo_mode = False
+
 if "current_linkedin_draft" not in st.session_state:
     st.session_state.current_linkedin_draft = (
         "⚡ [HVF Sovereign Intelligence Announcement]\n\n"
@@ -541,6 +557,7 @@ if "current_linkedin_draft" not in st.session_state:
         "All imagery and field analytics are computed strictly on-premise without reliance on external cloud infrastructure.\n\n"
         "#AgTech #SovereignAI #JefferyHumphrey #AutonomousFarming #PrecisionAg #HVF"
     )
+
 
 current_user = st.session_state.user_session["username"]
 current_name = st.session_state.user_session["full_name"]
@@ -568,8 +585,29 @@ def query_local_ollama_chat(messages_payload: list) -> str:
     except Exception as e:
         return f"Local Engine fault: {str(e)}"
 
-# --- SIDEBAR ---
+# --- SIDEBAR & DEMO SECURITY ---
 with st.sidebar:
+    st.header("🛡️ Presentation OPSEC")
+    is_demo_mode = st.toggle("Activate Executive Demo Mode (Mask Secrets)", value=st.session_state.demo_mode)
+    st.session_state.demo_mode = is_demo_mode
+    
+    def mask_secret(text: str, mask_type: str = "FULL") -> str:
+        if not st.session_state.demo_mode:
+            return text
+        if mask_type == "IP":
+            return "[REDACTED_IP]"
+        if mask_type == "URL":
+            return "http://[REDACTED_IP]:8501"
+        if mask_type == "URN":
+            return "urn:li:person:********"
+        if mask_type == "TOKEN":
+            return "****************************************"
+        if mask_type == "PATH":
+            return "C:\\[REDACTED_VAULT_PATH]\\hvf_memory_vault.db"
+        return "[REDACTED FOR DEMO]"
+
+    st.divider()
+    
     st.header("⚡ Operational Mode")
     mode_selection = st.radio(
         "Select Active Engine:",
@@ -639,15 +677,22 @@ with st.sidebar:
         if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO"]:
             st.divider()
             st.header("📲 Swarm Uplink")
-            st.caption(f"Scan to access node:\n`{UPLINK_URL}`")
-            qr_buf = generate_qr_image(UPLINK_URL)
-            st.image(qr_buf, width=180)
+            display_uplink = mask_secret(UPLINK_URL, "URL")
+            st.caption(f"Scan to access node:\n`{display_uplink}`")
+            if not st.session_state.demo_mode:
+                qr_buf = generate_qr_image(UPLINK_URL)
+                st.image(qr_buf, width=180)
+            else:
+                st.info("QR Code hidden during Executive Presentation Mode.")
             
             st.divider()
             st.header("🔑 Staff VIP Code")
             if st.button("⚡ Issue Team VIP Code", key="sidebar_gen_code"):
-                new_vip = generate_invite_token(current_user, "MEMBER")
-                st.success(f"Staff Key: `{new_vip}`")
+                if st.session_state.demo_mode:
+                    st.warning("Cannot generate VIP keys while in Demo Mode to protect the vault.")
+                else:
+                    new_vip = generate_invite_token(current_user, "MEMBER")
+                    st.success(f"Staff Key: `{new_vip}`")
     else:
         st.info("👤 **Guest Mode Active**\nSelect an option below to enter:")
         auth_mode = st.radio("Access Portal:", ["Sign In", "🚀 Free 3-Day Pilot", "Activate VIP Code"], horizontal=False)
@@ -713,7 +758,8 @@ with st.sidebar:
     st.write(f"**Neural Engine:** {'🟢 CLOUD (' + CLOUD_MODEL + ')' if is_online else '🔒 LOCAL (' + LOCAL_MODEL + ')'}")
     if current_role in ["CEO", "SUPER_ADMIN"]:
         st.write(f"**LinkedIn Gateway:** {'🟢 ARMED' if LINKEDIN_TOKEN else '🔴 MISSING'}")
-        st.write(f"**Universal Video Ingest:** 🟢 `0.0.0.0:1935`")
+        display_rtmp = mask_secret("0.0.0.0:1935", "IP") if st.session_state.demo_mode else "0.0.0.0:1935"
+        st.write(f"**Universal Video Ingest:** 🟢 `{display_rtmp}`")
         st.write(f"**Zero-Lie Engine:** 🟢 ARMED")
     st.write(f"**Active Clearance:** `{current_role}`")
 
@@ -903,8 +949,9 @@ Hashtags: #AgTech #SovereignAI #JefferyHumphrey #HumphreyVirtualFarm #PrecisionF
 
         with col_dict2:
             st.markdown("#### ⚙️ Pipeline Status")
-            formatted_urn = format_linkedin_urn(LINKEDIN_URN) if LINKEDIN_URN else "NOT_SET"
-            st.code(f"Author URN: {formatted_urn}\nZero-Hallucination: STRICT (Temp 0.0)\nFounder: Jeffery Humphrey\nEmail: {OFFICIAL_EMAIL}")
+            formatted_urn = mask_secret(format_linkedin_urn(LINKEDIN_URN), "URN") if LINKEDIN_URN else "NOT_SET"
+            token_display = mask_secret(LINKEDIN_TOKEN, "TOKEN") if LINKEDIN_TOKEN else "NOT_SET"
+            st.code(f"Author URN: {formatted_urn}\nGateway Token: {token_display}\nZero-Hallucination: STRICT (Temp 0.0)\nFounder: Jeffery Humphrey")
 
         st.divider()
         st.markdown("#### 📝 Live Broadcast & Article Editor")
@@ -915,7 +962,9 @@ Hashtags: #AgTech #SovereignAI #JefferyHumphrey #HumphreyVirtualFarm #PrecisionF
         with col_dep1:
             if st.button("🚀 Authorize & Deploy Live to LinkedIn Profile", use_container_width=True):
                 sanitized_deployment = sanitize_deterministic_output(final_post_text.strip())
-                if not LINKEDIN_TOKEN or not LINKEDIN_URN:
+                if st.session_state.demo_mode:
+                    st.error("❌ Action Blocked: Cannot deploy broadcasts while Executive Presentation Mode is active.")
+                elif not LINKEDIN_TOKEN or not LINKEDIN_URN:
                     st.error("❌ LinkedIn credentials missing from .env.")
                 elif not sanitized_deployment:
                     st.warning("Cannot deploy an empty broadcast.")
@@ -993,7 +1042,10 @@ with tab_farm:
             </div>
             """
             st.components.v1.html(stream_html, height=470)
-            st.caption(f"📡 Universal RTMP Ingest: `{RTMP_INGEST_URL}` | Direct WebRTC: [Open Fullscreen Player]({WEBRTC_STREAM_URL})")
+            
+            display_rtmp = mask_secret(RTMP_INGEST_URL, "IP")
+            display_webrtc = mask_secret(WEBRTC_STREAM_URL, "URL")
+            st.caption(f"📡 Universal RTMP Ingest: `{display_rtmp}` | Direct WebRTC: [{display_webrtc}]")
         
         elif current_role in ["CLIENT_CEO", "MEMBER", "TRIAL_MEMBER"]:
             role_label = "3-Day Market Pilot" if current_role == "TRIAL_MEMBER" else ("Enterprise Farm CEO" if current_role == "CLIENT_CEO" else "Member")
@@ -1046,7 +1098,8 @@ with tab_farm:
         st.session_state.selected_drone_model = selected_drone
 
         if current_role in ["CEO", "SUPER_ADMIN"]:
-            st.code(f"Selected Craft: {selected_drone}\nMission: SURVEY-Z1-ALPHA\nSector: ZONE-1-NORTH\nAltitude: 45.0m | Battery: 88%\nStatus: ACTIVE_PATROL\nRTMP Ingest: {RTMP_INGEST_URL}\nStream Engine: MediaMTX v1.9.0")
+            display_rtmp = mask_secret(RTMP_INGEST_URL, "IP")
+            st.code(f"Selected Craft: {selected_drone}\nMission: SURVEY-Z1-ALPHA\nSector: ZONE-1-NORTH\nAltitude: 45.0m | Battery: 88%\nStatus: ACTIVE_PATROL\nRTMP Ingest: {display_rtmp}\nStream Engine: MediaMTX v1.9.0")
         elif current_role == "CLIENT_CEO":
             st.code(f"Craft: {selected_drone}\nSector: ALL-ZONES-ACTIVE\nTelemetry Stream: LIVE\nCanopy Health Index (GLI): 0.3842 (HEALTHY)\nWorkforce Access Level: ENTERPRISE CEO")
         elif current_role in ["MEMBER", "TRIAL_MEMBER"]:
@@ -1153,12 +1206,18 @@ with tab_overview:
             kc1, kc2, kc3 = st.columns([1.5, 1.5, 3])
             with kc1:
                 if st.button("⚡ Gen Member VIP Key", key="tab5_vip_gen_member", use_container_width=True):
-                    token = generate_invite_token(current_user, "MEMBER")
-                    st.success(f"Member Key: `{token}`")
+                    if st.session_state.demo_mode:
+                        st.warning("Action blocked in Demo Mode.")
+                    else:
+                        token = generate_invite_token(current_user, "MEMBER")
+                        st.success(f"Member Key: `{token}`")
             with kc2:
                 if st.button("⚡ Gen Enterprise CEO Key", key="tab5_vip_gen_client_ceo", use_container_width=True):
-                    token = generate_invite_token(current_user, "CLIENT_CEO")
-                    st.success(f"Enterprise CEO Key: `{token}`")
+                    if st.session_state.demo_mode:
+                        st.warning("Action blocked in Demo Mode.")
+                    else:
+                        token = generate_invite_token(current_user, "CLIENT_CEO")
+                        st.success(f"Enterprise CEO Key: `{token}`")
             with kc3:
                 conn = sqlite3.connect(DB_PATH)
                 cur = conn.cursor()
@@ -1167,9 +1226,12 @@ with tab_overview:
                 conn.close()
                 if recent_keys:
                     st.caption("Recent Global Keys Issued:")
-                    for k in recent_keys:
-                        status_str = f"🔴 USED ({k[3]})" if k[2] == 1 else "🟢 UNUSED"
-                        st.code(f"Key: {k[0]} | Role: {k[1]} | {status_str}")
+                    if st.session_state.demo_mode:
+                        st.info("Key records hidden in Demo Mode.")
+                    else:
+                        for k in recent_keys:
+                            status_str = f"🔴 USED ({k[3]})" if k[2] == 1 else "🟢 UNUSED"
+                            st.code(f"Key: {k[0]} | Role: {k[1]} | {status_str}")
 
             st.markdown("#### 🖥️ Master Node Diagnostic Readout")
             conn = sqlite3.connect(DB_PATH)
@@ -1186,10 +1248,16 @@ with tab_overview:
             topic_count = cur.fetchone()[0]
             conn.close()
 
+            display_ip = mask_secret("192.168.1.175", "IP")
+            display_mesh = mask_secret(f"{ACTIVE_IP}:8501", "IP")
+            display_vault = mask_secret(DB_PATH, "PATH")
+            display_rtmp = mask_secret("rtmp://192.168.1.175:1935/live/stream", "IP")
+            display_webrtc = mask_secret("http://192.168.1.175:8889/live/stream", "URL")
+
             st.code(f"""======================= HVF MASTER SERVER TOPOLOGY =======================
-Host IP (Local LAN)      : 192.168.1.175
-Mesh Endpoint (Tailscale): {ACTIVE_IP}:8501
-Master Database Vault    : {DB_PATH}
+Host IP (Local LAN)      : {display_ip}
+Mesh Endpoint (Tailscale): {display_mesh}
+Master Database Vault    : {display_vault}
 Active Registered Users  : {user_count}
 Active Trial Operators   : {len(trial_rows)}
 Submitted Pilot Reviews  : {feedback_count}
@@ -1199,8 +1267,8 @@ Encrypted Comm Records   : {msg_count}
 --------------------------------------------------------------------------
 Local Neural Engine      : Ollama REST API (Port 11434) -> llama3:8b (Deterministic Chat)
 Cloud Fast Link          : Groq API (TLS 1.3) -> openai/gpt-oss-120b (Deterministic Chat)
-Universal Drone Ingest   : MediaMTX (Port 1935 RTMP / 8554 RTSP) -> rtmp://192.168.1.175:1935/live/stream
-Drone WebRTC Streaming   : MediaMTX (Port 8889) -> http://192.168.1.175:8889/live/stream
+Universal Drone Ingest   : MediaMTX (Port 1935 RTMP / 8554 RTSP) -> {display_rtmp}
+Drone WebRTC Streaming   : MediaMTX (Port 8889) -> {display_webrtc}
 Supported Drone Ecosystem: DJI (Air 3S, Mavic, Matrice), Autel EVO, Skydio, Custom PX4
 Weather Oracle Base      : NOAA REST API (Lat: {DEFAULT_LAT}, Lon: {DEFAULT_LON})
 =========================================================================""")
