@@ -482,7 +482,7 @@ with tab_farm:
         
         c_vid, c_inst = st.columns([1.5, 1])
         with c_vid:
-            st.markdown('<iframe width="100%" height="315" src="https://www.youtube-nocookie.com/embed/uK1z7nIqWjQ?rel=0&modestbranding=1&loop=1&playlist=uK1z7nIqWjQ&disablekb=1&fs=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px;"></iframe>', unsafe_allow_html=True)
+            st.components.v1.iframe("https://www.youtube-nocookie.com/embed/uK1z7nIqWjQ?rel=0&modestbranding=1&loop=1&playlist=uK1z7nIqWjQ&disablekb=1&fs=0", height=325)
             st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
         
         with c_inst:
