@@ -468,7 +468,6 @@ with tab_weather:
     st.subheader("🚨 NOAA Emergency Weather & Live Radar Sentinel")
     st.components.v1.iframe("https://radar.weather.gov/", height=450, scrolling=True)
 
-# RE-ENGINEERED DRONE STANDBY UI
 with tab_farm:
     st.subheader(f"🌾 {EMPIRE['FARM_NAME']} | Aerial Ingest")
     
@@ -575,10 +574,12 @@ Universal Drone Ingest   : MediaMTX (Port 1935 RTMP)
     
     st.markdown("### 🔍 Source Code Transparency & Architectural Audit")
     
-    if current_role in ["CEO", "SUPER_ADMIN"]:
-        st.markdown("Enterprise transparency mandates that our underlying architecture is fully auditable. Review the exact operational source code powering this node below. *(OPSEC Protocol: Sensitive IPs and Paths are masked dynamically if Demo Mode is active).*")
+    is_master_founder = (current_name == "Jeffery Humphrey")
+    
+    if is_master_founder:
+        st.markdown("👑 **Master CEO Clearance Acknowledged.** You have unrestricted access to the raw architecture. *(OPSEC Protocol: Sensitive IPs and Paths are masked dynamically if Demo Mode is active).*")
     else:
-        st.markdown("Enterprise transparency mandates architectural visibility. You are viewing the **Publicly Cleared** source code. Proprietary cryptographic and routing logic has been strictly redacted.")
+        st.markdown("Enterprise transparency mandates architectural visibility. You are viewing the **Publicly Cleared** source code. Proprietary cryptographic, database schemas, and routing logic have been aggressively redacted by order of the Founder.")
         
     target_files = ["ebony_console_GREEN.py", "Deploy_Ebony.bat", "requirements.txt", ".gitignore"]
     
@@ -590,12 +591,12 @@ Universal Drone Ingest   : MediaMTX (Port 1935 RTMP)
                     with open(file_path, "r", encoding="utf-8") as file_read:
                         raw_content = file_read.read()
                     
-                    if current_role in ["CEO", "SUPER_ADMIN"] and st.session_state.demo_mode:
+                    if is_master_founder and st.session_state.demo_mode:
                         raw_content = re.sub(r'(?:[0-9]{1,3}\.){3}[0-9]{1,3}', '[REDACTED_LOCAL_IP]', raw_content)
                         raw_content = re.sub(r'C:\\[^\n]*HVF_Repos[^\n]*', 'C:\\[REDACTED_VAULT_PATH]', raw_content)
                         raw_content = raw_content.replace(DEFAULT_LAT, "[REDACTED_LAT]").replace(DEFAULT_LON, "[REDACTED_LON]")
                         
-                    elif current_role not in ["CEO", "SUPER_ADMIN"]:
+                    elif not is_master_founder:
                         raw_content = re.sub(r'(?:[0-9]{1,3}\.){3}[0-9]{1,3}', '[REDACTED_LOCAL_IP]', raw_content)
                         raw_content = re.sub(r'C:\\[^\n]*HVF_Repos[^\n]*', 'C:\\[REDACTED_VAULT_PATH]', raw_content)
                         raw_content = raw_content.replace(DEFAULT_LAT, "[REDACTED_LAT]").replace(DEFAULT_LON, "[REDACTED_LON]")
