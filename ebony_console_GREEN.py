@@ -433,9 +433,16 @@ with tab_linkedin:
             if st.button("🤖 Generate 100% Factual Draft", use_container_width=True):
                 sys_msg = f"You are ghostwriting for {EMPIRE['FOUNDER_NAME']}, CEO of {EMPIRE['FARM_NAME']}. Strict factual accuracy based solely on user input."
                 if is_online:
-                    res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=[{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}], temperature=0.0)
-                    st.session_state.current_linkedin_draft = sanitize_deterministic_output(res.choices[0].message.content.strip())
-                else: st.session_state.current_linkedin_draft = query_local_ollama_chat([{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}])
+                    if not groq_client:
+                        st.session_state.current_linkedin_draft = "⚠️ CLOUD ENGINE OFFLINE: GROQ_API_KEY is missing from your vault. Please open your .env file and add your Groq key."
+                    else:
+                        try:
+                            res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=[{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}], temperature=0.0)
+                            st.session_state.current_linkedin_draft = sanitize_deterministic_output(res.choices[0].message.content.strip())
+                        except Exception as e:
+                            st.session_state.current_linkedin_draft = f"⚠️ CLOUD API FAULT: {str(e)}"
+                else:
+                    st.session_state.current_linkedin_draft = query_local_ollama_chat([{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}])
                 st.rerun()
 
         with col_dict2:
