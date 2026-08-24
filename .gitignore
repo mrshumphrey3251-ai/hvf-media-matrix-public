@@ -27,3 +27,10 @@ __pycache__/
 # Local Operating Logs & Telemetry Dumps
 *.log
 *.tmp
+# Local Launchers & Patch Scripts
+launch_ebony_background.bat
+start_ebony_silent.vbs
+patch.py
+extend_trial.py
+auto_create_stripe_links.py
+generate_stripe_links.py
