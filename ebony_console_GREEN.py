@@ -468,9 +468,29 @@ with tab_weather:
     st.subheader("🚨 NOAA Emergency Weather & Live Radar Sentinel")
     st.components.v1.iframe("https://radar.weather.gov/", height=450, scrolling=True)
 
+# RE-ENGINEERED DRONE STANDBY UI
 with tab_farm:
     st.subheader(f"🌾 {EMPIRE['FARM_NAME']} | Aerial Ingest")
-    st.components.v1.html(f'<iframe src="{WEBRTC_STREAM_URL}" width="100%" height="450" frameborder="0" allowfullscreen></iframe>', height=470)
+    
+    drone_linked = st.toggle("📡 Arm Drone Feed (Simulate Active RTMP Handshake)", value=False)
+    
+    if drone_linked:
+        st.components.v1.html(f'<iframe src="{WEBRTC_STREAM_URL}" width="100%" height="450" frameborder="0" allowfullscreen></iframe>', height=470)
+        st.success("🟢 LIVE: Universal Drone Ingest Active")
+    else:
+        st.markdown("### 🔴 No Active Craft Detected")
+        st.info("System is waiting for an incoming RTMP stream. While offline, review the Universal Ingest Setup Guide below.")
+        
+        c_vid, c_inst = st.columns([1.5, 1])
+        with c_vid:
+            st.video("https://www.youtube.com/watch?v=uK1z7nIqWjQ")
+            st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
+        
+        with c_inst:
+            st.markdown("#### 📖 Universal RTMP Setup")
+            st.markdown("1. Power on your craft (DJI, Autel, Skydio).\n2. Connect controller to Wi-Fi/Hotspot.\n3. Open flight app and select **Live Streaming**.\n4. Select **RTMP** and input the secure ingest URL:")
+            st.code(mask_secret(RTMP_INGEST_URL, "IP"), language="bash")
+            st.markdown("5. Set bitrate to **2 Mbps** and resolution to **720p/1080p**.\n6. Tap **Start Streaming**.")
 
 with tab_overview:
     st.subheader("💳 Commercial Subscriptions & Features")
@@ -537,7 +557,7 @@ Universal Drone Ingest   : MediaMTX (Port 1935 RTMP)
         st.markdown(f"**{EMPIRE['AI_PERSONA']}** is a highly specialized, dual-engine agronomic intelligence.\n* **Cloud Fast Link:** `openai/gpt-oss-120b` via Groq LPU for high-speed online inference.\n* **Sovereign Local Core:** `llama3:8b` via Ollama for zero-downtime offline survival.\n* **Persistent Entity Memory:** Dynamically extracts and memorizes agronomic entities.")
 
     with st.expander("🌾 [PILLAR 3]: Universal Drone Computer Vision & Multispectral Analysis", expanded=False):
-        st.markdown("* **Universal RTMP/RTSP Ingest:** Capable of receiving live telemetry from DJI, Autel, Skydio, or PX4 drones.\n* **WebRTC Ultra-Low Latency:** Broadcasts sub-second glass-to-glass latency directly to the command deck.\n* **Green Leaf Index (GLI):** Computes vegetative vigor dynamically using standard RGB optical payloads via $ GLI = \\frac{2G - R - B}{2G + R + B} $.")
+        st.markdown("* **Universal RTMP/RTSP Ingest:** Capable of receiving live telemetry from DJI, Autel, Skydio, or PX4 drones.\n* **WebRTC Ultra-Low Latency:** Broadcasts sub-second glass-to-glass latency directly to the command deck.\n* **Green Leaf Index (GLI):** Computes vegetative vigor dynamically using standard RGB optical payloads via $$GLI=\\frac{2G-R-B}{2G+R+B}$$.")
 
     with st.expander("📡 [PILLAR 4]: IoT Soil Mesh & Capacitance Telemetry", expanded=False):
         st.markdown("* **Dielectric Permittivity Sensors:** Accurately calculates Volumetric Water Content (VWC %).\n* **Actionable Thresholds:** Monitors Field Capacity and Permanent Wilting Point to manage precision irrigation schedules.\n* **Cryptographic Storage:** Aggregated and locked in the local SQLite vault.")
@@ -553,7 +573,6 @@ Universal Drone Ingest   : MediaMTX (Port 1935 RTMP)
 
     st.divider()
     
-    # NEW: DYNAMIC PUBLIC REDACTION ENGINE
     st.markdown("### 🔍 Source Code Transparency & Architectural Audit")
     
     if current_role in ["CEO", "SUPER_ADMIN"]:
@@ -577,22 +596,13 @@ Universal Drone Ingest   : MediaMTX (Port 1935 RTMP)
                         raw_content = raw_content.replace(DEFAULT_LAT, "[REDACTED_LAT]").replace(DEFAULT_LON, "[REDACTED_LON]")
                         
                     elif current_role not in ["CEO", "SUPER_ADMIN"]:
-                        # Strict Public Redaction
                         raw_content = re.sub(r'(?:[0-9]{1,3}\.){3}[0-9]{1,3}', '[REDACTED_LOCAL_IP]', raw_content)
                         raw_content = re.sub(r'C:\\[^\n]*HVF_Repos[^\n]*', 'C:\\[REDACTED_VAULT_PATH]', raw_content)
                         raw_content = raw_content.replace(DEFAULT_LAT, "[REDACTED_LAT]").replace(DEFAULT_LON, "[REDACTED_LON]")
-                        
-                        # Scrub IPs
                         raw_content = raw_content.replace("127.0.0.1", "[LOCAL_HOST_REDACTED]")
-                        
-                        # Scrub DB schema creations
                         raw_content = re.sub(r'CREATE TABLE IF NOT EXISTS [^\)]*\)', '[DATABASE_SCHEMA_CLASSIFIED]', raw_content)
-                        
-                        # Scrub SQL Queries
                         raw_content = re.sub(r'SELECT [^"]*', 'SELECT [PROPRIETARY_FIELDS_REDACTED] FROM [TABLE_REDACTED] ', raw_content)
                         raw_content = re.sub(r'INSERT INTO [^"]*', 'INSERT INTO [TABLE_REDACTED] [FIELDS_REDACTED] ', raw_content)
-                        
-                        # Scrub Cryptography
                         raw_content = raw_content.replace('Fernet', '[CLASSIFIED_CRYPTO_ENGINE]')
                         raw_content = raw_content.replace('PBKDF2HMAC', '[CLASSIFIED_KEY_DERIVATION]')
                         
