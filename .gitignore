@@ -34,3 +34,6 @@ patch.py
 extend_trial.py
 auto_create_stripe_links.py
 generate_stripe_links.py
+
+# Ignore large local video files
+*.mp4
