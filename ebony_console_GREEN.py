@@ -104,6 +104,7 @@ CRITICAL NON-NEGOTIABLE GROUND TRUTH:
 2. FOUNDER & CEO: {EMPIRE["FOUNDER_NAME"]} ONLY.
 3. YOUR IDENTITY: You are {EMPIRE["AI_PERSONA"]}, the sovereign AI platform.
 4. CONTACT EMAIL: {EMPIRE["CONTACT_EMAIL"]} ONLY.
+5. ABSOLUTE BAN ON FABRICATED DATA: Never invent fake benchmark percentages, fake field trials, fake audits, or fake VC funding rounds.
 """
 
 def sanitize_deterministic_output(raw_text: str) -> str:
@@ -486,9 +487,13 @@ with tab_farm:
         
         with c_inst:
             st.markdown("#### 📖 Universal RTMP Setup")
-            st.markdown("1. Power on your craft (DJI, Autel, Skydio).\\n2. Connect controller to Wi-Fi/Hotspot.\\n3. Open flight app and select **Live Streaming**.\\n4. Select **RTMP** and input the secure ingest URL:")
+            st.markdown("""1. Power on your craft (DJI, Autel, Skydio).
+2. Connect controller to Wi-Fi/Hotspot.
+3. Open flight app and select **Live Streaming**.
+4. Select **RTMP** and input the secure ingest URL:""")
             st.code(mask_secret(RTMP_INGEST_URL, "IP"), language="bash")
-            st.markdown("5. Set bitrate to **2 Mbps** and resolution to **720p/1080p**.\\n6. Tap **Start Streaming**.")
+            st.markdown("""5. Set bitrate to **2 Mbps** and resolution to **720p/1080p**.
+6. Tap **Start Streaming**.""")
 
 with tab_overview:
     st.subheader("💳 Commercial Subscriptions & Features")
@@ -557,11 +562,23 @@ Universal Drone Ingest   : MediaMTX (Port 1935 RTMP)
     col_mob1, col_mob2 = st.columns(2)
     with col_mob1:
         st.markdown("#### 🍏 Apple iPhone (iOS)")
-        st.markdown("1. Ensure your Master PC is running and Tailscale is active.\\n2. Open **Safari** on your iPhone and navigate to your **Mesh Endpoint URL**.\\n3. Tap the **Share** button (the square with an upward arrow).\\n4. Scroll down and select **\\"Add to Home Screen\\"**.\\n5. Tap **Add** in the top right.\\n\\nThe platform will launch as a full-screen native app, bypassing the Apple App Store.")
+        st.markdown("""1. Ensure your Master PC is running and Tailscale is active.
+2. Open **Safari** on your iPhone and navigate to your **Mesh Endpoint URL**.
+3. Tap the **Share** button (the square with an upward arrow).
+4. Scroll down and select **"Add to Home Screen"**.
+5. Tap **Add** in the top right.
+
+The platform will launch as a full-screen native app, bypassing the Apple App Store.""")
         
     with col_mob2:
         st.markdown("#### 🤖 Android")
-        st.markdown("1. Ensure your Master PC is running and Tailscale is active.\\n2. Open **Google Chrome** on your device and navigate to your **Mesh Endpoint URL**.\\n3. Tap the browser menu (**⋮**) in the top right.\\n4. Select **\\"Add to Home screen\\"**.\\n5. Tap **Install**.\\n\\nThe platform will launch as a full-screen native app, bypassing the Google Play Store.")
+        st.markdown("""1. Ensure your Master PC is running and Tailscale is active.
+2. Open **Google Chrome** on your device and navigate to your **Mesh Endpoint URL**.
+3. Tap the browser menu (**⋮**) in the top right.
+4. Select **"Add to Home screen"**.
+5. Tap **Install**.
+
+The platform will launch as a full-screen native app, bypassing the Google Play Store.""")
 
     st.markdown("---")
     st.markdown(f"### 📖 Sovereign Knowledge Academy & Technical Directory")
