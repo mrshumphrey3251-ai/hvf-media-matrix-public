@@ -104,7 +104,6 @@ CRITICAL NON-NEGOTIABLE GROUND TRUTH:
 2. FOUNDER & CEO: {EMPIRE["FOUNDER_NAME"]} ONLY.
 3. YOUR IDENTITY: You are {EMPIRE["AI_PERSONA"]}, the sovereign AI platform.
 4. CONTACT EMAIL: {EMPIRE["CONTACT_EMAIL"]} ONLY.
-5. ABSOLUTE BAN ON FABRICATED DATA: Never invent fake benchmark percentages, fake field trials, fake audits, or fake VC funding rounds.
 """
 
 def sanitize_deterministic_output(raw_text: str) -> str:
@@ -487,9 +486,9 @@ with tab_farm:
         
         with c_inst:
             st.markdown("#### 📖 Universal RTMP Setup")
-            st.markdown("1. Power on your craft (DJI, Autel, Skydio).\n2. Connect controller to Wi-Fi/Hotspot.\n3. Open flight app and select **Live Streaming**.\n4. Select **RTMP** and input the secure ingest URL:")
+            st.markdown("1. Power on your craft (DJI, Autel, Skydio).\\n2. Connect controller to Wi-Fi/Hotspot.\\n3. Open flight app and select **Live Streaming**.\\n4. Select **RTMP** and input the secure ingest URL:")
             st.code(mask_secret(RTMP_INGEST_URL, "IP"), language="bash")
-            st.markdown("5. Set bitrate to **2 Mbps** and resolution to **720p/1080p**.\n6. Tap **Start Streaming**.")
+            st.markdown("5. Set bitrate to **2 Mbps** and resolution to **720p/1080p**.\\n6. Tap **Start Streaming**.")
 
 with tab_overview:
     st.subheader("💳 Commercial Subscriptions & Features")
@@ -547,6 +546,24 @@ Cloud Fast Link          : Groq API (TLS 1.3)
 Universal Drone Ingest   : MediaMTX (Port 1935 RTMP)
 ===============================================================""")
 
+    st.markdown("### 🚀 Client Quick-Deploy Distribution Link")
+    st.info("Share this 1-click installer link with prospective clients or ranch managers to launch their local 7-Day Pilot:")
+    st.code("https://raw.githubusercontent.com/mrshumphrey3251-ai/hvf-media-matrix-public/main/Deploy_Ebony.bat", language="text")
+    
+    st.markdown("---")
+    st.markdown("### 📱 Mobile Field Uplink Protocol (iOS & Android)")
+    st.info("Heavy neural compute and drone ingest execute on your Master PC. To operate the system in the field, deploy the platform directly to your mobile device as a standalone application:")
+    
+    col_mob1, col_mob2 = st.columns(2)
+    with col_mob1:
+        st.markdown("#### 🍏 Apple iPhone (iOS)")
+        st.markdown("1. Ensure your Master PC is running and Tailscale is active.\\n2. Open **Safari** on your iPhone and navigate to your **Mesh Endpoint URL**.\\n3. Tap the **Share** button (the square with an upward arrow).\\n4. Scroll down and select **\\"Add to Home Screen\\"**.\\n5. Tap **Add** in the top right.\\n\\nThe platform will launch as a full-screen native app, bypassing the Apple App Store.")
+        
+    with col_mob2:
+        st.markdown("#### 🤖 Android")
+        st.markdown("1. Ensure your Master PC is running and Tailscale is active.\\n2. Open **Google Chrome** on your device and navigate to your **Mesh Endpoint URL**.\\n3. Tap the browser menu (**⋮**) in the top right.\\n4. Select **\\"Add to Home screen\\"**.\\n5. Tap **Install**.\\n\\nThe platform will launch as a full-screen native app, bypassing the Google Play Store.")
+
+    st.markdown("---")
     st.markdown(f"### 📖 Sovereign Knowledge Academy & Technical Directory")
 
     with st.expander(f"🏛️ [PILLAR 1]: The {EMPIRE['FARM_NAME']} Manifesto & Sovereign Architecture", expanded=False):
