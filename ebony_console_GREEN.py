@@ -233,6 +233,17 @@ def save_pilot_feedback(username: str, full_name: str, rating: int, acres: str, 
     conn.commit()
     conn.close()
 
+def has_user_submitted_feedback(username: str) -> bool:
+    if not username: return False
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cur = conn.cursor()
+        cur.execute("SELECT COUNT(*) FROM pilot_feedback_vault WHERE username=?", (username,))
+        count = cur.fetchone()[0]
+        conn.close()
+        return count > 0
+    except: return False
+
 def generate_qr_image(url: str):
     qr = qrcode.QRCode(version=1, box_size=4, border=2)
     qr.add_data(url)
@@ -369,16 +380,8 @@ with st.sidebar:
 st.title(f"⚡ {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
 st.caption(f"Active User: **{current_name}** | 🛡️ *Mode: {st.session_state.operation_mode}*")
 
-# RE-ESTABLISHED FULL 8-TAB MATRIX
 tab_chat, tab_linkedin, tab_weather, tab_farm, tab_overview, tab_feedback, tab_sandbox, tab_empire = st.tabs([
-    "💬 Sovereign Command", 
-    "📡 LinkedIn Engine", 
-    "🚨 NOAA Radar",
-    "🌾 Drone Diagnostics", 
-    "📖 System Overview",
-    "📝 Feedback Hub",
-    "🧪 Sandbox",
-    "⚙️ Empire Config"
+    "💬 Sovereign Command", "📡 LinkedIn Engine", "🚨 NOAA Radar", "🌾 Drone Diagnostics", "📖 System Overview", "📝 Feedback Hub", "🧪 Sandbox", "⚙️ Empire Config"
 ])
 
 with tab_chat:
@@ -442,19 +445,31 @@ with tab_farm:
 
 with tab_overview:
     st.subheader("💳 Commercial Subscriptions & Features")
+    
+    # TELEMETRY GATE LOGIC
+    feedback_cleared = has_user_submitted_feedback(current_user)
+    is_unlocked = feedback_cleared or current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO"]
+    
+    if not is_unlocked:
+        st.warning("🔒 **COMMERCIAL ACCESS LOCKED:** You must submit field telemetry and a platform review in the **Feedback Hub** (Tab 6) before commercial tier gateways are unlocked.")
+
     col_p1, col_p2, col_p3, col_p4 = st.columns(4)
     with col_p1:
         st.markdown(f'<div class="pricing-card"><div class="pricing-tier">🌱 PERSONAL</div><div class="pricing-price">$19.99<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Single-User Node<br>✔ Dual-Engine AI<br>✔ Encrypted Vault</p></div>', unsafe_allow_html=True)
-        st.link_button("🌱 Personal ($19.99/mo)", STRIPE_PERSONAL_LINK, use_container_width=True)
+        if is_unlocked: st.link_button("🌱 Personal ($19.99/mo)", STRIPE_PERSONAL_LINK, use_container_width=True)
+        else: st.button("🔒 Locked", disabled=True, key="lock1", use_container_width=True)
     with col_p2:
         st.markdown(f'<div class="pricing-card"><div class="pricing-tier">💎 VIP MEMBER</div><div class="pricing-price">$249<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Everything in Personal<br>✔ Drone Spectator<br>✔ GLI Analytics</p></div>', unsafe_allow_html=True)
-        st.link_button("💎 VIP ($249/mo)", STRIPE_MONTHLY_LINK, use_container_width=True)
+        if is_unlocked: st.link_button("💎 VIP ($249/mo)", STRIPE_MONTHLY_LINK, use_container_width=True)
+        else: st.button("🔒 Locked", disabled=True, key="lock2", use_container_width=True)
     with col_p3:
         st.markdown(f'<div class="pricing-card" style="border-color:#70FF00;"><div class="pricing-tier">🏛️ ENTERPRISE CEO</div><div class="pricing-price">$2,499<span style="font-size:0.85rem;color:#8899A6;">/yr</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Client Dashboard<br>✔ Issue Staff Keys<br>✔ Multi-Ranch Yield</p></div>', unsafe_allow_html=True)
-        st.link_button("🏛️ Enterprise Annual", STRIPE_ANNUAL_LINK, use_container_width=True)
+        if is_unlocked: st.link_button("🏛️ Enterprise Annual", STRIPE_ANNUAL_LINK, use_container_width=True)
+        else: st.button("🔒 Locked", disabled=True, key="lock3", use_container_width=True)
     with col_p4:
         st.markdown(f'<div class="pricing-card"><div class="pricing-tier">📦 HARDWARE APPLIANCE</div><div class="pricing-price">$4,950<span style="font-size:0.85rem;color:#8899A6;">setup</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Physical Server<br>✔ 100% Air-Gapped<br>✔ + $299/mo Maint.</p></div>', unsafe_allow_html=True)
-        st.link_button("📦 Order Hardware", PAYPAL_PAY_LINK, use_container_width=True)
+        if is_unlocked: st.link_button("📦 Order Hardware", PAYPAL_PAY_LINK, use_container_width=True)
+        else: st.button("🔒 Locked", disabled=True, key="lock4", use_container_width=True)
 
 with tab_feedback:
     st.subheader("📝 Open Market Pilot Feedback Hub")
@@ -469,10 +484,13 @@ with tab_feedback:
         else: st.caption("No reviews yet.")
     else:
         fb_rating = st.slider("Rating:", 1, 5, 5)
-        fb_text = st.text_area("Feedback:")
-        if st.button("Submit Review"):
-            save_pilot_feedback(current_user, current_name, fb_rating, "", "", fb_text, "")
-            st.success("Review Submitted.")
+        fb_text = st.text_area("Feedback (Required to unlock commercial tiers):")
+        if st.button("Submit Review & Unlock Platform"):
+            if not fb_text.strip():
+                st.warning("Feedback text is required.")
+            else:
+                save_pilot_feedback(current_user, current_name, fb_rating, "", "", fb_text, "")
+                st.success("Review Submitted. Commercial tiers unlocked in Tab 5.")
 
 with tab_sandbox:
     if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO", "MEMBER", "TRIAL_MEMBER"]:
