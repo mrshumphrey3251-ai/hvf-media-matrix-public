@@ -482,7 +482,14 @@ with tab_farm:
         
         c_vid, c_inst = st.columns([1.5, 1])
         with c_vid:
-            st.components.v1.iframe("https://www.youtube-nocookie.com/embed/uK1z7nIqWjQ?rel=0&modestbranding=1&loop=1&playlist=uK1z7nIqWjQ&disablekb=1&fs=0", height=325)
+            local_vid_path = os.path.join(REPO_DIR, "drone_training.mp4")
+        if os.path.exists(local_vid_path):
+            st.video(local_vid_path)
+        else:
+            # Fallback to a raw, open-source MP4 video stream (Zero YouTube)
+            st.video("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4")
+            st.caption("⚙️ **Sovereign Mode:** Playing raw native MP4 (YouTube Engine Severed).")
+            st.info("💡 Drop an MP4 file named 'drone_training.mp4' into your master folder to replace this video.")
             st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
         
         with c_inst:
