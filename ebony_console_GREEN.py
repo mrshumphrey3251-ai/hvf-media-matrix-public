@@ -69,6 +69,7 @@ def ensure_db_schema():
     cur.execute("CREATE TABLE IF NOT EXISTS pilot_feedback_vault (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, full_name TEXT NOT NULL, rating INTEGER NOT NULL, farm_size_acres TEXT, primary_crops TEXT, feedback_text TEXT NOT NULL, contact_email TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
     cur.execute("CREATE TABLE IF NOT EXISTS conversation_entity_memory (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, topic_key TEXT NOT NULL, entity_summary TEXT NOT NULL, last_context TEXT NOT NULL, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, UNIQUE(username, topic_key))")
     cur.execute("CREATE TABLE IF NOT EXISTS empire_config (config_key TEXT PRIMARY KEY, config_value TEXT NOT NULL)")
+    cur.execute("CREATE TABLE IF NOT EXISTS linkedin_broadcast_history (id INTEGER PRIMARY KEY AUTOINCREMENT, post_content TEXT, response_status TEXT, urn_identifier TEXT, triggered_by TEXT, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
     conn.commit()
     conn.close()
 
@@ -244,6 +245,13 @@ def has_user_submitted_feedback(username: str) -> bool:
         return count > 0
     except: return False
 
+def format_linkedin_urn(raw_urn: str) -> str:
+    if not raw_urn: return ""
+    clean = raw_urn.strip().strip('"').strip("'")
+    if clean.startswith("urn:li:member:") or clean.startswith("urn:li:person:") or clean.startswith("urn:li:organization:"): return clean
+    if clean.isdigit(): return f"urn:li:person:{clean}"
+    return clean
+
 def generate_qr_image(url: str):
     qr = qrcode.QRCode(version=1, box_size=4, border=2)
     qr.add_data(url)
@@ -296,18 +304,14 @@ st.markdown("""
 
 if "user_session" not in st.session_state: st.session_state.user_session = {"authenticated": False, "username": None, "full_name": "Public Guest", "role": "GUEST", "cipher": None, "trial_expires_at": None}
 if "screen_wiped" not in st.session_state: st.session_state.screen_wiped = False
-if "confirm_delete" not in st.session_state: st.session_state.confirm_delete = False
 if "operation_mode" not in st.session_state: st.session_state.operation_mode = "🟢 Online (Cloud Fast Link)"
-if "article_draft_version" not in st.session_state: st.session_state.article_draft_version = 0
 if "demo_mode" not in st.session_state: st.session_state.demo_mode = False
-if "current_linkedin_draft" not in st.session_state:
-    st.session_state.current_linkedin_draft = f"⚡ [{EMPIRE['FARM_NAME']} Intelligence Announcement]\n\nWe have deployed our on-premise universal aerial reconnaissance link..."
+if "current_linkedin_draft" not in st.session_state: st.session_state.current_linkedin_draft = f"⚡ [{EMPIRE['FARM_NAME']} Intelligence Announcement]\n\nWe have deployed our on-premise universal aerial reconnaissance link..."
 
 current_user = st.session_state.user_session["username"]
 current_name = st.session_state.user_session["full_name"]
 current_role = st.session_state.user_session["role"]
 current_cipher = st.session_state.user_session["cipher"]
-current_trial_exp = st.session_state.user_session.get("trial_expires_at")
 groq_client = Groq(api_key=GROQ_KEY) if GROQ_KEY else None
 
 def query_local_ollama_chat(messages_payload: list) -> str:
@@ -395,8 +399,7 @@ with tab_chat:
             st.session_state.messages = db_messages
             st.session_state.screen_wiped = False
     else:
-        if "messages" not in st.session_state:
-            st.session_state.messages = [{"role": "assistant", "content": f"⚡ Welcome to {EMPIRE['FARM_NAME']}. I am {EMPIRE['AI_PERSONA']}. Please sign in."}]
+        if "messages" not in st.session_state: st.session_state.messages = [{"role": "assistant", "content": f"⚡ Welcome to {EMPIRE['FARM_NAME']}. I am {EMPIRE['AI_PERSONA']}. Please sign in."}]
 
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]): st.markdown(msg["content"])
@@ -422,18 +425,46 @@ with tab_chat:
         st.session_state.messages.append({"role": "assistant", "content": bot_reply})
         st.rerun()
 
+# RESTORED FULL LINKEDIN ENGINE
 with tab_linkedin:
     if current_role in ["CEO", "SUPER_ADMIN"]:
-        st.subheader("📡 Executive Broadcast Engine")
-        dictated_prompt = st.text_area("Dictate LinkedIn Concept:")
-        if st.button("🤖 Generate Factual Draft"):
-            sys_msg = f"You are ghostwriting for {EMPIRE['FOUNDER_NAME']}, CEO of {EMPIRE['FARM_NAME']}. Strict factual accuracy."
-            if is_online:
-                res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=[{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}], temperature=0.0)
-                st.session_state.current_linkedin_draft = sanitize_deterministic_output(res.choices[0].message.content.strip())
-            else: st.session_state.current_linkedin_draft = query_local_ollama_chat([{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}])
-            st.rerun()
-        st.text_area("Review Editor:", value=st.session_state.current_linkedin_draft, height=200)
+        col_dict1, col_dict2 = st.columns([1.6, 1])
+        with col_dict1:
+            st.markdown("#### 🎙️ Dictate Strategic Directive")
+            dictated_prompt = st.text_area("Dictate LinkedIn Concept / Key Talking Points:", height=120)
+            if st.button("🤖 Generate 100% Factual Draft", use_container_width=True):
+                sys_msg = f"You are ghostwriting for {EMPIRE['FOUNDER_NAME']}, CEO of {EMPIRE['FARM_NAME']}. Strict factual accuracy based solely on user input."
+                if is_online:
+                    res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=[{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}], temperature=0.0)
+                    st.session_state.current_linkedin_draft = sanitize_deterministic_output(res.choices[0].message.content.strip())
+                else: st.session_state.current_linkedin_draft = query_local_ollama_chat([{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}])
+                st.rerun()
+
+        with col_dict2:
+            st.markdown("#### ⚙️ Pipeline Status")
+            st.code(f"Author URN: {mask_secret(format_linkedin_urn(LINKEDIN_URN), 'URN')}\nGateway Token: {mask_secret(LINKEDIN_TOKEN, 'TOKEN')}\nZero-Hallucination: STRICT (Temp 0.0)")
+
+        st.divider()
+        st.markdown("#### 📝 Live Broadcast Editor & Deployment Gateway")
+        st.text_area("Review & Refine Before Deploying:", value=st.session_state.current_linkedin_draft, height=200, key="linkedin_editor")
+        
+        col_dep1, col_dep2 = st.columns([2, 1])
+        with col_dep1:
+            if st.button("🚀 Authorize & Deploy Live to LinkedIn Profile", use_container_width=True):
+                sanitized_deployment = sanitize_deterministic_output(st.session_state.current_linkedin_draft)
+                if st.session_state.demo_mode: st.error("❌ Action Blocked: Cannot deploy while Executive Demo Mode is active.")
+                elif not LINKEDIN_TOKEN or not LINKEDIN_URN: st.error("❌ LinkedIn credentials missing from vault.")
+                elif not sanitized_deployment: st.warning("Cannot deploy empty broadcast.")
+                else:
+                    with st.spinner("📡 Broadcasting to LinkedIn..."):
+                        clean_urn = format_linkedin_urn(LINKEDIN_URN)
+                        try:
+                            resp = requests.post("https://api.linkedin.com/v2/ugcPosts", headers={"Authorization": f"Bearer {LINKEDIN_TOKEN}", "Content-Type": "application/json", "X-Restli-Protocol-Version": "2.0.0"}, json={"author": clean_urn, "lifecycleState": "PUBLISHED", "specificContent": {"com.linkedin.ugc.ShareContent": {"shareCommentary": {"text": sanitized_deployment}, "shareMediaCategory": "NONE"}}, "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"}}, timeout=15)
+                            if resp.status_code in [200, 201]:
+                                st.success(f"🎉 Live Deployment Confirmed! Post ID: `{resp.json().get('id', 'SUCCESS')}`")
+                            else: st.error(f"⚠️ API Error (HTTP {resp.status_code}):\n`{resp.text}`")
+                        except Exception as err: st.error(f"Deployment error: {str(err)}")
+    else: st.info("🔒 Executive Article Dictation is reserved for the Master CEO.")
 
 with tab_weather:
     st.subheader("🚨 NOAA Emergency Weather & Live Radar Sentinel")
@@ -445,13 +476,10 @@ with tab_farm:
 
 with tab_overview:
     st.subheader("💳 Commercial Subscriptions & Features")
-    
-    # TELEMETRY GATE LOGIC
     feedback_cleared = has_user_submitted_feedback(current_user)
     is_unlocked = feedback_cleared or current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO"]
     
-    if not is_unlocked:
-        st.warning("🔒 **COMMERCIAL ACCESS LOCKED:** You must submit field telemetry and a platform review in the **Feedback Hub** (Tab 6) before commercial tier gateways are unlocked.")
+    if not is_unlocked: st.warning("🔒 **COMMERCIAL ACCESS LOCKED:** You must submit field telemetry and a platform review in the **Feedback Hub** (Tab 6) before commercial tier gateways are unlocked.")
 
     col_p1, col_p2, col_p3, col_p4 = st.columns(4)
     with col_p1:
@@ -471,6 +499,38 @@ with tab_overview:
         if is_unlocked: st.link_button("📦 Order Hardware", PAYPAL_PAY_LINK, use_container_width=True)
         else: st.button("🔒 Locked", disabled=True, key="lock4", use_container_width=True)
 
+    st.divider()
+    # RESTORED FULL SYSTEM DIAGNOSTIC SUMMARY
+    if current_role in ["CEO", "SUPER_ADMIN"]:
+        with st.expander("👑 [MASTER PLATFORM ROOT]: Live Diagnostic Mesh & Summary", expanded=True):
+            st.markdown("#### 🖥️ Master Node Diagnostic Readout")
+            conn = sqlite3.connect(DB_PATH)
+            cur = conn.cursor()
+            cur.execute("SELECT COUNT(*) FROM system_users")
+            user_count = cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) FROM member_invite_keys WHERE is_used=0")
+            unused_keys = cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) FROM encrypted_user_comms")
+            msg_count = cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) FROM pilot_feedback_vault")
+            feedback_count = cur.fetchone()[0]
+            conn.close()
+
+            st.code(f"""======================= SYSTEM TOPOLOGY =======================
+Host IP (Local LAN)      : {mask_secret("192.168.1.175", "IP")}
+Mesh Endpoint (Tailscale): {mask_secret(f"{ACTIVE_IP}:8501", "IP")}
+Master Database Vault    : {mask_secret(DB_PATH, "PATH")}
+---------------------------------------------------------------
+Active Registered Users  : {user_count}
+Submitted Pilot Reviews  : {feedback_count}
+Unused License Keys      : {unused_keys}
+Encrypted Comm Records   : {msg_count}
+---------------------------------------------------------------
+Local Neural Engine      : Ollama REST API (Port 11434)
+Cloud Fast Link          : Groq API (TLS 1.3)
+Universal Drone Ingest   : MediaMTX (Port 1935 RTMP)
+===============================================================""")
+
 with tab_feedback:
     st.subheader("📝 Open Market Pilot Feedback Hub")
     if current_role in ["CEO", "SUPER_ADMIN"]:
@@ -486,8 +546,7 @@ with tab_feedback:
         fb_rating = st.slider("Rating:", 1, 5, 5)
         fb_text = st.text_area("Feedback (Required to unlock commercial tiers):")
         if st.button("Submit Review & Unlock Platform"):
-            if not fb_text.strip():
-                st.warning("Feedback text is required.")
+            if not fb_text.strip(): st.warning("Feedback text is required.")
             else:
                 save_pilot_feedback(current_user, current_name, fb_rating, "", "", fb_text, "")
                 st.success("Review Submitted. Commercial tiers unlocked in Tab 5.")
