@@ -1,20 +1,4 @@
 ﻿import os
-import subprocess
-import socket
-
-def execute_auto_ignition():
-    try:
-        # Ping the local neural hardware port
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.settimeout(0.2)
-            if s.connect_ex(('127.0.0.1', 11434)) != 0:
-                # Port is dead. Silently ignite the local daemon in the background.
-                subprocess.Popen(["ollama", "serve"], shell=True, creationflags=0x08000000)
-    except:
-        pass
-
-# Force ignition check on every interface load
-execute_auto_ignition()
 
 import sys
 import io
