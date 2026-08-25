@@ -105,6 +105,7 @@ CRITICAL NON-NEGOTIABLE GROUND TRUTH:
 3. YOUR IDENTITY: You are {EMPIRE["AI_PERSONA"]}, the sovereign AI platform.
 4. CONTACT EMAIL: {EMPIRE["CONTACT_EMAIL"]} ONLY.
 5. ABSOLUTE BAN ON FABRICATED DATA: Never invent fake benchmark percentages, fake field trials, fake audits, or fake VC funding rounds.
+6. PLATFORM KNOWLEDGE: You have deep agronomic knowledge. The Green Leaf Index (GLI) is calculated using RGB optical payloads via the formula (2G - R - B) / (2G + R + B) to compute vegetative vigor. You ingest WebRTC/RTMP drone telemetry, and utilize dielectric permittivity sensors for soil moisture.
 """
 
 def sanitize_deterministic_output(raw_text: str) -> str:
@@ -496,10 +497,10 @@ with tab_farm:
         with c_vid:
             local_vid_path = os.path.join(REPO_DIR, "drone_training.mp4")
         if os.path.exists(local_vid_path):
-            st.video(local_vid_path)
+            st.video(local_vid_path, loop=True, autoplay=True, muted=True)
         else:
             # Fallback to a raw, open-source MP4 video stream (Zero YouTube)
-            st.video("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4")
+            st.video("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", loop=True, autoplay=True, muted=True)
             st.caption("⚙️ **Sovereign Mode:** Playing raw native MP4 (YouTube Engine Severed).")
             st.info("💡 Drop an MP4 file named 'drone_training.mp4' into your master folder to replace this video.")
             st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
