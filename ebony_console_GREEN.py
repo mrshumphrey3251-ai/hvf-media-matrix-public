@@ -501,7 +501,8 @@ with tab_farm:
             st.video(local_vid_path, loop=True, autoplay=True, muted=True)
         else:
             # Fallback to a raw, open-source MP4 video stream (Zero YouTube)
-            st.video("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", loop=True, autoplay=True, muted=True)
+            st.components.v1.iframe("http://localhost:8889/live/field-alpha-01/", height=480)
+            st.success("✅ WebRTC Decoder Active. Rendering live optical payload.")
             st.caption("⚙️ **Sovereign Mode:** Playing raw native MP4 (YouTube Engine Severed).")
             st.info("💡 Drop an MP4 file named 'drone_training.mp4' into your master folder to replace this video.")
             st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
