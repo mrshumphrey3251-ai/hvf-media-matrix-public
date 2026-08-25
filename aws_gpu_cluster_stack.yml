@@ -1,0 +1,108 @@
+﻿AWSTemplateFormatVersion: '2010-09-09'
+Description: 'HVF Sovereign Matrix - Enterprise GPU Compute Cluster (Auto-Scaling)'
+
+Parameters:
+  InstanceType:
+    Type: String
+    Default: 'g5.2xlarge'
+    Description: 'GPU Instance Type for High-Throughput Model Training/Inference'
+  MinClusterSize:
+    Type: Number
+    Default: 4
+    Description: 'Minimum running GPU instances in cluster'
+  MaxClusterSize:
+    Type: Number
+    Default: 128
+    Description: 'Maximum scaling ceiling for high-demand bursts'
+  KeyName:
+    Type: String
+    Default: 'hvf-executive-key'
+    Description: 'EC2 KeyPair for sovereign cryptographic access'
+
+Resources:
+  # Sovereign VPC Network
+  HVFVirtualPrivateCloud:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      Tags:
+        - Key: Name
+          Value: HVF-Sovereign-VPC
+
+  # Public Subnet for Ingress/Egress
+  HVFPublicSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref HVFVirtualPrivateCloud
+      CidrBlock: 10.0.1.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: HVF-Compute-Subnet
+
+  HVFInternetGateway:
+    Type: AWS::EC2::InternetGateway
+
+  HVFGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref HVFVirtualPrivateCloud
+      InternetGatewayId: !Ref HVFInternetGateway
+
+  # Perimeter Security Group
+  HVFSecurityFence:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: 'HVF Sovereign Security Perimeter - Strict Ingress'
+      VpcId: !Ref HVFVirtualPrivateCloud
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0 # Restrict to CEO Static IP in production
+
+  # Launch Template for GPU Nodes
+  HVFGpuLaunchTemplate:
+    Type: AWS::EC2::LaunchTemplate
+    Properties:
+      LaunchTemplateData:
+        InstanceType: !Ref InstanceType
+        KeyName: !Ref KeyName
+        SecurityGroupIds:
+          - !Ref HVFSecurityFence
+        TagSpecifications:
+          - ResourceType: instance
+            Tags:
+              - Key: Cluster
+                Value: HVF-Neural-Matrix
+
+  # Elastic Auto-Scaling Group
+  HVFAutoScalingFleet:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      VPCZoneIdentifier:
+        - !Ref HVFPublicSubnet
+      LaunchTemplate:
+        LaunchTemplateId: !Ref HVFGpuLaunchTemplate
+        Version: !GetAtt HVFGpuLaunchTemplate.LatestVersionNumber
+      MinSize: !Ref MinClusterSize
+      MaxSize: !Ref MaxClusterSize
+      DesiredCapacity: !Ref MinClusterSize
+      Tags:
+        - Key: Name
+          Value: HVF-GPU-Worker-Node
+          PropagateAtLaunch: true
+
+Outputs:
+  ClusterVPC:
+    Description: 'VPC ID for Neural Cluster'
+    Value: !Ref HVFVirtualPrivateCloud
+  SecurityGroupId:
+    Description: 'Security Perimeter Group ID'
+    Value: !Ref HVFSecurityFence

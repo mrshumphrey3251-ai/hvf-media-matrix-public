@@ -1,24 +1,31 @@
-﻿# ⚡ HVF Nexus Core: Project Ebony (CLASSIFIED)
+﻿# 🦅 Ebony: Sovereign Edge AI Command Deck
+**Humphrey Virtual Farms | Founder & CEO: Jeffery Humphrey**
 
-**Lead Systems Architect & Founder:** Jeffery D. Humphrey
-**Status:** CLOSED-LOOP BETA | PENDING EXECUTIVE RELEASE
+## System Architecture
+Ebony is a sovereign, offline-first agricultural intelligence platform. It is engineered to operate in zero-connectivity environments, utilizing edge-based AI models, live RTMP/WebRTC optical telemetry ingestion, and encrypted federated learning pipelines.
 
-## /// BLACK-BOX ARCHITECTURE
-The **HVF Media Matrix** is currently locked in a strict, closed-loop telemetry stress test. We are finalizing the deployment of **Project Ebony**—an autonomous, highly intelligent executive AI operating with zero-cloud sovereignty.
+## ⚙️ Partner Deployment Protocol (SignalLink)
+This public repository contains the redacted, deployable front-end architecture. To spin up the Command HUD on your local hardware, execute the following protocol:
 
-The market is flooded with passive, cloud-dependent wrappers. We built a weapon. 
+### 1. Secure the Architecture
+Download the ZIP file of this repository and extract it to a dedicated local folder.
 
-- **Edge Inference:** Operating strictly on localized bare-metal architecture.
-- **Immutable Provenance:** Data cryptographically bound at the microsecond of genesis.
-- **Live Autonomous Strike:** Direct, REST API-driven execution without middlemen.
+### 2. Provision the Environment
+Ensure Python 3.10+ is installed on your system. Open your terminal in the extracted folder and install the required dependencies:
+`pip install streamlit pandas numpy psutil`
 
-## /// ACCESS DENIED
-The operational blueprints, neural memory arrays, and core Python scripts are currently **classified**. The public architecture will be unsealed and published to this repository only when the CEO authorizes the Gold Master release.
+### 3. Ignite the Command Deck
+Launch the sovereign edge node by executing:
+`streamlit run ebony_console_GREEN.py`
 
-## /// EXECUTIVE CONTACT
-For strategic alignment, manufacturing partnerships, or defense-grade inquiries regarding the HVF Nexus Core:
-
-**Direct Line:** humphreyvirtualfarm@gmail.com
-
+*Note: For live drone optical ingestion, a localized RTMP/WebRTC media gateway (e.g., MediaMTX) must be deployed on Port 1935 prior to ignition.*
 ---
-*Watch this space. The rules of engagement are about to change.*
+
+### /// EXECUTIVE ONBOARDING: SIGNAL-LINK
+
+To initiate the architectural review and live demonstration, the following protocols must be executed:
+
+1. **Execute the MNDA:** [Review and Bind to the Mutual Non-Disclosure Agreement](./HVF_SignalLink_MNDA.md)
+2. **Download the Architecture:** [Download Sovereign Command Deck (ZIP)](https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public/archive/refs/heads/main.zip)
+
+*Upon execution of the MNDA, contact humphreyvirtualfarm@gmail.com to authorize the live telemetry handshake.*

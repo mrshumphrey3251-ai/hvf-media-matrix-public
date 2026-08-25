@@ -1,0 +1,118 @@
+﻿AWSTemplateFormatVersion: '2010-09-09'
+Description: 'HVF Sovereign Matrix - SageMaker Training Pipeline, CloudWatch Guardrails & Auto-Rollback Lambda'
+
+Parameters:
+  ModelEndpointName:
+    Type: String
+    Default: 'hvf-sovereign-llm-endpoint'
+    Description: 'Target SageMaker Endpoint for live inference and monitoring'
+
+Resources:
+  # IAM Role for Rollback Lambda Execution
+  HVFRollbackLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: HVF-Rollback-Lambda-Execution-Role
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: HVFSageMakerEndpointControl
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - sagemaker:UpdateEndpoint
+                  - sagemaker:DescribeEndpoint
+                  - sagemaker:DescribeEndpointConfig
+                  - sagemaker:ListEndpointConfigs
+                Resource: '*'
+
+  # Lambda Function: Automated Model Rollback Sentry
+  HVFRollbackSentryFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: HVF-Model-Rollback-Sentry
+      Runtime: python3.11
+      Handler: index.lambda_handler
+      Role: !GetAtt HVFRollbackLambdaRole.Arn
+      Timeout: 60
+      Code:
+        ZipFile: |
+          import boto3
+          import os
+
+          sm_client = boto3.client('sagemaker')
+          ENDPOINT_NAME = os.environ.get('ENDPOINT_NAME', 'hvf-sovereign-llm-endpoint')
+
+          def lambda_handler(event, context):
+              print(f"[HVF SENTRY]: Alignment breach detected. Initiating immediate rollback for {ENDPOINT_NAME}...")
+              try:
+                  configs = sm_client.list_endpoint_configs(
+                      SortBy='CreationTime',
+                      SortOrder='Descending',
+                      MaxResults=5
+                  )
+                  config_list = configs.get('EndpointConfigs', [])
+                  if len(config_list) < 2:
+                      print("[HVF SENTRY]: No previous stable configuration found to rollback to.")
+                      return {'status': 'FAILED', 'reason': 'No prior configuration'}
+                  
+                  # Previous certified configuration
+                  previous_config = config_list[1]['EndpointConfigName']
+                  print(f"[HVF SENTRY]: Rolling back endpoint to verified stable baseline: {previous_config}")
+                  
+                  response = sm_client.update_endpoint(
+                      EndpointName=ENDPOINT_NAME,
+                      EndpointConfigName=previous_config
+                  )
+                  return {'status': 'SUCCESS', 'reverted_to': previous_config}
+              except Exception as e:
+                  print(f"[HVF SENTRY]: Rollback misfire: {e}")
+                  raise e
+      Environment:
+        Variables:
+          ENDPOINT_NAME: !Ref ModelEndpointName
+
+  # CloudWatch Alarm: High Training Loss / Alignment Drift Alarm
+  HVFTrainingLossBreachAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: HVF-Model-Alignment-Breach-Alarm
+      AlarmDescription: 'Triggers automated rollback if training loss or alignment drift breaches safety limits'
+      Namespace: 'AWS/SageMaker'
+      MetricName: 'ModelLossSpike'
+      Dimensions:
+        - Name: EndpointName
+          Value: !Ref ModelEndpointName
+      Statistic: Maximum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 0.85
+      ComparisonOperator: GreaterThanThreshold
+      AlarmActions:
+        - !GetAtt HVFRollbackSentryFunction.Arn
+
+  # Lambda Permission for CloudWatch Alarm Invocation
+  HVFCloudWatchInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName: !GetAtt HVFRollbackSentryFunction.Arn
+      Principal: 'cloudwatch.amazonaws.com'
+      SourceArn: !GetAtt HVFTrainingLossBreachAlarm.Arn
+
+Outputs:
+  RollbackLambdaArn:
+    Description: 'Automated Rollback Sentry Lambda ARN'
+    Value: !GetAtt HVFRollbackSentryFunction.Arn
+  AlignmentAlarmArn:
+    Description: 'CloudWatch Safety Alarm ARN'
+    Value: !GetAtt HVFTrainingLossBreachAlarm.Arn

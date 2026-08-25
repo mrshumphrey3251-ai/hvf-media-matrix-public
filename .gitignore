@@ -1,0 +1,39 @@
+﻿# ==========================================
+# HVF SOVEREIGN AIR-GAP & SECURITY EXCLUSIONS
+# ==========================================
+
+# Environment Vaults & Credentials
+.env
+.env.*
+*.env
+
+# SQLite Databases & Local Memory Vaults
+*.db
+*.sqlite3
+*.sqlite
+hvf_memory_vault.db
+
+# Tailscale & Network Keys
+*.key
+*.pem
+*.cert
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*.class
+.pytest_cache/
+
+# Local Operating Logs & Telemetry Dumps
+*.log
+*.tmp
+# Local Launchers & Patch Scripts
+launch_ebony_background.bat
+start_ebony_silent.vbs
+patch.py
+extend_trial.py
+auto_create_stripe_links.py
+generate_stripe_links.py
+
+# Ignore large local video files
+*.mp4
