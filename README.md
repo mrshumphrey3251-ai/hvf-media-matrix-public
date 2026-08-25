@@ -1,30 +1,21 @@
-\# HVF Media Matrix: Sovereign Core Architecture (Classified)
+﻿# 🦅 Ebony: Sovereign Edge AI Command Deck
+**Humphrey Virtual Farms | Founder & CEO: Jeffery Humphrey**
 
+## System Architecture
+Ebony is a sovereign, offline-first agricultural intelligence platform. It is engineered to operate in zero-connectivity environments, utilizing edge-based AI models, live RTMP/WebRTC optical telemetry ingestion, and encrypted federated learning pipelines.
 
+## ⚙️ Partner Deployment Protocol (SignalLink)
+This public repository contains the redacted, deployable front-end architecture. To spin up the Command HUD on your local hardware, execute the following protocol:
 
-\## Executive Overview
+### 1. Secure the Architecture
+Download the ZIP file of this repository and extract it to a dedicated local folder.
 
-This repository houses the LIVE, UNREDACTED codebase of the \*\*HVF Media Matrix\*\*, a proprietary, zero-dependency, native Python architecture engineered for absolute control and tactical expansion.
+### 2. Provision the Environment
+Ensure Python 3.10+ is installed on your system. Open your terminal in the extracted folder and install the required dependencies:
+`pip install streamlit pandas numpy psutil`
 
+### 3. Ignite the Command Deck
+Launch the sovereign edge node by executing:
+`streamlit run ebony_console_GREEN.py`
 
-
-\## Architectural Dominance
-
-The HVF core operates on a strict zero-rewrite philosophy. The matrix is divided into distinct operational nodes:
-
-1\.  \*\*HVF Security Gateway:\*\* A military-grade cryptographic perimeter holding the master executive keys.
-
-2\.  \*\*Sovereign Core Server:\*\* The secure intake pipeline, processing only validated executive commands.
-
-3\.  \*\*Master Orchestrator:\*\* The dynamic intelligence hub, registering infinite tactical engines without breaking core logic.
-
-4\.  \*\*Universal Config Vault:\*\* The secure memory bank, armed in PRIVATE mode, injecting live API keys into the architecture.
-
-5\.  \*\*Tactical Engines:\*\* Active modules (e.g., the LinkedIn Broadcast Engine) fully wired and ready for live deployment.
-
-
-
-\## Deployment Status
-
-\*\*Foundation Phase: COMPLETE.\*\* System is unified, fortified, and cleared for live API integration.
-
+*Note: For live drone optical ingestion, a localized RTMP/WebRTC media gateway (e.g., MediaMTX) must be deployed on Port 1935 prior to ignition.*
