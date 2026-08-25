@@ -19,3 +19,13 @@ Launch the sovereign edge node by executing:
 `streamlit run ebony_console_GREEN.py`
 
 *Note: For live drone optical ingestion, a localized RTMP/WebRTC media gateway (e.g., MediaMTX) must be deployed on Port 1935 prior to ignition.*
+---
+
+### /// EXECUTIVE ONBOARDING: SIGNAL-LINK
+
+To initiate the architectural review and live demonstration, the following protocols must be executed:
+
+1. **Execute the MNDA:** [Review and Bind to the Mutual Non-Disclosure Agreement](./HVF_SignalLink_MNDA.md)
+2. **Download the Architecture:** [Download Sovereign Command Deck (ZIP)](https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public/archive/refs/heads/main.zip)
+
+*Upon execution of the MNDA, contact humphreyvirtualfarm@gmail.com to authorize the live telemetry handshake.*
