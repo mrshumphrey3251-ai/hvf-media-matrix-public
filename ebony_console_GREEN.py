@@ -483,6 +483,26 @@ with tab_weather:
     st.components.v1.iframe("https://radar.weather.gov/", height=450, scrolling=True)
 
 with tab_farm:
+    st.markdown("### 🚁 /// OPTICAL PAYLOAD FEED (LIVE)")
+    run_camera = st.checkbox("[ ARM OPTICAL LINK ]", key="master_cam_toggle")
+    FRAME_WINDOW = st.image([])
+    if run_camera:
+        import cv2
+        try:
+            camera = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+            if not camera.isOpened():
+                camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+            while run_camera:
+                ret, frame = camera.read()
+                if not ret: break
+                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                cv2.putText(frame, "EBONY OPTICAL LINK: ACTIVE", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+                FRAME_WINDOW.image(frame)
+            camera.release()
+        except Exception as e:
+            st.error(f"HARDWARE INTERLOCK FAILURE: {e}")
+    else:
+        st.info("[!] OPTICAL PAYLOAD OFFLINE. AWAITING CEO OVERRIDE.")
     st.subheader(f"🌾 {EMPIRE['FARM_NAME']} | Aerial Ingest")
     
     drone_linked = st.toggle("📡 Arm Drone Feed (Simulate Active RTMP Handshake)", value=False)
@@ -501,8 +521,7 @@ with tab_farm:
             st.video(local_vid_path, loop=True, autoplay=True, muted=True)
         else:
             # Fallback to a raw, open-source MP4 video stream (Zero YouTube)
-            st.components.v1.iframe("http://localhost:8889/live/field-alpha-01/", height=480)
-            st.success("✅ WebRTC Decoder Active. Rendering live optical payload.")
+            st.video("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", loop=True, autoplay=True, muted=True)
             st.caption("⚙️ **Sovereign Mode:** Playing raw native MP4 (YouTube Engine Severed).")
             st.info("💡 Drop an MP4 file named 'drone_training.mp4' into your master folder to replace this video.")
             st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
