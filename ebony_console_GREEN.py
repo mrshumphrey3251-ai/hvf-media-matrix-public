@@ -534,7 +534,7 @@ with tab_farm:
         st.info("[!] OPTICAL PAYLOAD OFFLINE. AWAITING CEO OVERRIDE.")
     
     # /// THE NEURAL BRIDGE ///
-            if "last_gli" in st.session_state:
+    if "last_gli" in st.session_state:
         st.markdown("---")
         st.markdown("### 🧠 /// NEURAL BRIDGE: AI INGESTION")
         if st.button("[ TRANSMIT TELEMETRY TO AI CORE ]"):
@@ -557,7 +557,6 @@ with tab_farm:
                     st.markdown("#### 🌾 EBONY AGRONOMIC ASSESSMENT:")
                     st.info(ai_reply)
                     
-                    # Silently back up to Sovereign Command if possible
                     try:
                         st.session_state.messages.append({"role": "user", "content": prompt})
                         st.session_state.messages.append({"role": "assistant", "content": ai_reply})
