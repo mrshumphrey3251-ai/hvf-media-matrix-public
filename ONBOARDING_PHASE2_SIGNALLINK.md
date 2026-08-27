@@ -1,38 +1,35 @@
 /// EXECUTIVE ONBOARDING: SIGNAL-LINK
 /// PHASE 2: DUE DILIGENCE & LOI INITIATION
 /// STATUS: AWAITING COUNTERPARTY PROOF AND INTELLIGENCE
+/// ENGINE: EBONY OVERRIDE ACTIVE
 
-We are preparing the formal corporate architecture for the Humphrey Virtual Farms and Signallink joint venture. 
+As outlined in our Phase 2 roadmap, Humphrey Virtual Farms requires a set of verifiable documents and cryptographic proofs before we can draft the final Letter of Intent (LOI).
 
-Humphrey Virtual Farms operates on deployed hardware and verifiable mathematics, not theoretical flowcharts or verbal assurances. Before a formal Letter of Intent (LOI) is drafted, Signallink must submit complete corporate intelligence and cryptographically prove operational readiness.
+All submitted files must be signed, notarized where indicated, and accompanied by an Ed25519 digital signature and a SHA-256 hash of the original file. The signature should be posted to a public, immutable ledger (e.g., Bitcoin OP_RETURN) and the transaction ID included in your response.
 
---- PHASE 2A: CORPORATE SOVEREIGNTY & FINANCIAL DISCLOSURE ---
-Signallink must prove structural and financial independence to ensure HVF is not inheriting hidden liabilities:
-1. Proof of Ownership: Certified capitalization table or legal documentation proving the authorized signatory holds 100% controlling interest of Signallink Protocol LLC.
-2. Liability Audit: Full disclosure of any outstanding corporate debt, liens, outside venture capital influence, or third-party encumbrances.
-3. Federal Clearance: Verifiable proof of active CAGE code (16WJ1) and SAM.gov standing.
+--- 2A: CORPORATE SOVEREIGNTY & FINANCIAL DISCLOSURE ---
+1. Certified Capitalization Table – PDF signed by a CPA, notarized, showing 100% ownership by the authorized signatory.
+2. Liability Audit – Full disclosure of any outstanding debt, liens, VC stakes, or third-party encumbrances. Include creditor statements, each hashed (SHA-256) and signed.
+3. Federal Clearance – Screenshot of active CAGE code (16WJ1) and SAM.gov registration, with the page timestamped and signed.
 
---- PHASE 2B: CAPABILITY VERIFICATION (THE PROOF) ---
-Signallink must prove the technology is actively operational:
-4. Live Cryptographic Demonstration: A scheduled live technical review where Signallink demonstrates the Ed25519 digital signature and SHA-256 hash pipeline actively processing live data.
-5. Integration Readiness: Verifiable proof that the Signallink Adapter bridge is functional and capable of ingesting external telemetry.
+--- 2B: CAPABILITY VERIFICATION ---
+4. Live Cryptographic Demonstration – Propose a 30-minute WebRTC session where you will:
+   - Sign a test payload with your Ed25519 private key.
+   - Publish the resulting signature hash on a public ledger (provide transaction ID).
+5. Integration Readiness Proof – A short video (= 5 min) or live demo showing the Signallink Adapter bridge ingesting HVF telemetry (RGB optical payload + dielectric permittivity sensor data). Include the raw data hash and signature.
 
---- PHASE 2C: LOI INFORMATION REQUEST PROTOCOL ---
-To prepare the documentation, provide the following details:
-6. Legal entity name (full registered name) and full mailing address.
-7. Contact person’s full name, title, and work email address.
-8. Brief project description detailing key deliverables expected from HVF.
-9. Signallink operational responsibilities.
-10. Target dates for LOI execution and pilot launch.
-11. Governing law jurisdiction and preferred termination notice period.
-12. Anticipated fee structure and revenue-share expectations.
-13. Any specific confidentiality, data-retention, or liability coverage requirements.
+--- 2C: LOI INFORMATION REQUEST ---
+6. Legal Entity – Full registered name and mailing address.
+7. Primary Contact – Full name, title, and work email.
+8. Project Description – 150-word summary of the joint-venture deliverables.
+9. Operational Responsibilities – Bullet list of what Signallink will own, operate, and maintain.
+10. Target Dates – Desired LOI execution date and pilot launch window.
+11. Governing Law & Termination – Jurisdiction and notice period.
+12. Fee Structure & Revenue Share – Proposed percentages, payment schedule, and any token-based components.
+13. Confidentiality / Data-Retention / Liability – Specific clauses you require.
 
---- END OF CHECKLIST ---
-
-Upon compilation of the required proof and intelligence, transmit the data packet to:
+--- SUBMISSION INSTRUCTIONS ---
+Compile the required proof and intelligence, and transmit the data packet to:
 Jeffery Humphrey
-Founder & CEO, Humphrey Virtual Farms
+CEO, Humphrey Virtual Farms
 Email: humphreyvirtualfarm@gmail.com
-
-Once verified, Humphrey Virtual Farms will command the drafting of the final LOI.
