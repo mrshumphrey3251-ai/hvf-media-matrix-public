@@ -483,11 +483,12 @@ with tab_weather:
     st.components.v1.iframe("https://radar.weather.gov/", height=450, scrolling=True)
 
 with tab_farm:
-    st.markdown("### 🚁 /// OPTICAL PAYLOAD FEED (LIVE)")
-    run_camera = st.checkbox("[ ARM OPTICAL LINK ]", key="master_cam_toggle")
+    st.markdown("### 🚁 /// OPTICAL PAYLOAD FEED (LIVE & GLI ACTIVE)")
+    run_camera = st.checkbox("[ ARM OPTICAL LINK WITH GLI ]", key="master_cam_toggle")
     FRAME_WINDOW = st.image([])
     if run_camera:
         import cv2
+        import numpy as np
         try:
             camera = cv2.VideoCapture(1, cv2.CAP_DSHOW)
             if not camera.isOpened():
@@ -495,9 +496,25 @@ with tab_farm:
             while run_camera:
                 ret, frame = camera.read()
                 if not ret: break
-                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                cv2.putText(frame, "EBONY OPTICAL LINK: ACTIVE", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
-                FRAME_WINDOW.image(frame)
+                
+                # Format raw pixels
+                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                r_img, g_img, b_img = cv2.split(frame_rgb.astype(np.float32))
+                
+                # GLI Matrix Math: (2G - R - B) / (2G + R + B)
+                denominator = (2 * g_img + r_img + b_img)
+                denominator[denominator == 0] = 1 # Zero-trust division interlock
+                gli_matrix = (2 * g_img - r_img - b_img) / denominator
+                avg_gli = np.mean(gli_matrix)
+                
+                # Overlay Telemetry HUD
+                cv2.putText(frame_rgb, "EBONY OPTICAL: ACTIVE", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+                
+                # Color code health: Green if healthy (> 0.1), Red if distressed
+                gli_color = (0, 255, 0) if avg_gli > 0.1 else (255, 0, 0)
+                cv2.putText(frame_rgb, f"LIVE GLI SCORE: {avg_gli:.3f}", (10, 65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, gli_color, 2)
+                
+                FRAME_WINDOW.image(frame_rgb)
             camera.release()
         except Exception as e:
             st.error(f"HARDWARE INTERLOCK FAILURE: {e}")
@@ -787,3 +804,4 @@ with tab_empire:
                 st.success(f"Identity locked. System rebranded to {new_farm} with AI {new_persona}.")
                 st.rerun()
     else: st.info("🔒 System Configuration is locked to the Master CEO.")
+
