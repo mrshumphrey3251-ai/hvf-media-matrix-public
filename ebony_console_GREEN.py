@@ -355,6 +355,19 @@ with st.sidebar:
             if not st.session_state.demo_mode: st.image(generate_qr_image(UPLINK_URL), width=180)
             else: st.info("QR Code hidden during Demo Mode.")
             
+            # /// MASTER CEO IDENTITY ROSTER ///
+            if current_role in ["CEO", "SUPER_ADMIN"]:
+                with st.expander("👁️ VAULT ROSTER (CEO ONLY)", expanded=False):
+                    try:
+                        conn_r = sqlite3.connect(DB_PATH)
+                        cur_r = conn_r.cursor()
+                        cur_r.execute("SELECT username, full_name, role FROM system_users")
+                        for vu in cur_r.fetchall():
+                            st.caption(f"**{vu[0]}** | {vu[1]} | `{vu[2]}`")
+                        conn_r.close()
+                    except Exception as e:
+                        st.caption("Vault connection isolated.")
+            
             st.divider()
             if st.button("⚡ Issue Team VIP Code"):
                 if st.session_state.demo_mode: st.warning("Blocked in Demo Mode.")
@@ -486,6 +499,7 @@ with tab_farm:
     st.markdown("### 🚁 /// OPTICAL PAYLOAD FEED (LIVE & GLI ACTIVE)")
     run_camera = st.checkbox("[ ARM OPTICAL LINK WITH GLI ]", key="master_cam_toggle")
     FRAME_WINDOW = st.image([])
+    
     if run_camera:
         import cv2
         import numpy as np
@@ -497,20 +511,18 @@ with tab_farm:
                 ret, frame = camera.read()
                 if not ret: break
                 
-                # Format raw pixels
                 frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 r_img, g_img, b_img = cv2.split(frame_rgb.astype(np.float32))
                 
-                # GLI Matrix Math: (2G - R - B) / (2G + R + B)
                 denominator = (2 * g_img + r_img + b_img)
-                denominator[denominator == 0] = 1 # Zero-trust division interlock
+                denominator[denominator == 0] = 1 
                 gli_matrix = (2 * g_img - r_img - b_img) / denominator
                 avg_gli = np.mean(gli_matrix)
                 
-                # Overlay Telemetry HUD
-                cv2.putText(frame_rgb, "EBONY OPTICAL: ACTIVE", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+                # Silently log the live score into the platform's short-term memory
+                st.session_state["last_gli"] = float(avg_gli)
                 
-                # Color code health: Green if healthy (> 0.1), Red if distressed
+                cv2.putText(frame_rgb, "EBONY OPTICAL: ACTIVE", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
                 gli_color = (0, 255, 0) if avg_gli > 0.1 else (255, 0, 0)
                 cv2.putText(frame_rgb, f"LIVE GLI SCORE: {avg_gli:.3f}", (10, 65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, gli_color, 2)
                 
@@ -520,6 +532,41 @@ with tab_farm:
             st.error(f"HARDWARE INTERLOCK FAILURE: {e}")
     else:
         st.info("[!] OPTICAL PAYLOAD OFFLINE. AWAITING CEO OVERRIDE.")
+    
+    # /// THE NEURAL BRIDGE ///
+            if "last_gli" in st.session_state:
+        st.markdown("---")
+        st.markdown("### 🧠 /// NEURAL BRIDGE: AI INGESTION")
+        if st.button("[ TRANSMIT TELEMETRY TO AI CORE ]"):
+            gli_val = st.session_state["last_gli"]
+            prompt = f"SYSTEM INGEST: The optical payload just captured a live Green Leaf Index (GLI) score of {gli_val:.3f}. Based on standard agronomic baselines (where >0.1 indicates healthy vegetative vigor and lower values indicate stress, soil, or non-crop matter), analyze this telemetry and provide a deterministic field assessment for the CEO."
+            
+            with st.spinner("EBONY AI IS ANALYZING SENSOR DATA..."):
+                try:
+                    client = Groq(api_key=GROQ_KEY)
+                    chat_history = [{"role": "system", "content": "You are Ebony, an elite AI agronomist for Humphrey Virtual Farms. Be concise, authoritative, and deterministic."}] + [{"role": "user", "content": prompt}]
+                    
+                    response = client.chat.completions.create(
+                        model="openai/gpt-oss-120b",
+                        messages=chat_history,
+                        temperature=0.0
+                    )
+                    ai_reply = response.choices[0].message.content
+                    
+                    st.success("✅ OPTICAL TELEMETRY ANALYZED.")
+                    st.markdown("#### 🌾 EBONY AGRONOMIC ASSESSMENT:")
+                    st.info(ai_reply)
+                    
+                    # Silently back up to Sovereign Command if possible
+                    try:
+                        st.session_state.messages.append({"role": "user", "content": prompt})
+                        st.session_state.messages.append({"role": "assistant", "content": ai_reply})
+                        save_encrypted_message(current_user, "user", prompt, current_cipher)
+                        save_encrypted_message(current_user, "assistant", ai_reply, current_cipher)
+                    except: pass
+                    
+                except Exception as e:
+                    st.error(f"NEURAL CORE OFFLINE OR API REJECTED. Error: {e}")
     st.subheader(f"🌾 {EMPIRE['FARM_NAME']} | Aerial Ingest")
     
     drone_linked = st.toggle("📡 Arm Drone Feed (Simulate Active RTMP Handshake)", value=False)
@@ -804,4 +851,13 @@ with tab_empire:
                 st.success(f"Identity locked. System rebranded to {new_farm} with AI {new_persona}.")
                 st.rerun()
     else: st.info("🔒 System Configuration is locked to the Master CEO.")
+
+
+
+
+
+
+
+
+
 
