@@ -1,0 +1,23 @@
+﻿[
+    {
+        "target_id": "HVF-INV-001",
+        "entity_name": "Apex Industrial Ventures",
+        "sector_alignment": "SCADA Edge AI Integration",
+        "fund_size_mm": 250,
+        "keywords": ["SCADA", "Industrial Control", "Series A"]
+    },
+    {
+        "target_id": "HVF-INV-002",
+        "entity_name": "CryptoBros Capital",
+        "sector_alignment": "Consumer Blockchain",
+        "fund_size_mm": 15,
+        "keywords": ["Crypto", "Web3", "Seed"]
+    },
+    {
+        "target_id": "HVF-INV-003",
+        "entity_name": "Horizon Edge Partners",
+        "sector_alignment": "Industrial IoT & Edge AI",
+        "fund_size_mm": 500,
+        "keywords": ["Edge AI", "Automation", "Series B"]
+    }
+]

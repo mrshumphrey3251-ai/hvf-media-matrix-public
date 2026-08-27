@@ -1,0 +1,8 @@
+[
+  {
+    "service": "MediaIngest",
+    "base_url": "https://ingest.hvf.io/v1",
+    "auth": "oauth2_client_credentials",
+    "rate_limit": 1200
+  }
+]
