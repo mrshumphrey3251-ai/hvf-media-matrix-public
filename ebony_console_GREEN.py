@@ -1,4 +1,5 @@
-﻿import os
+import ada_voice_module
+import os
 
 import sys
 import io
@@ -278,12 +279,17 @@ def get_tailscale_or_local_ip_cached() -> str:
         return ip
     except: return "192.168.1.175"
 
-ACTIVE_IP = get_tailscale_or_local_ip_cached()
+ACTIVE_IP = "100.87.162.117"
 UPLINK_URL = f"http://{ACTIVE_IP}:8501"
 WEBRTC_STREAM_URL = f"http://192.168.1.175:8889/live/stream"
 RTMP_INGEST_URL = f"rtmp://192.168.1.175:1935/live/stream"
 
 st.set_page_config(page_title=f"{EMPIRE['FARM_NAME']} | {EMPIRE['AI_PERSONA']}", page_icon="⚡", layout="wide", initial_sidebar_state="collapsed")
+
+# --- ADA VOICE MATRIX OMNIPRESENT SIDEBAR ---
+with st.sidebar:
+    ada_voice_module.render_voice_matrix()
+# --------------------------------------------
 
 st.markdown("""
 <style>
