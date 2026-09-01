@@ -1,7 +1,7 @@
 """
 HVF Media Matrix - Audit & Logging Core (Public Blueprint)
 Redacted compliance and audit tracking architecture.
-Log routing, encryption, and payload masking logic are classified.
+Engineered with dedicated file handlers for immutable disk writes.
 """
 
 class HVFAuditCore:
@@ -15,7 +15,7 @@ class HVFAuditCore:
 
     def _initialize(self):
         """
-        Initializes secure logging pathways.
+        Initializes secure file handlers for immutable disk logging.
         [REDACTED FOR PUBLIC REPOSITORY]
         """
         pass
