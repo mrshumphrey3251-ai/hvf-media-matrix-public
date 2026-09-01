@@ -1,7 +1,7 @@
 """
 HVF Media Matrix - Core Application Entry Point (Public Blueprint)
 Redacted master initialization sequence.
-Subsystem bindings, audit injection, database pooling, and boot logic are classified.
+Subsystem bindings, audit injection, database pooling, and API server execution are classified.
 """
 
 class HVFMatrixCore:
@@ -15,7 +15,7 @@ class HVFMatrixCore:
     def ignite_matrix(self) -> bool:
         """
         Top-down boot sequence for all matrix subsystems.
-        Failure states, binding logic, audit tracking, and orchestration are classified.
+        Failure states, binding logic, audit tracking, and web server execution are classified.
         """
         # [REDACTED FOR PUBLIC REPOSITORY]
         self.system_active = True
