@@ -1,17 +1,18 @@
 """
 HVF Media Matrix - Token Manager (Public Blueprint)
 Redacted cryptographic token engine.
-Signing algorithms, secrets, and lifespan configurations removed.
+Signing algorithms, config integration, and lifespan configurations removed.
 """
 from typing import Optional
 
 class HVFTokenManager:
     def __init__(self):
         """
-        Initializes cryptographic parameters.
+        Initializes cryptographic parameters and configuration manager.
         [REDACTED FOR PUBLIC REPOSITORY]
         """
         self.token_lifespan_seconds = 0
+        self._internal_secret = "REDACTED"
 
     def generate_token(self, entity_id: str, role: str = "standard") -> str:
         """
