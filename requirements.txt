@@ -1,0 +1,18 @@
+# HVF Media Matrix - Master Dependency Manifest
+# Engineered for strict version control and zero-conflict deployment.
+
+# 1. API & Central Routing
+fastapi==0.103.2
+uvicorn==0.23.2
+
+# 2. Database & Persistent Memory
+SQLAlchemy==2.0.21
+pymongo==4.5.0
+
+# 3. Authentication & Cryptography
+PyJWT==2.8.0
+cryptography==41.0.4
+
+# 4. Cloud Integration & Secrets Vault
+boto3==1.28.62
+python-dotenv==1.0.0
