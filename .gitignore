@@ -1,40 +1,29 @@
-﻿# ==========================================
-# HVF SOVEREIGN AIR-GAP & SECURITY EXCLUSIONS
-# ==========================================
+﻿# HVF Media Matrix - Enterprise Git Ignore Policy
 
-# Environment Vaults & Credentials
+# 1. Environment Variables & Secrets (CRITICAL)
 .env
 .env.*
-*.env
-
-# SQLite Databases & Local Memory Vaults
-*.db
-*.sqlite3
-*.sqlite
-hvf_memory_vault.db
-
-# Tailscale & Network Keys
-*.key
 *.pem
-*.cert
+*.key
+secrets.json
 
-# Python Bytecode & Cache
+# 2. Logs & Audit Trails (CRITICAL)
+hvf_secure_logs/
+*.log
+
+# 3. Python Compiled Caches
 __pycache__/
 *.py[cod]
-*.class
-.pytest_cache/
+*$py.class
+*.so
 
-# Local Operating Logs & Telemetry Dumps
-*.log
-*.tmp
-# Local Launchers & Patch Scripts
-launch_ebony_background.bat
-start_ebony_silent.vbs
-patch.py
-extend_trial.py
-auto_create_stripe_licd C:\HVF_Repos\hvf-media-matrix-public
-notepad .gitignorenks.py
-generate_stripe_links.py
+# 4. Virtual Environments
+venv/
+env/
+.venv/
 
-# Ignore large local video files
-*.mp4
+# 5. IDE & OS Environment Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
