@@ -22,6 +22,11 @@ This registry serves as the authoritative public index for all active Humphrey V
   * **Matrix:** 30% Tax / 15% OpEx / 15% CapEx / 40% Founder
   * **Clearance:** Public Blueprint (Cryptographic Logging Redacted)
 
+* **[Stripe Webhook Listener & Payment Trigger](../billing/stripe_webhook_listener.py)**
+  * **Status:** ONLINE
+  * **Function:** Automated payment routing and treasury integration.
+  * **Clearance:** Public Blueprint (Cryptographic Keys & Routing Redacted)
+
 ### PENDING DEPLOYMENTS
 * [Phase 10 Architecture - CLASSIFIED]
 
