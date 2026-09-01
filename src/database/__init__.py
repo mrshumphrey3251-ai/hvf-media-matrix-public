@@ -1,7 +1,7 @@
 """
 HVF Media Matrix - Database Subsystem (Public Blueprint)
 Package Initialization.
-Internal imports, routing, and exposure controls are classified.
+Internal imports, connector bindings, and schema exposures are classified.
 """
 __version__ = "1.0.0"
 
