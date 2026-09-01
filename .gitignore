@@ -32,7 +32,8 @@ launch_ebony_background.bat
 start_ebony_silent.vbs
 patch.py
 extend_trial.py
-auto_create_stripe_links.py
+auto_create_stripe_licd C:\HVF_Repos\hvf-media-matrix-public
+notepad .gitignorenks.py
 generate_stripe_links.py
 
 # Ignore large local video files
