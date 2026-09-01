@@ -16,6 +16,11 @@ This registry serves as the authoritative public index for all active Humphrey V
   * **Governance:** 52% Control Baseline
   * **Clearance:** Public Blueprint
 
+* **[Smart-Contract Ledger](../compliance/smart_contract_ledger.py)**
+  * **Status:** ONLINE
+  * **Function:** Cryptographic enforcement of the 52% control baseline.
+  * **Clearance:** Public Blueprint (Cryptographic Hashing Redacted)
+
 ### ACTIVE FINANCIAL & BILLING MODULES
 * **[Automated Treasury Routing Engine](../billing/hvf_treasury_router.py)**
   * **Status:** ONLINE
