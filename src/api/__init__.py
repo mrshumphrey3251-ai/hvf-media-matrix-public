@@ -1,7 +1,7 @@
 """
-HVF Media Matrix - Core API Subsystem (Public Blueprint)
+HVF Media Matrix - API Subsystem (Public Blueprint)
 Package Initialization.
-Internal imports, routing, and exposure controls are classified.
+Internal imports, routing, and FastAPI exposure controls are classified.
 """
 __version__ = "1.0.0"
 
