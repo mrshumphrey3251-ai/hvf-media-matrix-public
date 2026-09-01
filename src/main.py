@@ -1,7 +1,7 @@
 """
 HVF Media Matrix - Core Application Entry Point (Public Blueprint)
 Redacted master initialization sequence.
-Subsystem bindings and boot logic are classified.
+Subsystem bindings, database pooling, and boot logic are classified.
 """
 
 class HVFMatrixCore:
