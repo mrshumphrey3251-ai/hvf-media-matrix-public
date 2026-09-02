@@ -1,6 +1,5 @@
-import ada_voice_module
+﻿import ada_voice_module
 import os
-
 import sys
 import io
 import re
@@ -333,7 +332,7 @@ with st.sidebar:
     st.header("🛡️ Presentation OPSEC")
     is_demo_mode = st.toggle("Activate Demo Mode (Mask Secrets)", value=st.session_state.demo_mode)
     st.session_state.demo_mode = is_demo_mode
-    
+
     def mask_secret(text: str, mask_type: str = "FULL") -> str:
         if not st.session_state.demo_mode: return text
         if mask_type == "IP": return "[REDACTED_IP]"
@@ -353,14 +352,14 @@ with st.sidebar:
         if st.button("🚪 Disconnect Session", use_container_width=True):
             st.session_state.user_session = {"authenticated": False, "username": None, "full_name": "Public Guest", "role": "GUEST", "cipher": None, "trial_expires_at": None}
             st.rerun()
-            
+
         if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO"]:
             st.divider()
             st.header("📲 Swarm Uplink")
             st.caption(f"Scan to access node:\n`{mask_secret(UPLINK_URL, 'URL')}`")
             if not st.session_state.demo_mode: st.image(generate_qr_image(UPLINK_URL), width=180)
             else: st.info("QR Code hidden during Demo Mode.")
-            
+
             # /// MASTER CEO IDENTITY ROSTER ///
             if current_role in ["CEO", "SUPER_ADMIN"]:
                 with st.expander("👁️ VAULT ROSTER (CEO ONLY)", expanded=False):
@@ -373,7 +372,7 @@ with st.sidebar:
                         conn_r.close()
                     except Exception as e:
                         st.caption("Vault connection isolated.")
-            
+
             st.divider()
             if st.button("⚡ Issue Team VIP Code"):
                 if st.session_state.demo_mode: st.warning("Blocked in Demo Mode.")
@@ -404,8 +403,8 @@ with st.sidebar:
 st.title(f"⚡ {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
 st.caption(f"Active User: **{current_name}** | 🛡️ *Mode: {st.session_state.operation_mode}*")
 
-tab_chat, tab_linkedin, tab_weather, tab_farm, tab_overview, tab_feedback, tab_sandbox, tab_empire = st.tabs([
-    "💬 Sovereign Command", "📡 LinkedIn Engine", "🚨 NOAA Radar", "🌾 Drone Diagnostics", "📖 System Overview", "📝 Feedback Hub", "🧪 Sandbox", "⚙️ Empire Config"
+tab_chat, tab_linkedin, tab_weather, tab_farm, tab_overview, tab_feedback, tab_sandbox, tab_empire, tab_matrix = st.tabs([
+    "💬 Sovereign Command", "📡 LinkedIn Engine", "🚨 NOAA Radar", "🌾 Drone Diagnostics", "📖 System Overview", "📝 Feedback Hub", "🧪 Sandbox", "⚙️ Empire Config", "⬛ Media Matrix"
 ])
 
 with tab_chat:
@@ -427,21 +426,21 @@ with tab_chat:
     if user_input := st.chat_input(f"Ask {EMPIRE['AI_PERSONA']} anything..."):
         if current_user and current_cipher: save_encrypted_message(current_user, "user", user_input, current_cipher)
         st.session_state.messages.append({"role": "user", "content": user_input})
-        
+
         full_sys_prompt = f"You are {EMPIRE['AI_PERSONA']}, Sovereign AI for {EMPIRE['FARM_NAME']}. Founder: {EMPIRE['FOUNDER_NAME']}.\n{STRICT_GROUND_RULES}\n{load_all_entity_memories(current_user)}"
         conversation_payload = [{"role": "system", "content": full_sys_prompt}] + st.session_state.messages[-12:]
-        
+
         if is_online:
             try:
                 res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=conversation_payload, temperature=0.0)
                 bot_reply = sanitize_deterministic_output(res.choices[0].message.content)
             except Exception as e: bot_reply = f"Cloud fault: {str(e)}"
         else: bot_reply = query_local_ollama_chat(conversation_payload)
-        
+
         if current_user and current_cipher:
             save_encrypted_message(current_user, "assistant", bot_reply, current_cipher)
             store_entity_memory_async(current_user, user_input, bot_reply)
-            
+
         st.session_state.messages.append({"role": "assistant", "content": bot_reply})
         st.rerun()
 
@@ -453,7 +452,7 @@ with tab_linkedin:
             dictated_prompt = st.text_area("Dictate LinkedIn Concept / Key Talking Points:", height=120)
             if st.button("🤖 Generate 100% Factual Draft", use_container_width=True):
                 sys_msg = f"You are ghostwriting for {EMPIRE['FOUNDER_NAME']}, CEO of {EMPIRE['FARM_NAME']}. Strict factual accuracy based solely on user input."
-                
+
                 draft_text = ""
                 if is_online:
                     if not groq_client:
@@ -466,7 +465,7 @@ with tab_linkedin:
                             draft_text = f"⚠️ CLOUD API FAULT: {str(e)}"
                 else:
                     draft_text = query_local_ollama_chat([{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}])
-                
+
                 st.session_state.current_linkedin_draft = draft_text
                 st.session_state.linkedin_editor = draft_text
                 st.rerun()
@@ -476,15 +475,15 @@ with tab_linkedin:
             st.code(f"Author URN: {mask_secret(format_linkedin_urn(LINKEDIN_URN), 'URN')}\nGateway Token: {mask_secret(LINKEDIN_TOKEN, 'TOKEN')}\nZero-Hallucination: STRICT (Temp 0.0)")
 
         st.divider()
-        st.markdown("#### 📝 Live Broadcast Editor & Deployment Gateway")
+        st.markdown("#### 📡 Live Broadcast Editor & Deployment Gateway")
         st.text_area("Review & Refine Before Deploying:", value=st.session_state.current_linkedin_draft, height=200, key="linkedin_editor")
-        
+
         col_dep1, col_dep2 = st.columns([2, 1])
         with col_dep1:
             if st.button("🚀 Authorize & Deploy Live to LinkedIn Profile", use_container_width=True):
                 sanitized_deployment = sanitize_deterministic_output(st.session_state.current_linkedin_draft)
-                if st.session_state.demo_mode: st.error("❌ Action Blocked: Cannot deploy while Executive Demo Mode is active.")
-                elif not LINKEDIN_TOKEN or not LINKEDIN_URN: st.error("❌ LinkedIn credentials missing from vault.")
+                if st.session_state.demo_mode: st.error("⛔ Action Blocked: Cannot deploy while Executive Demo Mode is active.")
+                elif not LINKEDIN_TOKEN or not LINKEDIN_URN: st.error("⛔ LinkedIn credentials missing from vault.")
                 elif not sanitized_deployment: st.warning("Cannot deploy empty broadcast.")
                 else:
                     with st.spinner("📡 Broadcasting to LinkedIn..."):
@@ -505,7 +504,7 @@ with tab_farm:
     st.markdown("### 🚁 /// OPTICAL PAYLOAD FEED (LIVE & GLI ACTIVE)")
     run_camera = st.checkbox("[ ARM OPTICAL LINK WITH GLI ]", key="master_cam_toggle")
     FRAME_WINDOW = st.image([])
-    
+
     if run_camera:
         import cv2
         import numpy as np
@@ -516,29 +515,29 @@ with tab_farm:
             while run_camera:
                 ret, frame = camera.read()
                 if not ret: break
-                
+
                 frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 r_img, g_img, b_img = cv2.split(frame_rgb.astype(np.float32))
-                
+
                 denominator = (2 * g_img + r_img + b_img)
-                denominator[denominator == 0] = 1 
+                denominator[denominator == 0] = 1
                 gli_matrix = (2 * g_img - r_img - b_img) / denominator
                 avg_gli = np.mean(gli_matrix)
-                
+
                 # Silently log the live score into the platform's short-term memory
                 st.session_state["last_gli"] = float(avg_gli)
-                
+
                 cv2.putText(frame_rgb, "EBONY OPTICAL: ACTIVE", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
                 gli_color = (0, 255, 0) if avg_gli > 0.1 else (255, 0, 0)
                 cv2.putText(frame_rgb, f"LIVE GLI SCORE: {avg_gli:.3f}", (10, 65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, gli_color, 2)
-                
+
                 FRAME_WINDOW.image(frame_rgb)
             camera.release()
         except Exception as e:
             st.error(f"HARDWARE INTERLOCK FAILURE: {e}")
     else:
         st.info("[!] OPTICAL PAYLOAD OFFLINE. AWAITING CEO OVERRIDE.")
-    
+
     # /// THE NEURAL BRIDGE ///
     if "last_gli" in st.session_state:
         st.markdown("---")
@@ -546,43 +545,43 @@ with tab_farm:
         if st.button("[ TRANSMIT TELEMETRY TO AI CORE ]"):
             gli_val = st.session_state["last_gli"]
             prompt = f"SYSTEM INGEST: The optical payload just captured a live Green Leaf Index (GLI) score of {gli_val:.3f}. Based on standard agronomic baselines (where >0.1 indicates healthy vegetative vigor and lower values indicate stress, soil, or non-crop matter), analyze this telemetry and provide a deterministic field assessment for the CEO."
-            
+
             with st.spinner("EBONY AI IS ANALYZING SENSOR DATA..."):
                 try:
                     client = Groq(api_key=GROQ_KEY)
                     chat_history = [{"role": "system", "content": "You are Ebony, an elite AI agronomist for Humphrey Virtual Farms. Be concise, authoritative, and deterministic."}] + [{"role": "user", "content": prompt}]
-                    
+
                     response = client.chat.completions.create(
                         model="openai/gpt-oss-120b",
                         messages=chat_history,
                         temperature=0.0
                     )
                     ai_reply = response.choices[0].message.content
-                    
+
                     st.success("✅ OPTICAL TELEMETRY ANALYZED.")
                     st.markdown("#### 🌾 EBONY AGRONOMIC ASSESSMENT:")
                     st.info(ai_reply)
-                    
+
                     try:
                         st.session_state.messages.append({"role": "user", "content": prompt})
                         st.session_state.messages.append({"role": "assistant", "content": ai_reply})
                         save_encrypted_message(current_user, "user", prompt, current_cipher)
                         save_encrypted_message(current_user, "assistant", ai_reply, current_cipher)
                     except: pass
-                    
+
                 except Exception as e:
                     st.error(f"NEURAL CORE OFFLINE OR API REJECTED. Error: {e}")
     st.subheader(f"🌾 {EMPIRE['FARM_NAME']} | Aerial Ingest")
-    
+
     drone_linked = st.toggle("📡 Arm Drone Feed (Simulate Active RTMP Handshake)", value=False)
-    
+
     if drone_linked:
         st.components.v1.html(f'<iframe src="{WEBRTC_STREAM_URL}" width="100%" height="450" frameborder="0" allowfullscreen></iframe>', height=470)
         st.success("🟢 LIVE: Universal Drone Ingest Active")
     else:
         st.markdown("### 🔴 No Active Craft Detected")
         st.info("System is waiting for an incoming RTMP stream. While offline, review the Universal Ingest Setup Guide below.")
-        
+
         c_vid, c_inst = st.columns([1.5, 1])
         with c_vid:
             local_vid_path = os.path.join(REPO_DIR, "drone_training.mp4")
@@ -594,7 +593,7 @@ with tab_farm:
             st.caption("⚙️ **Sovereign Mode:** Playing raw native MP4 (YouTube Engine Severed).")
             st.info("💡 Drop an MP4 file named 'drone_training.mp4' into your master folder to replace this video.")
             st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
-        
+
         with c_inst:
             st.markdown("#### 📖 Universal RTMP Setup")
             st.markdown("""1. Power on your craft (DJI, Autel, Skydio).
@@ -609,7 +608,7 @@ with tab_overview:
     st.subheader("💳 Commercial Subscriptions & Features")
     feedback_cleared = has_user_submitted_feedback(current_user)
     is_unlocked = feedback_cleared or current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO"]
-    
+
     if not is_unlocked: st.warning("🔒 **COMMERCIAL ACCESS LOCKED:** You must submit field telemetry and a platform review in the **Feedback Hub** (Tab 6) before commercial tier gateways are unlocked.")
 
     col_p1, col_p2, col_p3, col_p4 = st.columns(4)
@@ -664,14 +663,14 @@ Universal Drone Ingest   : MediaMTX (Port 1935 RTMP)
     st.markdown("### 🚀 Client Quick-Deploy Distribution Link")
     st.info("Share this 1-click installer link with prospective clients or ranch managers to launch their local 7-Day Pilot:")
     st.code("https://raw.githubusercontent.com/mrshumphrey3251-ai/hvf-media-matrix-public/main/Deploy_Ebony.bat", language="text")
-    
+
     st.markdown("---")
     st.markdown("### 📱 Mobile Field Uplink Protocol (iOS & Android)")
     st.info("Heavy neural compute and drone ingest execute on your Master PC. To operate the system in the field, deploy the platform directly to your mobile device as a standalone application:")
-    
+
     col_mob1, col_mob2 = st.columns(2)
     with col_mob1:
-        st.markdown("#### 🍏 Apple iPhone (iOS)")
+        st.markdown("#### 🍎 Apple iPhone (iOS)")
         st.markdown("""1. Ensure your Master PC is running and Tailscale is active.
 2. Open **Safari** on your iPhone and navigate to your **Mesh Endpoint URL**.
 3. Tap the **Share** button (the square with an upward arrow).
@@ -679,7 +678,7 @@ Universal Drone Ingest   : MediaMTX (Port 1935 RTMP)
 5. Tap **Add** in the top right.
 
 The platform will launch as a full-screen native app, bypassing the Apple App Store.""")
-        
+
     with col_mob2:
         st.markdown("#### 🤖 Android")
         st.markdown("""1. Ensure your Master PC is running and Tailscale is active.
@@ -715,24 +714,24 @@ The platform will launch as a full-screen native app, bypassing the Google Play 
         st.markdown("* **Key Derivation (PBKDF2):** Passwords hashed using SHA-256 and PBKDF2 with 100,000 iterations.\n* **Symmetric Encryption (Fernet):** All private communications and data are encrypted at rest.\n* **Role-Based Access Control (RBAC):** Strict clearance hierarchy from Guest up to Master CEO.")
 
     st.divider()
-    
+
     st.markdown("### 💼 Enterprise Commercial Suite")
     st.info("Complete documentation suite for enterprise deployment, regulatory compliance, and system integration.")
-    
+
     with st.expander("📄 [DOC 1]: Product Overview & Value Proposition", expanded=False):
-        st.markdown('''**Humphrey Virtual Farms – AI-Powered Precision Agriculture Platform**  
-*Version 1.0.0 (Commercial Release)*  
-* **Core Value Proposition:** Real-time, AI-driven field intelligence from drone video (WebRTC/RTMP) and dielectric-permittivity soil-moisture sensors.  
-* **Key Metrics:** Green Leaf Index (GLI) = $$\frac{2G - R - B}{2G + R + B}$$  
-* **Target Customers:** Mid-size row-crop growers, specialty fruit orchards, agribusiness consultants.  
+        st.markdown('''**Humphrey Virtual Farms – AI-Powered Precision Agriculture Platform**
+*Version 1.0.0 (Commercial Release)*
+* **Core Value Proposition:** Real-time, AI-driven field intelligence from drone video (WebRTC/RTMP) and dielectric-permittivity soil-moisture sensors.
+* **Key Metrics:** Green Leaf Index (GLI) = $$\frac{2G - R - B}{2G + R + B}$$
+* **Target Customers:** Mid-size row-crop growers, specialty fruit orchards, agribusiness consultants.
 * **Revenue Model:** Subscription tiers (Basic / Pro / Enterprise) + optional per-acre data-ingest processing.''')
 
     with st.expander("⚙️ [DOC 2]: Technical Specification Sheet", expanded=False):
-        st.markdown('''* **Drone Telemetry:** WebRTC (SRTP) & RTMP, H.264/H.265/VP9, JSON payloads (GPS, altitude, battery).  
-* **Processing Pipeline:** Real-time decoder (FFmpeg), frame-level RGB extraction, GLI calculation.  
-* **Soil-Moisture:** Dielectric permittivity sensors (1-10 MHz), 1 Hz sampling rate.  
-* **Data Storage:** S3-compatible cloud object store, InfluxDB for time-series, PostgreSQL for metadata.  
-* **AI/Analytics Engine:** Python 3.11, PyTorch 2.4, LSTM predictor, Kubernetes (3-node cluster).  
+        st.markdown('''* **Drone Telemetry:** WebRTC (SRTP) & RTMP, H.264/H.265/VP9, JSON payloads (GPS, altitude, battery).
+* **Processing Pipeline:** Real-time decoder (FFmpeg), frame-level RGB extraction, GLI calculation.
+* **Soil-Moisture:** Dielectric permittivity sensors (1-10 MHz), 1 Hz sampling rate.
+* **Data Storage:** S3-compatible cloud object store, InfluxDB for time-series, PostgreSQL for metadata.
+* **AI/Analytics Engine:** Python 3.11, PyTorch 2.4, LSTM predictor, Kubernetes (3-node cluster).
 * **Security:** TLS 1.3, JWT-based auth, AES-256 at-rest encryption.''')
 
     with st.expander("🚀 [DOC 3]: Deployment Guide & Ops Manual", expanded=False):
@@ -740,8 +739,8 @@ The platform will launch as a full-screen native app, bypassing the Google Play 
         st.code('''eksctl create cluster --name hvf-prod --region us-west-2 --nodes 3 --node-type m5.large
 helm repo add hvf https://charts.hvf.io
 helm install hvf-platform hvf/hvf-platform -f values-prod.yaml''', language='bash')
-        st.markdown('''* **Monitoring:** Prometheus + Grafana. Automated alerts on ingest latency > 300ms.  
-* **Backup:** Daily PostgreSQL/InfluxDB snapshots.  
+        st.markdown('''* **Monitoring:** Prometheus + Grafana. Automated alerts on ingest latency > 300ms.
+* **Backup:** Daily PostgreSQL/InfluxDB snapshots.
 * **CI/CD:** GitHub Actions to ECR, semantic versioning tag releases.''')
 
     with st.expander("🤝 [DOC 4]: Service Level Agreement (SLA)", expanded=False):
@@ -759,33 +758,55 @@ helm install hvf-platform hvf/hvf-platform -f values-prod.yaml''', language='bas
 * ✅ **ISO 27001:** Controls mapped; certification audit scheduled for Q4 2026.''')
 
     with st.expander("📢 [DOC 6]: Marketing & Sales Collateral", expanded=False):
-        st.markdown('''* **Headline:** "Turn every drone flight into a prescriptive farm-management plan."  
-* **Key Benefits:** 30% water savings, 12% yield boost, < 5 min data-to-action time.  
-* **Customer Quote:** *"We cut irrigation cycles from 4 per week to 2 per week without sacrificing yield."*  
+        st.markdown('''* **Headline:** "Turn every drone flight into a prescriptive farm-management plan."
+* **Key Benefits:** 30% water savings, 12% yield boost, < 5 min data-to-action time.
+* **Customer Quote:** *"We cut irrigation cycles from 4 per week to 2 per week without sacrificing yield."*
 * **Demo Script Structure:** Intro (2 min), Live Ingest (5 min), Soil Mesh (3 min), Insights (4 min), Q&A.''')
 
-    with st.expander("❓ [DOC 7]: Customer-Facing FAQ", expanded=False):
-        st.markdown('''**Q: What drones are supported?**  
-A: Any UAV streaming via WebRTC or RTMP (DJI, senseFly, Parrot, custom Pixhawk rigs).  
-**Q: Do I need a special camera?**  
-A: No. Standard RGB is sufficient for GLI.  
-**Q: Is my data private?**  
-A: Yes. All data is encrypted in transit and at rest. We never sell raw data.  
-**Q: What is the pricing?**  
+    with st.expander("ℹ️ [DOC 7]: Customer-Facing FAQ", expanded=False):
+        st.markdown('''**Q: What drones are supported?**
+A: Any UAV streaming via WebRTC or RTMP (DJI, senseFly, Parrot, custom Pixhawk rigs).
+**Q: Do I need a special camera?**
+A: No. Standard RGB is sufficient for GLI.
+**Q: Is my data private?**
+A: Yes. All data is encrypted in transit and at rest. We never sell raw data.
+**Q: What is the pricing?**
 A: Starts at $1.99/acre/month (Basic). Pro adds multispectral for $2.99/acre/month.''')
-    
+
+    # --- COMMAND CENTER ARCHITECTURE BRIDGE INJECTION ---
+    st.divider()
+    st.markdown("### 🏛️ Executive Command Center & Active Frameworks")
+    st.info("Live synchronized deployment of your unredacted sovereign architecture.")
+
+    cc_path = os.path.join(REPO_DIR, "src", "command_center", "master_registry.md")
+    jv_path = os.path.join(REPO_DIR, "src", "compliance", "commercial_jv_framework.md")
+
+    if current_role in ["CEO", "SUPER_ADMIN"]:
+        if os.path.exists(cc_path):
+            with st.expander("⚡ [ACTIVE CORE]: Master Command Registry", expanded=True):
+                with open(cc_path, "r", encoding="utf-8") as f:
+                    st.markdown(f.read())
+        
+        if os.path.exists(jv_path):
+            with st.expander("⚖️ [COMPLIANCE]: Sovereign Commercial JV Framework", expanded=False):
+                with open(jv_path, "r", encoding="utf-8") as f:
+                    st.markdown(f.read())
+    else:
+        st.warning("🔒 Executive Frameworks are restricted to Master CEO clearance.")
+    # ----------------------------------------------------
+
     st.divider()
     st.markdown("### 🔍 Source Code Transparency & Architectural Audit")
-    
+
     is_master_founder = (current_name and current_name.strip().title() == "Jeffery Humphrey")
-    
+
     if is_master_founder:
         st.markdown("👑 **Master CEO Clearance Acknowledged.** You have unrestricted access to the raw architecture. *(OPSEC Protocol: Sensitive IPs and Paths are masked dynamically if Demo Mode is active).*")
     else:
         st.markdown("Enterprise transparency mandates architectural visibility. You are viewing the **Publicly Cleared** source code. Proprietary cryptographic, database schemas, and routing logic have been aggressively redacted by order of the Founder.")
-        
+
     target_files = ["ebony_console_GREEN.py", "Deploy_Ebony.bat", "requirements.txt", ".gitignore"]
-    
+
     for file_name in target_files:
         file_path = os.path.join(REPO_DIR, file_name)
         if os.path.exists(file_path):
@@ -793,12 +814,12 @@ A: Starts at $1.99/acre/month (Basic). Pro adds multispectral for $2.99/acre/mon
                 try:
                     with open(file_path, "r", encoding="utf-8") as file_read:
                         raw_content = file_read.read()
-                    
+
                     if is_master_founder and st.session_state.demo_mode:
                         raw_content = re.sub(r'(?:[0-9]{1,3}\.){3}[0-9]{1,3}', '[REDACTED_LOCAL_IP]', raw_content)
                         raw_content = re.sub(r'C:\\[^\n]*HVF_Repos[^\n]*', 'C:\\[REDACTED_VAULT_PATH]', raw_content)
                         raw_content = raw_content.replace(DEFAULT_LAT, "[REDACTED_LAT]").replace(DEFAULT_LON, "[REDACTED_LON]")
-                        
+
                     elif not is_master_founder:
                         raw_content = re.sub(r'(?:[0-9]{1,3}\.){3}[0-9]{1,3}', '[REDACTED_LOCAL_IP]', raw_content)
                         raw_content = re.sub(r'C:\\[^\n]*HVF_Repos[^\n]*', 'C:\\[REDACTED_VAULT_PATH]', raw_content)
@@ -809,7 +830,7 @@ A: Starts at $1.99/acre/month (Basic). Pro adds multispectral for $2.99/acre/mon
                         raw_content = re.sub(r'INSERT INTO [^"]*', 'INSERT INTO [TABLE_REDACTED] [FIELDS_REDACTED] ', raw_content)
                         raw_content = raw_content.replace('Fernet', '[CLASSIFIED_CRYPTO_ENGINE]')
                         raw_content = raw_content.replace('PBKDF2HMAC', '[CLASSIFIED_KEY_DERIVATION]')
-                        
+
                     lang = "python" if file_name.endswith(".py") else "bash" if file_name.endswith(".bat") else "text"
                     st.code(raw_content, language=lang)
                 except Exception as e:
@@ -850,19 +871,58 @@ with tab_empire:
             new_founder = st.text_input("Master CEO / Founder Name:", value=EMPIRE["FOUNDER_NAME"])
             new_persona = st.text_input("AI Persona Name:", value=EMPIRE["AI_PERSONA"])
             new_email = st.text_input("Official Contact Email:", value=EMPIRE["CONTACT_EMAIL"])
-            
+
             if st.form_submit_button("🛡️ Forge Empire Identity"):
                 update_empire_config(new_farm, new_founder, new_persona, new_email)
                 st.success(f"Identity locked. System rebranded to {new_farm} with AI {new_persona}.")
                 st.rerun()
     else: st.info("🔒 System Configuration is locked to the Master CEO.")
 
+with tab_matrix:
+    st.subheader("⬛ HVF Media Matrix - Executive Command")
+    if current_role in ["CEO", "SUPER_ADMIN"]:
+        st.info("Direct uplink to the zero-trust media processing backend and telemetry engine.")
+        
+        # --- NATIVE AUTONOMOUS MASTER SWITCH ---
+        st.markdown("### 🧠 Autonomous ML Engine Control")
+        if st.button("🚀 [ IGNITE AUTONOMOUS ENGINE ]", use_container_width=True):
+            with st.spinner("Arming Predict-and-Act loop..."):
+                try:
+                    res = requests.post("http://localhost:8000/autonomous/engage", headers={"x-auth-token": "CEO_OVERRIDE"})
+                    if res.status_code == 200:
+                        payload = res.json()
+                        st.success(f"✅ STATUS: {payload.get('status').upper()} | {payload.get('message')}")
+                    else:
+                        st.error(f"⚠️ Backend rejected command (HTTP {res.status_code}). Check matrix logs.")
+                except Exception as e:
+                    st.error(f"⚠️ Matrix connection failed. Is the backend offline? Error: {e}")
+        
+        st.divider()
+        
+        # --- NATIVE TELEMETRY VISUALIZATION ---
+        st.markdown("### 📊 Live Matrix Telemetry")
+        if st.button("🔄 Pull Live Diagnostics", use_container_width=False):
+            with st.spinner("Extracting data from the matrix..."):
+                try:
+                    tel_res = requests.get("http://localhost:8000/telemetry", headers={"x-auth-token": "CEO_OVERRIDE"})
+                    if tel_res.status_code == 200:
+                        data = tel_res.json()
+                        t_data = data.get("telemetry", {})
+                        
+                        col1, col2, col3, col4 = st.columns(4)
+                        col1.metric("Matrix Status", data.get("matrix_status", "UNKNOWN"))
+                        col2.metric("Total Assets", t_data.get("total_assets_ingested", 0))
+                        col3.metric("Encrypted Vaults", t_data.get("encrypted_assets", 0))
+                        col4.metric("Security Compliance", t_data.get("security_compliance", "0%"))
+                        st.success("✅ Telemetry feed updated successfully.")
+                    else:
+                        st.error(f"⚠️ Failed to extract telemetry (HTTP {tel_res.status_code}).")
+                except Exception as e:
+                    st.error(f"⚠️ Matrix connection failed: {e}")
 
-
-
-
-
-
-
-
-
+        st.divider()
+        
+        with st.expander("🔧 Raw API Telemetry (DevOps)", expanded=False):
+            st.components.v1.iframe("http://localhost:8000/docs", height=600, scrolling=True)
+    else:
+        st.warning("🔒 Matrix API architecture is restricted to Master CEO clearance.")
