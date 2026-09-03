@@ -26,7 +26,7 @@ selection = st.sidebar.radio("Command Modules", menu_options)
 st.title("🟢 HVF Ebony Command Deck")
 st.caption("Administrative Custody: Root | Executive Override: Active")
 
-API_URL = "http://127.0.0.1:8000"
+API_URL = "http://localhost:8000"
 HEADERS = {"x-auth-token": "CEO_OVERRIDE"}
 
 if selection == "1. System Status":
