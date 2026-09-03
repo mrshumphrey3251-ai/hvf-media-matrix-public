@@ -4,3 +4,4 @@ transformers
 accelerate
 optimum-intel[openvino,diffusers]
 invisible-watermark
+openvino
