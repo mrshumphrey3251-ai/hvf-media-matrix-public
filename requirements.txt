@@ -1,7 +1,5 @@
 ﻿torch
-diffusers
+optimum-intel[openvino,diffusers]
 transformers
 accelerate
-optimum-intel[openvino,diffusers]
 invisible-watermark
-openvino
