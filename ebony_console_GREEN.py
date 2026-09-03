@@ -112,7 +112,7 @@ CRITICAL NON-NEGOTIABLE GROUND TRUTH:
 def sanitize_deterministic_output(raw_text: str) -> str:
     if not raw_text: return raw_text
     text = raw_text
-    for pattern in [r"(?i)\True\d+(\.\d+)?\s*(M|million|B|billion)\s*(in\s+)?(seed\s*(&|and)\s*)?(series[\s-]?[a-z]|venture\s+capital|funding|investment\s+round)"]:
+    for pattern in [r"(?i)\$?\d+(\.\d+)?\s*(M|million|B|billion)\s*(in\s+)?(seed\s*(&|and)\s*)?(series[\s-]?[a-z]|venture\s+capital|funding|investment\s+round)"]:
         text = re.sub(pattern, "sovereign, self-funded agricultural architecture", text)
     return text
 
@@ -358,7 +358,7 @@ with st.sidebar:
         if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO"]:
             st.divider()
             st.header("📲 Swarm Uplink")
-            st.caption(f"Scan to access node:\n{mask_secret(UPLINK_URL, 'URL')}")
+            st.caption(f"Scan to access node:\n`{mask_secret(UPLINK_URL, 'URL')}`")
             if not st.session_state.demo_mode: st.image(generate_qr_image(UPLINK_URL), width=180)
             else: st.info("QR Code hidden during Demo Mode.")
 
@@ -370,7 +370,7 @@ with st.sidebar:
                         cur_r = conn_r.cursor()
                         cur_r.execute("SELECT username, full_name, role FROM system_users")
                         for vu in cur_r.fetchall():
-                            st.caption(f"**{vu[0]}** | {vu[1]} | {vu[2]}")
+                            st.caption(f"**{vu[0]}** | {vu[1]} | `{vu[2]}`")
                         conn_r.close()
                     except Exception as e:
                         st.caption("Vault connection isolated.")
@@ -378,7 +378,7 @@ with st.sidebar:
             st.divider()
             if st.button("⚡ Issue Team VIP Code"):
                 if st.session_state.demo_mode: st.warning("Blocked in Demo Mode.")
-                else: st.success(f"Staff Key: {generate_invite_token(current_user, 'MEMBER')}")
+                else: st.success(f"Staff Key: `{generate_invite_token(current_user, 'MEMBER')}`")
     else:
         st.info("👤 **Guest Mode**")
         auth_mode = st.radio("Access Portal:", ["Sign In", "🚀 Free 7-Day Pilot"], horizontal=False)
@@ -514,8 +514,8 @@ elif active_module == "📡 LinkedIn Engine":
                         try:
                             resp = requests.post("https://api.linkedin.com/v2/ugcPosts", headers={"Authorization": f"Bearer {LINKEDIN_TOKEN}", "Content-Type": "application/json", "X-Restli-Protocol-Version": "2.0.0"}, json={"author": clean_urn, "lifecycleState": "PUBLISHED", "specificContent": {"com.linkedin.ugc.ShareContent": {"shareCommentary": {"text": sanitized_deployment}, "shareMediaCategory": "NONE"}}, "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"}}, timeout=15)
                             if resp.status_code in [200, 201]:
-                                st.success(f"🎉 Live Deployment Confirmed! Post ID: {resp.json().get('id', 'SUCCESS')}")
-                            else: st.error(f"⚠️ API Error (HTTP {resp.status_code}):\n{resp.text}")
+                                st.success(f"🎉 Live Deployment Confirmed! Post ID: `{resp.json().get('id', 'SUCCESS')}`")
+                            else: st.error(f"⚠️ API Error (HTTP {resp.status_code}):\n`{resp.text}`")
                         except Exception as err: st.error(f"Deployment error: {str(err)}")
     else: st.info("🔒 Executive Article Dictation is reserved for the Master CEO.")
 
@@ -636,19 +636,19 @@ elif active_module == "📖 System Overview":
 
     col_p1, col_p2, col_p3, col_p4 = st.columns(4)
     with col_p1:
-        st.markdown(f'<div class="pricing-card"><div class="pricing-tier">🌱 PERSONAL</div><div class="pricing-price">.99<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Single-User Node<br>✔ Dual-Engine AI<br>✔ Encrypted Vault</p></div>', unsafe_allow_html=True)
-        if is_unlocked: st.link_button("🌱 Personal (.99/mo)", STRIPE_PERSONAL_LINK, use_container_width=True)
+        st.markdown(f'<div class="pricing-card"><div class="pricing-tier">🌱 PERSONAL</div><div class="pricing-price">$19.99<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Single-User Node<br>✔ Dual-Engine AI<br>✔ Encrypted Vault</p></div>', unsafe_allow_html=True)
+        if is_unlocked: st.link_button("🌱 Personal ($19.99/mo)", STRIPE_PERSONAL_LINK, use_container_width=True)
         else: st.button("🔒 Locked", disabled=True, key="lock1", use_container_width=True)
     with col_p2:
-        st.markdown(f'<div class="pricing-card"><div class="pricing-tier">💎 VIP MEMBER</div><div class="pricing-price"><span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Everything in Personal<br>✔ Drone Spectator<br>✔ GLI Analytics</p></div>', unsafe_allow_html=True)
-        if is_unlocked: st.link_button("💎 VIP (/mo)", STRIPE_MONTHLY_LINK, use_container_width=True)
+        st.markdown(f'<div class="pricing-card"><div class="pricing-tier">💎 VIP MEMBER</div><div class="pricing-price">$249<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Everything in Personal<br>✔ Drone Spectator<br>✔ GLI Analytics</p></div>', unsafe_allow_html=True)
+        if is_unlocked: st.link_button("💎 VIP ($249/mo)", STRIPE_MONTHLY_LINK, use_container_width=True)
         else: st.button("🔒 Locked", disabled=True, key="lock2", use_container_width=True)
     with col_p3:
-        st.markdown(f'<div class="pricing-card" style="border-color:#70FF00;"><div class="pricing-tier">🏛️ ENTERPRISE CEO</div><div class="pricing-price">,499<span style="font-size:0.85rem;color:#8899A6;">/yr</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Client Dashboard<br>✔ Issue Staff Keys<br>✔ Multi-Ranch Yield</p></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="pricing-card" style="border-color:#70FF00;"><div class="pricing-tier">🏛️ ENTERPRISE CEO</div><div class="pricing-price">$2,499<span style="font-size:0.85rem;color:#8899A6;">/yr</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Client Dashboard<br>✔ Issue Staff Keys<br>✔ Multi-Ranch Yield</p></div>', unsafe_allow_html=True)
         if is_unlocked: st.link_button("🏛️ Enterprise Annual", STRIPE_ANNUAL_LINK, use_container_width=True)
         else: st.button("🔒 Locked", disabled=True, key="lock3", use_container_width=True)
     with col_p4:
-        st.markdown(f'<div class="pricing-card"><div class="pricing-tier">📦 HARDWARE APPLIANCE</div><div class="pricing-price">,950<span style="font-size:0.85rem;color:#8899A6;">setup</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Physical Server<br>✔ 100% Air-Gapped<br>✔ + /mo Maint.</p></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="pricing-card"><div class="pricing-tier">📦 HARDWARE APPLIANCE</div><div class="pricing-price">$4,950<span style="font-size:0.85rem;color:#8899A6;">setup</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Physical Server<br>✔ 100% Air-Gapped<br>✔ + $299/mo Maint.</p></div>', unsafe_allow_html=True)
         if is_unlocked: st.link_button("📦 Order Hardware", PAYPAL_PAY_LINK, use_container_width=True)
         else: st.button("🔒 Locked", disabled=True, key="lock4", use_container_width=True)
 
@@ -719,10 +719,10 @@ The platform will launch as a full-screen native app, bypassing the Google Play 
         st.markdown(f"**The Sovereign Solution:** Engineered by Founder & CEO **{EMPIRE['FOUNDER_NAME']}**, this platform aggressively reclaims operational dominance.\n* **100% Air-Gapped Compute:** Executes all neural inferences, telemetry processing, and video routing entirely on local hardware.\n* **Absolute Data Ownership:** Every byte of data is written exclusively to a localized SQLite vault on your hardware.")
 
     with st.expander(f"⚡ [PILLAR 2]: {EMPIRE['AI_PERSONA']} - Neural Processing & Predictive Memory", expanded=False):
-        st.markdown(f"**{EMPIRE['AI_PERSONA']}** is a highly specialized, dual-engine agronomic intelligence.\n* **Cloud Fast Link:** openai/gpt-oss-120b via Groq LPU for high-speed online inference.\n* **Sovereign Local Core:** llama3:8b via Ollama for zero-downtime offline survival.\n* **Persistent Entity Memory:** Dynamically extracts and memorizes agronomic entities.")
+        st.markdown(f"**{EMPIRE['AI_PERSONA']}** is a highly specialized, dual-engine agronomic intelligence.\n* **Cloud Fast Link:** `openai/gpt-oss-120b` via Groq LPU for high-speed online inference.\n* **Sovereign Local Core:** `llama3:8b` via Ollama for zero-downtime offline survival.\n* **Persistent Entity Memory:** Dynamically extracts and memorizes agronomic entities.")
 
     with st.expander("🌾 [PILLAR 3]: Universal Drone Computer Vision & Multispectral Analysis", expanded=False):
-        st.markdown("* **Universal RTMP/RTSP Ingest:** Capable of receiving live telemetry from DJI, Autel, Skydio, or PX4 drones.\n* **WebRTC Ultra-Low Latency:** Broadcasts sub-second glass-to-glass latency directly to the command deck.\n* **Green Leaf Index (GLI):** Computes vegetative vigor dynamically using standard RGB optical payloads via C:\HVF_Repos\hvf-media-matrix-privateGLI=\\frac{2G-R-B}{2G+R+B}C:\HVF_Repos\hvf-media-matrix-private.")
+        st.markdown("* **Universal RTMP/RTSP Ingest:** Capable of receiving live telemetry from DJI, Autel, Skydio, or PX4 drones.\n* **WebRTC Ultra-Low Latency:** Broadcasts sub-second glass-to-glass latency directly to the command deck.\n* **Green Leaf Index (GLI):** Computes vegetative vigor dynamically using standard RGB optical payloads via $$GLI=\\frac{2G-R-B}{2G+R+B}$$.")
 
     with st.expander("📡 [PILLAR 4]: IoT Soil Mesh & Capacitance Telemetry", expanded=False):
         st.markdown("* **Dielectric Permittivity Sensors:** Accurately calculates Volumetric Water Content (VWC %).\n* **Actionable Thresholds:** Monitors Field Capacity and Permanent Wilting Point to manage precision irrigation schedules.\n* **Cryptographic Storage:** Aggregated and locked in the local SQLite vault.")
@@ -745,7 +745,7 @@ The platform will launch as a full-screen native app, bypassing the Google Play 
         st.markdown('''**Humphrey Virtual Farms – AI-Powered Precision Agriculture Platform**
 *Version 1.0.0 (Commercial Release)*
 * **Core Value Proposition:** Real-time, AI-driven field intelligence from drone video (WebRTC/RTMP) and dielectric-permittivity soil-moisture sensors.
-* **Key Metrics:** Green Leaf Index (GLI) = C:\HVF_Repos\hvf-media-matrix-private\frac{2G - R - B}{2G + R + B}C:\HVF_Repos\hvf-media-matrix-private
+* **Key Metrics:** Green Leaf Index (GLI) = $$\frac{2G - R - B}{2G + R + B}$$
 * **Target Customers:** Mid-size row-crop growers, specialty fruit orchards, agribusiness consultants.
 * **Revenue Model:** Subscription tiers (Basic / Pro / Enterprise) + optional per-acre data-ingest processing.''')
 
@@ -794,7 +794,7 @@ A: No. Standard RGB is sufficient for GLI.
 **Q: Is my data private?**
 A: Yes. All data is encrypted in transit and at rest. We never sell raw data.
 **Q: What is the pricing?**
-A: Starts at .99/acre/month (Basic). Pro adds multispectral for .99/acre/month.''')
+A: Starts at $1.99/acre/month (Basic). Pro adds multispectral for $2.99/acre/month.''')
 
     # --- COMMAND CENTER ARCHITECTURE BRIDGE INJECTION ---
     st.divider()
