@@ -1,6 +1,9 @@
 ﻿from fastapi import FastAPI, Header, HTTPException
 import random
 import os
+import transformers
+if not hasattr(transformers, "CLIPFeatureExtractor"):
+    transformers.CLIPFeatureExtractor = transformers.CLIPImageProcessor
 from optimum.intel import OVStableDiffusionPipeline
 
 app = FastAPI(title="HVF Media Matrix API")
@@ -67,3 +70,4 @@ def generate_image(prompt: str, x_auth_token: str = Header(None)):
         }
     except Exception as e:
         return {"status": "ERROR", "message": f"Generation Fault: {str(e)}", "image_path": ""}
+
