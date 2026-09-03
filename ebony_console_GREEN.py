@@ -960,8 +960,9 @@ elif active_module == "🎨 Asset Synthesis":
                 if res.status_code == 200:
                     data = res.json()
                     st.success(f"✅ {data.get('message')}")
-                    img_file = os.path.join(REPO_DIR, data.get("image_path", "generated_asset.png"))
-                    if os.path.exists(img_file):
+                    img_rel = data.get("image_path")
+                    img_file = os.path.join(REPO_DIR, img_rel) if img_rel else None
+                    if img_file and os.path.isfile(img_file):
                         st.image(img_file, caption="Sovereign Generated Asset | HVF Project Ebony Matrix", use_container_width=True)
                         with open(img_file, "rb") as f:
                             st.download_button("📥 Download Sovereign Graphic (PNG)", f, file_name="Project_Ebony_Joint_Venture.png", mime="image/png", use_container_width=True)
@@ -969,3 +970,4 @@ elif active_module == "🎨 Asset Synthesis":
                     st.error(f"⚠️ Engine Error (HTTP {res.status_code})")
             except Exception as e:
                 st.error(f"Matrix Offline: {e}")
+
