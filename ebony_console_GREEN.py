@@ -952,11 +952,20 @@ elif active_module == "⬛ Media Matrix":
 
 elif active_module == "🎨 Asset Synthesis":
     st.subheader("🎨 Sovereign Image & Media Synthesis")
-    prompt = st.text_input("Enter Generation Prompt:", "High-tech executive handshake: HVF on left, SignalLink on right, Project Ebony banner centered")
-    if st.button("Generate Sovereign Asset"):
-        try:
-            # We enforce localhost mapping here to preserve connection integrity.
-            res = requests.post("http://localhost:8000/synthesis/image", params={"prompt": prompt}, headers={"x-auth-token": "CEO_OVERRIDE"})
-            st.info(res.json()["message"])
-        except Exception as e:
-            st.error(f"Matrix Offline: {e}")
+    prompt = st.text_input("Enter Generation Prompt:", "High-tech executive handshake: HVF on left, SignalLink on right, Project Ebony banner centered", key="asset_prompt_input")
+    if st.button("Generate Sovereign Asset", use_container_width=True):
+        with st.spinner("Synthesizing sovereign asset on local hardware..."):
+            try:
+                res = requests.post("http://localhost:8000/synthesis/image", params={"prompt": prompt}, headers={"x-auth-token": "CEO_OVERRIDE"})
+                if res.status_code == 200:
+                    data = res.json()
+                    st.success(f"✅ {data.get('message')}")
+                    img_file = os.path.join(REPO_DIR, data.get("image_path", "generated_asset.png"))
+                    if os.path.exists(img_file):
+                        st.image(img_file, caption="Sovereign Generated Asset | HVF Project Ebony Matrix", use_container_width=True)
+                        with open(img_file, "rb") as f:
+                            st.download_button("📥 Download Sovereign Graphic (PNG)", f, file_name="Project_Ebony_Joint_Venture.png", mime="image/png", use_container_width=True)
+                else:
+                    st.error(f"⚠️ Engine Error (HTTP {res.status_code})")
+            except Exception as e:
+                st.error(f"Matrix Offline: {e}")
