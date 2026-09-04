@@ -39,7 +39,6 @@ def generate_image(prompt: str, x_auth_token: str = Header(None)):
     if native_pipe is None:
         try:
             print("[HVF NEURAL CORE] Igniting bare-metal OpenVINO GenAI pipeline...")
-            # 'AUTO' dynamically utilizes CPU and Intel iGPU for maximum performance
             native_pipe = ov_genai.Text2ImagePipeline(MODEL_ID, "AUTO")
             print("[HVF NEURAL CORE] Bare-metal architecture locked and loaded.")
         except Exception as e:
@@ -52,7 +51,13 @@ def generate_image(prompt: str, x_auth_token: str = Header(None)):
         enhanced_prompt = f"{prompt}, hyper-realistic, 8k resolution, cinematic lighting, highly detailed"
         
         print("[HVF NEURAL CORE] Synthesizing asset natively...")
-        image_tensor = native_pipe.generate(enhanced_prompt, num_inference_steps=20)
+        image_tensor = native_pipe.generate(
+            enhanced_prompt,
+            num_inference_steps=5,
+            guidance_scale=1.8,
+            width=512,
+            height=512
+        )
         
         image = Image.fromarray(image_tensor.data[0])
         image.save(output_path)
