@@ -2,13 +2,16 @@
 import random
 import os
 import transformers
+
+# Executive Override: Patch legacy architecture to prevent OpenVINO export crash
 if not hasattr(transformers, "CLIPFeatureExtractor"):
     transformers.CLIPFeatureExtractor = transformers.CLIPImageProcessor
+
 from optimum.intel import OVStableDiffusionPipeline
 
 app = FastAPI(title="HVF Media Matrix API")
 REPO_DIR = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private")
-MODEL_ID = "Lykon/dreamshaper-8-lcm"
+MODEL_ID = os.path.join(REPO_DIR, "sovereign_model")
 
 # Global Neural Engine State
 ai_engine = None
@@ -38,10 +41,9 @@ def generate_image(prompt: str, x_auth_token: str = Header(None)):
     if x_auth_token != "CEO_OVERRIDE":
         raise HTTPException(status_code=403, detail="Unauthorized")
     
-    # Lazy-load the heavy neural weights to prevent API timeout on startup
     if ai_engine is None:
         try:
-            print("[HVF NEURAL CORE] Initializing Intel OpenVINO compilation... This will take several minutes to download the neural weights on first execution.")
+            print("[HVF NEURAL CORE] Compiling localized OpenVINO pipeline from sovereign vault...")
             ai_engine = OVStableDiffusionPipeline.from_pretrained(MODEL_ID, export=True, compile=False)
             ai_engine.reshape(batch_size=1, height=512, width=512, num_images_per_prompt=1)
             ai_engine.compile()
@@ -49,16 +51,13 @@ def generate_image(prompt: str, x_auth_token: str = Header(None)):
         except Exception as e:
             return {"status": "ERROR", "message": f"Neural Core Fault: {str(e)}", "image_path": ""}
     
-    # Execute Local Photorealistic Synthesis via iGPU
     try:
         output_filename = "generated_asset.png"
         output_path = os.path.join(REPO_DIR, output_filename)
         
-        # Enforce photorealism natively via prompt enhancement
         enhanced_prompt = f"{prompt}, hyper-realistic, 8k resolution, cinematic lighting, highly detailed"
         negative_prompt = "cartoon, animated, distorted, ugly, low quality, blurry"
         
-        # LCM optimized execution (4 steps for hyper-speed on integrated graphics)
         result = ai_engine(prompt=enhanced_prompt, negative_prompt=negative_prompt, num_inference_steps=4, guidance_scale=1.5)
         image = result.images[0]
         image.save(output_path)
@@ -70,4 +69,3 @@ def generate_image(prompt: str, x_auth_token: str = Header(None)):
         }
     except Exception as e:
         return {"status": "ERROR", "message": f"Generation Fault: {str(e)}", "image_path": ""}
-
