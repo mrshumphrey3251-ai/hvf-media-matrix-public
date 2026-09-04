@@ -1,4 +1,4 @@
-﻿# HVF Media Matrix - Enterprise Git Ignore Policy
+# HVF Media Matrix - Enterprise Git Ignore Policy
 
 # 1. Environment Variables & Secrets (CRITICAL)
 .env
@@ -26,4 +26,4 @@ env/
 .vscode/
 .idea/
 .DS_Store
-Thumbs.db
+Thumbs.dbsovereign_ir_model/

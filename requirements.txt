@@ -1,5 +1,7 @@
 ﻿torch
+torchvision
+openvino-genai
 optimum-intel[openvino,diffusers]
 transformers
 accelerate
-invisible-watermark
+Pillow
