@@ -2,135 +2,189 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Ebony | Sovereign Telemetry Console</title>
+  <title>PROJECT EBONY // SECURE COMMS COMMAND CENTER</title>
   <style>
     :root {
-      --bg-primary: #0a0d14;
-      --bg-card: #121824;
-      --border-color: #1e293b;
-      --text-main: #f8fafc;
-      --text-dim: #94a3b8;
-      --accent-cyan: #06b6d4;
-      --accent-green: #10b981;
-      --accent-amber: #f59e0b;
+      --bg: #0a0e14;
+      --panel: #111923;
+      --border: #1f2d3d;
+      --text: #e6edf3;
+      --accent: #00ff66;
+      --accent-dim: rgba(0, 255, 102, 0.15);
+      --danger: #ff3344;
       --font-mono: 'Consolas', 'Courier New', monospace;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      padding: 24px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      display: grid;
+      grid-template-rows: 60px 1fr 50px;
+      height: 100vh;
+      overflow: hidden;
     }
     header {
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 16px;
+      padding: 0 20px;
     }
-    h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent-cyan); }
-    .badge-live {
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid var(--accent-green);
-      color: var(--accent-green);
-      padding: 4px 10px;
+    .brand { font-weight: bold; color: var(--accent); letter-spacing: 1.5px; }
+    .peer-bar { display: flex; gap: 10px; align-items: center; font-size: 12px; }
+    input[type="text"] {
+      background: #0d1117;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 10px;
       border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-family: inherit;
     }
-    .metrics-grid {
+    button {
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 6px 14px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+    button:hover { background: var(--accent); color: #000; }
+    button.hangup { border-color: var(--danger); color: var(--danger); background: rgba(255,51,68,0.15); }
+    button.hangup:hover { background: var(--danger); color: #fff; }
+
+    main {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
+      grid-template-columns: 1fr 340px;
+      gap: 10px;
+      padding: 10px;
+      height: 100%;
+      overflow: hidden;
     }
-    .metric-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      background: var(--panel);
+      border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+      padding: 10px;
     }
-    .metric-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.05em; }
-    .metric-value { font-size: 1.5rem; font-weight: 700; font-family: var(--font-mono); color: var(--text-main); }
-    .metric-value.cyan { color: var(--accent-cyan); }
-    .metric-value.green { color: var(--accent-green); }
-    .metric-value.amber { color: var(--accent-amber); }
-    .console-panel {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      padding: 16px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .console-title { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: var(--text-dim); }
-    #log-feed {
-      background: #06080d;
-      border: 1px solid var(--border-color);
+    .video-card {
+      background: #000;
+      border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 12px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    video { width: 100%; height: 100%; object-fit: cover; }
+    .video-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.7);
+      padding: 2px 8px;
+      font-size: 11px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .chat-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+    .chat-log {
       flex: 1;
       overflow-y: auto;
-      max-height: 420px;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
+      font-size: 13px;
+      padding-right: 5px;
     }
-    .log-entry { display: flex; gap: 8px; align-items: baseline; word-break: break-all; }
-    .log-ts { color: var(--text-dim); font-size: 0.75rem; }
-    .log-data { color: var(--accent-cyan); }
+    .chat-msg {
+      background: #0d1117;
+      padding: 8px;
+      border-radius: 4px;
+      border-left: 3px solid var(--border);
+    }
+    .chat-msg.mine { border-left-color: var(--accent); }
+    .chat-msg .sender { font-size: 10px; color: #8b949e; margin-bottom: 2px; }
+
+    .chat-input-bar {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .chat-input-bar input { flex: 1; }
+
+    footer {
+      background: var(--panel);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 10px;
+      font-size: 12px;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div>
-      <h1>Project Ebony // Sovereign Telemetry Bridge</h1>
-      <div style="font-size: 0.8rem; color: var(--text-dim); margin-top: 4px;" id="feed-key-display">Feed: Initializing...</div>
+    <div class="brand">PROJECT EBONY // ZERO-FEE SOVEREIGN COMMS</div>
+    <div class="peer-bar">
+      <span>My ID: <strong id="my-peer-id" style="color: var(--accent);">INITIALIZING...</strong></span>
+      <input type="text" id="target-peer-id" placeholder="Paste Peer ID">
+      <button id="btn-call-audio">Voice Call</button>
+      <button id="btn-call-video">Video Call</button>
+      <button id="btn-hangup" class="hangup">Hang Up</button>
     </div>
-    <span class="badge-live" id="stream-status">Awaiting Feed</span>
   </header>
 
-  <div class="metrics-grid">
-    <div class="metric-card">
-      <div class="metric-label">Subsystem</div>
-      <div class="metric-value" id="val-subsystem">--</div>
+  <main>
+    <div class="video-grid">
+      <div class="video-card">
+        <video id="local-video" autoplay playsinline muted></video>
+        <span class="video-tag">LOCAL FEED (YOU)</span>
+      </div>
+      <div class="video-card">
+        <video id="remote-video" autoplay playsinline></video>
+        <span class="video-tag">REMOTE FEED</span>
+      </div>
     </div>
-    <div class="metric-card">
-      <div class="metric-label">Bus Voltage</div>
-      <div class="metric-value cyan" id="val-voltage">-- V</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Frame Sequence</div>
-      <div class="metric-value green" id="val-sequence">#--</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Watchdog Heartbeat</div>
-      <div class="metric-value amber" id="val-watchdog">-- ms</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Committed Blocks</div>
-      <div class="metric-value" id="val-blocks">0</div>
-    </div>
-  </div>
 
-  <div class="console-panel">
-    <div class="console-title">Live Cryptographic Audit Feed</div>
-    <div id="log-feed"></div>
-  </div>
+    <div class="chat-panel">
+      <div style="font-size: 11px; color: #8b949e; margin-bottom: 8px; border-bottom: 1px solid var(--border); padding-bottom: 4px;">
+        DIRECT P2P ENCRYPTED CHAT (NO FEES)
+      </div>
+      <div class="chat-log" id="chat-log">
+        <div class="chat-msg">
+          <div class="sender">SYSTEM</div>
+          <div>Comms Engine ready. No cloud servers, no toll charges. Pure P2P.</div>
+        </div>
+      </div>
+      <div class="chat-input-bar">
+        <input type="text" id="chat-input" placeholder="Type direct message...">
+        <button id="btn-send-msg">Send</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div>Microphone: <strong id="mic-status" style="color: var(--accent);">STANDBY</strong></div>
+    <div>Camera: <strong id="cam-status" style="color: var(--accent);">STANDBY</strong></div>
+    <div>Session: <strong id="call-status">OFFLINE</strong></div>
+  </footer>
 
   <script type="module" src="./app.js"></script>
 </body>
