@@ -2,16 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>PROJECT EBONY // SECURE COMMS COMMAND CENTER</title>
+  <title>PROJECT EBONY // COMMAND CENTER & SOVEREIGN COMMS</title>
   <style>
     :root {
-      --bg: #0a0e14;
-      --panel: #111923;
-      --border: #1f2d3d;
+      --bg: #070a0f;
+      --panel: #0d131d;
+      --panel-alt: #121b28;
+      --border: #1e2c3d;
       --text: #e6edf3;
+      --text-dim: #8b949e;
       --accent: #00ff66;
       --accent-dim: rgba(0, 255, 102, 0.15);
       --danger: #ff3344;
+      --warning: #ffaa00;
       --font-mono: 'Consolas', 'Courier New', monospace;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,7 +23,7 @@
       color: var(--text);
       font-family: var(--font-mono);
       display: grid;
-      grid-template-rows: 60px 1fr 50px;
+      grid-template-rows: 54px 1fr 40px;
       height: 100vh;
       overflow: hidden;
     }
@@ -30,27 +33,29 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 20px;
+      padding: 0 16px;
     }
-    .brand { font-weight: bold; color: var(--accent); letter-spacing: 1.5px; }
-    .peer-bar { display: flex; gap: 10px; align-items: center; font-size: 12px; }
+    .brand { font-weight: bold; color: var(--accent); letter-spacing: 1.5px; font-size: 14px; }
+    .peer-bar { display: flex; gap: 8px; align-items: center; font-size: 12px; }
     input[type="text"] {
-      background: #0d1117;
+      background: #06090e;
       border: 1px solid var(--border);
       color: var(--text);
       padding: 6px 10px;
       border-radius: 4px;
       font-family: inherit;
+      font-size: 12px;
     }
     button {
       background: var(--accent-dim);
       border: 1px solid var(--accent);
       color: var(--accent);
-      padding: 6px 14px;
+      padding: 6px 12px;
       cursor: pointer;
       font-family: inherit;
       font-weight: bold;
       border-radius: 4px;
+      font-size: 12px;
     }
     button:hover { background: var(--accent); color: #000; }
     button.hangup { border-color: var(--danger); color: var(--danger); background: rgba(255,51,68,0.15); }
@@ -58,22 +63,52 @@
 
     main {
       display: grid;
-      grid-template-columns: 1fr 340px;
+      grid-template-columns: 280px 1fr 320px;
       gap: 10px;
       padding: 10px;
       height: 100%;
       overflow: hidden;
     }
-    .video-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+
+    /* Left Deck: Telemetry & Node Health */
+    .telemetry-deck {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow-y: auto;
+    }
+    .section-title {
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+    }
+    .metric-card {
+      background: #06090e;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 8px;
+    }
+    .metric-label { font-size: 10px; color: var(--text-dim); }
+    .metric-value { font-size: 18px; font-weight: bold; color: var(--accent); margin-top: 2px; }
+
+    /* Center Deck: Video Matrix */
+    .video-deck {
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 10px;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 10px;
     }
-    .video-card {
+    .video-box {
       background: #000;
       border: 1px solid var(--border);
       border-radius: 4px;
@@ -84,18 +119,20 @@
       overflow: hidden;
     }
     video { width: 100%; height: 100%; object-fit: cover; }
-    .video-tag {
+    .video-badge {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(0,0,0,0.7);
-      padding: 2px 8px;
-      font-size: 11px;
-      border-radius: 3px;
+      top: 8px;
+      left: 8px;
+      background: rgba(0,0,0,0.75);
       border: 1px solid var(--border);
+      padding: 2px 8px;
+      font-size: 10px;
+      border-radius: 3px;
+      letter-spacing: 0.5px;
     }
 
-    .chat-panel {
+    /* Right Deck: Sovereign Chat */
+    .chat-deck {
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -103,30 +140,26 @@
       flex-direction: column;
       padding: 10px;
     }
-    .chat-log {
+    .chat-stream {
       flex: 1;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 8px;
-      font-size: 13px;
-      padding-right: 5px;
+      font-size: 12px;
+      padding-right: 4px;
+      margin: 8px 0;
     }
-    .chat-msg {
-      background: #0d1117;
+    .chat-bubble {
+      background: #06090e;
       padding: 8px;
       border-radius: 4px;
       border-left: 3px solid var(--border);
     }
-    .chat-msg.mine { border-left-color: var(--accent); }
-    .chat-msg .sender { font-size: 10px; color: #8b949e; margin-bottom: 2px; }
-
-    .chat-input-bar {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .chat-input-bar input { flex: 1; }
+    .chat-bubble.mine { border-left-color: var(--accent); }
+    .chat-bubble .meta { font-size: 9px; color: var(--text-dim); margin-bottom: 2px; }
+    .chat-bar { display: flex; gap: 6px; }
+    .chat-bar input { flex: 1; }
 
     footer {
       background: var(--panel);
@@ -134,47 +167,72 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
-      padding: 10px;
-      font-size: 12px;
+      padding: 0 16px;
+      font-size: 11px;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="brand">PROJECT EBONY // ZERO-FEE SOVEREIGN COMMS</div>
+    <div class="brand">PROJECT EBONY // COMMAND CENTER</div>
     <div class="peer-bar">
-      <span>My ID: <strong id="my-peer-id" style="color: var(--accent);">INITIALIZING...</strong></span>
-      <input type="text" id="target-peer-id" placeholder="Paste Peer ID">
-      <button id="btn-call-audio">Voice Call</button>
-      <button id="btn-call-video">Video Call</button>
+      <span>Node: <strong id="my-peer-id" style="color: var(--accent);">INITIALIZING...</strong></span>
+      <input type="text" id="target-peer-id" placeholder="Remote Peer ID">
+      <button id="btn-call-audio">Voice</button>
+      <button id="btn-call-video">Video</button>
       <button id="btn-hangup" class="hangup">Hang Up</button>
     </div>
   </header>
 
   <main>
-    <div class="video-grid">
-      <div class="video-card">
-        <video id="local-video" autoplay playsinline muted></video>
-        <span class="video-tag">LOCAL FEED (YOU)</span>
+    <!-- Left: Telemetry Monitoring -->
+    <div class="telemetry-deck">
+      <div class="section-title">SYSTEM TELEMETRY</div>
+      <div class="metric-card">
+        <div class="metric-label">MAIN BUS VOLTAGE</div>
+        <div class="metric-value" id="val-voltage">48.20 V</div>
       </div>
-      <div class="video-card">
-        <video id="remote-video" autoplay playsinline></video>
-        <span class="video-tag">REMOTE FEED</span>
+      <div class="metric-card">
+        <div class="metric-label">COMMITTED BLOCKS</div>
+        <div class="metric-value" id="val-blocks">33</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">INGRESS DIODE (PORT 5005)</div>
+        <div class="metric-value" id="val-ingress" style="font-size: 14px;">ACTIVE</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">LATENCY / PEER RTT</div>
+        <div class="metric-value" id="val-rtt">5.83 ms</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">SUBSYSTEM STATUS</div>
+        <div class="metric-value" id="val-subsystem" style="font-size: 14px; color: var(--accent);">NOMINAL</div>
       </div>
     </div>
 
-    <div class="chat-panel">
-      <div style="font-size: 11px; color: #8b949e; margin-bottom: 8px; border-bottom: 1px solid var(--border); padding-bottom: 4px;">
-        DIRECT P2P ENCRYPTED CHAT (NO FEES)
+    <!-- Center: Live Audio/Video Matrix -->
+    <div class="video-deck">
+      <div class="video-box">
+        <video id="local-video" autoplay playsinline muted></video>
+        <span class="video-badge">LOCAL VIDEO (YOU)</span>
       </div>
-      <div class="chat-log" id="chat-log">
-        <div class="chat-msg">
-          <div class="sender">SYSTEM</div>
-          <div>Comms Engine ready. No cloud servers, no toll charges. Pure P2P.</div>
+      <div class="video-box">
+        <video id="remote-video" autoplay playsinline></video>
+        <span class="video-badge">REMOTE INCOMING STREAM</span>
+      </div>
+    </div>
+
+    <!-- Right: Sovereign Encrypted Chat -->
+    <div class="chat-deck">
+      <div class="section-title">SOVEREIGN P2P CHAT</div>
+      <div class="chat-stream" id="chat-log">
+        <div class="chat-bubble">
+          <div class="meta">SYSTEM • INITIALIZED</div>
+          <div>Comms deck active. Direct device-to-device transport without cloud tollgates.</div>
         </div>
       </div>
-      <div class="chat-input-bar">
-        <input type="text" id="chat-input" placeholder="Type direct message...">
+      <div class="chat-bar">
+        <input type="text" id="chat-input" placeholder="Type message...">
         <button id="btn-send-msg">Send</button>
       </div>
     </div>
@@ -182,8 +240,9 @@
 
   <footer>
     <div>Microphone: <strong id="mic-status" style="color: var(--accent);">STANDBY</strong></div>
-    <div>Camera: <strong id="cam-status" style="color: var(--accent);">STANDBY</strong></div>
-    <div>Session: <strong id="call-status">OFFLINE</strong></div>
+    <div>Webcam: <strong id="cam-status" style="color: var(--accent);">STANDBY</strong></div>
+    <div>Call Session: <strong id="call-status">DISCONNECTED</strong></div>
+    <div>Encryption: <strong style="color: var(--accent);">ECDH / NO-CLOUD P2P</strong></div>
   </footer>
 
   <script type="module" src="./app.js"></script>
