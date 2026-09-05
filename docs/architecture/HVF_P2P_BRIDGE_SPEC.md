@@ -1,4 +1,4 @@
-﻿# Project Ebony: Sovereign P2P Telemetry Bridge (Architecture Spec)
+# Project Ebony: Sovereign P2P Telemetry Bridge (Architecture Spec)
 
 ## Overview
 Project Ebony integrates a zero-cloud, peer-to-peer telemetry and communications bridge leveraging the Holepunch / Pear runtime ecosystem.
@@ -10,3 +10,4 @@ Project Ebony integrates a zero-cloud, peer-to-peer telemetry and communications
 4. **Append-Only Distributed Logs:** Telemetry frames are committed directly to Ed25519-signed Hypercore logs replicated over the Hyperswarm DHT without intermediary cloud brokers.
 5. **Ingress Pipeline Verification:** End-to-end integration verified: Local UDP telemetry frames parse and serialize into cryptographic Hypercore log blocks with clean socket lifecycle management.
 6. **Decentralized Consumer Mesh:** Remote subscribers resolve the Hypercore feed using public key capability tokens and discover peers via Hyperswarm DHT without centralized discovery servers.
+7. **Pear Desktop Operator Console:** Native desktop application interface running on the Pear Runtime (v3.3.0) binding directly to local Hypercore replicas for zero-latency, cloud-free telemetry visualization.
