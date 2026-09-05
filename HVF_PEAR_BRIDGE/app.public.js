@@ -29,31 +29,31 @@ function logToConsole(message, data = null) {
 function updateTelemetryDisplay(block, blockIndex) {
   if (!block) return;
 
+  const data = block.payload || block;
+  const telemetry = data.telemetry || {};
+
   if (blockIndex !== undefined && elBlocks) {
     elBlocks.textContent = blockIndex + 1;
   }
 
-  if (block.subsystem && elSubsystem) {
-    elSubsystem.textContent = block.subsystem;
+  if (data.subsystem && elSubsystem) {
+    elSubsystem.textContent = data.subsystem;
   }
 
-  if (block.sequence !== undefined && elSequence) {
-    elSequence.textContent = `#${block.sequence}`;
+  if (data.sequence !== undefined && elSequence) {
+    elSequence.textContent = `#${data.sequence}`;
   }
 
-  if (block.telemetry) {
-    if (block.telemetry.busVoltage !== undefined && elVoltage) {
-      elVoltage.textContent = `${Number(block.telemetry.busVoltage).toFixed(2)} V`;
-    }
-    if (block.telemetry.watchdogHeartbeatMs !== undefined && elWatchdog) {
-      elWatchdog.textContent = `${block.telemetry.watchdogHeartbeatMs} ms`;
-    }
+  if (telemetry.busVoltage !== undefined && elVoltage) {
+    elVoltage.textContent = `${Number(telemetry.busVoltage).toFixed(2)} V`;
+  }
+  if (telemetry.watchdogHeartbeatMs !== undefined && elWatchdog) {
+    elWatchdog.textContent = `${telemetry.watchdogHeartbeatMs} ms`;
   }
 
-  logToConsole(`Block #${blockIndex} Verified [${block.protocol || 'LAMBDA_V2'}]`, block.telemetry || block);
+  logToConsole(`Block #${blockIndex} Verified [${data.protocol || 'LAMBDA_V2'}]`, telemetry);
 }
 
-// Target public key capability provided via environment or secure peer handshake
 const FEED_KEY = process.env.PEAR_HYPERCORE_KEY || '<REDACTED_PUBLIC_KEY>';
 const TOPIC_SEED = process.env.PEAR_TOPIC_SEED || 'project-ebony-sovereign-mesh-v1';
 
