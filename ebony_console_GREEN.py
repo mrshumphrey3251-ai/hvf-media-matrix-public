@@ -417,7 +417,8 @@ with st.sidebar:
         "🧪 Sandbox",
         "⚙️ Empire Config",
         "⬛ Media Matrix",
-        "🎨 Asset Synthesis"
+        "🎨 Asset Synthesis",
+        "📡 Sovereign Comms Deck"
     ], label_visibility="collapsed")
 
 st.title(f"⚡ {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
@@ -978,9 +979,9 @@ elif active_module == "📡 Sovereign Comms Deck":
     
     col_c1, col_c2 = st.columns(2)
     with col_c1:
-        st.markdown("### 📷 Arducam Optical Feed")
-        st.info("Arducam-1080P-HDR hardware bridge active.")
-        captured_frame = st.camera_input("Capture Frame from Arducam Sensor", key="comms_arducam_capture")
+        st.markdown("### 📷 Universal Optical Bridge")
+        st.info("Hardware auto-negotiation active. Native support for Arducam, Laptops, and Mobile Devices.")
+        captured_frame = st.camera_input("Capture Frame from Local Hardware", key="comms_arducam_capture")
         if captured_frame:
             st.success("Frame successfully latched from optical sensor.")
             st.image(captured_frame)
@@ -992,9 +993,10 @@ elif active_module == "📡 Sovereign Comms Deck":
                 {"sender": "EBONY CORE", "text": "Comms deck online. Zero middleman fees."}
             ]
             
-        chat_msg = st.text_input("Secure message payload:", key="sovereign_chat_input")
-        if st.button("Transmit Securely", key="sovereign_transmit"):
-            if chat_msg.strip():
+        with st.form("comms_dispatch_form", clear_on_submit=True):
+            chat_msg = st.text_input("Secure message payload:")
+            submitted = st.form_submit_button("Transmit Securely")
+            if submitted and chat_msg.strip():
                 st.session_state.sovereign_chat.append({"sender": current_user, "text": chat_msg.strip()})
                 st.rerun()
                 

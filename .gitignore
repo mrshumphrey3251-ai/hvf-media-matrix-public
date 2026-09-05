@@ -37,3 +37,7 @@ CINEMATIC_VAULT/logs/
 HVF_MEDIA_MATRIX/
 
 CINEMATIC_VAULT/
+
+# Sovereign SSL Certificates
+server.key
+server.crt
