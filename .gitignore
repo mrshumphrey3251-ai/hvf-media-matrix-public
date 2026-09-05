@@ -29,3 +29,9 @@ env/
 Thumbs.dbsovereign_ir_model/
 
 .stfolder/
+
+CLEAN_LEDGER.txt
+HVF_DAEMON_LOG.txt
+HVF_GHOST_LOG.txt
+CINEMATIC_VAULT/logs/
+HVF_MEDIA_MATRIX/
