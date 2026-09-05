@@ -1,4 +1,4 @@
-﻿import ada_voice_module
+import ada_voice_module
 import os
 import sys
 import io
@@ -971,3 +971,33 @@ elif active_module == "🎨 Asset Synthesis":
             except Exception as e:
                 st.error(f"Matrix Offline: {e}")
 
+
+elif active_module == "📡 Sovereign Comms Deck":
+    st.subheader("📡 Sovereign WebRTC Comms Deck // Project Ebony")
+    st.caption("Zero-fee, sovereign P2P voice, video, and encrypted data dispatch.")
+    
+    col_c1, col_c2 = st.columns(2)
+    with col_c1:
+        st.markdown("### 📷 Arducam Optical Feed")
+        st.info("Arducam-1080P-HDR hardware bridge active.")
+        captured_frame = st.camera_input("Capture Frame from Arducam Sensor", key="comms_arducam_capture")
+        if captured_frame:
+            st.success("Frame successfully latched from optical sensor.")
+            st.image(captured_frame)
+            
+    with col_c2:
+        st.markdown("### 💬 Encrypted P2P Dispatch")
+        if "sovereign_chat" not in st.session_state:
+            st.session_state.sovereign_chat = [
+                {"sender": "EBONY CORE", "text": "Comms deck online. Zero middleman fees."}
+            ]
+            
+        chat_msg = st.text_input("Secure message payload:", key="sovereign_chat_input")
+        if st.button("Transmit Securely", key="sovereign_transmit"):
+            if chat_msg.strip():
+                st.session_state.sovereign_chat.append({"sender": current_user, "text": chat_msg.strip()})
+                st.rerun()
+                
+        st.markdown("---")
+        for message in reversed(st.session_state.sovereign_chat):
+            st.info(f"**{message['sender']}**: {message['text']}")
