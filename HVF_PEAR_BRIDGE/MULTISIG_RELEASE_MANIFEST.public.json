@@ -1,0 +1,47 @@
+{
+  "project": "Project Ebony",
+  "version": "1.0.0",
+  "pearLink": "pear://<PROJECT_LINK_REDACTED>",
+  "driveKey": "<DRIVE_KEY_REDACTED>",
+  "discoveryKey": "<DISCOVERY_KEY_REDACTED>",
+  "contentKey": "<CONTENT_KEY_REDACTED>",
+  "multisigPolicy": {
+    "policyType": "M-of-N Threshold",
+    "threshold": 3,
+    "totalSigners": 5,
+    "authorizedSigners": [
+      {
+        "role": "CEO & Apex Architect",
+        "id": "HVF-NODE-APEX",
+        "publicKeyHash": "SHA256:<KEY_HASH_REDACTED>"
+      },
+      {
+        "role": "Chief Cryptographic Auditor",
+        "id": "HVF-NODE-AUDITOR",
+        "publicKeyHash": "SHA256:<KEY_HASH_REDACTED>"
+      },
+      {
+        "role": "DHT Infrastructure Lead",
+        "id": "HVF-NODE-INFRA",
+        "publicKeyHash": "SHA256:<KEY_HASH_REDACTED>"
+      },
+      {
+        "role": "Kinetic Brain Controller",
+        "id": "HVF-NODE-KINETIC",
+        "publicKeyHash": "SHA256:<KEY_HASH_REDACTED>"
+      },
+      {
+        "role": "Cold Storage Keyholder",
+        "id": "HVF-NODE-COLD",
+        "publicKeyHash": "SHA256:<KEY_HASH_REDACTED>"
+      }
+    ]
+  },
+  "verifiedMetrics": {
+    "subsystemTarget": "Protocol Lambda V2",
+    "loopbackDiodePort": 5005,
+    "averageReplicationLatencyMs": 5.83,
+    "totalAuditedBlocks": 33,
+    "ironDomeCompliant": true
+  }
+}
