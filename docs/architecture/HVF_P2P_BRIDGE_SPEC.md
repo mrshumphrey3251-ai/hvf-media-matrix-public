@@ -11,3 +11,4 @@ Project Ebony integrates a zero-cloud, peer-to-peer telemetry and communications
 5. **Ingress Pipeline Verification:** End-to-end integration verified: Local UDP telemetry frames parse and serialize into cryptographic Hypercore log blocks with clean socket lifecycle management.
 6. **Decentralized Consumer Mesh:** Remote subscribers resolve the Hypercore feed using public key capability tokens and discover peers via Hyperswarm DHT without centralized discovery servers.
 7. **Pear Desktop Operator Console:** Native desktop application interface running on the Pear Runtime (v3.3.0) binding directly to local Hypercore replicas for zero-latency, cloud-free telemetry visualization.
+8. **Protocol Lambda V2 Emitter:** Standardized telemetry generation harness emitting deterministic kinetic states, bus voltages, and watchdog heartbeats over the UDP ingress diode.
