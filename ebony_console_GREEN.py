@@ -977,31 +977,52 @@ elif active_module == "📡 Sovereign Comms Deck":
     st.subheader("📡 Sovereign WebRTC Comms Deck // Project Ebony")
     st.caption("Zero-fee, sovereign P2P voice, video, and encrypted data dispatch.")
 
+    # Autonomous Synchronization Engine
+    try:
+        from streamlit_autorefresh import st_autorefresh
+        # Silent 2-second background polling to sync the global ledger instantly
+        st_autorefresh(interval=2000, limit=None, key="matrix_auto_sync")
+    except ImportError:
+        st.warning("Autonomous sync engine offline. Run 'pip install streamlit-autorefresh'.")
+
     col_c1, col_c2 = st.columns(2)
     with col_c1:
-        st.markdown("### 📷 Arducam Optical Feed")
-        st.info("Arducam-1080P-HDR hardware bridge active.")
-        captured_frame = st.camera_input("Capture Frame from Arducam Sensor", key="comms_arducam_capture")
-        if captured_frame:
-            st.success("Frame successfully latched from optical sensor.")
-            st.image(captured_frame)
+        st.markdown("### 🔴 LIVE // SWARM OPTICAL FEED")
+        st.info("WebRTC Matrix streaming via Sovereign Tailscale Link.")
+        # Injecting the live Master Media Router feed directly into the UI
+        st.components.v1.html(
+            f'<iframe src="http://100.87.162.117:8889/live/stream" width="100%" height="450" style="border:none;" allow="autoplay; fullscreen"></iframe>',
+            height=470
+        )
 
     with col_c2:
         st.markdown("### 💬 Encrypted P2P Dispatch")
-        if "sovereign_chat" not in st.session_state:
-            st.session_state.sovereign_chat = [
-                {"sender": "EBONY CORE", "text": "Comms deck online. Zero middleman fees."}
-            ]
+        
+        import json
+        ledger_path = "hvf_comms_ledger.json"
+        if not os.path.exists(ledger_path):
+            with open(ledger_path, "w") as f:
+                json.dump([{"sender": "EBONY CORE", "text": "Comms deck online. Autonomous Sync Active."}], f)
+                
+        with open(ledger_path, "r") as f:
+            global_chat = json.load(f)
 
         chat_msg = st.text_input("Secure message payload:", key="sovereign_chat_input")
-        if st.button("Transmit Securely", key="sovereign_transmit"):
+        
+        if st.button("Transmit Securely"):
             if chat_msg.strip():
-                safe_user = current_user if current_user else "CEO_OVERRIDE"
-                if current_user and current_cipher:
+                safe_user = current_user if 'current_user' in locals() and current_user else "CEO_OVERRIDE"
+                if 'current_user' in locals() and current_user and current_cipher:
                     save_encrypted_message(current_user, current_role, chat_msg.strip(), current_cipher)
-                st.session_state.sovereign_chat.append({"sender": safe_user.upper(), "text": chat_msg.strip() + " 🛡️ [ENCRYPTED & LOCKED]"})
+                
+                # Append to global ledger
+                global_chat.append({"sender": safe_user.upper(), "text": chat_msg.strip() + " 🛡️ [ENCRYPTED & LOCKED]"})
+                with open(ledger_path, "w") as f:
+                    json.dump(global_chat[-15:], f) # Keep last 15 transmissions
+                
+                # Force instant update on transmit
                 st.rerun()
 
         st.markdown("---")
-        for message in reversed(st.session_state.sovereign_chat):
+        for message in reversed(global_chat):
             st.info(f"**{message['sender']}**: {message['text']}")
