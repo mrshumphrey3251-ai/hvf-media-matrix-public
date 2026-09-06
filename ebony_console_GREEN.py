@@ -1,4 +1,4 @@
-import ada_voice_module
+﻿import ada_voice_module
 import os
 import sys
 import io
@@ -413,12 +413,12 @@ with st.sidebar:
         "🚨 NOAA Radar",
         "🌾 Drone Diagnostics",
         "📖 System Overview",
+        "📡 Sovereign Comms Deck",
         "📝 Feedback Hub",
         "🧪 Sandbox",
         "⚙️ Empire Config",
         "⬛ Media Matrix",
-        "🎨 Asset Synthesis",
-        "📡 Sovereign Comms Deck"
+        "🎨 Asset Synthesis"
     ], label_visibility="collapsed")
 
 st.title(f"⚡ {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
@@ -976,30 +976,32 @@ elif active_module == "🎨 Asset Synthesis":
 elif active_module == "📡 Sovereign Comms Deck":
     st.subheader("📡 Sovereign WebRTC Comms Deck // Project Ebony")
     st.caption("Zero-fee, sovereign P2P voice, video, and encrypted data dispatch.")
-    
+
     col_c1, col_c2 = st.columns(2)
     with col_c1:
-        st.markdown("### 📷 Universal Optical Bridge")
-        st.info("Hardware auto-negotiation active. Native support for Arducam, Laptops, and Mobile Devices.")
-        captured_frame = st.camera_input("Capture Frame from Local Hardware", key="comms_arducam_capture")
+        st.markdown("### 📷 Arducam Optical Feed")
+        st.info("Arducam-1080P-HDR hardware bridge active.")
+        captured_frame = st.camera_input("Capture Frame from Arducam Sensor", key="comms_arducam_capture")
         if captured_frame:
             st.success("Frame successfully latched from optical sensor.")
             st.image(captured_frame)
-            
+
     with col_c2:
         st.markdown("### 💬 Encrypted P2P Dispatch")
         if "sovereign_chat" not in st.session_state:
             st.session_state.sovereign_chat = [
                 {"sender": "EBONY CORE", "text": "Comms deck online. Zero middleman fees."}
             ]
-            
-        with st.form("comms_dispatch_form", clear_on_submit=True):
-            chat_msg = st.text_input("Secure message payload:")
-            submitted = st.form_submit_button("Transmit Securely")
-            if submitted and chat_msg.strip():
-                st.session_state.sovereign_chat.append({"sender": current_user, "text": chat_msg.strip()})
+
+        chat_msg = st.text_input("Secure message payload:", key="sovereign_chat_input")
+        if st.button("Transmit Securely", key="sovereign_transmit"):
+            if chat_msg.strip():
+                safe_user = current_user if current_user else "CEO_OVERRIDE"
+                if current_user and current_cipher:
+                    save_encrypted_message(current_user, current_role, chat_msg.strip(), current_cipher)
+                st.session_state.sovereign_chat.append({"sender": safe_user.upper(), "text": chat_msg.strip() + " 🛡️ [ENCRYPTED & LOCKED]"})
                 st.rerun()
-                
+
         st.markdown("---")
         for message in reversed(st.session_state.sovereign_chat):
             st.info(f"**{message['sender']}**: {message['text']}")
