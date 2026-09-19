@@ -1,32 +1,29 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: Outbound Composition & Executive Strike Dispatch
+Public Architecture Blueprint: Outbound Origination & Single-Transmission C2 Stepper
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class SovereignOutboundCompositionBlueprint:
+class SovereignCockpitStandardBlueprint:
     """
-    Architectural specification for sovereign outbound email composition and transmission.
-    - Executive UI panel providing direct destination, subject, and classification control
-    - Optional neural draft generation grounded in the 20,253-vector Iron Dome
-    - Strict RFC5322 MIME compilation with defense CAGE (1AHA8) provenance headers
-    - In-memory Fernet token decryption on SSL port 465 transmission
-    - Automatic recording of DISPATCHED_SUCCESS records in SQLite audit ledger
+    Architectural specification for focused defense communication command and control.
+    - Integrated Outbound Composition Terminal at top of deck with optional Iron Dome RAG drafting
+    - Automated commercial noise sweeper isolating high-value prime/subcontractor correspondence
+    - Single-transmission stepper (1 of N) presented strictly at executive eye level
+    - Zero vertical scrolling; action controls advance queue in-place
+    - Unilateral CEO Kinematic Veto enforced on both inbound replies and direct outbound dispatches
     """
     def __init__(self):
-        self.dispatch_protocol = "DIRECT_SSL_SMTP_465"
-        self.kinematic_authorization = "MANDATORY_CEO_SIGN_OFF"
-        self.provenance_headers = {
-            "X-Originating-System": "Ebony AI Sovereign Command Deck",
-            "X-HVF-CAGE": "1AHA8",
-            "X-Compliance": "DFARS 252.227-7018"
-        }
+        self.outbound_terminal_active = True
+        self.queue_display_mode = "SINGLE_ITEM_STEPPER"
+        self.noise_quarantine_enforced = True
+        self.zero_scroll_design = True
 
-    def architectural_rules(self):
+    def architectural_controls(self):
         return [
-            "1. Outbound messages require explicit unilateral CEO authorization before transmission",
-            "2. Credentials remain encrypted at rest and decrypt strictly during active socket execution",
-            "3. RAG-assisted drafting grounds context in sovereign prime contracting intelligence",
-            "4. Transmissions log to SQLite memory vault immediately upon successful delivery",
-            "5. Both private and public repositories synchronize on every operational release"
+            "1. Outbound terminal enables direct plain text composition with verified CAGE provenance",
+            "2. Optional neural drafting assistance queries 20,253-vector knowledge store",
+            "3. Automated noise sweep segregates marketing newsletters from defense correspondence",
+            "4. Inbound inspection presents strictly 1 transmission at a time at eye level",
+            "5. Kinematic actions advance the stepper immediately with zero page displacement"
         ]
