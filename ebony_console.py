@@ -4,6 +4,7 @@ import subprocess
 import sys
 import time
 import json
+import shutil
 from datetime import datetime
 
 try:
@@ -11,6 +12,7 @@ try:
     from groq import Groq
     import chromadb
     from conversation_logger import ConversationLogger
+    import hvf_memory_vault
     
     load_dotenv(override=True)
     groq_api_key = os.getenv("GROQ_API_KEY")
@@ -24,6 +26,10 @@ except Exception as e:
 ACTIVE_MODEL = os.getenv("HVF_ACTIVE_MODEL", "openai/gpt-oss-120b")
 CHROMA_DB_PATH = os.getenv("HVF_CHROMA_DIR", "./chroma_db_public")
 COLLECTION_NAME = "hvf_iron_dome_public_blueprint"
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+backup_dir = os.path.join(BASE_DIR, "_code_backups")
+os.makedirs(backup_dir, exist_ok=True)
 
 try:
     chroma_client = chromadb.PersistentClient(path=CHROMA_DB_PATH)
@@ -48,9 +54,9 @@ st.markdown("""
 st.title("⚡ EBONY: TACTICAL COMMAND HUD [PUBLIC BLUEPRINT]")
 
 EBONY_PERSONA = """You are Ebony, an executive defense AI for Humphrey Virtual Farms LLC. 
-You write with authoritative precision. Address the user as Boss."""
+You write with authoritative precision, addressing the user as Boss.
+Base all architectural responses on the sanitized Iron Dome intelligence."""
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 memory_dir = os.path.join(BASE_DIR, "memory_core")
 os.makedirs(memory_dir, exist_ok=True)
 MEMORY_FILE = os.path.join(memory_dir, "neural_memory.json")
@@ -74,6 +80,15 @@ def retrieve_iron_dome_context(query: str, n_results: int = 2) -> str:
         docs = results.get("documents", [[]])[0]
         return "\n\n".join(docs)
     except Exception: return ""
+
+def safe_additive_code_write(target_filename: str, new_code: str) -> str:
+    filepath = os.path.join(BASE_DIR, target_filename)
+    if os.path.exists(filepath):
+        ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+        shutil.copyfile(filepath, os.path.join(backup_dir, f"{target_filename}_{ts}.bak"))
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write(new_code.strip())
+    return filepath
 
 def get_ebony_response(user_input):
     if not ai_active: return f"Neural link offline: {error_msg}"
