@@ -1,27 +1,26 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: Zero-Trust Sender Blocklist & Ingestion Gate
+Public Architecture Blueprint: Additive Subsystem Expansion Protocol
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class ZeroTrustBlocklistBlueprint:
+class AdditiveExpansionProtocolBlueprint:
     """
-    Architectural specification for persistent sender blocklisting and filtering.
-    - SQLite 'blocked_senders' relational ledger
-    - Socket-level message drop prior to neural vector RAG inference
-    - Unilateral CEO Kinematic Veto action buttons on console HUD
-    - Automatic memory vault purge upon sender blacklisting
+    Architectural specification for non-destructive subsystem expansion.
+    Enforces that new telemetry, security controls, or threat scrubbers
+    must append to existing operational baselines without overwriting or
+    regressing previously verified command modules or user interfaces.
     """
     def __init__(self):
-        self.blocklist_enforced = True
-        self.drop_policy = "PRE_INFERENCE_SOCKET_DROP"
-        self.human_in_the_loop_gate = True
+        self.expansion_policy = "STRICT_ADDITIVE_APPEND_ONLY"
+        self.codebase_preservation_enforced = True
+        self.blocklist_integration = "SURGICAL_INJECTION"
 
-    def filtering_rules(self):
+    def architectural_rules(self):
         return [
-            "1. Extract and normalize RFC822 sender email addresses via parseaddr",
-            "2. Intercept inbound messages against persistent blocked_senders ledger",
-            "3. Drop blacklisted senders immediately prior to RAG context generation",
-            "4. Provide unilateral '🚫 Block Sender' action button on executive review deck",
-            "5. Purge all historical staged unvetted transmissions from newly blocked entities"
+            "1. Subsystem expansions must preserve 100% of existing interface modules",
+            "2. Interactive veto controls append directly to the staged transmission container",
+            "3. Zero-trust sender blacklisting triggers socket-level drops prior to inference",
+            "4. Human-In-The-Loop kinematic approval gate mandatory on all outbound actions",
+            "5. Both private and public repositories must synchronize on every update"
         ]
