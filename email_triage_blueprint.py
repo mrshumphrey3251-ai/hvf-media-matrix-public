@@ -1,30 +1,29 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: Decoupled In-Memory Ingestion & SQLite Concurrency
+Public Architecture Blueprint: Focused Single-Transmission C2 Inspection Cockpit
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class DecoupledIngestionConcurrencyBlueprint:
+class FocusedC2ViewerBlueprint:
     """
-    Architectural specification for high-throughput defense communication ingestion.
-    Eliminates database lock contention by decoupling high-latency neural LLM inference
-    and vector RAG lookups from relational database transactions:
-    - IMAP decoding, threat sanitization, and Groq drafting execute in-memory
-    - Staged dispatches persist in a single atomic executemany() burst (< 5ms lock time)
-    - All operational UI cursors operate under isolation_level=None (autocommit mode)
-    - Prevents UI deadlocks while polling multi-account inboxes concurrently
+    Architectural specification for high-throughput zero-scroll C2 email inspection.
+    Replaces continuous multi-card vertical lists with an eye-level single-item queue.
+    - Historical backlog baselined to eliminate UI flooding
+    - Active messages presented one at a time with instant queue index telemetry
+    - Exercising Kinematic Veto immediately drops handled transmission from active view
+    - Eliminates vertical page scrolling and layout shifts upon Streamlit reruns
     """
     def __init__(self):
-        self.concurrency_pattern = "DECOUPLED_IN_MEMORY_BATCH"
-        self.isolation_level = "AUTOCOMMIT_NONE"
-        self.lock_window_ms = 5
+        self.viewer_mode = "FOCUSED_SINGLE_ITEM_STEPPER"
+        self.backlog_policy = "AUTOMATIC_BASELINE_ARCHIVE"
         self.kinematic_veto_enforced = True
+        self.zero_scroll_design = True
 
     def architectural_rules(self):
         return [
-            "1. Zero external network or neural inference calls permitted during open DB transactions",
-            "2. Inbound messages staged in transient memory payloads during IMAP processing",
-            "3. SQLite connections open exclusively for instantaneous batch commits",
-            "4. Autocommit mode prevents lingering shared read locks across Streamlit UI re-renders",
+            "1. Historical messages flagged as SEEN on IMAP gateway to prevent backlog re-ingestion",
+            "2. Queue displays strictly 1 transmission at a time directly at executive eye level",
+            "3. Taking action (Approve/Dismiss/Block) transitions record state and advances queue in place",
+            "4. Autocommit database connections prevent locks during rapid sequential vetoes",
             "5. Both private and public repositories synchronize on every architectural commit"
         ]
