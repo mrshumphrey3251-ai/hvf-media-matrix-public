@@ -1,124 +1,55 @@
 ﻿import streamlit as st
 import os
-import subprocess
-import sys
-import time
 import json
-import shutil
-from datetime import datetime
+from dotenv import load_dotenv
 
-try:
-    from dotenv import load_dotenv
-    from groq import Groq
-    import chromadb
-    from conversation_logger import ConversationLogger
-    import hvf_memory_vault
-    
-    load_dotenv(override=True)
-    groq_api_key = os.getenv("GROQ_API_KEY")
-    client = Groq(api_key=groq_api_key) if groq_api_key else None
-    ai_active = True if client else False
-    error_msg = "" if client else "GROQ_API_KEY not configured."
-except Exception as e:
-    ai_active = False
-    error_msg = str(e)
+load_dotenv(override=True)
 
-ACTIVE_MODEL = os.getenv("HVF_ACTIVE_MODEL", "openai/gpt-oss-120b")
-CHROMA_DB_PATH = os.getenv("HVF_CHROMA_DIR", "./chroma_db_public")
-COLLECTION_NAME = "hvf_iron_dome_public_blueprint"
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-backup_dir = os.path.join(BASE_DIR, "_code_backups")
-os.makedirs(backup_dir, exist_ok=True)
-
-try:
-    chroma_client = chromadb.PersistentClient(path=CHROMA_DB_PATH)
-    iron_dome_collection = chroma_client.get_collection(COLLECTION_NAME)
-except Exception:
-    iron_dome_collection = None
-
-logger = ConversationLogger()
-
-st.set_page_config(page_title="Ebony | Tactical Command HUD (Public Blueprint)", layout="wide")
+st.set_page_config(page_title="Ebony | Sovereign Empire Matrix", layout="wide")
 
 st.markdown("""
 <style>
     .stApp { background-color: #050A15; }
     .stApp, p, span, div { color: #E2E8F0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    h1, h2, h3 { color: #00D2FF !important; letter-spacing: 1.5px; }
-    .stChatMessage { background-color: #111827 !important; border: 1px solid #1F2937 !important; border-radius: 12px; padding: 15px; margin-bottom: 12px; }
-    .stButton>button { background-color: #00D2FF; color: #000000 !important; font-weight: 900; border-radius: 6px; border: none; }
+    h1, h2, h3 { color: #00D2FF !important; }
 </style>
 """, unsafe_allow_html=True)
 
-st.title("⚡ EBONY: TACTICAL COMMAND HUD [PUBLIC BLUEPRINT]")
+st.title("⚡ HUMPHREY VIRTUAL FARMS | SOVEREIGN COMMAND DECK")
+st.caption("Public Architecture Blueprint // 15-Vertical Defense & Industrial SCADA Matrix")
 
-EBONY_PERSONA = """You are Ebony, an executive defense AI for Humphrey Virtual Farms LLC. 
-You write with authoritative precision, addressing the user as Boss.
-Base all architectural responses on the sanitized Iron Dome intelligence."""
+with st.sidebar:
+    st.markdown("### 🎛️ Sovereign Modules")
+    module = st.radio("Navigation", [
+        "💬 Sovereign Command",
+        "📡 LinkedIn Engine",
+        "🚨 NOAA Radar",
+        "🌾 Sensor & Drone Diagnostics",
+        "📖 System Overview",
+        "📡 Sovereign Comms Deck"
+    ])
 
-memory_dir = os.path.join(BASE_DIR, "memory_core")
-os.makedirs(memory_dir, exist_ok=True)
-MEMORY_FILE = os.path.join(memory_dir, "neural_memory.json")
+if module == "💬 Sovereign Command":
+    st.subheader("/// EXECUTIVE COMMUNICATIONS")
+    st.info("Sovereign Iron Dome Core Connected (Sanitized Architecture Baseline).")
+    user_input = st.chat_input("Enter strategic directive...")
+    if user_input:
+        with st.chat_message("user"): st.markdown(user_input)
+        with st.chat_message("assistant"): st.markdown(f"**Directive Acknowledged:** `{user_input}`. Routed through 15-Vertical Defense Matrix.")
 
-def load_memory():
-    if os.path.exists(MEMORY_FILE):
-        try:
-            with open(MEMORY_FILE, "r", encoding="utf-8") as f: return json.load(f)
-        except Exception: pass
-    return [{"role": "assistant", "content": "Sovereign matrix blueprint active. Ready, Boss."}]
+elif module == "📡 Sovereign Comms Deck":
+    st.subheader("📡 Sovereign WebRTC Comms Deck")
+    st.caption("Zero-fee sovereign P2P optical feed and encrypted dispatch.")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("**🔴 LIVE SWARM OPTICAL FEED**")
+        st.info("WebRTC Matrix streaming via Sovereign Tailscale Link.")
+    with col2:
+        st.markdown("**💬 ENCRYPTED P2P DISPATCH**")
+        st.text_input("Secure message payload:")
+        if st.button("Transmit Securely"):
+            st.success("Encrypted payload dispatched to ledger.")
 
-def save_memory(history):
-    try:
-        with open(MEMORY_FILE, "w", encoding="utf-8") as f: json.dump(history, f, indent=4)
-    except Exception: pass
-
-def retrieve_iron_dome_context(query: str, n_results: int = 2) -> str:
-    if not iron_dome_collection: return ""
-    try:
-        results = iron_dome_collection.query(query_texts=[query], n_results=n_results)
-        docs = results.get("documents", [[]])[0]
-        return "\n\n".join(docs)
-    except Exception: return ""
-
-def safe_additive_code_write(target_filename: str, new_code: str) -> str:
-    filepath = os.path.join(BASE_DIR, target_filename)
-    if os.path.exists(filepath):
-        ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-        shutil.copyfile(filepath, os.path.join(backup_dir, f"{target_filename}_{ts}.bak"))
-    with open(filepath, "w", encoding="utf-8") as f:
-        f.write(new_code.strip())
-    return filepath
-
-def get_ebony_response(user_input):
-    if not ai_active: return f"Neural link offline: {error_msg}"
-    try:
-        context = retrieve_iron_dome_context(user_input)
-        system_content = EBONY_PERSONA
-        if context: system_content += f"\n\n--- ARCHITECTURAL CONTEXT ---\n{context}\n----------------------------"
-        payload = [{"role": "system", "content": system_content}]
-        for msg in st.session_state.chat_history[-6:]:
-            payload.append({"role": msg["role"], "content": msg["content"]})
-        payload.append({"role": "user", "content": user_input})
-        chat = client.chat.completions.create(messages=payload, model=ACTIVE_MODEL, temperature=0.2)
-        return chat.choices[0].message.content
-    except Exception as e: return f"Misfire: {e}"
-
-if "chat_history" not in st.session_state: 
-    st.session_state.chat_history = load_memory()
-
-st.subheader("/// EXECUTIVE COMMUNICATIONS")
-for msg in st.session_state.chat_history:
-    st.chat_message(msg["role"]).write(msg["content"])
-
-with st.form("comms_form", clear_on_submit=True):
-    cmd = st.text_input("Awaiting Directive:")
-    submit = st.form_submit_button("SEND", use_container_width=True)
-
-if submit and cmd:
-    st.session_state.chat_history.append({"role": "user", "content": cmd})
-    reply = get_ebony_response(cmd)
-    st.session_state.chat_history.append({"role": "assistant", "content": reply})
-    logger.log_exchange(cmd, reply)
-    save_memory(st.session_state.chat_history)
-    st.rerun()
+else:
+    st.subheader(f"Module: {module}")
+    st.info("Active in production private deployment.")
