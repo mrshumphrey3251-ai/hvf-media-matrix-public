@@ -27,3 +27,16 @@ class MultiAccountTriageArchitecture:
             "step_4": "Draft response staging in secure relational ledger",
             "step_5": "Executive dashboard review and manual cryptographic dispatch"
         }
+
+    def ui_module_specification(self):
+        return {
+            "module_name": "Sovereign Dispatch Deck",
+            "access_control": "CEO_APEX_CLEARANCE_ONLY",
+            "features": [
+                "Multi-Account Inbox Polling",
+                "Prompt-Injection Threat Badge Visualization",
+                "Interactive Executive Draft Editor",
+                "Cryptographic Approve & Dispatch Gate",
+                "Unilateral Kinematic Veto & Vault Archive"
+            ]
+        }
