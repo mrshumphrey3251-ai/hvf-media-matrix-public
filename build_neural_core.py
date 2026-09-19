@@ -5,20 +5,19 @@ import chromadb
 from chromadb.utils import embedding_functions
 
 # ==============================================================================
-# HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN NEURAL CORE BUILDER
-# System: Project Ebony - Bare-Metal Defense RAG Indexer (Sanitized Blueprint)
+# HUMPHREY VIRTUAL FARMS LLC | 15-VERTICAL SOVEREIGN NEURAL CORE BUILDER
+# System: Project Ebony - Public Architectural Blueprint (Sanitized Baseline)
 # Authority: Jeffery Humphrey, Founder & CEO
-# Compliance: DFARS 252.227-7018 Data Rights Protection (Redacted Public Baseline)
+# Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Architecture)
 # ==============================================================================
 
-# Modular Configuration - Extensible for external staging
 CONFIG = {
     "master_dir": os.getenv("HVF_STORAGE_ROOT", "./defense_vault_staged"),
     "db_dir": os.getenv("HVF_CHROMA_DIR", "./chroma_db_public"),
-    "collection_name": "hvf_iron_dome_sanitized",
+    "collection_name": "hvf_iron_dome_public_blueprint",
     "chunk_size": 1000,
     "chunk_overlap": 150,
-    "batch_size": 250,  # Micro-batching threshold to prevent ONNX thread lock
+    "batch_size": 250,
     "valid_extensions": [".md", ".txt", ".json", ".py", ".yaml", ".yml", ".rst"],
     "ignore_directories": [
         ".git",
@@ -32,8 +31,33 @@ CONFIG = {
     ]
 }
 
+# 15 Sovereign Verticals Taxonomy Schema
+PILLAR_MAP = {
+    "01": ("pillar_01_agriculture", "Sovereign Precision Agriculture & Soil Mesh"),
+    "02": ("pillar_02_logistics", "Autonomous Supply Chain & Edge Logistics"),
+    "03": ("pillar_03_defense", "Tactical Defense Systems & Kinetic Interceptors"),
+    "04": ("pillar_04_energy", "Distributed Sovereign Microgrids & Energy Storage"),
+    "05": ("pillar_05_manufacturing", "Advanced Additive Manufacturing & Edge Tooling"),
+    "06": ("pillar_06_communications", "Secure Mesh Comms & Low-Probability Intercept P2P"),
+    "07": ("pillar_07_financial", "Cryptographic Financial Ledgers & Autonomous Treasury"),
+    "08": ("pillar_08_healthcare", "Edge Triage & Autonomous Biological Monitoring"),
+    "09": ("pillar_09_aerospace", "Aerospace Perimeter Defense & High-Altitude Relays"),
+    "10": ("pillar_10_civil_engineering", "Resilient Civil Infrastructure & Sub-Surface Fortification"),
+    "11": ("pillar_11_mining", "Autonomous Resource Extraction & Geological Recon"),
+    "12": ("pillar_12_deep_ocean", "Sub-Surface Maritime Telemetry & Oceanic Sensor Nodes"),
+    "13": ("pillar_13_cryptography", "Post-Quantum Cryptographic Primitives & Optical Diodes"),
+    "14": ("pillar_14_hydrogen", "Sovereign Hydrogen Generation & Fuel Cell Architecture"),
+    "15": ("pillar_15_autonomous_warfare", "Multi-Agent Swarm Orchestration & Air-Gapped Warfare")
+}
+
+def classify_vertical(filepath: str):
+    path_norm = filepath.replace("\\", "/").lower()
+    for prefix, (pillar_id, pillar_name) in PILLAR_MAP.items():
+        if f"/{prefix}_" in path_norm or f"docs/{prefix}" in path_norm:
+            return pillar_id, pillar_name
+    return "core_blueprint", "Sanitized Architectural System"
+
 def clean_text_chunks(text: str, chunk_size: int, overlap: int):
-    """Slices text into deterministic, overlapping chunks."""
     chunks = []
     start = 0
     while start < len(text):
@@ -46,8 +70,7 @@ def clean_text_chunks(text: str, chunk_size: int, overlap: int):
 
 def build_neural_core():
     print("=" * 80)
-    print("HUMPHREY VIRTUAL FARMS LLC - PUBLIC BLUEPRINT COMPILATION")
-    print(f"Collection: {CONFIG['collection_name']}")
+    print("HUMPHREY VIRTUAL FARMS LLC - PUBLIC 15-VERTICAL BLUEPRINT COMPILATION")
     print("=" * 80)
 
     os.makedirs(CONFIG["db_dir"], exist_ok=True)
@@ -69,6 +92,7 @@ def build_neural_core():
             if ext in CONFIG["valid_extensions"]:
                 filepath = os.path.join(root, file)
                 rel_path = os.path.relpath(filepath, CONFIG["master_dir"])
+                pillar_id, pillar_name = classify_vertical(filepath)
                 try:
                     with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
                         content = f.read()
@@ -76,18 +100,22 @@ def build_neural_core():
                     for idx, chunk in enumerate(chunks):
                         doc_ids.append(f"{rel_path}_chunk_{idx}")
                         documents.append(chunk)
-                        metadatas.append({"source": rel_path, "chunk_index": idx, "prime": "HVF_LLC"})
+                        metadatas.append({
+                            "source": rel_path,
+                            "pillar_id": pillar_id,
+                            "pillar_name": pillar_name,
+                            "prime": "HVF_LLC"
+                        })
                 except Exception as e:
                     print(f"[WARN] Skipped {rel_path}: {e}")
 
     total_chunks = len(documents)
     if total_chunks == 0:
-        print("[INFO] No staged documents discovered. Staging directory clean.")
+        print("[INFO] Public staging clean. Ready for public documentation ingestion.")
         return
 
     batch_size = CONFIG["batch_size"]
     total_batches = (total_chunks + batch_size - 1) // batch_size
-
     for b in range(total_batches):
         b_start = b * batch_size
         b_end = min(b_start + batch_size, total_chunks)
