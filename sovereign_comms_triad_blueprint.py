@@ -1,28 +1,28 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: One-Touch Dual-Sensor Matrix Switching Standard
+Public Architecture Blueprint: Three-Vector Optical Ingestion Standard
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class SovereignDualSensorSwitcherBlueprint:
+class SovereignThreeVectorOpticalBlueprint:
     """
-    Architectural specification for immediate one-touch optical matrix routing.
-    - Sensor 1: Workstation DirectShow imaging device (Arducam-1080P-HDR) via USB
-    - Sensor 2: Local TP-Link Tapo IP camera via authenticated RFC 2326 RTSP port 554
-    - One-touch tactile strike buttons execute in-process device switching instantly
-    - Native OpenCV runtime eliminates third-party background daemons and external ports
+    Architectural specification for three-vector optical sensor surveillance.
+    - Sensor 1 (Workstation USB): DirectShow Arducam-1080P-HDR
+    - Sensor 2 (Network RTSP): TP-Link Tapo camera via authenticated RFC 2326 port 554
+    - Sensor 3 (Mobile Client): Native browser optical capture for tablets and mobile devices
+    - Direct in-process execution eliminates third-party background daemons and external ports
     - Full compliance with DFARS 252.227-7018 sovereign data defense standards
     """
     def __init__(self):
         self.sensor_1 = "DirectShow_Arducam_UVC"
-        self.sensor_2 = "RTSP_Tapo_192.168.1.165"
-        self.switching_mode = "ONE_TOUCH_IN_PROCESS"
+        self.sensor_2 = "RTSP_Tapo_192.168.1.165:554"
+        self.sensor_3 = "Native_Client_Camera_API"
         self.compliance = "DFARS 252.227-7018"
 
     def architectural_rules(self):
         return [
-            "1. C2 dashboard provides prominent one-touch buttons for both USB and IP cameras",
-            "2. Video processing executes in-process without background daemon dependencies",
-            "3. Credentials encode reserved URI delimiters automatically for Digest authentication",
+            "1. Dashboard provides immediate visual tabs for USB, RTSP, and mobile client cameras",
+            "2. RTSP pipeline enforces TCP transport with authenticated percent-encoded credentials",
+            "3. Optical frames inscribe tactical provenance HUD banners before display",
             "4. Both private and public repositories synchronize on every operational release"
         ]
