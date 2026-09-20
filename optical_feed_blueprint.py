@@ -1,28 +1,28 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: Firewall Port Traversal & Hardware Provenance Standard
+Public Architecture Blueprint: Sovereign Tablet Optical Ingestion & Dynamic Mesh Routing
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class HardenedOpticalProvenanceBlueprint:
+class SovereignTabletOpticalBlueprint:
     """
-    Architectural specification for hardware video segregation and firewall traversal.
-    - Inbound TCP 8502 firewall rule allows remote Tailscale nodes to ingest workstation video
-    - High-contrast tactical HUD watermark burned onto frames proves physical hardware provenance
-    - UI strictly defaults to desktop Arducam hardware bus on all mobile and desktop sessions
-    - Discloses HTTPS requirements for browser-level mobile camera capture
-    - Complete data sovereignty under DFARS 252.227-7018
+    Architectural specification for integrating mobile tablet sensors into sovereign C2 decks.
+    - Eliminates mobile browser WebRTC HTTPS constraints by treating tablets as dedicated IP nodes
+    - Transports tablet hardware camera frames via local RFC 2046 MJPEG stream on port 8080
+    - Multiplexes workstation DirectShow sensors (Arducam) and Tablet Optical Uplinks via port 8502
+    - Enforces hardware-inscribed tactical provenance watermarks across all optical channels
+    - Zero external third-party cloud routing; operations remain strictly within local/Tailscale mesh
     """
     def __init__(self):
-        self.hardware_sensor = "Arducam-1080P-HDR"
-        self.inbound_port = 8502
-        self.firewall_authorized = True
+        self.sensor_1 = "Desktop_DirectShow_Arducam"
+        self.sensor_2 = "Tablet_MJPEG_Network_Node"
+        self.multiplex_port = 8502
         self.compliance = "DFARS 252.227-7018"
 
     def architectural_rules(self):
         return [
-            "1. Video daemon binds to 0.0.0.0:8502 with authorized firewall inbound rules",
-            "2. Tactical watermark burned into frame buffers prior to MJPEG compression",
-            "3. Client session states default strictly to physical host desktop hardware",
+            "1. Tablet video streams ingest locally over Wi-Fi/Tailscale without external cloud relays",
+            "2. Host daemon multiplexes physical USB and tablet network feeds dynamically",
+            "3. One-touch tactical switching between desktop and tablet executes without dropping UI sessions",
             "4. Both private and public repositories synchronize on every operational release"
         ]
