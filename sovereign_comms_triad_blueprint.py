@@ -1,30 +1,28 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: Dual-Sensor Optical Ingestion & Universal Firewall Routing
+Public Architecture Blueprint: One-Touch Dual-Sensor Matrix Switching Standard
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class SovereignDualSensorCommsBlueprint:
+class SovereignDualSensorSwitcherBlueprint:
     """
-    Architectural specification for unified multi-sensor communications.
-    - Pillar 1 (Video): Physical desktop Arducam-1080P-HDR via auto-aligning host port 8502
-    - Pillar 1b (Mobile Ingest): Direct zero-app browser camera capture for mobile tablets
-    - Pillar 2 (Text): Encrypted P2P message dispatch with AES-128/Fernet ciphertext at rest
-    - Pillar 3 (Talk): Direct acoustic capture and ADA Voice Link integration
-    - Universal profile firewall authorization ensures seamless Tailscale mesh traversal
-    - Strictly compliant with DFARS 252.227-7018 sovereign defense data handling
+    Architectural specification for immediate one-touch optical matrix routing.
+    - Sensor 1: Workstation DirectShow imaging device (Arducam-1080P-HDR) via USB
+    - Sensor 2: Local TP-Link Tapo IP camera via authenticated RFC 2326 RTSP port 554
+    - One-touch tactile strike buttons execute in-process device switching instantly
+    - Native OpenCV runtime eliminates third-party background daemons and external ports
+    - Full compliance with DFARS 252.227-7018 sovereign data defense standards
     """
     def __init__(self):
-        self.desktop_video = "DirectShow_Arducam_MJPEG_8502"
-        self.tablet_video = "Native_Client_Camera_Input"
-        self.text_cipher = "Fernet_AES128_HMAC_SHA256"
-        self.firewall_profile = "ALL_PROFILES_AUTHORIZED"
+        self.sensor_1 = "DirectShow_Arducam_UVC"
+        self.sensor_2 = "RTSP_Tapo_192.168.1.165"
+        self.switching_mode = "ONE_TOUCH_IN_PROCESS"
         self.compliance = "DFARS 252.227-7018"
 
     def architectural_rules(self):
         return [
-            "1. Viewports align dynamically to host IP addresses to ensure cross-device rendering",
-            "2. Mobile tablet devices capture optical telemetry directly through native browser APIs",
-            "3. Text dispatches persist strictly as encrypted ciphertext in local defense memory",
+            "1. C2 dashboard provides prominent one-touch buttons for both USB and IP cameras",
+            "2. Video processing executes in-process without background daemon dependencies",
+            "3. Credentials encode reserved URI delimiters automatically for Digest authentication",
             "4. Both private and public repositories synchronize on every operational release"
         ]
