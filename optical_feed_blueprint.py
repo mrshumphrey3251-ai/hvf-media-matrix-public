@@ -1,28 +1,26 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: High-Throughput DirectShow Optical Ingestion Daemon
+Public Architecture Blueprint: Dynamic Multi-Sensor Optical Matrix Routing
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class SovereignContinuousOpticalBlueprint:
+class SovereignDynamicOpticalRoutingBlueprint:
     """
-    Architectural specification for decoupled continuous hardware video streaming.
-    - Dedicated daemon reads Arducam-1080P-HDR via DirectShow at 1280x720 @ 30 FPS
-    - Encodes frames via RFC 2046 Multipart MJPEG over port 8502
-    - Renders video continuously within the C2 deck without blocking UI interactions
-    - Supports local LAN and Tailscale encrypted mesh transport
+    Architectural specification for hot-swappable multi-sensor optical routing.
+    - Decoupled daemon provides dynamic /switch_device HTTP API on port 8502
+    - Instant switching between desktop USB video buses (Arducam Index 0/1) and external streams
+    - Continuous RFC 2046 Multipart MJPEG delivery without UI connection termination
+    - Strict local memory isolation adhering to defense data sovereignty
     """
     def __init__(self):
-        self.hardware_sensor = "Arducam-1080P-HDR"
-        self.stream_resolution = "1280x720_HD"
-        self.stream_fps = 30
-        self.daemon_port = 8502
+        self.routing_api = "/switch_device?index=<int>"
+        self.stream_port = 8502
         self.compliance = "DFARS 252.227-7018"
 
     def architectural_rules(self):
         return [
-            "1. Video streaming executes within an isolated daemon thread to avoid blocking C2 UI",
-            "2. Frames encode in-memory with sovereign tactical timestamps",
-            "3. Zero external third-party cloud services; video traverses local and Tailscale networks strictly",
+            "1. Physical video buses switch dynamically via background daemon without killing C2 session",
+            "2. DirectShow hardware handles release and re-bind asynchronously in < 500ms",
+            "3. Live video viewport persists across Streamlit reruns via isolated HTTP thread",
             "4. Both private and public repositories synchronize on every operational release"
         ]
