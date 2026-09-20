@@ -1,25 +1,29 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: Local RTSP/ONVIF Optical Swarm Ingestion
+Public Architecture Blueprint: DirectShow Hardware & Network RTSP Optical Ingestion
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class SwarmOpticalFeedBlueprint:
+class SovereignOpticalIngestionBlueprint:
     """
-    Architectural specification for decentralized camera feed ingestion.
-    - Local network RTSP discovery over port 554 eliminates cloud relay dependencies
-    - Direct H.264 video decoding within sovereign defense perimeter
-    - DirectShow USB interface fallback for localized UVC hardware nodes
-    - Encrypted credentials held in transient memory during active session
+    Architectural specification for multi-vector optical sensor ingestion.
+    - DirectShow video bus interface supporting physical UVC devices (Arducam-1080P-HDR)
+    - Dual-stream resolution selection: Index 0 (640x480 SD) and Index 1 (1280x720 HD)
+    - Network RTSP endpoint ingestion over port 554 for detached IP cameras
+    - In-memory RGB frame conversion and zero-cloud local rendering
+    - Encrypted P2P communications ledger integrated with SQLite memory vault
     """
     def __init__(self):
-        self.protocols = ["RTSP_PORT_554", "DIRECTSHOW_USB"]
-        self.codec = "H264"
-        self.cloud_relay_bypassed = True
+        self.hardware_sensor = "Arducam-1080P-HDR"
+        self.directshow_indices = [0, 1]
+        self.rtsp_port = 554
+        self.compliance = "DFARS 252.227-7018"
 
-    def security_controls(self):
+    def architectural_rules(self):
         return [
-            "1. Zero external cloud dependencies; video payload traverses strictly local LAN/Tailscale",
-            "2. Local camera authentication credentials isolated from persistent public storage",
-            "3. Frame extraction optimized for edge-AI situational analysis and threat verification"
+            "1. Physical imaging hardware maps directly via DirectShow indices without external drivers",
+            "2. Network IP streams ingest via local RFC 2326 RTSP sockets bypassing vendor cloud relays",
+            "3. Acquired optical telemetry remains strictly within local transient defense memory",
+            "4. Encrypted P2P ledger persists communication records to SQLite with WAL concurrency",
+            "5. Both private and public repositories synchronize on every operational release"
         ]
