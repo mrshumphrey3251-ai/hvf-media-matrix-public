@@ -1,29 +1,28 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: DirectShow Hardware & Network RTSP Optical Ingestion
+Public Architecture Blueprint: High-Throughput DirectShow Optical Ingestion Daemon
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class SovereignOpticalIngestionBlueprint:
+class SovereignContinuousOpticalBlueprint:
     """
-    Architectural specification for multi-vector optical sensor ingestion.
-    - DirectShow video bus interface supporting physical UVC devices (Arducam-1080P-HDR)
-    - Dual-stream resolution selection: Index 0 (640x480 SD) and Index 1 (1280x720 HD)
-    - Network RTSP endpoint ingestion over port 554 for detached IP cameras
-    - In-memory RGB frame conversion and zero-cloud local rendering
-    - Encrypted P2P communications ledger integrated with SQLite memory vault
+    Architectural specification for decoupled continuous hardware video streaming.
+    - Dedicated daemon reads Arducam-1080P-HDR via DirectShow at 1280x720 @ 30 FPS
+    - Encodes frames via RFC 2046 Multipart MJPEG over port 8502
+    - Renders video continuously within the C2 deck without blocking UI interactions
+    - Supports local LAN and Tailscale encrypted mesh transport
     """
     def __init__(self):
         self.hardware_sensor = "Arducam-1080P-HDR"
-        self.directshow_indices = [0, 1]
-        self.rtsp_port = 554
+        self.stream_resolution = "1280x720_HD"
+        self.stream_fps = 30
+        self.daemon_port = 8502
         self.compliance = "DFARS 252.227-7018"
 
     def architectural_rules(self):
         return [
-            "1. Physical imaging hardware maps directly via DirectShow indices without external drivers",
-            "2. Network IP streams ingest via local RFC 2326 RTSP sockets bypassing vendor cloud relays",
-            "3. Acquired optical telemetry remains strictly within local transient defense memory",
-            "4. Encrypted P2P ledger persists communication records to SQLite with WAL concurrency",
-            "5. Both private and public repositories synchronize on every operational release"
+            "1. Video streaming executes within an isolated daemon thread to avoid blocking C2 UI",
+            "2. Frames encode in-memory with sovereign tactical timestamps",
+            "3. Zero external third-party cloud services; video traverses local and Tailscale networks strictly",
+            "4. Both private and public repositories synchronize on every operational release"
         ]
