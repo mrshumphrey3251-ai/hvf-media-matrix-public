@@ -1,28 +1,28 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: One-Touch Optical Hardware Switcher & Tailscale Routing
+Public Architecture Blueprint: Dual-Vector Optical Ingestion & Driver-Level Watermarking
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class OneTouchOpticalSwitcherBlueprint:
+class DualVectorOpticalProvenanceBlueprint:
     """
-    Architectural specification for immediate one-touch optical sensor selection.
-    - Default state automatically activates physical host desktop hardware (Arducam-1080P-HDR HD)
-    - One-touch tactical buttons toggle between Desktop Index 1 (HD), Index 0 (SD), and Mobile Uplink
-    - Dynamic Tailscale IP gateway resolution (100.87.162.117:8502) allows phone browsers
-      to display physical desktop workstation cameras at 30 FPS without client camera hijacking
-    - Zero cloud dependencies; strictly sovereign LAN and Tailscale encrypted mesh transport
+    Architectural specification for multi-vector sensor segregation and hardware provenance.
+    - Driver-level on-screen watermark proves desktop DirectShow stream provenance
+    - Dedicated background daemon captures desktop Arducam at 1280x720 HD on port 8502
+    - Client-side HTML5 WebRTC engine captures and renders mobile device cameras on demand
+    - One-touch tactical switching between desktop workstation buses and mobile endpoints
+    - Complete data sovereignty under DFARS 252.227-7018 without external cloud relays
     """
     def __init__(self):
-        self.default_source = "DESKTOP_ARDUCAM_HD"
-        self.tailscale_gateway = "100.87.162.117:8502"
-        self.fps = 30
+        self.desktop_bus = "DirectShow_USB_Arducam"
+        self.mobile_bus = "HTML5_WebRTC_getUserMedia"
+        self.provenance_watermark = True
         self.compliance = "DFARS 252.227-7018"
 
     def architectural_rules(self):
         return [
-            "1. C2 HUD defaults to physical desktop hardware bus upon initial session load",
-            "2. Direct touch buttons execute daemon control API without multi-step dropdown delays",
-            "3. Cross-origin global CORS headers permit fluid video rendering across mobile endpoints",
+            "1. Desktop hardware frames must carry driver-inscribed provenance overlays",
+            "2. Mobile camera feeds execute via sandboxed client-side WebRTC pipelines",
+            "3. One-touch tactical switching executes without terminating the C2 user session",
             "4. Both private and public repositories synchronize on every operational release"
         ]
