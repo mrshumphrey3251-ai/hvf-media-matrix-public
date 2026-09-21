@@ -1,29 +1,28 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: ADA Voice Link Hotwire & Sovereign Synthesis Standard
+Public Architecture Blueprint: Acoustic Squelch & Confidence-Gated Voice Daemon
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class SovereignADAVoiceLinkBlueprint:
+class SovereignAcousticSquelchBlueprint:
     """
-    Architectural specification for live conversational speech synthesis and session stability.
-    - ADA Voice Link Integration: Bypasses fragile cloud audio synthesizers, routing directly
-      into on-device Windows SAPI CoreAudio endpoints (Shokz OpenRun Bluetooth)
-    - Session State Lock: Eliminates unhandled audio exceptions to prevent authentication drops
-    - Long-Form Execution Buffer: 300s execution window supports complex multi-paragraph briefings
-    - Table Acoustic Parser: Converts Markdown tables (|) into natural cadence
+    Architectural specification for continuous, push-to-talk-free acoustic operation.
+    - Confidence Squelch Filter: Automatically rejects Bluetooth carrier hiss and ambient noise (< 0.50)
+    - Native OS-Level Endpoint Binding: Communicates directly with Shokz OpenRun Bluetooth WASAPI
+    - Wake-Word Token Gating: Enforces 'Ebony' authorization token to initiate command execution
+    - File-Buffered Synthesis Pipeline: Eliminates process timeouts during long-form strategic briefings
     - Strictly compliant with DFARS 252.227-7018 defense data sovereignty
     """
     def __init__(self):
-        self.voice_link = "ADA_Voice_Link_Direct_CoreAudio"
-        self.synthesis_engine = "SovereignVoiceEngine_VocalizeResponse"
-        self.session_persistence = "Hardened_CEO_Clearance"
+        self.operation_mode = "Continuous_Autonomous_Hands_Free"
+        self.confidence_threshold = 0.50
+        self.hardware_target = "Shokz_OpenRun_Bluetooth_WASAPI"
         self.compliance = "DFARS 252.227-7018"
 
     def architectural_rules(self):
         return [
-            "1. Conversational voice inputs route responses directly to local hardware synthesis",
-            "2. Obsolete audio failure handlers are replaced with sovereign on-device vocalizers",
-            "3. Session state authentication persists through all speech synthesis cycles",
+            "1. Audio frames below the 0.50 confidence floor are purged to prevent static loops",
+            "2. Push-to-talk buttons and manual stop-recording gestures are permanently prohibited",
+            "3. Speech recognition and synthesis execute locally on host audio hardware",
             "4. Both private and public repositories synchronize on every operational release"
         ]
