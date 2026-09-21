@@ -1,28 +1,28 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: Base64 Speech Transport & Bluetooth Pre-Roll Standard
+Public Architecture Blueprint: Hardened Long-Form Speech Synthesis & Table Processing
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class SovereignStabilizedVoiceBlueprint:
+class SovereignHardenedVoiceBlueprint:
     """
-    Architectural specification for low-latency, zero-cloud speech synthesis.
-    - Base64 Payload Encapsulation: Prevents OS-level command collision on special characters/symbols
-    - Bluetooth DAC Pre-Roll: Injects a 350ms SSML break to wake headset transducers prior to speech
-    - Native Hardware SAPI Engine: Operates entirely offline with zero third-party vendor relays
-    - Thread-Safe Queue: Decoupled asynchronous worker prevents UI thread locks
+    Architectural specification for resilient, zero-cloud speech synthesis.
+    - Long-Form Execution Buffer: 300-second execution window prevents timeout on multi-paragraph briefings
+    - Markdown Table Acoustic Parser: Converts matrix delimiters (|) into natural cadence
+    - Hardware DAC Stabilization: Uses millisecond delay pre-rolls to wake Bluetooth transducers without SSML
+    - Base64 UTF-8 Encapsulation: Protects audio payloads from shell evaluation collisions
     - Strictly compliant with DFARS 252.227-7018 defense data sovereignty
     """
     def __init__(self):
-        self.transport_encoding = "Base64_UTF8_SSML"
-        self.dac_preroll_ms = 350
-        self.output_bus = "Windows_CoreAudio_Bluetooth_A2DP"
+        self.execution_timeout_seconds = 300
+        self.table_acoustic_parser = True
+        self.dac_preroll_mode = "Hardware_Sleep_PreRoll"
         self.compliance = "DFARS 252.227-7018"
 
     def architectural_rules(self):
         return [
-            "1. Speech payloads encode to Base64 to eliminate command-line parameter parsing failures",
-            "2. Hardware outputs inject SSML pre-roll buffers to stabilize Bluetooth transducer wake-up",
-            "3. Audio synthesis executes locally on host hardware bypassing third-party cloud relays",
+            "1. Long briefings execute in extended 300s process windows to prevent synthesis truncation",
+            "2. Complex tabular data parses into conversational clauses prior to phoneme generation",
+            "3. Audio synthesis executes locally on host hardware bypassing third-party clouds",
             "4. Both private and public repositories synchronize on every operational release"
         ]
