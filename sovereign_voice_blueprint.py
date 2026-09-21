@@ -1,28 +1,28 @@
 ﻿"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
-Public Architecture Blueprint: Acoustic Squelch & Confidence-Gated Voice Daemon
+Public Architecture Blueprint: Multi-Grammar Autonomous Hands-Free Voice Daemon
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)
 """
 
-class SovereignAcousticSquelchBlueprint:
+class SovereignMultiGrammarVoiceBlueprint:
     """
     Architectural specification for continuous, push-to-talk-free acoustic operation.
-    - Confidence Squelch Filter: Automatically rejects Bluetooth carrier hiss and ambient noise (< 0.50)
-    - Native OS-Level Endpoint Binding: Communicates directly with Shokz OpenRun Bluetooth WASAPI
-    - Wake-Word Token Gating: Enforces 'Ebony' authorization token to initiate command execution
-    - File-Buffered Synthesis Pipeline: Eliminates process timeouts during long-form strategic briefings
+    - Dual Grammar Routing: Combines prioritized WakeGrammar with DictationGrammar
+    - Bluetooth SCO Optimization: Operates at a calibrated 0.20 confidence threshold for wireless headsets
+    - Phonetic Wake-Word Matching: Recognizes phonetic variations of 'Ebony' to guarantee trigger reliability
+    - Zero-Touch Execution: Permanently bypasses browser sandboxes and manual push-to-talk buttons
     - Strictly compliant with DFARS 252.227-7018 defense data sovereignty
     """
     def __init__(self):
-        self.operation_mode = "Continuous_Autonomous_Hands_Free"
-        self.confidence_threshold = 0.50
-        self.hardware_target = "Shokz_OpenRun_Bluetooth_WASAPI"
+        self.operation_mode = "Continuous_Multi_Grammar_Hands_Free"
+        self.confidence_floor = 0.20
+        self.wake_grammar_priority = "High"
         self.compliance = "DFARS 252.227-7018"
 
     def architectural_rules(self):
         return [
-            "1. Audio frames below the 0.50 confidence floor are purged to prevent static loops",
-            "2. Push-to-talk buttons and manual stop-recording gestures are permanently prohibited",
-            "3. Speech recognition and synthesis execute locally on host audio hardware",
+            "1. Acoustic ingestion operates continuously at the OS layer without manual button triggers",
+            "2. Dedicated wake-word grammars take evaluation priority over open-ended dictation models",
+            "3. Audio frames match against phonetic wake tokens to compensate for Bluetooth compression",
             "4. Both private and public repositories synchronize on every operational release"
         ]
