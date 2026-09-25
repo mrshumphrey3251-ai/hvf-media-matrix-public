@@ -62,7 +62,8 @@ core_modules = [
     "hvf_vault_manager",    # HVFVault
     "hvf_crypto_core",      # HVFCryptoCore
     "hvf_transport_protocol", # HVFTransportProtocol
-    "hvf_payload_scanner",  # HVFPayloadScanner
+    "hvf_payload_scanner",
+    "hvf_kinetic_relay",  # HVFPayloadScanner
 ]
 
 imports = {}
@@ -181,6 +182,23 @@ except Exception as e:
 # ----------------------------------------------------------------------
 # 4. FINAL REPORT
 # ----------------------------------------------------------------------
+# 6. Kinetic Breaker Relay Sanity (Subsystem #6)
+try:
+    _kr_mod = imports.get('hvf_kinetic_relay')
+    if not _kr_mod:
+        try:
+            import hvf_kinetic_relay as _kr_mod
+        except ImportError:
+            from scada_engine import hvf_kinetic_relay as _kr_mod
+    relay_cls = getattr(_kr_mod, 'HVFKineticRelay', None)
+    if relay_cls:
+        relay = relay_cls(db_path=':memory:')
+        trip_res = relay.trip_breaker('CH1_UTILITY_GRID', reason='NEXUS_HEALTH_DIAGNOSTIC', key_primary='HVF_SYS_AUTH_01', key_secondary='HVF_EXEC_AUTH_02')
+        assert trip_res.get('status') == 'ISOLATED'
+        logging.info(f'âœ… HVFKineticRelay isolation trip verified ({relay.trip_latency_us}Âµs latency).')
+except Exception as e:
+    logging.warning(f'âš ï¸ HVFKineticRelay verification warning: {e}')
+
 logging.info("=== NEXUS HEALTH CHECK COMPLETE â€“ ALL SYSTEMS NOMINAL ===")
 print("\n=== NEXUS HEALTH CHECK COMPLETE â€“ SEE LOG FILE FOR DETAILS ===")
 print(f"Log file: {log_file}")
