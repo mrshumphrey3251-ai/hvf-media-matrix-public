@@ -1,0 +1,130 @@
+{
+  "manifest_id": "HVF-THREAT-INTERLOCK-TIER4-20260926-ALPHA",
+  "timestamp": "2026-09-26T23:56:42.014717+00:00",
+  "authority": {
+    "operator": "CEO_JEFFERY_HUMPHREY",
+    "clearance": "CEO_LEVEL_5_UNRESTRICTED",
+    "cage_code": "1AHA8",
+    "entity": "Humphrey Virtual Farms LLC"
+  },
+  "threat_event": {
+    "id": 5,
+    "event_id": "NOAA-ALERT-1790466616-129A1F",
+    "event_type": "TORNADO_WARNING",
+    "severity": "EXTREME",
+    "threat_tier": 4,
+    "headline": "NOAA Tier 4: TORNADO_VORTEX_SIGNATURE detected by KTLX at 85.0 kts",
+    "description": "Automated SCADA microgrid line de-energization and UAS emergency recall initiated.",
+    "kinetic_trigger": 1,
+    "timestamp": "2026-09-26 23:50:16",
+    "threat_type": "TORNADO_VORTEX_SIGNATURE"
+  },
+  "scada_kinetic_trips": [
+    {
+      "id": 33,
+      "event_id": "KINETIC-TRIP-1790466616-CH1_UTILITY_GRID-10B9",
+      "trigger_source": "NOAA_TIER4_KTLX_RADAR",
+      "channel": "CH1_UTILITY_GRID",
+      "prior_state": "AUTO_EFE04E",
+      "new_state": "AUTO_3C1AA9",
+      "latency_us": 0.0,
+      "auth_mode": "AUTO_47E26E",
+      "timestamp": "2026-09-26 23:50:16"
+    },
+    {
+      "id": 34,
+      "event_id": "KINETIC-TRIP-1790466616-CH2_PV_ARRAYS-6AAE",
+      "trigger_source": "NOAA_TIER4_KTLX_RADAR",
+      "channel": "CH2_PV_ARRAYS",
+      "prior_state": "AUTO_3881FB",
+      "new_state": "AUTO_6B5847",
+      "latency_us": 0.0,
+      "auth_mode": "AUTO_4574A6",
+      "timestamp": "2026-09-26 23:50:16"
+    },
+    {
+      "id": 35,
+      "event_id": "KINETIC-TRIP-1790466616-CH3_BESS_STORAGE-88FD",
+      "trigger_source": "NOAA_TIER4_KTLX_RADAR",
+      "channel": "CH3_BESS_STORAGE",
+      "prior_state": "AUTO_F482E7",
+      "new_state": "AUTO_871447",
+      "latency_us": 0.0,
+      "auth_mode": "AUTO_B562E4",
+      "timestamp": "2026-09-26 23:50:16"
+    },
+    {
+      "id": 36,
+      "event_id": "KINETIC-TRIP-1790466616-CH4_AUX_GENERATOR-9164",
+      "trigger_source": "NOAA_TIER4_KTLX_RADAR",
+      "channel": "CH4_AUX_GENERATOR",
+      "prior_state": "AUTO_D4489C",
+      "new_state": "AUTO_97E49D",
+      "latency_us": 0.0,
+      "auth_mode": "AUTO_C092B1",
+      "timestamp": "2026-09-26 23:50:16"
+    }
+  ],
+  "uas_emergency_recall": {
+    "id": 22,
+    "drone_model": "DJI_MATRICE_350_RTK",
+    "mission_name": "EMERGENCY_RTH_STORM_DIVEST",
+    "zone_id": "BASE_STATION_ALPHA_PAD",
+    "altitude_m": 0.0,
+    "latitude": 35.4675,
+    "longitude": -97.5165,
+    "battery_pct": 92.1,
+    "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+    "flight_status": "EMERGENCY_RTH_RECALLED",
+    "recorded_at": "2026-09-26 23:50:16"
+  },
+  "warfighter_shelter_evacuation": [
+    {
+      "id": 1,
+      "operator_id": "HVF-LEAD-01",
+      "callsign": "EBONY_ACTUAL",
+      "latitude": 35.4676,
+      "longitude": -97.5162,
+      "elevation_m": 382.4,
+      "mgrs_grid": "14S TA 48380 46759",
+      "distress_active": 0,
+      "battery_pct": 97.5,
+      "recorded_at": "2026-09-26 23:05:17"
+    },
+    {
+      "id": 2,
+      "operator_id": "SCOUT-SOLDIER-04",
+      "callsign": "PHANTOM_RECON",
+      "latitude": 35.4712,
+      "longitude": -97.5135,
+      "elevation_m": 379.1,
+      "mgrs_grid": "14S TA 48650 47120",
+      "distress_active": 1,
+      "battery_pct": 42.0,
+      "recorded_at": "2026-09-26 23:05:17"
+    },
+    {
+      "id": 3,
+      "operator_id": "SOLDIER-SCOUT-09",
+      "callsign": "VALKYRIE_ONE",
+      "latitude": 35.4695,
+      "longitude": -97.514,
+      "elevation_m": 381.2,
+      "mgrs_grid": "14S TA 48600 46949",
+      "distress_active": 0,
+      "battery_pct": 94.5,
+      "recorded_at": "2026-09-26 23:15:59"
+    }
+  ],
+  "system_telemetry_totals": {
+    "kinetic_relay_frames": 36,
+    "uas_flight_frames": 22,
+    "warfighter_elements": 3,
+    "c2_cockpit_port": 8501
+  },
+  "statutory_compliance": [
+    "DFARS_252.227_7018",
+    "OKLAHOMA_HB_2992",
+    "NIST_SP_800_82_REV2"
+  ]
+}
