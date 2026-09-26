@@ -1,8 +1,8 @@
-﻿"""
+"""
 Project Ebony: Sovereign SCADA Defense Matrix -- Operational Live Launcher
-Initializes the bare-metal defense pipeline, spins up the air-gapped HMI cockpit,
-and binds the local HTTP telemetry daemon on production port 8088.
-DFARS 252.227-7018 Compliant Architecture.
+Tri-Brain Architecture: Brain 1 (Kinetic), Brain 2 (Tactical), Brain 3 (Apex C2).
+100% Absolute Controlling Authority: Jeffery Humphrey (HVF-CONTRACT-SL-003).
+DFARS 252.227-7018 / Oklahoma HB 2992 Compliant Architecture.
 """
 
 import os
@@ -10,12 +10,11 @@ import sys
 import time
 import logging
 import webbrowser
-from datetime import datetime, timezone
 
-# Add repository root to path
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 from scada_engine.hvf_defense_pipeline import HVFDefensePipeline
+from scada_engine.hvf_brain3_c2 import HVFBrain3C2
 from scada_engine.hvf_telemetry_bridge import HVFTelemetryBridge
 
 logging.basicConfig(
@@ -28,22 +27,25 @@ def launch():
     print("  PROJECT EBONY // SOVEREIGN SCADA DEFENSE MATRIX")
     print("  Contractor: Humphrey Virtual Farms LLC | CAGE: 1AHA8")
     print("  Compliance: DFARS 252.227-7018 / Oklahoma HB 2992")
-    print("  Classification: Commercial Technical Data Rights (Private Expense)")
+    print("  Sole Authority: Jeffery Humphrey (100% Absolute Authority)")
     print("=" * 64)
 
     logging.info("Initializing bare-metal defense pipeline engine...")
     db_file = os.path.join(os.path.dirname(__file__), "cinematic_vault", "database", "ebony_active_state.db")
     os.makedirs(os.path.dirname(db_file), exist_ok=True)
-    
     pipeline = HVFDefensePipeline(db_path=db_file)
     logging.info(f"Pipeline armed. Station ID: {pipeline.station_id} | Watchdog: {pipeline.watchdog.status}")
     logging.info(f"Contactor Matrix: {list(pipeline.relay.channels.keys())}")
     logging.info(f"Ed25519 Forensic Signer: {pipeline.crypto_ledger.pubkey_bytes.hex()[:16]}... [ACTIVE]")
 
+    logging.info("Initializing Brain 3 Sovereign Apex C2 Orchestrator (Iron Dome RAG & Perimeters)...")
+    brain3 = HVFBrain3C2(pipeline=pipeline)
+    logging.info(f"Brain 3 online. Iron Dome vectors: {brain3.vector_count} | Memory Vault: {brain3.memory_vault_active}")
+
     host = "127.0.0.1"
     port = 8088
-    logging.info(f"Binding air-gapped Telemetry Bridge & HMI Cockpit to http://{host}:{port}/")
-    bridge = HVFTelemetryBridge(pipeline, host=host, port=port)
+    logging.info(f"Binding air-gapped Telemetry Bridge to http://{host}:{port}/ with Brain 3 bound...")
+    bridge = HVFTelemetryBridge(pipeline, brain3=brain3, host=host, port=port)
     bridge.start()
 
     cockpit_url = f"http://{host}:{port}/"
@@ -53,7 +55,6 @@ def launch():
     print("  >>> Press Ctrl+C in this terminal to safely disarm and shutdown.")
     print("=" * 64 + "\n")
 
-    # Automatically launch browser to the live cockpit
     try:
         webbrowser.open(cockpit_url)
     except Exception as e:

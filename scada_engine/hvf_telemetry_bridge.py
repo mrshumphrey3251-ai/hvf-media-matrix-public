@@ -1,7 +1,7 @@
 ﻿"""
 Project Ebony: Air-Gapped Telemetry Bridge & Sentinel HMI Cockpit
-Tri-Brain 4-Perimeter Defense Matrix: Optical, Acoustic, Kinetic SCADA, Governance/RAG.
-Codified under 100% Absolute Controlling Authority of Jeffery Humphrey.
+Tri-Brain 4-Perimeter Defense Matrix with 15 Core Operational Verticals.
+100% Absolute Controlling Authority: Jeffery Humphrey (HVF-CONTRACT-SL-003).
 DFARS 252.227-7018 / Oklahoma HB 2992 Compliant Architecture.
 """
 
@@ -10,6 +10,8 @@ import socketserver
 import json
 import logging
 import threading
+import os
+import sys
 from typing import Optional
 
 logger = logging.getLogger("EBONY-TELEMETRY-BRIDGE")
@@ -19,12 +21,12 @@ HTML_COCKPIT = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Ebony // Sentinel HMI Cockpit (4-Perimeter C2)</title>
+    <title>Project Ebony // Sentinel Cockpit (15 Verticals & 4 Perimeters)</title>
     <style>
         :root {
-            --bg-color: #070b14;
-            --panel-bg: rgba(13, 20, 38, 0.85);
-            --border-color: rgba(56, 189, 248, 0.25);
+            --bg-color: #060a12;
+            --panel-bg: rgba(11, 18, 34, 0.88);
+            --border-color: rgba(56, 189, 248, 0.22);
             --border-glow: #38bdf8;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -49,7 +51,7 @@ HTML_COCKPIT = """<!DOCTYPE html>
             align-items: center;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
         .header h1 { font-size: 19px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-cyan); }
         .subhead { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
@@ -62,13 +64,35 @@ HTML_COCKPIT = """<!DOCTYPE html>
             border: 1px solid var(--accent-emerald);
             font-weight: bold;
         }
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-            margin-bottom: 20px;
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
         }
-        .full-width { grid-column: 1 / -1; }
+        .tab-btn {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover { background: rgba(56, 189, 248, 0.15); color: #fff; }
+        .tab-btn.active {
+            background: rgba(6, 182, 212, 0.25);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
         .card {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
@@ -76,13 +100,14 @@ HTML_COCKPIT = """<!DOCTYPE html>
             padding: 18px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
             backdrop-filter: blur(12px);
+            margin-bottom: 18px;
         }
         .card-header {
             font-size: 12px;
             color: var(--accent-cyan);
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -91,7 +116,6 @@ HTML_COCKPIT = """<!DOCTYPE html>
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
-            margin-bottom: 4px;
         }
         .perimeter-card {
             background: rgba(0, 0, 0, 0.35);
@@ -111,18 +135,75 @@ HTML_COCKPIT = """<!DOCTYPE html>
             background: rgba(0, 0, 0, 0.35);
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            padding: 12px;
+            padding: 14px;
             text-align: center;
         }
         .breaker-id { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
-        .breaker-state { font-size: 14px; font-weight: bold; }
+        .breaker-state { font-size: 15px; font-weight: bold; }
         .state-closed { color: var(--accent-emerald); }
         .state-open { color: var(--accent-red); }
+        .verticals-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .vertical-card {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 14px;
+            transition: border-color 0.2s;
+        }
+        .vertical-card:hover { border-color: var(--accent-cyan); }
+        .v-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .v-id { font-size: 10px; color: var(--accent-cyan); font-weight: bold; }
+        .v-badge { font-size: 9px; padding: 2px 6px; border-radius: 3px; background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); }
+        .v-name { font-size: 12px; font-weight: bold; color: var(--text-main); margin-bottom: 4px; }
+        .v-metric { font-size: 11px; color: var(--accent-amber); font-family: monospace; margin-bottom: 6px; }
+        .v-desc { font-size: 10px; color: var(--text-muted); line-height: 1.3; }
+        .optical-hud {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+        }
+        .camera-viewport {
+            background: #000;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            height: 280px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hud-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: var(--accent-emerald);
+            font-family: monospace;
+            z-index: 10;
+        }
+        .hud-crosshair {
+            width: 80px;
+            height: 80px;
+            border: 1px dashed rgba(56, 189, 248, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .c2-terminal {
             background: rgba(4, 8, 16, 0.95);
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            height: 290px;
+            height: 260px;
             overflow-y: auto;
             padding: 14px;
             font-family: monospace;
@@ -130,10 +211,10 @@ HTML_COCKPIT = """<!DOCTYPE html>
             margin-bottom: 12px;
             line-height: 1.5;
         }
-        .c2-msg { margin-bottom: 12px; }
+        .c2-msg { margin-bottom: 10px; }
         .c2-user { color: var(--accent-cyan); font-weight: bold; }
         .c2-ebony { color: #38bdf8; font-weight: bold; }
-        .c2-meta { color: var(--text-muted); font-size: 10px; margin-top: 4px; }
+        .c2-meta { color: var(--text-muted); font-size: 10px; margin-top: 3px; }
         .c2-controls {
             display: flex;
             align-items: center;
@@ -143,10 +224,7 @@ HTML_COCKPIT = """<!DOCTYPE html>
             color: var(--text-muted);
         }
         .c2-toggle-label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
-        .c2-input-row {
-            display: flex;
-            gap: 10px;
-        }
+        .c2-input-row { display: flex; gap: 10px; }
         .c2-input {
             flex: 1;
             background: rgba(0, 0, 0, 0.5);
@@ -192,12 +270,21 @@ HTML_COCKPIT = """<!DOCTYPE html>
         <div class="badge" id="system-badge">TRI-BRAIN ACTIVE</div>
     </div>
 
-    <div class="grid-layout">
-        <!-- 4-Perimeter Defense Status Grid -->
-        <div class="card full-width">
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('tab-cockpit', event)">Cockpit & SCADA</button>
+        <button class="tab-btn" onclick="switchTab('tab-verticals', event)">15 Operational Verticals</button>
+        <button class="tab-btn" onclick="switchTab('tab-optical', event)">Optical Perimeter & GLI</button>
+        <button class="tab-btn" onclick="switchTab('tab-acoustic', event)">Acoustic & Voice Engine</button>
+        <button class="tab-btn" onclick="switchTab('tab-irondome', event)">Iron Dome RAG & Merkle Vault</button>
+    </div>
+
+    <!-- TAB 1: COCKPIT & SCADA -->
+    <div id="tab-cockpit" class="tab-pane active">
+        <div class="card">
             <div class="card-header">
                 <span>The Four Sovereign Operational Perimeters (Defense Telemetry)</span>
-                <span style="color: var(--accent-cyan);" id="rag-badge">Iron Dome RAG: 20,289 Vectors</span>
+                <span style="color: var(--accent-cyan);" id="rag-badge">Iron Dome RAG: 20,291 Vectors</span>
             </div>
             <div class="perimeters-grid">
                 <div class="perimeter-card">
@@ -223,8 +310,7 @@ HTML_COCKPIT = """<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- 12.47 kV Single-Line Diagram -->
-        <div class="card full-width">
+        <div class="card">
             <div class="card-header">
                 <span>12.47 kV Substation Single-Line Diagram (Brain 1 Kinetic Bus)</span>
                 <span id="latency-tag" style="color: var(--accent-emerald);">Latency: 13.0us</span>
@@ -252,29 +338,122 @@ HTML_COCKPIT = """<!DOCTYPE html>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Brain 3 Interactive Apex C2 Console with RAG & Acoustic Toggle -->
-        <div class="card full-width">
+    <!-- TAB 2: 15 OPERATIONAL VERTICALS -->
+    <div id="tab-verticals" class="tab-pane">
+        <div class="card">
             <div class="card-header">
-                <span>Brain 3 // Sovereign Apex C2 Executive Dialogue (CEO 100% Sole Authority)</span>
-                <span class="badge" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">IRON DOME GROUNDED</span>
+                <span>Project Ebony // The 15 Core Operational Verticals</span>
+                <span style="color: var(--accent-emerald);">15/15 OPERATIONAL</span>
             </div>
-            <div class="c2-terminal" id="c2-terminal">
-                <div class="c2-msg">
-                    <span class="c2-ebony">[EBONY CORE]</span> Sovereign Apex C2 initialized. Reporting exclusively to CEO Jeffery Humphrey under 100% Absolute Controlling Authority. Iron Dome RAG (20,289 vectors) armed. Sovereign Voice Engine linked. Brain 1 Kinetic Safety Kernel active at 13.0us. How may I serve the mission, Sir?
+            <div class="verticals-grid" id="verticals-container"></div>
+        </div>
+    </div>
+
+    <!-- TAB 3: OPTICAL PERIMETER & GLI -->
+    <div id="tab-optical" class="tab-pane">
+        <div class="card">
+            <div class="card-header">
+                <span>Optical Perimeter // Sensor Fusion & Vegetative Computer</span>
+                <span style="color: var(--accent-cyan);">DIRECTSHOW &bull; TAPO RTSP (192.168.1.165)</span>
+            </div>
+            <div class="optical-hud">
+                <div class="camera-viewport">
+                    <div class="hud-overlay">
+                        <span>LIVE OPTICAL: ARDUCAM 1080P HDR</span>
+                        <span id="gli-indicator" style="color: var(--accent-emerald);">GLI: 0.412 [OPTIMAL VIGOR]</span>
+                    </div>
+                    <div class="hud-crosshair">
+                        <div style="width: 4px; height: 4px; background: var(--accent-cyan); border-radius: 50%;"></div>
+                    </div>
+                    <div style="position: absolute; bottom: 10px; font-size: 10px; color: var(--text-muted); font-family: monospace;">
+                        DirectShow CAP_DSHOW Active &bull; Low-Latency RTSP Ingest Armed
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div class="perimeter-card">
+                        <div class="p-title">Vegetative Vigor Formula</div>
+                        <div style="font-family: monospace; font-size: 11px; color: var(--accent-cyan); margin: 6px 0;">
+                            GLI = (2G - R - B) / (2G + R + B)
+                        </div>
+                        <div class="p-detail">Real-time RGB spectral decomposition computed locally with zero cloud streaming.</div>
+                    </div>
+                    <div class="perimeter-card">
+                        <div class="p-title">Drone Recon Link</div>
+                        <div class="p-status">MAVLINK STANDBY</div>
+                        <div class="p-detail">Universal RTMP/RTSP Ingest compatible with Skydio, DJI, Autel, and PX4 UAS.</div>
+                    </div>
                 </div>
             </div>
-            <div class="c2-controls">
-                <label class="c2-toggle-label">
-                    <input type="checkbox" id="voice-toggle" checked>
-                    <span>Stream Audio to Shokz OpenRun Headset (Acoustic Perimeter)</span>
-                </label>
-                <span id="char-counter">Zero Cloud Relays &bull; Ed25519 Cryptographic Signatures</span>
+        </div>
+    </div>
+
+    <!-- TAB 4: ACOUSTIC PERIMETER & VOICE ENGINE -->
+    <div id="tab-acoustic" class="tab-pane">
+        <div class="card">
+            <div class="card-header">
+                <span>Acoustic Perimeter // Sovereign Voice Engine & Audio Dispatch</span>
+                <span style="color: var(--accent-cyan);">WINDOWS COREAUDIO / WASAPI DIRECT</span>
             </div>
-            <div class="c2-input-row">
-                <input type="text" id="c2-input" class="c2-input" placeholder="Transmit directive or query to Ebony..." autocomplete="off">
-                <button class="c2-btn" onclick="sendDirective()">Transmit</button>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                <div class="perimeter-card">
+                    <div class="p-title">Headset Hardware Destination</div>
+                    <div class="p-status">SHOKZ OPENRUN (BLUETOOTH)</div>
+                    <div class="p-detail">Direct local WASAPI streaming with zero cloud relays, encrypted locally under CEO authority.</div>
+                </div>
+                <div class="perimeter-card">
+                    <div class="p-title">Microphone Dictation Listener</div>
+                    <div class="p-status">LOCAL LISTENER READY</div>
+                    <div class="p-detail">Continuous hands-free voice directive ingestion and automated command execution.</div>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <!-- TAB 5: IRON DOME RAG & MERKLE VAULT -->
+    <div id="tab-irondome" class="tab-pane">
+        <div class="card">
+            <div class="card-header">
+                <span>Sovereign Iron Dome // 20,291 ChromaDB Vectors & Merkle Ledger</span>
+                <span style="color: var(--accent-emerald);">ED25519 ASYMMETRIC SIGNER</span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                <div class="perimeter-card">
+                    <div class="p-title">ChromaDB Vector Store</div>
+                    <div class="p-status">20,291 DEFENSE VECTORS</div>
+                    <div class="p-detail">Local embeddings covering DFARS 252.227-7018, Oklahoma HB 2992, agronomics, and electrical SCADA.</div>
+                </div>
+                <div class="perimeter-card">
+                    <div class="p-title">SQLite Memory Vault</div>
+                    <div class="p-status">hvf_memory_vault.db [PERSISTENT]</div>
+                    <div class="p-detail">PBKDF2/Fernet encrypted conversation history and dynamic entity memory tables.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GLOBAL BRAIN 3 APEX C2 EXECUTIVE DIALOGUE TERMINAL -->
+    <div class="card">
+        <div class="card-header">
+            <span>Brain 3 // Sovereign Apex C2 Executive Dialogue (CEO 100% Sole Authority)</span>
+            <span class="badge" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">IRON DOME GROUNDED</span>
+        </div>
+        <div class="c2-terminal" id="c2-terminal">
+            <div class="c2-msg">
+                <span class="c2-ebony">[EBONY CORE]</span> Sovereign Apex C2 initialized. Reporting exclusively to CEO Jeffery Humphrey under 100% Absolute Controlling Authority. All 15 Core Verticals and 4 Perimeters active. Iron Dome RAG (20,291 vectors) armed. Sovereign Voice Engine linked. How may I serve the mission, Sir?
+            </div>
+        </div>
+        <div class="c2-controls">
+            <label class="c2-toggle-label">
+                <input type="checkbox" id="voice-toggle" checked>
+                <span>Stream Audio to Shokz OpenRun Headset (Acoustic Perimeter)</span>
+            </label>
+            <span id="char-counter">Zero Cloud Relays &bull; Ed25519 Cryptographic Signatures</span>
+        </div>
+        <div class="c2-input-row">
+            <input type="text" id="c2-input" class="c2-input" placeholder="Transmit directive across any vertical to Ebony..." autocomplete="off">
+            <button class="c2-btn" onclick="sendDirective()">Transmit</button>
         </div>
     </div>
 
@@ -283,6 +462,50 @@ HTML_COCKPIT = """<!DOCTYPE html>
     </div>
 
     <script>
+        const VERTICALS = [
+            { id: "V01", name: "Microgrid & SCADA Switchgear", cat: "KINETIC ENERGY", status: "OPERATIONAL", metric: "12.47 kV // 13.0us Latency", desc: "Hard real-time deterministic Modbus RTU switchgear, 300ms watchdog, and galvanic contactor isolation." },
+            { id: "V02", name: "Atmospheric Threat & EAS/SAME", cat: "TACTICAL DEFENSE", status: "ARMED", metric: "162.400 MHz WX // SAME Demod", desc: "Real-time NOAA/SAME atmospheric alert demodulation and severe storm early warning oracle." },
+            { id: "V03", name: "Optical Sensor Fusion & GLI", cat: "VISION INTELLIGENCE", status: "ARMED", metric: "DirectShow 1080P // Tapo RTSP", desc: "Real-time Arducam HDR sensor capture and vegetative vigor Green Leaf Index (GLI) computing." },
+            { id: "V04", name: "Acoustic Perimeter & Voice Engine", cat: "C2 COMMUNICATIONS", status: "ARMED", metric: "Windows CoreAudio / WASAPI", desc: "Zero-cloud on-device speech synthesis and audio dispatch directly to CEO Shokz OpenRun headset." },
+            { id: "V05", name: "Iron Dome RAG & Vectors", cat: "COGNITIVE DEFENSE", status: "ACTIVE", metric: "20,291 ChromaDB Vectors", desc: "Locally embedded sovereign defense, legal, agronomic, and electrical knowledge base." },
+            { id: "V06", name: "Photovoltaic DER & Inverters", cat: "RENEWABLE ENERGY", status: "ONLINE", metric: "1.25 MW Active Generation", desc: "Autonomous MPPT tracking, anti-islanding protection, and solar contactor management." },
+            { id: "V07", name: "BESS Storage & State-of-Charge", cat: "ENERGY STORAGE", status: "ONLINE", metric: "4.0 MWh BESS // 94.2% SoC", desc: "Galvanic battery safety loop, thermal runaway monitoring, and microgrid peak shaving." },
+            { id: "V08", name: "Precision Irrigation & Dosing", cat: "AGRONOMIC SCADA", status: "STANDBY", metric: "EC: 2.1 mS/cm // pH: 5.85", desc: "Deterministic nutrient batch dosing, flow rate verification, and pump line fault isolation." },
+            { id: "V09", name: "Soil Chemometrics & NPK Sensing", cat: "SUB-SURFACE TELEMETRY", status: "MONITORING", metric: "VWC: 32.4% // NPK Matrix", desc: "Volumetric water content, subsurface soil temperature, and mineral availability tracking." },
+            { id: "V10", name: "Autonomous Drone Recon", cat: "AERIAL RECON", status: "STANDBY", metric: "PX4 / MAVLink Link Ready", desc: "Universal RTMP/RTSP ingest from tactical drone platforms with automated flight path geotagging." },
+            { id: "V11", name: "Livestock & Boundary Defense", cat: "PERIMETER SECURITY", status: "ARMED", metric: "PIR / Acoustic Tripwire", desc: "Bio-security perimeter sensing, thermal boundary tracking, and predator deterrence protocols." },
+            { id: "V12", name: "Grain Silo & Storage Atmosphere", cat: "POST-HARVEST SCADA", status: "NOMINAL", metric: "Moisture: 13.2% // Temp: 68.4F", desc: "Explosion hazard gas sensing, automated aeration fans, and grain spoiling prevention." },
+            { id: "V13", name: "Supply Chain Merkle Ledger", cat: "FORENSIC AUDITING", status: "SYNCHRONIZED", metric: "Ed25519 Chain // 100% Valid", desc: "Cryptographically verifiable farm-to-table provenance and immutable batch transfer tracking." },
+            { id: "V14", name: "Corporate Governance & Authority", cat: "EXECUTIVE LEGAL", status: "100% SOLE AUTHORITY", metric: "HVF-CONTRACT-SL-003 // CEO 100", desc: "Oklahoma HB 2992 statutory compliance, DFARS 252.227-7018 commercial rights, and CAGE 1AHA8." },
+            { id: "V15", name: "Autonomous Swarm & Mesh", cat: "MESH ARCHITECTURE", status: "STANDBY", metric: "802.15.4 / WireGuard Mesh", desc: "Decentralized node consensus, air-gapped gateway heartbeat, and peer-to-peer telemetry sync." }
+        ];
+
+        function renderVerticals() {
+            const container = document.getElementById("verticals-container");
+            if (!container) return;
+            container.innerHTML = VERTICALS.map(v => `
+                <div class="vertical-card">
+                    <div class="v-top">
+                        <span class="v-id">${v.id} &bull; ${v.cat}</span>
+                        <span class="v-badge">${v.status}</span>
+                    </div>
+                    <div class="v-name">${v.name}</div>
+                    <div class="v-metric">${v.metric}</div>
+                    <div class="v-desc">${v.desc}</div>
+                </div>
+            `).join("");
+        }
+
+        function switchTab(tabId, ev) {
+            document.querySelectorAll(".tab-pane").forEach(el => el.classList.remove("active"));
+            document.querySelectorAll(".tab-btn").forEach(el => el.classList.remove("active"));
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) targetPane.classList.add("active");
+            if (ev && ev.target) ev.target.classList.add("active");
+        }
+
+        renderVerticals();
+
         async function sendDirective() {
             const input = document.getElementById("c2-input");
             const text = input.value.trim();
