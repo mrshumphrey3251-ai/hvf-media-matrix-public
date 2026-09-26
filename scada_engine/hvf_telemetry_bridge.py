@@ -1,6 +1,7 @@
-﻿"""
+"""
 Project Ebony: Air-Gapped Telemetry Bridge & Sentinel HMI Cockpit
 Tri-Brain 4-Perimeter Defense Matrix with 15 Core Operational Verticals.
+Multi-threaded video streaming engine (/video_feed) and dynamic GLI telemetry.
 100% Absolute Controlling Authority: Jeffery Humphrey (HVF-CONTRACT-SL-003).
 DFARS 252.227-7018 / Oklahoma HB 2992 Compliant Architecture.
 """
@@ -21,7 +22,7 @@ HTML_COCKPIT = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Ebony // Sentinel Cockpit (15 Verticals & 4 Perimeters)</title>
+    <title>Project Ebony // Sentinel Cockpit (15 Verticals & Live Video)</title>
     <style>
         :root {
             --bg-color: #060a12;
@@ -170,34 +171,12 @@ HTML_COCKPIT = """<!DOCTYPE html>
             background: #000;
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            height: 280px;
+            height: 360px;
             position: relative;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-        }
-        .hud-overlay {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 10px;
-            color: var(--accent-emerald);
-            font-family: monospace;
-            z-index: 10;
-        }
-        .hud-crosshair {
-            width: 80px;
-            height: 80px;
-            border: 1px dashed rgba(56, 189, 248, 0.4);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         .c2-terminal {
             background: rgba(4, 8, 16, 0.95);
@@ -284,12 +263,12 @@ HTML_COCKPIT = """<!DOCTYPE html>
         <div class="card">
             <div class="card-header">
                 <span>The Four Sovereign Operational Perimeters (Defense Telemetry)</span>
-                <span style="color: var(--accent-cyan);" id="rag-badge">Iron Dome RAG: 20,291 Vectors</span>
+                <span style="color: var(--accent-cyan);" id="rag-badge">Iron Dome RAG: 20,305 Vectors</span>
             </div>
             <div class="perimeters-grid">
                 <div class="perimeter-card">
                     <div class="p-title">1. Optical Perimeter</div>
-                    <div class="p-status">ACTIVE / ARMED</div>
+                    <div class="p-status">ACTIVE / STREAMING</div>
                     <div class="p-detail">Arducam 1080P DirectShow &bull; Tapo RTSP (192.168.1.165) &bull; Live GLI Analysis</div>
                 </div>
                 <div class="perimeter-card">
@@ -355,29 +334,29 @@ HTML_COCKPIT = """<!DOCTYPE html>
     <div id="tab-optical" class="tab-pane">
         <div class="card">
             <div class="card-header">
-                <span>Optical Perimeter // Sensor Fusion & Vegetative Computer</span>
-                <span style="color: var(--accent-cyan);">DIRECTSHOW &bull; TAPO RTSP (192.168.1.165)</span>
+                <span>Optical Perimeter // Dynamic MJPEG Stream & Vegetative Computer</span>
+                <span style="color: var(--accent-cyan);" id="opt-sensor-tag">ACTIVE OPTICAL FEED</span>
             </div>
             <div class="optical-hud">
                 <div class="camera-viewport">
-                    <div class="hud-overlay">
-                        <span>LIVE OPTICAL: ARDUCAM 1080P HDR</span>
-                        <span id="gli-indicator" style="color: var(--accent-emerald);">GLI: 0.412 [OPTIMAL VIGOR]</span>
-                    </div>
-                    <div class="hud-crosshair">
-                        <div style="width: 4px; height: 4px; background: var(--accent-cyan); border-radius: 50%;"></div>
-                    </div>
-                    <div style="position: absolute; bottom: 10px; font-size: 10px; color: var(--text-muted); font-family: monospace;">
-                        DirectShow CAP_DSHOW Active &bull; Low-Latency RTSP Ingest Armed
-                    </div>
+                    <img src="/video_feed" alt="Ebony Live Optical Stream" style="width: 100%; height: 100%; object-fit: contain; border-radius: 6px;">
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div class="perimeter-card">
+                        <div class="p-title">Live Vegetative Telemetry</div>
+                        <div id="live-gli-val" style="font-size: 18px; font-weight: bold; color: var(--accent-emerald); margin: 6px 0;">
+                            GLI: 0.412
+                        </div>
+                        <div id="live-fps-val" style="font-size: 11px; color: var(--text-muted); font-family: monospace;">
+                            FPS: 25.0 &bull; Frame: Active Ingest
+                        </div>
+                    </div>
                     <div class="perimeter-card">
                         <div class="p-title">Vegetative Vigor Formula</div>
                         <div style="font-family: monospace; font-size: 11px; color: var(--accent-cyan); margin: 6px 0;">
                             GLI = (2G - R - B) / (2G + R + B)
                         </div>
-                        <div class="p-detail">Real-time RGB spectral decomposition computed locally with zero cloud streaming.</div>
+                        <div class="p-detail">Real-time RGB spectral decomposition computed locally on each camera frame.</div>
                     </div>
                     <div class="perimeter-card">
                         <div class="p-title">Drone Recon Link</div>
@@ -415,13 +394,13 @@ HTML_COCKPIT = """<!DOCTYPE html>
     <div id="tab-irondome" class="tab-pane">
         <div class="card">
             <div class="card-header">
-                <span>Sovereign Iron Dome // 20,291 ChromaDB Vectors & Merkle Ledger</span>
+                <span>Sovereign Iron Dome // 20,305 ChromaDB Vectors & Merkle Ledger</span>
                 <span style="color: var(--accent-emerald);">ED25519 ASYMMETRIC SIGNER</span>
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
                 <div class="perimeter-card">
                     <div class="p-title">ChromaDB Vector Store</div>
-                    <div class="p-status">20,291 DEFENSE VECTORS</div>
+                    <div class="p-status">20,305 DEFENSE VECTORS</div>
                     <div class="p-detail">Local embeddings covering DFARS 252.227-7018, Oklahoma HB 2992, agronomics, and electrical SCADA.</div>
                 </div>
                 <div class="perimeter-card">
@@ -437,11 +416,11 @@ HTML_COCKPIT = """<!DOCTYPE html>
     <div class="card">
         <div class="card-header">
             <span>Brain 3 // Sovereign Apex C2 Executive Dialogue (CEO 100% Sole Authority)</span>
-            <span class="badge" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">IRON DOME GROUNDED</span>
+            <span class="badge" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">DYNAMIC LPU GROUNDED</span>
         </div>
         <div class="c2-terminal" id="c2-terminal">
             <div class="c2-msg">
-                <span class="c2-ebony">[EBONY CORE]</span> Sovereign Apex C2 initialized. Reporting exclusively to CEO Jeffery Humphrey under 100% Absolute Controlling Authority. All 15 Core Verticals and 4 Perimeters active. Iron Dome RAG (20,291 vectors) armed. Sovereign Voice Engine linked. How may I serve the mission, Sir?
+                <span class="c2-ebony">[EBONY CORE]</span> Sovereign Apex C2 initialized. Reporting exclusively to CEO Jeffery Humphrey under 100% Absolute Controlling Authority. All 15 Core Verticals and 4 Perimeters active. Iron Dome RAG (20,305 vectors) armed. Sovereign Voice Engine linked. How may I serve the mission, Sir?
             </div>
         </div>
         <div class="c2-controls">
@@ -467,7 +446,7 @@ HTML_COCKPIT = """<!DOCTYPE html>
             { id: "V02", name: "Atmospheric Threat & EAS/SAME", cat: "TACTICAL DEFENSE", status: "ARMED", metric: "162.400 MHz WX // SAME Demod", desc: "Real-time NOAA/SAME atmospheric alert demodulation and severe storm early warning oracle." },
             { id: "V03", name: "Optical Sensor Fusion & GLI", cat: "VISION INTELLIGENCE", status: "ARMED", metric: "DirectShow 1080P // Tapo RTSP", desc: "Real-time Arducam HDR sensor capture and vegetative vigor Green Leaf Index (GLI) computing." },
             { id: "V04", name: "Acoustic Perimeter & Voice Engine", cat: "C2 COMMUNICATIONS", status: "ARMED", metric: "Windows CoreAudio / WASAPI", desc: "Zero-cloud on-device speech synthesis and audio dispatch directly to CEO Shokz OpenRun headset." },
-            { id: "V05", name: "Iron Dome RAG & Vectors", cat: "COGNITIVE DEFENSE", status: "ACTIVE", metric: "20,291 ChromaDB Vectors", desc: "Locally embedded sovereign defense, legal, agronomic, and electrical knowledge base." },
+            { id: "V05", name: "Iron Dome RAG & Vectors", cat: "COGNITIVE DEFENSE", status: "ACTIVE", metric: "20,305 ChromaDB Vectors", desc: "Locally embedded sovereign defense, legal, agronomic, and electrical knowledge base." },
             { id: "V06", name: "Photovoltaic DER & Inverters", cat: "RENEWABLE ENERGY", status: "ONLINE", metric: "1.25 MW Active Generation", desc: "Autonomous MPPT tracking, anti-islanding protection, and solar contactor management." },
             { id: "V07", name: "BESS Storage & State-of-Charge", cat: "ENERGY STORAGE", status: "ONLINE", metric: "4.0 MWh BESS // 94.2% SoC", desc: "Galvanic battery safety loop, thermal runaway monitoring, and microgrid peak shaving." },
             { id: "V08", name: "Precision Irrigation & Dosing", cat: "AGRONOMIC SCADA", status: "STANDBY", metric: "EC: 2.1 mS/cm // pH: 5.85", desc: "Deterministic nutrient batch dosing, flow rate verification, and pump line fault isolation." },
@@ -506,6 +485,43 @@ HTML_COCKPIT = """<!DOCTYPE html>
 
         renderVerticals();
 
+        // Load persistent conversation history from hvf_memory_vault.db
+        async function loadVaultHistory() {
+            try {
+                const res = await fetch("/api/v1/history");
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.history && data.history.length > 0) {
+                        const terminal = document.getElementById("c2-terminal");
+                        terminal.innerHTML = "";
+                        data.history.forEach(item => {
+                            const isUser = item.role === "user";
+                            const tag = isUser ? '<span class="c2-user">[CEO DIRECTIVE]</span>' : '<span class="c2-ebony">[EBONY C2]</span>';
+                            terminal.innerHTML += `<div class="c2-msg">${tag} ${escapeHtml(item.content)}</div>`;
+                        });
+                        terminal.scrollTop = terminal.scrollHeight;
+                    }
+                }
+            } catch (e) {}
+        }
+        loadVaultHistory();
+
+        // Real-time Optical Telemetry Polling (every 1s)
+        setInterval(async () => {
+            try {
+                const res = await fetch("/api/v1/optical");
+                if (res.ok) {
+                    const data = await res.json();
+                    const gliElem = document.getElementById("live-gli-val");
+                    const fpsElem = document.getElementById("live-fps-val");
+                    const sensorTag = document.getElementById("opt-sensor-tag");
+                    if (gliElem) gliElem.innerText = `GLI: ${data.gli.toFixed(4)}`;
+                    if (fpsElem) fpsElem.innerText = `FPS: ${data.fps} • ${data.resolution} • ${data.source}`;
+                    if (sensorTag) sensorTag.innerText = data.source;
+                }
+            } catch (e) {}
+        }, 1000);
+
         async function sendDirective() {
             const input = document.getElementById("c2-input");
             const text = input.value.trim();
@@ -524,7 +540,7 @@ HTML_COCKPIT = """<!DOCTYPE html>
                     body: JSON.stringify({ prompt: text, voice: voiceEnabled })
                 });
                 const data = await res.json();
-                const ragNotice = data.rag_intel_found ? ` &bull; RAG: Iron Dome Grounded (${data.rag_vectors} vectors)` : "";
+                const ragNotice = data.rag_intel_found ? ` &bull; RAG: Grounded (${data.rag_vectors} vectors)` : "";
                 const voiceNotice = data.voice_dispatched ? " &bull; Voice: Dispatched to Headset" : "";
                 terminal.innerHTML += `
                     <div class="c2-msg">
@@ -549,6 +565,9 @@ HTML_COCKPIT = """<!DOCTYPE html>
 </html>
 """
 
+class ThreadingHTTPServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
+    daemon_threads = True
+
 class HVFTelemetryHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/" or self.path == "/index.html":
@@ -556,6 +575,49 @@ class HVFTelemetryHandler(http.server.BaseHTTPRequestHandler):
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.end_headers()
             self.wfile.write(HTML_COCKPIT.encode("utf-8"))
+        elif self.path == "/video_feed":
+            if hasattr(self.server, "optical_streamer") and self.server.optical_streamer:
+                self.send_response(200)
+                self.send_header("Content-Type", "multipart/x-mixed-replace; boundary=frame")
+                self.send_header("Cache-Control", "no-cache, private")
+                self.send_header("Pragma", "no-cache")
+                self.end_headers()
+                try:
+                    for frame_chunk in self.server.optical_streamer.generate_mjpeg_stream():
+                        self.wfile.write(frame_chunk)
+                        self.wfile.flush()
+                except (BrokenPipeError, ConnectionResetError):
+                    pass
+            else:
+                self.send_response(503)
+                self.end_headers()
+        elif self.path == "/api/v1/history":
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            history = []
+            try:
+                import sqlite3
+                vault_db = os.path.join(os.path.dirname(__file__), "..", "hvf_memory_vault.db")
+                if os.path.exists(vault_db):
+                    conn = sqlite3.connect(vault_db)
+                    c = conn.cursor()
+                    c.execute("SELECT role, content FROM conversation_turns ORDER BY id DESC LIMIT 10")
+                    rows = c.fetchall()
+                    conn.close()
+                    history = [{"role": r[0], "content": r[1]} for r in reversed(rows)]
+            except Exception:
+                pass
+            self.wfile.write(json.dumps({"history": history}).encode("utf-8"))
+        elif self.path == "/api/v1/optical":
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            if hasattr(self.server, "optical_streamer") and self.server.optical_streamer:
+                telem = self.server.optical_streamer.get_telemetry()
+            else:
+                telem = {"source": "OFFLINE", "gli": 0.0, "fps": 0.0, "resolution": "0x0"}
+            self.wfile.write(json.dumps(telem).encode("utf-8"))
         elif self.path == "/api/v1/telemetry":
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
@@ -565,7 +627,7 @@ class HVFTelemetryHandler(http.server.BaseHTTPRequestHandler):
                 "authority": "JEFFERY_HUMPHREY_100_PERCENT",
                 "status": "ONLINE",
                 "perimeters": {
-                    "optical": "ACTIVE",
+                    "optical": "STREAMING",
                     "acoustic": "ACTIVE",
                     "kinetic_scada": "ACTIVE_13_0_US",
                     "governance": "100_PERCENT_SOLE_AUTHORITY"
@@ -580,6 +642,11 @@ class HVFTelemetryHandler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
 
     def do_POST(self):
+        import json
+        import sqlite3
+        import datetime
+        import os
+
         if self.path == "/api/v1/chat":
             content_len = int(self.headers.get("Content-Length", 0))
             body = self.rfile.read(content_len).decode("utf-8")
@@ -588,7 +655,7 @@ class HVFTelemetryHandler(http.server.BaseHTTPRequestHandler):
                 prompt = req_json.get("prompt", "")
                 voice_enabled = bool(req_json.get("voice", False))
                 if self.server.brain3:
-                    resp_data = self.server.brain3.dispatch_query(prompt, voice_enabled=voice_enabled)
+                    resp_data = self.server.brain3.dispatch_query(prompt, clearance_level="CEO", voice_enabled=voice_enabled)
                 else:
                     resp_data = {"status": "ERROR", "reply": "Brain 3 is offline.", "engine": "NONE"}
                 self.send_response(200)
@@ -599,6 +666,53 @@ class HVFTelemetryHandler(http.server.BaseHTTPRequestHandler):
                 self.send_response(500)
                 self.end_headers()
                 self.wfile.write(json.dumps({"error": str(e)}).encode("utf-8"))
+        elif self.path == "/api/v1/telemetry":
+            content_len = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_len).decode("utf-8")
+            try:
+                data = json.loads(body)
+                drone_model = data.get("drone_model", data.get("drone_id", "DJI_MATRICE_350_RTK"))
+                mission_name = data.get("mission_name", "SOVEREIGN_FIELD_RECON_ALPHA")
+                zone_id = data.get("zone_id", "SECTOR_DELTA_04")
+                altitude_m = float(data.get("altitude_m", 0.0))
+                latitude = float(data.get("latitude", 0.0))
+                longitude = float(data.get("longitude", 0.0))
+                battery_pct = float(data.get("battery_pct", 100.0))
+                stream_url = data.get("stream_url", "")
+                flight_status = data.get("flight_status", "ACTIVE")
+
+                # Resolve vault database path
+                db_path = getattr(self.server, "db_path", None)
+                if not db_path or not os.path.exists(db_path):
+                    db_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "hvf_memory_vault.db")
+
+                conn = sqlite3.connect(db_path)
+                c = conn.cursor()
+                c.execute("""
+                    INSERT INTO drone_telemetry_vault 
+                    (drone_model, mission_name, zone_id, altitude_m, latitude, longitude, battery_pct, stream_url, flight_status, recorded_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
+                """, (drone_model, mission_name, zone_id, altitude_m, latitude, longitude, battery_pct, stream_url, flight_status))
+                conn.commit()
+                rec_id = c.lastrowid
+                conn.close()
+
+                resp_data = {
+                    "status": "INGESTED",
+                    "record_id": rec_id,
+                    "drone_model": drone_model,
+                    "flight_status": flight_status,
+                    "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
+                }
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json")
+                self.end_headers()
+                self.wfile.write(json.dumps(resp_data).encode("utf-8"))
+            except Exception as e:
+                self.send_response(500)
+                self.send_header("Content-Type", "application/json")
+                self.end_headers()
+                self.wfile.write(json.dumps({"error": str(e)}).encode("utf-8"))
         else:
             self.send_response(404)
             self.end_headers()
@@ -607,22 +721,24 @@ class HVFTelemetryHandler(http.server.BaseHTTPRequestHandler):
         pass
 
 class HVFTelemetryBridge:
-    def __init__(self, pipeline, brain3=None, host="127.0.0.1", port=8088):
+    def __init__(self, pipeline, brain3=None, optical_streamer=None, host="127.0.0.1", port=8088):
         self.pipeline = pipeline
         self.brain3 = brain3
+        self.optical_streamer = optical_streamer
         self.host = host
         self.port = port
         self.server = None
         self.thread = None
 
     def start(self):
-        self.server = socketserver.TCPServer((self.host, self.port), HVFTelemetryHandler)
+        self.server = ThreadingHTTPServer((self.host, self.port), HVFTelemetryHandler)
         self.server.pipeline = self.pipeline
         self.server.brain3 = self.brain3
+        self.server.optical_streamer = self.optical_streamer
         self.server.allow_reuse_address = True
         self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
         self.thread.start()
-        logger.info(f"HMI Telemetry Bridge active on http://{self.host}:{self.port}/")
+        logger.info(f"HMI Telemetry Bridge active on http://{self.host}:{self.port}/ (Multi-Threaded Live Stream)")
 
     def stop(self):
         if self.server:
