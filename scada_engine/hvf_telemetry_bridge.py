@@ -1,6 +1,6 @@
 ﻿"""
 HVF Sovereign SCADA Telemetry Bridge & Air-Gapped Local Health Dashboard
-Zero-cloud local HTTP/REST diagnostic service and sovereign UI for edge operations.
+Zero-cloud local HTTP/REST diagnostic service and enterprise HMI cockpit for edge operations.
 DFARS 252.227-7018 Compliant Architecture.
 """
 
@@ -28,57 +28,367 @@ DASHBOARD_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HVF SCADA Defense Sentinel -- Sovereign Edge Node</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HVF SOVEREIGN SCADA DEFENSE MATRIX -- SENTINEL COCKPIT</title>
     <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: monospace; margin: 20px; }
-        .header { border-bottom: 2px solid #58a6ff; padding-bottom: 10px; margin-bottom: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .card { background-color: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 15px; }
-        .card h3 { margin-top: 0; color: #58a6ff; font-size: 14px; border-bottom: 1px solid #21262d; padding-bottom: 5px; }
-        .status-ok { color: #3fb950; font-weight: bold; }
-        .status-warn { color: #d29922; font-weight: bold; }
-        .status-crit { color: #f85149; font-weight: bold; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
-        th, td { border: 1px solid #30363d; padding: 6px; text-align: left; }
-        th { background-color: #21262d; color: #8b949e; }
-        .badge { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 10px; background-color: #238636; color: #fff; }
+        :root {
+            --bg-void: #06090e;
+            --bg-panel: #0d131a;
+            --bg-card: #131c26;
+            --border-dim: #1f2d3d;
+            --border-glow: #00f0ff33;
+            --accent-cyan: #00f0ff;
+            --accent-green: #00ff88;
+            --accent-amber: #ffaa00;
+            --accent-red: #ff3344;
+            --text-main: #e2e8f0;
+            --text-dim: #64748b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-void);
+            color: var(--text-main);
+            font-family: 'Consolas', 'Courier New', monospace;
+            padding: 16px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        .hud-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-cyan);
+            background: linear-gradient(90deg, rgba(0,240,255,0.08) 0%, rgba(0,0,0,0) 100%);
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 20px rgba(0,240,255,0.15);
+        }
+        .hud-title {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--accent-cyan);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pulse-led {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent-green);
+            box-shadow: 0 0 10px var(--accent-green);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .hud-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+        .hud-meta span strong { color: var(--text-main); }
+        .cockpit-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+            flex: 1;
+            min-height: 0;
+        }
+        .col-left, .col-right {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            min-height: 0;
+        }
+        .panel {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-dim);
+            border-radius: 6px;
+            padding: 14px;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        .panel-header {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--accent-cyan);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-dim);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .sld-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background-color: var(--bg-card);
+            border: 1px dashed var(--border-dim);
+            border-radius: 4px;
+            padding: 16px;
+        }
+        .sld-bus {
+            height: 6px;
+            background: linear-gradient(90deg, #00f0ff, #00ff88);
+            box-shadow: 0 0 10px rgba(0,240,255,0.4);
+            border-radius: 3px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .sld-bus-label {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--accent-cyan);
+            letter-spacing: 1px;
+        }
+        .feeder-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .feeder-card {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-dim);
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .feeder-card.closed {
+            border-color: var(--accent-green);
+            box-shadow: inset 0 0 8px rgba(0,255,136,0.15);
+        }
+        .feeder-card.tripped {
+            border-color: var(--accent-red);
+            box-shadow: inset 0 0 8px rgba(255,51,68,0.2);
+        }
+        .feeder-id { font-size: 0.75rem; color: var(--text-dim); }
+        .feeder-name { font-size: 0.8rem; font-weight: bold; margin: 4px 0; }
+        .feeder-state {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-top: 6px;
+        }
+        .state-closed { background: rgba(0,255,136,0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
+        .state-tripped { background: rgba(255,51,68,0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
+        .state-open { background: rgba(255,170,0,0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+        .telemetry-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .stat-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-dim);
+            border-radius: 4px;
+            padding: 10px;
+        }
+        .stat-label { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 1px; }
+        .stat-val { font-size: 1.1rem; font-weight: bold; margin-top: 4px; color: var(--text-main); }
+        .chain-box {
+            flex: 1;
+            overflow-y: auto;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-dim);
+            border-radius: 4px;
+            padding: 8px;
+            font-size: 0.75rem;
+            min-height: 120px;
+        }
+        .chain-item {
+            padding: 6px 8px;
+            border-bottom: 1px solid var(--border-dim);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .chain-item:last-child { border-bottom: none; }
+        .chain-hash { color: var(--accent-cyan); word-break: break-all; }
+        .chain-meta { color: var(--text-dim); font-size: 0.7rem; display: flex; justify-content: space-between; }
+        .ctrl-btn {
+            background-color: var(--border-dim);
+            color: var(--text-main);
+            border: 1px solid var(--accent-cyan);
+            padding: 8px 12px;
+            font-family: inherit;
+            font-size: 0.75rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .ctrl-btn:hover {
+            background-color: var(--accent-cyan);
+            color: var(--bg-void);
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h2>[HVF] SOVEREIGN SCADA DEFENSE MATRIX &bull; AIR-GAPPED SENTINEL</h2>
-        <div>STATION: <strong>KOKC</strong> | CAGE: <strong>1AHA8</strong> | COMPLIANCE: <strong>DFARS 252.227-7018 / OK HB 2992</strong></div>
-    </div>
-    <div class="grid">
-        <div class="card">
-            <h3>WATCHDOG & HEARTBEAT</h3>
-            <div>STATUS: <span class="status-ok">ARMED / ACTIVE</span></div>
-            <div>FAIL-SAFE WINDOW: 1000ms</div>
-            <div>CADENCE: 100ms</div>
+    <div class="hud-header">
+        <div class="hud-title">
+            <div class="pulse-led"></div>
+            <span>PROJECT EBONY // SOVEREIGN SCADA DEFENSE MATRIX</span>
         </div>
-        <div class="card">
-            <h3>ATMOSPHERIC SENTINEL</h3>
-            <div>ORACLE FEED: EAS/SAME DEMODULATOR</div>
-            <div>THREAT LEVEL: <span class="status-ok">NOMINAL (TIER 0/1)</span></div>
-            <div>WAN BACKUP: ISOLATED (AIR-GAPPED)</div>
-        </div>
-        <div class="card">
-            <h3>FORENSIC MERKLE LEDGER</h3>
-            <div>SIGNATURE: <span class="badge">ED25519 ASYMMETRIC</span></div>
-            <div>CHAIN INTEGRITY: <span class="status-ok">100% VERIFIED</span></div>
-            <div>NON-REPUDIATION: ACTIVE</div>
+        <div class="hud-meta">
+            <span>STATION: <strong>KOKC</strong></span>
+            <span>CAGE: <strong>1AHA8</strong></span>
+            <span>COMPLIANCE: <strong>DFARS 252.227-7018 / OK HB 2992</strong></span>
+            <span>LATENCY: <strong id="latency-val">0.0us</strong></span>
         </div>
     </div>
-    <div class="card" style="margin-top: 15px;">
-        <h3>PHYSICAL KINETIC CONTACTORS (MODBUS RTU RS-485)</h3>
-        <table>
-            <tr><th>CHANNEL</th><th>DESIGNATION</th><th>COIL</th><th>STATE</th><th>SECURITY GATE</th></tr>
-            <tr><td>CH1</td><td>UTILITY GRID INTERCONNECT</td><td>1</td><td class="status-ok">CLOSED</td><td>DUAL-KEY CUSTODY</td></tr>
-            <tr><td>CH2</td><td>PHOTOVOLTAIC ARRAYS</td><td>2</td><td class="status-ok">CLOSED</td><td>AUTONOMOUS DER</td></tr>
-            <tr><td>CH3</td><td>BATTERY STORAGE (BESS)</td><td>3</td><td class="status-ok">CLOSED</td><td>AUTONOMOUS DER</td></tr>
-            <tr><td>CH4</td><td>AUXILIARY DIESEL GENSET</td><td>4</td><td>OPEN (STANDBY)</td><td>OPERATOR OVERRIDE</td></tr>
-        </table>
+    <div class="cockpit-grid">
+        <div class="col-left">
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Physical Kinetic Contactor Bus (Modbus RTU RS-485)</span>
+                    <span id="bus-state-indicator" style="color: var(--accent-green);">BUS ENERGIZED</span>
+                </div>
+                <div class="sld-container">
+                    <div style="font-size: 0.75rem; color: var(--text-dim);">HIGH-VOLTAGE INTERCONNECT & LOCAL DISTRIBUTED ENERGY ASSETS</div>
+                    <div class="sld-bus">
+                        <div class="sld-bus-label">SOVEREIGN MICROGRID SYNCHRONIZATION BUS (12.47 kV)</div>
+                    </div>
+                    <div class="feeder-grid">
+                        <div class="feeder-card closed" id="card-ch1">
+                            <div class="feeder-id">COIL 1 [0x0000]</div>
+                            <div class="feeder-name">UTILITY GRID</div>
+                            <div style="font-size:0.65rem; color:var(--text-dim);">DUAL-KEY CUSTODY</div>
+                            <div class="feeder-state state-closed" id="state-ch1">CLOSED</div>
+                        </div>
+                        <div class="feeder-card closed" id="card-ch2">
+                            <div class="feeder-id">COIL 2 [0x0001]</div>
+                            <div class="feeder-name">PHOTOVOLTAIC</div>
+                            <div style="font-size:0.65rem; color:var(--text-dim);">AUTONOMOUS DER</div>
+                            <div class="feeder-state state-closed" id="state-ch2">CLOSED</div>
+                        </div>
+                        <div class="feeder-card closed" id="card-ch3">
+                            <div class="feeder-id">COIL 3 [0x0002]</div>
+                            <div class="feeder-name">BESS STORAGE</div>
+                            <div style="font-size:0.65rem; color:var(--text-dim);">AUTONOMOUS DER</div>
+                            <div class="feeder-state state-closed" id="state-ch3">CLOSED</div>
+                        </div>
+                        <div class="feeder-card" id="card-ch4">
+                            <div class="feeder-id">COIL 4 [0x0003]</div>
+                            <div class="feeder-name">AUX GENSET</div>
+                            <div style="font-size:0.65rem; color:var(--text-dim);">MANUAL OVERRIDE</div>
+                            <div class="feeder-state state-open" id="state-ch4">STANDBY</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Sentinel State & Atmospheric Oracle Ingest</span>
+                    <span id="oracle-source">EAS/SAME 162.400 MHz</span>
+                </div>
+                <div class="telemetry-strip">
+                    <div class="stat-box">
+                        <div class="stat-label">ATMOSPHERIC THREAT</div>
+                        <div class="stat-val" id="threat-val" style="color: var(--accent-green);">TIER 0: NOMINAL</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">WATCHDOG TIMER</div>
+                        <div class="stat-val" id="watchdog-val" style="color: var(--accent-cyan);">ACTIVE (1000ms)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">AIR-GAP SECURITY GATE</div>
+                        <div class="stat-val" style="color: var(--accent-green);">SOVEREIGN (ZERO-WAN)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-right">
+            <div class="panel" style="flex:1; display:flex; flex-direction:column; min-height:0;">
+                <div class="panel-header">
+                    <span>Ed25519 Forensic Ledger</span>
+                    <span id="chain-badge" style="color: var(--accent-green);">100% INTACT</span>
+                </div>
+                <div class="chain-box" id="chain-stream">
+                    <div class="chain-item">
+                        <div class="chain-meta">
+                            <span>BLOCK #0: GENESIS</span>
+                            <span>INITIALIZED</span>
+                        </div>
+                        <div class="chain-hash" id="latest-hash-display">0000000000000000000000000000000000000000000000000000000000000000</div>
+                    </div>
+                </div>
+                <div style="margin-top:10px; font-size:0.7rem; color:var(--text-dim);">
+                    SIGNER PUBKEY:
+                    <div id="signer-key" style="word-break:break-all; color:var(--text-main); font-family:monospace; margin-top:2px;">LOADING...</div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Sovereign Command Console</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <button class="ctrl-btn" onclick="pollData()">Force Telemetry Poll</button>
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        async function pollData() {
+            try {
+                const hRes = await fetch('/api/v1/health');
+                const health = await hRes.json();
+                document.getElementById('watchdog-val').innerText = health.watchdog_status || 'ARMED';
+
+                const tRes = await fetch('/api/v1/telemetry');
+                const telem = await tRes.json();
+                document.getElementById('latency-val').innerText = (telem.last_pipeline_latency_us || 0.0) + 'us';
+
+                const breakers = telem.breaker_channels || {};
+                updateBreaker('ch1', breakers.CH1_UTILITY_GRID || 'CLOSED');
+                updateBreaker('ch2', breakers.CH2_PV_ARRAYS || 'CLOSED');
+                updateBreaker('ch3', breakers.CH3_BESS_STORAGE || 'CLOSED');
+                updateBreaker('ch4', breakers.CH4_AUX_GENERATOR || 'OPEN');
+
+                const lRes = await fetch('/api/v1/ledger');
+                const ledger = await lRes.json();
+                document.getElementById('signer-key').innerText = ledger.signer_pubkey_hex || 'N/A';
+                document.getElementById('latest-hash-display').innerText = ledger.latest_block_hash || '000000000000...';
+                document.getElementById('chain-badge').innerText = ledger.chain_valid ? (ledger.total_blocks + ' BLOCKS [INTACT]') : 'CORRUPTED';
+                document.getElementById('chain-badge').style.color = ledger.chain_valid ? 'var(--accent-green)' : 'var(--accent-red)';
+            } catch (err) {
+                console.error("Telemetry poll failed:", err);
+            }
+        }
+        function updateBreaker(ch, state) {
+            const card = document.getElementById('card-' + ch);
+            const badge = document.getElementById('state-' + ch);
+            if (!card || !badge) return;
+            card.className = 'feeder-card ' + state.toLowerCase();
+            badge.innerText = state;
+            if (state === 'CLOSED') {
+                badge.className = 'feeder-state state-closed';
+            } else if (state === 'TRIPPED') {
+                badge.className = 'feeder-state state-tripped';
+            } else {
+                badge.className = 'feeder-state state-open';
+            }
+        }
+        setInterval(pollData, 1500);
+        window.onload = pollData;
+    </script>
 </body>
 </html>
 """
@@ -87,7 +397,6 @@ class HVFTelemetryHandler(BaseHTTPRequestHandler):
     pipeline_ref: Optional[HVFDefensePipeline] = None
 
     def log_message(self, format, *args):
-        # Silence standard HTTP server logging to avoid polluting SCADA output
         pass
 
     def do_GET(self):
