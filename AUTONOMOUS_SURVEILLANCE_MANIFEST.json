@@ -1,0 +1,85 @@
+{
+  "manifest_id": "HVF-SURVEILLANCE-CIRCUIT-DELTA-01-20260926",
+  "timestamp": "2026-09-26T22:59:30.281056+00:00",
+  "authority": {
+    "operator": "CEO_JEFFERY_HUMPHREY",
+    "clearance": "CEO_LEVEL_5_UNRESTRICTED",
+    "cage_code": "1AHA8",
+    "entity": "Humphrey Virtual Farms LLC"
+  },
+  "surveillance_daemon": {
+    "engine_module": "scada_engine/hvf_surveillance_daemon.py",
+    "active_circuit": "AUTONOMOUS_CIRCUIT_DELTA_01",
+    "execution_status": "CERTIFIED_ACTIVE",
+    "sectors_swept": 4,
+    "total_vault_records": 18,
+    "circuit_records_logged": 4,
+    "target_sectors": [
+      "SECTOR_ALPHA_DER",
+      "SECTOR_BRAVO_CROPS",
+      "HYDRO_WELLHEAD_01",
+      "PERIMETER_ORBIT"
+    ],
+    "c2_cockpit_port": 8501,
+    "telemetry_stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed"
+  },
+  "circuit_telemetry": [
+    {
+      "record_id": 15,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "AUTONOMOUS_CIRCUIT_DELTA_01",
+      "zone_id": "SECTOR_ALPHA_DER",
+      "altitude_m": 75.0,
+      "latitude": 35.4682,
+      "longitude": -97.5158,
+      "battery_pct": 96.8,
+      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "flight_status": "SURVEYING_SOLAR_PV",
+      "recorded_at": "2026-09-26 22:57:52"
+    },
+    {
+      "record_id": 16,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "AUTONOMOUS_CIRCUIT_DELTA_01",
+      "zone_id": "SECTOR_BRAVO_CROPS",
+      "altitude_m": 90.0,
+      "latitude": 35.469,
+      "longitude": -97.515,
+      "battery_pct": 96.39999999999999,
+      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "flight_status": "SPECTRAL_CANOPY_SCAN",
+      "recorded_at": "2026-09-26 22:57:52"
+    },
+    {
+      "record_id": 17,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "AUTONOMOUS_CIRCUIT_DELTA_01",
+      "zone_id": "HYDRO_WELLHEAD_01",
+      "altitude_m": 80.0,
+      "latitude": 35.4685,
+      "longitude": -97.5142,
+      "battery_pct": 96.0,
+      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "flight_status": "THERMAL_PUMP_AUDIT",
+      "recorded_at": "2026-09-26 22:57:52"
+    },
+    {
+      "record_id": 18,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "AUTONOMOUS_CIRCUIT_DELTA_01",
+      "zone_id": "PERIMETER_ORBIT",
+      "altitude_m": 60.0,
+      "latitude": 35.4678,
+      "longitude": -97.5155,
+      "battery_pct": 95.6,
+      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "flight_status": "PERIMETER_PATROL_SWEEP",
+      "recorded_at": "2026-09-26 22:57:52"
+    }
+  ],
+  "statutory_compliance": [
+    "DFARS_252.227_7018",
+    "OKLAHOMA_HB_2992",
+    "FAA_PART_107_AUTONOMOUS_WAIVER"
+  ]
+}
