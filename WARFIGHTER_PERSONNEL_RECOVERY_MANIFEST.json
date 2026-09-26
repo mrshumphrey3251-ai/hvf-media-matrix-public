@@ -1,0 +1,85 @@
+{
+  "manifest_id": "HVF-WARFIGHTER-PR-SAR-20260926-ALPHA",
+  "timestamp": "2026-09-26T23:13:12.703284+00:00",
+  "authority": {
+    "operator": "CEO_JEFFERY_HUMPHREY",
+    "clearance": "CEO_LEVEL_5_UNRESTRICTED",
+    "cage_code": "1AHA8",
+    "entity": "Humphrey Virtual Farms LLC"
+  },
+  "personnel_recovery_mission": {
+    "mission_code": "OPERATION_PHANTOM_GUARDIAN",
+    "target_callsign": "PHANTOM_RECON",
+    "operator_id": "SCOUT-SOLDIER-04",
+    "distress_condition": "ACTIVE_SOS_LOCATED",
+    "mgrs_grid": "14S TA 48650 47120",
+    "gps_coordinates": {
+      "latitude": 35.4712,
+      "longitude": -97.5135,
+      "elevation_m": 379.1
+    },
+    "standoff_distance_m": 419.21,
+    "intercept_heading_deg": 25.6,
+    "interception_eta_seconds": 23.3,
+    "overwatch_ceiling_m": 100.0,
+    "overwatch_uas_asset": "DJI_MATRICE_350_RTK",
+    "total_drone_telemetry_records": 20
+  },
+  "warfighter_vault_telemetry": [
+    {
+      "id": 1,
+      "operator_id": "HVF-LEAD-01",
+      "callsign": "EBONY_ACTUAL",
+      "latitude": 35.4676,
+      "longitude": -97.5162,
+      "elevation_m": 382.4,
+      "mgrs_grid": "14S TA 48380 46759",
+      "distress_active": false,
+      "battery_pct": 97.5,
+      "recorded_at": "2026-09-26 23:05:17"
+    },
+    {
+      "id": 2,
+      "operator_id": "SCOUT-SOLDIER-04",
+      "callsign": "PHANTOM_RECON",
+      "latitude": 35.4712,
+      "longitude": -97.5135,
+      "elevation_m": 379.1,
+      "mgrs_grid": "14S TA 48650 47120",
+      "distress_active": true,
+      "battery_pct": 42.0,
+      "recorded_at": "2026-09-26 23:05:17"
+    }
+  ],
+  "uas_sar_waypoints": [
+    {
+      "id": 19,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "EMERGENCY_SAR_OVERWATCH_PHANTOM",
+      "zone_id": "SAR_INTERCEPT_TRANSIT",
+      "altitude_m": 85.0,
+      "latitude": 35.4695,
+      "longitude": -97.5145,
+      "battery_pct": 95.19999999999999,
+      "flight_status": "INBOUND_SAR_INTERCEPT",
+      "recorded_at": "2026-09-26 23:08:51"
+    },
+    {
+      "id": 20,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "EMERGENCY_SAR_OVERWATCH_PHANTOM",
+      "zone_id": "OVERWATCH_STATION_PHANTOM",
+      "altitude_m": 100.0,
+      "latitude": 35.4712,
+      "longitude": -97.5135,
+      "battery_pct": 94.5,
+      "flight_status": "STATIONARY_OPTICAL_OVERWATCH",
+      "recorded_at": "2026-09-26 23:08:51"
+    }
+  ],
+  "statutory_compliance": [
+    "DFARS_252.227_7018",
+    "OKLAHOMA_HB_2992",
+    "NIST_SP_800_82_REV2"
+  ]
+}
