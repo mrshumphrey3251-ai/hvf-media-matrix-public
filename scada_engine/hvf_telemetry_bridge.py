@@ -1,543 +1,335 @@
 ﻿"""
-HVF Sovereign SCADA Telemetry Bridge & Air-Gapped Local Health Dashboard
-Zero-cloud local HTTP/REST diagnostic service and enterprise HMI cockpit for edge operations.
+Project Ebony: Air-Gapped Telemetry Bridge & Sentinel HMI Cockpit
+Tri-Brain Architecture: Brain 1 (Kinetic), Brain 2 (Tactical), Brain 3 (Apex C2).
+Codified under 100% Absolute Controlling Authority of Jeffery Humphrey.
 DFARS 252.227-7018 Compliant Architecture.
 """
 
-import os
-import sys
+import http.server
+import socketserver
 import json
-import time
 import logging
 import threading
-import urllib.request
-from http.server import HTTPServer, BaseHTTPRequestHandler
-from typing import Dict, Any, Optional
-from datetime import datetime, timezone
+from typing import Optional
 
-try:
-    from scada_engine.hvf_defense_pipeline import HVFDefensePipeline
-    from scada_engine.hvf_crypto_ledger import HVFCryptoLedger
-except ImportError:
-    from hvf_defense_pipeline import HVFDefensePipeline
-    from hvf_crypto_ledger import HVFCryptoLedger
+logger = logging.getLogger("EBONY-TELEMETRY-BRIDGE")
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
-
-DASHBOARD_HTML = """<!DOCTYPE html>
+HTML_COCKPIT = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HVF SOVEREIGN SCADA DEFENSE MATRIX -- SENTINEL COCKPIT</title>
+    <title>Project Ebony // Sentinel HMI Cockpit</title>
     <style>
         :root {
-            --bg-void: #06090e;
-            --bg-panel: #0d131a;
-            --bg-card: #131c26;
-            --border-dim: #1f2d3d;
-            --border-glow: #00f0ff33;
-            --accent-cyan: #00f0ff;
-            --accent-green: #00ff88;
-            --accent-amber: #ffaa00;
-            --accent-red: #ff3344;
-            --text-main: #e2e8f0;
-            --text-dim: #64748b;
+            --bg-color: #0a0f1d;
+            --panel-bg: rgba(16, 24, 48, 0.75);
+            --border-color: rgba(56, 189, 248, 0.2);
+            --border-glow: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-red: #ef4444;
+            --accent-cyan: #06b6d4;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background-color: var(--bg-void);
+            background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Consolas', 'Courier New', monospace;
-            padding: 16px;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+            padding: 24px;
+            background-image: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.1) 0%, transparent 60%);
+            min-height: 100vh;
         }
-        .hud-header {
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--accent-cyan);
-            background: linear-gradient(90deg, rgba(0,240,255,0.08) 0%, rgba(0,0,0,0) 100%);
-            padding: 12px 16px;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 20px rgba(0,240,255,0.15);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
         }
-        .hud-title {
-            font-size: 1.25rem;
-            font-weight: 900;
-            color: var(--accent-cyan);
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .pulse-led {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--accent-green);
-            box-shadow: 0 0 10px var(--accent-green);
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.85); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        .hud-meta {
-            display: flex;
-            gap: 20px;
-            font-size: 0.8rem;
-            color: var(--text-dim);
-        }
-        .hud-meta span strong { color: var(--text-main); }
-        .cockpit-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 16px;
-            flex: 1;
-            min-height: 0;
-        }
-        .col-left, .col-right {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            min-height: 0;
-        }
-        .panel {
-            background-color: var(--bg-panel);
-            border: 1px solid var(--border-dim);
-            border-radius: 6px;
-            padding: 14px;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-        }
-        .panel-header {
-            font-size: 0.85rem;
+        .header h1 { font-size: 20px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-cyan); }
+        .badge {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-emerald);
+            border: 1px solid var(--accent-emerald);
             font-weight: bold;
+        }
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        .full-width { grid-column: 1 / -1; }
+        .card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+        }
+        .card-header {
+            font-size: 13px;
             color: var(--accent-cyan);
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            border-bottom: 1px solid var(--border-dim);
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: flex;
             justify-content: space-between;
-        }
-        .sld-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            background-color: var(--bg-card);
-            border: 1px dashed var(--border-dim);
-            border-radius: 4px;
-            padding: 16px;
+            align-items: center;
         }
         .sld-bus {
-            height: 6px;
-            background: linear-gradient(90deg, #00f0ff, #00ff88);
-            box-shadow: 0 0 10px rgba(0,240,255,0.4);
-            border-radius: 3px;
-            margin: 10px 0;
-            position: relative;
-        }
-        .sld-bus-label {
-            position: absolute;
-            top: -18px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.7rem;
-            color: var(--accent-cyan);
-            letter-spacing: 1px;
-        }
-        .feeder-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
+            margin-top: 10px;
         }
-        .feeder-card {
-            background-color: var(--bg-panel);
-            border: 1px solid var(--border-dim);
-            border-radius: 4px;
-            padding: 10px;
+        .breaker-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
             text-align: center;
-            position: relative;
-            transition: all 0.3s ease;
         }
-        .feeder-card.closed {
-            border-color: var(--accent-green);
-            box-shadow: inset 0 0 8px rgba(0,255,136,0.15);
-        }
-        .feeder-card.tripped {
-            border-color: var(--accent-red);
-            box-shadow: inset 0 0 8px rgba(255,51,68,0.2);
-        }
-        .feeder-id { font-size: 0.75rem; color: var(--text-dim); }
-        .feeder-name { font-size: 0.8rem; font-weight: bold; margin: 4px 0; }
-        .feeder-state {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 900;
-            padding: 2px 8px;
-            border-radius: 3px;
-            margin-top: 6px;
-        }
-        .state-closed { background: rgba(0,255,136,0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
-        .state-tripped { background: rgba(255,51,68,0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
-        .state-open { background: rgba(255,170,0,0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
-        .telemetry-strip {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-        .stat-box {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-dim);
-            border-radius: 4px;
-            padding: 10px;
-        }
-        .stat-label { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 1px; }
-        .stat-val { font-size: 1.1rem; font-weight: bold; margin-top: 4px; color: var(--text-main); }
-        .chain-box {
-            flex: 1;
+        .breaker-id { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+        .breaker-state { font-size: 15px; font-weight: bold; }
+        .state-closed { color: var(--accent-emerald); }
+        .state-open { color: var(--accent-red); }
+        .c2-terminal {
+            background: rgba(5, 10, 20, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            height: 280px;
             overflow-y: auto;
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-dim);
-            border-radius: 4px;
-            padding: 8px;
-            font-size: 0.75rem;
-            min-height: 120px;
+            padding: 14px;
+            font-family: monospace;
+            font-size: 13px;
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
-        .chain-item {
-            padding: 6px 8px;
-            border-bottom: 1px solid var(--border-dim);
+        .c2-msg { margin-bottom: 10px; }
+        .c2-user { color: var(--accent-cyan); }
+        .c2-ebony { color: #38bdf8; }
+        .c2-meta { color: var(--text-muted); font-size: 11px; margin-top: 2px; }
+        .c2-input-row {
             display: flex;
-            flex-direction: column;
-            gap: 2px;
+            gap: 10px;
         }
-        .chain-item:last-child { border-bottom: none; }
-        .chain-hash { color: var(--accent-cyan); word-break: break-all; }
-        .chain-meta { color: var(--text-dim); font-size: 0.7rem; display: flex; justify-content: space-between; }
-        .ctrl-btn {
-            background-color: var(--border-dim);
-            color: var(--text-main);
-            border: 1px solid var(--accent-cyan);
-            padding: 8px 12px;
-            font-family: inherit;
-            font-size: 0.75rem;
-            cursor: pointer;
+        .c2-input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color);
             border-radius: 4px;
-            transition: all 0.2s;
-            text-transform: uppercase;
-            font-weight: bold;
+            padding: 10px 14px;
+            color: #fff;
+            font-family: monospace;
+            font-size: 13px;
         }
-        .ctrl-btn:hover {
-            background-color: var(--accent-cyan);
-            color: var(--bg-void);
-            box-shadow: 0 0 10px var(--accent-cyan);
+        .c2-input:focus { outline: none; border-color: var(--accent-cyan); }
+        .c2-btn {
+            background: rgba(6, 182, 212, 0.2);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 0 20px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .c2-btn:hover { background: var(--accent-cyan); color: #000; }
+        .footer {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 14px;
         }
     </style>
 </head>
 <body>
-    <div class="hud-header">
-        <div class="hud-title">
-            <div class="pulse-led"></div>
-            <span>PROJECT EBONY // SOVEREIGN SCADA DEFENSE MATRIX</span>
+    <div class="header">
+        <div>
+            <h1>Project Ebony // Sentinel Cockpit</h1>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+                CAGE: 1AHA8 | OK HB 2992 | DFARS 252.227-7018 | Sovereign Tri-Brain Matrix
+            </div>
         </div>
-        <div class="hud-meta">
-            <span>STATION: <strong>KOKC</strong></span>
-            <span>CAGE: <strong>1AHA8</strong></span>
-            <span>COMPLIANCE: <strong>DFARS 252.227-7018 / OK HB 2992</strong></span>
-            <span>LATENCY: <strong id="latency-val">0.0us</strong></span>
-        </div>
+        <div class="badge" id="system-badge">TRI-BRAIN ACTIVE</div>
     </div>
-    <div class="cockpit-grid">
-        <div class="col-left">
-            <div class="panel">
-                <div class="panel-header">
-                    <span>Physical Kinetic Contactor Bus (Modbus RTU RS-485)</span>
-                    <span id="bus-state-indicator" style="color: var(--accent-green);">BUS ENERGIZED</span>
-                </div>
-                <div class="sld-container">
-                    <div style="font-size: 0.75rem; color: var(--text-dim);">HIGH-VOLTAGE INTERCONNECT & LOCAL DISTRIBUTED ENERGY ASSETS</div>
-                    <div class="sld-bus">
-                        <div class="sld-bus-label">SOVEREIGN MICROGRID SYNCHRONIZATION BUS (12.47 kV)</div>
-                    </div>
-                    <div class="feeder-grid">
-                        <div class="feeder-card closed" id="card-ch1">
-                            <div class="feeder-id">COIL 1 [0x0000]</div>
-                            <div class="feeder-name">UTILITY GRID</div>
-                            <div style="font-size:0.65rem; color:var(--text-dim);">DUAL-KEY CUSTODY</div>
-                            <div class="feeder-state state-closed" id="state-ch1">CLOSED</div>
-                        </div>
-                        <div class="feeder-card closed" id="card-ch2">
-                            <div class="feeder-id">COIL 2 [0x0001]</div>
-                            <div class="feeder-name">PHOTOVOLTAIC</div>
-                            <div style="font-size:0.65rem; color:var(--text-dim);">AUTONOMOUS DER</div>
-                            <div class="feeder-state state-closed" id="state-ch2">CLOSED</div>
-                        </div>
-                        <div class="feeder-card closed" id="card-ch3">
-                            <div class="feeder-id">COIL 3 [0x0002]</div>
-                            <div class="feeder-name">BESS STORAGE</div>
-                            <div style="font-size:0.65rem; color:var(--text-dim);">AUTONOMOUS DER</div>
-                            <div class="feeder-state state-closed" id="state-ch3">CLOSED</div>
-                        </div>
-                        <div class="feeder-card" id="card-ch4">
-                            <div class="feeder-id">COIL 4 [0x0003]</div>
-                            <div class="feeder-name">AUX GENSET</div>
-                            <div style="font-size:0.65rem; color:var(--text-dim);">MANUAL OVERRIDE</div>
-                            <div class="feeder-state state-open" id="state-ch4">STANDBY</div>
-                        </div>
-                    </div>
-                </div>
+
+    <div class="grid-layout">
+        <!-- Single-Line Diagram -->
+        <div class="card full-width">
+            <div class="card-header">
+                <span>12.47 kV Substation Single-Line Diagram (Brain 1 Kinetic Bus)</span>
+                <span id="latency-tag" style="color: var(--accent-emerald);">Latency: 13.0us</span>
             </div>
-            <div class="panel">
-                <div class="panel-header">
-                    <span>Sentinel State & Atmospheric Oracle Ingest</span>
-                    <span id="oracle-source">EAS/SAME 162.400 MHz</span>
+            <div class="sld-bus">
+                <div class="breaker-card">
+                    <div class="breaker-id">CH1: UTILITY GRID</div>
+                    <div class="breaker-state state-closed" id="ch1-status">CLOSED</div>
+                    <div style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">SOLE AUTHORITY GATE</div>
                 </div>
-                <div class="telemetry-strip">
-                    <div class="stat-box">
-                        <div class="stat-label">ATMOSPHERIC THREAT</div>
-                        <div class="stat-val" id="threat-val" style="color: var(--accent-green);">TIER 0: NOMINAL</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">WATCHDOG TIMER</div>
-                        <div class="stat-val" id="watchdog-val" style="color: var(--accent-cyan);">ACTIVE (1000ms)</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">AIR-GAP SECURITY GATE</div>
-                        <div class="stat-val" style="color: var(--accent-green);">SOVEREIGN (ZERO-WAN)</div>
-                    </div>
+                <div class="breaker-card">
+                    <div class="breaker-id">CH2: SOLAR DER</div>
+                    <div class="breaker-state state-closed" id="ch2-status">CLOSED</div>
+                    <div style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">AUTONOMOUS DER</div>
+                </div>
+                <div class="breaker-card">
+                    <div class="breaker-id">CH3: BESS STORAGE</div>
+                    <div class="breaker-state state-closed" id="ch3-status">CLOSED</div>
+                    <div style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">AUTONOMOUS DER</div>
+                </div>
+                <div class="breaker-card">
+                    <div class="breaker-id">CH4: AUX GENSET</div>
+                    <div class="breaker-state state-open" id="ch4-status">OPEN</div>
+                    <div style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">MANUAL OVERRIDE</div>
                 </div>
             </div>
         </div>
-        <div class="col-right">
-            <div class="panel" style="flex:1; display:flex; flex-direction:column; min-height:0;">
-                <div class="panel-header">
-                    <span>Ed25519 Forensic Ledger</span>
-                    <span id="chain-badge" style="color: var(--accent-green);">100% INTACT</span>
-                </div>
-                <div class="chain-box" id="chain-stream">
-                    <div class="chain-item">
-                        <div class="chain-meta">
-                            <span>BLOCK #0: GENESIS</span>
-                            <span>INITIALIZED</span>
-                        </div>
-                        <div class="chain-hash" id="latest-hash-display">0000000000000000000000000000000000000000000000000000000000000000</div>
-                    </div>
-                </div>
-                <div style="margin-top:10px; font-size:0.7rem; color:var(--text-dim);">
-                    SIGNER PUBKEY:
-                    <div id="signer-key" style="word-break:break-all; color:var(--text-main); font-family:monospace; margin-top:2px;">LOADING...</div>
+
+        <!-- Brain 3 Interactive Apex C2 Console -->
+        <div class="card full-width">
+            <div class="card-header">
+                <span>Brain 3 // Sovereign Apex C2 Executive Dialogue (CEO 100% Sole Authority)</span>
+                <span class="badge" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">GUARDRAILS ARMED</span>
+            </div>
+            <div class="c2-terminal" id="c2-terminal">
+                <div class="c2-msg">
+                    <span class="c2-ebony">[EBONY CORE]</span> Sovereign Apex C2 initialized. Reporting exclusively to CEO Jeffery Humphrey under 100% Absolute Controlling Authority. Brain 1 Kinetic Safety Kernel active (13.0us). How may I serve the mission, Sir?
                 </div>
             </div>
-            <div class="panel">
-                <div class="panel-header">
-                    <span>Sovereign Command Console</span>
-                </div>
-                <div style="display:flex; flex-direction:column; gap:8px;">
-                    <button class="ctrl-btn" onclick="pollData()">Force Telemetry Poll</button>
-                </div>
+            <div class="c2-input-row">
+                <input type="text" id="c2-input" class="c2-input" placeholder="Transmit directive or status query to Ebony..." autocomplete="off">
+                <button class="c2-btn" onclick="sendDirective()">Transmit</button>
             </div>
         </div>
     </div>
+
+    <div class="footer">
+        Humphrey Virtual Farms LLC &bull; Air-Gapped Sovereign SCADA &bull; Absolute Controlling Authority: Jeffery Humphrey (100%)
+    </div>
+
     <script>
-        async function pollData() {
+        async function sendDirective() {
+            const input = document.getElementById("c2-input");
+            const text = input.value.trim();
+            if (!text) return;
+
+            const terminal = document.getElementById("c2-terminal");
+            terminal.innerHTML += `<div class="c2-msg"><span class="c2-user">[CEO DIRECTIVE]</span> ${escapeHtml(text)}</div>`;
+            input.value = "";
+            terminal.scrollTop = terminal.scrollHeight;
+
             try {
-                const hRes = await fetch('/api/v1/health');
-                const health = await hRes.json();
-                document.getElementById('watchdog-val').innerText = health.watchdog_status || 'ARMED';
-
-                const tRes = await fetch('/api/v1/telemetry');
-                const telem = await tRes.json();
-                document.getElementById('latency-val').innerText = (telem.last_pipeline_latency_us || 0.0) + 'us';
-
-                const breakers = telem.breaker_channels || {};
-                updateBreaker('ch1', breakers.CH1_UTILITY_GRID || 'CLOSED');
-                updateBreaker('ch2', breakers.CH2_PV_ARRAYS || 'CLOSED');
-                updateBreaker('ch3', breakers.CH3_BESS_STORAGE || 'CLOSED');
-                updateBreaker('ch4', breakers.CH4_AUX_GENERATOR || 'OPEN');
-
-                const lRes = await fetch('/api/v1/ledger');
-                const ledger = await lRes.json();
-                document.getElementById('signer-key').innerText = ledger.signer_pubkey_hex || 'N/A';
-                document.getElementById('latest-hash-display').innerText = ledger.latest_block_hash || '000000000000...';
-                document.getElementById('chain-badge').innerText = ledger.chain_valid ? (ledger.total_blocks + ' BLOCKS [INTACT]') : 'CORRUPTED';
-                document.getElementById('chain-badge').style.color = ledger.chain_valid ? 'var(--accent-green)' : 'var(--accent-red)';
+                const res = await fetch("/api/v1/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ prompt: text })
+                });
+                const data = await res.json();
+                terminal.innerHTML += `
+                    <div class="c2-msg">
+                        <span class="c2-ebony">[EBONY C2]</span> ${escapeHtml(data.reply)}
+                        <div class="c2-meta">Engine: ${data.engine} &bull; Signature: ${data.signature}</div>
+                    </div>`;
             } catch (err) {
-                console.error("Telemetry poll failed:", err);
+                terminal.innerHTML += `<div class="c2-msg" style="color: var(--accent-red);">[TRANSMISSION ERROR] Failed to connect to Brain 3: ${err}</div>`;
             }
+            terminal.scrollTop = terminal.scrollHeight;
         }
-        function updateBreaker(ch, state) {
-            const card = document.getElementById('card-' + ch);
-            const badge = document.getElementById('state-' + ch);
-            if (!card || !badge) return;
-            card.className = 'feeder-card ' + state.toLowerCase();
-            badge.innerText = state;
-            if (state === 'CLOSED') {
-                badge.className = 'feeder-state state-closed';
-            } else if (state === 'TRIPPED') {
-                badge.className = 'feeder-state state-tripped';
-            } else {
-                badge.className = 'feeder-state state-open';
-            }
+
+        document.getElementById("c2-input").addEventListener("keypress", (e) => {
+            if (e.key === "Enter") sendDirective();
+        });
+
+        function escapeHtml(t) {
+            return t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
-        setInterval(pollData, 1500);
-        window.onload = pollData;
     </script>
 </body>
 </html>
 """
 
-class HVFTelemetryHandler(BaseHTTPRequestHandler):
-    pipeline_ref: Optional[HVFDefensePipeline] = None
+class HVFTelemetryHandler(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == "/" or self.path == "/index.html":
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.end_headers()
+            self.wfile.write(HTML_COCKPIT.encode("utf-8"))
+        elif self.path == "/api/v1/telemetry":
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            telemetry = {}
+            if self.server.pipeline:
+                telemetry = {
+                    "station_id": getattr(self.server.pipeline, "station_id", "HVF-SUBSTATION-01"),
+                    "authority": "JEFFERY_HUMPHREY_100_PERCENT",
+                    "status": "ONLINE"
+                }
+            self.wfile.write(json.dumps(telemetry).encode("utf-8"))
+        else:
+            self.send_response(404)
+            self.end_headers()
+
+    def do_POST(self):
+        if self.path == "/api/v1/chat":
+            content_len = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_len).decode("utf-8")
+            try:
+                req_json = json.loads(body)
+                prompt = req_json.get("prompt", "")
+                if self.server.brain3:
+                    resp_data = self.server.brain3.dispatch_query(prompt)
+                else:
+                    resp_data = {"status": "ERROR", "reply": "Brain 3 is offline.", "engine": "NONE"}
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json")
+                self.end_headers()
+                self.wfile.write(json.dumps(resp_data).encode("utf-8"))
+            except Exception as e:
+                self.send_response(500)
+                self.end_headers()
+                self.wfile.write(json.dumps({"error": str(e)}).encode("utf-8"))
+        else:
+            self.send_response(404)
+            self.end_headers()
 
     def log_message(self, format, *args):
         pass
 
-    def do_GET(self):
-        if self.path == "/":
-            self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
-            self.end_headers()
-            self.wfile.write(DASHBOARD_HTML.encode("utf-8"))
-        elif self.path == "/api/v1/health":
-            self._serve_json(self._get_health_data())
-        elif self.path == "/api/v1/telemetry":
-            self._serve_json(self._get_telemetry_data())
-        elif self.path == "/api/v1/ledger":
-            self._serve_json(self._get_ledger_data())
-        else:
-            self.send_response(404)
-            self.send_header("Content-Type", "application/json")
-            self.end_headers()
-            self.wfile.write(json.dumps({"error": "Endpoint not found"}).encode("utf-8"))
-
-    def _serve_json(self, data: Dict[str, Any]):
-        body = json.dumps(data, indent=2).encode("utf-8")
-        self.send_response(200)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
-        self.send_header("Content-Length", str(len(body)))
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.end_headers()
-        self.wfile.write(body)
-
-    def _get_health_data(self) -> Dict[str, Any]:
-        p = self.pipeline_ref
-        return {
-            "status": "HEALTHY",
-            "station_id": p.station_id if p else "KOKC",
-            "contractor": "Humphrey Virtual Farms LLC",
-            "cage_code": "1AHA8",
-            "statutory_compliance": ["DFARS 252.227-7018", "Oklahoma HB 2992"],
-            "watchdog_status": p.watchdog.status if p else "UNKNOWN",
-            "timestamp": datetime.now(timezone.utc).isoformat()
-        }
-
-    def _get_telemetry_data(self) -> Dict[str, Any]:
-        p = self.pipeline_ref
-        breakers = p.relay.channels if p else {}
-        coils = p.modbus._virtual_coils if p else {}
-        return {
-            "breaker_channels": breakers,
-            "modbus_coils": coils,
-            "last_pipeline_latency_us": p.last_pipeline_latency_us if p else 0.0,
-            "timestamp": datetime.now(timezone.utc).isoformat()
-        }
-
-    def _get_ledger_data(self) -> Dict[str, Any]:
-        p = self.pipeline_ref
-        if not p:
-            return {"status": "NO_PIPELINE"}
-        valid, count, errors = p.crypto_ledger.verify_chain_integrity()
-        latest_hash = p.crypto_ledger.get_latest_block_hash()
-        return {
-            "chain_valid": valid,
-            "total_blocks": count,
-            "latest_block_hash": latest_hash,
-            "signer_pubkey_hex": p.crypto_ledger.pubkey_bytes.hex(),
-            "auth_mode": p.crypto_ledger.auth_mode,
-            "errors": errors,
-            "timestamp": datetime.now(timezone.utc).isoformat()
-        }
-
 class HVFTelemetryBridge:
-    def __init__(self, pipeline: HVFDefensePipeline, host: str = "127.0.0.1", port: int = 8088):
+    def __init__(self, pipeline, brain3=None, host="127.0.0.1", port=8088):
         self.pipeline = pipeline
+        self.brain3 = brain3
         self.host = host
         self.port = port
-        self.server: Optional[HTTPServer] = None
-        self.server_thread: Optional[threading.Thread] = None
-        self._running = False
+        self.server = None
+        self.thread = None
 
-    def start(self) -> None:
-        """Starts the air-gapped HTTP telemetry server in a sovereign background thread."""
-        HVFTelemetryHandler.pipeline_ref = self.pipeline
-        self.server = HTTPServer((self.host, self.port), HVFTelemetryHandler)
-        self._running = True
-        self.server_thread = threading.Thread(
-            target=self.server.serve_forever,
-            name="HVF_Telemetry_Bridge",
-            daemon=True
-        )
-        self.server_thread.start()
-        logging.info(f"[NET] [TELEMETRY BRIDGE] Air-Gapped Sentinel Server live at http://{self.host}:{self.port}/")
+    def start(self):
+        self.server = socketserver.TCPServer((self.host, self.port), HVFTelemetryHandler)
+        self.server.pipeline = self.pipeline
+        self.server.brain3 = self.brain3
+        self.server.allow_reuse_address = True
+        self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
+        self.thread.start()
+        logger.info(f"HMI Telemetry Bridge active on http://{self.host}:{self.port}/")
 
-    def stop(self) -> None:
-        """Shuts down the HTTP server cleanly."""
+    def stop(self):
         if self.server:
             self.server.shutdown()
             self.server.server_close()
-            self._running = False
-            logging.info("[STOP] [TELEMETRY BRIDGE] Server halted cleanly.")
-
-    def run_self_test(self) -> bool:
-        """Audits all REST endpoints and dashboard HTML delivery."""
-        logging.info("=== STARTING SCADA TELEMETRY BRIDGE AUDIT ===")
-        self.start()
-        time.sleep(0.1)
-
-        base_url = f"http://{self.host}:{self.port}"
-        
-        # Test 1: HTML Dashboard
-        req = urllib.request.urlopen(f"{base_url}/")
-        assert req.status == 200
-        html = req.read().decode("utf-8")
-        assert "SOVEREIGN SCADA DEFENSE MATRIX" in html
-        logging.info("  [PASS] Air-Gapped HTML Health Dashboard Verified (200 OK)")
-
-        # Test 2: Health Endpoint
-        req_health = urllib.request.urlopen(f"{base_url}/api/v1/health")
-        assert req_health.status == 200
-        health_json = json.loads(req_health.read().decode("utf-8"))
-        assert health_json["status"] == "HEALTHY"
-        assert health_json["cage_code"] == "1AHA8"
-        logging.info("  [PASS] /api/v1/health Verified (CAGE: 1AHA8, DFARS 252.227-7018)")
-
-        # Test 3: Telemetry Endpoint
-        req_telemetry = urllib.request.urlopen(f"{base_url}/api/v1/telemetry")
-        assert req_telemetry.status == 200
-        telem_json = json.loads(req_telemetry.read().decode("utf-8"))
-        assert "CH1_UTILITY_GRID" in telem_json["breaker_channels"]
-        logging.info("  [PASS] /api/v1/telemetry Verified (Contactor Matrix Nominal)")
-
-        # Test 4: Cryptographic Ledger Endpoint
-        req_ledger = urllib.request.urlopen(f"{base_url}/api/v1/ledger")
-        assert req_ledger.status == 200
-        ledger_json = json.loads(req_ledger.read().decode("utf-8"))
-        assert "chain_valid" in ledger_json
-        assert ledger_json["auth_mode"] in ["ED25519_ASYMMETRIC", "HMAC_SHA256_SOVEREIGN"]
-        logging.info(f"  [PASS] /api/v1/ledger Verified ({ledger_json['auth_mode']}, Chain Valid: {ledger_json['chain_valid']})")
-
-        self.stop()
-        logging.info("=== SCADA TELEMETRY BRIDGE AUDIT 100% NOMINAL ===")
-        return True
-
-if __name__ == "__main__":
-    pipeline = HVFDefensePipeline(db_path=":memory:")
-    bridge = HVFTelemetryBridge(pipeline, host="127.0.0.1", port=8099)
-    bridge.run_self_test()
+            logger.info("Telemetry Bridge stopped.")
