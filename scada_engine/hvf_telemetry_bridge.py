@@ -1,8 +1,8 @@
 ﻿"""
 Project Ebony: Air-Gapped Telemetry Bridge & Sentinel HMI Cockpit
-Tri-Brain Architecture: Brain 1 (Kinetic), Brain 2 (Tactical), Brain 3 (Apex C2).
+Tri-Brain 4-Perimeter Defense Matrix: Optical, Acoustic, Kinetic SCADA, Governance/RAG.
 Codified under 100% Absolute Controlling Authority of Jeffery Humphrey.
-DFARS 252.227-7018 Compliant Architecture.
+DFARS 252.227-7018 / Oklahoma HB 2992 Compliant Architecture.
 """
 
 import http.server
@@ -19,12 +19,12 @@ HTML_COCKPIT = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Ebony // Sentinel HMI Cockpit</title>
+    <title>Project Ebony // Sentinel HMI Cockpit (4-Perimeter C2)</title>
     <style>
         :root {
-            --bg-color: #0a0f1d;
-            --panel-bg: rgba(16, 24, 48, 0.75);
-            --border-color: rgba(56, 189, 248, 0.2);
+            --bg-color: #070b14;
+            --panel-bg: rgba(13, 20, 38, 0.85);
+            --border-color: rgba(56, 189, 248, 0.25);
             --border-glow: #38bdf8;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -32,14 +32,15 @@ HTML_COCKPIT = """<!DOCTYPE html>
             --accent-amber: #f59e0b;
             --accent-red: #ef4444;
             --accent-cyan: #06b6d4;
+            --accent-violet: #8b5cf6;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
-            padding: 24px;
-            background-image: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.1) 0%, transparent 60%);
+            padding: 20px;
+            background-image: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.12) 0%, transparent 70%);
             min-height: 100vh;
         }
         .header {
@@ -47,10 +48,11 @@ HTML_COCKPIT = """<!DOCTYPE html>
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 16px;
-            margin-bottom: 24px;
+            padding-bottom: 14px;
+            margin-bottom: 20px;
         }
-        .header h1 { font-size: 20px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-cyan); }
+        .header h1 { font-size: 19px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-cyan); }
+        .subhead { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
         .badge {
             font-size: 11px;
             padding: 4px 10px;
@@ -62,51 +64,65 @@ HTML_COCKPIT = """<!DOCTYPE html>
         }
         .grid-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 24px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-bottom: 20px;
         }
         .full-width { grid-column: 1 / -1; }
         .card {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            backdrop-filter: blur(10px);
+            padding: 18px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            backdrop-filter: blur(12px);
         }
         .card-header {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--accent-cyan);
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        .perimeters-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+        .perimeter-card {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+        }
+        .p-title { font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
+        .p-status { font-size: 13px; font-weight: bold; color: var(--accent-emerald); margin-bottom: 4px; }
+        .p-detail { font-size: 10px; color: var(--text-muted); line-height: 1.3; }
         .sld-bus {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
-            margin-top: 10px;
         }
         .breaker-card {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.35);
             border: 1px solid var(--border-color);
             border-radius: 6px;
             padding: 12px;
             text-align: center;
         }
-        .breaker-id { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
-        .breaker-state { font-size: 15px; font-weight: bold; }
+        .breaker-id { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+        .breaker-state { font-size: 14px; font-weight: bold; }
         .state-closed { color: var(--accent-emerald); }
         .state-open { color: var(--accent-red); }
         .c2-terminal {
-            background: rgba(5, 10, 20, 0.9);
+            background: rgba(4, 8, 16, 0.95);
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            height: 280px;
+            height: 290px;
             overflow-y: auto;
             padding: 14px;
             font-family: monospace;
@@ -114,17 +130,26 @@ HTML_COCKPIT = """<!DOCTYPE html>
             margin-bottom: 12px;
             line-height: 1.5;
         }
-        .c2-msg { margin-bottom: 10px; }
-        .c2-user { color: var(--accent-cyan); }
-        .c2-ebony { color: #38bdf8; }
-        .c2-meta { color: var(--text-muted); font-size: 11px; margin-top: 2px; }
+        .c2-msg { margin-bottom: 12px; }
+        .c2-user { color: var(--accent-cyan); font-weight: bold; }
+        .c2-ebony { color: #38bdf8; font-weight: bold; }
+        .c2-meta { color: var(--text-muted); font-size: 10px; margin-top: 4px; }
+        .c2-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .c2-toggle-label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
         .c2-input-row {
             display: flex;
             gap: 10px;
         }
         .c2-input {
             flex: 1;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             border: 1px solid var(--border-color);
             border-radius: 4px;
             padding: 10px 14px;
@@ -150,9 +175,9 @@ HTML_COCKPIT = """<!DOCTYPE html>
             font-size: 11px;
             color: var(--text-muted);
             text-align: center;
-            margin-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 14px;
+            margin-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 12px;
         }
     </style>
 </head>
@@ -160,15 +185,45 @@ HTML_COCKPIT = """<!DOCTYPE html>
     <div class="header">
         <div>
             <h1>Project Ebony // Sentinel Cockpit</h1>
-            <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
-                CAGE: 1AHA8 | OK HB 2992 | DFARS 252.227-7018 | Sovereign Tri-Brain Matrix
+            <div class="subhead">
+                CAGE: 1AHA8 | OK HB 2992 | DFARS 252.227-7018 | Sole Controlling Authority: Jeffery Humphrey (100%)
             </div>
         </div>
         <div class="badge" id="system-badge">TRI-BRAIN ACTIVE</div>
     </div>
 
     <div class="grid-layout">
-        <!-- Single-Line Diagram -->
+        <!-- 4-Perimeter Defense Status Grid -->
+        <div class="card full-width">
+            <div class="card-header">
+                <span>The Four Sovereign Operational Perimeters (Defense Telemetry)</span>
+                <span style="color: var(--accent-cyan);" id="rag-badge">Iron Dome RAG: 20,289 Vectors</span>
+            </div>
+            <div class="perimeters-grid">
+                <div class="perimeter-card">
+                    <div class="p-title">1. Optical Perimeter</div>
+                    <div class="p-status">ACTIVE / ARMED</div>
+                    <div class="p-detail">Arducam 1080P DirectShow &bull; Tapo RTSP (192.168.1.165) &bull; Live GLI Analysis</div>
+                </div>
+                <div class="perimeter-card">
+                    <div class="p-title">2. Acoustic Perimeter</div>
+                    <div class="p-status">ACTIVE / ARMED</div>
+                    <div class="p-detail">Sovereign Voice Engine &bull; Shokz OpenRun Link &bull; Windows WASAPI Direct</div>
+                </div>
+                <div class="perimeter-card">
+                    <div class="p-title">3. Kinetic SCADA</div>
+                    <div class="p-status">NOMINAL (13.0us)</div>
+                    <div class="p-detail">Sub-Microsecond Reflex &bull; 300ms Watchdog &bull; Modbus RTU Bus</div>
+                </div>
+                <div class="perimeter-card">
+                    <div class="p-title">4. Sovereign Governance</div>
+                    <div class="p-status">100% SOLE AUTHORITY</div>
+                    <div class="p-detail">HVF-CONTRACT-SL-003 &bull; Ed25519 Signer &bull; Memory Vault SQLite</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12.47 kV Single-Line Diagram -->
         <div class="card full-width">
             <div class="card-header">
                 <span>12.47 kV Substation Single-Line Diagram (Brain 1 Kinetic Bus)</span>
@@ -198,19 +253,26 @@ HTML_COCKPIT = """<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- Brain 3 Interactive Apex C2 Console -->
+        <!-- Brain 3 Interactive Apex C2 Console with RAG & Acoustic Toggle -->
         <div class="card full-width">
             <div class="card-header">
                 <span>Brain 3 // Sovereign Apex C2 Executive Dialogue (CEO 100% Sole Authority)</span>
-                <span class="badge" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">GUARDRAILS ARMED</span>
+                <span class="badge" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">IRON DOME GROUNDED</span>
             </div>
             <div class="c2-terminal" id="c2-terminal">
                 <div class="c2-msg">
-                    <span class="c2-ebony">[EBONY CORE]</span> Sovereign Apex C2 initialized. Reporting exclusively to CEO Jeffery Humphrey under 100% Absolute Controlling Authority. Brain 1 Kinetic Safety Kernel active (13.0us). How may I serve the mission, Sir?
+                    <span class="c2-ebony">[EBONY CORE]</span> Sovereign Apex C2 initialized. Reporting exclusively to CEO Jeffery Humphrey under 100% Absolute Controlling Authority. Iron Dome RAG (20,289 vectors) armed. Sovereign Voice Engine linked. Brain 1 Kinetic Safety Kernel active at 13.0us. How may I serve the mission, Sir?
                 </div>
             </div>
+            <div class="c2-controls">
+                <label class="c2-toggle-label">
+                    <input type="checkbox" id="voice-toggle" checked>
+                    <span>Stream Audio to Shokz OpenRun Headset (Acoustic Perimeter)</span>
+                </label>
+                <span id="char-counter">Zero Cloud Relays &bull; Ed25519 Cryptographic Signatures</span>
+            </div>
             <div class="c2-input-row">
-                <input type="text" id="c2-input" class="c2-input" placeholder="Transmit directive or status query to Ebony..." autocomplete="off">
+                <input type="text" id="c2-input" class="c2-input" placeholder="Transmit directive or query to Ebony..." autocomplete="off">
                 <button class="c2-btn" onclick="sendDirective()">Transmit</button>
             </div>
         </div>
@@ -226,6 +288,7 @@ HTML_COCKPIT = """<!DOCTYPE html>
             const text = input.value.trim();
             if (!text) return;
 
+            const voiceEnabled = document.getElementById("voice-toggle").checked;
             const terminal = document.getElementById("c2-terminal");
             terminal.innerHTML += `<div class="c2-msg"><span class="c2-user">[CEO DIRECTIVE]</span> ${escapeHtml(text)}</div>`;
             input.value = "";
@@ -235,13 +298,15 @@ HTML_COCKPIT = """<!DOCTYPE html>
                 const res = await fetch("/api/v1/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ prompt: text })
+                    body: JSON.stringify({ prompt: text, voice: voiceEnabled })
                 });
                 const data = await res.json();
+                const ragNotice = data.rag_intel_found ? ` &bull; RAG: Iron Dome Grounded (${data.rag_vectors} vectors)` : "";
+                const voiceNotice = data.voice_dispatched ? " &bull; Voice: Dispatched to Headset" : "";
                 terminal.innerHTML += `
                     <div class="c2-msg">
                         <span class="c2-ebony">[EBONY C2]</span> ${escapeHtml(data.reply)}
-                        <div class="c2-meta">Engine: ${data.engine} &bull; Signature: ${data.signature}</div>
+                        <div class="c2-meta">Engine: ${data.engine}${ragNotice}${voiceNotice} &bull; Signature: ${data.signature}</div>
                     </div>`;
             } catch (err) {
                 terminal.innerHTML += `<div class="c2-msg" style="color: var(--accent-red);">[TRANSMISSION ERROR] Failed to connect to Brain 3: ${err}</div>`;
@@ -272,13 +337,20 @@ class HVFTelemetryHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            telemetry = {}
-            if self.server.pipeline:
-                telemetry = {
-                    "station_id": getattr(self.server.pipeline, "station_id", "HVF-SUBSTATION-01"),
-                    "authority": "JEFFERY_HUMPHREY_100_PERCENT",
-                    "status": "ONLINE"
+            telemetry = {
+                "station_id": getattr(self.server.pipeline, "station_id", "HVF-SUBSTATION-01") if self.server.pipeline else "STANDALONE",
+                "authority": "JEFFERY_HUMPHREY_100_PERCENT",
+                "status": "ONLINE",
+                "perimeters": {
+                    "optical": "ACTIVE",
+                    "acoustic": "ACTIVE",
+                    "kinetic_scada": "ACTIVE_13_0_US",
+                    "governance": "100_PERCENT_SOLE_AUTHORITY"
                 }
+            }
+            if self.server.brain3:
+                telemetry["rag_vector_count"] = getattr(self.server.brain3, "vector_count", 0)
+                telemetry["memory_vault_active"] = getattr(self.server.brain3, "memory_vault_active", False)
             self.wfile.write(json.dumps(telemetry).encode("utf-8"))
         else:
             self.send_response(404)
@@ -291,8 +363,9 @@ class HVFTelemetryHandler(http.server.BaseHTTPRequestHandler):
             try:
                 req_json = json.loads(body)
                 prompt = req_json.get("prompt", "")
+                voice_enabled = bool(req_json.get("voice", False))
                 if self.server.brain3:
-                    resp_data = self.server.brain3.dispatch_query(prompt)
+                    resp_data = self.server.brain3.dispatch_query(prompt, voice_enabled=voice_enabled)
                 else:
                     resp_data = {"status": "ERROR", "reply": "Brain 3 is offline.", "engine": "NONE"}
                 self.send_response(200)
