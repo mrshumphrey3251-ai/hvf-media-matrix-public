@@ -1,0 +1,100 @@
+{
+  "flight_mission_id": "HVF-UAS-PATROL-CHARLIE-20260926",
+  "timestamp": "2026-09-26T22:54:25.070359+00:00",
+  "authority": {
+    "operator": "CEO_JEFFERY_HUMPHREY",
+    "clearance": "CEO_LEVEL_5_UNRESTRICTED",
+    "cage_code": "1AHA8",
+    "entity": "Humphrey Virtual Farms LLC"
+  },
+  "sortie_summary": {
+    "drone_asset": "DJI_MATRICE_350_RTK",
+    "mission_name": "SOVEREIGN_CANOPY_PATROL_CHARLIE",
+    "total_vault_records": 14,
+    "sortie_waypoints_logged": 5,
+    "sectors_patrolled": [
+      "BASE_STATION_ALPHA",
+      "SECTOR_ALPHA_DER",
+      "SECTOR_BRAVO_CROPS",
+      "HYDRO_WELLHEAD_01",
+      "PERIMETER_RECON"
+    ],
+    "max_altitude_m": 90.0,
+    "min_battery_pct": 92.5,
+    "telemetry_transport": "HTTP_MAVLINK_PORT_8088",
+    "hmi_station_id": "KOKC",
+    "live_stream_feed": "rtsp://100.87.162.117:8554/live/optical_crop_feed"
+  },
+  "waypoints": [
+    {
+      "record_id": 10,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "SOVEREIGN_CANOPY_PATROL_CHARLIE",
+      "zone_id": "BASE_STATION_ALPHA",
+      "altitude_m": 50.0,
+      "latitude": 35.4675,
+      "longitude": -97.5165,
+      "battery_pct": 98.0,
+      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "flight_status": "CLIMBING_EN_ROUTE",
+      "recorded_at": "2026-09-26 22:46:54"
+    },
+    {
+      "record_id": 11,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "SOVEREIGN_CANOPY_PATROL_CHARLIE",
+      "zone_id": "SECTOR_ALPHA_DER",
+      "altitude_m": 75.0,
+      "latitude": 35.4682,
+      "longitude": -97.5158,
+      "battery_pct": 96.5,
+      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "flight_status": "SURVEYING_SOLAR_PV",
+      "recorded_at": "2026-09-26 22:46:55"
+    },
+    {
+      "record_id": 12,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "SOVEREIGN_CANOPY_PATROL_CHARLIE",
+      "zone_id": "SECTOR_BRAVO_CROPS",
+      "altitude_m": 90.0,
+      "latitude": 35.469,
+      "longitude": -97.515,
+      "battery_pct": 95.0,
+      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "flight_status": "SPECTRAL_CANOPY_SCAN",
+      "recorded_at": "2026-09-26 22:46:55"
+    },
+    {
+      "record_id": 13,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "SOVEREIGN_CANOPY_PATROL_CHARLIE",
+      "zone_id": "HYDRO_WELLHEAD_01",
+      "altitude_m": 80.0,
+      "latitude": 35.4685,
+      "longitude": -97.5142,
+      "battery_pct": 93.8,
+      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "flight_status": "THERMAL_PUMP_AUDIT",
+      "recorded_at": "2026-09-26 22:46:55"
+    },
+    {
+      "record_id": 14,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "SOVEREIGN_CANOPY_PATROL_CHARLIE",
+      "zone_id": "PERIMETER_RECON",
+      "altitude_m": 60.0,
+      "latitude": 35.4678,
+      "longitude": -97.5155,
+      "battery_pct": 92.5,
+      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "flight_status": "HOLDING_PERIMETER_ORBIT",
+      "recorded_at": "2026-09-26 22:46:56"
+    }
+  ],
+  "compliance": [
+    "DFARS_252.227_7018",
+    "OKLAHOMA_HB_2992",
+    "FAA_PART_107_AUTONOMOUS_WAIVER"
+  ]
+}
