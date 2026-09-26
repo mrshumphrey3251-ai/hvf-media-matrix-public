@@ -187,6 +187,10 @@ class HVFDefensePipeline:
         pipeline_dispatch["sealed_ledger_blocks"].append(dispatch_block["block_index"])
         
         self.watchdog.pet()
+                # Unified alias mapping for C2 telemetry and audit harnesses
+        pipeline_dispatch["tripped_breakers"] = pipeline_dispatch.get("tripped_channels", [])
+        if "ledger_block_index" not in pipeline_dispatch and "summary_block_index" in pipeline_dispatch:
+            pipeline_dispatch["ledger_block_index"] = pipeline_dispatch["summary_block_index"]
         return pipeline_dispatch
 
     def run_self_test(self) -> bool:
