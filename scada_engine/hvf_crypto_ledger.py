@@ -30,12 +30,12 @@ class HVFCryptoLedger:
         
         self._conn = None
         if self.db_path == ":memory:":
-            self._conn = sqlite3.connect(":memory:")
+            self._conn = sqlite3.connect(":memory:", check_same_thread=False)
         else:
             db_dir = os.path.dirname(self.db_path)
             if db_dir and not os.path.exists(db_dir):
                 os.makedirs(db_dir, exist_ok=True)
-            self._conn = sqlite3.connect(self.db_path)
+            self._conn = sqlite3.connect(self.db_path, check_same_thread=False)
 
         # Initialize Ed25519 Keypair
         if HAS_ED25519:
@@ -59,7 +59,7 @@ class HVFCryptoLedger:
     def _get_connection(self) -> sqlite3.Connection:
         if self._conn is not None:
             return self._conn
-        return sqlite3.connect(self.db_path)
+        return sqlite3.connect(self.db_path, check_same_thread=False)
 
     def _init_ledger_schema(self) -> None:
         """Initializes forensic cryptographic audit schema."""
@@ -249,3 +249,4 @@ class HVFCryptoLedger:
 if __name__ == "__main__":
     ledger = HVFCryptoLedger(db_path=":memory:")
     ledger.run_self_test()
+

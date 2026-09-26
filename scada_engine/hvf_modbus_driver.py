@@ -42,19 +42,19 @@ class HVFModbusDriver:
         self._virtual_coils: Dict[int, bool] = {i: True for i in range(1, 9)}
         self._conn = None
         if self.db_path == ":memory:":
-            self._conn = sqlite3.connect(":memory:")
+            self._conn = sqlite3.connect(":memory:", check_same_thread=False)
         else:
             db_dir = os.path.dirname(self.db_path)
             if db_dir and not os.path.exists(db_dir):
                 os.makedirs(db_dir, exist_ok=True)
-            self._conn = sqlite3.connect(self.db_path)
+            self._conn = sqlite3.connect(self.db_path, check_same_thread=False)
 
         self._init_serial_schema()
 
     def _get_connection(self) -> sqlite3.Connection:
         if self._conn is not None:
             return self._conn
-        return sqlite3.connect(self.db_path)
+        return sqlite3.connect(self.db_path, check_same_thread=False)
 
     def _init_serial_schema(self) -> None:
         """Initializes SQLite persistence schema for Modbus RTU telemetry frames."""
@@ -235,3 +235,4 @@ class HVFModbusDriver:
 if __name__ == "__main__":
     driver = HVFModbusDriver(db_path=":memory:")
     driver.run_self_test()
+
