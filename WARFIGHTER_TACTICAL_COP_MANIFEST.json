@@ -1,0 +1,133 @@
+{
+  "manifest_id": "HVF-TACTICAL-COP-BFT-20260926-ALPHA",
+  "timestamp": "2026-09-26T23:19:13.843498+00:00",
+  "authority": {
+    "operator": "CEO_JEFFERY_HUMPHREY",
+    "clearance": "CEO_LEVEL_5_UNRESTRICTED",
+    "cage_code": "1AHA8",
+    "entity": "Humphrey Virtual Farms LLC"
+  },
+  "tactical_cop_summary": {
+    "hud_center": {
+      "latitude": 35.4685,
+      "longitude": -97.5152,
+      "zoom_level": 16
+    },
+    "ground_operators_tracked": 3,
+    "aerial_uas_frames_active": 5,
+    "total_drone_records_persisted": 20,
+    "base_station": {
+      "name": "BASE_STATION_ALPHA",
+      "latitude": 35.4675,
+      "longitude": -97.5165,
+      "elevation_m": 385.0
+    },
+    "c2_cockpit_port": 8501,
+    "swarm_uplink": "http://100.87.162.117:8501/"
+  },
+  "ground_forces": [
+    {
+      "record_id": 1,
+      "operator_id": "HVF-LEAD-01",
+      "callsign": "EBONY_ACTUAL",
+      "latitude": 35.4676,
+      "longitude": -97.5162,
+      "elevation_m": 382.4,
+      "mgrs_grid": "14S TA 48380 46759",
+      "distress_active": false,
+      "battery_pct": 97.5,
+      "recorded_at": "2026-09-26 23:05:17"
+    },
+    {
+      "record_id": 2,
+      "operator_id": "SCOUT-SOLDIER-04",
+      "callsign": "PHANTOM_RECON",
+      "latitude": 35.4712,
+      "longitude": -97.5135,
+      "elevation_m": 379.1,
+      "mgrs_grid": "14S TA 48650 47120",
+      "distress_active": true,
+      "battery_pct": 42.0,
+      "recorded_at": "2026-09-26 23:05:17"
+    },
+    {
+      "record_id": 3,
+      "operator_id": "SOLDIER-SCOUT-09",
+      "callsign": "VALKYRIE_ONE",
+      "latitude": 35.4695,
+      "longitude": -97.514,
+      "elevation_m": 381.2,
+      "mgrs_grid": "14S TA 48600 46949",
+      "distress_active": false,
+      "battery_pct": 94.5,
+      "recorded_at": "2026-09-26 23:15:59"
+    }
+  ],
+  "aerial_assets": [
+    {
+      "record_id": 16,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "AUTONOMOUS_CIRCUIT_DELTA_01",
+      "zone_id": "SECTOR_BRAVO_CROPS",
+      "altitude_m": 90.0,
+      "latitude": 35.469,
+      "longitude": -97.515,
+      "battery_pct": 96.39999999999999,
+      "flight_status": "SPECTRAL_CANOPY_SCAN",
+      "recorded_at": "2026-09-26 22:57:52"
+    },
+    {
+      "record_id": 17,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "AUTONOMOUS_CIRCUIT_DELTA_01",
+      "zone_id": "HYDRO_WELLHEAD_01",
+      "altitude_m": 80.0,
+      "latitude": 35.4685,
+      "longitude": -97.5142,
+      "battery_pct": 96.0,
+      "flight_status": "THERMAL_PUMP_AUDIT",
+      "recorded_at": "2026-09-26 22:57:52"
+    },
+    {
+      "record_id": 18,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "AUTONOMOUS_CIRCUIT_DELTA_01",
+      "zone_id": "PERIMETER_ORBIT",
+      "altitude_m": 60.0,
+      "latitude": 35.4678,
+      "longitude": -97.5155,
+      "battery_pct": 95.6,
+      "flight_status": "PERIMETER_PATROL_SWEEP",
+      "recorded_at": "2026-09-26 22:57:52"
+    },
+    {
+      "record_id": 19,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "EMERGENCY_SAR_OVERWATCH_PHANTOM",
+      "zone_id": "SAR_INTERCEPT_TRANSIT",
+      "altitude_m": 85.0,
+      "latitude": 35.4695,
+      "longitude": -97.5145,
+      "battery_pct": 95.19999999999999,
+      "flight_status": "INBOUND_SAR_INTERCEPT",
+      "recorded_at": "2026-09-26 23:08:51"
+    },
+    {
+      "record_id": 20,
+      "drone_model": "DJI_MATRICE_350_RTK",
+      "mission_name": "EMERGENCY_SAR_OVERWATCH_PHANTOM",
+      "zone_id": "OVERWATCH_STATION_PHANTOM",
+      "altitude_m": 100.0,
+      "latitude": 35.4712,
+      "longitude": -97.5135,
+      "battery_pct": 94.5,
+      "flight_status": "STATIONARY_OPTICAL_OVERWATCH",
+      "recorded_at": "2026-09-26 23:08:51"
+    }
+  ],
+  "statutory_compliance": [
+    "DFARS_252.227_7018",
+    "OKLAHOMA_HB_2992",
+    "NIST_SP_800_82_REV2"
+  ]
+}
