@@ -47,3 +47,5 @@ cinematic_vault/database/*.db
 # 8. Media & Audio Caches
 *.mp3
 *.wav
+*.pid
+c2_cockpit/*.pid
