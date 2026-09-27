@@ -1,0 +1,120 @@
+{
+  "timestamp": "2026-09-27T04:55:35.313000+00:00",
+  "operator_authority": "CEO_JEFFERY_HUMPHREY",
+  "cage_code": "1AHA8",
+  "features": {
+    "F1_SCADA_KINETIC": {
+      "feature": "SCADA_KINETIC_MICROGRID",
+      "status": "PASS",
+      "metrics": {
+        "total_kinetic_frames": 40,
+        "recent_channel_states": [
+          "CH4_AUX_GENERATOR:CLOSED",
+          "CH3_BESS_STORAGE:CLOSED",
+          "CH2_PV_ARRAYS:CLOSED",
+          "CH1_UTILITY_GRID:CLOSED"
+        ],
+        "all_channels_synchronized": true,
+        "latest_noaa_tier": 0,
+        "latest_noaa_type": "STORM_DISSIPATED"
+      }
+    },
+    "F2_UAS_SWARM": {
+      "feature": "UAS_AUTONOMOUS_SWARM",
+      "status": "PASS",
+      "metrics": {
+        "total_flight_frames": 23,
+        "drone_model": "DJI_MATRICE_350_RTK",
+        "mission_name": "AUTONOMOUS_CIRCUIT_DELTA_02_POST_STORM",
+        "altitude_m": 75.0,
+        "battery_pct": 92.1,
+        "flight_status": "POST_STORM_PERIMETER_SWEEP",
+        "airborne_active": true
+      }
+    },
+    "F3_WARFIGHTER_BFT": {
+      "feature": "WARFIGHTER_BFT",
+      "status": "PASS",
+      "metrics": {
+        "total_tracked_operators": 3,
+        "roster": [
+          "EBONY_ACTUAL",
+          "PHANTOM_RECON",
+          "VALKYRIE_ONE"
+        ],
+        "mgrs_grids": [
+          "EBONY_ACTUAL:14S TA 48380 46759",
+          "PHANTOM_RECON:14S TA 48650 47120",
+          "VALKYRIE_ONE:14S TA 48600 46949"
+        ],
+        "distress_flags_active": 0
+      }
+    },
+    "F4_MERKLE_LEDGER": {
+      "feature": "ED25519_MERKLE_LEDGER",
+      "status": "PASS",
+      "metrics": {
+        "total_sealed_blocks": 53,
+        "latest_block_index": 53,
+        "latest_block_hash": "799ed801105585f8c73074b3...",
+        "chain_intact": true,
+        "ledger_source": "SQLITE_FORENSIC_AUDIT_LEDGER"
+      }
+    },
+    "F5_REALITY_FIREWALL": {
+      "feature": "REALITY_BOUNDARY_FIREWALL",
+      "status": "PASS",
+      "metrics": {
+        "zero_simulation_mandate": true,
+        "provenance_classes_enforced": [
+          "PHYSICAL_HARDWARE",
+          "CRYPTOGRAPHIC_DATABASE",
+          "GOVERNMENT_PORTAL_VERIFIED",
+          "SIMULATION_PROHIBITED"
+        ],
+        "unauthorized_simulation_blocked": true,
+        "policy_document": true
+      }
+    },
+    "F6_ACOUSTIC_DISPATCH": {
+      "feature": "TACTICAL_ACOUSTIC_LINK",
+      "status": "PASS",
+      "metrics": {
+        "sapi_installed": true,
+        "installed_voices": [
+          "Microsoft David Desktop",
+          "Microsoft Zira Desktop"
+        ],
+        "target_device": "Shokz OpenRun Default Audio Endpoint"
+      }
+    },
+    "F7_C2_COCKPIT_SOCKET": {
+      "feature": "C2_COCKPIT_HUD_SOCKET",
+      "status": "PASS",
+      "metrics": {
+        "port": 8501,
+        "http_status": 200,
+        "state": "LIVE_HUD_STREAMING"
+      }
+    },
+    "F8_TRADEWINDS_GOVERNANCE": {
+      "feature": "TRADEWINDS_PROCUREMENT_GOVERNANCE",
+      "status": "PASS",
+      "metrics": {
+        "entity": "Humphrey Virtual Farms LLC",
+        "cage_code": "1AHA8",
+        "submission_id": "9-26-3703",
+        "submission_title": "Project Ebony: Sovereign Tri-Brain Bare-Metal Edge Architecture & Sub-Microsecond Kinetic Isolation",
+        "verified_portal_status": "Compliant/Queued for Assessment",
+        "submission_date": "Sep 24, 2026 6:34 PM",
+        "client_side_probability_scoring": "PROHIBITED_ZERO_FABRICATION",
+        "statutory_assertions": [
+          "DFARS_252.227_7018",
+          "OKLAHOMA_HB_2992",
+          "NIST_SP_800_82_REV2"
+        ]
+      }
+    }
+  },
+  "overall_assessment": "100_PERCENT_FEATURE_VERIFIED"
+}
