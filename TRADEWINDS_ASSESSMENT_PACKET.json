@@ -1,0 +1,45 @@
+{
+  "protocol": "HVF-TRADEWINDS-ATTESTATION-v1.0",
+  "timestamp_utc": "2026-09-27T17:10:08.389842+00:00",
+  "submission_metadata": {
+    "submission_id": "9-26-3703",
+    "portal": "Tradewinds Solutions Marketplace",
+    "cdao_intake_standing": "Compliant / Queued for Assessment",
+    "contractor": "Humphrey Virtual Farms LLC",
+    "cage_code": "1AHA8",
+    "commanding_authority": "CEO Jeffery Humphrey (Level 5 Unrestricted)",
+    "contact_email": "humphreyvirtualfarm@gmail.com",
+    "statutory_rights": "DFARS 252.227-7018 (Government Purpose Rights)",
+    "state_statute": "Oklahoma HB 2992",
+    "response_sla_hours": 48
+  },
+  "edge_defense_state": {
+    "system_verdict": "SOVEREIGN_SYSTEM_LOCKED_AND_NOMINAL",
+    "operational_availability_pct": 100.0,
+    "total_watchdog_cycles": 6,
+    "mean_sweep_latency_ms": 22.78,
+    "scada_microgrid": {
+      "channels_synchronized": "4/4 CLOSED",
+      "coil_actuation_us": 2.04,
+      "breaker_isolation_ms": 13.33,
+      "soft_start_recovery_ms": 126.13
+    },
+    "uas_perimeter_overwatch": {
+      "platform": "DJI Matrice 350 RTK",
+      "orbit_msl_m": 75.0,
+      "battery_pct": 92.1,
+      "status": "AIRBORNE_PATROL_ACTIVE"
+    },
+    "warfighter_bft": {
+      "roster_count": 3,
+      "active_distress_flags": 0,
+      "tracking_grid": "MGRS_TACTICAL"
+    },
+    "cryptographic_ledger": {
+      "sealed_blocks": 64,
+      "latest_block_hash": "12d013722226d541f1e9e03b9dbd466065de48c31b281ed5780cfe7f3ae80cf5",
+      "asymmetric_algorithm": "ED25519",
+      "synthetic_data_prohibited": true
+    }
+  }
+}
