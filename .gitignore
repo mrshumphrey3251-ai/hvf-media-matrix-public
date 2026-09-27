@@ -49,3 +49,6 @@ cinematic_vault/database/*.db
 *.wav
 *.pid
 c2_cockpit/*.pid
+
+# Runtime telemetry audit logs
+cinematic_vault/logs/*.jsonl
