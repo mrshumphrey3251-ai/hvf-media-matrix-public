@@ -1,0 +1,38 @@
+{
+  "dispatch_protocol": "HVF-TRADEWINDS-DISPATCH-v1.0",
+  "timestamp_utc": "2026-09-27T18:55:55.660228+00:00",
+  "submission_id": "9-26-3703",
+  "contractor": "Humphrey Virtual Farms LLC",
+  "cage_code": "1AHA8",
+  "signatory": "Jeffery Humphrey, Chief Executive Officer (Level 5 Authority)",
+  "official_email": "humphreyvirtualfarm@gmail.com",
+  "assessment_standing": "READY_FOR_ASSESSMENT",
+  "production_release_tag": "v1.0.0-tradewinds-certified",
+  "statutory_compliance": [
+    "DFARS 252.227-7018 (Government Purpose Rights)",
+    "Oklahoma HB 2992 (Critical Infrastructure Resilience)",
+    "NIST SP 800-82 Rev 2 (Industrial Control Systems Security)"
+  ],
+  "git_provenance": {
+    "private_repo_commit": "2f19e05ad7cc80d835303017d6f5d2fa5fa696aa",
+    "public_repo_commit": "1d7e6ce3d29a842119719f7262354b64df7c2c6b",
+    "tag_verified": true
+  },
+  "operational_telemetry": {
+    "availability_pct": 100.0,
+    "watchdog_cycles_verified": 8,
+    "scada_microgrid_status": "4/4 CLOSED & SYNCHRONIZED",
+    "modbus_fc05_latency_us": 2.04,
+    "kinetic_trip_time_ms": 13.33,
+    "soft_start_recovery_ms": 126.13,
+    "uas_orbit_altitude_msl_m": 75.0,
+    "warfighter_distress_flags": 0,
+    "total_sealed_merkle_blocks": 71
+  },
+  "network_endpoints": {
+    "c2_cockpit_tactical_hud": "http://127.0.0.1:8501",
+    "evaluator_ingress_daemon": "http://127.0.0.1:8502",
+    "automated_access_logging": "ENABLED",
+    "total_ingress_access_events": 6
+  }
+}
