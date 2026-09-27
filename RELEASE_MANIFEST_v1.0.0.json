@@ -1,0 +1,33 @@
+{
+  "release_tag": "v1.0.0-tradewinds-certified",
+  "timestamp_utc": "2026-09-27T18:02:21.441226+00:00",
+  "tradewinds_submission_id": "9-26-3703",
+  "contractor": "Humphrey Virtual Farms LLC",
+  "cage_code": "1AHA8",
+  "commanding_authority": "CEO Jeffery Humphrey (Level 5 Unrestricted)",
+  "contact_email": "humphreyvirtualfarm@gmail.com",
+  "statutory_compliance": [
+    "DFARS 252.227-7018 (Government Purpose Rights)",
+    "Oklahoma HB 2992 (Critical Infrastructure Resilience)",
+    "NIST SP 800-82 Rev 2 (SCADA/ICS Security)"
+  ],
+  "git_provenance": {
+    "private_repo_commit": "d53d3e483f32b8501e0008d02c43747667b8613f",
+    "public_repo_commit": "2fabccec665dd726c616dbd26f8d0c80848ca7cb",
+    "private_branch": "main",
+    "public_branch": "master"
+  },
+  "operational_certification": {
+    "status": "FULL_SYSTEM_CERTIFIED_NOMINAL",
+    "sealed_merkle_blocks": 68,
+    "availability_pct": 100.0,
+    "scada_microgrid": "4/4 CLOSED & SYNCHRONIZED",
+    "modbus_actuation_us": 2.04,
+    "kinetic_trip_ms": 13.33,
+    "soft_start_recovery_ms": 126.13,
+    "uas_orbit_altitude_m": 75.0,
+    "warfighter_distress_flags": 0,
+    "port_tactical_hud": 8501,
+    "port_evaluator_ingress": 8502
+  }
+}
