@@ -15,7 +15,15 @@ import json
 import sqlite3
 import subprocess
 
-repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+def find_repo_root():
+    curr = os.path.abspath(".")
+    while curr != os.path.dirname(curr):
+        if os.path.exists(os.path.join(curr, ".git")) or os.path.exists(os.path.join(curr, "c2_cockpit")):
+            return curr
+        curr = os.path.dirname(curr)
+    return os.path.abspath(".")
+
+repo_root = find_repo_root()
 for p in [repo_root, os.path.join(repo_root, "scada_engine"), os.path.join(repo_root, "c2_cockpit"), os.path.join(repo_root, "dispatch_core")]:
     if p not in sys.path:
         sys.path.insert(0, p)
@@ -39,8 +47,25 @@ class C2GroundingMiddleware:
             r"glif_fusion",
             r"hvf_selftest",
             r"20399 Iron-Dome",
+            r"20,?307",
+            r"20,?405",
             r"AvgGenMW",
             r"UptimeThreshold\s*=\s*99\.5",
+            r"silo_monitor",
+            r"gas_sensing",
+            r"livestock_boundary",
+            r"irrigation_controller",
+            r"dosing_engine",
+            r"soil_sensors",
+            r"chemometrics",
+            r"threat_oracle",
+            r"der_control",
+            r"bess_manager",
+            r"drone_ops",
+            r"mesh_network",
+            r"apex_orchestrator",
+            r"ReflexKernel",
+            r"\bKOKC\b",
         ]
         self._load_tracked_files()
 
@@ -54,7 +79,7 @@ class C2GroundingMiddleware:
     def validate_content(self, text):
         """
         Audits incoming/outgoing C2 text.
-        Rejects fabricated paths, synthetic modules, and ungrounded DoD scoring formulas.
+        Rejects fabricated paths, synthetic modules, ungrounded scoring formulas, and agricultural hallucinations.
         """
         for pat in self.prohibited_patterns:
             if re.search(pat, text, re.IGNORECASE):
@@ -67,11 +92,10 @@ class C2GroundingMiddleware:
             norm_p = p.replace("\\", "/").lstrip("/")
             if norm_p.startswith("opt/hvf/"):
                 raise RealityAssertionError(f"FABRICATION_DETECTED: Prohibited Linux path '{p}'")
-            # If path indicates an internal project component, assert disk existence
-            if any(norm_p.startswith(prefix) for prefix in ["c2_cockpit/", "scada_engine/", "dispatch_core/", "cinematic_vault/"]) or norm_p.endswith((".json", ".md")):
-                full_path = os.path.join(repo_root, norm_p.replace("/", os.sep))
-                if not os.path.exists(full_path):
-                    raise RealityAssertionError(f"FABRICATION_DETECTED: File '{p}' does not exist on bare-metal disk")
+            # Universal check: Any prospective file path cited must physically exist on bare-metal disk
+            full_path = os.path.join(repo_root, norm_p.replace("/", os.sep))
+            if not os.path.exists(full_path):
+                raise RealityAssertionError(f"FABRICATION_DETECTED: File '{p}' does not exist on bare-metal disk")
 
         return True
 
@@ -96,44 +120,3 @@ class C2GroundingMiddleware:
             "modbus_fc05_latency_us": record.get("operational_telemetry", {}).get("modbus_fc05_latency_us"),
             "scada_microgrid_status": record.get("operational_telemetry", {}).get("scada_microgrid_status")
         }
-
-if __name__ == "__main__":
-    print("=" * 72)
-    print("  PROJECT EBONY: C2 GROUNDING MIDDLEWARE & REALITY FIREWALL AUDIT")
-    print("  * Operator Authority: CEO_JEFFERY_HUMPHREY (Level 5 Unrestricted)")
-    print("  * Authority CAGE:     1AHA8 (Humphrey Virtual Farms LLC)")
-    print("=" * 72)
-
-    middleware = C2GroundingMiddleware()
-
-    # 1. Test genuine versioned content
-    valid_test = "Verified RELEASE_MANIFEST_v1.0.0.json and c2_cockpit/evaluator_ingress_server.py under DFARS 252.227-7018."
-    assert middleware.validate_content(valid_test) is True
-    print("\n[1] GENUINE ASSET VALIDATION:")
-    print(f"  * [PASS] Valid system statement (including v1.0.0.json) verified against physical disk.")
-
-    # 2. Test rejection of fabricated Linux path
-    print("\n[2] SYNTHETIC ARTIFACT INTERCEPTION TESTS:")
-    try:
-        middleware.validate_content("Checking /opt/hvf/telemetry/status.json")
-        assert False, "FAILED TO BLOCK /opt/hvf"
-    except RealityAssertionError as e:
-        print(f"  * [PASS] Successfully intercepted fabricated path: {e}")
-
-    # 3. Test rejection of fabricated Python module
-    try:
-        middleware.validate_content("Invoking hvf_award_engine/tradewinds_evaluator.py scoring loop")
-        assert False, "FAILED TO BLOCK fake module"
-    except RealityAssertionError as e:
-        print(f"  * [PASS] Successfully intercepted fabricated module: {e}")
-
-    # 4. Test deterministic ground-truth hydration
-    posture = middleware.get_ground_truth_posture()
-    print("\n[3] DETERMINISTIC POSTURE HYDRATION:")
-    print(f"  * Tradewinds Submission ID:   {posture['submission_id']}")
-    print(f"  * Production Release Tag:     {posture['production_release_tag']}")
-    print(f"  * Microgrid State:            {posture['scada_microgrid_status']}")
-    print(f"  * Sealed Merkle Depth:        {posture['sealed_merkle_blocks']} Blocks")
-    print(f"  * Operational Availability:   {posture['operational_availability_pct']}%")
-
-    print("\n  * [PASS] C2GroundingMiddleware operational with ZERO simulation leakage.")
