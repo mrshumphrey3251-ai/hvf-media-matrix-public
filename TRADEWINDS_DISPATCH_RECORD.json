@@ -14,8 +14,8 @@
     "NIST SP 800-82 Rev 2 (Industrial Control Systems Security)"
   ],
   "git_provenance": {
-    "private_repo_commit": "47c6b45",
-    "public_repo_commit": "956d408",
+    "private_repo_commit": "9fa2396",
+    "public_repo_commit": "8505837",
     "tag_verified": true
   },
   "operational_telemetry": {
@@ -27,7 +27,7 @@
     "soft_start_recovery_ms": 126.13,
     "uas_orbit_altitude_msl_m": 75.0,
     "warfighter_distress_flags": 0,
-    "total_sealed_merkle_blocks": 81
+    "total_sealed_merkle_blocks": 82
   },
   "network_endpoints": {
     "c2_cockpit_tactical_hud": "http://127.0.0.1:8501",
