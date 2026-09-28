@@ -12,10 +12,8 @@
     "NIST SP 800-82 Rev 2 (SCADA/ICS Security)"
   ],
   "git_provenance": {
-    "private_repo_commit": "d53d3e483f32b8501e0008d02c43747667b8613f",
-    "public_repo_commit": "2fabccec665dd726c616dbd26f8d0c80848ca7cb",
-    "private_branch": "main",
-    "public_branch": "master"
+    "private_commit": "9fa2396",
+    "public_commit": "8505837"
   },
   "operational_certification": {
     "status": "FULL_SYSTEM_CERTIFIED_NOMINAL",
@@ -29,5 +27,21 @@
     "warfighter_distress_flags": 0,
     "port_tactical_hud": 8501,
     "port_evaluator_ingress": 8502
+  },
+  "release_version": "v1.0.0-tradewinds-certified",
+  "submission_id": "9-26-3703",
+  "statutory_authority": "DFARS 252.227-7018 (Government Purpose Rights) / Oklahoma HB 2992",
+  "cryptographic_ledger": {
+    "sealed_merkle_blocks": 82,
+    "head_block_hash": "9b3633c8cad17f368899ecfa4963d1fbdc2aac88de7a67912881bafb86b35bc0",
+    "signature_auth_mode": "ED25519_ASYMMETRIC"
+  },
+  "deliverable_checksums_sha256": {
+    "TRADEWINDS_ASSESSMENT_DISPATCH.md": "8452368aee63b70ffee3ed8ed8ca001ccfc9e39dc4f1346ab4ac0943a02c7823",
+    "TRADEWINDS_DISPATCH_RECORD.json": "0dd41f664fd213db90cb18b4f651d938c1c98a8081abd5016ea5503c941bcfec",
+    "c2_cockpit/evaluator_ingress_server.py": "a032f404c6193c9fabb512713a3ddb9feeacee0dad88087d4b4707fd926de515",
+    "c2_cockpit/c2_grounding_middleware.py": "11093326a32a8eae97a14b51d75f51b6bfe554b0e8a17909b146f316d3ba5241",
+    "c2_cockpit/c2_qa_grounding_engine.py": "e90025e099f5fa00d8d3cb9e8718e7ac65e8e6227d1afe4efd1f4c6fbe002624",
+    "c2_cockpit/sentry_watchdog_daemon.py": "870d833d15babfdab6d8cb36913b7680eb66ead8ad297e83f502c06221cba703"
   }
 }
