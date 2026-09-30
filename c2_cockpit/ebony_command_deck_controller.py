@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 EBONY COMMAND DECK CONTROLLER (4-DOMAIN EXPANDED)
 Authority: CEO Jeffery Humphrey (Level 5 Authority) // CAGE: 1AHA8
@@ -84,11 +84,12 @@ PROOF_DATABASE = {
 
 def dispatch_proof(drill_id):
     if str(drill_id) not in PROOF_DATABASE:
-        print(f"[ERROR] Invalid Drill ID: {drill_id}")
+        print("[ERROR] Invalid Drill ID: " + str(drill_id))
         return
     
     data = PROOF_DATABASE[str(drill_id)]
     
+    # 1. Update live state for HUD bridge
     proof_record = {
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S CDT"),
         "drill_id": str(drill_id),
@@ -100,21 +101,23 @@ def dispatch_proof(drill_id):
     with open(proof_state_file, "w", encoding="utf-8") as f:
         json.dump(proof_record, f, indent=2)
     
-    print("
-" + "=" * 80)
-    print(f"  [EBONY COMMAND DECK] DISPATCHING DOMAIN {drill_id}: {data['title']}")
+    # 2. Print visual proof card to console
+    print()
     print("=" * 80)
-    print(f"  * Evaluator Inquiry : "{data['query']}"")
+    print("  [EBONY COMMAND DECK] DISPATCHING DOMAIN " + str(drill_id) + ": " + data["title"])
+    print("=" * 80)
+    print('  * Evaluator Inquiry : "' + data["query"] + '"')
     print("  * Hardware Telemetry & Cryptographic Assertions:")
     for k, v in data["telemetry"].items():
-        print(f"      {k:<28} : {v}")
+        print("      " + f"{k:<28}" + " : " + str(v))
     print("=" * 80)
     
+    # 3. Speak verbal response over workstation audio link
     clean_speech = data["spoken"].replace('"', '""').replace("'", "''")
-    ps_cmd = f"Add-Type -AssemblyName System.Speech; $s = New-Object System.Speech.Synthesis.SpeechSynthesizer; $s.Rate = -1; $s.Volume = 100; $s.Speak('{clean_speech}'); $s.Dispose()"
+    ps_cmd = 'Add-Type -AssemblyName System.Speech; $s = New-Object System.Speech.Synthesis.SpeechSynthesizer; $s.Rate = -1; $s.Volume = 100; $s.Speak(\'' + clean_speech + '\'); $s.Dispose()'
     subprocess.run(["powershell", "-NoProfile", "-Command", ps_cmd], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    print(f"  * [STATUS] Verbal dispatch complete. Screen morphed on HUD bridge.
-")
+    print("  * [STATUS] Verbal dispatch complete. Screen morphed on HUD bridge.")
+    print()
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
