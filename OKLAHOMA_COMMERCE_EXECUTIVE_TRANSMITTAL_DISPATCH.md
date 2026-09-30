@@ -23,7 +23,7 @@ While critical infrastructure security is frequently framed in terms of enterpri
 
 Project Ebony was engineered from bare-metal silicon to fulfill this mandate. Rather than relying on cloud middleware or synthetic digital twins, our platform executes directly against bare-metal silicon and physical microgrid hardware.
 
-To respect your time and enable your technical staff to evaluate our architecture ahead of Monday's formal dialogue, we have compiled an advance **4.03-minute narrated operational walkthrough** covering our core deployment pillars.
+To respect your time and enable your technical staff to evaluate our architecture ahead of Monday's formal dialogue, we have compiled an advance **4.48-minute narrated operational walkthrough** covering our core deployment pillars.
 
 ---
 
@@ -53,11 +53,11 @@ To respect your time and enable your technical staff to evaluate our architectur
 * **Public Technical Repository Root:**  
   https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public
 
-* **Advance Briefing Video (4.03 min / 1080p Broadcast MP4):**  
+* **Advance Briefing Video (4.48 min / 1080p Broadcast MP4):**  
   https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public/blob/master/federal_filings/PROJECT_EBONY_OKLAHOMA_COMMERCE_ADVANCE_BRIEFING.mp4
 
 * **Advance Briefing Video SHA-256 Checksum:**  
-  \$mp4Hash\
+  \$hashPriv\
 
 * **State CTO Technical Evaluation Dossier:**  
   https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public/blob/master/OKLAHOMA_CTO_TECHNICAL_EVALUATION_DOSSIER.md
