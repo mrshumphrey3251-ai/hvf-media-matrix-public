@@ -23,18 +23,18 @@ While critical infrastructure security is frequently framed in terms of enterpri
 
 Project Ebony was engineered from bare-metal silicon to fulfill this mandate. Rather than relying on cloud middleware or synthetic digital twins, our platform executes directly against bare-metal silicon and physical microgrid hardware.
 
-To respect your time and enable your technical staff to evaluate our architecture ahead of Monday's formal dialogue, we have compiled an advance **3.65-minute narrated operational walkthrough** covering our core deployment pillars.
+To respect your time and enable your technical staff to evaluate our architecture ahead of Monday's formal dialogue, we have compiled an advance **4.03-minute narrated operational walkthrough** covering our core deployment pillars.
 
 ---
 
 ### Key Operational Capabilities Demonstrated in the Advance Briefing:
 
 1. **Deterministic Microsecond Kinetic Actuation:**
-   * **Contactor Actuation:** Physical Modbus Function Code 05 (Force Single Coil) executing at **2.04 microseconds** latency across four synchronized channels (`CH1_UTILITY_GRID`, `CH2_PV_ARRAYS`, `CH3_BESS_STORAGE`, `CH4_AUX_GENERATOR`).
+   * **Contactor Actuation:** Physical Modbus Function Code 05 (Force Single Coil) executing at **2.04 microseconds** latency across four synchronized channels (\CH1_UTILITY_GRID\, \CH2_PV_ARRAYS\, \CH3_BESS_STORAGE\, \CH4_AUX_GENERATOR\).
    * **Kinetic Breaker Response:** **13.33 ms** breaker trip response with **126.13 ms** soft-start frequency/voltage re-synchronization under zero simulation.
 
 2. **Unidirectional Loopback Isolation (NIST SP 800-82 Rev 2):**
-   * **WAN/LAN Boundary Isolation:** Command plane strictly isolated to loopback (`127.0.0.1`), exposing zero open ports to public attack surfaces.
+   * **WAN/LAN Boundary Isolation:** Command plane strictly isolated to loopback (\127.0.0.1\), exposing zero open ports to public attack surfaces.
    * **Reality Firewall:** Active hardware-level boundary layer that detects and drops unverified telemetry injections before state updates reach physical switchgear.
 
 3. **Cryptographic Root of Trust & Forensics:**
@@ -43,15 +43,21 @@ To respect your time and enable your technical staff to evaluate our architectur
 4. **Multi-Domain Tactical Synchronization:**
    * Concurrent real-time integration of aerial UAS reconnaissance (DJI Matrice 350 RTK on Sortie Delta 02 at 75.0m MSL) and dismounted squad Blue Force Tracking (BFT) visualized on our low-latency Tactical HUD.
 
-5. **Commercial Capital Model ($0 Liquid Cash Escrow Required):**
-   * Our $500,000 state cost-share match under OCAST OARS is satisfied 100% through allowable, documented in-kind engineering assets, deployed hardware testbeds, and proprietary software IP under 2 CFR 200.306, requiring **$0 in liquid cash escrow**.
+5. **Commercial Capital Model (\ Liquid Cash Escrow Required):**
+   * Our \,000 state cost-share match under OCAST OARS is satisfied 100% through allowable, documented in-kind engineering assets, deployed hardware testbeds, and proprietary software IP under 2 CFR 200.306, requiring **\ in liquid cash escrow**.
 
 ---
 
-### Technical Evaluation Links & Artifacts:
+### Direct Technical Artifacts for Engineering Review:
 
 * **Public Technical Repository Root:**  
   https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public
+
+* **Advance Briefing Video (4.03 min / 1080p Broadcast MP4):**  
+  https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public/blob/master/federal_filings/PROJECT_EBONY_OKLAHOMA_COMMERCE_ADVANCE_BRIEFING.mp4
+
+* **Advance Briefing Video SHA-256 Checksum:**  
+  \$mp4Hash\
 
 * **State CTO Technical Evaluation Dossier:**  
   https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public/blob/master/OKLAHOMA_CTO_TECHNICAL_EVALUATION_DOSSIER.md
@@ -63,7 +69,7 @@ To respect your time and enable your technical staff to evaluate our architectur
   https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public/blob/master/TRADEWINDS_CRYPTOGRAPHIC_ATTESTATION_CERTIFICATE.md
 
 * **Distribution Bundle Archive SHA-256:**  
-  `4baa02878153cd551f002d3a0afae7404b8b9f7c66b2cd8a69605a48342cf78c`
+  \4baa02878153cd551f002d3a0afae7404b8b9f7c66b2cd8a69605a48342cf78c\
 
 ---
 
