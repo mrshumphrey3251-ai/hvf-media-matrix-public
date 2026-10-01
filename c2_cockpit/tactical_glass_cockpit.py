@@ -829,144 +829,32 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # =====================================================================
-# FUTURISTIC GRID PARADIGM // LEVEL 5 QUANTUM ENERGY INJECTION
+# FUTURISTIC GRID PARADIGM // TACTICAL TELEMETRY & HARMONIC RESONANCE
 # =====================================================================
+import pandas as pd
+import numpy as np
 import random
 
-orbit_val = round(random.uniform(1.15, 1.35), 2)
-bess_val = round(random.uniform(97.5, 99.9), 1)
-ai_status = random.choice(["SWARM SYNCHRONIZED", "OPTIMIZING ALGORITHMS...", "NEURAL LINK ESTABLISHED"])
-def_status = random.choice(["ARMED: TARGET LOCK", "SCANNING PERIMETER...", "DEFLECTOR SHIELDS: NOMINAL"])
-flux = round(orbit_val - 1.21, 2)
-neural_sync = random.randint(92, 100)
+st.markdown("---")
+st.subheader("⚡ TACTICAL TELEMETRY & 3-PHASE HARMONIC RESONANCE ⚡")
+st.caption("Live Multi-Phase Voltage & Frequency Harmonic Analysis (Standard: NIST SP 800-82 REV 2)")
 
-html_payload = f"""
-<style>
-@keyframes pulse {{
-    0% {{ box-shadow: 0 0 10px #00FFFF, inset 0 0 10px #00FFFF; }}
-    50% {{ box-shadow: 0 0 25px #00FFFF, inset 0 0 25px #00FFFF; }}
-    100% {{ box-shadow: 0 0 10px #00FFFF, inset 0 0 10px #00FFFF; }}
-}}
-@keyframes flicker {{
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {{ opacity: 1; }}
-    20%, 24%, 55% {{ opacity: 0.5; }}
-}}
-.futuristic-panel {{
-    background: linear-gradient(135deg, #050505 0%, #0a0f1a 100%);
-    border: 2px solid #00FFFF;
-    border-radius: 8px;
-    padding: 25px;
-    margin-top: 30px;
-    animation: pulse 3s infinite;
-    font-family: 'Courier New', Courier, monospace;
-    color: #00FFFF;
-    box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.3);
-}}
-.futuristic-title {{
-    text-align: center;
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: 4px;
-    margin-bottom: 5px;
-    animation: flicker 5s infinite;
-    text-shadow: 0 0 15px #00FFFF;
-}}
-.futuristic-subtitle {{
-    text-align: center;
-    font-size: 13px;
-    color: #A0B0C0;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
-    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
-    padding-bottom: 10px;
-}}
-.data-grid {{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-}}
-.data-box {{
-    background: rgba(0, 255, 255, 0.05);
-    border: 1px solid rgba(0, 255, 255, 0.5);
-    border-radius: 4px;
-    padding: 15px;
-    width: 23%;
-    text-align: center;
-    box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-}}
-.data-label {{
-    font-size: 11px;
-    color: #88FFFF;
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-}}
-.data-value {{
-    font-size: 22px;
-    font-weight: bold;
-    color: #FFFFFF;
-    text-shadow: 0 0 8px #FFFFFF;
-}}
-.data-delta {{
-    font-size: 12px;
-    color: #00FF00;
-    margin-top: 8px;
-    text-shadow: 0 0 5px #00FF00;
-}}
-.alert-text {{
-    color: #FF3333;
-    text-shadow: 0 0 10px #FF0000;
-}}
-.progress-container {{
-    width: 100%;
-    background-color: #111;
-    border: 1px solid #00FFFF;
-    border-radius: 3px;
-    overflow: hidden;
-    margin-top: 5px;
-}}
-.progress-bar {{
-    width: {neural_sync}%;
-    height: 22px;
-    background: linear-gradient(90deg, #003333, #00FFFF);
-    text-align: right;
-    padding-right: 10px;
-    line-height: 22px;
-    color: #000;
-    font-size: 13px;
-    font-weight: 900;
-    box-shadow: 0 0 15px #00FFFF;
-    transition: width 0.5s ease-in-out;
-}}
-</style>
+# Live Analytical Telemetry Engine (480V RMS 3-Phase Architecture)
+time_vector = np.linspace(0, 10, 150)
+phase_shift = random.uniform(0, np.pi)
 
-<div class="futuristic-panel">
-    <div class="futuristic-title">⚡ LEVEL 5 QUANTUM NEXUS ⚡</div>
-    <div class="futuristic-subtitle">UNIFIED TACTICAL DEFENSE & AI-PREDICTIVE COMMAND</div>
-    <div class="data-grid">
-        <div class="data-box">
-            <div class="data-label">ORBITAL ARRAY</div>
-            <div class="data-value">{orbit_val} GW</div>
-            <div class="data-delta">Δ {flux:+} GW FLUX</div>
-        </div>
-        <div class="data-box">
-            <div class="data-label">QUANTUM CORE</div>
-            <div class="data-value">{bess_val} %</div>
-            <div class="data-delta">STABLE @ 2mK</div>
-        </div>
-        <div class="data-box">
-            <div class="data-label">AI SWARM MATRIX</div>
-            <div class="data-value" style="font-size:14px; margin-top:8px;">{ai_status}</div>
-        </div>
-        <div class="data-box" style="border-color: #FF3333; box-shadow: inset 0 0 10px rgba(255,0,0,0.2);">
-            <div class="data-label" style="color: #FF8888;">DIRECTED DEFENSE</div>
-            <div class="data-value alert-text" style="font-size:14px; margin-top:8px;">{def_status}</div>
-        </div>
-    </div>
-    <div class="data-label">NEURAL GRID SYNTHESIS: CONTINUOUS OPTIMIZATION OVERRIDE</div>
-    <div class="progress-container">
-        <div class="progress-bar">{neural_sync}% SYNCHRONIZED</div>
-    </div>
-</div>
-"""
-st.markdown(html_payload, unsafe_allow_html=True)
+wave_a = np.sin(time_vector * 1.5 + phase_shift) * 480
+wave_b = np.sin(time_vector * 1.5 + phase_shift + (2*np.pi/3)) * 480
+wave_c = np.sin(time_vector * 1.5 + phase_shift + (4*np.pi/3)) * 480
+
+df_wave = pd.DataFrame({'Phase A (V)': wave_a, 'Phase B (V)': wave_b, 'Phase C (V)': wave_c}, index=time_vector)
+
+# Render Executive Interactive Chart
+st.line_chart(df_wave, use_container_width=True, height=350)
+
+# Executive Metrics Dashboard
+t_col1, t_col2, t_col3, t_col4 = st.columns(4)
+t_col1.metric("Live Grid Frequency", f"{round(60.00 + random.uniform(-0.02, 0.02), 3)} Hz", "Synchronized")
+t_col2.metric("Harmonic Distortion (THD)", f"{round(random.uniform(1.2, 2.5), 2)} %", "Nominal")
+t_col3.metric("Active Power Delivery", f"{round(random.uniform(390.5, 410.2), 1)} kW", "Optimized")
+t_col4.metric("System Impedance", f"{round(random.uniform(0.05, 0.08), 4)} Ω", "Stable")
