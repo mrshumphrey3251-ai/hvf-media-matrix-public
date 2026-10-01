@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT // DYNAMIC CURRENT ENGINE
 Real-Time Kirchhoff Current Calculations on Every Interaction
@@ -183,11 +183,11 @@ if "stage_idx"  not in st.session_state: st.session_state["stage_idx"]  = 1
 # ------------------------------------------------------------------------------
 # 1. PERMANENT MASTER HAZARD SIMULATION CONTROL BANK
 # ------------------------------------------------------------------------------
-st.markdown('<div style="font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; color: #f59e0b; text-transform: uppercase; margin-bottom: 3px;">⚡ FAULT & INCIDENT INJECTION CONSOLE // TEST DYNAMIC REALITY DEFLECTION:</div>', unsafe_allow_html=True)
+st.markdown('<div style="font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; color: #f59e0b; text-transform: uppercase; margin-bottom: 3px;">? FAULT & INCIDENT INJECTION CONSOLE // TEST DYNAMIC REALITY DEFLECTION:</div>', unsafe_allow_html=True)
 b1, b2, b3, b4, b5, b6, b7 = st.columns(7)
 
 with b1:
-    if st.button("🚨 POLE BREAK (HWY 69)"):
+    if st.button("?? POLE BREAK (HWY 69)"):
         st.session_state["hazard_state"] = "POLE_BREAK"
         st.session_state["ch1_closed"] = False
         st.session_state["ch2_closed"] = True
@@ -196,7 +196,7 @@ with b1:
         st.session_state["bus_b_shed"] = True
         st.session_state["stage_idx"]  = 2
 with b2:
-    if st.button("⚡ LIGHTNING (50kV SURGE)"):
+    if st.button("? LIGHTNING (50kV SURGE)"):
         st.session_state["hazard_state"] = "LIGHTNING"
         st.session_state["ch1_closed"] = True
         st.session_state["ch2_closed"] = False # Rapid shutdown
@@ -205,7 +205,7 @@ with b2:
         st.session_state["bus_b_shed"] = False
         st.session_state["stage_idx"]  = 1
 with b3:
-    if st.button("🌪️ HIGH WINDS (75 MPH)"):
+    if st.button("??? HIGH WINDS (75 MPH)"):
         st.session_state["hazard_state"] = "HIGH_WINDS"
         st.session_state["ch1_closed"] = True
         st.session_state["ch2_closed"] = True
@@ -214,7 +214,7 @@ with b3:
         st.session_state["bus_b_shed"] = False
         st.session_state["stage_idx"]  = 1
 with b4:
-    if st.button("🌊 SUBSTATION FLOOD"):
+    if st.button("?? SUBSTATION FLOOD"):
         st.session_state["hazard_state"] = "FLOODING"
         st.session_state["ch1_closed"] = False # Ground fault
         st.session_state["ch2_closed"] = True
@@ -223,7 +223,7 @@ with b4:
         st.session_state["bus_b_shed"] = True
         st.session_state["stage_idx"]  = 3
 with b5:
-    if st.button("🛑 OPERATOR ERROR"):
+    if st.button("?? OPERATOR ERROR"):
         st.session_state["hazard_state"] = "OPERATOR_ERROR"
         st.session_state["ch1_closed"] = False # Accidental throw
         st.session_state["ch2_closed"] = True
@@ -232,7 +232,7 @@ with b5:
         st.session_state["bus_b_shed"] = False
         st.session_state["stage_idx"]  = 2
 with b6:
-    if st.button("⬛ TOTAL BLACKOUT"):
+    if st.button("? TOTAL BLACKOUT"):
         st.session_state["hazard_state"] = "TOTAL_BLACKOUT"
         st.session_state["ch1_closed"] = False
         st.session_state["ch2_closed"] = False
@@ -241,7 +241,7 @@ with b6:
         st.session_state["bus_b_shed"] = True
         st.session_state["stage_idx"]  = 0
 with b7:
-    if st.button("🟢 RESTORE NOMINAL (60Hz)"):
+    if st.button("?? RESTORE NOMINAL (60Hz)"):
         st.session_state["hazard_state"] = "NOMINAL"
         st.session_state["ch1_closed"] = True
         st.session_state["ch2_closed"] = True
@@ -337,27 +337,27 @@ master_kw = (math.sqrt(3) * master_v * master_i * 0.95) / 1000.0 if master_v > 0
 # ------------------------------------------------------------------------------
 # 3. INTERACTIVE BREAKER & CONTACTOR ACTUATION CONTROLS
 # ------------------------------------------------------------------------------
-st.markdown('<div style="font-size: 9px; font-weight: 800; letter-spacing: 1px; color: #38bdf8; text-transform: uppercase; margin-bottom: 2px;">🎛️ MANUAL BREAKER & FEEDER SWITCHGEAR (CLICK TO ACTUATE CURRENT DELTAS):</div>', unsafe_allow_html=True)
+st.markdown('<div style="font-size: 9px; font-weight: 800; letter-spacing: 1px; color: #38bdf8; text-transform: uppercase; margin-bottom: 2px;">??? MANUAL BREAKER & FEEDER SWITCHGEAR (CLICK TO ACTUATE CURRENT DELTAS):</div>', unsafe_allow_html=True)
 c_col1, c_col2, c_col3, c_col4, c_col5 = st.columns(5)
 
 with c_col1:
-    btn_lbl_1 = "🔴 TRIP CH1 UTILITY (DROP 250A)" if st.session_state["ch1_closed"] else "🟢 CLOSE CH1 UTILITY (+250A)"
+    btn_lbl_1 = "?? TRIP CH1 UTILITY (DROP 250A)" if st.session_state["ch1_closed"] else "?? CLOSE CH1 UTILITY (+250A)"
     if st.button(btn_lbl_1):
         st.session_state["ch1_closed"] = not st.session_state["ch1_closed"]
 with c_col2:
-    btn_lbl_2 = "🔴 ISOLATE CH2 PV (DROP 100A)" if st.session_state["ch2_closed"] else "🟢 CONNECT CH2 PV (+100A)"
+    btn_lbl_2 = "?? ISOLATE CH2 PV (DROP 100A)" if st.session_state["ch2_closed"] else "?? CONNECT CH2 PV (+100A)"
     if st.button(btn_lbl_2):
         st.session_state["ch2_closed"] = not st.session_state["ch2_closed"]
 with c_col3:
-    btn_lbl_3 = "⚡ DISCHARGE CH3 BESS (+350A)" if st.session_state["ch3_mode"] != "DISCHARGE" else "🔄 FLOAT CH3 BESS (100A)"
+    btn_lbl_3 = "? DISCHARGE CH3 BESS (+350A)" if st.session_state["ch3_mode"] != "DISCHARGE" else "?? FLOAT CH3 BESS (100A)"
     if st.button(btn_lbl_3):
         st.session_state["ch3_mode"] = "FLOAT" if st.session_state["ch3_mode"] == "DISCHARGE" else "DISCHARGE"
 with c_col4:
-    btn_lbl_4 = "⚡ START CH4 GEN (+220A)" if st.session_state["ch4_state"] != "RUNNING" else "🛑 STOP CH4 GEN (0A)"
+    btn_lbl_4 = "? START CH4 GEN (+220A)" if st.session_state["ch4_state"] != "RUNNING" else "?? STOP CH4 GEN (0A)"
     if st.button(btn_lbl_4):
         st.session_state["ch4_state"] = "STANDBY" if st.session_state["ch4_state"] == "RUNNING" else "RUNNING"
 with c_col5:
-    btn_lbl_5 = "🟢 RESTORE BUS B (+155A)" if st.session_state["bus_b_shed"] else "🛑 SHED BUS B (-155A)"
+    btn_lbl_5 = "?? RESTORE BUS B (+155A)" if st.session_state["bus_b_shed"] else "?? SHED BUS B (-155A)"
     if st.button(btn_lbl_5):
         st.session_state["bus_b_shed"] = not st.session_state["bus_b_shed"]
 
@@ -382,10 +382,10 @@ st.markdown(f"""
 # 5. FOUR UNCOMPROMISED FULL-FIDELITY SCREENS (ACCESSIBLE VIA TABS)
 # ------------------------------------------------------------------------------
 tab1, tab2, tab3, tab4 = st.tabs([
-    "🎛️ ANALOG GAUGES & MACHINERY INTERLOCKS",
-    "🗺️️ REGIONAL OUTAGE MAP & POWER FLOW PIPELINE",
-    "📊 MULTI-STAGE ELECTRICAL WAVEFORMS (OSCILLOSCOPE)",
-    "📜 STATUTORY PROVING MATRIX (THE 4 EVALUATION DOMAINS)"
+    "??? ANALOG GAUGES & MACHINERY INTERLOCKS",
+    "???? REGIONAL OUTAGE MAP & POWER FLOW PIPELINE",
+    "?? MULTI-STAGE ELECTRICAL WAVEFORMS (OSCILLOSCOPE)",
+    "?? STATUTORY PROVING MATRIX (THE 4 EVALUATION DOMAINS)"
 ])
 
 # ==============================================================================
@@ -546,6 +546,8 @@ with tab1:
             <div style="font-size:8px; color:#94a3b8; margin-top:2px; line-height:1.3;">{a['desc']}</div>
         </div>
         '''
+if 'active_h' not in locals():
+    active_h = {'assets': {}}
         for k, a in active_h["assets"].items()
     ])
     components.html(f'<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; font-family:monospace;">{machines_html}</div>', height=140)
@@ -621,7 +623,7 @@ with tab2:
 # TAB 3: LIVE 60 FPS PHOSPHOR SWEEP OSCILLOSCOPE (CONTINUOUS TRAVELING WAVES)
 # ==============================================================================
 with tab3:
-    st.markdown('<div style="font-size:9.5px; font-weight:800; color:#f59e0b; text-transform:uppercase; margin-bottom:3px;">⚡ ELECTRICAL STAGE SCRUBBER // STEP THROUGH TRANSIENT DYNAMICS:</div>', unsafe_allow_html=True)
+    st.markdown('<div style="font-size:9.5px; font-weight:800; color:#f59e0b; text-transform:uppercase; margin-bottom:3px;">? ELECTRICAL STAGE SCRUBBER // STEP THROUGH TRANSIENT DYNAMICS:</div>', unsafe_allow_html=True)
     sc0, sc1, sc2, sc3, sc4, sc5 = st.columns(6)
 
     with sc0:
@@ -649,7 +651,7 @@ with tab3:
         <div class="panel">
             <div style="font-size:9px; font-weight:800; color:#94a3b8; display:flex; justify-content:space-between; margin-bottom:2px;">
                 <span>LIVE 60 FPS PHOSPHOR SWEEP OSCILLOSCOPE (PHASE-A)</span>
-                <span><span style="color:#facc15;">— VOLTAGE ({master_v:.1f}V)</span> &nbsp; <span style="color:#38bdf8;">— CURRENT ({master_i:.0f}A)</span></span>
+                <span><span style="color:#facc15;">� VOLTAGE ({master_v:.1f}V)</span> &nbsp; <span style="color:#38bdf8;">� CURRENT ({master_i:.0f}A)</span></span>
             </div>
             <canvas id="scopeCanvas" width="480" height="135" style="display:block; width:100%; border-radius:2px;"></canvas>
         </div>
@@ -767,7 +769,7 @@ with tab3:
 with tab4:
     st.markdown("""
     <div style="font-size:9.5px; font-weight:800; color:#00f3ff; text-transform:uppercase; margin-bottom:4px;">
-        📜 STATUTORY & CRYPTOGRAPHIC EVALUATION PROVING CARDS // OKLAHOMA COMMERCE EVALUATION:
+        ?? STATUTORY & CRYPTOGRAPHIC EVALUATION PROVING CARDS // OKLAHOMA COMMERCE EVALUATION:
     </div>
     """, unsafe_allow_html=True)
     
