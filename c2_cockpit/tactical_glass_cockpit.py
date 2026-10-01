@@ -8,8 +8,21 @@ Authority: CEO Jeffery Humphrey (Level 5 Authority) // CAGE: 1AHA8
 """
 import streamlit as st
 
-# ADVANCED UI COMPRESSION OVERRIDE
-st.markdown("<style> div[data-testid='stVerticalBlock'] { gap: 0rem !important; } .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; } p, h1, h2, h3, h4, h5, h6 { margin-bottom: 0px !important; } hr { margin-top: 5px !important; margin-bottom: 5px !important; } </style>", unsafe_allow_html=True)
+# MAXIMUM COMPRESSION OVERRIDE
+st.markdown("<style> 
+header[data-testid='stHeader'] { display: none !important; }
+footer { display: none !important; }
+.block-container { padding-top: 0rem !important; padding-bottom: 0rem !important; padding-left: 1rem !important; padding-right: 1rem !important; margin-top: 0rem !important; max-width: 100% !important;} 
+div[data-testid='stVerticalBlock'] { gap: 0rem !important; } 
+.element-container { margin-bottom: 0rem !important; }
+p, h1, h2, h3, h4, h5, h6 { margin-top: 0px !important; margin-bottom: 0px !important; padding-top: 0px !important; padding-bottom: 0px !important; line-height: 1.15 !important;} 
+hr { margin-top: 2px !important; margin-bottom: 2px !important; }
+div[data-testid='stMetricValue'] { font-size: 1.5rem !important; padding-bottom: 0px !important; } 
+div[data-testid='stMarkdownContainer'] { line-height: 1.15 !important; }
+</style>", unsafe_allow_html=True)
+
+
+
 
 import streamlit.components.v1 as components
 import json, os, time, math, textwrap
@@ -835,8 +848,21 @@ st.markdown(f"""
 # VIEWPORT COMPRESSION
 import streamlit as st
 
-# ADVANCED UI COMPRESSION OVERRIDE
-st.markdown("<style> div[data-testid='stVerticalBlock'] { gap: 0rem !important; } .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; } p, h1, h2, h3, h4, h5, h6 { margin-bottom: 0px !important; } hr { margin-top: 5px !important; margin-bottom: 5px !important; } </style>", unsafe_allow_html=True)
+# MAXIMUM COMPRESSION OVERRIDE
+st.markdown("<style> 
+header[data-testid='stHeader'] { display: none !important; }
+footer { display: none !important; }
+.block-container { padding-top: 0rem !important; padding-bottom: 0rem !important; padding-left: 1rem !important; padding-right: 1rem !important; margin-top: 0rem !important; max-width: 100% !important;} 
+div[data-testid='stVerticalBlock'] { gap: 0rem !important; } 
+.element-container { margin-bottom: 0rem !important; }
+p, h1, h2, h3, h4, h5, h6 { margin-top: 0px !important; margin-bottom: 0px !important; padding-top: 0px !important; padding-bottom: 0px !important; line-height: 1.15 !important;} 
+hr { margin-top: 2px !important; margin-bottom: 2px !important; }
+div[data-testid='stMetricValue'] { font-size: 1.5rem !important; padding-bottom: 0px !important; } 
+div[data-testid='stMarkdownContainer'] { line-height: 1.15 !important; }
+</style>", unsafe_allow_html=True)
+
+
+
 
 st.markdown("<style> .block-container { padding-bottom: 0rem !important; } footer {display: none !important;} </style>", unsafe_allow_html=True)
 
