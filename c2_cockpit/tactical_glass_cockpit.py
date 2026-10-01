@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ï»¿# -*- coding: utf-8 -*-
 """
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT // DYNAMIC CURRENT ENGINE
 Real-Time Kirchhoff Current Calculations on Every Interaction
@@ -651,7 +651,7 @@ with tab3:
         <div class="panel">
             <div style="font-size:9px; font-weight:800; color:#94a3b8; display:flex; justify-content:space-between; margin-bottom:2px;">
                 <span>LIVE 60 FPS PHOSPHOR SWEEP OSCILLOSCOPE (PHASE-A)</span>
-                <span><span style="color:#facc15;">— VOLTAGE ({master_v:.1f}V)</span> &nbsp; <span style="color:#38bdf8;">— CURRENT ({master_i:.0f}A)</span></span>
+                <span><span style="color:#facc15;">â€” VOLTAGE ({master_v:.1f}V)</span> &nbsp; <span style="color:#38bdf8;">â€” CURRENT ({master_i:.0f}A)</span></span>
             </div>
             <canvas id="scopeCanvas" width="480" height="135" style="display:block; width:100%; border-radius:2px;"></canvas>
         </div>
