@@ -1,5 +1,5 @@
 ﻿if 'active_h' not in locals():
-    active_h = {'assets': {}}
+    active_h = {'assets': {}, 'map': {'color': '#00FF00', 'status': 'ONLINE'}, 'gauges': {'color': '#00FF00', 'status': 'ONLINE'}, 'waveforms': {'color': '#00FF00', 'status': 'ONLINE'}, 'matrix': {'color': '#00FF00', 'status': 'VERIFIED'}}
 # -*- coding: utf-8 -*-
 """
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT // DYNAMIC CURRENT ENGINE
