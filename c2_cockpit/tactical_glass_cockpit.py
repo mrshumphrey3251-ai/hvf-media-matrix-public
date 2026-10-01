@@ -7,6 +7,10 @@ Real-Time Kirchhoff Current Calculations on Every Interaction
 Authority: CEO Jeffery Humphrey (Level 5 Authority) // CAGE: 1AHA8
 """
 import streamlit as st
+
+# ADVANCED UI COMPRESSION OVERRIDE
+st.markdown("<style> div[data-testid='stVerticalBlock'] { gap: 0rem !important; } .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; } p, h1, h2, h3, h4, h5, h6 { margin-bottom: 0px !important; } hr { margin-top: 5px !important; margin-bottom: 5px !important; } </style>", unsafe_allow_html=True)
+
 import streamlit.components.v1 as components
 import json, os, time, math, textwrap
 
@@ -830,5 +834,9 @@ st.markdown(f"""
 
 # VIEWPORT COMPRESSION
 import streamlit as st
+
+# ADVANCED UI COMPRESSION OVERRIDE
+st.markdown("<style> div[data-testid='stVerticalBlock'] { gap: 0rem !important; } .block-container { padding-top: 1rem !important; padding-bottom: 0rem !important; } p, h1, h2, h3, h4, h5, h6 { margin-bottom: 0px !important; } hr { margin-top: 5px !important; margin-bottom: 5px !important; } </style>", unsafe_allow_html=True)
+
 st.markdown("<style> .block-container { padding-bottom: 0rem !important; } footer {display: none !important;} </style>", unsafe_allow_html=True)
 
