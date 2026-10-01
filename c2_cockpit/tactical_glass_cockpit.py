@@ -828,3 +828,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
+# VIEWPORT COMPRESSION
+import streamlit as st
+st.markdown("<style> .block-container { padding-bottom: 0rem !important; } footer {display: none !important;} </style>", unsafe_allow_html=True)
+
