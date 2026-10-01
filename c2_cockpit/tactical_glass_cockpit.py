@@ -831,14 +831,20 @@ st.markdown(f"""
 # =====================================================================
 # FUTURISTIC GRID PARADIGM // LEVEL 5 QUANTUM ENERGY INJECTION
 # =====================================================================
+import random
+
 st.markdown("---")
 st.markdown("<h2 style='text-align: center; color: #00FFFF; text-shadow: 0 0 10px #00FFFF;'>⚡ NEXT-GEN PREDICTIVE ENERGY PARADIGM ⚡</h2>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: #CCCCCC;'>ORBITAL MICROWAVE RECEPTION | QUANTUM CORE STORAGE | AI-PREDICTIVE NEURAL LOAD BALANCING</p>", unsafe_allow_html=True)
 
 f_col1, f_col2, f_col3, f_col4 = st.columns(4)
-f_col1.metric(label="Orbital Solar Array (GW)", value="1.21", delta="Optimal Link")
-f_col2.metric(label="Quantum BESS Core (%)", value="99.9", delta="Stable at 2mK")
-f_col3.metric(label="AI Swarm Load Balance", value="Active", delta="Zero Latency")
+orbit_val = round(random.uniform(1.15, 1.35), 2)
+bess_val = round(random.uniform(97.5, 99.9), 1)
+ai_status = random.choice(["Active", "Optimizing...", "Synching Swarm..."])
+
+f_col1.metric(label="Orbital Solar Array (GW)", value=f"{orbit_val}", delta=f"{round(orbit_val - 1.21, 2)} Flux")
+f_col2.metric(label="Quantum BESS Core (%)", value=f"{bess_val}", delta="Stable at 2mK")
+f_col3.metric(label="AI Swarm Load Balance", value=ai_status, delta="Zero Latency")
 f_col4.metric(label="Directed Energy Defense", value="Armed", delta="Target Lock")
 
-st.progress(100, text="NEURAL GRID SYNTHESIS: 100% OPERATIONAL OVERRIDE")
+st.progress(random.randint(92, 100), text="NEURAL GRID SYNTHESIS: CONTINUOUS OPTIMIZATION OVERRIDE")
