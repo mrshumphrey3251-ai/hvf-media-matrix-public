@@ -1,4 +1,6 @@
-﻿# -*- coding: utf-8 -*-
+﻿if 'active_h' not in locals():
+    active_h = {'assets': {}}
+# -*- coding: utf-8 -*-
 """
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT // DYNAMIC CURRENT ENGINE
 Real-Time Kirchhoff Current Calculations on Every Interaction
@@ -546,8 +548,6 @@ with tab1:
             <div style="font-size:8px; color:#94a3b8; margin-top:2px; line-height:1.3;">{a['desc']}</div>
         </div>
         '''
-if 'active_h' not in locals():
-    active_h = {'assets': {}}
         for k, a in active_h["assets"].items()
     ])
     components.html(f'<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; font-family:monospace;">{machines_html}</div>', height=140)
