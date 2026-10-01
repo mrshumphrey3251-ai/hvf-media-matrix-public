@@ -7,17 +7,7 @@ Real-Time Kirchhoff Current Calculations on Every Interaction
 Authority: CEO Jeffery Humphrey (Level 5 Authority) // CAGE: 1AHA8
 """
 import streamlit as st
-st.markdown('''<style>
-header {visibility: hidden !important;}
-footer {display: none !important;}
-.block-container {padding-top: 0rem !important; padding-bottom: 0rem !important; margin-top: -4rem !important; max-width: 100% !important;}
-div[data-testid="stVerticalBlock"] {gap: 0rem !important;}
-div.element-container {margin: 0rem !important; padding: 0rem !important;}
-hr {margin: 0.2rem 0 !important;}
-p, h1, h2, h3, h4, h5, h6 {margin-bottom: 0 !important; line-height: 1.1 !important;}
-</style>'''.replace('
-', ''), unsafe_allow_html=True)
-
+st.markdown("""<style>header {visibility: hidden !important;} footer {display: none !important;} .block-container {padding-top: 0rem !important; padding-bottom: 0rem !important; margin-top: -4rem !important; max-width: 100% !important;} div[data-testid="stVerticalBlock"] {gap: 0rem !important;} div.element-container {margin: 0rem !important; padding: 0rem !important;} hr {margin: 0.2rem 0 !important;} p, h1, h2, h3, h4, h5, h6 {margin-bottom: 0 !important; line-height: 1.1 !important;}</style>""", unsafe_allow_html=True)
 import streamlit.components.v1 as components
 import json, os, time, math, textwrap
 
@@ -841,16 +831,3 @@ st.markdown(f"""
 
 # VIEWPORT COMPRESSION
 import streamlit as st
-st.markdown('''<style>
-header {visibility: hidden !important;}
-footer {display: none !important;}
-.block-container {padding-top: 0rem !important; padding-bottom: 0rem !important; margin-top: -4rem !important; max-width: 100% !important;}
-div[data-testid="stVerticalBlock"] {gap: 0rem !important;}
-div.element-container {margin: 0rem !important; padding: 0rem !important;}
-hr {margin: 0.2rem 0 !important;}
-p, h1, h2, h3, h4, h5, h6 {margin-bottom: 0 !important; line-height: 1.1 !important;}
-</style>'''.replace('
-', ''), unsafe_allow_html=True)
-
-st.markdown("<style> .block-container { padding-bottom: 0rem !important; } footer {display: none !important;} </style>", unsafe_allow_html=True)
-
