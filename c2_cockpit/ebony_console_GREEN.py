@@ -6,6 +6,7 @@ for _p in [str(_ROOT_DIR / "dispatch_core"), str(_ROOT_DIR)]:
         sys.path.insert(0, _p)
 import streamlit as st
 import sovereign_comms
+import sovereign_coder
 import streamlit.components.v1 as components
 import sys
 import os
