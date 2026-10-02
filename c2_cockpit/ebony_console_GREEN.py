@@ -628,6 +628,14 @@ elif active_module == "💬 Sovereign Command":
         with st.chat_message(msg["role"]): st.markdown(msg["content"])
 
     if user_input := st.chat_input(f"Ask {EMPIRE['AI_PERSONA']} anything..."):
+        # Sovereign Resilient Fallback Injection
+        response_text = sovereign_comms.generate_chat_response(prompt if "prompt" in locals() else user_input)
+        st.session_state.messages.append({"role": "assistant", "content": response_text})
+        with st.chat_message("assistant"):
+            st.markdown(response_text)
+            audio_bytes = sovereign_comms.synthesize_speech_elevenlabs(response_text)
+            if audio_bytes:
+                st.audio(audio_bytes, format="audio/mp3", autoplay=True)
         if current_user and current_cipher: save_encrypted_message(current_user, "user", user_input, current_cipher)
         st.session_state.messages.append({"role": "user", "content": user_input})
 
