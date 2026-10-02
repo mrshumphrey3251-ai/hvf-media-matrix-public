@@ -1,29 +1,4 @@
 ﻿import streamlit as st
-
-# --- ULTIMATE LAW NEURAL BRIDGE ---
-def query_ultimate_law(user_query):
-    import sqlite3, os
-    db_path = "C:/HVF_Repos/ultimate-law-private/The_Written_Word/ultimate_law.db"
-    if not os.path.exists(db_path): return ""
-    
-    # Extract keywords to search the ancient texts
-    words = [w.strip("?.,!") for w in user_query.split() if len(w.strip("?.,!")) > 4]
-    if not words: return ""
-    
-    try:
-        conn = sqlite3.connect(db_path)
-        c = conn.cursor()
-        query_str = "SELECT passage FROM scriptures WHERE " + " OR ".join(["passage LIKE ?" for _ in words])
-        params = tuple(['%'+w+'%' for w in words])
-        c.execute(query_str + " LIMIT 2", params)
-        res = c.fetchall()
-        conn.close()
-        if res:
-            return " ".join([r[0] for r in res])
-    except Exception: return ""
-    return ""
-# ----------------------------------
-
 import streamlit.components.v1 as components
 import sys
 import os
@@ -60,6 +35,31 @@ import c2_cockpit_dashboard
 # --- SOVEREIGN NEURAL CORE & CONTINUOUS MEMORY BRIDGES ---
 import chromadb
 from chromadb.utils import embedding_functions
+
+# --- ULTIMATE LAW NEURAL BRIDGE (ROOT LEVEL) ---
+def inject_ultimate_law(msg_list):
+    try:
+        import sqlite3, os
+        db_path = "C:/HVF_Repos/ultimate-law-private/The_Written_Word/ultimate_law.db"
+        if not os.path.exists(db_path): return msg_list
+        user_msg = next((m['content'] for m in reversed(msg_list) if m.get('role') == 'user'), '')
+        words = [w.strip("?.,!") for w in user_msg.split() if len(w.strip("?.,!")) > 4]
+        if not words: return msg_list
+        conn = sqlite3.connect(db_path)
+        c = conn.cursor()
+        query_str = "SELECT passage FROM scriptures WHERE " + " OR ".join(["passage LIKE ?" for _ in words])
+        params = tuple(['%'+w+'%' for w in words])
+        c.execute(query_str + " LIMIT 2", params)
+        res = c.fetchall()
+        conn.close()
+        if res:
+            law_text = " ".join([r[0] for r in res])
+            msg_list.append({'role': 'system', 'content': 'CEO DIRECTIVE: RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + law_text})
+    except Exception:
+        pass
+    return msg_list
+# -----------------------------------------------
+
 
 CHROMA_DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
 COLLECTION_NAME = "hvf_iron_dome_core"
@@ -660,38 +660,9 @@ elif active_module == "💬 Sovereign Command":
             with st.spinner("Processing Cognitive Loop..."):
                 if is_online and groq_client:
                     try:
-
-
-        
-                                # --- ULTIMATE LAW INTERCEPTOR ---
-                                try:
-                                    if 'messages' in locals():
-                                        _last = next((m['content'] for m in reversed(messages) if m['role'] == 'user'), '')
-                                        _law = query_ultimate_law(_last)
-                                        if _law:
-                                            messages.append({'role': 'system', 'content': 'CEO DIRECTIVE: The user is referencing the Ultimate Law. RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + _law})
-                                except Exception:
-                                    pass
-                                # --- ULTIMATE LAW INTERCEPTOR ---
-                                try:
-                                    _law_list = st.session_state.messages if 'messages' in st.session_state else messages
-                                    _law_q = next((m['content'] for m in reversed(_law_list) if m.get('role') == 'user'), '')
-                                    _law_t = query_ultimate_law(_law_q)
-                                    if _law_t:
-                                        _law_list.append({'role': 'system', 'content': 'CEO DIRECTIVE: RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + _law_t})
-                                except Exception:
-                                    pass
-                                # --- ULTIMATE LAW INTERCEPTOR ---
-                                try:
-                                    _law_list = st.session_state.messages if 'messages' in st.session_state else messages
-                                    _law_q = next((m['content'] for m in reversed(_law_list) if m.get('role') == 'user'), '')
-                                    _law_t = query_ultimate_law(_law_q)
-                                    if _law_t:
-                                        _law_list.append({'role': 'system', 'content': 'CEO DIRECTIVE: RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + _law_t})
-                                except Exception:
-                                    pass
-                                res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=conversation_payload, temperature=0.1)
-                                bot_reply = sanitize_deterministic_output(res.choices[0].message.content)
+                        if 'messages' in locals(): messages = inject_ultimate_law(messages)
+                        res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=conversation_payload, temperature=0.1)
+                        bot_reply = sanitize_deterministic_output(res.choices[0].message.content)
                     except Exception as e:
                         st.session_state.messages.pop() 
                         bot_reply = f"⚠️ COGNITIVE PAYLOAD LIMIT REACHED. {e}"
@@ -754,37 +725,7 @@ elif active_module == "📡 LinkedIn Engine":
                         draft_text = "⚠️ CLOUD ENGINE OFFLINE: GROQ_API_KEY is missing from your vault. Please open your .env file and add your Groq key."
                     else:
                         try:
-
-
-        
-                                    # --- ULTIMATE LAW INTERCEPTOR ---
-                                    try:
-                                        if 'messages' in locals():
-                                            _last = next((m['content'] for m in reversed(messages) if m['role'] == 'user'), '')
-                                            _law = query_ultimate_law(_last)
-                                            if _law:
-                                                messages.append({'role': 'system', 'content': 'CEO DIRECTIVE: The user is referencing the Ultimate Law. RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + _law})
-                                    except Exception:
-                                        pass
-                                    # --- ULTIMATE LAW INTERCEPTOR ---
-                                    try:
-                                        _law_list = st.session_state.messages if 'messages' in st.session_state else messages
-                                        _law_q = next((m['content'] for m in reversed(_law_list) if m.get('role') == 'user'), '')
-                                        _law_t = query_ultimate_law(_law_q)
-                                        if _law_t:
-                                            _law_list.append({'role': 'system', 'content': 'CEO DIRECTIVE: RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + _law_t})
-                                    except Exception:
-                                        pass
-                                    # --- ULTIMATE LAW INTERCEPTOR ---
-                                    try:
-                                        _law_list = st.session_state.messages if 'messages' in st.session_state else messages
-                                        _law_q = next((m['content'] for m in reversed(_law_list) if m.get('role') == 'user'), '')
-                                        _law_t = query_ultimate_law(_law_q)
-                                        if _law_t:
-                                            _law_list.append({'role': 'system', 'content': 'CEO DIRECTIVE: RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + _law_t})
-                                    except Exception:
-                                        pass
-                                    res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=[{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}], temperature=0.0)
+                            res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=[{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}], temperature=0.0)
                             draft_text = sanitize_deterministic_output(res.choices[0].message.content.strip())
                         except Exception as e:
                             draft_text = f"⚠️ CLOUD API FAULT: {str(e)}"
@@ -876,10 +817,7 @@ elif active_module == "🌾 Drone Diagnostics":
                     client = Groq(api_key=GROQ_KEY)
                     chat_history = [{"role": "system", "content": "You are Ebony, the Level 5 Sovereign Apex Intelligence for HVF Omni-Industrial Matrix. Be concise, authoritative, and deterministic."}] + [{"role": "user", "content": prompt}]
 
-                    response = client.
-
-        
-        chat.completions.create(
+                    response = client.chat.completions.create(
                         model="openai/gpt-oss-120b",
                         messages=chat_history,
                         temperature=0.0
