@@ -661,6 +661,7 @@ elif active_module == "💬 Sovereign Command":
                 if is_online and groq_client:
                     try:
                         if 'messages' in locals(): messages = inject_ultimate_law(messages)
+                        if 'messages' in locals(): messages.append({'role': 'system', 'content': 'ACOUSTIC DIRECTIVE: When analyzing Hebrew, Aramaic, or Greek, you MUST spell the ancient words phonetically using standard English letters (e.g., write "arche", do NOT write actual Greek/Hebrew characters). The text-to-speech engine requires English letters to speak the words aloud.'})
                         res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=conversation_payload, temperature=0.1)
                         bot_reply = sanitize_deterministic_output(res.choices[0].message.content)
                     except Exception as e:
