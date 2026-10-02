@@ -673,10 +673,10 @@ elif active_module == "💬 Sovereign Command":
                                 except Exception:
                                     pass
                                 res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=conversation_payload, temperature=0.1)
-                        bot_reply = sanitize_deterministic_output(res.choices[0].message.content)
+                                bot_reply = sanitize_deterministic_output(res.choices[0].message.content)
                     except Exception as e:
                         st.session_state.messages.pop() 
-                        bot_reply = f"⚠️ COGNITIVE PAYLOAD LIMIT REACHED. {e}"
+                                bot_reply = f"⚠️ COGNITIVE PAYLOAD LIMIT REACHED. {e}"
                 else:
                     bot_reply = query_local_ollama_chat(conversation_payload)
 
