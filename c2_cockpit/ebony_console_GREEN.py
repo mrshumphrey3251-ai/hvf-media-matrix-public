@@ -681,6 +681,15 @@ elif active_module == "💬 Sovereign Command":
                                         _law_list.append({'role': 'system', 'content': 'CEO DIRECTIVE: RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + _law_t})
                                 except Exception:
                                     pass
+                                # --- ULTIMATE LAW INTERCEPTOR ---
+                                try:
+                                    _law_list = st.session_state.messages if 'messages' in st.session_state else messages
+                                    _law_q = next((m['content'] for m in reversed(_law_list) if m.get('role') == 'user'), '')
+                                    _law_t = query_ultimate_law(_law_q)
+                                    if _law_t:
+                                        _law_list.append({'role': 'system', 'content': 'CEO DIRECTIVE: RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + _law_t})
+                                except Exception:
+                                    pass
                                 res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=conversation_payload, temperature=0.1)
                                 bot_reply = sanitize_deterministic_output(res.choices[0].message.content)
                     except Exception as e:
@@ -755,6 +764,15 @@ elif active_module == "📡 LinkedIn Engine":
                                             _law = query_ultimate_law(_last)
                                             if _law:
                                                 messages.append({'role': 'system', 'content': 'CEO DIRECTIVE: The user is referencing the Ultimate Law. RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + _law})
+                                    except Exception:
+                                        pass
+                                    # --- ULTIMATE LAW INTERCEPTOR ---
+                                    try:
+                                        _law_list = st.session_state.messages if 'messages' in st.session_state else messages
+                                        _law_q = next((m['content'] for m in reversed(_law_list) if m.get('role') == 'user'), '')
+                                        _law_t = query_ultimate_law(_law_q)
+                                        if _law_t:
+                                            _law_list.append({'role': 'system', 'content': 'CEO DIRECTIVE: RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + _law_t})
                                     except Exception:
                                         pass
                                     # --- ULTIMATE LAW INTERCEPTOR ---
