@@ -661,15 +661,17 @@ elif active_module == "💬 Sovereign Command":
                 if is_online and groq_client:
                     try:
 
-        # --- ULTIMATE LAW INTERCEPTOR ---
-        try:
-            if 'messages' in locals():
-                latest_msg = next((m["content"] for m in reversed(messages) if m["role"] == "user"), "")
-                law_text = query_ultimate_law(latest_msg)
-                if law_text:
-                    messages.append({"role": "system", "content": "CEO DIRECTIVE: The user is referencing the Ultimate Law. RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: " + law_text})
-        except Exception: pass
+
         
+                                # --- ULTIMATE LAW INTERCEPTOR ---
+                                try:
+                                    if 'messages' in locals():
+                                        _last = next((m['content'] for m in reversed(messages) if m['role'] == 'user'), '')
+                                        _law = query_ultimate_law(_last)
+                                        if _law:
+                                            messages.append({'role': 'system', 'content': 'CEO DIRECTIVE: The user is referencing the Ultimate Law. RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + _law})
+                                except Exception:
+                                    pass
                                 res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=conversation_payload, temperature=0.1)
                         bot_reply = sanitize_deterministic_output(res.choices[0].message.content)
                     except Exception as e:
@@ -735,15 +737,17 @@ elif active_module == "📡 LinkedIn Engine":
                     else:
                         try:
 
-        # --- ULTIMATE LAW INTERCEPTOR ---
-        try:
-            if 'messages' in locals():
-                latest_msg = next((m["content"] for m in reversed(messages) if m["role"] == "user"), "")
-                law_text = query_ultimate_law(latest_msg)
-                if law_text:
-                    messages.append({"role": "system", "content": "CEO DIRECTIVE: The user is referencing the Ultimate Law. RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: " + law_text})
-        except Exception: pass
+
         
+                                    # --- ULTIMATE LAW INTERCEPTOR ---
+                                    try:
+                                        if 'messages' in locals():
+                                            _last = next((m['content'] for m in reversed(messages) if m['role'] == 'user'), '')
+                                            _law = query_ultimate_law(_last)
+                                            if _law:
+                                                messages.append({'role': 'system', 'content': 'CEO DIRECTIVE: The user is referencing the Ultimate Law. RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: ' + _law})
+                                    except Exception:
+                                        pass
                                     res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=[{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}], temperature=0.0)
                             draft_text = sanitize_deterministic_output(res.choices[0].message.content.strip())
                         except Exception as e:
@@ -837,14 +841,7 @@ elif active_module == "🌾 Drone Diagnostics":
                     chat_history = [{"role": "system", "content": "You are Ebony, the Level 5 Sovereign Apex Intelligence for HVF Omni-Industrial Matrix. Be concise, authoritative, and deterministic."}] + [{"role": "user", "content": prompt}]
 
                     response = client.
-        # --- ULTIMATE LAW INTERCEPTOR ---
-        try:
-            if 'messages' in locals():
-                latest_msg = next((m["content"] for m in reversed(messages) if m["role"] == "user"), "")
-                law_text = query_ultimate_law(latest_msg)
-                if law_text:
-                    messages.append({"role": "system", "content": "CEO DIRECTIVE: The user is referencing the Ultimate Law. RECITE THIS EXACT SCRIPTURE TEXT ALOUD TO THE CEO: " + law_text})
-        except Exception: pass
+
         
         chat.completions.create(
                         model="openai/gpt-oss-120b",
