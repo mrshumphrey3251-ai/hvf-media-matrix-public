@@ -638,7 +638,7 @@ with c2:
 
 with st.expander("🗺️ REGIONAL OUTAGE MAP & POWER FLOW PIPELINE"):
     st.markdown("*Telemetry uplink established. Rendering active flow nodes...*")
-    
+
 with st.expander("📈 MULTI-STAGE ELECTRICAL WAVEFORMS (OSCILLOSCOPE)"):
     st.line_chart([0, 142, -142, 142, -142, 142, -142, 0])
 
@@ -646,7 +646,6 @@ st.markdown("### ⚡ LIVE FORENSIC SILICON LOG // CHRONUS LEDGER SECURED ⚡")
 st.code("[MERKLE SEALED] LOAD: 1203.2A | PWR: 295.5kW | FREQ: 60.03Hz | HASH: 25d69f803fb3faca4f118328387bc53d69cfe10b2e508165c6d5b7ec00282157", language="text")
 st.divider()
 # ---------------------------------------
-
 if "messages" not in st.session_state: st.session_state.messages = [{"role": "assistant", "content": "⚡ System Online. Awaiting CEO."}]
 
     for msg in st.session_state.messages:
