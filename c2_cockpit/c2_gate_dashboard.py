@@ -1,4 +1,4 @@
-﻿"""
+"""
 C2 COCKPIT: CEO AUTHORIZATION GATE & LEVEL 5 EXTENSION CONTROLLER
 ROLE: Executive interface for inspecting sandboxed drafts, validating cryptographic
       signatures, promoting to Level 5, and executing dynamic modules.
@@ -60,7 +60,7 @@ def render():
                 with col_btn:
                     st.write("")
                     st.write("")
-                    if st.button("AUTHORIZE & PROMOTE", type="primary", use_container_width=True):
+                    if st.button("AUTHORIZE & PROMOTE", type="primary", width='stretch'):
                         # Retrieve authorized credential from secrets or env
                         expected_key = os.environ.get("HVF_CEO_PASSWORD")
                         if not expected_key and hasattr(st, "secrets"):
@@ -98,7 +98,7 @@ def render():
             try:
                 with open(ledger_file, "r", encoding="utf-8") as f:
                     entries = json.load(f)
-                st.dataframe(entries, use_container_width=True)
+                st.dataframe(entries, width='stretch')
             except Exception as e:
                 st.warning(f"Unable to parse audit ledger: {e}")
         else:
