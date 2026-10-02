@@ -11,7 +11,7 @@ for p in [_COCKPIT_DIR, _BASE_DIR, os.path.join(_BASE_DIR, "dispatch_core")]:
     if p not in sys.path:
         sys.path.insert(0, p)
 # ==============================================================================
-﻿import streamlit as st
+import streamlit as st
 import streamlit.components.v1 as components
 import sys
 import os
