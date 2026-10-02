@@ -676,7 +676,7 @@ elif active_module == "💬 Sovereign Command":
                                 bot_reply = sanitize_deterministic_output(res.choices[0].message.content)
                     except Exception as e:
                         st.session_state.messages.pop() 
-                                bot_reply = f"⚠️ COGNITIVE PAYLOAD LIMIT REACHED. {e}"
+                        bot_reply = f"⚠️ COGNITIVE PAYLOAD LIMIT REACHED. {e}"
                 else:
                     bot_reply = query_local_ollama_chat(conversation_payload)
 
