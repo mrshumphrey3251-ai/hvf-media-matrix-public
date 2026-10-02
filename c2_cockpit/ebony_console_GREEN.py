@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+_ROOT_DIR = Path(__file__).resolve().parent.parent
+for _p in [str(_ROOT_DIR / "dispatch_core"), str(_ROOT_DIR)]:
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
 # ==============================================================================
 # PROJECT EBONY // SOVEREIGN TRI-BRAIN SCADA & LPU CORE BINDINGS
 # Hard-locked under 100% Absolute Controlling Authority: [REDACTED]
@@ -601,13 +607,14 @@ with st.sidebar:
 st.title(f"⚡ {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
 st.caption(f"Active User: **{current_name}** | 🛡️ *Mode: {st.session_state.operation_mode}*")
 
-    elif active_module == "🛡️ CEO Authorization Gate":
-        import c2_gate_dashboard
-        c2_gate_dashboard.render()
-
-    elif active_module == "🎛️ Master C2 Cockpit":
+if active_module == "🎛️ Master C2 Cockpit":
     import c2_cockpit_dashboard
     c2_cockpit_dashboard.render()
+
+elif active_module == "🛡️ CEO Authorization Gate":
+    import c2_gate_dashboard
+    c2_gate_dashboard.render()
+
 elif active_module == "💬 Sovereign Command":
     if current_user and current_cipher:
         if "messages" not in st.session_state or st.session_state.screen_wiped:
