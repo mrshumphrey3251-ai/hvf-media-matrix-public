@@ -572,6 +572,7 @@ with st.sidebar:
     st.markdown("### 🎛 Command Modules")
     active_module = st.radio("Navigation", [
         "🎛️ Master C2 Cockpit",
+        "🛡️ CEO Authorization Gate",
         "💬 Sovereign Command",
         "📡 LinkedIn Engine",
         "🚨 NOAA Radar",
@@ -590,7 +591,11 @@ with st.sidebar:
 st.title(f"⚡ {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
 st.caption(f"Active User: **{current_name}** | 🛡️ *Mode: {st.session_state.operation_mode}*")
 
-if active_module == "🎛️ Master C2 Cockpit":
+    elif active_module == "🛡️ CEO Authorization Gate":
+        import c2_gate_dashboard
+        c2_gate_dashboard.render()
+
+    elif active_module == "🎛️ Master C2 Cockpit":
     import c2_cockpit_dashboard
     c2_cockpit_dashboard.render()
 
