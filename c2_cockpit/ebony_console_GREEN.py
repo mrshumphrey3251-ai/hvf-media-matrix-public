@@ -98,6 +98,7 @@ from datetime import datetime, timedelta
 import requests
 import subprocess
 import streamlit as st
+import sovereign_comms
 from dotenv import load_dotenv
 from groq import Groq
 import qrcode
