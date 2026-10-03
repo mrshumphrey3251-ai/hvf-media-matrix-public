@@ -1,5 +1,31 @@
 
 # =========================================================================
+# SOVEREIGN LOCAL REPOSITORY DISPATCH (BYPASSES CLOUD REFUSALS DETERMINISTICALLY)
+# =========================================================================
+def get_verified_hvf_inventory():
+    from pathlib import Path
+    root = Path(r"C:\HVF_Repos")
+    if not root.exists():
+        return "Directory C:\\HVF_Repos not found."
+    repos = sorted([d.name for d in root.iterdir() if d.is_dir()])
+    repo_list = "\n".join([f"- **{r}**" for r in repos])
+    return (
+        f"Jeffery, here is the verified inventory of all {len(repos)} sovereign repositories "
+        f"mounted directly on your bare-metal workstation at `C:\\HVF_Repos`:\n\n"
+        f"{repo_list}\n\n"
+        f"All local repositories and the Ultimate Law vaults are under active command."
+    )
+
+def is_inventory_query(text: str) -> bool:
+    if not text:
+        return False
+    q = text.lower().strip()
+    actions = ["list", "inventory", "repositories", "repos", "what do you have", "show me", "give me"]
+    targets = ["repo", "repositor", "hvf", "hbf", "hpf", "disk", "all", "workstation"]
+    return any(a in q for a in actions) and any(t in q for t in targets)
+
+
+# =========================================================================
 # DETERMINISTIC BARE-METAL REPOSITORY & ASSET DISPATCH
 # =========================================================================
 def check_deterministic_executive_override(prompt: str):
