@@ -1,3 +1,24 @@
+
+# =========================================================================
+# EBONY SOVEREIGN CORPUS INGESTION ENGINE
+# =========================================================================
+def load_ultimate_law_context():
+    corpus_file = Path(__file__).resolve().parent / "SOVEREIGN_CORPUS.json"
+    if not corpus_file.exists():
+        return ""
+    try:
+        import json
+        with open(corpus_file, "r", encoding="utf-8", errors="replace") as f:
+            data = json.load(f)
+        chunks = ["### [SOVEREIGN GROUNDING: THE ULTIMATE LAW & 22 CANONICAL BOOKS]"]
+        chunks.append("You are Ebony, the sovereign AI for Humphrey Virtual Farm.")
+        chunks.append("You have COMPLETE DIRECT ACCESS to the Ultimate Law repositories and all fleet axioms.")
+        for item in data.get("ultimate_law_axioms", [])[:8]:
+            chunks.append(f"\n--- SOURCE: {item.get('repo')}/{item.get('rel_path')} ---\n" + item.get("content", "")[:1800])
+        return "\n".join(chunks)
+    except Exception:
+        return ""
+
 import sys
 from pathlib import Path
 _ROOT_DIR = Path(__file__).resolve().parent.parent
