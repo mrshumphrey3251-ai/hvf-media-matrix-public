@@ -1,0 +1,37 @@
+{
+  "entity_name": "Vanderpool Energy Design LLC",
+  "jurisdiction": "Pennsylvania",
+  "contact_person": "Richard Vanderpool",
+  "contact_title": "Founder",
+  "delivery_email": "rickyvanderpool15@gmail.com",
+  "engagement_type": "Exploratory Infrastructure Alignment",
+  "current_status": "NDA Staged for Transmission",
+  "governing_law": "State of Oklahoma",
+  "ip_safeguards": [
+    "Pre-existing IP carve-out for Project Ebony, Protocol Lambda, Chronos SCADA",
+    "Patent preclusion clause preventing inclusion into pending vault utility filings",
+    "Zero joint-venture / no-partnership governance"
+  ],
+  "history": [
+    {
+      "timestamp": "2026-10-02T20:39:00Z",
+      "event": "Inbound inquiry on LinkedIn regarding physical vault & Chronos SCADA intersection"
+    },
+    {
+      "timestamp": "2026-10-02T21:04:00Z",
+      "event": "HVF issued strict NDA-first protocol; rejected informal note-comparing"
+    },
+    {
+      "timestamp": "2026-10-02T21:10:00Z",
+      "event": "Counterparty formally consented to standard mutual NDA"
+    },
+    {
+      "timestamp": "2026-10-02T21:27:00Z",
+      "event": "Corporate entity details and transmission vector provided"
+    },
+    {
+      "timestamp": "2026-10-03T16:24:01.895067+00:00",
+      "event": "Binding Oklahoma Mutual NDA generated and staged"
+    }
+  ]
+}
