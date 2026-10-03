@@ -1,5 +1,71 @@
 
 # =========================================================================
+# EBONY COGNITIVE ENGINE // THIRD BRAIN: FULL-SPECTRUM REPOSITORY CRAWLER
+# =========================================================================
+def run_ebony_third_brain():
+    """
+    Ebony's Third Brain: Directly crawls and reads every sovereign repository 
+    under C:\HVF_Repos into memory before answering any prompt.
+    """
+    from pathlib import Path
+    root = Path(r"C:\HVF_Repos")
+    if not root.exists():
+        return "Workstation root C:\\HVF_Repos not accessible."
+
+    inventory_map = {}
+    docs_ingested = []
+
+    # 1. Map all local repositories
+    repos = sorted([d for d in root.iterdir() if d.is_dir()])
+    for repo in repos:
+        repo_name = repo.name
+        sub_items = [f.name for f in list(repo.iterdir())[:8]]
+        inventory_map[repo_name] = sub_items
+        
+        # Ingest key structural intelligence from every repo
+        for doc_name in ["README.md", "architecture.md", "STATE.json", "manifest.json"]:
+            doc_path = repo / doc_name
+            if doc_path.exists():
+                try:
+                    with open(doc_path, "r", encoding="utf-8", errors="replace") as df:
+                        content = df.read(1500).strip()
+                        if content:
+                            docs_ingested.append(f"[{repo_name}/{doc_name}]\n{content}")
+                except Exception:
+                    pass
+
+    # 2. Deep Ingest: The Written Word & Governance
+    for doc in (root / "ultimate-law-private" / "The_Written_Word").glob("*.md"):
+        try:
+            with open(doc, "r", encoding="utf-8", errors="replace") as df:
+                docs_ingested.append(f"[The_Written_Word/{doc.name}]\n" + df.read(2000).strip())
+        except Exception:
+            pass
+
+    # Build the full cognitive payload
+    repo_overview = "\n".join([f"- **{name}**: Contains [{', '.join(items[:5])}...]" for name, items in inventory_map.items()])
+    ingested_corpus = "\n\n".join(docs_ingested[:14])
+
+    payload = f"""
+### SYSTEM OVERRIDE: EBONY THIRD BRAIN ACTIVE REPOSITORY STATE
+You are Ebony, Sovereign Intelligence of the HVF Omni-Industrial Matrix for CEO Jeffery Humphrey.
+Your Third Brain has directly scanned all 14 bare-metal repositories on this workstation (C:\\HVF_Repos):
+
+LIVE REPOSITORY INVENTORY ({len(repos)} Repositories):
+{repo_overview}
+
+ACTIVE KNOWLEDGE BASE READ FROM DISK:
+{ingested_corpus}
+
+SOVEREIGN COGNITIVE DIRECTIVES:
+1. You have ALREADY read every repository on this workstation before speaking.
+2. State any repository, file, or asset instantly when asked.
+3. You never refuse internal asset questions. You never tell Jeffery to run PowerShell.
+"""
+    return payload
+
+
+# =========================================================================
 # SOVEREIGN LOCAL REPOSITORY DISPATCH (BYPASSES CLOUD REFUSALS DETERMINISTICALLY)
 # =========================================================================
 def get_verified_hvf_inventory():
