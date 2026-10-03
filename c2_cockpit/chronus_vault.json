@@ -1,0 +1,135 @@
+[
+    {
+        "timestamp_utc": 1790878680.4261627,
+        "grid_load_A": 1281.2,
+        "active_power_kW": 287.8,
+        "frequency_Hz": 59.98,
+        "merkle_seal": "3242efdb0b3b6e0e03ff714496c46dac55bd95185f61cc674da1995f4366a9a9"
+    },
+    {
+        "timestamp_utc": 1790878681.6075532,
+        "grid_load_A": 1226.5,
+        "active_power_kW": 304.6,
+        "frequency_Hz": 60.05,
+        "merkle_seal": "15cecb7c23795fef5f9a34bb63c4240469be4260255b4e0d69855450dc246bfa"
+    },
+    {
+        "timestamp_utc": 1790878684.4241989,
+        "grid_load_A": 1290.6,
+        "active_power_kW": 287.6,
+        "frequency_Hz": 59.97,
+        "merkle_seal": "9f59b1d92615ffbd48f76489b8ba483db5e78c7d70b5664555897a1a6f52ffe5"
+    },
+    {
+        "timestamp_utc": 1790878685.282292,
+        "grid_load_A": 1277.2,
+        "active_power_kW": 308.1,
+        "frequency_Hz": 59.98,
+        "merkle_seal": "3aceac76feaf4fb9b0b163dd45347668e1d5403627ffdad2bb09124194775441"
+    },
+    {
+        "timestamp_utc": 1790878735.8295913,
+        "grid_load_A": 1207.3,
+        "active_power_kW": 280.1,
+        "frequency_Hz": 59.99,
+        "merkle_seal": "9d4775de024d6d2af81bef507f8ba10d3b0bb03d4b6ec8f48b62ce11fad8e78f"
+    },
+    {
+        "timestamp_utc": 1790878737.7409325,
+        "grid_load_A": 1218.9,
+        "active_power_kW": 284.1,
+        "frequency_Hz": 59.97,
+        "merkle_seal": "b3b5a37a91929397b496f2866378ae3156b80207626be66c7e7f836fb5242723"
+    },
+    {
+        "timestamp_utc": 1790878738.6692717,
+        "grid_load_A": 1204.2,
+        "active_power_kW": 291.2,
+        "frequency_Hz": 59.98,
+        "merkle_seal": "7a6588582c19442897f94885fe7e024ff713f2998c33cc14da48da56950990a3"
+    },
+    {
+        "timestamp_utc": 1790878739.539716,
+        "grid_load_A": 1243.8,
+        "active_power_kW": 309.1,
+        "frequency_Hz": 59.98,
+        "merkle_seal": "c5722a9122d2e20f39d8ade47a3132b0a1afcdb27f816766b2a4e91b6d2ce9b0"
+    },
+    {
+        "timestamp_utc": 1790878740.4844627,
+        "grid_load_A": 1288.6,
+        "active_power_kW": 283.7,
+        "frequency_Hz": 60.02,
+        "merkle_seal": "c6e95f31706d3c16af39194fa9fb8c7b209a65e2090ef94555d3acc28ec8dbea"
+    },
+    {
+        "timestamp_utc": 1790878741.2013896,
+        "grid_load_A": 1279.2,
+        "active_power_kW": 305.8,
+        "frequency_Hz": 60.03,
+        "merkle_seal": "7a34b3efa10e2a34972b7f18b8d6547f50357c9d39307e1ba1b7b857299961c1"
+    },
+    {
+        "timestamp_utc": 1790878741.9465716,
+        "grid_load_A": 1229.6,
+        "active_power_kW": 295.0,
+        "frequency_Hz": 60.01,
+        "merkle_seal": "d8f8eb2397f304ed562817fdafe6f52bfd14afd82a8f02c08e19d3cb192b2d98"
+    },
+    {
+        "timestamp_utc": 1790878742.4706495,
+        "grid_load_A": 1285.8,
+        "active_power_kW": 307.4,
+        "frequency_Hz": 60.02,
+        "merkle_seal": "a838eacbdfaa65f50e737ff759020b6d0ac71b2d73d9c3ceedb06e3ab1b8073c"
+    },
+    {
+        "timestamp_utc": 1790878742.9332242,
+        "grid_load_A": 1233.7,
+        "active_power_kW": 296.7,
+        "frequency_Hz": 59.97,
+        "merkle_seal": "6e46e3c716b511907be155b57e570bf0df2cb5f9c2ff37a28eb9a4df0a727860"
+    },
+    {
+        "timestamp_utc": 1790878743.4156003,
+        "grid_load_A": 1213.0,
+        "active_power_kW": 281.5,
+        "frequency_Hz": 60.04,
+        "merkle_seal": "e0032f3e46cd26ad8dc9661931e5d3fa89b264ff8c1aa44f93bbdcae31698dcb"
+    },
+    {
+        "timestamp_utc": 1790878746.819507,
+        "grid_load_A": 1225.7,
+        "active_power_kW": 305.0,
+        "frequency_Hz": 60.0,
+        "merkle_seal": "e57263212df7fb47c8b82bbb6604de1f181f9d3d639be515845467e11781bf25"
+    },
+    {
+        "timestamp_utc": 1790878747.5731254,
+        "grid_load_A": 1217.2,
+        "active_power_kW": 307.0,
+        "frequency_Hz": 60.04,
+        "merkle_seal": "7c56c5937da932ef947ddff078ec7d1cf59628f1bf143a0c6d92e98a2cc3edac"
+    },
+    {
+        "timestamp_utc": 1790878748.187535,
+        "grid_load_A": 1250.8,
+        "active_power_kW": 289.5,
+        "frequency_Hz": 60.04,
+        "merkle_seal": "1a1b080ac146312368e0c276ecd1c4ad5a3b053d859861496c9fc5ae5e2ab1bf"
+    },
+    {
+        "timestamp_utc": 1790878748.6544764,
+        "grid_load_A": 1294.9,
+        "active_power_kW": 283.5,
+        "frequency_Hz": 59.95,
+        "merkle_seal": "e5cd0439173d2eb943823a4082be4eec2f9be8d9f6874d5bd19dd7d41084de5a"
+    },
+    {
+        "timestamp_utc": 1790878749.5565174,
+        "grid_load_A": 1201.2,
+        "active_power_kW": 280.6,
+        "frequency_Hz": 59.99,
+        "merkle_seal": "80c20fa175cca76134e8fe4a5c9891fda5cb564364d3f6752a36247e99fb14ae"
+    }
+]

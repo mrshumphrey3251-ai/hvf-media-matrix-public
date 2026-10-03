@@ -5,6 +5,19 @@ for _p in [str(_ROOT_DIR / "dispatch_core"), str(_ROOT_DIR)]:
     if _p not in sys.path:
         sys.path.insert(0, _p)
 import streamlit as st
+
+import json
+from pathlib import Path
+SIDEBAR_REG_FILE = Path(__file__).resolve().parent.parent / "governance" / "architecture" / "SIDEBAR_MODULES.json"
+DYNAMIC_MODULES = {}
+if SIDEBAR_REG_FILE.exists():
+    try:
+        with open(SIDEBAR_REG_FILE, "r", encoding="utf-8") as f_reg:
+            for item in json.load(f_reg):
+                DYNAMIC_MODULES[item["title"]] = item["filename"]
+    except Exception:
+        DYNAMIC_MODULES = {}
+
 import sovereign_comms
 import sovereign_coder
 import streamlit.components.v1 as components
@@ -567,7 +580,9 @@ with st.sidebar:
     st.divider()
     st.markdown("### 🎛 Command Modules")
     active_module = st.radio("Navigation", [
+        "⚡ Action Desk",
         "🎛️ Master C2 Cockpit",
+        "⚡ Autonomous Build Forge",
         "🛡️ CEO Authorization Gate",
         "💬 Sovereign Command",
         "📡 LinkedIn Engine",
@@ -591,9 +606,35 @@ if active_module == "🎛️ Master C2 Cockpit":
     import c2_cockpit_dashboard
     c2_cockpit_dashboard.render()
 
+elif active_module == "⚡ Autonomous Build Forge":
+    import c2_forge_dashboard
+    c2_forge_dashboard.render()
+
 elif active_module == "🛡️ CEO Authorization Gate":
     import c2_gate_dashboard
     c2_gate_dashboard.render()
+elif "Action Desk" in str(active_module):
+    import sys
+    from pathlib import Path
+    _cockpit_dir = Path(__file__).resolve().parent
+    _target_ext = str(_cockpit_dir.parent / "level5_extensions")
+    if _target_ext not in sys.path:
+        sys.path.insert(0, _target_ext)
+    import action_desk
+    action_desk.render()
+
+elif active_module in DYNAMIC_MODULES:
+    mod_filename = DYNAMIC_MODULES[active_module]
+    ext_path = Path(__file__).resolve().parent.parent / "level5_extensions" / mod_filename
+    if ext_path.exists():
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(f"dyn_{active_module}", str(ext_path))
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        if hasattr(mod, "render"):
+            mod.render()
+        elif hasattr(mod, "execute"):
+            st.json(mod.execute())
 
 elif active_module == "💬 Sovereign Command":
     st.markdown("### ⚡ Sovereign Command Nexus")

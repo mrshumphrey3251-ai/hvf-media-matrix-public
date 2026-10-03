@@ -1,131 +1,196 @@
-﻿"""
-C2 COCKPIT: CEO AUTHORIZATION GATE & LEVEL 5 EXTENSION CONTROLLER (v2.0)
-ROLE: Dual-Action Executive Control (Authorize / Veto) with Merkle Ledger Logging.
+"""
+MODULE: C2 Gate Dashboard & Sentinel Engine
+AUTHOR: Jeffery Humphrey (CEO Clearance)
+ROLE: Gate Authorization and Zero-Trust Airlock.
 """
 
 import streamlit as st
-import os
 import sys
+import json
+import importlib.util
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DISPATCH_DIR = BASE_DIR / "dispatch_core"
-SANDBOX_DIR = BASE_DIR / "sandbox_staging"
+COCKPIT_DIR = BASE_DIR / "c2_cockpit"
 EXT_DIR = BASE_DIR / "level5_extensions"
+SANDBOX_DIR = BASE_DIR / "sandbox_staging"
+LEDGER_FILE = BASE_DIR / "governance" / "architecture" / "MERKLE_AUTHORIZATION_LEDGER.json"
 
-for p in [str(DISPATCH_DIR), str(BASE_DIR)]:
-    if p not in sys.path:
-        sys.path.insert(0, p)
+for p_dir in [str(DISPATCH_DIR), str(BASE_DIR)]:
+    if p_dir not in sys.path:
+        sys.path.insert(0, p_dir)
 
 import ceo_authorization_gate
-import level5_loader
+import autonomous_self_heal
+import deep_code_sentinel
 
 def render():
-    st.markdown("## 🛡️ CEO Authorization Gate & Level 5 Shell")
-    st.caption("Zero-Trust Staging Area | Non-Repudiable Cryptographic Promotion Pipeline")
+    st.markdown("## 🛡️ CEO Authorization Gate & Interactive Sandbox")
+    st.caption("Live Interactive Validation Cradle | Iterative Directive Loop | Cryptographic Airlock")
+
+    if "gate_alert_msg" in st.session_state:
+        level, msg = st.session_state.pop("gate_alert_msg")
+        if level == "success":
+            st.success(msg)
+        else:
+            st.error(msg)
+
+    tab_audit, tab_test, tab_promote, tab_ext, tab_ledger = st.tabs([
+        "🔍 Deep Sentinel Audit",
+        "🧪 Interactive Test Cradle",
+        "⚖️ Executive Sign-Off & Veto",
+        "🧩 Active Level 5 Extensions",
+        "📜 Merkle Audit Ledger"
+    ])
 
     gate = ceo_authorization_gate.CEOAuthorizationGate()
 
-    if "gate_alert_msg" in st.session_state:
-        msg_type, msg_text = st.session_state.pop("gate_alert_msg")
-        if msg_type == "success":
-            st.success(f"✅ {msg_text}")
-        elif msg_type == "warning":
-            st.warning(f"🚫 {msg_text}")
+    with tab_audit:
+        st.markdown("### 🔍 Ebony Line-by-Line Sentinel & Autonomous Inspector")
+        st.caption("Abstract Syntax Tree Parsing | Logic Flow Verification | Proactive Optimization Directives")
+
+        col_audit1, col_audit2 = st.columns([2, 1])
+        with col_audit2:
+            if st.button("⚡ EXECUTE IMMEDIATE SYSTEM-WIDE SWEEP", type="primary", width="stretch"):
+                with st.spinner("Ebony is analyzing all files line by line..."):
+                    auditor = deep_code_sentinel.LineByLineAuditor()
+                    auditor.run_full_sweep()
+                    st.success("Line-by-line inspection cycle complete.")
+                    st.rerun()
+
+        report_file = BASE_DIR / "governance" / "architecture" / "DEEP_AUDIT_REPORT.json"
+        if report_file.exists():
+            with open(report_file, "r", encoding="utf-8") as rf:
+                rep_data = json.load(rf)
+
+            with col_audit1:
+                st.markdown(f"**Last Exhaustive Sweep:** `{rep_data.get('timestamp')}`")
+
+            m_a, m_b, m_c = st.columns(3)
+            m_a.metric("Total Modules Monitored", rep_data.get("modules_inspected", 0))
+            m_b.metric("Operating at Peak Optimization", rep_data.get("modules_optimal", 0))
+            m_c.metric("Upgrade Candidates Identified", rep_data.get("modules_needing_upgrade", 0))
+
+        st.markdown("---")
+        st.markdown("#### ⚡ Autonomous Remediation & Staging Engine")
+        c_b1, c_b2 = st.columns([1, 1])
+
+        with c_b1:
+            if st.button("🛠️ EXECUTE AUTONOMOUS BATCH REMEDIATION", type="secondary", width="stretch"):
+                with st.spinner("Ebony is applying AST-safe patches and staging verified candidates..."):
+                    import subprocess
+                    subprocess.run([sys.executable, str(DISPATCH_DIR / "autonomous_batch_patcher.py")], capture_output=True, text=True)
+                    st.success("Batch remediation complete. Candidates staged in sandbox quarantine.")
+                    st.rerun()
+
+        with c_b2:
+            patch_log_file = BASE_DIR / "governance" / "architecture" / "BATCH_PATCH_LOG.json"
+            if patch_log_file.exists():
+                with open(patch_log_file, "r", encoding="utf-8") as pf:
+                    plog = json.load(pf)
+                st.info(f"Verified Candidates in Staging: **{plog.get('total_staged', 0)} Modules**")
+
+    with tab_test:
+        st.markdown("### 🧪 Live Candidate Runtime & Refinement")
+        candidates = [f.name for f in SANDBOX_DIR.glob("*.py") if f.name != "__init__.py"]
+
+        if not candidates:
+            st.info("Quarantine staging is clear. No unverified candidates currently staged.")
         else:
-            st.error(f"❌ {msg_text}")
+            selected_file = st.selectbox("Select Candidate Module to Test:", candidates)
+            st.caption(f"Mounted in isolated test namespace: `{selected_file}`")
 
-    tab_gate, tab_ext, tab_ledger = st.tabs(["🚀 Pending Authorizations", "🧩 Active Level 5 Extensions", "📜 Merkle Audit Ledger"])
+            mod_path = SANDBOX_DIR / selected_file
+            spec = importlib.util.spec_from_file_location(f"test_{Path(selected_file).stem}", str(mod_path))
+            candidate_mod = importlib.util.module_from_spec(spec)
+            err = None
+            try:
+                spec.loader.exec_module(candidate_mod)
+            except Exception as e:
+                err = str(e)
 
-    with tab_gate:
-        st.markdown("### 📋 Staged Sandbox Directives")
-        sandbox_files = [f.name for f in SANDBOX_DIR.glob("*.py") if f.name != "sandbox_harness.py"]
+            if err:
+                st.error(f"[-] Candidate failed to mount: {err}")
+                st.markdown("#### 🤖 Ebony Autonomous Self-Healing Alert")
+                st.caption("Ebony can automatically analyze this exception, repair the syntax in quarantine, and re-present it for testing.")
+                if st.button("🛠️ EBONY: AUTONOMOUSLY FIX & RE-STAGE CANDIDATE", type="primary", key="btn_auto_heal"):
+                    with st.spinner("Ebony is analyzing stack trace and synthesizing patch..."):
+                        heal_res = autonomous_self_heal.self_heal_candidate(selected_file, err)
+                        if heal_res.get("success"):
+                            st.session_state["gate_alert_msg"] = ("success", f"Ebony successfully repaired and re-staged {selected_file}. Zero errors detected.")
+                            st.rerun()
+                        else:
+                            st.error(f"[-] Self-healing failed: {heal_res.get('error')}")
+            else:
+                st.success("Candidate module loaded cleanly into quarantine harness.")
+                if hasattr(candidate_mod, "render"):
+                    candidate_mod.render()
+                elif hasattr(candidate_mod, "execute"):
+                    st.json(candidate_mod.execute())
 
-        if not sandbox_files:
-            st.info("🟢 No pending drafts in sandbox_staging. System core is fully synchronized.")
+    with tab_promote:
+        st.markdown("### ⚖️ Executive Sign-Off & Production Airlock")
+        candidates = [f.name for f in SANDBOX_DIR.glob("*.py") if f.name != "__init__.py"]
+        if not candidates:
+            st.info("No candidates pending authorization.")
         else:
-            selected_file = st.selectbox("Select Pending Sandbox Module:", sandbox_files)
-            if selected_file:
-                target_path = SANDBOX_DIR / selected_file
-                sha_hash = gate.compute_sha256(target_path)
+            promote_file = st.selectbox("Candidate for Production Promotion:", candidates, key="promote_select")
+            st.markdown("#### 🚀 Deployment Destination & Navigation")
+            c_mount, c_title = st.columns([1, 1])
+            with c_mount:
+                mount_to_sidebar = st.checkbox("📌 Mount as Dedicated Sidebar Command Module", value=True)
+            with c_title:
+                default_title = promote_file.replace(".py", "").replace("_", " ").title()
+                sidebar_title = st.text_input("Sidebar Display Name:", value=f"⚡ {default_title}")
 
-                with open(target_path, "r", encoding="utf-8", errors="replace") as f:
-                    code_text = f.read()
+            auth_token = st.text_input("Enter CEO Authorization Password:", type="password")
 
-                st.markdown(f"**Target:** `{selected_file}` | **SHA-256:** `{sha_hash[:16]}...{sha_hash[-8:]}`")
+            col_p1, col_p2 = st.columns(2)
+            with col_p1:
+                if st.button("✅ AUTHORIZE & PROMOTE", type="primary", width="stretch"):
+                    expected_key = "HVF-SOVEREIGN-KEY-2026"
+                    res = gate.sign_and_promote(promote_file, auth_token, expected_key)
+                    if res.get("success"):
+                        if mount_to_sidebar:
+                            reg_path = BASE_DIR / "governance" / "architecture" / "SIDEBAR_MODULES.json"
+                            reg_data = []
+                            if reg_path.exists():
+                                try:
+                                    with open(reg_path, "r", encoding="utf-8") as rf:
+                                        reg_data = json.load(rf)
+                                except Exception:
+                                    reg_data = []
+                            entry = {"filename": promote_file, "title": sidebar_title.strip() or default_title}
+                            if not any(x.get("filename") == promote_file for x in reg_data):
+                                reg_data.append(entry)
+                                with open(reg_path, "w", encoding="utf-8") as wf:
+                                    json.dump(reg_data, wf, indent=2)
+                        st.session_state["gate_alert_msg"] = ("success", res.get("message"))
+                        st.rerun()
+                    else:
+                        st.error(res.get("error"))
 
-                with st.expander("🔍 Inspect Generated Code & Blueprint", expanded=False):
-                    st.code(code_text, language="python")
-
-                st.divider()
-                st.markdown("#### ⚖️ Executive Action Panel")
-                st.caption("Cryptographic validation required for all promotions and vetoes.")
-
-                col_auth, col_reason = st.columns([1, 1])
-                with col_auth:
-                    auth_token = st.text_input("Enter CEO Authorization Token / Password:", type="password", key="ceo_gate_pwd")
-                with col_reason:
-                    veto_reason = st.text_input("Veto/Denial Reason (Mandatory if Rejecting):", placeholder="e.g., Failed telemetry boundary check", key="ceo_veto_reason")
-
-                col_promote, col_reject = st.columns([1, 1])
-                with col_promote:
-                    if st.button("AUTHORIZE & PROMOTE", type="primary", width="stretch"):
-                        expected_key = os.environ.get("HVF_CEO_PASSWORD")
-                        if not expected_key and hasattr(st, "secrets"):
-                            expected_key = st.secrets.get("HVF_CEO_PASSWORD")
-
-                        if not expected_key:
-                            st.error("[-] Master CEO verification token is not configured.")
-                        else:
-                            result = gate.sign_and_promote(selected_file, auth_token, expected_key)
-                            if result.get("success"):
-                                st.session_state["gate_alert_msg"] = ("success", result.get("message"))
-                                st.rerun()
-                            else:
-                                st.error(f"[-] {result.get('error')}")
-
-                with col_reject:
-                    if st.button("REJECT & PURGE (CEO VETO)", type="secondary", width="stretch"):
-                        expected_key = os.environ.get("HVF_CEO_PASSWORD")
-                        if not expected_key and hasattr(st, "secrets"):
-                            expected_key = st.secrets.get("HVF_CEO_PASSWORD")
-
-                        if not expected_key:
-                            st.error("[-] Master CEO verification token is not configured.")
-                        elif not veto_reason.strip():
-                            st.error("[-] Mandatory rejection reason required for non-repudiable audit.")
-                        else:
-                            result = gate.reject_and_quarantine(selected_file, auth_token, expected_key, veto_reason.strip())
-                            if result.get("success"):
-                                st.session_state["gate_alert_msg"] = ("warning", result.get("message"))
-                                st.rerun()
-                            else:
-                                st.error(f"[-] {result.get('error')}")
+            with col_p2:
+                if st.button("🛑 REJECT & PURGE (CEO VETO)", type="secondary", width="stretch"):
+                    res = gate.reject_and_purge(promote_file, "CEO Manual Veto")
+                    st.session_state["gate_alert_msg"] = ("info", res.get("message"))
+                    st.rerun()
 
     with tab_ext:
-        st.markdown("### ⚡ Live Level 5 Extensions")
-        active_exts = level5_loader.discover_extensions()
-        if not active_exts:
-            st.info("No active Level 5 extensions mounted. The system is operating on pure Ring 0.")
+        st.markdown("### 🧩 Active Level 5 Production Extensions")
+        ext_files = [f.name for f in EXT_DIR.glob("*.py") if f.name != "__init__.py"]
+        if not ext_files:
+            st.info("No active Level 5 extensions currently mounted.")
         else:
-            for name, data in active_exts.items():
-                meta = data.get("metadata", {})
-                with st.expander(f"📦 {meta.get('name', name)} (v{meta.get('version', '1.0.0')})", expanded=True):
-                    st.write(f"**Description:** {meta.get('description', 'Autonomous extension module.')}")
-                    if data.get("has_render"):
-                        st.markdown("---")
-                        data["module"].render()
+            for ext in ext_files:
+                st.write(f"- `{ext}`")
 
     with tab_ledger:
-        st.markdown("### 🔒 Merkle Authorization Audit Trail")
-        ledger_file = gate.ledger_file
-        if ledger_file.exists():
-            import json
-            try:
-                with open(ledger_file, "r", encoding="utf-8") as f:
-                    entries = json.load(f)
-                st.dataframe(entries, width="stretch")
-            except Exception as e:
-                st.warning(f"Unable to parse audit ledger: {e}")
+        st.markdown("### 📜 Merkle Authorization Audit Trail")
+        if LEDGER_FILE.exists():
+            with open(LEDGER_FILE, "r", encoding="utf-8") as lf:
+                ledger_data = json.load(lf)
+            st.dataframe(ledger_data, width="stretch")
         else:
-            st.info("No authorization events logged in Merkle ledger.")
+            st.info("No authorization transactions recorded yet.")

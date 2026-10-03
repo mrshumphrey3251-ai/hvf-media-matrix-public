@@ -1,0 +1,10 @@
+[
+  {
+    "id": "ACT-104",
+    "task": "Calibrate moisture-sensor nodes across HVF Omni-Industrial Matrix (Grain Silo, Energy, Cold-Chain)",
+    "priority": "CRITICAL",
+    "status": "IN_PROGRESS",
+    "owner": "Maya 'Volt' Chen / Ebony SCADA",
+    "timestamp": "2026-10-03T01:09:16.629361+00:00"
+  }
+]

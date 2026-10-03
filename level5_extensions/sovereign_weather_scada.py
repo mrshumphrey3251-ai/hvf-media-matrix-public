@@ -2,6 +2,7 @@
 MODULE_NAME: sovereign_weather_scada
 AUTHOR: EBONY-AUTONOMOUS
 CLEARANCE: LEVEL 5 EXPANSION
+ROLE: Environmental Telemetry, Weather SCADA, and Ambient Conditions Monitor.
 """
 
 import streamlit as st
@@ -18,9 +19,10 @@ def execute(context: dict = None) -> dict:
     return {
         "success": True,
         "telemetry": {
-            "temp_f": 72.4,
-            "humidity_pct": 45.0,
+            "ambient_temp_f": 72.4,
+            "relative_humidity_pct": 45.0,
             "soil_moisture_kpa": 28.1,
+            "barometric_pressure_inhg": 29.92,
             "status": "NOMINAL"
         },
         "timestamp": datetime.now(timezone.utc).isoformat()
@@ -29,8 +31,17 @@ def execute(context: dict = None) -> dict:
 def render():
     st.markdown("### 🌾 Sovereign Weather & Environmental SCADA")
     st.caption("Live Level 5 Extension Module | Autonomous Field Telemetry")
-    data = execute().get("telemetry", {})
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Ambient Temp", f"{data.get('temp_f')} °F")
-    c2.metric("Relative Humidity", f"{data.get('humidity_pct')} %")
-    c3.metric("Soil Moisture", f"{data.get('soil_moisture_kpa')} kPa", delta="Optimal")
+
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Ambient Temp", "72.4 °F", delta="+1.2 °F")
+    col2.metric("Relative Humidity", "45.0 %", delta="-3.0 %")
+    col3.metric("Soil Moisture", "28.1 kPa", delta="Optimal")
+
+    st.markdown("---")
+    st.markdown("#### 📊 Atmospheric Telemetry Stream")
+    sample_readings = [
+        {"Time (UTC)": "18:00:00", "Temp (°F)": 71.8, "Humidity (%)": 46.2, "Pressure (inHg)": 29.91, "Condition": "Clear"},
+        {"Time (UTC)": "18:15:00", "Temp (°F)": 72.1, "Humidity (%)": 45.8, "Pressure (inHg)": 29.92, "Condition": "Clear"},
+        {"Time (UTC)": "18:30:00", "Temp (°F)": 72.4, "Humidity (%)": 45.0, "Pressure (inHg)": 29.92, "Condition": "Clear"}
+    ]
+    st.dataframe(sample_readings, width="stretch")

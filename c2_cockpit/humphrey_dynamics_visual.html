@@ -1,0 +1,48 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Humphrey Dynamics – Visual Identity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="brand-wrapper">
+    <svg class="h-dynamics" viewBox="0 0 200 200" aria-label="Humphrey Dynamics logo">
+      <!-- Left pillar -->
+      <g class="pillar left">
+        <rect x="30" y="30" width="30" height="30" class="block"/>
+        <rect x="30" y="70" width="30" height="30" class="block"/>
+        <rect x="30" y="110" width="30" height="30" class="block"/>
+        <rect x="30" y="150" width="30" height="30" class="block"/>
+      </g>
+      <!-- Right pillar -->
+      <g class="pillar right">
+        <rect x="140" y="30" width="30" height="30" class="block"/>
+        <rect x="140" y="70" width="30" height="30" class="block"/>
+        <rect x="140" y="110" width="30" height="30" class="block"/>
+        <rect x="140" y="150" width="30" height="30" class="block"/>
+      </g>
+      <!-- Central beam (gear‑teeth) -->
+      <g class="beam">
+        <rect x="60" y="90" width="80" height="20" class="beam-core"/>
+        <!-- Teeth (simple triangles) -->
+        <polygon points="58,90 58,110 48,100" class="gear-tooth"/>
+        <polygon points="152,90 152,110 162,100" class="gear-tooth"/>
+      </g>
+      <!-- Ingesting fragments (orbiting) -->
+      <g class="fragments">
+        <circle cx="10" cy="100" r="8" class="fragment"/>
+        <circle cx="190" cy="100" r="8" class="fragment"/>
+        <circle cx="100" cy="10" r="8" class="fragment"/>
+        <circle cx="100" cy="190" r="8" class="fragment"/>
+      </g>
+    </svg>
+
+    <h1 class="logo-text">Humphrey Dynamics</h1>
+    <p class="tagline">Powering the Pulse of Automation</p>
+  </div>
+</body>
+</html>

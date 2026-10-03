@@ -7,7 +7,7 @@ def render():
     """
     PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT // DYNAMIC CURRENT ENGINE
     Real-Time Kirchhoff Current Calculations on Every Interaction
-    Authority: CEO [REDACTED] (Level 5 Authority) // CAGE: [REDACTED]
+    Authority: CEO Jeffery Humphrey (Level 5 Authority) // CAGE: 1AHA8
     """
     import streamlit as st
     
@@ -172,7 +172,7 @@ def render():
             <div class="c2-sub">AEROSPACE DEFENSE SCADA // OKLAHOMA COMMERCE EVALUATION TESTBED</div>
         </div>
         <div class="c2-meta-badge">
-            CAGE: <span class="badge-cyan">[REDACTED]</span> | AUTHORITY: <span class="badge-green">LEVEL 5 CEO</span><br>
+            CAGE: <span class="badge-cyan">1AHA8</span> | AUTHORITY: <span class="badge-green">LEVEL 5 CEO</span><br>
             STANDARD: <span class="badge-green">NIST SP 800-82 REV 2</span> | AIR-GAP: <span class="badge-cyan">OK HB 2992</span>
         </div>
     </div>

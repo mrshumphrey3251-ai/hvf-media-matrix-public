@@ -1,6 +1,6 @@
 ﻿"""
-PROJECT EBONY: SOVEREIGN DYNAMIC AI CODER (v3.0)
-ROLE: Real-time LLM-driven code generation, Codex enforcement, quarantine staging, and harness validation.
+PROJECT EBONY: SOVEREIGN DYNAMIC CODER WITH FEATURE FUSION & TARGET ROUTING (v3.3)
+ROLE: Standalone synthesis, cross-module feature fusion, and custom target staging.
 """
 
 import os
@@ -12,6 +12,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SANDBOX_DIR = BASE_DIR / "sandbox_staging"
+EXT_DIR = BASE_DIR / "level5_extensions"
 HARNESS_PATH = SANDBOX_DIR / "sandbox_harness.py"
 
 for p in [str(BASE_DIR / "dispatch_core"), str(BASE_DIR)]:
@@ -20,32 +21,46 @@ for p in [str(BASE_DIR / "dispatch_core"), str(BASE_DIR)]:
 
 import sovereign_comms
 
-SYSTEM_CODEX_PROMPT = """You are Ebony, an autonomous Level 5 software architect.
-Write a COMPLETE, self-contained Python module for a Streamlit application based on the user specification.
-
-STRICT ARCHITECTURAL INVARIANTS:
-1. Must define MODULE_METADATA dictionary at top level with 'name', 'version', 'author', 'description'.
-2. Must define an execute(context=None) -> dict function for headless harness testing.
-3. Must define a render() function containing the complete Streamlit UI.
-4. Do NOT use fake/mock individual names unless explicitly asked. Use real operational interfaces, database inputs, file uploaders, API payload builders, or configurable forms.
-5. Return ONLY executable raw Python code. Do NOT wrap in markdown fences (no ```python). Zero preamble, zero explanation."""
-
 class SovereignCoder:
     def __init__(self):
         self.sandbox_dir = SANDBOX_DIR
         self.sandbox_dir.mkdir(parents=True, exist_ok=True)
+        self.extensions_dir = EXT_DIR
+        self.extensions_dir.mkdir(parents=True, exist_ok=True)
 
-    def generate_and_stage(self, module_name: str, specification: str) -> dict:
+    def get_existing_modules(self) -> list:
+        """Returns list of currently active production modules available for feature fusion."""
+        return [f.name for f in self.extensions_dir.glob("*.py") if f.name != "__init__.py"]
+
+    def generate_and_stage(self, module_name: str, specification: str, target_mode: str = "standalone", merge_target: str = None) -> dict:
         if not module_name.endswith(".py"):
             module_name = f"{module_name}.py"
 
         target_path = self.sandbox_dir / module_name
 
-        # Call live inference cascade
-        prompt = f"USER SPECIFICATION:\n{specification}\n\nDeliver the production-ready Level 5 module."
+        if target_mode == "merge" and merge_target:
+            source_file = self.extensions_dir / merge_target
+            if source_file.exists():
+                with open(source_file, "r", encoding="utf-8") as f:
+                    base_code = f.read()
+                prompt = (
+                    f"EXISTING BASE MODULE ({merge_target}):\n{base_code}\n\n"
+                    f"NEW FEATURE DIRECTIVE TO INTEGRATE:\n{specification}\n\n"
+                    "INSTRUCTIONS: Merge the new feature cleanly into the existing base module. "
+                    "Preserve all existing functionality, metadata, and controls while adding the new UI sections, "
+                    "telemetry, and calculations. Deliver the COMPLETE, production-ready unified Python module. "
+                    "Return ONLY valid raw Python code. Zero markdown fences, zero commentary."
+                )
+                target_path = self.sandbox_dir / merge_target
+                module_name = merge_target
+            else:
+                prompt = f"USER SPECIFICATION:\n{specification}\n\nDeliver the production-ready Level 5 module."
+        else:
+            prompt = f"USER SPECIFICATION:\n{specification}\n\nDeliver the production-ready Level 5 module."
+
         raw_code = sovereign_comms.generate_chat_response(prompt)
 
-        # Sanitize markdown artifacts if returned by LLM
+        # Sanitize fences
         if "```" in raw_code:
             match = re.search(r'```(?:python)?\s*(.*?)\s*```', raw_code, re.DOTALL)
             if match:
@@ -53,11 +68,11 @@ class SovereignCoder:
             else:
                 raw_code = raw_code.replace("```python", "").replace("```", "")
 
-        # Write clean code to quarantine staging
+        # Write code to quarantine
         with open(target_path, "w", encoding="utf-8") as f:
             f.write(raw_code.strip())
 
-        # Run sandbox harness self-test
+        # Test against sandbox harness
         try:
             res = subprocess.run(
                 [sys.executable, str(HARNESS_PATH), module_name],
@@ -70,6 +85,8 @@ class SovereignCoder:
                     "success": True,
                     "module": module_name,
                     "target_path": str(target_path),
+                    "mode": target_mode,
+                    "merged_with": merge_target if target_mode == "merge" else None,
                     "harness_output": res.stdout.strip()
                 }
             else:
