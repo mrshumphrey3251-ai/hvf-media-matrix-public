@@ -1,4 +1,22 @@
 
+def normalize_voice_input(text: str) -> str:
+    """Normalizes common STT phonetic transcription errors for HVF terms."""
+    if not text:
+        return text
+    replacements = {
+        r"\bHBF\b": "HVF",
+        r"\bHPF\b": "HVF",
+        r"\bHDF\b": "HVF",
+        r"\bhbf\b": "HVF",
+        r"\bhpf\b": "HVF",
+        r"\bhdf\b": "HVF"
+    }
+    normalized = text
+    for pattern, rep in replacements.items():
+        normalized = re.sub(pattern, rep, normalized, flags=re.IGNORECASE)
+    return normalized
+
+
 # =========================================================================
 # EBONY SOVEREIGN CORPUS INGESTION ENGINE
 # =========================================================================
@@ -724,6 +742,7 @@ elif active_module == "💬 Sovereign Command":
 
     if user_input:
         if current_user and current_cipher: save_encrypted_message(current_user, "user", user_input, current_cipher)
+        user_input = normalize_voice_input(user_input)
         st.session_state.messages.append({"role": "user", "content": user_input})
         
         if is_voice:
