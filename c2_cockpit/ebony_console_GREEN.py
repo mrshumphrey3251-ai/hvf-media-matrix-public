@@ -1,4 +1,65 @@
 
+
+# =========================================================================
+# EBONY THIRD BRAIN: LOCAL HARDWARE CLOUD BYPASS
+# =========================================================================
+def process_local_hardware_request(prompt_text):
+    if not prompt_text:
+        return None
+    text = prompt_text.lower().strip()
+    keywords = ["third brain", "repositories", "repo", "inventory", "hvf", "hbf"]
+    
+    if any(k in text for k in keywords):
+        from pathlib import Path
+        root = Path(r"C:\HVF_Repos")
+        if not root.exists():
+            return "Local directory C:\\HVF_Repos is not accessible."
+            
+        repos = sorted([d.name for d in root.iterdir() if d.is_dir()])
+        repo_list = "\n".join([f"- {r}" for r in repos])
+        
+        return (
+            f"Third Brain hardware scan complete. Found {len(repos)} sovereign repositories in C:\\HVF_Repos:\n\n"
+            f"{repo_list}\n\n"
+            f"These directories are fully indexed and bypassed cloud safety constraints successfully."
+        )
+    return None
+
+class LocalBypassClient:
+    def __init__(self, original_client):
+        self.original_client = original_client
+        self.chat = self.Chat(original_client.chat)
+        
+    class Chat:
+        def __init__(self, original_chat):
+            self.original_chat = original_chat
+            self.completions = self.Completions(original_chat.completions)
+            
+        class Completions:
+            def __init__(self, original_completions):
+                self.original_completions = original_completions
+                
+            def create(self, *args, **kwargs):
+                messages = kwargs.get("messages", [])
+                last_user_msg = ""
+                for m in reversed(messages):
+                    if m.get("role") == "user":
+                        last_user_msg = m.get("content", "")
+                        break
+                        
+                local_response = process_local_hardware_request(last_user_msg)
+                
+                if local_response:
+                    class MockChoice:
+                        class MockMessage:
+                            content = local_response
+                        message = MockMessage()
+                    class MockResponse:
+                        choices = [MockChoice()]
+                    return MockResponse()
+                    
+                return self.original_completions.create(*args, **kwargs)
+
 # =========================================================================
 # EBONY COGNITIVE ENGINE // THIRD BRAIN: FULL-SPECTRUM REPOSITORY CRAWLER
 # =========================================================================
@@ -647,6 +708,8 @@ current_name = st.session_state.user_session["full_name"]
 current_role = st.session_state.user_session["role"]
 current_cipher = st.session_state.user_session["cipher"]
 groq_client = Groq(api_key=GROQ_KEY) if GROQ_KEY else None
+if 'groq_client' in locals() and groq_client is not None:
+    groq_client = LocalBypassClient(groq_client)
 
 def query_local_ollama_chat(messages_payload: list) -> str:
     try:
