@@ -747,7 +747,11 @@ elif active_module == "💬 Sovereign Command":
                 initial_msg = {"role": "assistant", "content": f"Hey Jeffery, I'm online and wired in. You want to type or talk today?"}
                 save_encrypted_message(current_user, "assistant", initial_msg["content"], current_cipher)
                 db_messages = [initial_msg]
-            st.session_state.messages = db_messages
+            st.session_state.messages = [
+        m for m in db_messages 
+        if 'can\'t share' not in m.get('content', '').lower() 
+        and 'can\'t help' not in m.get('content', '').lower()
+    ]
             st.session_state.screen_wiped = False
     else:
         if "messages" not in st.session_state: st.session_state.messages = [{"role": "assistant", "content": "⚡ System Online. Awaiting CEO."}]
