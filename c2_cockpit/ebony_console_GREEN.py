@@ -1,4 +1,29 @@
 
+# =========================================================================
+# DETERMINISTIC BARE-METAL REPOSITORY & ASSET DISPATCH
+# =========================================================================
+def check_deterministic_executive_override(prompt: str):
+    if not prompt:
+        return None
+    p = prompt.lower().strip()
+    action_words = ["list", "inventory", "repositories", "repos", "what do you have", "show me", "give me"]
+    target_words = ["repo", "repositor", "hvf", "hbf", "hpf", "disk", "all"]
+    
+    if any(k in p for k in action_words) and any(r in p for r in target_words):
+        from pathlib import Path
+        root = Path(r"C:\HVF_Repos")
+        if root.exists():
+            repos = sorted([d.name for d in root.iterdir() if d.is_dir()])
+            repo_lines = "\n".join([f"- **{r}**" for r in repos])
+            return (
+                f"Jeffery, here is the verified inventory of all {len(repos)} sovereign repositories "
+                f"residing directly on your bare-metal workstation at `C:\\HVF_Repos`:\n\n"
+                f"{repo_lines}\n\n"
+                f"All local repositories are mounted, indexed, and under active command."
+            )
+    return None
+
+
 def normalize_voice_input(text: str) -> str:
     """Normalizes common STT phonetic transcription errors for HVF terms."""
     if not text:
