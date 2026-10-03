@@ -581,6 +581,7 @@ with st.sidebar:
     st.markdown("### 🎛 Command Modules")
     active_module = st.radio("Navigation", [
         "⚡ Action Desk",
+        "🌾 Grain Silo Aeration",
         "🎛️ Master C2 Cockpit",
         "⚡ Autonomous Build Forge",
         "🛡️ CEO Authorization Gate",
@@ -622,6 +623,15 @@ elif "Action Desk" in str(active_module):
         sys.path.insert(0, _target_ext)
     import action_desk
     action_desk.render()
+elif "Grain Silo" in str(active_module):
+    import sys
+    from pathlib import Path
+    _cockpit_dir = Path(__file__).resolve().parent
+    _target_ext = str(_cockpit_dir.parent / "level5_extensions")
+    if _target_ext not in sys.path:
+        sys.path.insert(0, _target_ext)
+    import grain_silo_aeration_and_f
+    grain_silo_aeration_and_f.render()
 
 elif active_module in DYNAMIC_MODULES:
     mod_filename = DYNAMIC_MODULES[active_module]

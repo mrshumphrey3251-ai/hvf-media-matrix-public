@@ -1,0 +1,14 @@
+[
+  {
+    "docket_id": "9-26-3703",
+    "title": "Project Ebony: Sovereign Tri-Brain Bare-Metal Edge Architecture & Sub-Microsecond Kinetic Isolation",
+    "external_portal_status": "Compliant/Queued for Assessment",
+    "previous_status": "Queued for Next Cycle",
+    "verified_at": "2026-10-03T01:29:10.765426+00:00",
+    "compliance_flags": [
+      "NIST_SP_800_82_REV2",
+      "OK_HB_2992",
+      "KINETIC_ISOLATION_VERIFIED"
+    ]
+  }
+]
