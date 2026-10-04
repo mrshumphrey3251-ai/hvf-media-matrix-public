@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 """
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT
-Object-Oriented Sovereign Architecture - Industrial Gauges & Dynamic Recovery
+Object-Oriented Sovereign Architecture - Continuous Alarm & Dial Animation
 Authority: CEO Jeffery Humphrey (Level 5 Authority)
 """
 import streamlit as st
@@ -45,6 +45,8 @@ class MasterCockpit:
             st.session_state.hazard_gps = ""
         if "mitigation_log" not in st.session_state:
             st.session_state.mitigation_log = ""
+        if "alarm_active" not in st.session_state:
+            st.session_state.alarm_active = False
 
     def _inject_css(self):
         st.markdown("""
@@ -88,9 +90,9 @@ class MasterCockpit:
                 'borderwidth': 2,
                 'bordercolor': "#1e293b",
                 'steps': [
-                    {'range': [min_v, safe_low], 'color': '#ef4444'}, # RED
-                    {'range': [safe_low, safe_high], 'color': '#10b981'}, # GREEN
-                    {'range': [safe_high, max_v], 'color': '#ef4444'}  # RED
+                    {'range': [min_v, safe_low], 'color': '#ef4444'},
+                    {'range': [safe_low, safe_high], 'color': '#10b981'},
+                    {'range': [safe_high, max_v], 'color': '#ef4444'}
                 ],
             }
         ))
@@ -102,27 +104,40 @@ class MasterCockpit:
         st.session_state.hazard_gps = gps
         st.session_state.mitigation_log = log_msg
         st.session_state.grid_state = "SHOCK"
+        st.session_state.alarm_active = True
         st.rerun()
 
-    def _trigger_audio_alarm(self):
-        alarm_js = """
+    def _manage_audio_alarm(self):
+        """Controls a continuous, persistent JS oscillator tied to the session state."""
+        cmd = "START" if st.session_state.alarm_active else "STOP"
+        alarm_js = f"""
         <script>
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        function playAlarm() {
-            const osc1 = ctx.createOscillator(); const osc2 = ctx.createOscillator(); const gain = ctx.createGain();
-            osc1.connect(gain); osc2.connect(gain); gain.connect(ctx.destination);
-            osc1.type = "square"; osc2.type = "square";
-            osc1.frequency.value = 853; osc2.frequency.value = 960; 
-            gain.gain.value = 0.15; 
-            osc1.start(); osc2.start(); setTimeout(() => { osc1.stop(); osc2.stop(); }, 2000); 
-        }
-        playAlarm();
+        if (!window.scadaAudioCtx) {{ window.scadaAudioCtx = new (window.AudioContext || window.webkitAudioContext)(); }}
+        function manageAlarm(command) {{
+            if (command === "START") {{
+                if (!window.scadaOsc1) {{
+                    window.scadaOsc1 = window.scadaAudioCtx.createOscillator();
+                    window.scadaOsc2 = window.scadaAudioCtx.createOscillator();
+                    window.scadaGain = window.scadaAudioCtx.createGain();
+                    window.scadaOsc1.connect(window.scadaGain);
+                    window.scadaOsc2.connect(window.scadaGain);
+                    window.scadaGain.connect(window.scadaAudioCtx.destination);
+                    window.scadaOsc1.type = "square"; window.scadaOsc2.type = "square";
+                    window.scadaOsc1.frequency.value = 853; window.scadaOsc2.frequency.value = 960;
+                    window.scadaGain.gain.value = 0.15;
+                    window.scadaOsc1.start(); window.scadaOsc2.start();
+                }}
+            }} else {{
+                if (window.scadaOsc1) {{ window.scadaOsc1.stop(); window.scadaOsc1 = null; }}
+                if (window.scadaOsc2) {{ window.scadaOsc2.stop(); window.scadaOsc2 = null; }}
+            }}
+        }}
+        manageAlarm("{cmd}");
         </script>
         """
         components.html(alarm_js, height=0)
 
     def _render_shock_screen(self):
-        self._trigger_audio_alarm()
         placeholder = st.empty()
         with placeholder.container():
             st.markdown(f"""
@@ -137,19 +152,9 @@ class MasterCockpit:
         st.rerun()
 
     def _render_dashboard_frame(self, progress=1.0, mode="NORMAL"):
-        """Progress 0.0 = CRASHED, 1.0 = FULLY RESTORED"""
+        base_freq = 60.0; base_mw = 4250.0; base_kirchhoff = 1.2
+        crash_freq = 58.2; crash_mw = 3100.0; crash_kirchhoff = 3.5
         
-        # Base/Restored values
-        base_freq = 60.0
-        base_mw = 4250.0
-        base_kirchhoff = 1.2
-        
-        # Crashed values
-        crash_freq = 58.2
-        crash_mw = 3100.0
-        crash_kirchhoff = 3.5
-        
-        # Interpolate based on progress
         current_freq = crash_freq + ((base_freq - crash_freq) * progress) + random.uniform(-0.02, 0.02)
         current_mw = crash_mw + ((base_mw - crash_mw) * progress) + random.uniform(-10, 10)
         current_k = crash_kirchhoff + ((base_kirchhoff - crash_kirchhoff) * progress) + random.uniform(-0.05, 0.05)
@@ -170,29 +175,35 @@ class MasterCockpit:
         with col2:
             st.markdown("#### ⚡ SENSOR CORE")
             gauge_k = self._create_gauge("Kirchhoff Vector", current_k, 0, 5, 0.5, 1.8, "A")
-            st.plotly_chart(gauge_k, use_container_width=True, config={'displayModeBar': False})
+            st.plotly_chart(gauge_k, use_container_width=True, config={'displayModeBar': False}, key=f"gk_{progress}")
 
         with col3:
             st.markdown("#### 🌐 OKLAHOMA GRID")
             gauge_f = self._create_gauge("Grid Frequency", current_freq, 55, 65, 59.5, 60.5, "Hz")
-            st.plotly_chart(gauge_f, use_container_width=True, config={'displayModeBar': False})
+            st.plotly_chart(gauge_f, use_container_width=True, config={'displayModeBar': False}, key=f"gf_{progress}")
             
             gauge_mw = self._create_gauge("Active MW Load", current_mw, 0, 5000, 3800, 4800, "MW")
-            st.plotly_chart(gauge_mw, use_container_width=True, config={'displayModeBar': False})
+            st.plotly_chart(gauge_mw, use_container_width=True, config={'displayModeBar': False}, key=f"gmw_{progress}")
 
         with col4:
             st.markdown("#### 🚨 THREAT SIMULATOR")
-            if st.button("🚗 Vehicle Strike", use_container_width=True):
-                self._trigger_hazard("Vehicle Strike", "LAT: 35.8421° N, LON: -97.0384° W (RT 66)", ">> SENSOR TRIP: Distribution pole severed.\n>> ACTION: Isolating line. Rerouting via automated switches.\n>> STATUS: Power restored to 94% of affected block.")
-            if st.button("🌪️ F5 Tornado", use_container_width=True):
-                self._trigger_hazard("F5 Tornado Strike", "LAT: 35.3395° N, LON: -97.4867° W (MOORE)", ">> SENSOR TRIP: Massive transmission failure in Sector 4.\n>> ACTION: Air-gapping Sector 4.\n>> ACTION: Backfeeding 400MW to hospitals.\n>> STATUS: Grid restabilized.")
-            if st.button("💻 SCADA Breach", use_container_width=True):
-                self._trigger_hazard("State Cyber Breach", "LAT: 35.4676° N, LON: -97.5164° W (OKC)", ">> SENSOR TRIP: Unauthorized breaker actuation attempt.\n>> ACTION: Iron Dome deployed. Node air-gapped.\n>> STATUS: Intrusion neutralized.")
-            
-            if mode != "NORMAL":
+            if mode == "NORMAL":
+                if st.button("🚗 Vehicle Strike", key="btn_veh", use_container_width=True):
+                    self._trigger_hazard("Vehicle Strike", "LAT: 35.8421° N, LON: -97.0384° W (RT 66)", ">> SENSOR TRIP: Distribution pole severed.\n>> ACTION: Isolating line. Rerouting via automated switches.\n>> STATUS: Power restored to 94% of affected block.")
+                if st.button("🌪️ F5 Tornado", key="btn_tor", use_container_width=True):
+                    self._trigger_hazard("F5 Tornado Strike", "LAT: 35.3395° N, LON: -97.4867° W (MOORE)", ">> SENSOR TRIP: Massive transmission failure in Sector 4.\n>> ACTION: Air-gapping Sector 4.\n>> ACTION: Backfeeding 400MW to hospitals.\n>> STATUS: Grid restabilized.")
+                if st.button("💻 SCADA Breach", key="btn_cyb", use_container_width=True):
+                    self._trigger_hazard("State Cyber Breach", "LAT: 35.4676° N, LON: -97.5164° W (OKC)", ">> SENSOR TRIP: Unauthorized breaker actuation attempt.\n>> ACTION: Iron Dome deployed. Node air-gapped.\n>> STATUS: Intrusion neutralized.")
+                if st.button("❄️ Freeze-Off", key="btn_frz", use_container_width=True):
+                    self._trigger_hazard("Generation Shortfall", "STATEWIDE ALERT", ">> SENSOR TRIP: Natural gas freeze. -1200MW loss.\n>> ACTION: Load shedding. Purchasing SPP reserve.\n>> STATUS: Grid collapse averted. Blackouts optimized.")
+            else:
+                # Threat board lockdown during a crisis
+                st.markdown("##### ⚠️ CRISIS LOCKDOWN")
+                st.markdown("<span style='font-size:10px; color:#ef4444;'>New injections disabled. Alarm sounding.</span>", unsafe_allow_html=True)
                 st.markdown("<br>", unsafe_allow_html=True)
-                if st.button("✅ CLEAR HAZARD", use_container_width=True, type="primary"):
+                if st.button("✅ CLEAR HAZARD & SILENCE ALARM", key=f"btn_clr_{progress}", use_container_width=True, type="primary"):
                     st.session_state.grid_state = "NORMAL"
+                    st.session_state.alarm_active = False
                     st.rerun()
 
         if mode != "NORMAL":
@@ -201,19 +212,19 @@ class MasterCockpit:
 
     def render_cockpit(self):
         self._inject_css()
+        self._manage_audio_alarm()
         self._render_header()
         
         if st.session_state.grid_state == "SHOCK":
             self._render_shock_screen()
         elif st.session_state.grid_state == "MITIGATION_ANIMATION":
-            # Live Recovery Animation Loop
             ui_placeholder = st.empty()
             steps = 15
             for i in range(steps + 1):
                 progress = i / float(steps)
                 with ui_placeholder.container():
                     self._render_dashboard_frame(progress=progress, mode="RECOVERY")
-                time.sleep(0.3) # Wait between frames to animate the needle
+                time.sleep(0.3)
             st.session_state.grid_state = "MITIGATION_STABLE"
             st.rerun()
         elif st.session_state.grid_state == "MITIGATION_STABLE":
