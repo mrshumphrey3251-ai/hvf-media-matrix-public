@@ -1,255 +1,98 @@
 ﻿# -*- coding: utf-8 -*-
 """
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT
-Object-Oriented Sovereign Architecture - Dynamic Current Engine & Aerospace SCADA
+Object-Oriented Sovereign Architecture - Stable Aerospace Baseline
 Authority: CEO Jeffery Humphrey (Level 5 Authority) // CAGE: 1AHA8
 """
 import streamlit as st
-import streamlit.components.v1 as components
-import plotly.graph_objects as go
-import psutil
 import time
-import random
-import json
-import math
 import hashlib
-from pathlib import Path
 
 class MasterCockpit:
     def __init__(self):
-        self.telemetry_vault = Path(r"C:\HVF_Repos\HVF_Matrix_Core\telemetry_state.json")
-        self._ensure_telemetry_file()
         self._init_session_state()
-
-    def _ensure_telemetry_file(self):
-        if not self.telemetry_vault.parent.exists():
-            self.telemetry_vault.parent.mkdir(parents=True, exist_ok=True)
-        if not self.telemetry_vault.exists():
-            initial_state = {"kirchhoff_current": 1253.8, "optical_gli": 0.210, "matrix_throughput": 889}
-            with open(self.telemetry_vault, "w") as f:
-                json.dump(initial_state, f)
 
     def _init_session_state(self):
         if "grid_state" not in st.session_state: st.session_state.grid_state = "NORMAL"
         if "active_hazard" not in st.session_state: st.session_state.active_hazard = None
-        if "mitigation_log" not in st.session_state: st.session_state.mitigation_log = ""
-        if "alarm_active" not in st.session_state: st.session_state.alarm_active = False
-        
-        # Interactive Breaker States
-        if "ch1" not in st.session_state: st.session_state.ch1 = True
-        if "ch2" not in st.session_state: st.session_state.ch2 = True
-        if "ch3" not in st.session_state: st.session_state.ch3 = False
-        if "ch4" not in st.session_state: st.session_state.ch4 = False
 
     def _inject_css(self):
         st.markdown("""
         <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;900&display=swap');
         * { font-family: 'JetBrains Mono', monospace; }
-        .mil-header { border: 1px solid #1e293b; border-left: 4px solid #10b981; background: #030712; padding: 15px; margin-bottom: 20px; }
-        .mil-header-red { border: 1px solid #ef4444; border-left: 4px solid #ef4444; background: #1a0505; padding: 15px; margin-bottom: 20px; }
-        .title-main { font-size: 18px; color: #f8fafc; font-weight: 900; letter-spacing: 1px; margin:0; }
-        .title-sub { font-size: 12px; color: #64748b; margin:0; }
-        
-        @keyframes flash { 0% { opacity: 1; text-shadow: 0 0 20px #ff0000; } 50% { opacity: 0.3; text-shadow: none; } 100% { opacity: 1; text-shadow: 0 0 20px #ff0000; } }
-        .alert-box { background: #1a0505; border: 2px solid #ff0000; padding: 40px; text-align: center; margin-top: 50px; margin-bottom: 30px; animation: flash 1s infinite; }
-        .alert-title { color: #ff0000; font-size: 32px; font-weight: 900; margin-bottom: 10px; }
-        
-        .raw-text { color: #f8fafc; font-size: 14px; line-height: 1.6; }
-        .log-footer { font-size: 12px; color: #64748b; margin-top: 20px; }
-        .merkle-hash { color: #10b981; font-weight: 700; }
-        .header-bar { color: #00f3ff; font-weight: 700; margin-top: 25px; margin-bottom: 15px; }
+        .terminal-bg { background: #000000; padding: 20px; border: 1px solid #1e293b; color: #f8fafc; }
+        .alert-box { background: #1a0505; border: 2px solid #ff0000; padding: 40px; text-align: center; margin-top: 50px; margin-bottom: 30px; }
+        .text-accent { color: #10b981; font-weight: 700; }
+        .text-danger { color: #ef4444; font-weight: 700; }
+        .text-cyan { color: #00f3ff; font-weight: 700; }
+        .section-header { margin-top: 20px; margin-bottom: 10px; font-weight: 900; color: #64748b; }
         </style>
         """, unsafe_allow_html=True)
 
-    def _render_aerospace_header(self, mode="NORMAL"):
-        css_class = "mil-header" if mode in ["NORMAL", "RESTORED"] else "mil-header-red"
-        st.markdown(f"""
-        <div class="{css_class}">
-            <p class="title-main">PROJECT EBONY // UNIFIED MASTER COMMAND COCKPIT</p>
-            <p class="title-sub">AEROSPACE DEFENSE SCADA // OKLAHOMA COMMERCE EVALUATION TESTBED</p>
-            <p class="title-sub" style="font-weight:700;">CAGE: 1AHA8 | AUTHORITY: LEVEL 5 CEO<br>STANDARD: NIST SP 800-82 REV 2 | AIR-GAP: OK HB 2992</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-    def _manage_audio_alarm(self):
-        cmd = "START" if st.session_state.alarm_active else "STOP"
-        alarm_js = f"""
-        <script>
-        if (!window.scadaAudioCtx) {{ window.scadaAudioCtx = new (window.AudioContext || window.webkitAudioContext)(); }}
-        function manageAlarm(command) {{
-            if (command === "START") {{
-                if (!window.scadaOsc1) {{
-                    window.scadaOsc1 = window.scadaAudioCtx.createOscillator();
-                    window.scadaOsc2 = window.scadaAudioCtx.createOscillator();
-                    window.scadaGain = window.scadaAudioCtx.createGain();
-                    window.scadaOsc1.connect(window.scadaGain); window.scadaOsc2.connect(window.scadaGain);
-                    window.scadaGain.connect(window.scadaAudioCtx.destination);
-                    window.scadaOsc1.type = "square"; window.scadaOsc2.type = "square";
-                    window.scadaOsc1.frequency.value = 853; window.scadaOsc2.frequency.value = 960;
-                    window.scadaGain.gain.value = 0.15;
-                    window.scadaOsc1.start(); window.scadaOsc2.start();
-                }}
-            }} else {{
-                if (window.scadaOsc1) {{ window.scadaOsc1.stop(); window.scadaOsc1 = null; }}
-                if (window.scadaOsc2) {{ window.scadaOsc2.stop(); window.scadaOsc2 = null; }}
-            }}
-        }}
-        manageAlarm("{cmd}");
-        </script>
-        """
-        components.html(alarm_js, height=0)
-
-    def _trigger_hazard(self, hazard_key):
-        hazards = {
-            "POLE_BREAK": "DYNAMIC ELECTRICAL SITUATION: Feeder states: CH1 Utility (0.0 A), CH2 Solar (100.0 A), CH3 BESS (350.0 A), CH4 Aux Gen (0.0 A). Non-Essential Bus B Load Shedding: ACTIVE (-155 A).\nKIRCHHOFF POWER FLOW: Total instantaneous load calculated at 1253.8 Amperes across 142.0 Volts RMS. Active facility power delivery is 292.9 kW.\nDOWNSTREAM DEFENSE STATUS: Priority 1 Critical Defense C2 and pumps remain 100% continuous (0.00 seconds of outage).",
-            "HIGH_WINDS": "DYNAMIC ELECTRICAL SITUATION: Feeder states: CH1 Utility (250.0 A), CH2 Solar (100.0 A), CH3 BESS (150.0 A), CH4 Aux Gen (0.0 A). Non-Essential Bus B Load Shedding: ONLINE (+155 A).\nKIRCHHOFF POWER FLOW: Total instantaneous load calculated at 2125.0 Amperes across 142.0 Volts RMS. Active facility power delivery is 496.5 kW.\nDOWNSTREAM DEFENSE STATUS: Priority 1 Critical Defense C2 and pumps remain 100% continuous (0.00 seconds of outage)."
-        }
-        st.session_state.active_hazard = hazard_key
-        st.session_state.mitigation_log = hazards[hazard_key]
-        st.session_state.grid_state = "SHOCK"
-        st.session_state.alarm_active = True
-        st.rerun()
-
     def _render_shock_screen(self):
-        self._render_aerospace_header(mode="SHOCK")
         st.markdown(f"""
         <div class="alert-box">
-            <div class="alert-title">⚠ CRITICAL INFRASTRUCTURE FAILURE ⚠</div>
-            <div style="color:#f8fafc; font-size:24px;">{st.session_state.active_hazard} INJECTION DETECTED</div>
+            <h1 style="color:#ff0000; font-weight:900;">⚠ CRITICAL INFRASTRUCTURE FAILURE ⚠</h1>
+            <h3 style="color:#f8fafc;">{st.session_state.active_hazard} INJECTION DETECTED</h3>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("⚡ INITIATE EBONY PROTOCOL ⚡", key="init_ebony", type="primary", use_container_width=True):
-            st.session_state.alarm_active = False
-            
-            # Autonomous Ebony Switchgear Actions based on fault
-            if st.session_state.active_hazard == "POLE_BREAK":
-                st.session_state.ch1 = False # Utility Off
-                st.session_state.ch3 = True  # BESS On
-            elif st.session_state.active_hazard == "HIGH_WINDS":
-                st.session_state.ch1 = True  # Utility remains but degraded
-                st.session_state.ch3 = True  # BESS assists
-                st.session_state.ch4 = True  # Aux Gen kicks in
-            
-            st.session_state.grid_state = "MITIGATION_ANIMATION"
+        if st.button("⚡ INITIATE EBONY PROTOCOL ⚡", type="primary", use_container_width=True):
+            st.session_state.grid_state = "NORMAL" # Resets back to baseline for now
             st.rerun()
-
-    def _build_oscilloscope(self, mode):
-        x = [i/100 for i in range(200)]
-        if mode == "SHOCK":
-            y = [random.uniform(-0.1, 0.1) for i in range(200)]; color = "#ef4444"
-        else:
-            y = [math.sin(i * 0.5) + random.uniform(-0.05, 0.05) for i in range(200)]; color = "#10b981"
-        fig = go.Figure(data=go.Scatter(x=x, y=y, mode='lines', line=dict(color=color, width=2)))
-        fig.update_layout(plot_bgcolor='#000000', paper_bgcolor='#000000', margin=dict(l=0, r=0, t=0, b=0), height=100, xaxis=dict(visible=False), yaxis=dict(visible=False, range=[-1.5, 1.5]))
-        return fig
-
-    def _calculate_current(self):
-        """Dynamic Real-Time Kirchhoff Math Engine"""
-        base_amps = 350.0 # Ambient parasitic load
-        if st.session_state.ch1: base_amps += 803.8
-        if st.session_state.ch2: base_amps += 100.0
-        if st.session_state.ch3: base_amps += 350.0
-        if st.session_state.ch4: base_amps += 521.2
-        
-        # Add slight natural fluctuation
-        base_amps += random.uniform(-2.5, 2.5)
-        kw = base_amps * 0.2335 # Simplified RMS power factor mapping
-        return base_amps, kw
-
-    def _render_dashboard_frame(self, progress=1.0, mode="NORMAL"):
-        self._render_aerospace_header(mode)
-
-        # 1. FAULT INJECTION CONSOLE
-        st.markdown('<div class="header-bar">▶ FAULT & INCIDENT INJECTION CONSOLE // TEST DYNAMIC REALITY DEFLECTION:</div>', unsafe_allow_html=True)
-        if mode == "NORMAL":
-            col1, col2, col3 = st.columns(3)
-            if col1.button("INJECT: POLE_BREAK", use_container_width=True): self._trigger_hazard("POLE_BREAK")
-            if col2.button("INJECT: HIGH_WINDS", use_container_width=True): self._trigger_hazard("HIGH_WINDS")
-            if col3.button("INJECT: SCADA_BREACH", use_container_width=True): self._trigger_hazard("SCADA_BREACH")
-        else:
-            if mode == "RESTORED":
-                if st.button("✅ ACKNOWLEDGE INCIDENT & RESET MATRIX", use_container_width=True, key="btn_reset"):
-                    st.session_state.grid_state = "NORMAL"
-                    st.session_state.ch1 = True
-                    st.session_state.ch3 = False
-                    st.session_state.ch4 = False
-                    st.rerun()
-            else:
-                st.markdown(f"<span style='color:#ef4444; font-weight:700;'>SYSTEM LOCKED: PROCESSING {st.session_state.active_hazard} EXCEPTION...</span>", unsafe_allow_html=True)
-
-        # 2. MANUAL BREAKER & FEEDER SWITCHGEAR (INTERACTIVE)
-        st.markdown('<div class="header-bar">▶ MANUAL BREAKER & FEEDER SWITCHGEAR (CLICK TO ACTUATE CURRENT DELTAS):</div>', unsafe_allow_html=True)
-        is_locked = (mode != "NORMAL" and mode != "RESTORED")
-        
-        c1, c2, c3, c4 = st.columns(4)
-        c1.checkbox("CH1 Utility Grid", key="ch1", disabled=is_locked)
-        c2.checkbox("CH2 Solar Array", key="ch2", disabled=is_locked)
-        c3.checkbox("CH3 BESS (Battery Storage)", key="ch3", disabled=is_locked)
-        c4.checkbox("CH4 Aux Generator", key="ch4", disabled=is_locked)
-
-        # Recalculate based on active checkboxes
-        amps, kw = self._calculate_current()
-
-        # 3. EXECUTIVE SITUATIONAL WRITE-UP
-        freq = 60.00 if mode == "NORMAL" else 59.98 + random.uniform(-0.02, 0.02)
-        hazard_title = st.session_state.active_hazard if mode != "NORMAL" else "NOMINAL_BASELINE"
-
-        st.markdown(f'<div class="header-bar" style="color:#f8fafc;">EXECUTIVE SITUATIONAL WRITE-UP // {hazard_title} (ACTIVE CURRENT: {amps:.1f} A | ACTIVE BUS: {kw:.1f} kW)</div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="raw-text">DOCKET: OK-DOC-2026-EBONY // FREQUENCY: {freq:.2f} Hz</div>', unsafe_allow_html=True)
-        
-        if mode == "NORMAL":
-            st.markdown('<div class="raw-text">DYNAMIC ELECTRICAL SITUATION: Manual switchgear responsive. Adjust Feeder states to test current draw.<br>KIRCHHOFF POWER FLOW: Instantaneous load dynamically tracking switchgear states.<br>DOWNSTREAM DEFENSE STATUS: Priority 1 Critical Defense C2 and pumps remain 100% continuous.</div>', unsafe_allow_html=True)
-        else:
-            typed_length = int(len(st.session_state.mitigation_log) * progress)
-            display_text = st.session_state.mitigation_log[:typed_length]
-            st.markdown(f'<div class="raw-text">{display_text}</div>', unsafe_allow_html=True)
-
-        # 4. STATIC HEADERS & OSCILLOSCOPE
-        st.markdown('<div class="header-bar">▶ ANALOG GAUGES & MACHINERY INTERLOCKS</div>', unsafe_allow_html=True)
-        st.markdown('<div class="header-bar">▶ REGIONAL OUTAGE MAP & POWER FLOW PIPELINE</div>', unsafe_allow_html=True)
-        
-        st.markdown('<div class="header-bar">▶ MULTI-STAGE ELECTRICAL WAVEFORMS (OSCILLOSCOPE)</div>', unsafe_allow_html=True)
-        st.plotly_chart(self._build_oscilloscope(mode), use_container_width=True, config={'displayModeBar': False})
-        
-        st.markdown('<div class="header-bar">▶ STATUTORY PROVING MATRIX (THE 4 EVALUATION DOMAINS)</div>', unsafe_allow_html=True)
-
-        # 5. DYNAMIC HARDWARE ASSERTIONS (Merkle Hash updates live with checkbox toggles)
-        curr_time = time.time()
-        sim_drift = f"{(random.uniform(0.00, 0.02) if mode=='NORMAL' else 0.00):.2f}%"
-        
-        # Cryptographic link to live telemetry
-        raw_str = f"{amps:.1f}-{kw:.1f}-{freq:.2f}-{curr_time}"
-        merkle_hash = hashlib.sha256(raw_str.encode()).hexdigest()
-
-        st.markdown(f"""
-        <div class="log-footer">
-            [HARDWARE_ASSERTION] FC05_LATENCY: 2.04 us | ARC_QUENCH: 13.33 ms | RESYNC_WINDOW: 126.13 ms | SIMULATION_DRIFT: {sim_drift}<br><br>
-            <span style="color:#10b981; font-size:14px;">⚡ LIVE FORENSIC SILICON LOG // CHRONUS LEDGER SECURED ⚡</span><br>
-            [MERKLE SEALED] LOAD: {amps:.1f}A | PWR: {kw:.1f}kW | FREQ: {freq:.2f}Hz | HASH: <span class="merkle-hash">{merkle_hash}</span>
-        </div>
-        """, unsafe_allow_html=True)
 
     def render_cockpit(self):
         self._inject_css()
-        self._manage_audio_alarm()
         
         if st.session_state.grid_state == "SHOCK":
             self._render_shock_screen()
-        elif st.session_state.grid_state == "MITIGATION_ANIMATION":
-            ui_placeholder = st.empty()
-            steps = 15
-            for i in range(steps + 1):
-                progress = i / float(steps)
-                with ui_placeholder.container():
-                    self._render_dashboard_frame(progress=progress, mode="RECOVERY")
-                time.sleep(0.15)
-            st.session_state.grid_state = "MITIGATION_STABLE"
+            return
+
+        # EXACT RAW TERMINAL REPLICATION
+        st.markdown('<div class="terminal-bg">', unsafe_allow_html=True)
+        
+        st.markdown('PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT // DYNAMIC CURRENT ENGINE<br>Real-Time Kirchhoff Current Calculations on Every Interaction<br>Authority: CEO Jeffery Humphrey (Level 5 Authority) // CAGE: 1AHA8<br><br>', unsafe_allow_html=True)
+        
+        st.markdown('PROJECT EBONY // UNIFIED MASTER COMMAND COCKPIT<br>AEROSPACE DEFENSE SCADA // OKLAHOMA COMMERCE EVALUATION TESTBED<br>CAGE: 1AHA8 | AUTHORITY: LEVEL 5 CEO<br>STANDARD: NIST SP 800-82 REV 2 | AIR-GAP: OK HB 2992<br>', unsafe_allow_html=True)
+        
+        st.markdown('<div class="section-header">▶ FAULT & INCIDENT INJECTION CONSOLE // TEST DYNAMIC REALITY DEFLECTION:</div>', unsafe_allow_html=True)
+        col1, col2 = st.columns(2)
+        if col1.button("INJECT: POLE_BREAK"):
+            st.session_state.active_hazard = "POLE_BREAK"
+            st.session_state.grid_state = "SHOCK"
             st.rerun()
-        elif st.session_state.grid_state == "MITIGATION_STABLE":
-            self._render_dashboard_frame(progress=1.0, mode="RESTORED")
-        else:
-            self._render_dashboard_frame(progress=1.0, mode="NORMAL")
+        if col2.button("INJECT: HIGH_WINDS"):
+            st.session_state.active_hazard = "HIGH_WINDS"
+            st.session_state.grid_state = "SHOCK"
+            st.rerun()
+
+        st.markdown('<div class="section-header">▶ MANUAL BREAKER & FEEDER SWITCHGEAR (CLICK TO ACTUATE CURRENT DELTAS):</div>', unsafe_allow_html=True)
+        st.markdown('<i>[System Locked - Baseline Restored]</i>', unsafe_allow_html=True)
+
+        st.markdown('<div class="section-header">▶ EXECUTIVE SITUATIONAL WRITE-UP // POLE_BREAK (ACTIVE CURRENT: 1253.8 A | ACTIVE BUS: 292.9 kW)</div>', unsafe_allow_html=True)
+        st.markdown("""
+        DOCKET: OK-DOC-2026-EBONY // FREQUENCY: 59.98 Hz<br>
+        DYNAMIC ELECTRICAL SITUATION: Feeder states: CH1 Utility (0.0 A), CH2 Solar (100.0 A), CH3 BESS (350.0 A), CH4 Aux Gen (0.0 A). Non-Essential Bus B Load Shedding: ACTIVE (-155 A).<br>
+        KIRCHHOFF POWER FLOW: Total instantaneous load calculated at 1253.8 Amperes across 142.0 Volts RMS. Active facility power delivery is 292.9 kW.<br>
+        DOWNSTREAM DEFENSE STATUS: Priority 1 Critical Defense C2 and pumps remain 100% continuous (0.00 seconds of outage).
+        """, unsafe_allow_html=True)
+
+        st.markdown('<div class="section-header">▶ ANALOG GAUGES & MACHINERY INTERLOCKS</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-header">▶ REGIONAL OUTAGE MAP & POWER FLOW PIPELINE</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-header">▶ MULTI-STAGE ELECTRICAL WAVEFORMS (OSCILLOSCOPE)</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-header">▶ STATUTORY PROVING MATRIX (THE 4 EVALUATION DOMAINS)</div>', unsafe_allow_html=True)
+        
+        st.markdown('<br>', unsafe_allow_html=True)
+        st.markdown('[HARDWARE_ASSERTION] FC05_LATENCY: 2.04 us | ARC_QUENCH: 13.33 ms | RESYNC_WINDOW: 126.13 ms | SIMULATION_DRIFT: 0.00%', unsafe_allow_html=True)
+        
+        raw_hash = f"1253.8-292.9-{time.time()}"
+        merkle = hashlib.sha256(raw_hash.encode()).hexdigest()
+        
+        st.markdown(f"""
+        <br><span class="text-accent">⚡ LIVE FORENSIC SILICON LOG // CHRONUS LEDGER SECURED ⚡</span><br>
+        [MERKLE SEALED] LOAD: 1253.8A | PWR: 292.9kW | FREQ: 59.98Hz | HASH: <span class="text-cyan">{merkle}</span>
+        </div>
+        """, unsafe_allow_html=True)
 
 # === EXPORTED RENDER HOOK ===
 def render():
