@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 """
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT
-Object-Oriented Sovereign Architecture - Continuous Alarm & Dial Animation
+Object-Oriented Sovereign Architecture - Man-in-the-Loop Mitigation & Typewriter
 Authority: CEO Jeffery Humphrey (Level 5 Authority)
 """
 import streamlit as st
@@ -56,10 +56,10 @@ class MasterCockpit:
         .c2-title { font-family: 'Orbitron', sans-serif; font-size: 18px; color: #f8fafc; margin: 0; letter-spacing: 2px; }
         .c2-badge { color: #00f3ff; font-size: 12px; font-weight: 700; }
         @keyframes flash { 0% { opacity: 1; text-shadow: 0 0 20px #ff0000; } 50% { opacity: 0.3; text-shadow: none; } 100% { opacity: 1; text-shadow: 0 0 20px #ff0000; } }
-        .alert-box { background: #1a0505; border: 2px solid #ff0000; padding: 40px; text-align: center; margin-top: 50px; border-radius: 5px; animation: flash 1s infinite; }
+        .alert-box { background: #1a0505; border: 2px solid #ff0000; padding: 40px; text-align: center; margin-top: 50px; border-radius: 5px; animation: flash 1s infinite; margin-bottom: 30px; }
         .alert-title { color: #ff0000; font-family: 'Orbitron', sans-serif; font-size: 32px; font-weight: 900; margin-bottom: 10px; }
         .alert-gps { color: #f8fafc; font-family: 'JetBrains Mono', monospace; font-size: 20px; letter-spacing: 2px; }
-        .ebony-terminal { background: #000000; border: 1px solid #00f3ff; padding: 15px; color: #00f3ff; font-family: 'JetBrains Mono', monospace; font-size: 13px; height: 160px; overflow-y: auto; }
+        .ebony-modal { border: 2px solid #00f3ff; background: #030712; padding: 25px; margin-top: 20px; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2); }
         </style>
         """, unsafe_allow_html=True)
 
@@ -108,7 +108,6 @@ class MasterCockpit:
         st.rerun()
 
     def _manage_audio_alarm(self):
-        """Controls a continuous, persistent JS oscillator tied to the session state."""
         cmd = "START" if st.session_state.alarm_active else "STOP"
         alarm_js = f"""
         <script>
@@ -119,8 +118,7 @@ class MasterCockpit:
                     window.scadaOsc1 = window.scadaAudioCtx.createOscillator();
                     window.scadaOsc2 = window.scadaAudioCtx.createOscillator();
                     window.scadaGain = window.scadaAudioCtx.createGain();
-                    window.scadaOsc1.connect(window.scadaGain);
-                    window.scadaOsc2.connect(window.scadaGain);
+                    window.scadaOsc1.connect(window.scadaGain); window.scadaOsc2.connect(window.scadaGain);
                     window.scadaGain.connect(window.scadaAudioCtx.destination);
                     window.scadaOsc1.type = "square"; window.scadaOsc2.type = "square";
                     window.scadaOsc1.frequency.value = 853; window.scadaOsc2.frequency.value = 960;
@@ -138,18 +136,19 @@ class MasterCockpit:
         components.html(alarm_js, height=0)
 
     def _render_shock_screen(self):
-        placeholder = st.empty()
-        with placeholder.container():
-            st.markdown(f"""
-            <div class="alert-box">
-                <div class="alert-title">⚠ CRITICAL INFRASTRUCTURE FAILURE ⚠</div>
-                <div class="alert-title">{st.session_state.active_hazard.upper()} DETECTED</div>
-                <div class="alert-gps">IMPACT COORDINATES: {st.session_state.hazard_gps}</div>
-            </div>
-            """, unsafe_allow_html=True)
-        time.sleep(3.5)
-        st.session_state.grid_state = "MITIGATION_ANIMATION"
-        st.rerun()
+        st.markdown(f"""
+        <div class="alert-box">
+            <div class="alert-title">⚠ CRITICAL INFRASTRUCTURE FAILURE ⚠</div>
+            <div class="alert-title">{st.session_state.active_hazard.upper()} DETECTED</div>
+            <div class="alert-gps">IMPACT COORDINATES: {st.session_state.hazard_gps}</div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("⚡ INITIATE EBONY PROTOCOL ⚡", key="init_ebony", type="primary", use_container_width=True):
+            st.session_state.alarm_active = False
+            st.session_state.grid_state = "MITIGATION_ANIMATION"
+            st.rerun()
 
     def _render_dashboard_frame(self, progress=1.0, mode="NORMAL"):
         base_freq = 60.0; base_mw = 4250.0; base_kirchhoff = 1.2
@@ -163,6 +162,9 @@ class MasterCockpit:
         ram = psutil.virtual_memory().percent
         sub_status = "100% ONLINE" if progress > 0.8 else "88% ONLINE (SECTOR BREACH)"
         sub_color = "normal" if progress > 0.8 else "inverse"
+
+        if mode in ["RECOVERY", "RESTORED"]:
+            st.markdown("<h3 style='color:#10b981; text-align:center; font-family:Orbitron;'>🟢 EBONY INITIATED: SYSTEM RECOVERY IN PROGRESS</h3>", unsafe_allow_html=True)
 
         col1, col2, col3, col4 = st.columns([0.8, 1.2, 1.2, 1.1])
 
@@ -188,27 +190,39 @@ class MasterCockpit:
         with col4:
             st.markdown("#### 🚨 THREAT SIMULATOR")
             if mode == "NORMAL":
+                log_veh = ">> EVENT: Loss of 12kV Distribution Line.\n>> EBONY ACTION: Isolating Line 4. Activating automated feeder switches.\n>> GRID STATUS: Load restored to 94% of affected block.\n>> ---------------------------------------------------\n>> REQUIRED HUMAN ACTION:\n>> 1. Dispatch physical Line Crew to RT 66.\n>> 2. Notify Highway Patrol of pole debris in roadway.\n>> 3. Schedule replacement transformer installation."
                 if st.button("🚗 Vehicle Strike", key="btn_veh", use_container_width=True):
-                    self._trigger_hazard("Vehicle Strike", "LAT: 35.8421° N, LON: -97.0384° W (RT 66)", ">> SENSOR TRIP: Distribution pole severed.\n>> ACTION: Isolating line. Rerouting via automated switches.\n>> STATUS: Power restored to 94% of affected block.")
+                    self._trigger_hazard("Vehicle Strike", "LAT: 35.8421° N, LON: -97.0384° W (RT 66)", log_veh)
+                
+                log_tor = ">> EVENT: Massive transmission failure in Sector 4.\n>> EBONY ACTION: Air-gapping Sector 4 to prevent cascade failure.\n>> GRID STATUS: Backfeeding 400MW to local hospitals. Frequency stable.\n>> ---------------------------------------------------\n>> REQUIRED HUMAN ACTION:\n>> 1. Dispatch Heavy Infrastructure Units to Moore.\n>> 2. Coordinate emergency logistics with FEMA/State Police.\n>> 3. Authorize emergency budget release for tower reconstruction."
                 if st.button("🌪️ F5 Tornado", key="btn_tor", use_container_width=True):
-                    self._trigger_hazard("F5 Tornado Strike", "LAT: 35.3395° N, LON: -97.4867° W (MOORE)", ">> SENSOR TRIP: Massive transmission failure in Sector 4.\n>> ACTION: Air-gapping Sector 4.\n>> ACTION: Backfeeding 400MW to hospitals.\n>> STATUS: Grid restabilized.")
+                    self._trigger_hazard("F5 Tornado Strike", "LAT: 35.3395° N, LON: -97.4867° W (MOORE)", log_tor)
+                
+                log_cyb = ">> EVENT: Unauthorized breaker actuation attempt via State Actor.\n>> EBONY ACTION: Iron Dome deployed. Node air-gapped from C2.\n>> GRID STATUS: Intrusion neutralized. Zero loss of load.\n>> ---------------------------------------------------\n>> REQUIRED HUMAN ACTION:\n>> 1. Initiate forensic audit of OKC Hub firewalls.\n>> 2. Rotate all cryptographic keys network-wide.\n>> 3. Dispatch Threat Intelligence report to DHS."
                 if st.button("💻 SCADA Breach", key="btn_cyb", use_container_width=True):
-                    self._trigger_hazard("State Cyber Breach", "LAT: 35.4676° N, LON: -97.5164° W (OKC)", ">> SENSOR TRIP: Unauthorized breaker actuation attempt.\n>> ACTION: Iron Dome deployed. Node air-gapped.\n>> STATUS: Intrusion neutralized.")
+                    self._trigger_hazard("State Cyber Breach", "LAT: 35.4676° N, LON: -97.5164° W (OKC)", log_cyb)
+                
+                log_frz = ">> EVENT: Natural gas freeze off. Rapid -1200MW generation loss.\n>> EBONY ACTION: Micro-load shedding engaged. Purchasing SPP reserve.\n>> GRID STATUS: Total grid collapse averted. Rolling blackouts active.\n>> ---------------------------------------------------\n>> REQUIRED HUMAN ACTION:\n>> 1. Issue emergency conservation alerts via SMS/Broadcast.\n>> 2. Dispatch crews to winterize failing wellheads.\n>> 3. Prepare political brief for Governor's office."
                 if st.button("❄️ Freeze-Off", key="btn_frz", use_container_width=True):
-                    self._trigger_hazard("Generation Shortfall", "STATEWIDE ALERT", ">> SENSOR TRIP: Natural gas freeze. -1200MW loss.\n>> ACTION: Load shedding. Purchasing SPP reserve.\n>> STATUS: Grid collapse averted. Blackouts optimized.")
-            else:
-                # Threat board lockdown during a crisis
-                st.markdown("##### ⚠️ CRISIS LOCKDOWN")
-                st.markdown("<span style='font-size:10px; color:#ef4444;'>New injections disabled. Alarm sounding.</span>", unsafe_allow_html=True)
-                st.markdown("<br>", unsafe_allow_html=True)
-                if st.button("✅ CLEAR HAZARD & SILENCE ALARM", key=f"btn_clr_{progress}", use_container_width=True, type="primary"):
-                    st.session_state.grid_state = "NORMAL"
-                    st.session_state.alarm_active = False
-                    st.rerun()
+                    self._trigger_hazard("Generation Shortfall", "STATEWIDE ALERT", log_frz)
 
-        if mode != "NORMAL":
-            st.markdown("#### 👑 EBONY AI: AUTONOMOUS MITIGATION TERMINAL")
-            st.markdown(f'<div class="ebony-terminal">> INITIATING SOVEREIGN RESPONSE...<br>{st.session_state.mitigation_log}</div>', unsafe_allow_html=True)
+        # The Middle-Screen Typewriter Popup
+        if mode in ["RECOVERY", "RESTORED"]:
+            typed_length = int(len(st.session_state.mitigation_log) * progress)
+            display_text = st.session_state.mitigation_log[:typed_length]
+            
+            st.markdown(f'''
+            <div class="ebony-modal">
+                <h3 style="color: #00f3ff; font-family: 'Orbitron', sans-serif; margin-top: 0;">👑 EBONY AUTONOMOUS MITIGATION LOG</h3>
+                <p style="color: #f8fafc; font-family: 'JetBrains Mono', monospace; font-size: 15px; white-space: pre-wrap; line-height: 1.5;">{display_text}</p>
+            </div>
+            ''', unsafe_allow_html=True)
+            
+            if mode == "RESTORED":
+                st.markdown("<br>", unsafe_allow_html=True)
+                if st.button("✅ ACKNOWLEDGE ACTIONS & RESET BOARD", key="btn_reset", use_container_width=True, type="primary"):
+                    st.session_state.grid_state = "NORMAL"
+                    st.rerun()
 
     def render_cockpit(self):
         self._inject_css()
@@ -219,12 +233,12 @@ class MasterCockpit:
             self._render_shock_screen()
         elif st.session_state.grid_state == "MITIGATION_ANIMATION":
             ui_placeholder = st.empty()
-            steps = 15
+            steps = 20 # Slower, smoother typing and dial animation
             for i in range(steps + 1):
                 progress = i / float(steps)
                 with ui_placeholder.container():
                     self._render_dashboard_frame(progress=progress, mode="RECOVERY")
-                time.sleep(0.3)
+                time.sleep(0.2)
             st.session_state.grid_state = "MITIGATION_STABLE"
             st.rerun()
         elif st.session_state.grid_state == "MITIGATION_STABLE":
