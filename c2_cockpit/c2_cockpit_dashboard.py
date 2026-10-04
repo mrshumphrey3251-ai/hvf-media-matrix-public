@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 """
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT
-Object-Oriented Sovereign Architecture - SCADA Topological Interface
+Object-Oriented Sovereign Architecture - Geospatial SCADA Overaly
 Authority: CEO Jeffery Humphrey (Level 5 Authority)
 """
 import streamlit as st
@@ -11,6 +11,7 @@ import psutil
 import time
 import random
 import json
+import math
 from pathlib import Path
 
 class MasterCockpit:
@@ -20,16 +21,7 @@ class MasterCockpit:
         self.telemetry_vault = Path(r"C:\HVF_Repos\HVF_Matrix_Core\telemetry_state.json")
         self._ensure_telemetry_file()
         self._init_session_state()
-
-        # Oklahoma Grid Coordinates for SCADA Map
-        self.nodes = {
-            "Enid Node": (-1.5, 1.5),
-            "Tulsa Hub": (1.5, 1.5),
-            "OKC Master Hub": (0, 0),
-            "Moore Sub": (0, -1.0),
-            "Lawton Node": (-1.5, -1.5),
-            "McAlester Sub": (1.5, -1.5)
-        }
+        self._generate_synthetic_geo_grid()
 
     def _ensure_telemetry_file(self):
         if not self.telemetry_vault.parent.exists():
@@ -40,16 +32,47 @@ class MasterCockpit:
                 json.dump(initial_state, f)
 
     def _init_session_state(self):
-        if "grid_state" not in st.session_state:
-            st.session_state.grid_state = "NORMAL"
-        if "active_hazard" not in st.session_state:
-            st.session_state.active_hazard = None
-        if "hazard_gps" not in st.session_state:
-            st.session_state.hazard_gps = ""
-        if "mitigation_log" not in st.session_state:
-            st.session_state.mitigation_log = ""
-        if "alarm_active" not in st.session_state:
-            st.session_state.alarm_active = False
+        if "grid_state" not in st.session_state: st.session_state.grid_state = "NORMAL"
+        if "active_hazard" not in st.session_state: st.session_state.active_hazard = None
+        if "hazard_gps" not in st.session_state: st.session_state.hazard_gps = ""
+        if "mitigation_log" not in st.session_state: st.session_state.mitigation_log = ""
+        if "alarm_active" not in st.session_state: st.session_state.alarm_active = False
+
+    def _generate_synthetic_geo_grid(self):
+        """Generates a highly complex 120-node grid locked to OK geography."""
+        random.seed(42) # Lock the synthetic generation so it looks identical every time
+        self.nodes = []
+        self.edges = []
+        
+        # Hub Centers (Lat, Lon)
+        hubs = {
+            "OKC": (35.4676, -97.5164, 45),
+            "Tulsa": (36.1540, -95.9928, 35),
+            "Lawton": (34.6036, -98.3959, 15),
+            "Enid": (36.3956, -97.8784, 15),
+            "Moore_Sector": (35.3395, -97.4867, 10) # Target Zone
+        }
+
+        # Generate clustered nodes
+        for hub, (lat, lon, count) in hubs.items():
+            for i in range(count):
+                n_lat = lat + random.uniform(-0.15, 0.15)
+                n_lon = lon + random.uniform(-0.15, 0.15)
+                self.nodes.append({"id": f"{hub}_{i}", "lat": n_lat, "lon": n_lon, "hub": hub})
+
+        # Generate Edges (Lines) based on proximity
+        for i, n1 in enumerate(self.nodes):
+            connections = 0
+            for j, n2 in enumerate(self.nodes):
+                if i != j:
+                    dist = math.hypot(n1['lat'] - n2['lat'], n1['lon'] - n2['lon'])
+                    # Local connections
+                    if dist < 0.08 and connections < 3:
+                        self.edges.append((i, j))
+                        connections += 1
+                    # Long-haul transmission corridors between cities
+                    elif dist < 1.5 and random.random() < 0.005: 
+                        self.edges.append((i, j))
 
     def _inject_css(self):
         st.markdown("""
@@ -125,103 +148,97 @@ class MasterCockpit:
             <div class="alert-gps">IMPACT COORDINATES: {st.session_state.hazard_gps}</div>
         </div>
         """, unsafe_allow_html=True)
-        
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("⚡ INITIATE EBONY PROTOCOL ⚡", key="init_ebony", type="primary", use_container_width=True):
             st.session_state.alarm_active = False
             st.session_state.grid_state = "MITIGATION_ANIMATION"
             st.rerun()
 
-    def _build_scada_map(self, mode, progress):
-        """Generates the single-line topological SCADA network map."""
+    def _build_geo_map(self, mode, progress):
+        """Generates the geospatial mapbox plot."""
         hazard = st.session_state.active_hazard
-        
-        # Base Edges
-        standard_edges = [
-            ("OKC Master Hub", "Enid Node"), ("OKC Master Hub", "Tulsa Hub"),
-            ("OKC Master Hub", "Moore Sub"), ("OKC Master Hub", "Lawton Node"),
-            ("Tulsa Hub", "McAlester Sub")
-        ]
         
         red_edges = []
         green_edges = []
-        offline_nodes = []
+        offline_nodes = set()
+        standard_edges = list(self.edges)
 
-        # Hazard Topological Modifications
+        # Apply Hazard Logic to the Geospatial Data
         if mode in ["SHOCK", "RECOVERY", "RESTORED"] and hazard:
             if "Tornado" in hazard:
-                standard_edges.remove(("OKC Master Hub", "Moore Sub"))
-                if mode == "SHOCK" or progress < 0.5:
-                    red_edges.append(("OKC Master Hub", "Moore Sub"))
-                    offline_nodes.append("Moore Sub")
+                # Devastate the Moore Sector
+                for i, node in enumerate(self.nodes):
+                    if node['hub'] == "Moore_Sector":
+                        if mode == "SHOCK" or progress < 0.5:
+                            offline_nodes.add(i)
+                # Sever lines connecting to Moore
+                edges_to_remove = []
+                for edge in standard_edges:
+                    if edge[0] in offline_nodes or edge[1] in offline_nodes:
+                        edges_to_remove.append(edge)
+                        if mode == "SHOCK" or progress < 0.5:
+                            red_edges.append(edge)
+                for e in edges_to_remove: standard_edges.remove(e)
+                
+                # Ebony draws a massive bypass around Moore using rural nodes
                 if mode in ["RECOVERY", "RESTORED"] and progress >= 0.5:
-                    green_edges.append(("Lawton Node", "Moore Sub")) # Ebony Reroute
-            
-            elif "Vehicle" in hazard:
-                standard_edges.remove(("OKC Master Hub", "Tulsa Hub"))
-                if mode == "SHOCK" or progress < 0.5:
-                    red_edges.append(("OKC Master Hub", "Tulsa Hub"))
-                if mode in ["RECOVERY", "RESTORED"] and progress >= 0.5:
-                    green_edges.append(("Enid Node", "Tulsa Hub")) # Ebony Reroute
+                    for i in range(5):
+                        green_edges.append((random.randint(0, 44), random.randint(80, 119))) # Connecting OKC directly to Lawton/Enid bypass
 
             elif "Cyber" in hazard:
-                # Isolate OKC Hub
-                standard_edges.clear()
-                if mode == "SHOCK" or progress < 0.5:
-                    offline_nodes.append("OKC Master Hub")
+                # Blackout OKC
+                for i, node in enumerate(self.nodes):
+                    if node['hub'] == "OKC":
+                        offline_nodes.add(i)
+                edges_to_remove = [e for e in standard_edges if e[0] in offline_nodes or e[1] in offline_nodes]
+                for e in edges_to_remove: standard_edges.remove(e)
                 if mode in ["RECOVERY", "RESTORED"] and progress >= 0.5:
-                    # Ebony builds an outer ring to bypass OKC
-                    green_edges = [("Enid Node", "Tulsa Hub"), ("Tulsa Hub", "McAlester Sub"), 
-                                   ("McAlester Sub", "Lawton Node"), ("Lawton Node", "Enid Node")]
+                    # Ebony routes Tulsa directly to Lawton and Enid
+                    for i in range(10): green_edges.append((random.randint(45, 79), random.randint(80, 119)))
 
-            elif "Freeze" in hazard:
-                # Load Shedding
-                if ("OKC Master Hub", "Enid Node") in standard_edges: standard_edges.remove(("OKC Master Hub", "Enid Node"))
-                if ("Tulsa Hub", "McAlester Sub") in standard_edges: standard_edges.remove(("Tulsa Hub", "McAlester Sub"))
-                if mode == "SHOCK" or progress < 0.5:
-                    offline_nodes.extend(["Enid Node", "McAlester Sub"])
-
-        # Plotly Figure Setup
         fig = go.Figure()
 
-        # Helper to add lines
-        def add_lines(edges, color, width, dash='solid'):
-            for edge in edges:
-                x0, y0 = self.nodes[edge[0]]; x1, y1 = self.nodes[edge[1]]
-                fig.add_trace(go.Scatter(x=[x0, x1], y=[y0, y1], mode='lines', 
-                                         line=dict(color=color, width=width, dash=dash), hoverinfo='none'))
+        # Helper to plot Mapbox lines
+        def plot_edges(edge_list, color, width):
+            if not edge_list: return
+            lats = []; lons = []
+            for e in edge_list:
+                lats.extend([self.nodes[e[0]]['lat'], self.nodes[e[1]]['lat'], None])
+                lons.extend([self.nodes[e[0]]['lon'], self.nodes[e[1]]['lon'], None])
+            fig.add_trace(go.Scattermapbox(
+                lat=lats, lon=lons, mode='lines', line=dict(width=width, color=color), hoverinfo='none'
+            ))
 
-        # Draw Lines
-        add_lines(standard_edges, '#00f3ff', 2) # Cyan Standard
-        add_lines(red_edges, '#ef4444', 3, 'dot') # Red Flashing Failed
-        add_lines(green_edges, '#10b981', 4) # Neon Green Reroutes
+        plot_edges(standard_edges, 'rgba(0, 243, 255, 0.4)', 1.5) # Cyan Base Web
+        plot_edges(red_edges, '#ef4444', 3) # Red Severed
+        plot_edges(green_edges, '#10b981', 3) # Neon Green Ebony Routing
 
-        # Draw Nodes
-        node_x = []; node_y = []; node_colors = []; node_texts = []
-        for name, coords in self.nodes.items():
-            node_x.append(coords[0])
-            node_y.append(coords[1])
-            node_texts.append(name)
-            if name in offline_nodes:
-                node_colors.append('#ef4444') # Red Offline
+        # Plot Nodes
+        active_lats = []; active_lons = []
+        dead_lats = []; dead_lons = []
+        for i, node in enumerate(self.nodes):
+            if i in offline_nodes:
+                dead_lats.append(node['lat']); dead_lons.append(node['lon'])
             else:
-                node_colors.append('#00f3ff') # Cyan Online
+                active_lats.append(node['lat']); active_lons.append(node['lon'])
 
-        fig.add_trace(go.Scatter(
-            x=node_x, y=node_y, mode='markers+text',
-            marker=dict(size=25, color=node_colors, line=dict(width=2, color='#ffffff')),
-            text=node_texts, textposition="top center",
-            textfont=dict(color='#f8fafc', family="JetBrains Mono", size=12),
-            hoverinfo='text'
+        fig.add_trace(go.Scattermapbox(
+            lat=active_lats, lon=active_lons, mode='markers',
+            marker=dict(size=6, color='#00f3ff'), hoverinfo='none'
         ))
+        if dead_lats:
+            fig.add_trace(go.Scattermapbox(
+                lat=dead_lats, lon=dead_lons, mode='markers',
+                marker=dict(size=10, color='#ef4444'), hoverinfo='none'
+            ))
 
+        # Set Mapbox Layout (carto-darkmatter is free, offline-friendly if cached, and highly professional)
         fig.update_layout(
-            title=dict(text="SOVEREIGN TOPOLOGICAL GRID VIEW", font=dict(color="#64748b", family="JetBrains Mono")),
-            plot_bgcolor='#030712', paper_bgcolor='#030712',
-            showlegend=False, margin=dict(l=0, r=0, t=30, b=0),
-            xaxis=dict(showgrid=False, zeroline=False, visible=False),
-            yaxis=dict(showgrid=False, zeroline=False, visible=False),
-            height=400
+            mapbox_style="carto-darkmatter",
+            mapbox=dict(center=dict(lat=35.5, lon=-97.5), zoom=6),
+            showlegend=False,
+            margin={"r":0,"t":0,"l":0,"b":0},
+            height=450
         )
         return fig
 
@@ -229,13 +246,13 @@ class MasterCockpit:
         cpu = psutil.cpu_percent() if mode == "NORMAL" else 98.5 + random.uniform(-1, 1)
         freq = 60.00 if mode in ["NORMAL", "RESTORED"] else 58.2 + (1.8 * progress)
         mw_load = 4250 if mode in ["NORMAL", "RESTORED"] else 3100 + (1150 * progress)
-        sub_status = "100% SECURE" if mode in ["NORMAL", "RESTORED"] else "SECTOR BREACH"
+        sub_status = "120/120 NODES SECURE" if mode in ["NORMAL", "RESTORED"] else "CASCADE FAILURE IMMINENT"
         sub_color = "normal" if mode in ["NORMAL", "RESTORED"] else "inverse"
 
         if mode in ["RECOVERY", "RESTORED"]:
-            st.markdown("<h3 style='color:#10b981; text-align:center; font-family:Orbitron;'>🟢 EBONY INITIATED: TOPOLOGICAL REROUTING IN PROGRESS</h3>", unsafe_allow_html=True)
+            st.markdown("<h3 style='color:#10b981; text-align:center; font-family:Orbitron;'>🟢 EBONY INITIATED: GEOSPATIAL REROUTING IN PROGRESS</h3>", unsafe_allow_html=True)
 
-        col_metrics, col_map, col_controls = st.columns([1, 2, 1])
+        col_metrics, col_map, col_controls = st.columns([0.8, 2, 0.8])
 
         with col_metrics:
             st.markdown("#### ⚙️ TELEMETRY")
@@ -244,29 +261,21 @@ class MasterCockpit:
             st.metric(label="Active Load", value=f"{mw_load:.0f} MW", delta=sub_status, delta_color=sub_color)
 
         with col_map:
-            scada_map = self._build_scada_map(mode, progress)
-            st.plotly_chart(scada_map, use_container_width=True, config={'displayModeBar': False}, key=f"map_{progress}")
+            geo_map = self._build_geo_map(mode, progress)
+            st.plotly_chart(geo_map, use_container_width=True, config={'displayModeBar': False}, key=f"geomap_{progress}")
 
         with col_controls:
-            st.markdown("#### 🚨 THREAT INJECTOR")
+            st.markdown("#### 🚨 INJECTOR")
             if mode == "NORMAL":
-                log_veh = ">> EVENT: 12kV Line Severed on RT 66.\n>> EBONY ACTION: Isolating Tulsa Hub feed. Rerouting via Enid Node switches.\n>> GRID STATUS: Load restored. Zero cascade failure.\n>> ---------------------------------------------------\n>> HUMAN ACTION:\n>> 1. Dispatch Line Crew.\n>> 2. Schedule pole replacement."
-                if st.button("🚗 Vehicle Strike", key="btn_veh", use_container_width=True):
-                    self._trigger_hazard("Vehicle Strike", "LAT: 35.8421° N, LON: -97.0384° W (RT 66)", log_veh)
-                
-                log_tor = ">> EVENT: F5 Tornado - Moore Substation offline.\n>> EBONY ACTION: Severing primary OKC feed. Backfeeding 400MW from Lawton Node.\n>> GRID STATUS: Grid restabilized. Hospitals powered.\n>> ---------------------------------------------------\n>> HUMAN ACTION:\n>> 1. Dispatch Heavy Infrastructure Units.\n>> 2. Coordinate FEMA logistics."
+                log_tor = ">> EVENT: F5 Tornado. 10 Moore Substation Nodes Offline.\n>> EBONY ACTION: Severing primary OKC feeds to prevent cascade.\n>> EBONY ACTION: Establishing geographic bypass via Lawton/Enid rural hubs.\n>> GRID STATUS: Grid restabilized. Localized blackout contained.\n>> HUMAN ACTION:\n>> 1. Dispatch Heavy Infrastructure Units to I-35 Corridor.\n>> 2. Coordinate FEMA logistics."
                 if st.button("🌪️ F5 Tornado", key="btn_tor", use_container_width=True):
                     self._trigger_hazard("F5 Tornado Strike", "LAT: 35.3395° N, LON: -97.4867° W (MOORE)", log_tor)
                 
-                log_cyb = ">> EVENT: SCADA Breach at OKC Master Hub.\n>> EBONY ACTION: Air-gapping OKC Hub. Constructing decentralized outer ring.\n>> GRID STATUS: Intrusion neutralized. Power flow maintained.\n>> ---------------------------------------------------\n>> HUMAN ACTION:\n>> 1. Initiate forensic audit of OKC firewalls.\n>> 2. Rotate crypto keys."
+                log_cyb = ">> EVENT: SCADA Breach at OKC Master Hub.\n>> EBONY ACTION: Air-gapping 45 OKC Nodes.\n>> EBONY ACTION: Routing Tulsa generation directly to southern sectors.\n>> GRID STATUS: Intrusion neutralized. Power flow maintained.\n>> HUMAN ACTION:\n>> 1. Initiate forensic audit of OKC firewalls."
                 if st.button("💻 SCADA Breach", key="btn_cyb", use_container_width=True):
                     self._trigger_hazard("State Cyber Breach", "LAT: 35.4676° N, LON: -97.5164° W (OKC)", log_cyb)
-                
-                log_frz = ">> EVENT: Natural gas freeze. -1200MW generation loss.\n>> EBONY ACTION: Shedding peripheral nodes (Enid, McAlester). Preserving core triangle.\n>> GRID STATUS: Total grid collapse averted.\n>> ---------------------------------------------------\n>> HUMAN ACTION:\n>> 1. Issue emergency conservation alerts.\n>> 2. Winterize wellheads."
-                if st.button("❄️ Freeze-Off", key="btn_frz", use_container_width=True):
-                    self._trigger_hazard("Generation Shortfall", "STATEWIDE ALERT", log_frz)
             else:
-                st.markdown("##### ⚠️ CRISIS LOCKDOWN")
+                st.markdown("##### ⚠️️ LOCKDOWN")
                 if st.button("✅ ACKNOWLEDGE & RESET", key=f"btn_reset_{progress}", use_container_width=True, type="primary"):
                     st.session_state.grid_state = "NORMAL"
                     st.session_state.alarm_active = False
