@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 """
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT
-Object-Oriented Sovereign Architecture - Man-in-the-Loop Mitigation & Typewriter
+Object-Oriented Sovereign Architecture - SCADA Topological Interface
 Authority: CEO Jeffery Humphrey (Level 5 Authority)
 """
 import streamlit as st
@@ -21,6 +21,16 @@ class MasterCockpit:
         self._ensure_telemetry_file()
         self._init_session_state()
 
+        # Oklahoma Grid Coordinates for SCADA Map
+        self.nodes = {
+            "Enid Node": (-1.5, 1.5),
+            "Tulsa Hub": (1.5, 1.5),
+            "OKC Master Hub": (0, 0),
+            "Moore Sub": (0, -1.0),
+            "Lawton Node": (-1.5, -1.5),
+            "McAlester Sub": (1.5, -1.5)
+        }
+
     def _ensure_telemetry_file(self):
         if not self.telemetry_vault.parent.exists():
             self.telemetry_vault.parent.mkdir(parents=True, exist_ok=True)
@@ -28,13 +38,6 @@ class MasterCockpit:
             initial_state = {"kirchhoff_current": 1.205, "optical_gli": 0.210, "matrix_throughput": 889}
             with open(self.telemetry_vault, "w") as f:
                 json.dump(initial_state, f)
-
-    def _read_live_sensors(self):
-        try:
-            with open(self.telemetry_vault, "r") as f:
-                return json.load(f)
-        except:
-            return {"kirchhoff_current": 1.2, "optical_gli": 0.2, "matrix_throughput": 850}
 
     def _init_session_state(self):
         if "grid_state" not in st.session_state:
@@ -60,6 +63,7 @@ class MasterCockpit:
         .alert-title { color: #ff0000; font-family: 'Orbitron', sans-serif; font-size: 32px; font-weight: 900; margin-bottom: 10px; }
         .alert-gps { color: #f8fafc; font-family: 'JetBrains Mono', monospace; font-size: 20px; letter-spacing: 2px; }
         .ebony-modal { border: 2px solid #00f3ff; background: #030712; padding: 25px; margin-top: 20px; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2); }
+        div[data-testid="metric-container"] { background: #090e17; border: 1px solid #1e293b; padding: 10px; border-radius: 4px; }
         </style>
         """, unsafe_allow_html=True)
 
@@ -76,28 +80,6 @@ class MasterCockpit:
             </div>
         </div>
         """, unsafe_allow_html=True)
-
-    def _create_gauge(self, title, val, min_v, max_v, safe_low, safe_high, suffix=""):
-        fig = go.Figure(go.Indicator(
-            mode = "gauge+number",
-            value = val,
-            number = {'suffix': suffix, 'font': {'color': '#f8fafc', 'size': 30}},
-            title = {'text': title, 'font': {'color': '#00f3ff', 'size': 14, 'family': 'JetBrains Mono'}},
-            gauge = {
-                'axis': {'range': [min_v, max_v], 'tickwidth': 1, 'tickcolor': "#1e293b"},
-                'bar': {'color': "#f8fafc", 'thickness': 0.2},
-                'bgcolor': "#090e17",
-                'borderwidth': 2,
-                'bordercolor': "#1e293b",
-                'steps': [
-                    {'range': [min_v, safe_low], 'color': '#ef4444'},
-                    {'range': [safe_low, safe_high], 'color': '#10b981'},
-                    {'range': [safe_high, max_v], 'color': '#ef4444'}
-                ],
-            }
-        ))
-        fig.update_layout(height=220, margin=dict(l=20, r=20, t=40, b=20), paper_bgcolor="rgba(0,0,0,0)", font={'family': "JetBrains Mono"})
-        return fig
 
     def _trigger_hazard(self, hazard_name, gps, log_msg):
         st.session_state.active_hazard = hazard_name
@@ -150,79 +132,155 @@ class MasterCockpit:
             st.session_state.grid_state = "MITIGATION_ANIMATION"
             st.rerun()
 
-    def _render_dashboard_frame(self, progress=1.0, mode="NORMAL"):
-        base_freq = 60.0; base_mw = 4250.0; base_kirchhoff = 1.2
-        crash_freq = 58.2; crash_mw = 3100.0; crash_kirchhoff = 3.5
+    def _build_scada_map(self, mode, progress):
+        """Generates the single-line topological SCADA network map."""
+        hazard = st.session_state.active_hazard
         
-        current_freq = crash_freq + ((base_freq - crash_freq) * progress) + random.uniform(-0.02, 0.02)
-        current_mw = crash_mw + ((base_mw - crash_mw) * progress) + random.uniform(-10, 10)
-        current_k = crash_kirchhoff + ((base_kirchhoff - crash_kirchhoff) * progress) + random.uniform(-0.05, 0.05)
+        # Base Edges
+        standard_edges = [
+            ("OKC Master Hub", "Enid Node"), ("OKC Master Hub", "Tulsa Hub"),
+            ("OKC Master Hub", "Moore Sub"), ("OKC Master Hub", "Lawton Node"),
+            ("Tulsa Hub", "McAlester Sub")
+        ]
+        
+        red_edges = []
+        green_edges = []
+        offline_nodes = []
 
-        cpu = psutil.cpu_percent() if mode == "NORMAL" else 95.0 + random.uniform(-2, 2)
-        ram = psutil.virtual_memory().percent
-        sub_status = "100% ONLINE" if progress > 0.8 else "88% ONLINE (SECTOR BREACH)"
-        sub_color = "normal" if progress > 0.8 else "inverse"
+        # Hazard Topological Modifications
+        if mode in ["SHOCK", "RECOVERY", "RESTORED"] and hazard:
+            if "Tornado" in hazard:
+                standard_edges.remove(("OKC Master Hub", "Moore Sub"))
+                if mode == "SHOCK" or progress < 0.5:
+                    red_edges.append(("OKC Master Hub", "Moore Sub"))
+                    offline_nodes.append("Moore Sub")
+                if mode in ["RECOVERY", "RESTORED"] and progress >= 0.5:
+                    green_edges.append(("Lawton Node", "Moore Sub")) # Ebony Reroute
+            
+            elif "Vehicle" in hazard:
+                standard_edges.remove(("OKC Master Hub", "Tulsa Hub"))
+                if mode == "SHOCK" or progress < 0.5:
+                    red_edges.append(("OKC Master Hub", "Tulsa Hub"))
+                if mode in ["RECOVERY", "RESTORED"] and progress >= 0.5:
+                    green_edges.append(("Enid Node", "Tulsa Hub")) # Ebony Reroute
+
+            elif "Cyber" in hazard:
+                # Isolate OKC Hub
+                standard_edges.clear()
+                if mode == "SHOCK" or progress < 0.5:
+                    offline_nodes.append("OKC Master Hub")
+                if mode in ["RECOVERY", "RESTORED"] and progress >= 0.5:
+                    # Ebony builds an outer ring to bypass OKC
+                    green_edges = [("Enid Node", "Tulsa Hub"), ("Tulsa Hub", "McAlester Sub"), 
+                                   ("McAlester Sub", "Lawton Node"), ("Lawton Node", "Enid Node")]
+
+            elif "Freeze" in hazard:
+                # Load Shedding
+                if ("OKC Master Hub", "Enid Node") in standard_edges: standard_edges.remove(("OKC Master Hub", "Enid Node"))
+                if ("Tulsa Hub", "McAlester Sub") in standard_edges: standard_edges.remove(("Tulsa Hub", "McAlester Sub"))
+                if mode == "SHOCK" or progress < 0.5:
+                    offline_nodes.extend(["Enid Node", "McAlester Sub"])
+
+        # Plotly Figure Setup
+        fig = go.Figure()
+
+        # Helper to add lines
+        def add_lines(edges, color, width, dash='solid'):
+            for edge in edges:
+                x0, y0 = self.nodes[edge[0]]; x1, y1 = self.nodes[edge[1]]
+                fig.add_trace(go.Scatter(x=[x0, x1], y=[y0, y1], mode='lines', 
+                                         line=dict(color=color, width=width, dash=dash), hoverinfo='none'))
+
+        # Draw Lines
+        add_lines(standard_edges, '#00f3ff', 2) # Cyan Standard
+        add_lines(red_edges, '#ef4444', 3, 'dot') # Red Flashing Failed
+        add_lines(green_edges, '#10b981', 4) # Neon Green Reroutes
+
+        # Draw Nodes
+        node_x = []; node_y = []; node_colors = []; node_texts = []
+        for name, coords in self.nodes.items():
+            node_x.append(coords[0])
+            node_y.append(coords[1])
+            node_texts.append(name)
+            if name in offline_nodes:
+                node_colors.append('#ef4444') # Red Offline
+            else:
+                node_colors.append('#00f3ff') # Cyan Online
+
+        fig.add_trace(go.Scatter(
+            x=node_x, y=node_y, mode='markers+text',
+            marker=dict(size=25, color=node_colors, line=dict(width=2, color='#ffffff')),
+            text=node_texts, textposition="top center",
+            textfont=dict(color='#f8fafc', family="JetBrains Mono", size=12),
+            hoverinfo='text'
+        ))
+
+        fig.update_layout(
+            title=dict(text="SOVEREIGN TOPOLOGICAL GRID VIEW", font=dict(color="#64748b", family="JetBrains Mono")),
+            plot_bgcolor='#030712', paper_bgcolor='#030712',
+            showlegend=False, margin=dict(l=0, r=0, t=30, b=0),
+            xaxis=dict(showgrid=False, zeroline=False, visible=False),
+            yaxis=dict(showgrid=False, zeroline=False, visible=False),
+            height=400
+        )
+        return fig
+
+    def _render_dashboard_frame(self, progress=1.0, mode="NORMAL"):
+        cpu = psutil.cpu_percent() if mode == "NORMAL" else 98.5 + random.uniform(-1, 1)
+        freq = 60.00 if mode in ["NORMAL", "RESTORED"] else 58.2 + (1.8 * progress)
+        mw_load = 4250 if mode in ["NORMAL", "RESTORED"] else 3100 + (1150 * progress)
+        sub_status = "100% SECURE" if mode in ["NORMAL", "RESTORED"] else "SECTOR BREACH"
+        sub_color = "normal" if mode in ["NORMAL", "RESTORED"] else "inverse"
 
         if mode in ["RECOVERY", "RESTORED"]:
-            st.markdown("<h3 style='color:#10b981; text-align:center; font-family:Orbitron;'>🟢 EBONY INITIATED: SYSTEM RECOVERY IN PROGRESS</h3>", unsafe_allow_html=True)
+            st.markdown("<h3 style='color:#10b981; text-align:center; font-family:Orbitron;'>🟢 EBONY INITIATED: TOPOLOGICAL REROUTING IN PROGRESS</h3>", unsafe_allow_html=True)
 
-        col1, col2, col3, col4 = st.columns([0.8, 1.2, 1.2, 1.1])
+        col_metrics, col_map, col_controls = st.columns([1, 2, 1])
 
-        with col1:
-            st.markdown("#### 🖥️ BARE-METAL")
-            st.metric(label="Live CPU Load", value=f"{cpu:.1f}%", delta="Hardware")
-            st.metric(label="Physical RAM", value=f"{ram}%", delta="Hardware")
-            st.metric(label="Substation Net", value=sub_status, delta="Status", delta_color=sub_color)
+        with col_metrics:
+            st.markdown("#### ⚙️ TELEMETRY")
+            st.metric(label="Live CPU Load", value=f"{cpu:.1f}%")
+            st.metric(label="Grid Frequency", value=f"{freq:.2f} Hz", delta="Target: 60Hz", delta_color="normal" if freq>59.5 else "inverse")
+            st.metric(label="Active Load", value=f"{mw_load:.0f} MW", delta=sub_status, delta_color=sub_color)
 
-        with col2:
-            st.markdown("#### ⚡ SENSOR CORE")
-            gauge_k = self._create_gauge("Kirchhoff Vector", current_k, 0, 5, 0.5, 1.8, "A")
-            st.plotly_chart(gauge_k, use_container_width=True, config={'displayModeBar': False}, key=f"gk_{progress}")
+        with col_map:
+            scada_map = self._build_scada_map(mode, progress)
+            st.plotly_chart(scada_map, use_container_width=True, config={'displayModeBar': False}, key=f"map_{progress}")
 
-        with col3:
-            st.markdown("#### 🌐 OKLAHOMA GRID")
-            gauge_f = self._create_gauge("Grid Frequency", current_freq, 55, 65, 59.5, 60.5, "Hz")
-            st.plotly_chart(gauge_f, use_container_width=True, config={'displayModeBar': False}, key=f"gf_{progress}")
-            
-            gauge_mw = self._create_gauge("Active MW Load", current_mw, 0, 5000, 3800, 4800, "MW")
-            st.plotly_chart(gauge_mw, use_container_width=True, config={'displayModeBar': False}, key=f"gmw_{progress}")
-
-        with col4:
-            st.markdown("#### 🚨 THREAT SIMULATOR")
+        with col_controls:
+            st.markdown("#### 🚨 THREAT INJECTOR")
             if mode == "NORMAL":
-                log_veh = ">> EVENT: Loss of 12kV Distribution Line.\n>> EBONY ACTION: Isolating Line 4. Activating automated feeder switches.\n>> GRID STATUS: Load restored to 94% of affected block.\n>> ---------------------------------------------------\n>> REQUIRED HUMAN ACTION:\n>> 1. Dispatch physical Line Crew to RT 66.\n>> 2. Notify Highway Patrol of pole debris in roadway.\n>> 3. Schedule replacement transformer installation."
+                log_veh = ">> EVENT: 12kV Line Severed on RT 66.\n>> EBONY ACTION: Isolating Tulsa Hub feed. Rerouting via Enid Node switches.\n>> GRID STATUS: Load restored. Zero cascade failure.\n>> ---------------------------------------------------\n>> HUMAN ACTION:\n>> 1. Dispatch Line Crew.\n>> 2. Schedule pole replacement."
                 if st.button("🚗 Vehicle Strike", key="btn_veh", use_container_width=True):
                     self._trigger_hazard("Vehicle Strike", "LAT: 35.8421° N, LON: -97.0384° W (RT 66)", log_veh)
                 
-                log_tor = ">> EVENT: Massive transmission failure in Sector 4.\n>> EBONY ACTION: Air-gapping Sector 4 to prevent cascade failure.\n>> GRID STATUS: Backfeeding 400MW to local hospitals. Frequency stable.\n>> ---------------------------------------------------\n>> REQUIRED HUMAN ACTION:\n>> 1. Dispatch Heavy Infrastructure Units to Moore.\n>> 2. Coordinate emergency logistics with FEMA/State Police.\n>> 3. Authorize emergency budget release for tower reconstruction."
+                log_tor = ">> EVENT: F5 Tornado - Moore Substation offline.\n>> EBONY ACTION: Severing primary OKC feed. Backfeeding 400MW from Lawton Node.\n>> GRID STATUS: Grid restabilized. Hospitals powered.\n>> ---------------------------------------------------\n>> HUMAN ACTION:\n>> 1. Dispatch Heavy Infrastructure Units.\n>> 2. Coordinate FEMA logistics."
                 if st.button("🌪️ F5 Tornado", key="btn_tor", use_container_width=True):
                     self._trigger_hazard("F5 Tornado Strike", "LAT: 35.3395° N, LON: -97.4867° W (MOORE)", log_tor)
                 
-                log_cyb = ">> EVENT: Unauthorized breaker actuation attempt via State Actor.\n>> EBONY ACTION: Iron Dome deployed. Node air-gapped from C2.\n>> GRID STATUS: Intrusion neutralized. Zero loss of load.\n>> ---------------------------------------------------\n>> REQUIRED HUMAN ACTION:\n>> 1. Initiate forensic audit of OKC Hub firewalls.\n>> 2. Rotate all cryptographic keys network-wide.\n>> 3. Dispatch Threat Intelligence report to DHS."
+                log_cyb = ">> EVENT: SCADA Breach at OKC Master Hub.\n>> EBONY ACTION: Air-gapping OKC Hub. Constructing decentralized outer ring.\n>> GRID STATUS: Intrusion neutralized. Power flow maintained.\n>> ---------------------------------------------------\n>> HUMAN ACTION:\n>> 1. Initiate forensic audit of OKC firewalls.\n>> 2. Rotate crypto keys."
                 if st.button("💻 SCADA Breach", key="btn_cyb", use_container_width=True):
                     self._trigger_hazard("State Cyber Breach", "LAT: 35.4676° N, LON: -97.5164° W (OKC)", log_cyb)
                 
-                log_frz = ">> EVENT: Natural gas freeze off. Rapid -1200MW generation loss.\n>> EBONY ACTION: Micro-load shedding engaged. Purchasing SPP reserve.\n>> GRID STATUS: Total grid collapse averted. Rolling blackouts active.\n>> ---------------------------------------------------\n>> REQUIRED HUMAN ACTION:\n>> 1. Issue emergency conservation alerts via SMS/Broadcast.\n>> 2. Dispatch crews to winterize failing wellheads.\n>> 3. Prepare political brief for Governor's office."
+                log_frz = ">> EVENT: Natural gas freeze. -1200MW generation loss.\n>> EBONY ACTION: Shedding peripheral nodes (Enid, McAlester). Preserving core triangle.\n>> GRID STATUS: Total grid collapse averted.\n>> ---------------------------------------------------\n>> HUMAN ACTION:\n>> 1. Issue emergency conservation alerts.\n>> 2. Winterize wellheads."
                 if st.button("❄️ Freeze-Off", key="btn_frz", use_container_width=True):
                     self._trigger_hazard("Generation Shortfall", "STATEWIDE ALERT", log_frz)
+            else:
+                st.markdown("##### ⚠️ CRISIS LOCKDOWN")
+                if st.button("✅ ACKNOWLEDGE & RESET", key=f"btn_reset_{progress}", use_container_width=True, type="primary"):
+                    st.session_state.grid_state = "NORMAL"
+                    st.session_state.alarm_active = False
+                    st.rerun()
 
-        # The Middle-Screen Typewriter Popup
         if mode in ["RECOVERY", "RESTORED"]:
             typed_length = int(len(st.session_state.mitigation_log) * progress)
             display_text = st.session_state.mitigation_log[:typed_length]
-            
             st.markdown(f'''
             <div class="ebony-modal">
                 <h3 style="color: #00f3ff; font-family: 'Orbitron', sans-serif; margin-top: 0;">👑 EBONY AUTONOMOUS MITIGATION LOG</h3>
-                <p style="color: #f8fafc; font-family: 'JetBrains Mono', monospace; font-size: 15px; white-space: pre-wrap; line-height: 1.5;">{display_text}</p>
+                <p style="color: #f8fafc; font-family: 'JetBrains Mono', monospace; font-size: 14px; white-space: pre-wrap;">{display_text}</p>
             </div>
             ''', unsafe_allow_html=True)
-            
-            if mode == "RESTORED":
-                st.markdown("<br>", unsafe_allow_html=True)
-                if st.button("✅ ACKNOWLEDGE ACTIONS & RESET BOARD", key="btn_reset", use_container_width=True, type="primary"):
-                    st.session_state.grid_state = "NORMAL"
-                    st.rerun()
 
     def render_cockpit(self):
         self._inject_css()
@@ -233,12 +291,12 @@ class MasterCockpit:
             self._render_shock_screen()
         elif st.session_state.grid_state == "MITIGATION_ANIMATION":
             ui_placeholder = st.empty()
-            steps = 20 # Slower, smoother typing and dial animation
+            steps = 15
             for i in range(steps + 1):
                 progress = i / float(steps)
                 with ui_placeholder.container():
                     self._render_dashboard_frame(progress=progress, mode="RECOVERY")
-                time.sleep(0.2)
+                time.sleep(0.3)
             st.session_state.grid_state = "MITIGATION_STABLE"
             st.rerun()
         elif st.session_state.grid_state == "MITIGATION_STABLE":
