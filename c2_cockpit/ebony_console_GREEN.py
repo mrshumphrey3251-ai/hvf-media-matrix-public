@@ -878,8 +878,7 @@ elif active_module == "💬 Sovereign Command":
                 db_messages = [initial_msg]
             st.session_state.messages = [
         m for m in db_messages 
-        if 'can\'t share' not in m.get('content', '').lower() 
-        and 'can\'t help' not in m.get('content', '').lower()
+        if not any(ban in m.get('content', '').lower() for ban in ["can't share", "can't help", "can't provide", "summary", "i'm sorry", "cannot provide"])
     ]
             st.session_state.screen_wiped = False
     else:
