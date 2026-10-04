@@ -99,6 +99,20 @@ class MasterCockpit:
         </style>
         """, unsafe_allow_html=True)
 
+    def _render_header(self):
+        st.markdown(f"""
+        <div class="c2-header">
+            <div>
+                <p class="c2-title">HVF OMNI-INDUSTRIAL COMMAND MATRIX</p>
+                <p style="margin:0; font-size:10px; color:#64748b;">ACTIVE ENGINE: EBONY AI // KERNEL: SECURE</p>
+            </div>
+            <div style="text-align: right;">
+                <p style="margin:0; font-size:10px; color:#64748b;">COMMANDER</p>
+                <p class="c2-badge">{self.ceo_name} | {self.clearance}</p>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
     def _trigger_hazard(self, hazard_name, gps, log_msg):
         st.session_state.active_hazard = hazard_name
         st.session_state.hazard_gps = gps
