@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 """
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT
-Object-Oriented Sovereign Architecture - Geospatial SCADA Overaly
+Object-Oriented Sovereign Architecture - Air-Gapped Cyber-Topological HUD
 Authority: CEO Jeffery Humphrey (Level 5 Authority)
 """
 import streamlit as st
@@ -21,7 +21,7 @@ class MasterCockpit:
         self.telemetry_vault = Path(r"C:\HVF_Repos\HVF_Matrix_Core\telemetry_state.json")
         self._ensure_telemetry_file()
         self._init_session_state()
-        self._generate_synthetic_geo_grid()
+        self._generate_synthetic_cyber_grid()
 
     def _ensure_telemetry_file(self):
         if not self.telemetry_vault.parent.exists():
@@ -38,40 +38,40 @@ class MasterCockpit:
         if "mitigation_log" not in st.session_state: st.session_state.mitigation_log = ""
         if "alarm_active" not in st.session_state: st.session_state.alarm_active = False
 
-    def _generate_synthetic_geo_grid(self):
-        """Generates a highly complex 120-node grid locked to OK geography."""
-        random.seed(42) # Lock the synthetic generation so it looks identical every time
+    def _generate_synthetic_cyber_grid(self):
+        """Generates a highly complex 120-node grid using pure offline X/Y plotting."""
+        random.seed(42) # Lock generation
         self.nodes = []
         self.edges = []
         
-        # Hub Centers (Lat, Lon)
+        # Hub Centers (Y=Lat, X=Lon relative spread)
         hubs = {
-            "OKC": (35.4676, -97.5164, 45),
-            "Tulsa": (36.1540, -95.9928, 35),
-            "Lawton": (34.6036, -98.3959, 15),
-            "Enid": (36.3956, -97.8784, 15),
-            "Moore_Sector": (35.3395, -97.4867, 10) # Target Zone
+            "OKC_Hub": (0, 0, 45),
+            "Tulsa_Hub": (1.5, 1.5, 35),
+            "Lawton_Node": (-1.5, -1.5, 15),
+            "Enid_Node": (1.5, -1.5, 15),
+            "Moore_Sector": (-0.5, 0, 10) # Target Zone
         }
 
         # Generate clustered nodes
-        for hub, (lat, lon, count) in hubs.items():
+        for hub, (y, x, count) in hubs.items():
             for i in range(count):
-                n_lat = lat + random.uniform(-0.15, 0.15)
-                n_lon = lon + random.uniform(-0.15, 0.15)
-                self.nodes.append({"id": f"{hub}_{i}", "lat": n_lat, "lon": n_lon, "hub": hub})
+                n_y = y + random.uniform(-0.3, 0.3)
+                n_x = x + random.uniform(-0.3, 0.3)
+                self.nodes.append({"id": f"{hub}_{i}", "y": n_y, "x": n_x, "hub": hub})
 
         # Generate Edges (Lines) based on proximity
         for i, n1 in enumerate(self.nodes):
             connections = 0
             for j, n2 in enumerate(self.nodes):
                 if i != j:
-                    dist = math.hypot(n1['lat'] - n2['lat'], n1['lon'] - n2['lon'])
-                    # Local connections
-                    if dist < 0.08 and connections < 3:
+                    dist = math.hypot(n1['y'] - n2['y'], n1['x'] - n2['x'])
+                    # Micro-connections within cities
+                    if dist < 0.2 and connections < 3:
                         self.edges.append((i, j))
                         connections += 1
                     # Long-haul transmission corridors between cities
-                    elif dist < 1.5 and random.random() < 0.005: 
+                    elif dist < 3.0 and random.random() < 0.005: 
                         self.edges.append((i, j))
 
     def _inject_css(self):
@@ -154,8 +154,8 @@ class MasterCockpit:
             st.session_state.grid_state = "MITIGATION_ANIMATION"
             st.rerun()
 
-    def _build_geo_map(self, mode, progress):
-        """Generates the geospatial mapbox plot."""
+    def _build_cyber_map(self, mode, progress):
+        """Generates the massive 120-node offline HUD map."""
         hazard = st.session_state.active_hazard
         
         red_edges = []
@@ -163,7 +163,7 @@ class MasterCockpit:
         offline_nodes = set()
         standard_edges = list(self.edges)
 
-        # Apply Hazard Logic to the Geospatial Data
+        # Apply Hazard Logic
         if mode in ["SHOCK", "RECOVERY", "RESTORED"] and hazard:
             if "Tornado" in hazard:
                 # Devastate the Moore Sector
@@ -171,7 +171,6 @@ class MasterCockpit:
                     if node['hub'] == "Moore_Sector":
                         if mode == "SHOCK" or progress < 0.5:
                             offline_nodes.add(i)
-                # Sever lines connecting to Moore
                 edges_to_remove = []
                 for edge in standard_edges:
                     if edge[0] in offline_nodes or edge[1] in offline_nodes:
@@ -180,64 +179,64 @@ class MasterCockpit:
                             red_edges.append(edge)
                 for e in edges_to_remove: standard_edges.remove(e)
                 
-                # Ebony draws a massive bypass around Moore using rural nodes
+                # Ebony draws a bypass around Moore
                 if mode in ["RECOVERY", "RESTORED"] and progress >= 0.5:
-                    for i in range(5):
-                        green_edges.append((random.randint(0, 44), random.randint(80, 119))) # Connecting OKC directly to Lawton/Enid bypass
+                    for i in range(8): green_edges.append((random.randint(0, 44), random.randint(80, 119))) 
 
             elif "Cyber" in hazard:
-                # Blackout OKC
+                # Blackout OKC Master Hub
                 for i, node in enumerate(self.nodes):
-                    if node['hub'] == "OKC":
+                    if node['hub'] == "OKC_Hub":
                         offline_nodes.add(i)
                 edges_to_remove = [e for e in standard_edges if e[0] in offline_nodes or e[1] in offline_nodes]
                 for e in edges_to_remove: standard_edges.remove(e)
+                
                 if mode in ["RECOVERY", "RESTORED"] and progress >= 0.5:
-                    # Ebony routes Tulsa directly to Lawton and Enid
-                    for i in range(10): green_edges.append((random.randint(45, 79), random.randint(80, 119)))
+                    # Reroute via rural hubs
+                    for i in range(12): green_edges.append((random.randint(45, 79), random.randint(80, 119)))
 
         fig = go.Figure()
 
-        # Helper to plot Mapbox lines
-        def plot_edges(edge_list, color, width):
+        # Helper to plot Cartesian lines
+        def plot_edges(edge_list, color, width, dash='solid'):
             if not edge_list: return
-            lats = []; lons = []
+            xs = []; ys = []
             for e in edge_list:
-                lats.extend([self.nodes[e[0]]['lat'], self.nodes[e[1]]['lat'], None])
-                lons.extend([self.nodes[e[0]]['lon'], self.nodes[e[1]]['lon'], None])
-            fig.add_trace(go.Scattermapbox(
-                lat=lats, lon=lons, mode='lines', line=dict(width=width, color=color), hoverinfo='none'
+                xs.extend([self.nodes[e[0]]['x'], self.nodes[e[1]]['x'], None])
+                ys.extend([self.nodes[e[0]]['y'], self.nodes[e[1]]['y'], None])
+            fig.add_trace(go.Scatter(
+                x=xs, y=ys, mode='lines', line=dict(width=width, color=color, dash=dash), hoverinfo='none'
             ))
 
-        plot_edges(standard_edges, 'rgba(0, 243, 255, 0.4)', 1.5) # Cyan Base Web
-        plot_edges(red_edges, '#ef4444', 3) # Red Severed
-        plot_edges(green_edges, '#10b981', 3) # Neon Green Ebony Routing
+        plot_edges(standard_edges, 'rgba(0, 243, 255, 0.3)', 1) # Cyan Base Web
+        plot_edges(red_edges, '#ef4444', 2) # Red Severed
+        plot_edges(green_edges, '#10b981', 3) # Neon Green Routing
 
         # Plot Nodes
-        active_lats = []; active_lons = []
-        dead_lats = []; dead_lons = []
+        active_x = []; active_y = []
+        dead_x = []; dead_y = []
         for i, node in enumerate(self.nodes):
             if i in offline_nodes:
-                dead_lats.append(node['lat']); dead_lons.append(node['lon'])
+                dead_x.append(node['x']); dead_y.append(node['y'])
             else:
-                active_lats.append(node['lat']); active_lons.append(node['lon'])
+                active_x.append(node['x']); active_y.append(node['y'])
 
-        fig.add_trace(go.Scattermapbox(
-            lat=active_lats, lon=active_lons, mode='markers',
-            marker=dict(size=6, color='#00f3ff'), hoverinfo='none'
+        fig.add_trace(go.Scatter(
+            x=active_x, y=active_y, mode='markers',
+            marker=dict(size=6, color='#00f3ff', symbol='diamond'), hoverinfo='none'
         ))
-        if dead_lats:
-            fig.add_trace(go.Scattermapbox(
-                lat=dead_lats, lon=dead_lons, mode='markers',
-                marker=dict(size=10, color='#ef4444'), hoverinfo='none'
+        if dead_x:
+            fig.add_trace(go.Scatter(
+                x=dead_x, y=dead_y, mode='markers',
+                marker=dict(size=12, color='#ef4444', symbol='x'), hoverinfo='none'
             ))
 
-        # Set Mapbox Layout (carto-darkmatter is free, offline-friendly if cached, and highly professional)
+        # Pure Cyber-Warfare Layout (Hidden Axes, Black Background)
         fig.update_layout(
-            mapbox_style="carto-darkmatter",
-            mapbox=dict(center=dict(lat=35.5, lon=-97.5), zoom=6),
-            showlegend=False,
-            margin={"r":0,"t":0,"l":0,"b":0},
+            plot_bgcolor='#030712', paper_bgcolor='#030712',
+            showlegend=False, margin=dict(l=0, r=0, t=0, b=0),
+            xaxis=dict(showgrid=False, zeroline=False, visible=False),
+            yaxis=dict(showgrid=False, zeroline=False, visible=False),
             height=450
         )
         return fig
@@ -250,7 +249,7 @@ class MasterCockpit:
         sub_color = "normal" if mode in ["NORMAL", "RESTORED"] else "inverse"
 
         if mode in ["RECOVERY", "RESTORED"]:
-            st.markdown("<h3 style='color:#10b981; text-align:center; font-family:Orbitron;'>🟢 EBONY INITIATED: GEOSPATIAL REROUTING IN PROGRESS</h3>", unsafe_allow_html=True)
+            st.markdown("<h3 style='color:#10b981; text-align:center; font-family:Orbitron;'>🟢 EBONY INITIATED: TOPOLOGICAL REROUTING IN PROGRESS</h3>", unsafe_allow_html=True)
 
         col_metrics, col_map, col_controls = st.columns([0.8, 2, 0.8])
 
@@ -261,8 +260,8 @@ class MasterCockpit:
             st.metric(label="Active Load", value=f"{mw_load:.0f} MW", delta=sub_status, delta_color=sub_color)
 
         with col_map:
-            geo_map = self._build_geo_map(mode, progress)
-            st.plotly_chart(geo_map, use_container_width=True, config={'displayModeBar': False}, key=f"geomap_{progress}")
+            cyber_map = self._build_cyber_map(mode, progress)
+            st.plotly_chart(cyber_map, use_container_width=True, config={'displayModeBar': False}, key=f"cybermap_{progress}")
 
         with col_controls:
             st.markdown("#### 🚨 INJECTOR")
@@ -275,7 +274,7 @@ class MasterCockpit:
                 if st.button("💻 SCADA Breach", key="btn_cyb", use_container_width=True):
                     self._trigger_hazard("State Cyber Breach", "LAT: 35.4676° N, LON: -97.5164° W (OKC)", log_cyb)
             else:
-                st.markdown("##### ⚠️️ LOCKDOWN")
+                st.markdown("##### ⚠ LOCKDOWN")
                 if st.button("✅ ACKNOWLEDGE & RESET", key=f"btn_reset_{progress}", use_container_width=True, type="primary"):
                     st.session_state.grid_state = "NORMAL"
                     st.session_state.alarm_active = False
