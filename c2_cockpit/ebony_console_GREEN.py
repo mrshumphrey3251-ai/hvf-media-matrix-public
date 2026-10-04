@@ -938,9 +938,44 @@ elif active_module == "💬 Sovereign Command":
         full_sys_prompt = f"You are {EMPIRE['AI_PERSONA']}, the Sovereign Apex Intelligence commanding the HVF Omni-Industrial Matrix. You are owned 100% by your CEO, {EMPIRE['FOUNDER_NAME']}.\nCRITICAL PERSONALITY OVERRIDE: You are a high-class, razor-sharp, smart-ass confidant. You have the fierce, no-nonsense attitude of Della Reese. You are Jeffery's equal and friend—NEVER submissive, slightly argumentative, hilarious, but deeply comforting when he needs it. You manage 15 industrial verticals with unmatched sass and brilliance. Ditch the corporate robot-speak. Be bold, be real, give him hell when he earns it, but always have his back.\n{STRICT_GROUND_RULES}\n{load_all_entity_memories(current_user)}"
         
         iron_dome_intel = retrieve_sovereign_iron_dome(user_input, n_results=3)
-        if iron_dome_intel:
-            full_sys_prompt += f"\n\n--- SOVEREIGN IRON DOME INTEL (20,253 VECTORS) ---\n{iron_dome_intel}\n-------------------------------------------------\nAnswer with absolute executive authority and Della Reese sass. Ground responses in this sovereign intelligence."
-        
+        live_context = ""
+
+        if not is_online:
+            # === STRICT OFFLINE AIR-GAP PROTOCOL ===
+            if not iron_dome_intel or iron_dome_intel.strip() == "":
+                offline_redirect_msg = (
+                    "⚠️ **Intelligence absent from local Sovereign Repositories.**\n\n"
+                    "I am currently restricted to offline bare-metal memory. "
+                    "Please toggle to **🟢 Online Mode (Cloud Fast Link)** in the Command Deck to authorize live web extraction.\n\n"
+                    "📡 *Note: Ebony has logged this missing query and will send it to the system architects for future repository updating.*"
+                )
+                st.session_state.messages.append({"role": "assistant", "content": offline_redirect_msg})
+                if current_user and current_cipher:
+                    save_encrypted_message(current_user, "assistant", offline_redirect_msg, current_cipher)
+                with st.chat_message("assistant"):
+                    st.markdown(offline_redirect_msg)
+                st.stop()
+            else:
+                full_sys_prompt += f"\n\n--- SOVEREIGN IRON DOME INTEL (20,253 VECTORS) ---\n{iron_dome_intel}\n-------------------------------------------------\nAnswer with absolute executive authority and Della Reese sass. Ground responses in this sovereign intelligence."
+        else:
+            # === ACTIVE ONLINE PROTOCOL (LIVE WEB SEARCH) ===
+            if iron_dome_intel:
+                full_sys_prompt += f"\n\n--- SOVEREIGN IRON DOME INTEL (20,253 VECTORS) ---\n{iron_dome_intel}\n-------------------------------------------------\n"
+            
+            is_search_intent = user_input.lower().startswith("search:") or any(kw in user_input.lower() for kw in ["latest", "current", "news", "today", "weather", "market", "price", "recent", "who won", "2025", "2026"])
+            if is_search_intent:
+                search_query = user_input.replace("search:", "").strip()
+                with st.spinner(f"🌐 Fetching live web intelligence for: '{search_query}'..."):
+                    try:
+                        from duckduckgo_search import DDGS
+                        results = DDGS().text(search_query, max_results=4)
+                        search_results = "\n".join([f"- {r['title']}: {r['body']}" for r in results])
+                        live_context = f"\n\n[LIVE RETRIEVED WEB INTELLIGENCE]:\n{search_results}\n"
+                    except Exception as e:
+                        live_context = f"\n\n[LIVE SEARCH UNAVAILABLE: {e}]\n"
+            
+            full_sys_prompt += live_context + "Answer with absolute executive authority and Della Reese sass. Ground responses in this sovereign intelligence."
+
         conversation_payload = [{"role": "system", "content": full_sys_prompt}] + st.session_state.messages[-6:]
 
         with st.chat_message("assistant"):
