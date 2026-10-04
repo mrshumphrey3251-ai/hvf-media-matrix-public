@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 """
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT
-Object-Oriented Sovereign Architecture - Kinetic Threat Simulator (Audio Enhanced)
+Object-Oriented Sovereign Architecture - Full Telemetry & Simulator Integration
 Authority: CEO Jeffery Humphrey (Level 5 Authority)
 """
 import streamlit as st
@@ -9,17 +9,41 @@ import streamlit.components.v1 as components
 import psutil
 import time
 import random
+import json
 from pathlib import Path
 
 class MasterCockpit:
     def __init__(self):
         self.ceo_name = "Jeffery Humphrey"
         self.clearance = "Level 5 Sovereign"
+        self.telemetry_vault = Path(r"C:\HVF_Repos\HVF_Matrix_Core\telemetry_state.json")
+        self._ensure_telemetry_file()
         self._init_session_state()
+
+    def _ensure_telemetry_file(self):
+        """Creates a real local file that physical sensors will push data into."""
+        if not self.telemetry_vault.parent.exists():
+            self.telemetry_vault.parent.mkdir(parents=True, exist_ok=True)
+        if not self.telemetry_vault.exists():
+            initial_state = {
+                "kirchhoff_current": 1.205,
+                "optical_gli": 0.210,
+                "matrix_throughput": 889
+            }
+            with open(self.telemetry_vault, "w") as f:
+                json.dump(initial_state, f)
+
+    def _read_live_sensors(self):
+        """Reads the actual sensor data from the local vault."""
+        try:
+            with open(self.telemetry_vault, "r") as f:
+                return json.load(f)
+        except:
+            return {"kirchhoff_current": 0.0, "optical_gli": 0.0, "matrix_throughput": 0}
 
     def _init_session_state(self):
         if "grid_state" not in st.session_state:
-            st.session_state.grid_state = "NORMAL" # NORMAL, SHOCK, MITIGATION
+            st.session_state.grid_state = "NORMAL"
         if "active_hazard" not in st.session_state:
             st.session_state.active_hazard = None
         if "hazard_gps" not in st.session_state:
@@ -121,7 +145,6 @@ class MasterCockpit:
         st.rerun()
 
     def _trigger_audio_alarm(self):
-        """Synthesizes a bare-metal dual-tone SCADA alarm."""
         alarm_js = """
         <script>
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -134,12 +157,12 @@ class MasterCockpit:
             gain.connect(ctx.destination);
             osc1.type = "square";
             osc2.type = "square";
-            osc1.frequency.value = 853; // EAS Tone 1
-            osc2.frequency.value = 960; // EAS Tone 2
-            gain.gain.value = 0.15; // Volume
+            osc1.frequency.value = 853; 
+            osc2.frequency.value = 960; 
+            gain.gain.value = 0.15; 
             osc1.start();
             osc2.start();
-            setTimeout(() => { osc1.stop(); osc2.stop(); }, 2000); // 2-second klaxon
+            setTimeout(() => { osc1.stop(); osc2.stop(); }, 2000); 
         }
         playAlarm();
         </script>
@@ -147,9 +170,7 @@ class MasterCockpit:
         components.html(alarm_js, height=0)
 
     def _render_shock_screen(self):
-        """Phase 2: The 3-Second Shock and Awe + Audio Alarm"""
         self._trigger_audio_alarm()
-        
         placeholder = st.empty()
         with placeholder.container():
             st.markdown(f"""
@@ -160,17 +181,17 @@ class MasterCockpit:
             </div>
             """, unsafe_allow_html=True)
         
-        time.sleep(3.5) # Force the room to watch the red alert and hear the klaxon
-        
+        time.sleep(3.5)
         st.session_state.grid_state = "MITIGATION"
         st.rerun()
 
     def _render_dashboard(self, mode="NORMAL"):
-        """Phase 1 & 3: Standard and Mitigation Dashboard"""
+        cpu = psutil.cpu_percent(interval=0.1)
+        ram = psutil.virtual_memory().percent
+        disk = psutil.disk_usage('C:\\').percent
+        sensors = self._read_live_sensors()
         
         if mode == "NORMAL":
-            cpu = psutil.cpu_percent(interval=0.1)
-            ram = psutil.virtual_memory().percent
             freq = f"{random.uniform(59.98, 60.02):.2f} Hz"
             freq_delta = "Stable"
             mw_load = f"{random.uniform(4200, 4300):.0f} MW"
@@ -178,6 +199,13 @@ class MasterCockpit:
             sub_status = "100% ONLINE"
             sub_delta = "All Sectors Secure"
             sub_color = "normal"
+            
+            k_val = f"{sensors.get('kirchhoff_current', 1.205):.3f} A"
+            k_delta = "Live Stream"
+            gli_val = f"{sensors.get('optical_gli', 0.210):.3f}"
+            gli_delta = "Live Stream"
+            tp_val = f"{sensors.get('matrix_throughput', 889)} Mbps"
+            tp_delta = "Live Stream"
         else:
             cpu = 98.5
             ram = psutil.virtual_memory().percent + 15
@@ -188,34 +216,48 @@ class MasterCockpit:
             sub_status = "88% ONLINE"
             sub_delta = "SECTOR BREACH DETECTED"
             sub_color = "inverse"
+            
+            k_val = f"{sensors.get('kirchhoff_current', 1.205) * 2.4:.3f} A"
+            k_delta = "SPIKE (OVERLOAD)"
+            gli_val = f"{sensors.get('optical_gli', 0.210) * 0.4:.3f}"
+            gli_delta = "DEGRADED"
+            tp_val = f"{sensors.get('matrix_throughput', 889) + 400} Mbps"
+            tp_delta = "DATA FLOOD"
 
-        col1, col2, col3 = st.columns([1, 1, 1])
+        col1, col2, col3, col4 = st.columns([1, 1, 1, 1.2])
 
         with col1:
-            st.markdown("#### 🖥️ BARE-METAL C2 NODE")
-            st.metric(label="Live CPU Core Load", value=f"{cpu}%", delta="Hardware Monitored")
-            st.metric(label="Physical Memory (RAM)", value=f"{ram}%", delta="Hardware Monitored")
+            st.markdown("#### 🖥️ BARE-METAL")
+            st.metric(label="Live CPU Load", value=f"{cpu}%", delta="Hardware Monitored")
+            st.metric(label="Physical RAM", value=f"{ram}%", delta="Hardware Monitored")
+            st.metric(label="C: Drive Capacity", value=f"{disk}%", delta="Hardware Monitored")
 
         with col2:
-            st.markdown("#### ⚡ OKLAHOMA GRID STATUS")
-            st.metric(label="Grid Frequency Target", value=freq, delta=freq_delta, delta_color="normal" if mode=="NORMAL" else "inverse")
-            st.metric(label="Active State MW Load", value=mw_load, delta=mw_delta, delta_color="normal" if mode=="NORMAL" else "inverse")
-            st.metric(label="Substation Integrity", value=sub_status, delta=sub_delta, delta_color=sub_color)
+            st.markdown("#### ⚡ SENSOR CORE")
+            st.metric(label="Kirchhoff Vector", value=k_val, delta=k_delta, delta_color="normal" if mode=="NORMAL" else "inverse")
+            st.metric(label="Optical GLI", value=gli_val, delta=gli_delta, delta_color="normal" if mode=="NORMAL" else "inverse")
+            st.metric(label="Matrix Throughput", value=tp_val, delta=tp_delta, delta_color="normal" if mode=="NORMAL" else "inverse")
 
         with col3:
-            st.markdown("#### 🚨 KINETIC THREAT SIMULATOR")
-            if st.button("🚗 Vehicle Strike (Powerline)", use_container_width=True):
-                self._trigger_hazard("Vehicle Strike", "LAT: 35.8421° N, LON: -97.0384° W (RURAL RT 66)", ">> SENSOR TRIP: Distribution pole severed.\n>> ACTION: Isolating line. Rerouting via automated feeder switches.\n>> STATUS: Power restored to 94% of affected block in 1.2s.")
-            if st.button("🌪️ F5 Tornado Strike", use_container_width=True):
-                self._trigger_hazard("F5 Tornado Strike", "LAT: 35.3395° N, LON: -97.4867° W (MOORE, OK)", ">> SENSOR TRIP: Massive transmission failure in Sector 4.\n>> ACTION: Air-gapping Sector 4. Backfeeding 400MW to local hospitals.\n>> STATUS: Grid restabilized. Casualties minimized.")
-            if st.button("💻 SCADA Cyber Breach", use_container_width=True):
-                self._trigger_hazard("State-Sponsored Cyber Breach", "LAT: 35.4676° N, LON: -97.5164° W (OKC HUB)", ">> SENSOR TRIP: Unauthorized breaker actuation attempt.\n>> ACTION: Iron Dome deployed. Node air-gapped. Malware hunted.\n>> STATUS: Intrusion neutralized. Zero loss of load.")
-            if st.button("❄️ Winter Freeze-Off", use_container_width=True):
-                self._trigger_hazard("Generation Shortfall", "STATEWIDE ALERT", ">> SENSOR TRIP: Natural gas line freeze. -1200MW generation loss.\n>> ACTION: Initiating micro-load shedding. Purchasing SPP reserve power.\n>> STATUS: Total grid collapse averted. Rolling blackouts optimized.")
+            st.markdown("#### 🌐 OKLAHOMA GRID")
+            st.metric(label="Grid Frequency", value=freq, delta=freq_delta, delta_color="normal" if mode=="NORMAL" else "inverse")
+            st.metric(label="Active MW Load", value=mw_load, delta=mw_delta, delta_color="normal" if mode=="NORMAL" else "inverse")
+            st.metric(label="Substation Integrity", value=sub_status, delta=sub_delta, delta_color=sub_color)
+
+        with col4:
+            st.markdown("#### 🚨 THREAT SIMULATOR")
+            if st.button("🚗 Vehicle Strike", use_container_width=True):
+                self._trigger_hazard("Vehicle Strike", "LAT: 35.8421° N, LON: -97.0384° W (RT 66)", ">> SENSOR TRIP: Distribution pole severed.\n>> ACTION: Isolating line. Rerouting via automated switches.\n>> STATUS: Power restored to 94% of affected block in 1.2s.")
+            if st.button("🌪️ F5 Tornado", use_container_width=True):
+                self._trigger_hazard("F5 Tornado Strike", "LAT: 35.3395° N, LON: -97.4867° W (MOORE)", ">> SENSOR TRIP: Massive transmission failure in Sector 4.\n>> ACTION: Air-gapping Sector 4. Backfeeding 400MW to hospitals.\n>> STATUS: Grid restabilized. Casualties minimized.")
+            if st.button("💻 SCADA Breach", use_container_width=True):
+                self._trigger_hazard("State Cyber Breach", "LAT: 35.4676° N, LON: -97.5164° W (OKC)", ">> SENSOR TRIP: Unauthorized breaker actuation attempt.\n>> ACTION: Iron Dome deployed. Node air-gapped. Malware hunted.\n>> STATUS: Intrusion neutralized. Zero loss of load.")
+            if st.button("❄️ Freeze-Off", use_container_width=True):
+                self._trigger_hazard("Generation Shortfall", "STATEWIDE ALERT", ">> SENSOR TRIP: Natural gas freeze. -1200MW generation loss.\n>> ACTION: Initiating load shedding. Purchasing SPP reserve.\n>> STATUS: Grid collapse averted. Blackouts optimized.")
             
             st.markdown("<br>", unsafe_allow_html=True)
             if mode == "MITIGATION":
-                if st.button("✅ CLEAR HAZARD & RESET", use_container_width=True, type="primary"):
+                if st.button("✅ CLEAR HAZARD", use_container_width=True, type="primary"):
                     st.session_state.grid_state = "NORMAL"
                     st.rerun()
 
