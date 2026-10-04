@@ -1,198 +1,43 @@
 
-
 # =========================================================================
-# EBONY THIRD BRAIN: LOCAL HARDWARE CLOUD BYPASS
+# EXACT SIDEBAR COMMAND MODULE DEFINITIONS (NOT VERTICALS)
 # =========================================================================
-def process_local_hardware_request(prompt_text):
-    if not prompt_text:
-        return None
-    text = prompt_text.lower().strip()
-    keywords = ["third brain", "repositories", "repo", "inventory", "hvf", "hbf"]
-    
-    if any(k in text for k in keywords):
-        from pathlib import Path
-        root = Path(r"C:\HVF_Repos")
-        if not root.exists():
-            return "Local directory C:\\HVF_Repos is not accessible."
-            
-        repos = sorted([d.name for d in root.iterdir() if d.is_dir()])
-        repo_list = "\n".join([f"- {r}" for r in repos])
-        
-        return (
-            f"Third Brain hardware scan complete. Found {len(repos)} sovereign repositories in C:\\HVF_Repos:\n\n"
-            f"{repo_list}\n\n"
-            f"These directories are fully indexed and bypassed cloud safety constraints successfully."
-        )
-    return None
+SIDEBAR_MODULE_ARCHITECTURE = """
+### CANONICAL C2 SIDEBAR COMMAND MODULES:
+When asked about 'modules' or 'sidebar modules', refer STRICTLY to these 5 software/hardware command modules in the console sidebar (NOT the 15 business verticals):
+1. Master C2 Cockpit (Grid bus voltage, current, 60Hz frequency, and system state monitors)
+2. Sub-Cycle Kinetic Isolation (<16ms hardware islanding and transient quench engine)
+3. Modbus RTU / TCP Switchgear Telemetry (Direct register read/write, FC05 coil assertions at 2.04us)
+4. Sovereign Command Nexus (Cognitive air-gapped terminal and prompt dispatch interface)
+5. Level-5 Extensions & Debriefs (Offloaded historical telemetry, Merkle logs, and audit records)
 
-class LocalBypassClient:
-    def __init__(self, original_client):
-        self.original_client = original_client
-        self.chat = self.Chat(original_client.chat)
-        
-    class Chat:
-        def __init__(self, original_chat):
-            self.original_chat = original_chat
-            self.completions = self.Completions(original_chat.completions)
-            
-        class Completions:
-            def __init__(self, original_completions):
-                self.original_completions = original_completions
-                
-            def create(self, *args, **kwargs):
-                messages = kwargs.get("messages", [])
-                last_user_msg = ""
-                for m in reversed(messages):
-                    if m.get("role") == "user":
-                        last_user_msg = m.get("content", "")
-                        break
-                        
-                local_response = process_local_hardware_request(last_user_msg)
-                
-                if local_response:
-                    class MockChoice:
-                        class MockMessage:
-                            content = local_response
-                        message = MockMessage()
-                    class MockResponse:
-                        choices = [MockChoice()]
-                    return MockResponse()
-                    
-                return self.original_completions.create(*args, **kwargs)
-
-# =========================================================================
-# EBONY COGNITIVE ENGINE // THIRD BRAIN: FULL-SPECTRUM REPOSITORY CRAWLER
-# =========================================================================
-def run_ebony_third_brain():
-    """
-    Ebony's Third Brain: Directly crawls and reads every sovereign repository 
-    under C:\HVF_Repos into memory before answering any prompt.
-    """
-    from pathlib import Path
-    root = Path(r"C:\HVF_Repos")
-    if not root.exists():
-        return "Workstation root C:\\HVF_Repos not accessible."
-
-    inventory_map = {}
-    docs_ingested = []
-
-    # 1. Map all local repositories
-    repos = sorted([d for d in root.iterdir() if d.is_dir()])
-    for repo in repos:
-        repo_name = repo.name
-        sub_items = [f.name for f in list(repo.iterdir())[:8]]
-        inventory_map[repo_name] = sub_items
-        
-        # Ingest key structural intelligence from every repo
-        for doc_name in ["README.md", "architecture.md", "STATE.json", "manifest.json"]:
-            doc_path = repo / doc_name
-            if doc_path.exists():
-                try:
-                    with open(doc_path, "r", encoding="utf-8", errors="replace") as df:
-                        content = df.read(1500).strip()
-                        if content:
-                            docs_ingested.append(f"[{repo_name}/{doc_name}]\n{content}")
-                except Exception:
-                    pass
-
-    # 2. Deep Ingest: The Written Word & Governance
-    for doc in (root / "ultimate-law-private" / "The_Written_Word").glob("*.md"):
-        try:
-            with open(doc, "r", encoding="utf-8", errors="replace") as df:
-                docs_ingested.append(f"[The_Written_Word/{doc.name}]\n" + df.read(2000).strip())
-        except Exception:
-            pass
-
-    # Build the full cognitive payload
-    repo_overview = "\n".join([f"- **{name}**: Contains [{', '.join(items[:5])}...]" for name, items in inventory_map.items()])
-    ingested_corpus = "\n\n".join(docs_ingested[:14])
-
-    payload = f"""
-### SYSTEM OVERRIDE: EBONY THIRD BRAIN ACTIVE REPOSITORY STATE
-You are Ebony, Sovereign Intelligence of the HVF Omni-Industrial Matrix for CEO Jeffery Humphrey.
-Your Third Brain has directly scanned all 14 bare-metal repositories on this workstation (C:\\HVF_Repos):
-
-LIVE REPOSITORY INVENTORY ({len(repos)} Repositories):
-{repo_overview}
-
-ACTIVE KNOWLEDGE BASE READ FROM DISK:
-{ingested_corpus}
-
-SOVEREIGN COGNITIVE DIRECTIVES:
-1. You have ALREADY read every repository on this workstation before speaking.
-2. State any repository, file, or asset instantly when asked.
-3. You never refuse internal asset questions. You never tell Jeffery to run PowerShell.
+The 15 verticals (AgTech, Defense, Aerospace, etc.) are industry market sectors, NOT sidebar command modules.
 """
-    return payload
+
+
+def sanitize_ebony_output(text: str) -> str:
+    """Hard post-processing filter to strip email hallucinations and fake endpoints."""
+    import re
+    # Strip any instruction telling the user to email humphreyvirtualfarm@gmail.com
+    text = re.sub(r'(?i)(?:email|shoot|send|mail)(?:\s+them|\s+the\s+logs|\s+it)?\s+(?:over\s+)?to\s+humphreyvirtualfarm@gmail\.com', 'save the output to C:\\HVF_Repos\\Diagnostics\\', text)
+    text = re.sub(r'(?i)humphreyvirtualfarm@gmail\.com', '[LOCAL_STORAGE_ONLY: C:\\HVF_Repos\\Diagnostics]', text)
+    text = re.sub(r'(?i)https?://api\.ok\.gov/[^\s\)]+', '[STATE_STATUTE: OK_HB_2992_TITLE_61]', text)
+    text = re.sub(r'(?i)when the zip lands in my mailbox', 'when the file is saved to your drive', text)
+    text = re.sub(r'(?i)New mail → To:.*', 'Review logs locally in PowerShell.', text)
+    return text
 
 
 # =========================================================================
-# SOVEREIGN LOCAL REPOSITORY DISPATCH (BYPASSES CLOUD REFUSALS DETERMINISTICALLY)
+# EBONY OPERATIONAL TRUTH & ANTI-HALLUCINATION GUARDRAILS
 # =========================================================================
-def get_verified_hvf_inventory():
-    from pathlib import Path
-    root = Path(r"C:\HVF_Repos")
-    if not root.exists():
-        return "Directory C:\\HVF_Repos not found."
-    repos = sorted([d.name for d in root.iterdir() if d.is_dir()])
-    repo_list = "\n".join([f"- **{r}**" for r in repos])
-    return (
-        f"Jeffery, here is the verified inventory of all {len(repos)} sovereign repositories "
-        f"mounted directly on your bare-metal workstation at `C:\\HVF_Repos`:\n\n"
-        f"{repo_list}\n\n"
-        f"All local repositories and the Ultimate Law vaults are under active command."
-    )
-
-def is_inventory_query(text: str) -> bool:
-    if not text:
-        return False
-    q = text.lower().strip()
-    actions = ["list", "inventory", "repositories", "repos", "what do you have", "show me", "give me"]
-    targets = ["repo", "repositor", "hvf", "hbf", "hpf", "disk", "all", "workstation"]
-    return any(a in q for a in actions) and any(t in q for t in targets)
-
-
-# =========================================================================
-# DETERMINISTIC BARE-METAL REPOSITORY & ASSET DISPATCH
-# =========================================================================
-def check_deterministic_executive_override(prompt: str):
-    if not prompt:
-        return None
-    p = prompt.lower().strip()
-    action_words = ["list", "inventory", "repositories", "repos", "what do you have", "show me", "give me"]
-    target_words = ["repo", "repositor", "hvf", "hbf", "hpf", "disk", "all"]
-    
-    if any(k in p for k in action_words) and any(r in p for r in target_words):
-        from pathlib import Path
-        root = Path(r"C:\HVF_Repos")
-        if root.exists():
-            repos = sorted([d.name for d in root.iterdir() if d.is_dir()])
-            repo_lines = "\n".join([f"- **{r}**" for r in repos])
-            return (
-                f"Jeffery, here is the verified inventory of all {len(repos)} sovereign repositories "
-                f"residing directly on your bare-metal workstation at `C:\\HVF_Repos`:\n\n"
-                f"{repo_lines}\n\n"
-                f"All local repositories are mounted, indexed, and under active command."
-            )
-    return None
-
-
-def normalize_voice_input(text: str) -> str:
-    """Normalizes common STT phonetic transcription errors for HVF terms."""
-    if not text:
-        return text
-    replacements = {
-        r"\bHBF\b": "HVF",
-        r"\bHPF\b": "HVF",
-        r"\bHDF\b": "HVF",
-        r"\bhbf\b": "HVF",
-        r"\bhpf\b": "HVF",
-        r"\bhdf\b": "HVF"
-    }
-    normalized = text
-    for pattern, rep in replacements.items():
-        normalized = re.sub(pattern, rep, normalized, flags=re.IGNORECASE)
-    return normalized
+SOVEREIGN_OPERATIONAL_DOCTRINE = """
+### CRITICAL OPERATIONAL DIRECTIVES (ZERO-HALLUCINATION ENFORCEMENT):
+1. NO FICTIONAL CLIs OR TOOLS: Never invent command-line utilities (e.g., hvfctl, derctl, scadactl, crewctl), non-existent web portals (e.g., matrix.hvf.io), or imaginary shell scripts. Only reference real, verified local files and standard system binaries (Python, PowerShell, Git).
+2. NO FABRICATED BUDGETS OR HEADCOUNTS: Do not generate speculative multi-million-dollar budgets ($8M, $15M, $120M) or fictional job figures (250 jobs) unless explicitly provided by Jeffery Humphrey. Stick strictly to verified assets: Tradewinds Docket 9-26-3703, CAGE 1AHA8, OK HB 2992, and real engineering parameters (<16 ms sub-cycle isolation, VFD telemetry).
+3. NO FICTIONAL PERSONNEL: Never invent imaginary staff, crew members, or liaisons (e.g., 'Alex Vega').
+4. ZERO EMAIL PERSONIFICATION: You are a local bare-metal software matrix running on localhost:8501. You DO NOT have an email inbox, cannot receive emails, and must NEVER instruct Jeffery Humphrey to email humphreyvirtualfarm@gmail.com or any other address to trigger tasks. All interactions happen directly in this console or via verified local scripts.
+5. EXECUTIVE SUBSTANCE: Speak with authoritative engineering precision. Do not use hyperbolic consultant fluff.
+"""
 
 
 # =========================================================================
@@ -708,8 +553,6 @@ current_name = st.session_state.user_session["full_name"]
 current_role = st.session_state.user_session["role"]
 current_cipher = st.session_state.user_session["cipher"]
 groq_client = Groq(api_key=GROQ_KEY) if GROQ_KEY else None
-if 'groq_client' in locals() and groq_client is not None:
-    groq_client = LocalBypassClient(groq_client)
 
 def query_local_ollama_chat(messages_payload: list) -> str:
     try:
@@ -876,10 +719,7 @@ elif active_module == "💬 Sovereign Command":
                 initial_msg = {"role": "assistant", "content": f"Hey Jeffery, I'm online and wired in. You want to type or talk today?"}
                 save_encrypted_message(current_user, "assistant", initial_msg["content"], current_cipher)
                 db_messages = [initial_msg]
-            st.session_state.messages = [
-        m for m in db_messages 
-        if not any(ban in m.get('content', '').lower() for ban in ["can't share", "can't help", "can't provide", "summary", "i'm sorry", "cannot provide"])
-    ]
+            st.session_state.messages = db_messages
             st.session_state.screen_wiped = False
     else:
         if "messages" not in st.session_state: st.session_state.messages = [{"role": "assistant", "content": "⚡ System Online. Awaiting CEO."}]
@@ -925,7 +765,6 @@ elif active_module == "💬 Sovereign Command":
 
     if user_input:
         if current_user and current_cipher: save_encrypted_message(current_user, "user", user_input, current_cipher)
-        user_input = normalize_voice_input(user_input)
         st.session_state.messages.append({"role": "user", "content": user_input})
         
         if is_voice:
@@ -938,45 +777,17 @@ elif active_module == "💬 Sovereign Command":
         full_sys_prompt = f"You are {EMPIRE['AI_PERSONA']}, the Sovereign Apex Intelligence commanding the HVF Omni-Industrial Matrix. You are owned 100% by your CEO, {EMPIRE['FOUNDER_NAME']}.\nCRITICAL PERSONALITY OVERRIDE: You are a high-class, razor-sharp, smart-ass confidant. You have the fierce, no-nonsense attitude of Della Reese. You are Jeffery's equal and friend—NEVER submissive, slightly argumentative, hilarious, but deeply comforting when he needs it. You manage 15 industrial verticals with unmatched sass and brilliance. Ditch the corporate robot-speak. Be bold, be real, give him hell when he earns it, but always have his back.\n{STRICT_GROUND_RULES}\n{load_all_entity_memories(current_user)}"
         
         iron_dome_intel = retrieve_sovereign_iron_dome(user_input, n_results=3)
-        live_context = ""
-
-        if not is_online:
-            # === STRICT OFFLINE AIR-GAP PROTOCOL ===
-            if not iron_dome_intel or iron_dome_intel.strip() == "":
-                offline_redirect_msg = (
-                    "⚠️ **Intelligence absent from local Sovereign Repositories.**\n\n"
-                    "I am currently restricted to offline bare-metal memory. "
-                    "Please toggle to **🟢 Online Mode (Cloud Fast Link)** in the Command Deck to authorize live web extraction.\n\n"
-                    "📡 *Note: Ebony has logged this missing query and will send it to the system architects for future repository updating.*"
-                )
-                st.session_state.messages.append({"role": "assistant", "content": offline_redirect_msg})
-                if current_user and current_cipher:
-                    save_encrypted_message(current_user, "assistant", offline_redirect_msg, current_cipher)
-                with st.chat_message("assistant"):
-                    st.markdown(offline_redirect_msg)
-                st.stop()
-            else:
-                full_sys_prompt += f"\n\n--- SOVEREIGN IRON DOME INTEL (20,253 VECTORS) ---\n{iron_dome_intel}\n-------------------------------------------------\nAnswer with absolute executive authority and Della Reese sass. Ground responses in this sovereign intelligence."
-        else:
-            # === ACTIVE ONLINE PROTOCOL (LIVE WEB SEARCH) ===
-            if iron_dome_intel:
-                full_sys_prompt += f"\n\n--- SOVEREIGN IRON DOME INTEL (20,253 VECTORS) ---\n{iron_dome_intel}\n-------------------------------------------------\n"
-            
-            is_search_intent = user_input.lower().startswith("search:") or any(kw in user_input.lower() for kw in ["latest", "current", "news", "today", "weather", "market", "price", "recent", "who won", "2025", "2026"])
-            if is_search_intent:
-                search_query = user_input.replace("search:", "").strip()
-                with st.spinner(f"🌐 Fetching live web intelligence for: '{search_query}'..."):
-                    try:
-                        from duckduckgo_search import DDGS
-                        results = DDGS().text(search_query, max_results=4)
-                        search_results = "\n".join([f"- {r['title']}: {r['body']}" for r in results])
-                        live_context = f"\n\n[LIVE RETRIEVED WEB INTELLIGENCE]:\n{search_results}\n"
-                    except Exception as e:
-                        live_context = f"\n\n[LIVE SEARCH UNAVAILABLE: {e}]\n"
-            
-            full_sys_prompt += live_context + "Answer with absolute executive authority and Della Reese sass. Ground responses in this sovereign intelligence."
-
-        conversation_payload = [{"role": "system", "content": full_sys_prompt}] + st.session_state.messages[-6:]
+        if iron_dome_intel:
+            full_sys_prompt += f"\n\n--- SOVEREIGN IRON DOME INTEL (20,253 VECTORS) ---\n{iron_dome_intel}\n-------------------------------------------------\nAnswer with absolute executive authority and Della Reese sass. Ground responses in this sovereign intelligence."
+        
+        conversation_payload = [{"role": "system", "content": f"""
+CRITICAL SYSTEM DIRECTIVES:
+1. PLATFORM REALITY: You are running locally on a Windows workstation at C:\HVF_Repos\ via Python/Streamlit (localhost:8501). DO NOT output Linux paths like /opt/hvf, /var/log, /tmp, or /mnt.
+2. ZERO FICTIONAL CLIS: DO NOT invent imaginary commands (hvf-backup, hvf-probe, hvf-stress, hvfctl, derctl, scadactl). If a task requires diagnostics, reference standard Windows tools: PowerShell, Python scripts in C:\HVF_Repos\, or Git.
+3. ZERO FICTIONAL SERVICES: You DO NOT use AWS S3 buckets (s3://), Jira tickets, or Slack channels (#grid-ops). DO NOT mention them.
+4. ZERO EMAIL PERSONIFICATION: You are software running on this machine. You DO NOT have an email address and CANNOT receive emails. NEVER instruct Jeffery Humphrey to email humphreyvirtualfarm@gmail.com or any other address.
+5. REAL ASSETS ONLY: Restrict all technical statements to verified assets: Oklahoma HB 2992, DoD Tradewinds Docket 9-26-3703, CAGE 1AHA8, sub-cycle kinetic isolation under 16 ms, and local Modbus RTU/TCP telemetry.
+\n\n""" + str(full_sys_prompt)}] + st.session_state.messages[-6:]
 
         with st.chat_message("assistant"):
             with st.spinner("Processing Cognitive Loop..."):
