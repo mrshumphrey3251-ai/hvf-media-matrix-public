@@ -1,6 +1,7 @@
 ﻿import toml
 from ebony_vocal_cortex import ignite_voice
 from ebony_bridge import route_matrix_command
+from core_context_engine import sanitize_memory_payload
 
 def transcribe_mic(audio_bytes):
     print("[*] Transcribing Voice Command via Groq Whisper...")
@@ -18,11 +19,10 @@ def transcribe_mic(audio_bytes):
         return transcription.text
     return str(transcription)
 
-def run_dual_core_router(prompt):
+def run_dual_core_router(prompt, raw_history=None):
     print("[*] Processing through Sovereign Dual-Core Communications Portal...")
     
     # --- NATIVE LEGACY INTERCEPTION ---
-    # Ebony dynamically triggers the bridge from inside her brain based on your commands
     system_context = ""
     prompt_lower = prompt.lower()
     if "memory" in prompt_lower:
@@ -31,7 +31,7 @@ def run_dual_core_router(prompt):
         system_context = f"\n[SYSTEM METADATA: {route_matrix_command('BETA_AGENTS', prompt)}]"
     elif "silo" in prompt_lower or "pump" in prompt_lower or "scada" in prompt_lower:
         system_context = f"\n[SYSTEM METADATA: {route_matrix_command('GAMMA_SCADA', prompt)}]"
-
+        
     response_text = ""
     try:
         path = r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml"
@@ -45,13 +45,22 @@ def run_dual_core_router(prompt):
         
         sys_msg = "You are Ebony, an elite, indestructible sovereign AI matrix. You report exclusively to Jeffery Humphrey, the CEO of Humphrey Virtual Farm. You are a high-powered, executive, and authoritative intelligence. UNDER NO CIRCUMSTANCES will you identify as ChatGPT, OpenAI, or an AI language model."
         
-        # Inject the intercepted legacy data directly into her context
         augmented_prompt = prompt + system_context
         
+        # --- MEMORY INJECTION ---
+        message_payload = [{"role": "system", "content": sys_msg}]
+        
+        # If history exists, sanitize it and inject it to prevent UI data from crashing the API
+        if raw_history:
+            clean_history = sanitize_memory_payload(raw_history)
+            message_payload.extend(clean_history)
+            
+        message_payload.append({"role": "user", "content": augmented_prompt})
+
         for m in models:
             try:
                 res = client.chat.completions.create(
-                    messages=[{"role": "system", "content": sys_msg}, {"role": "user", "content": augmented_prompt}], 
+                    messages=message_payload,
                     model=m,
                     temperature=0.2
                 )
