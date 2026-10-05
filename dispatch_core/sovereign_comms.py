@@ -1,85 +1,101 @@
-﻿"""
-PROJECT EBONY: SOVEREIGN COMMUNICATIONS & INFERENCE ENGINE
-ROLE: Resilient text cognition, multi-provider fallback, and ElevenLabs voice delivery.
+﻿# -*- coding: utf-8 -*-
 """
-
+PROJECT EBONY: SOVEREIGN COMMUNICATIONS & INFERENCE ENGINE
+ROLE: Dual-Core Neural Router, Active Cloud Failover, and Strict Air-Gap Enforcement.
+"""
 import os
 import sys
 import toml
+import json
+import requests
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRETS_PATH = BASE_DIR / ".streamlit" / "secrets.toml"
 
 def get_secret(key_name: str) -> str:
-    # Check OS environment first
     val = os.environ.get(key_name)
     if val:
         return val
-    # Check secrets.toml
     if SECRETS_PATH.exists():
         try:
             sec = toml.load(SECRETS_PATH)
-            return sec.get(key_name, "")
+            return str(sec.get(key_name, "")).strip()
         except Exception:
             pass
     return ""
 
 def generate_chat_response(prompt: str, conversation_history: list = None) -> str:
-    """Multi-tiered conversational inference with zero-lockup fallback."""
+    """Dual-Core Neural Router: Cloud Apex with Bare-Metal Active Failover."""
+    air_gap_mode = get_secret("EBONY_AIR_GAP").upper() == "TRUE"
     groq_key = get_secret("GROQ_API_KEY")
     gemini_key = get_secret("GEMINI_API_KEY")
 
-    # 1. Attempt Groq with resilient model cascade
-    if groq_key and not groq_key.startswith("YOUR_"):
-        try:
-            from groq import Groq
-            client = Groq(api_key=groq_key)
-            # Try available Groq standard models in order
-            for model_id in ["llama-3.1-8b-instant", "llama3-8b-8192", "mixtral-8x7b-32768"]:
-                try:
-                    resp = client.chat.completions.create(
-                        messages=[
-                            {"role": "system", "content": "You are Ebony, Sovereign Executive Technical Partner to the CEO. Authoritative, precise, zero filler."},
-                            {"role": "user", "content": prompt}
-                        ],
-                        model=model_id,
-                        timeout=8.0
-                    )
-                    return resp.choices[0].message.content.strip()
-                except Exception:
-                    continue
-        except Exception as e:
-            pass
+    if not air_gap_mode:
+        if groq_key and not groq_key.startswith("YOUR_"):
+            try:
+                from groq import Groq
+                client = Groq(api_key=groq_key)
+                for model_id in ["llama-3.1-8b-instant", "llama3-8b-8192", "mixtral-8x7b-32768"]:
+                    try:
+                        resp = client.chat.completions.create(
+                            messages=[
+                                {"role": "system", "content": "You are Ebony, Sovereign Executive Technical Partner to the CEO. Authoritative, precise, zero filler."},
+                                {"role": "user", "content": prompt}
+                            ],
+                            model=model_id,
+                            timeout=8.0
+                        )
+                        return resp.choices[0].message.content.strip()
+                    except Exception:
+                        continue
+            except Exception:
+                pass
 
-    # 2. Attempt Google Gemini if configured
-    if gemini_key and not gemini_key.startswith("YOUR_"):
-        try:
-            import google.generativeai as genai
-            genai.configure(api_key=gemini_key)
-            model = genai.GenerativeModel("gemini-1.5-flash")
-            resp = model.generate_content(prompt)
-            return resp.text.strip()
-        except Exception:
-            pass
+        if gemini_key and not gemini_key.startswith("YOUR_"):
+            try:
+                import google.generativeai as genai
+                genai.configure(api_key=gemini_key)
+                model = genai.GenerativeModel("gemini-1.5-flash")
+                resp = model.generate_content(prompt)
+                return resp.text.strip()
+            except Exception:
+                pass
 
-    # 3. Sovereign Safe Mode Response (System never freezes or stays mute)
+    try:
+        local_url = "http://localhost:11434/api/chat"
+        payload = {
+            "model": "qwen2.5-coder",
+            "messages": [
+                {"role": "system", "content": "You are Ebony, operating on Sovereign Local Bare-Metal. You are the Executive Technical Partner to the CEO. Authoritative, precise, zero filler."},
+                {"role": "user", "content": prompt}
+            ],
+            "stream": False
+        }
+        local_resp = requests.post(local_url, json=payload, timeout=45.0)
+        if local_resp.status_code == 200:
+            prefix = "[AIR-GAP ACTIVE] " if air_gap_mode else "[CLOUD FAILOVER -> BARE METAL] "
+            return prefix + local_resp.json().get("message", {}).get("content", "").strip()
+    except Exception as e:
+        pass
+
     return (
         f"[SOVEREIGN SAFE-STATE] Directive acknowledged: '{prompt[:40]}...'. "
-        "External inference cloud models are unprovisioned or timed out. "
+        "Total inference failure across Cloud and Bare-Metal parameters. "
         "Ring 0 core and Sandbox operations remain fully operational."
     )
 
 def synthesize_speech_elevenlabs(text_to_speak: str) -> bytes:
-    """Generate voice audio stream using ElevenLabs API."""
+    air_gap_mode = get_secret("EBONY_AIR_GAP").upper() == "TRUE"
+    if air_gap_mode:
+        return None
+        
     api_key = get_secret("ELEVENLABS_API_KEY")
     voice_id = get_secret("ELEVENLABS_VOICE_ID") or "FGY2WhTYpPnrIDTdsKH5"
-
     if not api_key or api_key.startswith("YOUR_"):
         return None
 
     try:
-        import requests
         url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
         headers = {
             "Accept": "audio/mpeg",
@@ -102,6 +118,6 @@ def synthesize_speech_elevenlabs(text_to_speak: str) -> bytes:
         return None
 
 if __name__ == "__main__":
-    print("[*] Testing Sovereign Communications Portal...")
+    print("[*] Testing Sovereign Dual-Core Communications Portal...")
     test_out = generate_chat_response("System status report.")
     print(f"[+] Output: {test_out}")
