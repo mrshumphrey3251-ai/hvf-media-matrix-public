@@ -28,66 +28,23 @@ def render():
     <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Orbitron:wght@700;900&display=swap');
 
-    html, body, [class*="css"], .stApp {
-        font-family: 'JetBrains Mono', monospace !important;
-        background-color: #030712 !important;
-        color: #94a3b8 !important;
-    }
-
+    html, body, [class*="css"], .stApp { font-family: 'JetBrains Mono', monospace !important; background-color: #030712 !important; color: #94a3b8 !important; }
     header, footer { visibility: hidden !important; height: 0 !important; }
     .block-container { padding-top: 0.2rem !important; padding-bottom: 0.4rem !important; max-width: 99% !important; }
 
-    .stApp::before {
-        content: " ";
-        display: block;
-        position: fixed;
-        top: 0; left: 0; bottom: 0; right: 0;
-        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-        z-index: 1000;
-        background-size: 100% 3px, 6px 100%;
-        pointer-events: none;
-        opacity: 0.25;
-    }
+    .stApp::before { content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02)); z-index: 1000; background-size: 100% 3px, 6px 100%; pointer-events: none; opacity: 0.25; }
 
-    .c2-header {
-        background: #090e17;
-        border: 1px solid #1e293b;
-        border-left: 4px solid #00f3ff;
-        padding: 6px 14px;
-        margin-bottom: 4px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+    .c2-header { background: #090e17; border: 1px solid #1e293b; border-left: 4px solid #00f3ff; padding: 6px 14px; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
     .c2-title { font-family: 'Orbitron', sans-serif; font-size: 16px; font-weight: 900; letter-spacing: 2px; color: #f8fafc; margin: 0; }
     .c2-sub { font-size: 9px; letter-spacing: 1.5px; color: #00f3ff; margin-top: 1px; text-transform: uppercase; }
     .c2-meta-badge { text-align: right; font-size: 9px; color: #64748b; line-height: 1.3; }
     .badge-green { color: #10b981; font-weight: 700; }
     .badge-cyan  { color: #00f3ff; font-weight: 700; }
 
-    div.stButton > button {
-        background: #0b1324 !important;
-        border: 1px solid #1e293b !important;
-        color: #94a3b8 !important;
-        font-family: 'JetBrains Mono', monospace !important;
-        font-size: 9px !important;
-        font-weight: 700 !important;
-        letter-spacing: 0.5px !important;
-        padding: 6px 4px !important;
-        border-radius: 3px !important;
-        width: 100% !important;
-        transition: all 0.2s ease !important;
-    }
+    div.stButton > button { background: #0b1324 !important; border: 1px solid #1e293b !important; color: #94a3b8 !important; font-family: 'JetBrains Mono', monospace !important; font-size: 9px !important; font-weight: 700 !important; letter-spacing: 0.5px !important; padding: 6px 4px !important; border-radius: 3px !important; width: 100% !important; transition: all 0.2s ease !important; }
     div.stButton > button:hover { border-color: #00f3ff !important; color: #f8fafc !important; box-shadow: 0 0 10px rgba(0, 243, 255, 0.3) !important; }
 
-    .writeup-panel {
-        background: #080f1e;
-        border: 1px solid #1e293b;
-        border-left: 4px solid #f59e0b;
-        padding: 6px 12px;
-        border-radius: 4px;
-        margin-bottom: 4px;
-    }
+    .writeup-panel { background: #080f1e; border: 1px solid #1e293b; border-left: 4px solid #f59e0b; padding: 6px 12px; border-radius: 4px; margin-bottom: 4px; }
     .writeup-header { font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; color: #f59e0b; text-transform: uppercase; margin-bottom: 2px; display: flex; justify-content: space-between; }
     .writeup-body { font-size: 9px; color: #cbd5e1; line-height: 1.4; }
 
@@ -98,6 +55,9 @@ def render():
 
     @keyframes flash { 0% { opacity: 1; text-shadow: 0 0 20px #ff0000; } 50% { opacity: 0.3; text-shadow: none; } 100% { opacity: 1; text-shadow: 0 0 20px #ff0000; } }
     .alert-box { background: #1a0505; border: 2px solid #ff0000; padding: 60px; text-align: center; margin-top: 50px; animation: flash 1s infinite; border-radius: 5px; }
+    
+    @keyframes pulse-green { 0% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); } 50% { box-shadow: 0 0 50px rgba(16, 185, 129, 0.8); } 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); } }
+    .mitigate-box { background: #022c16; border: 2px solid #10b981; padding: 60px; text-align: center; margin-top: 50px; border-radius: 5px; animation: pulse-green 2s infinite; }
     </style>
     """).strip()
     st.markdown(tactical_css, unsafe_allow_html=True)
@@ -121,6 +81,9 @@ def render():
     </div>
     """, unsafe_allow_html=True)
 
+    # ------------------------------------------------------------------------------
+    # ALARM LOGIC
+    # ------------------------------------------------------------------------------
     alarm_cmd = "START" if st.session_state.get("alarm_active") else "STOP"
     alarm_js = f"""
     <script>
@@ -148,6 +111,9 @@ def render():
     """
     components.html(alarm_js, height=0)
 
+    # ------------------------------------------------------------------------------
+    # RED SHOCK SCREEN STATE
+    # ------------------------------------------------------------------------------
     if st.session_state["grid_state"] == "SHOCK":
         st.markdown(f"""
         <div class="alert-box">
@@ -173,45 +139,55 @@ def render():
                 st.session_state["hazard_state"] = "TOTAL_BLACKOUT"; st.session_state["ch1_closed"] = False; st.session_state["ch2_closed"] = False; st.session_state["ch3_mode"] = "ISOLATED"; st.session_state["ch4_state"] = "OFF"; st.session_state["bus_b_shed"] = True; st.session_state["stage_idx"] = 0
                 
             st.session_state["alarm_active"] = False
-            st.session_state["grid_state"] = "NORMAL"
+            # Transition to the 3-second green mitigation state instead of normal
+            st.session_state["grid_state"] = "MITIGATING"
             st.rerun()
         st.stop()
 
+    # ------------------------------------------------------------------------------
+    # GREEN MITIGATION SCREEN STATE (3 SECOND DELAY)
+    # ------------------------------------------------------------------------------
+    if st.session_state["grid_state"] == "MITIGATING":
+        st.markdown("""
+        <div class="mitigate-box">
+            <div style="color:#10b981; font-family:'Orbitron', sans-serif; font-size:36px; font-weight:900;">🟢 EBONY PROTOCOL INITIATED</div>
+            <div style="color:#a7f3d0; font-family:'JetBrains Mono', monospace; font-size:20px; margin-top:15px; letter-spacing:2px;">ISOLATING HAZARD & DETOURING ELECTRICAL FLOW TO MINIMIZE DOWNTIME...</div>
+        </div>
+        """, unsafe_allow_html=True)
+        time.sleep(3)
+        st.session_state["grid_state"] = "NORMAL"
+        st.rerun()
+        st.stop()
+
+    # ------------------------------------------------------------------------------
+    # MAIN DASHBOARD RENDER (grid_state == "NORMAL")
+    # ------------------------------------------------------------------------------
     st.markdown('<div style="font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; color: #f59e0b; text-transform: uppercase; margin-bottom: 3px;">⚠️ FAULT & INCIDENT INJECTION CONSOLE // TEST DYNAMIC REALITY DEFLECTION:</div>', unsafe_allow_html=True)
     b1, b2, b3, b4, b5, b6, b7 = st.columns(7)
 
     with b1:
-        if st.button("🚧 POLE BREAK (HWY 69)"):
-            st.session_state["pending_hazard"] = "POLE_BREAK"; st.session_state["pending_hazard_name"] = "POLE BREAK (HWY 69)"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
+        if st.button("🚧 POLE BREAK (HWY 69)"): st.session_state["pending_hazard"] = "POLE_BREAK"; st.session_state["pending_hazard_name"] = "POLE BREAK (HWY 69)"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
     with b2:
-        if st.button("⚡ LIGHTNING (50kV SURGE)"):
-            st.session_state["pending_hazard"] = "LIGHTNING"; st.session_state["pending_hazard_name"] = "LIGHTNING (50kV SURGE)"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
+        if st.button("⚡ LIGHTNING (50kV SURGE)"): st.session_state["pending_hazard"] = "LIGHTNING"; st.session_state["pending_hazard_name"] = "LIGHTNING (50kV SURGE)"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
     with b3:
-        if st.button("🌪️ HIGH WINDS (75 MPH)"):
-            st.session_state["pending_hazard"] = "HIGH_WINDS"; st.session_state["pending_hazard_name"] = "HIGH WINDS (75 MPH)"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
+        if st.button("🌪️ HIGH WINDS (75 MPH)"): st.session_state["pending_hazard"] = "HIGH_WINDS"; st.session_state["pending_hazard_name"] = "HIGH WINDS (75 MPH)"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
     with b4:
-        if st.button("🌊 SUBSTATION FLOOD"):
-            st.session_state["pending_hazard"] = "FLOODING"; st.session_state["pending_hazard_name"] = "SUBSTATION FLOOD"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
+        if st.button("🌊 SUBSTATION FLOOD"): st.session_state["pending_hazard"] = "FLOODING"; st.session_state["pending_hazard_name"] = "SUBSTATION FLOOD"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
     with b5:
-        if st.button("👨‍💻 OPERATOR ERROR"):
-            st.session_state["pending_hazard"] = "OPERATOR_ERROR"; st.session_state["pending_hazard_name"] = "OPERATOR ERROR"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
+        if st.button("👨‍💻 OPERATOR ERROR"): st.session_state["pending_hazard"] = "OPERATOR_ERROR"; st.session_state["pending_hazard_name"] = "OPERATOR ERROR"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
     with b6:
-        if st.button("⬛ TOTAL BLACKOUT"):
-            st.session_state["pending_hazard"] = "TOTAL_BLACKOUT"; st.session_state["pending_hazard_name"] = "TOTAL BLACKOUT"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
+        if st.button("⬛ TOTAL BLACKOUT"): st.session_state["pending_hazard"] = "TOTAL_BLACKOUT"; st.session_state["pending_hazard_name"] = "TOTAL BLACKOUT"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
     with b7:
-        if st.button("✅ RESTORE NOMINAL (60Hz)"):
-            st.session_state["hazard_state"] = "NOMINAL"; st.session_state["ch1_closed"] = True; st.session_state["ch2_closed"] = True; st.session_state["ch3_mode"] = "FLOAT"; st.session_state["ch4_state"] = "STANDBY"; st.session_state["bus_b_shed"] = False; st.session_state["stage_idx"] = 0; st.rerun()
+        if st.button("✅ RESTORE NOMINAL (60Hz)"): st.session_state["hazard_state"] = "NOMINAL"; st.session_state["ch1_closed"] = True; st.session_state["ch2_closed"] = True; st.session_state["ch3_mode"] = "FLOAT"; st.session_state["ch4_state"] = "STANDBY"; st.session_state["bus_b_shed"] = False; st.session_state["stage_idx"] = 0; st.rerun()
 
     h_mode = st.session_state["hazard_state"]
 
     i_ch1 = 250.0 if st.session_state["ch1_closed"] else 0.0; v_ch1 = 480.0 if st.session_state["ch1_closed"] else 0.0
     i_ch2 = 100.0 if st.session_state["ch2_closed"] else 0.0; v_ch2 = 480.0 if st.session_state["ch2_closed"] else 0.0
-
     if st.session_state["ch3_mode"] == "DISCHARGE": i_ch3 = 350.0 if not st.session_state["ch1_closed"] else 150.0; v_ch3 = 478.0
     elif st.session_state["ch3_mode"] == "BUFFER": i_ch3 = 100.0; v_ch3 = 480.0
     elif st.session_state["ch3_mode"] == "ISOLATED": i_ch3 = 0.0; v_ch3 = 0.0
     else: i_ch3 = 100.0; v_ch3 = 480.0
-
     if st.session_state["ch4_state"] == "RUNNING": i_ch4 = 220.0; v_ch4 = 480.0
     else: i_ch4 = 0.0; v_ch4 = 0.0
 
@@ -225,7 +201,6 @@ def render():
     else: master_v = 480.0; master_f = 60.00; rocof_val = 0.0; thd_val = 0.8
 
     if h_mode == "TOTAL_BLACKOUT": master_v = 0.0; master_f = 0.0; rocof_val = 0.0; thd_val = 0.0
-
     i_base_sum = (i_ch1 + i_ch2 + i_ch3 + i_ch4)
     if st.session_state["bus_b_shed"] and i_base_sum > 155.0: i_base_sum -= 155.0
 
@@ -235,34 +210,21 @@ def render():
 
     st.markdown('<div style="font-size: 9px; font-weight: 800; letter-spacing: 1px; color: #38bdf8; text-transform: uppercase; margin-bottom: 2px;">🎛️ MANUAL BREAKER & FEEDER SWITCHGEAR (CLICK TO ACTUATE CURRENT DELTAS):</div>', unsafe_allow_html=True)
     c_col1, c_col2, c_col3, c_col4, c_col5 = st.columns(5)
-
     with c_col1:
-        btn_lbl_1 = "⚡ TRIP CH1 UTILITY (DROP 250A)" if st.session_state["ch1_closed"] else "⚡ CLOSE CH1 UTILITY (+250A)"
-        if st.button(btn_lbl_1): st.session_state["ch1_closed"] = not st.session_state["ch1_closed"]; st.rerun()
+        if st.button("⚡ TRIP CH1 UTILITY (DROP 250A)" if st.session_state["ch1_closed"] else "⚡ CLOSE CH1 UTILITY (+250A)"): st.session_state["ch1_closed"] = not st.session_state["ch1_closed"]; st.rerun()
     with c_col2:
-        btn_lbl_2 = "⚡ ISOLATE CH2 PV (DROP 100A)" if st.session_state["ch2_closed"] else "⚡ CONNECT CH2 PV (+100A)"
-        if st.button(btn_lbl_2): st.session_state["ch2_closed"] = not st.session_state["ch2_closed"]; st.rerun()
+        if st.button("⚡ ISOLATE CH2 PV (DROP 100A)" if st.session_state["ch2_closed"] else "⚡ CONNECT CH2 PV (+100A)"): st.session_state["ch2_closed"] = not st.session_state["ch2_closed"]; st.rerun()
     with c_col3:
-        btn_lbl_3 = "🔋 DISCHARGE CH3 BESS (+350A)" if st.session_state["ch3_mode"] != "DISCHARGE" else "⚡ FLOAT CH3 BESS (100A)"
-        if st.button(btn_lbl_3): st.session_state["ch3_mode"] = "FLOAT" if st.session_state["ch3_mode"] == "DISCHARGE" else "DISCHARGE"; st.rerun()
+        if st.button("🔋 DISCHARGE CH3 BESS (+350A)" if st.session_state["ch3_mode"] != "DISCHARGE" else "⚡ FLOAT CH3 BESS (100A)"): st.session_state["ch3_mode"] = "FLOAT" if st.session_state["ch3_mode"] == "DISCHARGE" else "DISCHARGE"; st.rerun()
     with c_col4:
-        btn_lbl_4 = "⚡ START CH4 GEN (+220A)" if st.session_state["ch4_state"] != "RUNNING" else "⚡ STOP CH4 GEN (0A)"
-        if st.button(btn_lbl_4): st.session_state["ch4_state"] = "STANDBY" if st.session_state["ch4_state"] == "RUNNING" else "RUNNING"; st.rerun()
+        if st.button("⚡ START CH4 GEN (+220A)" if st.session_state["ch4_state"] != "RUNNING" else "⚡ STOP CH4 GEN (0A)"): st.session_state["ch4_state"] = "STANDBY" if st.session_state["ch4_state"] == "RUNNING" else "RUNNING"; st.rerun()
     with c_col5:
-        btn_lbl_5 = "⚡ RESTORE BUS B (+155A)" if st.session_state["bus_b_shed"] else "⚡ SHED BUS B (-155A)"
-        if st.button(btn_lbl_5): st.session_state["bus_b_shed"] = not st.session_state["bus_b_shed"]; st.rerun()
+        if st.button("⚡ RESTORE BUS B (+155A)" if st.session_state["bus_b_shed"] else "⚡ SHED BUS B (-155A)"): st.session_state["bus_b_shed"] = not st.session_state["bus_b_shed"]; st.rerun()
 
     st.markdown(f"""
     <div class="writeup-panel">
-        <div class="writeup-header">
-            <span>EXECUTIVE SITUATIONAL WRITE-UP // {h_mode} (ACTIVE CURRENT: {master_i:.1f} A | ACTIVE BUS: {master_kw:.1f} kW)</span>
-            <span style="color: #00f3ff;">DOCKET: OK-DOC-2026-EBONY // FREQUENCY: {master_f:.2f} Hz</span>
-        </div>
-        <div class="writeup-body">
-            <b>DYNAMIC ELECTRICAL SITUATION:</b> Feeder states: CH1 Utility (<b>{i_ch1:.1f} A</b>), CH2 Solar (<b>{i_ch2:.1f} A</b>), CH3 BESS (<b>{i_ch3:.1f} A</b>), CH4 Aux Gen (<b>{i_ch4:.1f} A</b>). Non-Essential Bus B Load Shedding: <span style="color:{'#ef4444' if st.session_state['bus_b_shed'] else '#10b981'}; font-weight:800;">{'ACTIVE (-155 A)' if st.session_state['bus_b_shed'] else 'ONLINE (+155 A)'}</span>.<br>
-            <b>KIRCHHOFF POWER FLOW:</b> Total instantaneous load calculated at <b>{master_i:.1f} Amperes</b> across <b>{master_v:.1f} Volts RMS</b>. Active facility power delivery is <b>{master_kw:.1f} kW</b>.<br>
-            <b>DOWNSTREAM DEFENSE STATUS:</b> Priority 1 Critical Defense C2 and pumps remain 100% continuous (0.00 seconds of outage).
-        </div>
+        <div class="writeup-header"><span>EXECUTIVE SITUATIONAL WRITE-UP // {h_mode} (ACTIVE CURRENT: {master_i:.1f} A | ACTIVE BUS: {master_kw:.1f} kW)</span><span style="color: #00f3ff;">DOCKET: OK-DOC-2026-EBONY // FREQUENCY: {master_f:.2f} Hz</span></div>
+        <div class="writeup-body"><b>DYNAMIC ELECTRICAL SITUATION:</b> Feeder states: CH1 Utility (<b>{i_ch1:.1f} A</b>), CH2 Solar (<b>{i_ch2:.1f} A</b>), CH3 BESS (<b>{i_ch3:.1f} A</b>), CH4 Aux Gen (<b>{i_ch4:.1f} A</b>). Non-Essential Bus B Load Shedding: <span style="color:{'#ef4444' if st.session_state['bus_b_shed'] else '#10b981'}; font-weight:800;">{'ACTIVE (-155 A)' if st.session_state['bus_b_shed'] else 'ONLINE (+155 A)'}</span>.<br><b>KIRCHHOFF POWER FLOW:</b> Total instantaneous load calculated at <b>{master_i:.1f} Amperes</b> across <b>{master_v:.1f} Volts RMS</b>. Active facility power delivery is <b>{master_kw:.1f} kW</b>.<br><b>DOWNSTREAM DEFENSE STATUS:</b> Priority 1 Critical Defense C2 and pumps remain 100% continuous (0.00 seconds of outage).</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -291,9 +253,7 @@ def render():
                 let p2 = angleToCoord(curV, 0.0, 650.0); let n2 = document.getElementById("n2"); n2.setAttribute("x2", p2.x.toFixed(1)); n2.setAttribute("y2", p2.y.toFixed(1)); document.getElementById("v2").textContent = curV.toFixed(1);
                 let p3 = angleToCoord(curC, 0.0, 3000.0); let n3 = document.getElementById("n3"); n3.setAttribute("x2", p3.x.toFixed(1)); n3.setAttribute("y2", p3.y.toFixed(1)); document.getElementById("v3").textContent = curC.toFixed(1);
                 let p4 = angleToCoord(curK, 0.0, 1500.0); let n4 = document.getElementById("n4"); n4.setAttribute("x2", p4.x.toFixed(1)); n4.setAttribute("y2", p4.y.toFixed(1)); document.getElementById("v4").textContent = curK.toFixed(1);
-            }} else {{
-                document.getElementById("v1").textContent = "0.00"; document.getElementById("v2").textContent = "0.0"; document.getElementById("v3").textContent = "0.0"; document.getElementById("v4").textContent = "0.0";
-            }}
+            }} else {{ document.getElementById("v1").textContent = "0.00"; document.getElementById("v2").textContent = "0.0"; document.getElementById("v3").textContent = "0.0"; document.getElementById("v4").textContent = "0.0"; }}
             requestAnimationFrame(stepPhysics);
         }}
         requestAnimationFrame(stepPhysics);
@@ -308,36 +268,9 @@ def render():
             {"name": "CH3_BESS_STORAGE", "label": "CHANNEL 03 // BESS STORAGE",  "v": v_ch3, "i": i_ch3, "status": f"GRID-FORMING ({st.session_state['ch3_mode']})" if st.session_state['ch3_mode'] != 'ISOLATED' else "DE-ENERGIZED (0.00 A)", "tripped": st.session_state['ch3_mode'] == 'ISOLATED'},
             {"name": "CH4_AUX_GENERATOR","label": "CHANNEL 04 // AUX GENERATOR", "v": v_ch4, "i": i_ch4, "status": f"ONLINE // {st.session_state['ch4_state']}" if st.session_state['ch4_state'] == 'RUNNING' else "STANDBY / OPEN (0.00 A)", "tripped": False}
         ]
-
-        busbars_html = "".join([
-            f'''
-            <div style="background:#070c16; border:1px solid #1e293b; padding:6px 10px; border-left:4px solid {'#ef4444' if ch['tripped'] else '#10b981'}; border-radius:3px;">
-                <div style="font-size:8px; color:#64748b; text-transform:uppercase;">{ch['label']}</div>
-                <div style="font-size:11px; font-weight:800; color:#f8fafc; margin:1px 0;">{ch['name']}</div>
-                <div style="font-size:10.5px; font-weight:900; color:{'#ef4444' if ch['tripped'] else '#38bdf8'};">
-                    {ch['v']:.1f} V | {ch['i']:.1f} A | {((math.sqrt(3) * ch['v'] * ch['i'] * 0.95)/1000.0):.1f} kW
-                </div>
-                <div style="font-size:8.5px; font-weight:700; color:{'#ef4444' if ch['tripped'] else '#10b981'}; margin-top:1px;">
-                    {ch['status']}
-                </div>
-            </div>
-            '''
-            for ch in ch_list
-        ])
+        busbars_html = "".join([f'''<div style="background:#070c16; border:1px solid #1e293b; padding:6px 10px; border-left:4px solid {'#ef4444' if ch['tripped'] else '#10b981'}; border-radius:3px;"><div style="font-size:8px; color:#64748b; text-transform:uppercase;">{ch['label']}</div><div style="font-size:11px; font-weight:800; color:#f8fafc; margin:1px 0;">{ch['name']}</div><div style="font-size:10.5px; font-weight:900; color:{'#ef4444' if ch['tripped'] else '#38bdf8'};">{ch['v']:.1f} V | {ch['i']:.1f} A | {((math.sqrt(3) * ch['v'] * ch['i'] * 0.95)/1000.0):.1f} kW</div><div style="font-size:8.5px; font-weight:700; color:{'#ef4444' if ch['tripped'] else '#10b981'}; margin-top:1px;">{ch['status']}</div></div>''' for ch in ch_list])
         components.html(f'<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; font-family:monospace;">{busbars_html}</div>', height=72)
-
-        machines_html = "".join([
-            f'''
-            <div style="background:#060b14; border:1px solid #1e293b; border-left:3px solid {a['color']}; padding:6px 10px; border-radius:3px;">
-                <div style="font-size:7.5px; color:#64748b; text-transform:uppercase;">{a['tag']}</div>
-                <div style="font-size:10.5px; font-weight:800; color:#f8fafc; margin:1px 0;">{a['title']}</div>
-                <div style="font-size:10px; font-weight:900; color:{a['color']};">OUTPUT: {a['output']}</div>
-                <div style="font-size:8.5px; font-weight:700; color:{a['color']};">{a['status']}</div>
-                <div style="font-size:8px; color:#94a3b8; margin-top:2px; line-height:1.3;">{a['desc']}</div>
-            </div>
-            '''
-            for k, a in active_h["assets"].items()
-        ])
+        machines_html = "".join([f'''<div style="background:#060b14; border:1px solid #1e293b; border-left:3px solid {a['color']}; padding:6px 10px; border-radius:3px;"><div style="font-size:7.5px; color:#64748b; text-transform:uppercase;">{a['tag']}</div><div style="font-size:10.5px; font-weight:800; color:#f8fafc; margin:1px 0;">{a['title']}</div><div style="font-size:10px; font-weight:900; color:{a['color']};">OUTPUT: {a['output']}</div><div style="font-size:8.5px; font-weight:700; color:{a['color']};">{a['status']}</div><div style="font-size:8px; color:#94a3b8; margin-top:2px; line-height:1.3;">{a['desc']}</div></div>''' for k, a in active_h["assets"].items()])
         components.html(f'<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; font-family:monospace;">{machines_html}</div>', height=140)
 
     with tab2:
@@ -445,20 +378,13 @@ def render():
     else:
         alert_id = h_mode
         border_color = "#f59e0b"
-        if "POLE" in alert_id: 
-            suggestions = ">> PROBLEM: 12kV Feeder Line Severed.\n>> LOCATION: HWY 69, Pittsburg Co.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch repair crew to HWY 69 coordinates.\n   2. Initiate Level 3 pole replacement ticket via maintenance portal."
-        elif "WIND" in alert_id: 
-            suggestions = ">> PROBLEM: Wind speeds exceeding 75 MPH threshold.\n>> LOCATION: Statewide Area Command.\n>> REQUIRED HUMAN ACTIONS:\n   1. Monitor regional wind speeds for structural shear limits.\n   2. Prepare CH4 Aux Gen for rapid physical start."
-        elif "LIGHTNING" in alert_id: 
-            suggestions = ">> PROBLEM: 50kV Lightning Surge Detected.\n>> LOCATION: Substation Alpha Perimeter.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch technician to inspect PV inverter for arc flash damage.\n   2. Verify grounding array and surge arrester integrity."
-        elif "FLOOD" in alert_id: 
-            suggestions = ">> PROBLEM: Severe water ingress detected in lower levels.\n>> LOCATION: Main Substation Vault.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch heavy water extraction teams immediately.\n   2. Physically elevate critical backup drives."
-        elif "OPERATOR" in alert_id: 
-            suggestions = ">> PROBLEM: Unauthorized manual breaker trip detected.\n>> LOCATION: Control Room B.\n>> REQUIRED HUMAN ACTIONS:\n   1. Revoke responsible operator credential cards.\n   2. Initiate immediate security protocol audit."
-        elif "BLACKOUT" in alert_id: 
-            suggestions = ">> PROBLEM: Total Loss of External Grid Power.\n>> LOCATION: Regional Grid.\n>> REQUIRED HUMAN ACTIONS:\n   1. Declare Level 1 Infrastructure Emergency.\n   2. Execute Black Start physical isolation protocol."
-        else: 
-            suggestions = ">> SYSTEM STABILIZED.\n>> AWAITING PHYSICAL VERIFICATION."
+        if "POLE" in alert_id: suggestions = ">> PROBLEM: 12kV Feeder Line Severed.\n>> LOCATION: HWY 69, Pittsburg Co.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch repair crew to HWY 69 coordinates.\n   2. Initiate Level 3 pole replacement ticket via maintenance portal."
+        elif "WIND" in alert_id: suggestions = ">> PROBLEM: Wind speeds exceeding 75 MPH threshold.\n>> LOCATION: Statewide Area Command.\n>> REQUIRED HUMAN ACTIONS:\n   1. Monitor regional wind speeds for structural shear limits.\n   2. Prepare CH4 Aux Gen for rapid physical start."
+        elif "LIGHTNING" in alert_id: suggestions = ">> PROBLEM: 50kV Lightning Surge Detected.\n>> LOCATION: Substation Alpha Perimeter.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch technician to inspect PV inverter for arc flash damage.\n   2. Verify grounding array and surge arrester integrity."
+        elif "FLOOD" in alert_id: suggestions = ">> PROBLEM: Severe water ingress detected in lower levels.\n>> LOCATION: Main Substation Vault.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch heavy water extraction teams immediately.\n   2. Physically elevate critical backup drives."
+        elif "OPERATOR" in alert_id: suggestions = ">> PROBLEM: Unauthorized manual breaker trip detected.\n>> LOCATION: Control Room B.\n>> REQUIRED HUMAN ACTIONS:\n   1. Revoke responsible operator credential cards.\n   2. Initiate immediate security protocol audit."
+        elif "BLACKOUT" in alert_id: suggestions = ">> PROBLEM: Total Loss of External Grid Power.\n>> LOCATION: Regional Grid.\n>> REQUIRED HUMAN ACTIONS:\n   1. Declare Level 1 Infrastructure Emergency.\n   2. Execute Black Start physical isolation protocol."
+        else: suggestions = ">> SYSTEM STABILIZED.\n>> AWAITING PHYSICAL VERIFICATION."
 
     fusion_html = textwrap.dedent(f"""
     <div class="terminal-vault">
