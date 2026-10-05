@@ -1,24 +1,39 @@
 ﻿import toml
+import os
 from ebony_vocal_cortex import ignite_voice
 from ebony_bridge import route_matrix_command
 from core_context_engine import sanitize_memory_payload
 from ebony_authority_matrix import get_sovereign_system_prompt
 
 def transcribe_mic(audio_bytes):
-    print("[*] Transcribing Voice Command via Groq Whisper...")
-    path = r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml"
-    sec = toml.load(path)
-    key = sec.get("GROQ_API_KEY", "").strip()
-    from groq import Groq
-    client = Groq(api_key=key, max_retries=0)
-    
-    transcription = client.audio.transcriptions.create(
-        file=("mic.wav", audio_bytes),
-        model="whisper-large-v3"
-    )
-    if hasattr(transcription, "text"):
-        return transcription.text
-    return str(transcription)
+    """
+    Robust Groq Whisper Ingestion Engine.
+    Includes zero-byte guardrails, size verification, and exception traps.
+    """
+    if not audio_bytes or len(audio_bytes) < 1024:
+        print("[!] WHISPER REJECTED: Audio buffer empty or below minimum threshold (<1KB).")
+        return ""
+
+    print(f"[*] Transcribing Voice Command via Groq Whisper ({len(audio_bytes)} bytes)...")
+    try:
+        path = r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml"
+        sec = toml.load(path)
+        key = sec.get("GROQ_API_KEY", "").strip()
+        from groq import Groq
+        client = Groq(api_key=key, max_retries=1)
+        
+        transcription = client.audio.transcriptions.create(
+            file=("mic.wav", audio_bytes),
+            model="whisper-large-v3"
+        )
+        if hasattr(transcription, "text"):
+            result_text = transcription.text.strip()
+            print(f"[+] Transcription Success: '{result_text}'")
+            return result_text
+        return str(transcription).strip()
+    except Exception as e:
+        print(f"[-] WHISPER TRANSMISSION FAILURE: {str(e)}")
+        return ""
 
 def run_dual_core_router(prompt, raw_history=None):
     print("[*] Processing through Sovereign Dual-Core Communications Portal...")
@@ -41,12 +56,8 @@ def run_dual_core_router(prompt, raw_history=None):
         from groq import Groq
         client = Groq(api_key=key, max_retries=0)
         
-        # Ground-truth verified active models on Groq account
         models = ["qwen/qwen3.8-27b", "openai/gpt-oss-120b"]
-        
-        # Modular Authority Matrix System Prompt
         sys_msg = get_sovereign_system_prompt()
-        
         augmented_prompt = prompt + system_context
         
         message_payload = [{"role": "system", "content": sys_msg}]
