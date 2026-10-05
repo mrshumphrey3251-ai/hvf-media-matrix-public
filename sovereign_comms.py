@@ -9,12 +9,16 @@ def transcribe_mic(audio_bytes):
     from groq import Groq
     client = Groq(api_key=key, max_retries=0)
     
+    # Strip response_format so it defaults to a stable JSON object
     transcription = client.audio.transcriptions.create(
         file=("mic.wav", audio_bytes),
-        model="whisper-large-v3",
-        response_format="text"
+        model="whisper-large-v3"
     )
-    return transcription.text
+    
+    # Armor-plated return logic: handles both object and string formats
+    if hasattr(transcription, "text"):
+        return transcription.text
+    return str(transcription)
 
 def run_dual_core_router(prompt):
     print("[*] Processing through Sovereign Dual-Core Communications Portal...")
