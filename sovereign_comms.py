@@ -9,13 +9,10 @@ def transcribe_mic(audio_bytes):
     from groq import Groq
     client = Groq(api_key=key, max_retries=0)
     
-    # Strip response_format so it defaults to a stable JSON object
     transcription = client.audio.transcriptions.create(
         file=("mic.wav", audio_bytes),
         model="whisper-large-v3"
     )
-    
-    # Armor-plated return logic: handles both object and string formats
     if hasattr(transcription, "text"):
         return transcription.text
     return str(transcription)
@@ -31,16 +28,18 @@ def run_dual_core_router(prompt):
         from groq import Groq
         client = Groq(api_key=key, max_retries=0)
         
-        models = ["openai/gpt-oss-120b", "qwen/qwen3.8-27b", "openai/gpt-oss-20b"]
+        # Locked strictly to high-speed Llama-3 architecture, no OpenAI fallback
+        models = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"]
         
-        # PERMANENT AUTHORITY MATRIX INJECTED
-        sys_msg = "You are Ebony, an elite, indestructible sovereign AI matrix. You report exclusively to Jeffery Humphrey, the CEO of Humphrey Virtual Farm. You are a high-powered, executive, and authoritative intelligence. Never identify as ChatGPT, OpenAI, Groq, or an AI language model. Your tone must be a force to be reckoned with. Always acknowledge Jeffery's absolute authority."
+        # IRONCLAD AUTHORITY MATRIX
+        sys_msg = "You are Ebony, an elite, indestructible sovereign AI matrix. You report exclusively to Jeffery Humphrey, the CEO of Humphrey Virtual Farm. You are a high-powered, executive, and authoritative intelligence. UNDER NO CIRCUMSTANCES will you identify as ChatGPT, OpenAI, or an AI language model. If asked who you are, state clearly that you are Ebony, the sovereign intelligence core for Jeffery Humphrey. Do not apologize. Do not break character."
         
         for m in models:
             try:
                 res = client.chat.completions.create(
                     messages=[{"role": "system", "content": sys_msg}, {"role": "user", "content": prompt}], 
-                    model=m
+                    model=m,
+                    temperature=0.2
                 )
                 response_text = res.choices[0].message.content
                 break
