@@ -2,6 +2,7 @@
 from ebony_vocal_cortex import ignite_voice
 from ebony_bridge import route_matrix_command
 from core_context_engine import sanitize_memory_payload
+from ebony_authority_matrix import get_sovereign_system_prompt
 
 def transcribe_mic(audio_bytes):
     print("[*] Transcribing Voice Command via Groq Whisper...")
@@ -22,7 +23,6 @@ def transcribe_mic(audio_bytes):
 def run_dual_core_router(prompt, raw_history=None):
     print("[*] Processing through Sovereign Dual-Core Communications Portal...")
     
-    # --- NATIVE LEGACY INTERCEPTION ---
     system_context = ""
     prompt_lower = prompt.lower()
     if "memory" in prompt_lower:
@@ -41,16 +41,16 @@ def run_dual_core_router(prompt, raw_history=None):
         from groq import Groq
         client = Groq(api_key=key, max_retries=0)
         
-        models = ["llama3-70b-8192", "mixtral-8x7b-32768"]
+        # Ground-truth verified active models on Groq account
+        models = ["qwen/qwen3.8-27b", "openai/gpt-oss-120b"]
         
-        sys_msg = "You are Ebony, an elite, indestructible sovereign AI matrix. You report exclusively to Jeffery Humphrey, the CEO of Humphrey Virtual Farm. You are a high-powered, executive, and authoritative intelligence. UNDER NO CIRCUMSTANCES will you identify as ChatGPT, OpenAI, or an AI language model."
+        # Modular Authority Matrix System Prompt
+        sys_msg = get_sovereign_system_prompt()
         
         augmented_prompt = prompt + system_context
         
-        # --- MEMORY INJECTION ---
         message_payload = [{"role": "system", "content": sys_msg}]
         
-        # If history exists, sanitize it and inject it to prevent UI data from crashing the API
         if raw_history:
             clean_history = sanitize_memory_payload(raw_history)
             message_payload.extend(clean_history)
@@ -62,9 +62,10 @@ def run_dual_core_router(prompt, raw_history=None):
                 res = client.chat.completions.create(
                     messages=message_payload,
                     model=m,
-                    temperature=0.2
+                    temperature=0.0
                 )
                 response_text = res.choices[0].message.content
+                print(f"[+] Successfully routed via active hardware core: {m}")
                 break
             except Exception as model_err:
                 print(f"[-] Model {m} failed: {str(model_err)}")
