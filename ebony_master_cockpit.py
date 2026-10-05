@@ -1,6 +1,7 @@
 ﻿import streamlit as st
 import time
 from sovereign_comms import run_dual_core_router, transcribe_mic
+from ebony_bridge import route_matrix_command
 
 st.set_page_config(page_title="HVF Omni-Industrial Matrix", page_icon="⚡", layout="wide")
 
@@ -10,12 +11,29 @@ st.markdown("**Active User: Jeffery Humphrey | 🛡️ Mode: 🟢 Online (Cloud 
 st.markdown("---")
 
 st.markdown("### ⚡ Sovereign Command Nexus")
-
 interface_mode = st.radio(
     "Select Command Interface:", 
     ["⌨️ Secure Text Terminal", "🎙️ Acoustic Voice Link"], 
     horizontal=True
 )
+
+# --- OMNI-INDUSTRIAL LEGACY BRIDGE ---
+with st.expander("⚙️ Omni-Industrial Modular Bridge (Legacy Systems)"):
+    st.markdown("Select a legacy vector to route through the matrix:")
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        if st.button("Activate Alpha: Persistent Memory"):
+            st.session_state.bridge_status = route_matrix_command("ALPHA_MEMORY", None)
+    with col2:
+        if st.button("Activate Beta: Agentic Swarm"):
+            st.session_state.bridge_status = route_matrix_command("BETA_AGENTS", None)
+    with col3:
+        if st.button("Activate Gamma: SCADA Control"):
+            st.session_state.bridge_status = route_matrix_command("GAMMA_SCADA", None)
+            
+    if "bridge_status" in st.session_state:
+        st.success(f"Bridge Response: {st.session_state.bridge_status}")
 
 st.markdown("---")
 
@@ -32,7 +50,6 @@ for i, msg in enumerate(st.session_state.messages):
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
         if msg.get("audio"):
-            # Autoplay only the very last message in the feed
             is_last = (i == len(st.session_state.messages) - 1)
             try:
                 st.audio(msg["audio"], autoplay=is_last)
@@ -46,26 +63,17 @@ if "Text" in interface_mode:
     prompt = st.chat_input("Secure Text Terminal active... Type command here.")
 else:
     st.info("🎙️ Acoustic Voice Link Active. Click the microphone below to transmit your verbal orders.")
-    # The dynamic key guarantees the widget is destroyed and remounted after every use
     audio_val = st.audio_input("Speak to the Matrix", key=f"mic_{st.session_state.mic_key}")
     
     if audio_val:
         with st.spinner("Transcribing Voice Command..."):
             prompt = transcribe_mic(audio_val.read())
-        # Increment the key to permanently wipe the audio file from browser memory
         st.session_state.mic_key += 1
 
 # --- HARD RESET PROCESSING PIPELINE ---
 if prompt:
-    # 1. Save user command
     st.session_state.messages.append({"role": "user", "content": prompt, "audio": None})
-    
-    # 2. Process intelligence and generate audio
     with st.spinner("Processing through Dual-Core Router..."):
         response, audio_file = run_dual_core_router(prompt)
-        
-    # 3. Save assistant response
     st.session_state.messages.append({"role": "assistant", "content": response, "audio": audio_file})
-    
-    # 4. Force a hard application reset to flush all inputs instantly
     st.rerun()
