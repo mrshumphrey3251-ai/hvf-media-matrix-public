@@ -36,7 +36,7 @@ def generate_chat_response(prompt: str, conversation_history: list = None) -> st
             try:
                 from groq import Groq
                 client = Groq(api_key=groq_key)
-                for model_id in ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "gemma2-9b-it"]:
+                for model_id in ["llama-3.1-8b-instant", "llama-3.1-70b-versatile", "mixtral-8x7b-32768"]:
                     try:
                         resp = client.chat.completions.create(
                             messages=[
