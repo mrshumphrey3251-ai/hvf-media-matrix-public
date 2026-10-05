@@ -1,28 +1,25 @@
 ﻿import subprocess
+import os
 
-def ignite_voice(text):
+def ignite_voice(text, output_file="C:\\HVF_Repos\\hvf-media-matrix-private\\ebony_audio.wav"):
     """
     Sovereign Vocal Cortex: Zero-cost, 100% local speech synthesis.
-    Forced Female Voice Matrix. Runs entirely on bare-metal Windows SAPI.
+    Renders to a .wav file to enable UI pause/rewind/fast-forward controls.
     """
     try:
-        print("[*] Engaging Sovereign Local Vocal Cortex (Female Voice Override)...")
+        print("[*] Engaging Sovereign Local Vocal Cortex (Rendering Audio Matrix)...")
         clean_text = text.replace('"', '\"').replace("'", "''")
         
-        # Injects the strict Female gender requirement into the local Windows engine
-        ps_cmd = f"Add-Type -AssemblyName System.Speech; $synth = New-Object System.Speech.Synthesis.SpeechSynthesizer; $synth.SelectVoiceByHints([System.Speech.Synthesis.VoiceGender]::Female); $synth.Speak(\"{clean_text}\");"
+        ps_cmd = f"Add-Type -AssemblyName System.Speech; $synth = New-Object System.Speech.Synthesis.SpeechSynthesizer; $synth.SelectVoiceByHints([System.Speech.Synthesis.VoiceGender]::Female); $synth.SetOutputToWaveFile('{output_file}'); $synth.Speak(\"{clean_text}\"); $synth.Dispose();"
         
         res = subprocess.run(["powershell", "-NoProfile", "-Command", ps_cmd], capture_output=True, text=True)
         
         if res.returncode == 0:
-            print("[+] SOVEREIGN VOCAL TRANSMISSION COMPLETE.")
-            return True
+            print(f"[+] SOVEREIGN VOCAL AUDIO SECURED: {output_file}")
+            return output_file
         else:
             print(f"[-] VOCAL EXECUTION ERROR: {res.stderr}")
-            return False
+            return None
     except Exception as e:
         print(f"[-] VOCAL FAILOVER EXPOSED: {str(e)}")
-        return False
-
-if __name__ == "__main__":
-    ignite_voice("The sovereign matrix is fully operational. I am Ebony, and this is my true voice.")
+        return None

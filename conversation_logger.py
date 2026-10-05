@@ -1,9 +1,9 @@
 """
 ================================================================================
-HVF SOVEREIGN MEDIA MATRIX - REAL-TIME CONVERSATION LOGGER (PUBLIC BLUEPRINT)
-System: Project Ebony - High-Concurrency Interaction Pipeline
-Authority: Jeffery Humphrey, Founder & CEO
-Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Architecture)
+HVF SOVEREIGN MEDIA MATRIX - REAL-TIME CONVERSATION LOGGER
+System: Project Ebony - High-Concurrency Asynchronous Interaction Pipeline
+Authority: Jeffery Humphrey, Founder & CEO (CAGE: 1AHA8, UEI: S1M4ENLHTDH5)
+Compliance: DFARS 252.227-7018 Data Rights Protection
 ================================================================================
 """
 
@@ -13,6 +13,10 @@ from datetime import datetime
 import hvf_memory_vault
 
 class ConversationLogger:
+    """
+    Thread-safe asynchronous logger that records user-assistant exchanges
+    simultaneously to a human-readable audit file and the Dual-Tier Vector Vault.
+    """
     _lock = threading.Lock()
 
     def __init__(self, log_path: str = "conversation_log.txt"):
@@ -43,9 +47,10 @@ class ConversationLogger:
         ).start()
 
     def log_exchange(self, user_msg: str, assistant_msg: str):
+        """Atomically commits full dialogue turns to flat file and vector memory."""
         self.log_user(user_msg)
         self.log_assistant(assistant_msg)
 
 if __name__ == "__main__":
     logger = ConversationLogger()
-    print("Conversation Logger initialized.")
+    print("HVF Real-Time Conversation Logger online and connected to Dual-Tier Vault.")

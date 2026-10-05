@@ -11,7 +11,7 @@ if 'if "current_linkedin_draft" not in st.session_state:' not in content:
 if "current_linkedin_draft" not in st.session_state:
     st.session_state.current_linkedin_draft = (
         "⚡ [HVF Sovereign Intelligence Announcement]\\n\\n"
-        "Humphrey Virtual Farm has deployed our on-premise universal aerial reconnaissance link, fusing real-time drone telemetry (DJI, Autel, Skydio, Custom RTMP) with our local soil sensor mesh.\\n\\n"
+        "HVF Omni-Industrial Matrix has deployed our on-premise universal aerial reconnaissance link, fusing real-time drone telemetry (DJI, Autel, Skydio, Custom RTMP) with our local soil sensor mesh.\\n\\n"
         "All imagery and field analytics are computed strictly on-premise without reliance on external cloud infrastructure.\\n\\n"
         "#AgTech #SovereignAI #JefferyHumphrey #AutonomousFarming #PrecisionAg #HVF"
     )

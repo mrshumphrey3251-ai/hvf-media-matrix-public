@@ -13,6 +13,14 @@ if marker in content:
     st.subheader("📡 Sovereign WebRTC Comms Deck // Project Ebony")
     st.caption("Zero-fee, sovereign P2P voice, video, and encrypted data dispatch.")
 
+    # Autonomous Synchronization Engine
+    try:
+        from streamlit_autorefresh import st_autorefresh
+        # Silent 2-second background polling to sync the global ledger instantly
+        st_autorefresh(interval=2000, limit=None, key="matrix_auto_sync")
+    except ImportError:
+        st.warning("Autonomous sync engine offline. Run 'pip install streamlit-autorefresh'.")
+
     col_c1, col_c2 = st.columns(2)
     with col_c1:
         st.markdown("### 🔴 LIVE // SWARM OPTICAL FEED")
@@ -26,20 +34,18 @@ if marker in content:
     with col_c2:
         st.markdown("### 💬 Encrypted P2P Dispatch")
         
-        # Establishing a Global JSON Ledger for Cross-Device Sync
         import json
         ledger_path = "hvf_comms_ledger.json"
         if not os.path.exists(ledger_path):
             with open(ledger_path, "w") as f:
-                json.dump([{"sender": "EBONY CORE", "text": "Comms deck online. Global Sync Active."}], f)
+                json.dump([{"sender": "EBONY CORE", "text": "Comms deck online. Autonomous Sync Active."}], f)
                 
         with open(ledger_path, "r") as f:
             global_chat = json.load(f)
 
         chat_msg = st.text_input("Secure message payload:", key="sovereign_chat_input")
         
-        col_b1, col_b2 = st.columns([1, 1])
-        if col_b1.button("Transmit Securely"):
+        if st.button("Transmit Securely"):
             if chat_msg.strip():
                 safe_user = current_user if 'current_user' in locals() and current_user else "CEO_OVERRIDE"
                 if 'current_user' in locals() and current_user and current_cipher:
@@ -49,10 +55,9 @@ if marker in content:
                 global_chat.append({"sender": safe_user.upper(), "text": chat_msg.strip() + " 🛡️ [ENCRYPTED & LOCKED]"})
                 with open(ledger_path, "w") as f:
                     json.dump(global_chat[-15:], f) # Keep last 15 transmissions
-                st.rerun()
                 
-        if col_b2.button("🔄 Sync Feed"):
-            st.rerun()
+                # Force instant update on transmit
+                st.rerun()
 
         st.markdown("---")
         for message in reversed(global_chat):
@@ -60,6 +65,6 @@ if marker in content:
 """
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(base_content + new_module)
-    print("[SUCCESS] Mobile Integration Bridge Deployed. Cross-Network Sync Active.")
+    print("[SUCCESS] Autonomous Synchronization Engine Deployed.")
 else:
     print("[FATAL] Target architecture marker not found in file.")

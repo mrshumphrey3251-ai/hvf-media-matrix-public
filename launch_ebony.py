@@ -1,6 +1,7 @@
-"""
+﻿"""
 Project Ebony: Sovereign SCADA Defense Matrix -- Operational Live Launcher
 Tri-Brain Architecture: Brain 1 (Kinetic), Brain 2 (Tactical), Brain 3 (Apex C2).
+Real-time DirectShow Arducam / Tapo RTSP video streaming and dynamic GLI engine.
 100% Absolute Controlling Authority: Jeffery Humphrey (HVF-CONTRACT-SL-003).
 DFARS 252.227-7018 / Oklahoma HB 2992 Compliant Architecture.
 """
@@ -15,6 +16,7 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 from scada_engine.hvf_defense_pipeline import HVFDefensePipeline
 from scada_engine.hvf_brain3_c2 import HVFBrain3C2
+from scada_engine.hvf_optical_streamer import HVFOpticalStreamer
 from scada_engine.hvf_telemetry_bridge import HVFTelemetryBridge
 
 logging.basicConfig(
@@ -25,7 +27,7 @@ logging.basicConfig(
 def launch():
     print("=" * 64)
     print("  PROJECT EBONY // SOVEREIGN SCADA DEFENSE MATRIX")
-    print("  Contractor: Humphrey Virtual Farms LLC | CAGE: 1AHA8")
+    print("  Contractor: HVF Omni-Industrial Matrix | CAGE: 1AHA8")
     print("  Compliance: DFARS 252.227-7018 / Oklahoma HB 2992")
     print("  Sole Authority: Jeffery Humphrey (100% Absolute Authority)")
     print("=" * 64)
@@ -38,14 +40,18 @@ def launch():
     logging.info(f"Contactor Matrix: {list(pipeline.relay.channels.keys())}")
     logging.info(f"Ed25519 Forensic Signer: {pipeline.crypto_ledger.pubkey_bytes.hex()[:16]}... [ACTIVE]")
 
-    logging.info("Initializing Brain 3 Sovereign Apex C2 Orchestrator (Iron Dome RAG & Perimeters)...")
+    logging.info("Initializing Brain 3 Sovereign Apex C2 Orchestrator (Dynamic LPU Core)...")
     brain3 = HVFBrain3C2(pipeline=pipeline)
-    logging.info(f"Brain 3 online. Iron Dome vectors: {brain3.vector_count} | Memory Vault: {brain3.memory_vault_active}")
+    logging.info(f"Brain 3 online. Bound Groq Model: {brain3.active_groq_model} | Vectors: {brain3.vector_count}")
+
+    logging.info("Initializing Optical Perimeter Live Streamer & GLI Computer...")
+    optical_streamer = HVFOpticalStreamer()
+    logging.info(f"Optical Streamer initialized. Source: {optical_streamer.source_desc}")
 
     host = "127.0.0.1"
     port = 8088
-    logging.info(f"Binding air-gapped Telemetry Bridge to http://{host}:{port}/ with Brain 3 bound...")
-    bridge = HVFTelemetryBridge(pipeline, brain3=brain3, host=host, port=port)
+    logging.info(f"Binding air-gapped Telemetry Bridge to http://{host}:{port}/ with Brain 3 & Live Video...")
+    bridge = HVFTelemetryBridge(pipeline, brain3=brain3, optical_streamer=optical_streamer, host=host, port=port)
     bridge.start()
 
     cockpit_url = f"http://{host}:{port}/"
@@ -65,9 +71,11 @@ def launch():
             time.sleep(1)
     except KeyboardInterrupt:
         print("\n")
-        logging.info("Shutdown signal received. Halting Telemetry Bridge cleanly...")
+        logging.info("Shutdown signal received. Halting Telemetry Bridge & Optical Streamer cleanly...")
         bridge.stop()
+        optical_streamer.stop()
         logging.info("Project Ebony safely disarmed. Session closed.")
 
 if __name__ == "__main__":
     launch()
+
