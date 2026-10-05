@@ -10,7 +10,6 @@ import json, os, time, math, textwrap
 import sys
 import random
 
-# Chronus Ledger Integration
 sys.path.append(r"C:\HVF_Repos\ebony-chronos-private")
 try:
     from chronus_core import seal_telemetry_block
@@ -27,35 +26,26 @@ def render():
     tactical_css = textwrap.dedent("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Orbitron:wght@700;900&display=swap');
-
     html, body, [class*="css"], .stApp { font-family: 'JetBrains Mono', monospace !important; background-color: #030712 !important; color: #94a3b8 !important; }
     header, footer { visibility: hidden !important; height: 0 !important; }
     .block-container { padding-top: 0.2rem !important; padding-bottom: 0.4rem !important; max-width: 99% !important; }
-
     .stApp::before { content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02)); z-index: 1000; background-size: 100% 3px, 6px 100%; pointer-events: none; opacity: 0.25; }
-
     .c2-header { background: #090e17; border: 1px solid #1e293b; border-left: 4px solid #00f3ff; padding: 6px 14px; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
     .c2-title { font-family: 'Orbitron', sans-serif; font-size: 16px; font-weight: 900; letter-spacing: 2px; color: #f8fafc; margin: 0; }
     .c2-sub { font-size: 9px; letter-spacing: 1.5px; color: #00f3ff; margin-top: 1px; text-transform: uppercase; }
     .c2-meta-badge { text-align: right; font-size: 9px; color: #64748b; line-height: 1.3; }
     .badge-green { color: #10b981; font-weight: 700; }
     .badge-cyan  { color: #00f3ff; font-weight: 700; }
-
     div.stButton > button { background: #0b1324 !important; border: 1px solid #1e293b !important; color: #94a3b8 !important; font-family: 'JetBrains Mono', monospace !important; font-size: 9px !important; font-weight: 700 !important; letter-spacing: 0.5px !important; padding: 6px 4px !important; border-radius: 3px !important; width: 100% !important; transition: all 0.2s ease !important; }
     div.stButton > button:hover { border-color: #00f3ff !important; color: #f8fafc !important; box-shadow: 0 0 10px rgba(0, 243, 255, 0.3) !important; }
-
     .writeup-panel { background: #080f1e; border: 1px solid #1e293b; border-left: 4px solid #f59e0b; padding: 6px 12px; border-radius: 4px; margin-bottom: 4px; }
     .writeup-header { font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; color: #f59e0b; text-transform: uppercase; margin-bottom: 2px; display: flex; justify-content: space-between; }
     .writeup-body { font-size: 9px; color: #cbd5e1; line-height: 1.4; }
-
     button[data-baseweb="tab"] { background: transparent !important; color: #94a3b8 !important; font-family: 'JetBrains Mono', monospace !important; font-size: 10px !important; font-weight: 700 !important; letter-spacing: 1px !important; padding: 6px 12px !important; }
     button[aria-selected="true"] { color: #00f3ff !important; border-bottom: 2px solid #00f3ff !important; }
-
     .terminal-vault { background: #02050a; border: 1px solid #1e293b; padding: 4px 8px; font-size: 9px; color: #10b981; font-family: 'JetBrains Mono', monospace; line-height: 1.3; }
-
     @keyframes flash { 0% { opacity: 1; text-shadow: 0 0 20px #ff0000; } 50% { opacity: 0.3; text-shadow: none; } 100% { opacity: 1; text-shadow: 0 0 20px #ff0000; } }
     .alert-box { background: #1a0505; border: 2px solid #ff0000; padding: 60px; text-align: center; margin-top: 50px; animation: flash 1s infinite; border-radius: 5px; }
-    
     @keyframes pulse-green { 0% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); } 50% { box-shadow: 0 0 50px rgba(16, 185, 129, 0.8); } 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); } }
     .mitigate-box { background: #022c16; border: 2px solid #10b981; padding: 60px; text-align: center; margin-top: 50px; border-radius: 5px; animation: pulse-green 2s infinite; }
     </style>
@@ -116,7 +106,6 @@ def render():
         </div>
         """, unsafe_allow_html=True)
         st.markdown("<br>", unsafe_allow_html=True)
-        
         if st.button("⚡ INITIATE EBONY PROTOCOL ⚡", type="primary", use_container_width=True):
             ph = st.session_state["pending_hazard"]
             if ph == "POLE_BREAK":
@@ -131,7 +120,6 @@ def render():
                 st.session_state["hazard_state"] = "OPERATOR_ERROR"; st.session_state["ch1_closed"] = False; st.session_state["ch2_closed"] = True; st.session_state["ch3_mode"] = "DISCHARGE"; st.session_state["ch4_state"] = "STANDBY"; st.session_state["bus_b_shed"] = False; st.session_state["stage_idx"] = 2
             elif ph == "TOTAL_BLACKOUT":
                 st.session_state["hazard_state"] = "TOTAL_BLACKOUT"; st.session_state["ch1_closed"] = False; st.session_state["ch2_closed"] = False; st.session_state["ch3_mode"] = "ISOLATED"; st.session_state["ch4_state"] = "OFF"; st.session_state["bus_b_shed"] = True; st.session_state["stage_idx"] = 0
-                
             st.session_state["alarm_active"] = False
             st.session_state["grid_state"] = "MITIGATING"
             st.rerun()
@@ -151,7 +139,6 @@ def render():
 
     st.markdown('<div style="font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; color: #f59e0b; text-transform: uppercase; margin-bottom: 3px;">⚠️ FAULT & INCIDENT INJECTION CONSOLE // TEST DYNAMIC REALITY DEFLECTION:</div>', unsafe_allow_html=True)
     b1, b2, b3, b4, b5, b6, b7 = st.columns(7)
-
     with b1:
         if st.button("🚧 POLE BREAK (HWY 69)"): st.session_state["pending_hazard"] = "POLE_BREAK"; st.session_state["pending_hazard_name"] = "POLE BREAK (HWY 69)"; st.session_state["grid_state"] = "SHOCK"; st.session_state["alarm_active"] = True; st.rerun()
     with b2:
@@ -168,7 +155,6 @@ def render():
         if st.button("✅ RESTORE NOMINAL (60Hz)"): st.session_state["hazard_state"] = "NOMINAL"; st.session_state["ch1_closed"] = True; st.session_state["ch2_closed"] = True; st.session_state["ch3_mode"] = "FLOAT"; st.session_state["ch4_state"] = "STANDBY"; st.session_state["bus_b_shed"] = False; st.session_state["stage_idx"] = 0; st.rerun()
 
     h_mode = st.session_state["hazard_state"]
-
     i_ch1 = 250.0 if st.session_state["ch1_closed"] else 0.0; v_ch1 = 480.0 if st.session_state["ch1_closed"] else 0.0
     i_ch2 = 100.0 if st.session_state["ch2_closed"] else 0.0; v_ch2 = 480.0 if st.session_state["ch2_closed"] else 0.0
     if st.session_state["ch3_mode"] == "DISCHARGE": i_ch3 = 350.0 if not st.session_state["ch1_closed"] else 150.0; v_ch3 = 478.0
@@ -194,6 +180,24 @@ def render():
     master_i = (i_base_sum * i_inrush_multiplier) if master_v > 0.0 else 0.0
     master_ipeak = master_i * 1.414
     master_kw = (math.sqrt(3) * master_v * master_i * 0.95) / 1000.0 if master_v > 0.0 else 0.0
+
+    # DYNAMIC ASSET INJECTION LOGIC (Fixing Tab 1 Void)
+    bus_a_active = master_v > 0
+    bus_a_status = "ONLINE (CRITICAL)" if bus_a_active else "OFFLINE (DEAD BUS)"
+    bus_a_color = "#10b981" if bus_a_active else "#ef4444"
+    
+    bus_b_active = bus_a_active and not st.session_state["bus_b_shed"]
+    bus_b_status = "ONLINE" if bus_b_active else "SHED / OFFLINE"
+    bus_b_color = "#10b981" if bus_b_active else "#ef4444"
+
+    active_h["assets"] = {
+        "c2": {"tag": "DEFENSE C2 MAINFRAME", "title": "NODE ALPHA", "output": "100% UPTIME" if bus_a_active else "OFFLINE", "status": bus_a_status, "color": bus_a_color, "desc": "Priority 1. Uninterruptible Base Command."},
+        "radar": {"tag": "EARLY WARNING RADAR", "title": "ARRAY SEC-7", "output": "TRACKING" if bus_a_active else "BLIND", "status": bus_a_status, "color": bus_a_color, "desc": "Priority 1. Tied directly to secure Bus A."},
+        "pumps": {"tag": "COOLING PUMPS", "title": "LIQUID THERMAL LOOP", "output": "850 GPM" if bus_a_active else "0 GPM", "status": bus_a_status, "color": bus_a_color, "desc": "Priority 1. Core thermal management."},
+        "hvac": {"tag": "HVAC CHILLERS", "title": "FACTORY CLIMATE", "output": "400 TONS" if bus_b_active else "0 TONS", "status": bus_b_status, "color": bus_b_color, "desc": "Priority 3. Shedable load (-155A)."},
+        "fab": {"tag": "FABRICATION LINE", "title": "ROBOTICS ARM B", "output": "ACTIVE" if bus_b_active else "HALTED", "status": bus_b_status, "color": bus_b_color, "desc": "Priority 3. Non-essential manufacturing."},
+        "light": {"tag": "FACILITY LIGHTING", "title": "ZONE 4-9 SECTOR", "output": "NOMINAL" if bus_b_active else "EMERGENCY ONLY", "status": bus_b_status, "color": bus_b_color, "desc": "Priority 3. Secondary lumens routed."}
+    }
 
     st.markdown('<div style="font-size: 9px; font-weight: 800; letter-spacing: 1px; color: #38bdf8; text-transform: uppercase; margin-bottom: 2px;">🎛️ MANUAL BREAKER & FEEDER SWITCHGEAR (CLICK TO ACTUATE CURRENT DELTAS):</div>', unsafe_allow_html=True)
     c_col1, c_col2, c_col3, c_col4, c_col5 = st.columns(5)
@@ -355,9 +359,6 @@ def render():
         with p3: st.markdown("""<div style="background:#070d18; border:1px solid #1e293b; border-left:4px solid #f59e0b; padding:8px 10px; border-radius:3px;"><div style="font-size:8px; color:#64748b; font-weight:700;">DOMAIN 03 // CRYPTO TRUST</div><div style="font-size:11px; font-weight:800; color:#f8fafc; margin:2px 0;">MERKLE AUDIT LEDGER</div><div style="font-size:12px; font-weight:900; color:#f59e0b;">HEAD BLOCK #82 SEALED</div><div style="font-size:8px; color:#94a3b8; margin-top:2px;">Ed25519 Signatures // Level 5 Authority</div></div>""", unsafe_allow_html=True)
         with p4: st.markdown("""<div style="background:#070d18; border:1px solid #1e293b; border-left:4px solid #a855f7; padding:8px 10px; border-radius:3px;"><div style="font-size:8px; color:#64748b; font-weight:700;">DOMAIN 04 // CAPITAL MODEL</div><div style="font-size:11px; font-weight:800; color:#f8fafc; margin:2px 0;">2 CFR 200.306 MATCH</div><div style="font-size:12px; font-weight:900; color:#a855f7;">$500,000 IN-KIND MATCH</div><div style="font-size:8px; color:#94a3b8; margin-top:2px;">$0.00 Liquid Cash Escrow Required</div></div>""", unsafe_allow_html=True)
 
-    # ------------------------------------------------------------------------------
-    # 7. EBONY AI SENSOR FUSION ENGINE & MERKLE LEDGER
-    # ------------------------------------------------------------------------------
     if h_mode == "NOMINAL":
         alert_id = "NOMINAL_BASELINE"
         border_color = "#10b981"
@@ -380,7 +381,6 @@ def render():
         else: 
             suggestions = ">> SYSTEM STABILIZED.\n>> AWAITING PHYSICAL VERIFICATION."
 
-    # Compressed Terminal Block
     fusion_html = textwrap.dedent(f"""
     <div style="margin-top: 15px;">
         <div class="terminal-vault" style="margin-bottom: 2px;">
