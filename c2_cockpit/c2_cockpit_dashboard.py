@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 """
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT
-Object-Oriented Sovereign Architecture - Pure Aerospace SCADA + Live Math Engine
+Object-Oriented Sovereign Architecture - Pure Aerospace SCADA + Live Math Engine (Patched)
 Authority: CEO Jeffery Humphrey (Level 5 Authority) // CAGE: 1AHA8
 """
 import streamlit as st
@@ -9,6 +9,7 @@ import streamlit.components.v1 as components
 import time
 import random
 import hashlib
+import json
 from pathlib import Path
 
 class MasterCockpit:
@@ -21,7 +22,6 @@ class MasterCockpit:
         if "mitigation_log" not in st.session_state: st.session_state.mitigation_log = ""
         if "alarm_active" not in st.session_state: st.session_state.alarm_active = False
         
-        # Interactive Breaker States
         if "ch1" not in st.session_state: st.session_state.ch1 = True
         if "ch2" not in st.session_state: st.session_state.ch2 = True
         if "ch3" not in st.session_state: st.session_state.ch3 = False
@@ -101,14 +101,13 @@ class MasterCockpit:
             st.rerun()
 
     def _calculate_current(self):
-        """Dynamic Real-Time Kirchhoff Math Engine based on checkbox state"""
         base_amps = 350.0 # Base ambient load
         if st.session_state.ch1: base_amps += 803.8
         if st.session_state.ch2: base_amps += 100.0
         if st.session_state.ch3: base_amps += 350.0
         if st.session_state.ch4: base_amps += 521.2
         
-        kw = base_amps * 0.2335 # Simplified Power factor
+        kw = base_amps * 0.2335
         return base_amps, kw
 
     def _render_dashboard_frame(self, progress=1.0, mode="NORMAL"):
@@ -125,7 +124,7 @@ class MasterCockpit:
             if col2.button("INJECT: HIGH_WINDS"): self._trigger_hazard("HIGH_WINDS")
         else:
             if mode == "RESTORED":
-                if st.button("✅ ACKNOWLEDGE INCIDENT & RESET MATRIX", use_container_width=True):
+                if st.button("✅ ACKNOWLEDGE INCIDENT & RESET MATRIX", use_container_width=True, key=f"reset_{progress}"):
                     st.session_state.grid_state = "NORMAL"
                     st.session_state.ch1 = True
                     st.session_state.ch3 = False
@@ -136,12 +135,19 @@ class MasterCockpit:
         # 2. SWITCHGEAR
         st.markdown('<div class="section-header">▶ MANUAL BREAKER & FEEDER SWITCHGEAR (CLICK TO ACTUATE CURRENT DELTAS):</div>', unsafe_allow_html=True)
         is_locked = (mode != "NORMAL" and mode != "RESTORED")
-        
         c1, c2, c3, c4 = st.columns(4)
-        c1.checkbox("CH1 Utility", key="ch1", disabled=is_locked)
-        c2.checkbox("CH2 Solar", key="ch2", disabled=is_locked)
-        c3.checkbox("CH3 BESS", key="ch3", disabled=is_locked)
-        c4.checkbox("CH4 Aux Gen", key="ch4", disabled=is_locked)
+        
+        # KEY CRASH FIX: Isolate the widget keys during the high-speed animation loop
+        if mode == "RECOVERY":
+            c1.checkbox("CH1 Utility", value=st.session_state.ch1, key=f"ch1_{progress}", disabled=True)
+            c2.checkbox("CH2 Solar", value=st.session_state.ch2, key=f"ch2_{progress}", disabled=True)
+            c3.checkbox("CH3 BESS", value=st.session_state.ch3, key=f"ch3_{progress}", disabled=True)
+            c4.checkbox("CH4 Aux Gen", value=st.session_state.ch4, key=f"ch4_{progress}", disabled=True)
+        else:
+            c1.checkbox("CH1 Utility", key="ch1", disabled=is_locked)
+            c2.checkbox("CH2 Solar", key="ch2", disabled=is_locked)
+            c3.checkbox("CH3 BESS", key="ch3", disabled=is_locked)
+            c4.checkbox("CH4 Aux Gen", key="ch4", disabled=is_locked)
 
         # Calculate Live Metrics
         amps, kw = self._calculate_current()
