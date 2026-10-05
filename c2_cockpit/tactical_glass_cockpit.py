@@ -106,13 +106,13 @@ def render():
     if "alarm_active" not in st.session_state: st.session_state["alarm_active"] = False
     if "pending_hazard" not in st.session_state: st.session_state["pending_hazard"] = None
     if "pending_hazard_name" not in st.session_state: st.session_state["pending_hazard_name"] = ""
-    if "hazard_state" not in st.session_state: st.session_state["hazard_state"] = "POLE_BREAK"
-    if "ch1_closed" not in st.session_state: st.session_state["ch1_closed"] = False
+    if "hazard_state" not in st.session_state: st.session_state["hazard_state"] = "NOMINAL"
+    if "ch1_closed" not in st.session_state: st.session_state["ch1_closed"] = True
     if "ch2_closed" not in st.session_state: st.session_state["ch2_closed"] = True
-    if "ch3_mode"   not in st.session_state: st.session_state["ch3_mode"]   = "DISCHARGE"
+    if "ch3_mode"   not in st.session_state: st.session_state["ch3_mode"]   = "FLOAT"
     if "ch4_state"  not in st.session_state: st.session_state["ch4_state"]  = "STANDBY"
-    if "bus_b_shed" not in st.session_state: st.session_state["bus_b_shed"] = True
-    if "stage_idx"  not in st.session_state: st.session_state["stage_idx"]  = 1
+    if "bus_b_shed" not in st.session_state: st.session_state["bus_b_shed"] = False
+    if "stage_idx"  not in st.session_state: st.session_state["stage_idx"]  = 0
 
     st.markdown("""
     <div class="c2-header">
@@ -440,29 +440,38 @@ def render():
     # ------------------------------------------------------------------------------
     if h_mode == "NOMINAL":
         alert_id = "NOMINAL_BASELINE"
-        suggestions = ">> NO ACTIVE THREATS DETECTED. GRID STABLE.\n>> AWAITING INJECTION COMMAND."
+        border_color = "#10b981"
+        suggestions = ">> STATUS: ALL SYSTEMS NOMINAL.\n>> LOCATION: FACILITY-WIDE.\n>> RECOMMENDED ACTIONS:\n   1. Execute routine physical maintenance on CH2 PV Inverter cooling fans.\n   2. Await command injection."
     else:
         alert_id = h_mode
-        if "POLE" in alert_id: suggestions = ">> AUTONOMOUS ACTIONS EXECUTED:\n1. TRIPPED CH1 UTILITY FEEDER TO ISOLATE FAULT.\n2. ENGAGED CH3 BESS BATTERY STORAGE TO REPOWER BUS A.\n>> RECOMMENDED HUMAN ACTIONS:\n1. DISPATCH REPAIR CREW TO HWY 69.\n2. INITIATE POLE REPLACEMENT TICKET VIA MAINTENANCE PORTAL."
-        elif "WIND" in alert_id: suggestions = ">> AUTONOMOUS ACTIONS EXECUTED:\n1. ENGAGED CH3 BESS BATTERY STORAGE FOR LOAD SHARING.\n>> RECOMMENDED HUMAN ACTIONS:\n1. MONITOR REGIONAL WIND SPEEDS.\n2. PREPARE CH4 AUX GENERATOR FOR RAPID START."
-        elif "LIGHTNING" in alert_id: suggestions = ">> AUTONOMOUS ACTIONS EXECUTED:\n1. TRIPPED CH2 PV TO PREVENT INVERTER BACKFEED.\n2. SHUNTED HIGH-VOLTAGE SURGE TO GROUND.\n>> RECOMMENDED HUMAN ACTIONS:\n1. DISPATCH TECHNICIAN TO INSPECT PV INVERTER FOR ARC DAMAGE."
-        elif "FLOOD" in alert_id: suggestions = ">> AUTONOMOUS ACTIONS EXECUTED:\n1. TRIPPED CH1 UTILITY.\n2. SHED NON-ESSENTIAL BUS B.\n3. CRANKED CH4 AUX GENERATOR TO OFFSET SUBMERSION LOSS.\n>> RECOMMENDED HUMAN ACTIONS:\n1. DISPATCH WATER EXTRACTION TEAMS TO SUBSTATION."
-        elif "OPERATOR" in alert_id: suggestions = ">> AUTONOMOUS ACTIONS EXECUTED:\n1. OVERRODE MANUAL CH1 DISCONNECT EVENT.\n2. RESTORED LOAD BALANCE PRE-BLACKOUT.\n>> RECOMMENDED HUMAN ACTIONS:\n1. REVOKE RESPONSIBLE OPERATOR CREDENTIALS.\n2. INITIATE PROTOCOL AUDIT."
-        elif "BLACKOUT" in alert_id: suggestions = ">> AUTONOMOUS ACTIONS EXECUTED:\n1. ISOLATED ALL EXTERNAL FEEDS.\n2. SHED BUS B TO PRESERVE CRITICAL DEFENSE LOAD.\n>> RECOMMENDED HUMAN ACTIONS:\n1. DECLARE EMERGENCY.\n2. PREPARE FOR BLACK START."
-        else: suggestions = ">> AUTONOMOUS ACTIONS EXECUTED.\n>> SYSTEM STABILIZED."
+        border_color = "#f59e0b"
+        if "POLE" in alert_id: 
+            suggestions = ">> PROBLEM: 12kV Feeder Line Severed.\n>> LOCATION: HWY 69, Pittsburg Co.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch repair crew to HWY 69 coordinates.\n   2. Initiate Level 3 pole replacement ticket via maintenance portal."
+        elif "WIND" in alert_id: 
+            suggestions = ">> PROBLEM: Wind speeds exceeding 75 MPH threshold.\n>> LOCATION: Statewide Area Command.\n>> REQUIRED HUMAN ACTIONS:\n   1. Monitor regional wind speeds for structural shear limits.\n   2. Prepare CH4 Aux Gen for rapid physical start."
+        elif "LIGHTNING" in alert_id: 
+            suggestions = ">> PROBLEM: 50kV Lightning Surge Detected.\n>> LOCATION: Substation Alpha Perimeter.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch technician to inspect PV inverter for arc flash damage.\n   2. Verify grounding array and surge arrester integrity."
+        elif "FLOOD" in alert_id: 
+            suggestions = ">> PROBLEM: Severe water ingress detected in lower levels.\n>> LOCATION: Main Substation Vault.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch heavy water extraction teams immediately.\n   2. Physically elevate critical backup drives."
+        elif "OPERATOR" in alert_id: 
+            suggestions = ">> PROBLEM: Unauthorized manual breaker trip detected.\n>> LOCATION: Control Room B.\n>> REQUIRED HUMAN ACTIONS:\n   1. Revoke responsible operator credential cards.\n   2. Initiate immediate security protocol audit."
+        elif "BLACKOUT" in alert_id: 
+            suggestions = ">> PROBLEM: Total Loss of External Grid Power.\n>> LOCATION: Regional Grid.\n>> REQUIRED HUMAN ACTIONS:\n   1. Declare Level 1 Infrastructure Emergency.\n   2. Execute Black Start physical isolation protocol."
+        else: 
+            suggestions = ">> SYSTEM STABILIZED.\n>> AWAITING PHYSICAL VERIFICATION."
 
-    st.markdown(f"""
+    fusion_html = textwrap.dedent(f"""
     <div class="terminal-vault">
     [HARDWARE_ASSERTION] FC05_LATENCY: 2.04 us | ARC_QUENCH: 13.33 ms | RESYNC_WINDOW: 126.13 ms | SIMULATION_DRIFT: 0.00%
     </div>
-    
-    <div style="background:#050914; border:1px solid #1e293b; border-left:4px solid {'#10b981' if h_mode=='NOMINAL' else '#f59e0b'}; padding:10px; margin-top:8px; margin-bottom:8px; border-radius:3px;">
-        <div style="font-size:10px; font-weight:900; color:{'#10b981' if h_mode=='NOMINAL' else '#f59e0b'}; letter-spacing:1px; margin-bottom:4px;">
+    <div style="background:#050914; border:1px solid #1e293b; border-left:4px solid {border_color}; padding:10px; margin-top:8px; margin-bottom:8px; border-radius:3px;">
+        <div style="font-size:10px; font-weight:900; color:{border_color}; letter-spacing:1px; margin-bottom:4px;">
             👑 EBONY AI SENSOR FUSION // ACTIVE EVENT ID: {alert_id}
         </div>
         <div style="font-size:9.5px; color:#f8fafc; white-space:pre-wrap; line-height:1.4; font-family:'JetBrains Mono', monospace;">{suggestions}</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
+    st.markdown(fusion_html, unsafe_allow_html=True)
 
     if seal_telemetry_block:
         live_load = master_i
