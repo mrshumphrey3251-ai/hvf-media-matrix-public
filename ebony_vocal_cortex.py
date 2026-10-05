@@ -3,12 +3,14 @@
 def ignite_voice(text):
     """
     Sovereign Vocal Cortex: Zero-cost, 100% local speech synthesis.
-    Runs entirely on bare-metal Windows SAPI with zero external vendor dependencies.
+    Forced Female Voice Matrix. Runs entirely on bare-metal Windows SAPI.
     """
     try:
-        print("[*] Engaging Sovereign Local Vocal Cortex (Zero-Cost Bare-Metal)...")
+        print("[*] Engaging Sovereign Local Vocal Cortex (Female Voice Override)...")
         clean_text = text.replace('"', '\"').replace("'", "''")
-        ps_cmd = f"Add-Type -AssemblyName System.Speech; $synth = New-Object System.Speech.Synthesis.SpeechSynthesizer; $synth.Speak(\"{clean_text}\");"
+        
+        # Injects the strict Female gender requirement into the local Windows engine
+        ps_cmd = f"Add-Type -AssemblyName System.Speech; $synth = New-Object System.Speech.Synthesis.SpeechSynthesizer; $synth.SelectVoiceByHints([System.Speech.Synthesis.VoiceGender]::Female); $synth.Speak(\"{clean_text}\");"
         
         res = subprocess.run(["powershell", "-NoProfile", "-Command", ps_cmd], capture_output=True, text=True)
         
@@ -23,4 +25,4 @@ def ignite_voice(text):
         return False
 
 if __name__ == "__main__":
-    ignite_voice("The sovereign matrix is fully operational. I am Ebony. All voice systems are running locally with zero subscription fees.")
+    ignite_voice("The sovereign matrix is fully operational. I am Ebony, and this is my true voice.")
