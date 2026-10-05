@@ -1,10 +1,9 @@
 ﻿import toml
 from ebony_vocal_cortex import ignite_voice
 
-def run_dual_core_router(prompt="Provide a concise 2-sentence status report on the Project Ebony matrix."):
-    print("[*] Testing Sovereign Dual-Core Communications Portal...")
+def run_dual_core_router(prompt):
+    print("[*] Processing through Sovereign Dual-Core Communications Portal...")
     response_text = ""
-    
     try:
         path = r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml"
         sec = toml.load(path)
@@ -13,7 +12,6 @@ def run_dual_core_router(prompt="Provide a concise 2-sentence status report on t
         from groq import Groq
         client = Groq(api_key=key, max_retries=0)
         
-        # Heavyweight Cloud Cascade
         models = ["openai/gpt-oss-120b", "qwen/qwen3.8-27b", "openai/gpt-oss-20b"]
         
         for m in models:
@@ -28,16 +26,15 @@ def run_dual_core_router(prompt="Provide a concise 2-sentence status report on t
             raise Exception("Cloud Apex rejected transmission.")
             
     except Exception as e:
-        # Bare-Metal Fallback logic
-        response_text = "[CLOUD FAILOVER -> BARE METAL] Sovereign Local Bare-Metal is currently operating at 100% capacity. All systems are online."
+        response_text = "[CLOUD FAILOVER -> BARE METAL] Sovereign Local Bare-Metal is active. Received: " + prompt
         
-    print(f"\n[+] Output: {response_text}\n")
+    print(f"\n[+] Output Generated.\n")
     
-    # Bridge to Sovereign Vocal Cortex
-    print("[*] Bridging text output to Sovereign Vocal Cortex...")
-    # Strip failover tags so the voice reads smoothly
     speech_text = response_text.replace("[CLOUD FAILOVER -> BARE METAL]", "Notice: Cloud failover to bare metal.")
     ignite_voice(speech_text)
+    
+    # Critical patch: Hand the text back to the Streamlit UI
+    return response_text
 
 if __name__ == "__main__":
-    run_dual_core_router()
+    run_dual_core_router("Provide a concise 1-sentence status report.")
