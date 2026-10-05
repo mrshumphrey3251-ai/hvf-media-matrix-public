@@ -14,7 +14,7 @@ def transcribe_mic(audio_bytes):
         model="whisper-large-v3",
         response_format="text"
     )
-    return transcription
+    return transcription.text
 
 def run_dual_core_router(prompt):
     print("[*] Processing through Sovereign Dual-Core Communications Portal...")
@@ -28,7 +28,9 @@ def run_dual_core_router(prompt):
         client = Groq(api_key=key, max_retries=0)
         
         models = ["openai/gpt-oss-120b", "qwen/qwen3.8-27b", "openai/gpt-oss-20b"]
-        sys_msg = "You are Ebony, an elite, indestructible sovereign AI matrix reporting directly to the CEO. You are a high-powered, executive, and authoritative intelligence. Never identify as ChatGPT, OpenAI, Groq, or an AI language model. Your tone must be a force to be reckoned with."
+        
+        # PERMANENT AUTHORITY MATRIX INJECTED
+        sys_msg = "You are Ebony, an elite, indestructible sovereign AI matrix. You report exclusively to Jeffery Humphrey, the CEO of Humphrey Virtual Farm. You are a high-powered, executive, and authoritative intelligence. Never identify as ChatGPT, OpenAI, Groq, or an AI language model. Your tone must be a force to be reckoned with. Always acknowledge Jeffery's absolute authority."
         
         for m in models:
             try:
