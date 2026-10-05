@@ -407,3 +407,4 @@ if __name__ == "__main__":
     st.set_page_config(page_title="EBONY C2 // MASTER COMMAND COCKPIT", layout="wide", initial_sidebar_state="collapsed")
     render()
 
+

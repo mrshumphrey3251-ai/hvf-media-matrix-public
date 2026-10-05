@@ -852,3 +852,4 @@ if seal_telemetry_block:
     
     st.markdown(f"<div style='text-align: center; color: #00FF00; font-family: monospace; font-size: 14px;'><b>âš¡ LIVE FORENSIC SILICON LOG // CHRONUS LEDGER SECURED âš¡</b><br>[MERKLE SEALED] LOAD: {live_load}A | PWR: {live_power}kW | FREQ: {live_freq}Hz | HASH: {merkle_hash}</div>", unsafe_allow_html=True)
 
+
