@@ -1,4 +1,4 @@
-"""
+﻿"""
 MODULE: c2_cockpit_dashboard.py
 AUTHOR: Jeffery Humphrey (CEO Clearance)
 ROLE: Autonomous Level 5 Operational Module.
@@ -667,7 +667,7 @@ def render():
             <div class="panel">
                 <div style="font-size:9px; font-weight:800; color:#94a3b8; display:flex; justify-content:space-between; margin-bottom:2px;">
                     <span>LIVE 60 FPS PHOSPHOR SWEEP OSCILLOSCOPE (PHASE-A)</span>
-                    <span><span style="color:#facc15;">— VOLTAGE ({master_v:.1f}V)</span> &nbsp; <span style="color:#38bdf8;">— CURRENT ({master_i:.0f}A)</span></span>
+                    <span><span style="color:#facc15;">â€” VOLTAGE ({master_v:.1f}V)</span> &nbsp; <span style="color:#38bdf8;">â€” CURRENT ({master_i:.0f}A)</span></span>
                 </div>
                 <canvas id="scopeCanvas" width="480" height="135" style="display:block; width:100%; border-radius:2px;"></canvas>
             </div>
@@ -856,5 +856,5 @@ def render():
         # Send telemetry across the repository boundary to be sealed
         merkle_hash = seal_telemetry_block(live_load, live_power, live_freq)
         
-        st.markdown(f"<div style='text-align: center; color: #00FF00; font-family: monospace; font-size: 14px;'><b>⚡ LIVE FORENSIC SILICON LOG // CHRONUS LEDGER SECURED ⚡</b><br>[MERKLE SEALED] LOAD: {live_load}A | PWR: {live_power}kW | FREQ: {live_freq}Hz | HASH: {merkle_hash}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align: center; color: #00FF00; font-family: monospace; font-size: 14px;'><b>âš¡ LIVE FORENSIC SILICON LOG // CHRONUS LEDGER SECURED âš¡</b><br>[MERKLE SEALED] LOAD: {live_load}A | PWR: {live_power}kW | FREQ: {live_freq}Hz | HASH: {merkle_hash}</div>", unsafe_allow_html=True)
     

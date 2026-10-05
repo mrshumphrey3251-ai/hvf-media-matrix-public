@@ -85,7 +85,7 @@ def render():
                 window.scadaGain.connect(window.scadaAudioCtx.destination);
                 window.scadaOsc1.type = "square"; window.scadaOsc2.type = "square";
                 window.scadaOsc1.frequency.value = 853; window.scadaOsc2.frequency.value = 960;
-                window.scadaGain.gain.value = 0.15;
+                window.scadaGain.gain.value = 0.02;
                 window.scadaOsc1.start(); window.scadaOsc2.start();
             }}
         }} else {{
@@ -406,3 +406,4 @@ def render():
 if __name__ == "__main__":
     st.set_page_config(page_title="EBONY C2 // MASTER COMMAND COCKPIT", layout="wide", initial_sidebar_state="collapsed")
     render()
+
