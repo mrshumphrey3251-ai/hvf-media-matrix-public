@@ -2,26 +2,29 @@
 import time
 from sovereign_comms import run_dual_core_router, transcribe_mic
 
-st.set_page_config(page_title="Ebony Master Cockpit", page_icon="⚡", layout="wide")
+st.set_page_config(page_title="HVF Omni-Industrial Matrix", page_icon="⚡", layout="wide")
 
-# --- EXECUTIVE TELEMETRY & VOICE INPUT ---
-with st.sidebar:
-    st.title("⚙️ System Telemetry")
-    st.markdown("---")
-    st.metric(label="Primary Brain", value="Cloud Apex", delta="Online (Tier-1)")
-    st.metric(label="Fallback Brain", value="Bare-Metal", delta="Standby")
-    st.metric(label="Vocal Matrix", value="SAPI -> Media Player", delta="Active (Controllable)")
-    st.markdown("---")
-    st.markdown("### 🎙️ Verbal Command")
-    audio_val = st.audio_input("Speak to the Matrix")
-
-# --- MAIN COMMAND INTERFACE ---
-st.title("⚡ Project Ebony: Master Cockpit")
-st.markdown("### Executive Command Center")
+# --- MASTER HEADER ---
+st.title("⚡ HVF Omni-Industrial Matrix Command Deck | Ebony AI")
+st.markdown("**Active User: Jeffery Humphrey | 🛡️ Mode: 🟢 Online (Cloud Fast Link)**")
 st.markdown("---")
 
+st.markdown("### ⚡ Sovereign Command Nexus")
+
+# --- COMMAND INTERFACE SELECTOR ---
+interface_mode = st.radio(
+    "Select Command Interface:", 
+    ["⌨️ Secure Text Terminal", "🎙️ Acoustic Voice Link"], 
+    horizontal=True
+)
+
+st.markdown("---")
+
+# --- CHAT MATRIX ---
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+    st.session_state.messages = [
+        {"role": "assistant", "content": "Hey Jeffery, I'm online and wired in. You want to type or talk today?", "audio": None}
+    ]
 
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
@@ -29,17 +32,21 @@ for msg in st.session_state.messages:
         if msg.get("audio"):
             st.audio(msg["audio"])
 
-# Process Voice Input
+# --- DUAL-VECTOR INPUT ROUTING ---
 prompt = None
-if audio_val:
-    with st.spinner("Transcribing Voice Command..."):
-        prompt = transcribe_mic(audio_val.read())
 
-# Process Text Input (If voice wasn't used)
-text_input = st.chat_input("Type your command to Ebony...")
-if text_input:
-    prompt = text_input
+if "Text" in interface_mode:
+    text_input = st.chat_input("Secure Text Terminal active... Type command here.")
+    if text_input:
+        prompt = text_input
+else:
+    st.info("🎙️ Acoustic Voice Link Active. Click the microphone below to transmit your verbal orders.")
+    audio_val = st.audio_input("Speak to the Matrix")
+    if audio_val:
+        with st.spinner("Transcribing Voice Command..."):
+            prompt = transcribe_mic(audio_val.read())
 
+# --- PROCESSING PIPELINE ---
 if prompt:
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
@@ -53,9 +60,13 @@ if prompt:
             
             st.markdown(response)
             if audio_file:
-                # Native Streamlit audio player gives Pause/Rewind/Ffwd controls
+                # Controllable UI Media Player (Pause/Stop/Rewind/Ffwd)
                 st.audio(audio_file, autoplay=True)
             
             st.caption(f"⏱️ Transmission Latency: {latency} seconds")
             
     st.session_state.messages.append({"role": "assistant", "content": response, "audio": audio_file})
+    
+    # If using voice, force a rerun to clear the audio widget properly after submission
+    if "Voice" in interface_mode:
+        st.rerun()
