@@ -11,7 +11,6 @@ st.markdown("---")
 
 st.markdown("### ⚡ Sovereign Command Nexus")
 
-# --- COMMAND INTERFACE SELECTOR ---
 interface_mode = st.radio(
     "Select Command Interface:", 
     ["⌨️ Secure Text Terminal", "🎙️ Acoustic Voice Link"], 
@@ -20,53 +19,53 @@ interface_mode = st.radio(
 
 st.markdown("---")
 
-# --- CHAT MATRIX ---
+# --- CHAT MATRIX & DYNAMIC WIDGET STATE ---
 if "messages" not in st.session_state:
     st.session_state.messages = [
         {"role": "assistant", "content": "Hey Jeffery, I'm online and wired in. You want to type or talk today?", "audio": None}
     ]
+    
+if "mic_key" not in st.session_state:
+    st.session_state.mic_key = 0
 
-for msg in st.session_state.messages:
+for i, msg in enumerate(st.session_state.messages):
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
         if msg.get("audio"):
-            st.audio(msg["audio"])
+            # Autoplay only the very last message in the feed
+            is_last = (i == len(st.session_state.messages) - 1)
+            try:
+                st.audio(msg["audio"], autoplay=is_last)
+            except TypeError:
+                st.audio(msg["audio"])
 
 # --- DUAL-VECTOR INPUT ROUTING ---
 prompt = None
 
 if "Text" in interface_mode:
-    text_input = st.chat_input("Secure Text Terminal active... Type command here.")
-    if text_input:
-        prompt = text_input
+    prompt = st.chat_input("Secure Text Terminal active... Type command here.")
 else:
     st.info("🎙️ Acoustic Voice Link Active. Click the microphone below to transmit your verbal orders.")
-    audio_val = st.audio_input("Speak to the Matrix")
+    # The dynamic key guarantees the widget is destroyed and remounted after every use
+    audio_val = st.audio_input("Speak to the Matrix", key=f"mic_{st.session_state.mic_key}")
+    
     if audio_val:
         with st.spinner("Transcribing Voice Command..."):
             prompt = transcribe_mic(audio_val.read())
+        # Increment the key to permanently wipe the audio file from browser memory
+        st.session_state.mic_key += 1
 
-# --- PROCESSING PIPELINE ---
+# --- HARD RESET PROCESSING PIPELINE ---
 if prompt:
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.markdown(prompt)
-
-    with st.chat_message("assistant"):
-        with st.spinner("Processing through Dual-Core Router..."):
-            start_time = time.time()
-            response, audio_file = run_dual_core_router(prompt)
-            latency = round(time.time() - start_time, 2)
-            
-            st.markdown(response)
-            if audio_file:
-                # Controllable UI Media Player (Pause/Stop/Rewind/Ffwd)
-                st.audio(audio_file, autoplay=True)
-            
-            st.caption(f"⏱️ Transmission Latency: {latency} seconds")
-            
+    # 1. Save user command
+    st.session_state.messages.append({"role": "user", "content": prompt, "audio": None})
+    
+    # 2. Process intelligence and generate audio
+    with st.spinner("Processing through Dual-Core Router..."):
+        response, audio_file = run_dual_core_router(prompt)
+        
+    # 3. Save assistant response
     st.session_state.messages.append({"role": "assistant", "content": response, "audio": audio_file})
     
-    # If using voice, force a rerun to clear the audio widget properly after submission
-    if "Voice" in interface_mode:
-        st.rerun()
+    # 4. Force a hard application reset to flush all inputs instantly
+    st.rerun()
