@@ -51,7 +51,7 @@ def render():
     button[data-baseweb="tab"] { background: transparent !important; color: #94a3b8 !important; font-family: 'JetBrains Mono', monospace !important; font-size: 10px !important; font-weight: 700 !important; letter-spacing: 1px !important; padding: 6px 12px !important; }
     button[aria-selected="true"] { color: #00f3ff !important; border-bottom: 2px solid #00f3ff !important; }
 
-    .terminal-vault { background: #02050a; border: 1px solid #1e293b; padding: 5px 10px; font-size: 9px; color: #10b981; overflow-x: auto; font-family: 'JetBrains Mono', monospace; line-height: 1.3; }
+    .terminal-vault { background: #02050a; border: 1px solid #1e293b; padding: 4px 8px; font-size: 9px; color: #10b981; font-family: 'JetBrains Mono', monospace; line-height: 1.3; }
 
     @keyframes flash { 0% { opacity: 1; text-shadow: 0 0 20px #ff0000; } 50% { opacity: 0.3; text-shadow: none; } 100% { opacity: 1; text-shadow: 0 0 20px #ff0000; } }
     .alert-box { background: #1a0505; border: 2px solid #ff0000; padding: 60px; text-align: center; margin-top: 50px; animation: flash 1s infinite; border-radius: 5px; }
@@ -81,9 +81,6 @@ def render():
     </div>
     """, unsafe_allow_html=True)
 
-    # ------------------------------------------------------------------------------
-    # ALARM LOGIC
-    # ------------------------------------------------------------------------------
     alarm_cmd = "START" if st.session_state.get("alarm_active") else "STOP"
     alarm_js = f"""
     <script>
@@ -111,9 +108,6 @@ def render():
     """
     components.html(alarm_js, height=0)
 
-    # ------------------------------------------------------------------------------
-    # RED SHOCK SCREEN STATE
-    # ------------------------------------------------------------------------------
     if st.session_state["grid_state"] == "SHOCK":
         st.markdown(f"""
         <div class="alert-box">
@@ -139,14 +133,10 @@ def render():
                 st.session_state["hazard_state"] = "TOTAL_BLACKOUT"; st.session_state["ch1_closed"] = False; st.session_state["ch2_closed"] = False; st.session_state["ch3_mode"] = "ISOLATED"; st.session_state["ch4_state"] = "OFF"; st.session_state["bus_b_shed"] = True; st.session_state["stage_idx"] = 0
                 
             st.session_state["alarm_active"] = False
-            # Transition to the 3-second green mitigation state instead of normal
             st.session_state["grid_state"] = "MITIGATING"
             st.rerun()
         st.stop()
 
-    # ------------------------------------------------------------------------------
-    # GREEN MITIGATION SCREEN STATE (3 SECOND DELAY)
-    # ------------------------------------------------------------------------------
     if st.session_state["grid_state"] == "MITIGATING":
         st.markdown("""
         <div class="mitigate-box">
@@ -159,9 +149,6 @@ def render():
         st.rerun()
         st.stop()
 
-    # ------------------------------------------------------------------------------
-    # MAIN DASHBOARD RENDER (grid_state == "NORMAL")
-    # ------------------------------------------------------------------------------
     st.markdown('<div style="font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; color: #f59e0b; text-transform: uppercase; margin-bottom: 3px;">⚠️ FAULT & INCIDENT INJECTION CONSOLE // TEST DYNAMIC REALITY DEFLECTION:</div>', unsafe_allow_html=True)
     b1, b2, b3, b4, b5, b6, b7 = st.columns(7)
 
@@ -374,27 +361,37 @@ def render():
     if h_mode == "NOMINAL":
         alert_id = "NOMINAL_BASELINE"
         border_color = "#10b981"
-        suggestions = ">> STATUS: ALL SYSTEMS NOMINAL.\n>> LOCATION: FACILITY-WIDE.\n>> RECOMMENDED ACTIONS:\n   1. Execute routine physical maintenance on CH2 PV Inverter cooling fans.\n   2. Await command injection."
+        suggestions = ">> STATUS: ALL SYSTEMS NOMINAL.\n>> AUTONOMOUS ACTIONS EXECUTED:\n   1. Continuous grid synchronization holding at 60.00Hz.\n   2. Load balancing active across CH1 Utility and CH2 PV.\n   3. 100% downstream power integrity maintained.\n>> RECOMMENDED HUMAN ACTIONS:\n   1. Execute routine physical maintenance on CH2 PV Inverter cooling fans.\n   2. Await command injection."
     else:
         alert_id = h_mode
         border_color = "#f59e0b"
-        if "POLE" in alert_id: suggestions = ">> PROBLEM: 12kV Feeder Line Severed.\n>> LOCATION: HWY 69, Pittsburg Co.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch repair crew to HWY 69 coordinates.\n   2. Initiate Level 3 pole replacement ticket via maintenance portal."
-        elif "WIND" in alert_id: suggestions = ">> PROBLEM: Wind speeds exceeding 75 MPH threshold.\n>> LOCATION: Statewide Area Command.\n>> REQUIRED HUMAN ACTIONS:\n   1. Monitor regional wind speeds for structural shear limits.\n   2. Prepare CH4 Aux Gen for rapid physical start."
-        elif "LIGHTNING" in alert_id: suggestions = ">> PROBLEM: 50kV Lightning Surge Detected.\n>> LOCATION: Substation Alpha Perimeter.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch technician to inspect PV inverter for arc flash damage.\n   2. Verify grounding array and surge arrester integrity."
-        elif "FLOOD" in alert_id: suggestions = ">> PROBLEM: Severe water ingress detected in lower levels.\n>> LOCATION: Main Substation Vault.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch heavy water extraction teams immediately.\n   2. Physically elevate critical backup drives."
-        elif "OPERATOR" in alert_id: suggestions = ">> PROBLEM: Unauthorized manual breaker trip detected.\n>> LOCATION: Control Room B.\n>> REQUIRED HUMAN ACTIONS:\n   1. Revoke responsible operator credential cards.\n   2. Initiate immediate security protocol audit."
-        elif "BLACKOUT" in alert_id: suggestions = ">> PROBLEM: Total Loss of External Grid Power.\n>> LOCATION: Regional Grid.\n>> REQUIRED HUMAN ACTIONS:\n   1. Declare Level 1 Infrastructure Emergency.\n   2. Execute Black Start physical isolation protocol."
-        else: suggestions = ">> SYSTEM STABILIZED.\n>> AWAITING PHYSICAL VERIFICATION."
+        if "POLE" in alert_id: 
+            suggestions = ">> PROBLEM: 12kV Feeder Line Severed.\n>> LOCATION: HWY 69, Pittsburg Co.\n>> AUTONOMOUS ACTIONS EXECUTED:\n   1. Shut down transformer TX-401 (CH1) to isolate ground fault.\n   2. Closed BESS contactor (CH3) to detour electrical flow.\n   3. Power restored to 94% of affected area.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch repair crew to HWY 69 coordinates.\n   2. Initiate Level 3 pole replacement ticket via maintenance portal."
+        elif "WIND" in alert_id: 
+            suggestions = ">> PROBLEM: Wind speeds exceeding 75 MPH threshold.\n>> LOCATION: Statewide Area Command.\n>> AUTONOMOUS ACTIONS EXECUTED:\n   1. Isolated unstable microgrid feeder lines.\n   2. Engaged BESS (CH3) for active load sharing.\n   3. Regulated main bus frequency to 59.98Hz.\n>> REQUIRED HUMAN ACTIONS:\n   1. Monitor regional wind speeds for structural shear limits.\n   2. Prepare CH4 Aux Gen for rapid physical start."
+        elif "LIGHTNING" in alert_id: 
+            suggestions = ">> PROBLEM: 50kV Lightning Surge Detected.\n>> LOCATION: Substation Alpha Perimeter.\n>> AUTONOMOUS ACTIONS EXECUTED:\n   1. Shunted 50kV transient to grounding array G-04.\n   2. Tripped PV inverter feed (CH2) to prevent back-propagation.\n   3. Critical C2 load protected (100% uptime).\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch technician to inspect PV inverter for arc flash damage.\n   2. Verify grounding array and surge arrester integrity."
+        elif "FLOOD" in alert_id: 
+            suggestions = ">> PROBLEM: Severe water ingress detected in lower levels.\n>> LOCATION: Main Substation Vault.\n>> AUTONOMOUS ACTIONS EXECUTED:\n   1. De-energized submerged transformer TX-102 (CH1).\n   2. Opened feed to non-essential Bus B to drop 155A load.\n   3. Auto-cranked Aux Gen (CH4) to restore power to 79% of facility.\n>> REQUIRED HUMAN ACTIONS:\n   1. Dispatch heavy water extraction teams immediately.\n   2. Physically elevate critical backup drives."
+        elif "OPERATOR" in alert_id: 
+            suggestions = ">> PROBLEM: Unauthorized manual breaker trip detected.\n>> LOCATION: Control Room B.\n>> AUTONOMOUS ACTIONS EXECUTED:\n   1. Overrode manual contactor open command via digital interlock.\n   2. Re-closed CH1 and CH2 feeds to restore nominal flow.\n   3. Flagged operator ID in Merkle Cryptographic Ledger.\n>> REQUIRED HUMAN ACTIONS:\n   1. Revoke responsible operator credential cards.\n   2. Initiate immediate security protocol audit."
+        elif "BLACKOUT" in alert_id: 
+            suggestions = ">> PROBLEM: Total Loss of External Grid Power.\n>> LOCATION: Regional Grid.\n>> AUTONOMOUS ACTIONS EXECUTED:\n   1. Disconnected TX-MAIN (CH1) to prevent grid backfeed.\n   2. Initiated Sovereign Island Mode via CH3 BESS.\n   3. Restored critical C2 operations (14% of total grid capacity).\n>> REQUIRED HUMAN ACTIONS:\n   1. Declare Level 1 Infrastructure Emergency.\n   2. Execute Black Start physical isolation protocol."
+        else: 
+            suggestions = ">> SYSTEM STABILIZED.\n>> AWAITING PHYSICAL VERIFICATION."
 
+    # Compressed Terminal Block
     fusion_html = textwrap.dedent(f"""
-    <div class="terminal-vault">
-    [HARDWARE_ASSERTION] FC05_LATENCY: 2.04 us | ARC_QUENCH: 13.33 ms | RESYNC_WINDOW: 126.13 ms | SIMULATION_DRIFT: 0.00%
-    </div>
-    <div style="background:#050914; border:1px solid #1e293b; border-left:4px solid {border_color}; padding:10px; margin-top:8px; margin-bottom:8px; border-radius:3px;">
-        <div style="font-size:10px; font-weight:900; color:{border_color}; letter-spacing:1px; margin-bottom:4px;">
-            👑 EBONY AI SENSOR FUSION // ACTIVE EVENT ID: {alert_id}
+    <div style="margin-top: 15px;">
+        <div class="terminal-vault" style="margin-bottom: 2px;">
+            [HARDWARE_ASSERTION] FC05_LATENCY: 2.04 us | ARC_QUENCH: 13.33 ms | RESYNC_WINDOW: 126.13 ms | SIMULATION_DRIFT: 0.00%
         </div>
-        <div style="font-size:9.5px; color:#f8fafc; white-space:pre-wrap; line-height:1.4; font-family:'JetBrains Mono', monospace;">{suggestions}</div>
+        <div style="background:#050914; border:1px solid #1e293b; border-left:4px solid {border_color}; padding:8px 10px; margin-bottom:2px; border-radius:3px;">
+            <div style="font-size:10px; font-weight:900; color:{border_color}; letter-spacing:1px; margin-bottom:4px;">
+                👑 EBONY AI SENSOR FUSION // ACTIVE EVENT ID: {alert_id}
+            </div>
+            <div style="font-size:9.5px; color:#f8fafc; white-space:pre-wrap; line-height:1.4; font-family:'JetBrains Mono', monospace;">{suggestions}</div>
+        </div>
     </div>
     """)
     st.markdown(fusion_html, unsafe_allow_html=True)
