@@ -161,9 +161,29 @@ button[aria-selected="true"] {
     font-family: 'JetBrains Mono', monospace;
     line-height: 1.3;
 }
+
+/* ALARM SEQUENCE STYLES */
+@keyframes flash { 0% { opacity: 1; text-shadow: 0 0 20px #ff0000; } 50% { opacity: 0.3; text-shadow: none; } 100% { opacity: 1; text-shadow: 0 0 20px #ff0000; } }
+.alert-box { background: #1a0505; border: 2px solid #ff0000; padding: 60px; text-align: center; margin-top: 50px; animation: flash 1s infinite; border-radius: 5px; }
 </style>
 """).strip()
 st.markdown(tactical_css, unsafe_allow_html=True)
+
+# ------------------------------------------------------------------------------
+# INITIALIZE INTERACTIVE PHYSICAL STATE (SESSION PERSISTENCE)
+# ------------------------------------------------------------------------------
+if "grid_state" not in st.session_state: st.session_state["grid_state"] = "NORMAL"
+if "alarm_active" not in st.session_state: st.session_state["alarm_active"] = False
+if "pending_hazard" not in st.session_state: st.session_state["pending_hazard"] = None
+if "pending_hazard_name" not in st.session_state: st.session_state["pending_hazard_name"] = ""
+
+if "hazard_state" not in st.session_state: st.session_state["hazard_state"] = "POLE_BREAK"
+if "ch1_closed" not in st.session_state: st.session_state["ch1_closed"] = False
+if "ch2_closed" not in st.session_state: st.session_state["ch2_closed"] = True
+if "ch3_mode"   not in st.session_state: st.session_state["ch3_mode"]   = "DISCHARGE"
+if "ch4_state"  not in st.session_state: st.session_state["ch4_state"]  = "STANDBY"
+if "bus_b_shed" not in st.session_state: st.session_state["bus_b_shed"] = True
+if "stage_idx"  not in st.session_state: st.session_state["stage_idx"]  = 1
 
 # Master Header
 st.markdown("""
@@ -180,80 +200,150 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ------------------------------------------------------------------------------
-# INITIALIZE INTERACTIVE PHYSICAL STATE (SESSION PERSISTENCE)
+# KLAXON AUDIO & ALARM STATE MACHINE
 # ------------------------------------------------------------------------------
-if "hazard_state" not in st.session_state:
-    st.session_state["hazard_state"] = "POLE_BREAK"
+alarm_cmd = "START" if st.session_state.get("alarm_active") else "STOP"
+alarm_js = f"""
+<script>
+if (!window.scadaAudioCtx) {{ window.scadaAudioCtx = new (window.AudioContext || window.webkitAudioContext)(); }}
+function manageAlarm(command) {{
+    if (command === "START") {{
+        if (!window.scadaOsc1) {{
+            window.scadaOsc1 = window.scadaAudioCtx.createOscillator();
+            window.scadaOsc2 = window.scadaAudioCtx.createOscillator();
+            window.scadaGain = window.scadaAudioCtx.createGain();
+            window.scadaOsc1.connect(window.scadaGain); window.scadaOsc2.connect(window.scadaGain);
+            window.scadaGain.connect(window.scadaAudioCtx.destination);
+            window.scadaOsc1.type = "square"; window.scadaOsc2.type = "square";
+            window.scadaOsc1.frequency.value = 853; window.scadaOsc2.frequency.value = 960;
+            window.scadaGain.gain.value = 0.15;
+            window.scadaOsc1.start(); window.scadaOsc2.start();
+        }}
+    }} else {{
+        if (window.scadaOsc1) {{ window.scadaOsc1.stop(); window.scadaOsc1 = null; }}
+        if (window.scadaOsc2) {{ window.scadaOsc2.stop(); window.scadaOsc2 = null; }}
+    }}
+}}
+manageAlarm("{alarm_cmd}");
+</script>
+"""
+components.html(alarm_js, height=0)
 
-if "ch1_closed" not in st.session_state: st.session_state["ch1_closed"] = False # Tripped initially by pole break
-if "ch2_closed" not in st.session_state: st.session_state["ch2_closed"] = True
-if "ch3_mode"   not in st.session_state: st.session_state["ch3_mode"]   = "DISCHARGE"
-if "ch4_state"  not in st.session_state: st.session_state["ch4_state"]  = "STANDBY"
-if "bus_b_shed" not in st.session_state: st.session_state["bus_b_shed"] = True
-if "stage_idx"  not in st.session_state: st.session_state["stage_idx"]  = 1
+if st.session_state["grid_state"] == "SHOCK":
+    st.markdown(f"""
+    <div class="alert-box">
+        <div style="color:#ff0000; font-family:'Orbitron', sans-serif; font-size:36px; font-weight:900;">⚠ CRITICAL INFRASTRUCTURE FAILURE ⚠</div>
+        <div style="color:#f8fafc; font-family:'JetBrains Mono', monospace; font-size:24px; margin-top:15px; letter-spacing:2px;">{st.session_state['pending_hazard_name']} DETECTED</div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    if st.button("⚡ INITIATE EBONY PROTOCOL ⚡", type="primary", use_container_width=True):
+        ph = st.session_state["pending_hazard"]
+        if ph == "POLE_BREAK":
+            st.session_state["hazard_state"] = "POLE_BREAK"
+            st.session_state["ch1_closed"] = False
+            st.session_state["ch2_closed"] = True
+            st.session_state["ch3_mode"]   = "DISCHARGE"
+            st.session_state["ch4_state"]  = "STANDBY"
+            st.session_state["bus_b_shed"] = True
+            st.session_state["stage_idx"]  = 2
+        elif ph == "LIGHTNING":
+            st.session_state["hazard_state"] = "LIGHTNING"
+            st.session_state["ch1_closed"] = True
+            st.session_state["ch2_closed"] = False 
+            st.session_state["ch3_mode"]   = "BUFFER"
+            st.session_state["ch4_state"]  = "STANDBY"
+            st.session_state["bus_b_shed"] = False
+            st.session_state["stage_idx"]  = 1
+        elif ph == "HIGH_WINDS":
+            st.session_state["hazard_state"] = "HIGH_WINDS"
+            st.session_state["ch1_closed"] = True
+            st.session_state["ch2_closed"] = True
+            st.session_state["ch3_mode"]   = "DISCHARGE" 
+            st.session_state["ch4_state"]  = "STANDBY"
+            st.session_state["bus_b_shed"] = False
+            st.session_state["stage_idx"]  = 1
+        elif ph == "FLOODING":
+            st.session_state["hazard_state"] = "FLOODING"
+            st.session_state["ch1_closed"] = False 
+            st.session_state["ch2_closed"] = True
+            st.session_state["ch3_mode"]   = "DISCHARGE"
+            st.session_state["ch4_state"]  = "RUNNING" 
+            st.session_state["bus_b_shed"] = True
+            st.session_state["stage_idx"]  = 3
+        elif ph == "OPERATOR_ERROR":
+            st.session_state["hazard_state"] = "OPERATOR_ERROR"
+            st.session_state["ch1_closed"] = False 
+            st.session_state["ch2_closed"] = True
+            st.session_state["ch3_mode"]   = "DISCHARGE"
+            st.session_state["ch4_state"]  = "STANDBY"
+            st.session_state["bus_b_shed"] = False
+            st.session_state["stage_idx"]  = 2
+        elif ph == "TOTAL_BLACKOUT":
+            st.session_state["hazard_state"] = "TOTAL_BLACKOUT"
+            st.session_state["ch1_closed"] = False
+            st.session_state["ch2_closed"] = False
+            st.session_state["ch3_mode"]   = "ISOLATED"
+            st.session_state["ch4_state"]  = "OFF"
+            st.session_state["bus_b_shed"] = True
+            st.session_state["stage_idx"]  = 0
+            
+        st.session_state["alarm_active"] = False
+        st.session_state["grid_state"] = "NORMAL"
+        st.rerun()
+    st.stop()
 
 # ------------------------------------------------------------------------------
 # 1. PERMANENT MASTER HAZARD SIMULATION CONTROL BANK
 # ------------------------------------------------------------------------------
-st.markdown('<div style="font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; color: #f59e0b; text-transform: uppercase; margin-bottom: 3px;">? FAULT & INCIDENT INJECTION CONSOLE // TEST DYNAMIC REALITY DEFLECTION:</div>', unsafe_allow_html=True)
+st.markdown('<div style="font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; color: #f59e0b; text-transform: uppercase; margin-bottom: 3px;">⚠️ FAULT & INCIDENT INJECTION CONSOLE // TEST DYNAMIC REALITY DEFLECTION:</div>', unsafe_allow_html=True)
 b1, b2, b3, b4, b5, b6, b7 = st.columns(7)
 
 with b1:
-    if st.button("?? POLE BREAK (HWY 69)"):
-        st.session_state["hazard_state"] = "POLE_BREAK"
-        st.session_state["ch1_closed"] = False
-        st.session_state["ch2_closed"] = True
-        st.session_state["ch3_mode"]   = "DISCHARGE"
-        st.session_state["ch4_state"]  = "STANDBY"
-        st.session_state["bus_b_shed"] = True
-        st.session_state["stage_idx"]  = 2
+    if st.button("🚧 POLE BREAK (HWY 69)"):
+        st.session_state["pending_hazard"] = "POLE_BREAK"
+        st.session_state["pending_hazard_name"] = "POLE BREAK (HWY 69)"
+        st.session_state["grid_state"] = "SHOCK"
+        st.session_state["alarm_active"] = True
+        st.rerun()
 with b2:
-    if st.button("? LIGHTNING (50kV SURGE)"):
-        st.session_state["hazard_state"] = "LIGHTNING"
-        st.session_state["ch1_closed"] = True
-        st.session_state["ch2_closed"] = False # Rapid shutdown
-        st.session_state["ch3_mode"]   = "BUFFER"
-        st.session_state["ch4_state"]  = "STANDBY"
-        st.session_state["bus_b_shed"] = False
-        st.session_state["stage_idx"]  = 1
+    if st.button("⚡ LIGHTNING (50kV SURGE)"):
+        st.session_state["pending_hazard"] = "LIGHTNING"
+        st.session_state["pending_hazard_name"] = "LIGHTNING (50kV SURGE)"
+        st.session_state["grid_state"] = "SHOCK"
+        st.session_state["alarm_active"] = True
+        st.rerun()
 with b3:
-    if st.button("??? HIGH WINDS (75 MPH)"):
-        st.session_state["hazard_state"] = "HIGH_WINDS"
-        st.session_state["ch1_closed"] = True
-        st.session_state["ch2_closed"] = True
-        st.session_state["ch3_mode"]   = "DISCHARGE" # Catch lost wind
-        st.session_state["ch4_state"]  = "STANDBY"
-        st.session_state["bus_b_shed"] = False
-        st.session_state["stage_idx"]  = 1
+    if st.button("🌪️ HIGH WINDS (75 MPH)"):
+        st.session_state["pending_hazard"] = "HIGH_WINDS"
+        st.session_state["pending_hazard_name"] = "HIGH WINDS (75 MPH)"
+        st.session_state["grid_state"] = "SHOCK"
+        st.session_state["alarm_active"] = True
+        st.rerun()
 with b4:
-    if st.button("?? SUBSTATION FLOOD"):
-        st.session_state["hazard_state"] = "FLOODING"
-        st.session_state["ch1_closed"] = False # Ground fault
-        st.session_state["ch2_closed"] = True
-        st.session_state["ch3_mode"]   = "DISCHARGE"
-        st.session_state["ch4_state"]  = "RUNNING" # Gen auto-crank
-        st.session_state["bus_b_shed"] = True
-        st.session_state["stage_idx"]  = 3
+    if st.button("🌊 SUBSTATION FLOOD"):
+        st.session_state["pending_hazard"] = "FLOODING"
+        st.session_state["pending_hazard_name"] = "SUBSTATION FLOOD"
+        st.session_state["grid_state"] = "SHOCK"
+        st.session_state["alarm_active"] = True
+        st.rerun()
 with b5:
-    if st.button("?? OPERATOR ERROR"):
-        st.session_state["hazard_state"] = "OPERATOR_ERROR"
-        st.session_state["ch1_closed"] = False # Accidental throw
-        st.session_state["ch2_closed"] = True
-        st.session_state["ch3_mode"]   = "DISCHARGE"
-        st.session_state["ch4_state"]  = "STANDBY"
-        st.session_state["bus_b_shed"] = False
-        st.session_state["stage_idx"]  = 2
+    if st.button("👨‍💻 OPERATOR ERROR"):
+        st.session_state["pending_hazard"] = "OPERATOR_ERROR"
+        st.session_state["pending_hazard_name"] = "OPERATOR ERROR"
+        st.session_state["grid_state"] = "SHOCK"
+        st.session_state["alarm_active"] = True
+        st.rerun()
 with b6:
-    if st.button("? TOTAL BLACKOUT"):
-        st.session_state["hazard_state"] = "TOTAL_BLACKOUT"
-        st.session_state["ch1_closed"] = False
-        st.session_state["ch2_closed"] = False
-        st.session_state["ch3_mode"]   = "ISOLATED"
-        st.session_state["ch4_state"]  = "OFF"
-        st.session_state["bus_b_shed"] = True
-        st.session_state["stage_idx"]  = 0
+    if st.button("⬛ TOTAL BLACKOUT"):
+        st.session_state["pending_hazard"] = "TOTAL_BLACKOUT"
+        st.session_state["pending_hazard_name"] = "TOTAL BLACKOUT"
+        st.session_state["grid_state"] = "SHOCK"
+        st.session_state["alarm_active"] = True
+        st.rerun()
 with b7:
-    if st.button("?? RESTORE NOMINAL (60Hz)"):
+    if st.button("✅ RESTORE NOMINAL (60Hz)"):
         st.session_state["hazard_state"] = "NOMINAL"
         st.session_state["ch1_closed"] = True
         st.session_state["ch2_closed"] = True
@@ -261,6 +351,7 @@ with b7:
         st.session_state["ch4_state"]  = "STANDBY"
         st.session_state["bus_b_shed"] = False
         st.session_state["stage_idx"]  = 0
+        st.rerun()
 
 h_mode = st.session_state["hazard_state"]
 
@@ -349,27 +440,27 @@ master_kw = (math.sqrt(3) * master_v * master_i * 0.95) / 1000.0 if master_v > 0
 # ------------------------------------------------------------------------------
 # 3. INTERACTIVE BREAKER & CONTACTOR ACTUATION CONTROLS
 # ------------------------------------------------------------------------------
-st.markdown('<div style="font-size: 9px; font-weight: 800; letter-spacing: 1px; color: #38bdf8; text-transform: uppercase; margin-bottom: 2px;">??? MANUAL BREAKER & FEEDER SWITCHGEAR (CLICK TO ACTUATE CURRENT DELTAS):</div>', unsafe_allow_html=True)
+st.markdown('<div style="font-size: 9px; font-weight: 800; letter-spacing: 1px; color: #38bdf8; text-transform: uppercase; margin-bottom: 2px;">🎛️ MANUAL BREAKER & FEEDER SWITCHGEAR (CLICK TO ACTUATE CURRENT DELTAS):</div>', unsafe_allow_html=True)
 c_col1, c_col2, c_col3, c_col4, c_col5 = st.columns(5)
 
 with c_col1:
-    btn_lbl_1 = "?? TRIP CH1 UTILITY (DROP 250A)" if st.session_state["ch1_closed"] else "?? CLOSE CH1 UTILITY (+250A)"
+    btn_lbl_1 = "⚡ TRIP CH1 UTILITY (DROP 250A)" if st.session_state["ch1_closed"] else "⚡ CLOSE CH1 UTILITY (+250A)"
     if st.button(btn_lbl_1):
         st.session_state["ch1_closed"] = not st.session_state["ch1_closed"]
 with c_col2:
-    btn_lbl_2 = "?? ISOLATE CH2 PV (DROP 100A)" if st.session_state["ch2_closed"] else "?? CONNECT CH2 PV (+100A)"
+    btn_lbl_2 = "⚡ ISOLATE CH2 PV (DROP 100A)" if st.session_state["ch2_closed"] else "⚡ CONNECT CH2 PV (+100A)"
     if st.button(btn_lbl_2):
         st.session_state["ch2_closed"] = not st.session_state["ch2_closed"]
 with c_col3:
-    btn_lbl_3 = "? DISCHARGE CH3 BESS (+350A)" if st.session_state["ch3_mode"] != "DISCHARGE" else "?? FLOAT CH3 BESS (100A)"
+    btn_lbl_3 = "🔋 DISCHARGE CH3 BESS (+350A)" if st.session_state["ch3_mode"] != "DISCHARGE" else "⚡ FLOAT CH3 BESS (100A)"
     if st.button(btn_lbl_3):
         st.session_state["ch3_mode"] = "FLOAT" if st.session_state["ch3_mode"] == "DISCHARGE" else "DISCHARGE"
 with c_col4:
-    btn_lbl_4 = "? START CH4 GEN (+220A)" if st.session_state["ch4_state"] != "RUNNING" else "?? STOP CH4 GEN (0A)"
+    btn_lbl_4 = "⚡ START CH4 GEN (+220A)" if st.session_state["ch4_state"] != "RUNNING" else "⚡ STOP CH4 GEN (0A)"
     if st.button(btn_lbl_4):
         st.session_state["ch4_state"] = "STANDBY" if st.session_state["ch4_state"] == "RUNNING" else "RUNNING"
 with c_col5:
-    btn_lbl_5 = "?? RESTORE BUS B (+155A)" if st.session_state["bus_b_shed"] else "?? SHED BUS B (-155A)"
+    btn_lbl_5 = "⚡ RESTORE BUS B (+155A)" if st.session_state["bus_b_shed"] else "⚡ SHED BUS B (-155A)"
     if st.button(btn_lbl_5):
         st.session_state["bus_b_shed"] = not st.session_state["bus_b_shed"]
 
@@ -394,10 +485,10 @@ st.markdown(f"""
 # 5. FOUR UNCOMPROMISED FULL-FIDELITY SCREENS (ACCESSIBLE VIA TABS)
 # ------------------------------------------------------------------------------
 tab1, tab2, tab3, tab4 = st.tabs([
-    "??? ANALOG GAUGES & MACHINERY INTERLOCKS",
-    "???? REGIONAL OUTAGE MAP & POWER FLOW PIPELINE",
-    "?? MULTI-STAGE ELECTRICAL WAVEFORMS (OSCILLOSCOPE)",
-    "?? STATUTORY PROVING MATRIX (THE 4 EVALUATION DOMAINS)"
+    "⚙️ ANALOG GAUGES & MACHINERY INTERLOCKS",
+    "🗺️ REGIONAL OUTAGE MAP & POWER FLOW PIPELINE",
+    "📈 MULTI-STAGE ELECTRICAL WAVEFORMS (OSCILLOSCOPE)",
+    "🛡️ STATUTORY PROVING MATRIX (THE 4 EVALUATION DOMAINS)"
 ])
 
 # ==============================================================================
@@ -633,7 +724,7 @@ with tab2:
 # TAB 3: LIVE 60 FPS PHOSPHOR SWEEP OSCILLOSCOPE (CONTINUOUS TRAVELING WAVES)
 # ==============================================================================
 with tab3:
-    st.markdown('<div style="font-size:9.5px; font-weight:800; color:#f59e0b; text-transform:uppercase; margin-bottom:3px;">? ELECTRICAL STAGE SCRUBBER // STEP THROUGH TRANSIENT DYNAMICS:</div>', unsafe_allow_html=True)
+    st.markdown('<div style="font-size:9.5px; font-weight:800; color:#f59e0b; text-transform:uppercase; margin-bottom:3px;">📈 ELECTRICAL STAGE SCRUBBER // STEP THROUGH TRANSIENT DYNAMICS:</div>', unsafe_allow_html=True)
     sc0, sc1, sc2, sc3, sc4, sc5 = st.columns(6)
 
     with sc0:
@@ -779,7 +870,7 @@ with tab3:
 with tab4:
     st.markdown("""
     <div style="font-size:9.5px; font-weight:800; color:#00f3ff; text-transform:uppercase; margin-bottom:4px;">
-        ?? STATUTORY & CRYPTOGRAPHIC EVALUATION PROVING CARDS // OKLAHOMA COMMERCE EVALUATION:
+        🛡️ STATUTORY & CRYPTOGRAPHIC EVALUATION PROVING CARDS // OKLAHOMA COMMERCE EVALUATION:
     </div>
     """, unsafe_allow_html=True)
     
@@ -834,10 +925,6 @@ st.markdown(f"""
 [HARDWARE_ASSERTION] FC05_LATENCY: 2.04 us | ARC_QUENCH: 13.33 ms | RESYNC_WINDOW: 126.13 ms | SIMULATION_DRIFT: 0.00%
 </div>
 """, unsafe_allow_html=True)
-
-# VIEWPORT COMPRESSION
-import streamlit as st
-
 
 # =====================================================================
 # CHRONUS LEDGER INTEGRATION (CROSS-REPOSITORY BRIDGE)
