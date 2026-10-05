@@ -1,7 +1,6 @@
 ﻿import streamlit as st
 import time
 from sovereign_comms import run_dual_core_router, transcribe_mic
-from ebony_bridge import route_matrix_command
 
 st.set_page_config(page_title="HVF Omni-Industrial Matrix", page_icon="⚡", layout="wide")
 
@@ -16,25 +15,6 @@ interface_mode = st.radio(
     ["⌨️ Secure Text Terminal", "🎙️ Acoustic Voice Link"], 
     horizontal=True
 )
-
-# --- OMNI-INDUSTRIAL LEGACY BRIDGE ---
-with st.expander("⚙️ Omni-Industrial Modular Bridge (Legacy Systems)"):
-    st.markdown("Select a legacy vector to route through the matrix:")
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        if st.button("Activate Alpha: Persistent Memory"):
-            st.session_state.bridge_status = route_matrix_command("ALPHA_MEMORY", None)
-    with col2:
-        if st.button("Activate Beta: Agentic Swarm"):
-            st.session_state.bridge_status = route_matrix_command("BETA_AGENTS", None)
-    with col3:
-        if st.button("Activate Gamma: SCADA Control"):
-            st.session_state.bridge_status = route_matrix_command("GAMMA_SCADA", None)
-            
-    if "bridge_status" in st.session_state:
-        st.success(f"Bridge Response: {st.session_state.bridge_status}")
-
 st.markdown("---")
 
 # --- CHAT MATRIX & DYNAMIC WIDGET STATE ---
