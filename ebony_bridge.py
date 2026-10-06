@@ -8,6 +8,7 @@ import sys
 import platform
 import os
 import shutil
+from ebony_scada_poll import format_scada_telemetry_payload
 
 def _get_memory_telemetry(payload):
     return "ALPHA_MEMORY: Sliding-window context engine active. Boundary ceiling: 6 turns / 4,000 characters."
@@ -16,9 +17,8 @@ def _get_agent_telemetry(payload):
     return "BETA_AGENTS: Matrix Core active on qwen/qwen3.8-27b. Failover core: openai/gpt-oss-120b. Agent swarm standing by."
 
 def _get_scada_telemetry(payload):
-    total, used, free = shutil.disk_usage("C:\\")
-    free_gb = round(free / (1024**3), 2)
-    return f"GAMMA_SCADA: Host {platform.node()} | OS: {platform.system()} {platform.release()} | System Drive Free: {free_gb} GB | Python: {sys.version.split()[0]}"
+    channel = payload.strip() if payload else "ALL"
+    return format_scada_telemetry_payload(channel=channel)
 
 VECTOR_MAP = {
     "ALPHA_MEMORY": _get_memory_telemetry,
