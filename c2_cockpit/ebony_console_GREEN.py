@@ -652,6 +652,7 @@ with st.sidebar:
         "🚨 NOAA Radar",
         "🌾 Drone Diagnostics",
         "📖 System Overview",
+        "📡 Sovereign Comms Deck",
         "📨 Sovereign Dispatch Deck",
         "📝 Feedback Hub",
         "🧪 Sandbox",
@@ -708,26 +709,25 @@ elif active_module in DYNAMIC_MODULES:
             st.json(mod.execute())
 
 elif active_module == "💬 Sovereign Command":
-    st.markdown("### ⚡ Sovereign Command Nexus // C2 Console")
+    st.markdown("### ⚡ Sovereign Command Nexus // Unified C2 Console")
 
     if current_user and current_cipher:
         if "messages" not in st.session_state or st.session_state.screen_wiped:
             db_messages = load_encrypted_messages(current_user, current_cipher)
             if not db_messages:
-                initial_msg = {"role": "assistant", "content": f"Hey Jeffery, I'm online and wired in. You want to type or talk today?"}
+                initial_msg = {"role": "assistant", "content": "Hey Jeffery, I\'m online and wired in. You want to type or talk today?"}
                 save_encrypted_message(current_user, "assistant", initial_msg["content"], current_cipher)
                 db_messages = [initial_msg]
             st.session_state.messages = db_messages
             st.session_state.screen_wiped = False
     else:
-        if "messages" not in st.session_state: st.session_state.messages = [{"role": "assistant", "content": "⚡ System Online. Awaiting CEO."}]
+        if "messages" not in st.session_state:
+            st.session_state.messages = [{"role": "assistant", "content": "⚡ System Online. Awaiting CEO."}]
 
     col_main, col_hud = st.columns([3, 2])
 
     with col_main:
         st.subheader("📡 Tactical Ingress Deck")
-        
-        # 1. Voice Ingress Channel
         audio_val = st.audio_input("🎤 Record Sovereign Vocal Directive:")
         voice_prompt = ""
         if audio_val is not None:
@@ -739,15 +739,13 @@ elif active_module == "💬 Sovereign Command":
                     if voice_prompt:
                         st.success(f"Transcribed Directive: '{voice_prompt}'")
 
-        # 2. Text Ingress Channel
         default_text = voice_prompt if voice_prompt else ""
         user_directive = st.text_input("Enter or Edit Sovereign Directive:", value=default_text, key="directive_input")
-        
-        # 3. Tactical Command Macros
+
         st.markdown("**⚡ Tactical Command Quick-Action Macros:**")
         m_col1, m_col2, m_col3, m_col4 = st.columns(4)
         macro_trigger = None
-        
+
         with m_col1:
             if st.button("🚨 System Readiness", use_container_width=True):
                 macro_trigger = "Ebony, report your system readiness, CAGE governance, and operational status."
@@ -763,10 +761,9 @@ elif active_module == "💬 Sovereign Command":
                 st.session_state.screen_wiped = True
                 st.rerun()
 
-        # Active Execution Handler
         active_command = macro_trigger if macro_trigger else user_directive
         transmit_clicked = st.button("🚀 Transmit Directive", use_container_width=True)
-        
+
         if (transmit_clicked or macro_trigger) and active_command.strip():
             with st.spinner("Processing through Sovereign Tri-Brain Router..."):
                 st.session_state.messages.append({"role": "user", "content": active_command.strip()})
@@ -774,16 +771,13 @@ elif active_module == "💬 Sovereign Command":
                     save_encrypted_message(current_user, "user", active_command.strip(), current_cipher)
 
                 from sovereign_comms import run_dual_core_router
-                response, audio_file = run_dual_core_router(
-                    active_command.strip(), 
-                    raw_history=st.session_state.messages
-                )
-                
+                response, audio_file = run_dual_core_router(active_command.strip(), raw_history=st.session_state.messages)
+
                 st.session_state.messages.append({"role": "assistant", "content": response})
                 if current_user and current_cipher:
                     save_encrypted_message(current_user, "assistant", response, current_cipher)
                     store_entity_memory_async(current_user, active_command.strip(), response)
-                
+
                 if audio_file and __import__("os").path.exists(audio_file):
                     with open(audio_file, "rb") as f:
                         import base64
@@ -793,36 +787,36 @@ elif active_module == "💬 Sovereign Command":
         st.markdown("### 💬 Live Command Stream")
         for msg in reversed(st.session_state.messages):
             if msg["role"] == "user":
-                st.markdown(f"**CEO Humphrey:** `{msg['content']}`")
+                st.markdown("**CEO Humphrey:** `" + str(msg["content"]) + "`")
             else:
-                st.markdown(f"**Ebony (Chronos):**\n{msg['content']}")
+                st.markdown("**Ebony (Chronos):**\n\n" + str(msg["content"]))
                 st.divider()
-
     with col_hud:
         st.subheader("🛡️ Real-Time Telemetry HUD")
         tab_ledger, tab_scada, tab_swarm = st.tabs(["C2 Audit Ledger", "SCADA Telemetry", "Agent Swarm"])
-        
+
         with tab_ledger:
-            st.markdown("**Local SQLite WORM Ledger (`matrix_ledger.db`)**")
+            st.markdown("**Local SQLite WORM Ledger (matrix_ledger.db)**")
             try:
                 from ebony_ledger import get_recent_entries
                 entries = get_recent_entries(limit=8)
                 if entries:
                     for entry in entries:
-                        st.text(f"[{entry[1][:19]}] {entry[2].upper()} | Core: {entry[4]} | Latency: {entry[5]}s\nPayload: {entry[3][:110]}...")
+                        st.text(f"[{entry[1][:19]}] {entry[2].upper()} | Core: {entry[4]}")
+                        st.caption(f"Payload: {entry[3][:110]}...")
                         st.divider()
                 else:
                     st.info("No ledger entries logged.")
             except Exception as e:
                 st.error("Ledger offline.")
-                
+
         with tab_scada:
-            st.markdown("**Deterministic Host Diagnostics (`HVFNexus`)**")
+            st.markdown("**Deterministic Host Diagnostics (HVFNexus)**")
             try:
                 from ebony_scada_poll import poll_system_metrics
                 m = poll_system_metrics()
                 if m.get("status") == "NOMINAL":
-                    st.metric("Primary Storage (C:\\)", f"{m['disk_free_gb']} GB Free", f"{m['disk_used_pct']}% Used")
+                    st.metric("Primary Storage (C:\)", f"{m['disk_free_gb']} GB Free", f"{m['disk_used_pct']}% Used")
                     st.text(f"Host Node: {m['node']}")
                     st.text(f"Environment: {m['os']}")
                     st.text(f"Runtime Engine: Python {m['python_runtime']}")
@@ -831,9 +825,9 @@ elif active_module == "💬 Sovereign Command":
                     st.error(f"SCADA Poll Fault: {m.get('error')}")
             except Exception as e:
                 st.error("SCADA Offline.")
-                
+
         with tab_swarm:
-            st.markdown("**Autonomous Triad Swarm Tasking (`BETA_AGENTS`)**")
+            st.markdown("**Autonomous Triad Swarm Tasking (BETA_AGENTS)**")
             try:
                 from ebony_agent_swarm import dispatch_swarm_task
                 swarm_col1, swarm_col2 = st.columns(2)
@@ -849,6 +843,8 @@ elif active_module == "💬 Sovereign Command":
                         st.code(dispatch_swarm_task("analyst"), language="text")
             except Exception as e:
                 st.error("Swarm Offline.")
+
+
 elif active_module == "📡 LinkedIn Engine":
 
     if current_role in ["CEO", "SUPER_ADMIN"]:
@@ -1541,7 +1537,7 @@ elif active_module == "📨 Sovereign Dispatch Deck":
                     st.error(f"Block error: {b_err}")
                 st.rerun()
 
-elif active_module ==:
+elif active_module == "📡 Sovereign Comms Deck":
     from sovereign_comms_core import SovereignCommsEngine
     SovereignCommsEngine.render()
 elif active_module == "📘 Omni-Industry Matrix":
