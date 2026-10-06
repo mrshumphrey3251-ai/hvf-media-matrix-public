@@ -1,9 +1,11 @@
 ﻿import toml
 import os
+import time
 from ebony_vocal_cortex import ignite_voice
 from ebony_bridge import route_matrix_command
 from core_context_engine import sanitize_memory_payload
 from ebony_authority_matrix import get_sovereign_system_prompt
+from ebony_ledger import record_entry
 
 def transcribe_mic(audio_bytes):
     """
@@ -36,8 +38,12 @@ def transcribe_mic(audio_bytes):
         return ""
 
 def run_dual_core_router(prompt, raw_history=None):
+    start_time = time.time()
     print("[*] Processing through Sovereign Dual-Core Communications Portal...")
     
+    # Record incoming user prompt in audit ledger
+    record_entry(role="user", content=prompt, model_core="COMMAND_INGRESS")
+
     system_context = ""
     prompt_lower = prompt.lower()
     if "memory" in prompt_lower:
@@ -48,6 +54,7 @@ def run_dual_core_router(prompt, raw_history=None):
         system_context = f"\n[SYSTEM METADATA: {route_matrix_command('GAMMA_SCADA', prompt)}]"
         
     response_text = ""
+    active_core = "NONE"
     try:
         path = r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml"
         sec = toml.load(path)
@@ -76,6 +83,7 @@ def run_dual_core_router(prompt, raw_history=None):
                     temperature=0.0
                 )
                 response_text = res.choices[0].message.content
+                active_core = m
                 print(f"[+] Successfully routed via active hardware core: {m}")
                 break
             except Exception as model_err:
@@ -88,8 +96,14 @@ def run_dual_core_router(prompt, raw_history=None):
     except Exception as e:
         print(f"\n[!] CLOUD APEX FATAL ERROR: {str(e)}\n")
         response_text = "[CLOUD FAILOVER -> BARE METAL] Sovereign Local Bare-Metal is active. Received: " + prompt
+        active_core = "LOCAL_BARE_METAL"
         
-    print(f"\n[+] Output Generated.\n")
+    latency = round(time.time() - start_time, 2)
+    print(f"\n[+] Output Generated ({latency}s) via {active_core}.\n")
+    
+    # Record system response and operational telemetry in ledger
+    record_entry(role="assistant", content=response_text, model_core=active_core, latency_sec=latency)
+    
     speech_text = response_text.replace("[CLOUD FAILOVER -> BARE METAL]", "Notice: Cloud failover to bare metal.")
     audio_file = ignite_voice(speech_text)
     

@@ -52,3 +52,7 @@ c2_cockpit/*.pid
 
 # Runtime telemetry audit logs
 cinematic_vault/logs/*.jsonl
+
+matrix_ledger.db
+*.db
+*.sqlite3
