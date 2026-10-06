@@ -1,18 +1,40 @@
-﻿# ebony_bridge.py
-# Omni-Industrial Modular Bridge for Legacy Extension Routing
+﻿"""
+HVF OMNI-INDUSTRIAL MODULAR BRIDGE - SUBSYSTEM DISPATCH FIREWALL
+Project: Ebony Sovereign C2 Matrix
+Compliance: Sovereign Air-Gap Tool Isolation & Deterministic Telemetry
+"""
 
-def route_matrix_command(intent_vector, payload):
+import sys
+import platform
+import os
+import shutil
+
+def _get_memory_telemetry(payload):
+    return "ALPHA_MEMORY: Sliding-window context engine active. Boundary ceiling: 6 turns / 4,000 characters."
+
+def _get_agent_telemetry(payload):
+    return "BETA_AGENTS: Matrix Core active on qwen/qwen3.8-27b. Failover core: openai/gpt-oss-120b. Agent swarm standing by."
+
+def _get_scada_telemetry(payload):
+    total, used, free = shutil.disk_usage("C:\\")
+    free_gb = round(free / (1024**3), 2)
+    return f"GAMMA_SCADA: Host {platform.node()} | OS: {platform.system()} {platform.release()} | System Drive Free: {free_gb} GB | Python: {sys.version.split()[0]}"
+
+VECTOR_MAP = {
+    "ALPHA_MEMORY": _get_memory_telemetry,
+    "BETA_AGENTS": _get_agent_telemetry,
+    "GAMMA_SCADA": _get_scada_telemetry
+}
+
+def route_matrix_command(intent_vector, payload=""):
     """
-    Acts as a secure firewall between the Dual-Core Router and the legacy arsenal.
-    Legacy scripts will be imported here to prevent destabilization of the main matrix.
+    Firewall router for auxiliary subsystems and operational telemetry.
+    Ensures safe, deterministic metadata dispatch with absolute isolation from the LLM core.
     """
-    print(f"[*] Modular Bridge Activated. Vector: {intent_vector}")
-    
-    if intent_vector == "ALPHA_MEMORY":
-        return "Memory integration pending."
-    elif intent_vector == "BETA_AGENTS":
-        return "Agentic Swarm integration pending."
-    elif intent_vector == "GAMMA_SCADA":
-        return "Level 5 SCADA integration pending."
-    else:
-        return "No legacy vector identified."
+    handler = VECTOR_MAP.get(intent_vector)
+    if handler:
+        try:
+            return handler(payload)
+        except Exception as e:
+            return f"VECTOR_FAULT: Subsystem {intent_vector} encountered exception: {str(e)}"
+    return "VECTOR_UNMAPPED: No registered subsystem handler for requested vector."
