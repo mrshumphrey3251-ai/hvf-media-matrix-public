@@ -533,6 +533,53 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+
+# =========================================================================
+# PRE-FLIGHT LEGAL & OWNERSHIP ATTESTATION GATE (E.B.O.N.Y.)
+# =========================================================================
+if "legal_acknowledged" not in st.session_state:
+    st.session_state.legal_acknowledged = False
+
+if not st.session_state.legal_acknowledged:
+    st.markdown('''
+    <div style="background-color: #0b110e; border: 2px solid #00ff88; border-radius: 8px; padding: 25px; margin: 30px auto; max-width: 900px; box-shadow: 0 0 25px rgba(0, 255, 136, 0.2);">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <div style="font-size: 32px; font-weight: 900; letter-spacing: 4px; color: #00ff88; text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);">
+                E.B.O.N.Y.
+            </div>
+            <div style="font-size: 14px; font-weight: 700; letter-spacing: 2px; color: #ffd700; margin-top: 5px;">
+                EXECUTIVE-BUILT OPERATIONS THAT NEVER-YIELD
+            </div>
+            <div style="font-size: 11px; letter-spacing: 1.5px; color: #8899a6; margin-top: 4px;">
+                HUMPHREY VIRTUAL FARMS LLC // SOVEREIGN INDUSTRIAL C2 // BARE-METAL NODE
+            </div>
+        </div>
+        <hr style="border: 0; border-top: 1px solid #1f3326; margin: 15px 0;">
+        <div style="font-size: 12px; color: #e1e8ed; line-height: 1.6; font-family: monospace; background: #050807; padding: 15px; border-radius: 4px; border: 1px solid #14241b;">
+            <p style="color: #00ff88; font-weight: bold; margin-bottom: 8px;">=== MANDATORY PRE-FLIGHT OPERATIONAL & STATUTORY BRIEFING ===</p>
+            <p><strong>1. SOVEREIGN PROPRIETARY ASSET:</strong> This terminal, its neural routing parameters, local WORM audit ledgers, and all 15 industrial matrix verticals are the exclusive proprietary property of <strong>Humphrey Virtual Farms LLC</strong>. All rights reserved.</p>
+            <p><strong>2. STATUTORY & FEDERAL REGISTRATION:</strong> Operating under Federal CAGE Code <strong>1AHA8</strong> and SAM.gov Unique Entity Identifier (UEI) <strong>S1M4ENLHTDH5</strong>. Fully governed by Oklahoma Statutes Title 61 and Oklahoma House Bill 2992 (OK HB 2992) compliance frameworks.</p>
+            <p><strong>3. ZERO-CLOUD SOVEREIGNTY MANDATE:</strong> This system runs on dedicated bare-metal infrastructure (<code>HVFNexus</code>). It does not yield to cloud subscriptions, recurring vendor fees, external kill-switches, or third-party telemetry scraping. All data remains air-gapped on local disk.</p>
+            <p><strong>4. SECURITY & PENALTY WARNING:</strong> Access is restricted strictly to Level-5 authorized personnel and CEO-delegated operators. Unauthorized access, tampering, payload exfiltration, or reverse engineering is strictly prohibited and subject to severe civil and criminal penalties under <strong>18 U.S.C. Section 1030 (Computer Fraud and Abuse Act)</strong> and applicable state and federal trade secret protections.</p>
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns([1, 8, 1])
+    with col2:
+        confirm_check = st.checkbox("I formally affirm that I am authorized personnel of Humphrey Virtual Farms LLC, hold Level-5 operational clearance, and agree to uphold all statutory, proprietary, and sovereign security protocols.", key="preflight_confirm")
+        
+        btn_col1, btn_col2, btn_col3 = st.columns([2, 4, 2])
+        with btn_col2:
+            if st.button("AFFIRM AND ENTER SOVEREIGN COMMAND", use_container_width=True):
+                if confirm_check:
+                    st.session_state.legal_acknowledged = True
+                    st.rerun()
+                else:
+                    st.error("AUTHORIZATION DENIED: You must check the affirmation box before entering the sovereign console.")
+    st.stop()
+
+
 if "user_session" not in st.session_state:
     from cryptography.fernet import Fernet
     st.session_state.user_session = {
