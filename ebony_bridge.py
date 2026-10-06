@@ -9,12 +9,14 @@ import platform
 import os
 import shutil
 from ebony_scada_poll import format_scada_telemetry_payload
+from ebony_agent_swarm import dispatch_swarm_task
 
 def _get_memory_telemetry(payload):
     return "ALPHA_MEMORY: Sliding-window context engine active. Boundary ceiling: 6 turns / 4,000 characters."
 
 def _get_agent_telemetry(payload):
-    return "BETA_AGENTS: Matrix Core active on qwen/qwen3.8-27b. Failover core: openai/gpt-oss-120b. Agent swarm standing by."
+    vector = payload.strip() if payload else "all"
+    return dispatch_swarm_task(sub_vector=vector)
 
 def _get_scada_telemetry(payload):
     channel = payload.strip() if payload else "ALL"
