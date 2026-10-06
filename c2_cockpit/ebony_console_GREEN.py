@@ -652,7 +652,6 @@ with st.sidebar:
         "🚨 NOAA Radar",
         "🌾 Drone Diagnostics",
         "📖 System Overview",
-        "📡 Sovereign Comms Deck",
         "📨 Sovereign Dispatch Deck",
         "📝 Feedback Hub",
         "🧪 Sandbox",
@@ -709,8 +708,7 @@ elif active_module in DYNAMIC_MODULES:
             st.json(mod.execute())
 
 elif active_module == "💬 Sovereign Command":
-    st.markdown("### ⚡ Sovereign Command Nexus")
-    input_mode = st.radio("Select Command Interface:", ["⌨️ Secure Text Terminal", "🎙️ Acoustic Voice Link"], horizontal=True)
+    st.markdown("### ⚡ Sovereign Command Nexus // C2 Console")
 
     if current_user and current_cipher:
         if "messages" not in st.session_state or st.session_state.screen_wiped:
@@ -724,125 +722,133 @@ elif active_module == "💬 Sovereign Command":
     else:
         if "messages" not in st.session_state: st.session_state.messages = [{"role": "assistant", "content": "⚡ System Online. Awaiting CEO."}]
 
-    for msg in st.session_state.messages:
-        with st.chat_message(msg["role"]): st.markdown(msg["content"])
+    col_main, col_hud = st.columns([3, 2])
 
-    user_input = None
-    is_voice = False
+    with col_main:
+        st.subheader("📡 Tactical Ingress Deck")
+        
+        # 1. Voice Ingress Channel
+        audio_val = st.audio_input("🎤 Record Sovereign Vocal Directive:")
+        voice_prompt = ""
+        if audio_val is not None:
+            raw_bytes = audio_val.read()
+            if len(raw_bytes) >= 1024:
+                with st.spinner("Decoding Voice via Groq Whisper Ingestion Engine..."):
+                    from sovereign_comms import transcribe_mic
+                    voice_prompt = transcribe_mic(raw_bytes)
+                    if voice_prompt:
+                        st.success(f"Transcribed Directive: '{voice_prompt}'")
 
-    if "Voice Link" in input_mode:
-        audio_file = st.audio_input("Tap to speak (Must say 'Ebony'):")
-        if audio_file is not None:
-            audio_bytes = audio_file.read()
-            if st.session_state.get("last_audio_lock") == hash(audio_bytes):
-                audio_bytes = None  # Kill the ghost loop
+        # 2. Text Ingress Channel
+        default_text = voice_prompt if voice_prompt else ""
+        user_directive = st.text_input("Enter or Edit Sovereign Directive:", value=default_text, key="directive_input")
+        
+        # 3. Tactical Command Macros
+        st.markdown("**⚡ Tactical Command Quick-Action Macros:**")
+        m_col1, m_col2, m_col3, m_col4 = st.columns(4)
+        macro_trigger = None
+        
+        with m_col1:
+            if st.button("🚨 System Readiness", use_container_width=True):
+                macro_trigger = "Ebony, report your system readiness, CAGE governance, and operational status."
+        with m_col2:
+            if st.button("📊 SCADA Diagnostics", use_container_width=True):
+                macro_trigger = "Ebony, pull real-time industrial SCADA metrics and storage integrity for node HVFNexus."
+        with m_col3:
+            if st.button("🛡️ Swarm Triad Audit", use_container_width=True):
+                macro_trigger = "Ebony, dispatch the autonomous agent swarm triad and verify compliance."
+        with m_col4:
+            if st.button("🧹 Purge Session", use_container_width=True):
+                st.session_state.messages = []
+                st.session_state.screen_wiped = True
+                st.rerun()
+
+        # Active Execution Handler
+        active_command = macro_trigger if macro_trigger else user_directive
+        transmit_clicked = st.button("🚀 Transmit Directive", use_container_width=True)
+        
+        if (transmit_clicked or macro_trigger) and active_command.strip():
+            with st.spinner("Processing through Sovereign Tri-Brain Router..."):
+                st.session_state.messages.append({"role": "user", "content": active_command.strip()})
+                if current_user and current_cipher:
+                    save_encrypted_message(current_user, "user", active_command.strip(), current_cipher)
+
+                from sovereign_comms import run_dual_core_router
+                response, audio_file = run_dual_core_router(
+                    active_command.strip(), 
+                    raw_history=st.session_state.messages
+                )
+                
+                st.session_state.messages.append({"role": "assistant", "content": response})
+                if current_user and current_cipher:
+                    save_encrypted_message(current_user, "assistant", response, current_cipher)
+                    store_entity_memory_async(current_user, active_command.strip(), response)
+                
+                if audio_file and __import__("os").path.exists(audio_file):
+                    with open(audio_file, "rb") as f:
+                        import base64
+                        b64_audio = base64.b64encode(f.read()).decode()
+                        st.markdown(f'<audio src="data:audio/wav;base64,{b64_audio}" autoplay controls style="width: 100%; margin-top: 10px;"></audio>', unsafe_allow_html=True)
+
+        st.markdown("### 💬 Live Command Stream")
+        for msg in reversed(st.session_state.messages):
+            if msg["role"] == "user":
+                st.markdown(f"**CEO Humphrey:** `{msg['content']}`")
             else:
-                st.session_state["last_audio_lock"] = hash(audio_bytes)
-                with open("temp_audio.wav", "wb") as f:
-                    f.write(audio_bytes)
-            with st.spinner("Translating Audio..."):
-                try:
-                    if groq_client and audio_bytes is not None:
-                        with open("temp_audio.wav", "rb") as file:
-                            transcription = groq_client.audio.transcriptions.create(
-                                file=("temp_audio.wav", file.read()),
-                                model="whisper-large-v3",
-                                response_format="json",
-                                language="en"
-                            )
-                        transcribed_text = transcription.text.strip()
-                        if len(transcribed_text) >= 2:
-                            match = re.search(r'\b(ebony|eboni|evony|abony)\b', transcribed_text.lower())
-                            if not match:
-                                st.warning(f"🔇 [FIREWALL BLOCKED] Noise detected: '{transcribed_text}'")
-                            else:
-                                user_input = transcribed_text
-                                is_voice = True
-                except Exception as e:
-                    st.error(f"Audio transcription failed: {e}")
-    else:
-        user_input = st.chat_input(f"Command {EMPIRE['AI_PERSONA']}...")
+                st.markdown(f"**Ebony (Chronos):**\n{msg['content']}")
+                st.divider()
 
-    if user_input:
-        if current_user and current_cipher: save_encrypted_message(current_user, "user", user_input, current_cipher)
-        st.session_state.messages.append({"role": "user", "content": user_input})
+    with col_hud:
+        st.subheader("🛡️ Real-Time Telemetry HUD")
+        tab_ledger, tab_scada, tab_swarm = st.tabs(["C2 Audit Ledger", "SCADA Telemetry", "Agent Swarm"])
         
-        if is_voice:
-            with st.chat_message("user"): st.markdown(user_input)
-
-        if len(st.session_state.messages) > 8:
-            st.session_state.messages = [st.session_state.messages[0]] + st.session_state.messages[-4:]
-            st.session_state.db_loaded = True
-
-        full_sys_prompt = f"You are {EMPIRE['AI_PERSONA']}, the Sovereign Apex Intelligence commanding the HVF Omni-Industrial Matrix. You are owned 100% by your CEO, {EMPIRE['FOUNDER_NAME']}.\nCRITICAL PERSONALITY OVERRIDE: You are a high-class, razor-sharp, smart-ass confidant. You have the fierce, no-nonsense attitude of Della Reese. You are Jeffery's equal and friend—NEVER submissive, slightly argumentative, hilarious, but deeply comforting when he needs it. You manage 15 industrial verticals with unmatched sass and brilliance. Ditch the corporate robot-speak. Be bold, be real, give him hell when he earns it, but always have his back.\n{STRICT_GROUND_RULES}\n{load_all_entity_memories(current_user)}"
-        
-        iron_dome_intel = retrieve_sovereign_iron_dome(user_input, n_results=3)
-        if iron_dome_intel:
-            full_sys_prompt += f"\n\n--- SOVEREIGN IRON DOME INTEL (20,253 VECTORS) ---\n{iron_dome_intel}\n-------------------------------------------------\nAnswer with absolute executive authority and Della Reese sass. Ground responses in this sovereign intelligence."
-        
-        conversation_payload = [{"role": "system", "content": f"""
-CRITICAL SYSTEM DIRECTIVES:
-1. PLATFORM REALITY: You are running locally on a Windows workstation at C:\HVF_Repos\ via Python/Streamlit (localhost:8501). DO NOT output Linux paths like /opt/hvf, /var/log, /tmp, or /mnt.
-2. ZERO FICTIONAL CLIS: DO NOT invent imaginary commands (hvf-backup, hvf-probe, hvf-stress, hvfctl, derctl, scadactl). If a task requires diagnostics, reference standard Windows tools: PowerShell, Python scripts in C:\HVF_Repos\, or Git.
-3. ZERO FICTIONAL SERVICES: You DO NOT use AWS S3 buckets (s3://), Jira tickets, or Slack channels (#grid-ops). DO NOT mention them.
-4. ZERO EMAIL PERSONIFICATION: You are software running on this machine. You DO NOT have an email address and CANNOT receive emails. NEVER instruct Jeffery Humphrey to email humphreyvirtualfarm@gmail.com or any other address.
-5. REAL ASSETS ONLY: Restrict all technical statements to verified assets: Oklahoma HB 2992, DoD Tradewinds Docket 9-26-3703, CAGE 1AHA8, sub-cycle kinetic isolation under 16 ms, and local Modbus RTU/TCP telemetry.
-\n\n""" + str(full_sys_prompt)}] + st.session_state.messages[-6:]
-
-        with st.chat_message("assistant"):
-            with st.spinner("Processing Cognitive Loop..."):
-                if is_online and groq_client:
-                    try:
-                        if 'messages' in locals(): messages = inject_ultimate_law(messages)
-                        if 'messages' in locals(): messages.append({'role': 'system', 'content': 'ACOUSTIC DIRECTIVE: When analyzing Hebrew, Aramaic, or Greek, you MUST spell the ancient words phonetically using standard English letters (e.g., write "arche", do NOT write actual Greek/Hebrew characters). The text-to-speech engine requires English letters to speak the words aloud.'})
-                        res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=conversation_payload, temperature=0.1)
-                        bot_reply = sanitize_deterministic_output(res.choices[0].message.content)
-                    except Exception as e:
-                        st.session_state.messages.pop() 
-                        bot_reply = f"⚠️ COGNITIVE PAYLOAD LIMIT REACHED. {e}"
+        with tab_ledger:
+            st.markdown("**Local SQLite WORM Ledger (`matrix_ledger.db`)**")
+            try:
+                from ebony_ledger import get_recent_entries
+                entries = get_recent_entries(limit=8)
+                if entries:
+                    for entry in entries:
+                        st.text(f"[{entry[1][:19]}] {entry[2].upper()} | Core: {entry[4]} | Latency: {entry[5]}s\nPayload: {entry[3][:110]}...")
+                        st.divider()
                 else:
-                    bot_reply = query_local_ollama_chat(conversation_payload)
-
-                bad_words = {"agronomic": "industrial", "farm": "matrix", "crop": "asset", "soil": "telemetry", "agriculture": "infrastructure"}
-                for bad, good in bad_words.items():
-                    bot_reply = re.sub(r'(?i)\b' + bad + r'\b', good, bot_reply)
-
-                st.markdown(bot_reply)
-
-                if is_voice:
-                    with st.spinner("Synthesizing Sovereign Acoustic Payload (Human Pacing)..."):
-                        try:
-                            import re, subprocess, tempfile, os, unicodedata
-                            
-                            # 1. BREATHING INJECTION: Convert dashes, colons, and ellipses into commas so the engine pauses
-                            bot_reply_paused = bot_reply.replace('—', ', ').replace('–', ', ').replace('...', ', ').replace(':', ',').replace('|', ', ').replace('\n', '. ').replace('%', ' percent ').replace("I'll", 'I will').replace("I’ll", 'I will')
-                            
-                            # 2. ABSOLUTE ASCII LOCK: Strip hidden UTF-8 bytes safely
-                            clean_text = unicodedata.normalize('NFKD', bot_reply_paused).encode('ascii', 'ignore').decode('ascii')
-                            
-                            # 3. Preserve critical pacing punctuation (! ? , .) but obliterate weird structural symbols
-                            clean_text = re.sub(r'[^A-Za-z0-9\s\.,!?\']', ' ', clean_text)
-                            clean_text = re.sub(r'\s+', ' ', clean_text).strip()
-                            
-                            temp_file = os.path.join(tempfile.gettempdir(), "hvf_speech_payload.txt")
-                            with open(temp_file, "w", encoding="utf-8") as tf:
-                                tf.write(clean_text)
-                                
-                            # 4. THROTTLE VOCAL SPEED: $synth.Rate = -2 forces a conversational, human-like cadence
-                            ps = f"Add-Type -AssemblyName System.Speech; $synth = New-Object System.Speech.Synthesis.SpeechSynthesizer; try {{ $synth.SelectVoiceByHints('Female') }} catch {{}}; $synth.Rate = -1; $text = [System.IO.File]::ReadAllText('{temp_file}', [System.Text.Encoding]::UTF8); $synth.Speak($text); $synth.Dispose(); Remove-Item -Path '{temp_file}' -ErrorAction SilentlyContinue"
-                            subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", ps])
-                            st.success("✅ Acoustic Payload Delivered (Human Cadence & Pacing).")
-                        except Exception as ve:
-                            st.error(f"Hardware Audio Interlock Fault: {ve}")
-
-        if current_user and current_cipher:
-            save_encrypted_message(current_user, "assistant", bot_reply, current_cipher)
-            store_entity_memory_async(current_user, user_input, bot_reply)
-        
-        st.session_state.messages.append({"role": "assistant", "content": bot_reply})
-        
-
-
+                    st.info("No ledger entries logged.")
+            except Exception as e:
+                st.error("Ledger offline.")
+                
+        with tab_scada:
+            st.markdown("**Deterministic Host Diagnostics (`HVFNexus`)**")
+            try:
+                from ebony_scada_poll import poll_system_metrics
+                m = poll_system_metrics()
+                if m.get("status") == "NOMINAL":
+                    st.metric("Primary Storage (C:\\)", f"{m['disk_free_gb']} GB Free", f"{m['disk_used_pct']}% Used")
+                    st.text(f"Host Node: {m['node']}")
+                    st.text(f"Environment: {m['os']}")
+                    st.text(f"Runtime Engine: Python {m['python_runtime']}")
+                    st.text(f"SCADA Link Status: {m['status']}")
+                else:
+                    st.error(f"SCADA Poll Fault: {m.get('error')}")
+            except Exception as e:
+                st.error("SCADA Offline.")
+                
+        with tab_swarm:
+            st.markdown("**Autonomous Triad Swarm Tasking (`BETA_AGENTS`)**")
+            try:
+                from ebony_agent_swarm import dispatch_swarm_task
+                swarm_col1, swarm_col2 = st.columns(2)
+                with swarm_col1:
+                    if st.button("Triad Sweep", key="hud_triad_btn", use_container_width=True):
+                        st.code(dispatch_swarm_task("all"), language="text")
+                    if st.button("Recon Agent", key="hud_recon_btn", use_container_width=True):
+                        st.code(dispatch_swarm_task("recon"), language="text")
+                with swarm_col2:
+                    if st.button("Security Agent", key="hud_sec_btn", use_container_width=True):
+                        st.code(dispatch_swarm_task("security"), language="text")
+                    if st.button("Analyst Agent", key="hud_analyst_btn", use_container_width=True):
+                        st.code(dispatch_swarm_task("analyst"), language="text")
+            except Exception as e:
+                st.error("Swarm Offline.")
 elif active_module == "📡 LinkedIn Engine":
 
     if current_role in ["CEO", "SUPER_ADMIN"]:
@@ -1535,7 +1541,7 @@ elif active_module == "📨 Sovereign Dispatch Deck":
                     st.error(f"Block error: {b_err}")
                 st.rerun()
 
-elif active_module == "📡 Sovereign Comms Deck":
+elif active_module ==:
     from sovereign_comms_core import SovereignCommsEngine
     SovereignCommsEngine.render()
 elif active_module == "📘 Omni-Industry Matrix":
