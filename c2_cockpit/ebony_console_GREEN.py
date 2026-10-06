@@ -573,6 +573,27 @@ if not st.session_state.legal_acknowledged:
         with btn_col2:
             if st.button("AFFIRM AND ENTER SOVEREIGN COMMAND", use_container_width=True):
                 if confirm_check:
+                    try:
+                        import sqlite3
+                        from datetime import datetime, timezone
+                        ledger_path = Path("matrix_ledger.db")
+                        if ledger_path.exists():
+                            conn = sqlite3.connect(str(ledger_path))
+                            cur = conn.cursor()
+                            now_ts = datetime.now(timezone.utc).isoformat()
+                            attestation_payload = (
+                                "E.B.O.N.Y. SOVEREIGN ATTESTATION AFFIRMED: "
+                                "Operator affirms Level-5 Executive Authority, proprietary ownership by Humphrey Virtual Farms LLC, "
+                                "governed by CAGE 1AHA8, SAM.gov UEI S1M4ENLHTDH5, OK Title 61, and OK HB 2992 statutory frameworks."
+                            )
+                            cur.execute(
+                                "INSERT INTO audit_ledger (timestamp, session_id, role, content, model_core, latency_sec) VALUES (?, ?, ?, ?, ?, ?)",
+                                (now_ts, "SOVEREIGN_ROOT", "EXECUTIVE_ATTESTATION", attestation_payload, "EBONY_STATUTORY_GATE_V1", 0.0)
+                            )
+                            conn.commit()
+                            conn.close()
+                    except Exception as e:
+                        pass
                     st.session_state.legal_acknowledged = True
                     st.rerun()
                 else:
