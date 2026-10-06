@@ -631,6 +631,15 @@ def query_local_ollama_chat(messages_payload: list) -> str:
 
 # --- SIDEBAR ---
 with st.sidebar:
+    st.markdown("""
+    <div style="background-color: #0b110e; border: 1px solid #00ff88; border-radius: 6px; padding: 12px; margin-bottom: 15px;">
+        <div style="color: #00ff88; font-weight: bold; font-size: 0.85em; letter-spacing: 1px;">SOVEREIGN GOVERNANCE</div>
+        <div style="color: #ffffff; font-size: 0.8em; margin-top: 4px;"><strong>CAGE:</strong> 1AHA8</div>
+        <div style="color: #ffffff; font-size: 0.8em;"><strong>UEI:</strong> S1M4ENLHTDH5</div>
+        <div style="color: #a0aab2; font-size: 0.75em; margin-top: 4px;">STATUTORY: OK Title 61 / HB 2992</div>
+        <div style="color: #00ff88; font-size: 0.75em; font-weight: bold; margin-top: 4px;">LEVEL-5 C2 // BARE-METAL EDGE</div>
+    </div>
+    """, unsafe_allow_html=True)
     st.header("🛡️ Presentation OPSEC")
     is_demo_mode = st.toggle("Activate Demo Mode (Mask Secrets)", value=st.session_state.demo_mode)
     st.session_state.demo_mode = is_demo_mode
@@ -730,6 +739,19 @@ with st.sidebar:
         "📘 Omni-Industry Matrix"
     ], label_visibility="collapsed")
 
+st.markdown("""
+<div style="background: linear-gradient(90deg, #0b110e 0%, #131d18 100%); border-left: 4px solid #00ff88; border-right: 1px solid #1f3326; border-top: 1px solid #1f3326; border-bottom: 1px solid #1f3326; border-radius: 6px; padding: 12px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <span style="color: #00ff88; font-weight: 800; font-size: 0.95em; letter-spacing: 1.5px; font-family: monospace;">HUMPHREY VIRTUAL FARMS LLC</span>
+        <span style="color: #a0aab2; font-size: 0.85em; margin-left: 12px; font-family: monospace;">| CLASSIFICATION: LEVEL-5 SOVEREIGN INDUSTRIAL C2</span>
+    </div>
+    <div>
+        <span style="background-color: #002b16; border: 1px solid #00ff88; color: #00ff88; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; font-family: monospace; font-weight: bold; margin-right: 8px;">CAGE: 1AHA8</span>
+        <span style="background-color: #002b16; border: 1px solid #00ff88; color: #00ff88; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; font-family: monospace; font-weight: bold; margin-right: 8px;">UEI: S1M4ENLHTDH5</span>
+        <span style="background-color: #121c16; border: 1px solid #285437; color: #7fe6a7; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; font-family: monospace;">HOST: HVFNexus</span>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 st.title(f"⚡ {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
 st.caption(f"Active User: **{current_name}** | 🛡️ *Mode: {st.session_state.operation_mode}*")
 
