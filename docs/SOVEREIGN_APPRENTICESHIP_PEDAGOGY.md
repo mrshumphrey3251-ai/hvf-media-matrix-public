@@ -33,3 +33,9 @@ Includes Sovereign Agriculture, Logistics, Defense Systems, Distributed Energy &
 - Deployed universal interactive course runner (`hvf_course_runner.py`) replacing static documentation.
 - Integrated deterministic 5-stage progression gates: First Principles, Blind-Spot Interrogator, Chung-Pfost Psychrometric Simulation, Tactical Emergency Decision Branching, and Physical Contactor SCADA verification.
 - Implemented Level-5 Executive Override (`CAGE: 1AHA8`) permitting qualified personnel to bypass pedagogical gates during physical emergencies.
+
+
+## 8. Dynamic Matrix Routing Engine
+- Replaced static blueprint display loops in Module 16 with dynamic course resolution.
+- Configured automatic loading of `vertical_XX_course.json` schemas into `hvf_course_runner.py`.
+- Established fallback course initialization for remaining operational pillars.
