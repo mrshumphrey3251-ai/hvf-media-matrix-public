@@ -48,3 +48,10 @@ Includes Sovereign Agriculture, Logistics, Defense Systems, Distributed Energy &
   2. Forensic Crash Teardowns (Case 101 dewpoint pumping, Case 102 asymmetric wall buckling, Case 103 motor phase loss).
   3. Calibrated ASAE D245.5 Psychrometric Simulation with delta potential telemetry.
   4. Level-5 SCADA Switchboard with mechanical interlocks and contactor commands under statutory authority (CAGE: 1AHA8).
+
+
+## 11. Role-Based Access Control (RBAC) Integration
+- Eliminated manual in-module override toggles and justification forms.
+- Bound switchgear authorization directly to session-authenticated identity and clearance level.
+- Apprentice accounts are flight-locked to pedagogical anatomy, forensics, and simulation modules.
+- Level-5 Owner accounts (CAGE: 1AHA8) maintain automated supervisory dispatch and hardware contactor control.
