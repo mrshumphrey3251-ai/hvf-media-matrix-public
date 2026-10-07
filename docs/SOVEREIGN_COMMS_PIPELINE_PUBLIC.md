@@ -14,3 +14,6 @@
 ### 3. Sovereign Mesh Routing
 - External Dispatch: Validated domain gateways for administrative compliance.
 - Sovereign Node Mode: Air-gapped point-to-point packet routing (`node://<id>`).
+### Dual-Mode Air-Gap Enforcement Update
+- **Online Mode:** Authenticated TLS 1.3 socket transmission via external gateway.
+- **Offline Sovereign Mode:** Strict local ledger queuing (`QUEUED_SOVEREIGN_LOCAL`) with zero-trust socket suppression and SHA-256 dispatch tracking.
