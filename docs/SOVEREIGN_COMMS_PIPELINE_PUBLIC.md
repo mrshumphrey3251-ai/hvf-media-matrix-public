@@ -17,3 +17,7 @@
 ### Dual-Mode Air-Gap Enforcement Update
 - **Online Mode:** Authenticated TLS 1.3 socket transmission via external gateway.
 - **Offline Sovereign Mode:** Strict local ledger queuing (`QUEUED_SOVEREIGN_LOCAL`) with zero-trust socket suppression and SHA-256 dispatch tracking.
+### Verification Audit // Milestone 8f Complete
+- **Inbound Pipeline:** Verified IMAP :993 SSL handshake with dynamic credential decryption from sovereign vault.
+- **Outbound Pipeline:** Verified SMTP :465 SSL handshake with non-repudiation CAGE/UEI headers.
+- **Air-Gap Ledger Enforcement:** Verified local WORM staging (`QUEUED_SOVEREIGN_LOCAL`) satisfying all relational constraints without external socket bindings.
