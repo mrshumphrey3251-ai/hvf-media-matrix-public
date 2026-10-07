@@ -55,3 +55,10 @@ Includes Sovereign Agriculture, Logistics, Defense Systems, Distributed Energy &
 - Bound switchgear authorization directly to session-authenticated identity and clearance level.
 - Apprentice accounts are flight-locked to pedagogical anatomy, forensics, and simulation modules.
 - Level-5 Owner accounts (CAGE: 1AHA8) maintain automated supervisory dispatch and hardware contactor control.
+
+
+## 12. Industrial Technical Manual & Forensic Curriculum Integration
+- Expanded course definitions from brief outlines into an exhaustive industrial engineering manual.
+- Subsystem specifications now include quantitative engineering tolerances (Ergun flow resistance, Fan Affinity dynamics, Janssen wall loads, Fourier conductivity).
+- Forensic failure teardowns incorporate minute-by-minute event sequences, asset destruction accounting, and SCADA preventative interlock mandates.
+- Rendering pipeline optimized for structured technical dossiers, operational safety limits, and pre-flight maintenance protocols.
