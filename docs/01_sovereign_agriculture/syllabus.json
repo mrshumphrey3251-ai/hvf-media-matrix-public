@@ -1,0 +1,223 @@
+{
+    "vertical_id": "V01",
+    "title": "Sovereign Agriculture: The 6-Acre Living Baseline",
+    "standard": "ASAE Standards / USDA-ARS & Land-Grant Extension Zero-Tether Protocol",
+    "evaluation_mode": "FREE_FORM_SOCRATIC_RUBRIC",
+    "modules": [
+        {
+            "module_id": "MOD-01-01",
+            "title": "Reading the 6 Acres: Site Layout, Elevation & Mud Defense",
+            "lecture_video": "media/v01_m01_site_layout.mp4",
+            "audio_briefing": "Welcome to Sovereign Agriculture Module 1.1. On raw acreage, gravity and water dictate survival. Putting holding pens in a low-lying hollow turns your operation into two feet of standing manure-mud during spring rains, causing lethal foot rot and equipment paralysis. In this module, we dissect topographic elevation, prevailing winter windbreaks, and heavy-truck access routes before a single fence post is driven.",
+            "knowledge_base": {
+                "core_principles": [
+                    "Siting pens on crests and high, well-drained slopes prevents standing water and mud churn.",
+                    "Prevailing winter winds from the North/Northwest require dense windbreaks or shed orientation to protect animal lung health.",
+                    "All manure storage and holding pens must sit downgradient from domestic water wells and surface ponds to prevent biological pathogen runoff."
+                ]
+            },
+            "oral_checkride": {
+                "checkride_id": "CR-01-01",
+                "scenario": "You have just acquired 6 raw acres featuring a wooded ridgetop, a sloping hillside, and a flat low pasture bordering a wet creek line. You need to establish pens for small stock and a compost site.",
+                "prompt": "In your own words, explain exactly where on this property you place your primary holding pens, where you place the mortality and manure compost area relative to your wellhead, and how you ensure you can access the pens with a truck in knee-deep mud.",
+                "required_concepts": [
+                    "high ground",
+                    "ridgetop",
+                    "slope drainage",
+                    "downgradient compost",
+                    "wellhead protection",
+                    "all-weather access route"
+                ],
+                "misconceptions": [
+                    {
+                        "trigger_phrases": [
+                            "put pens near the creek",
+                            "bottom pasture for easy water",
+                            "low ground is flat and easy"
+                        ],
+                        "remediation": "Flawed Premise Detected: Placing pens on flat creek bottoms guarantees seasonal flooding, standing water, and anaerobic mud. Animals will suffer from severe foot rot, joint ill, and parasite overloads. Pens must be placed on high ground."
+                    }
+                ]
+            }
+        },
+        {
+            "module_id": "MOD-01-02",
+            "title": "Pens, Paddocks & Fencing: The Anatomy of Immovable Enclosures",
+            "lecture_video": "media/v01_m02_fencing_construction.mp4",
+            "audio_briefing": "Module 1.2: Fencing and Containment. Animals test fences continuously. If a corner gives one inch, the entire run loses tension and stock escapes. We teach the mechanical physics of the H-brace assembly, diagonal twitch wire tensioning, wire specifications by species, and predator aprons.",
+            "knowledge_base": {
+                "core_principles": [
+                    "An H-brace is a mechanical tension triangle; end posts must be driven minimum 3 to 4 feet deep.",
+                    "Species dictate wire: Cattle require high-tensile/barbed; goats require 4x4 non-climb woven wire; pigs need hot wire at snout level; poultry require predator skirt wire buried 12 inches out.",
+                    "Gates belong in corners so stock flows naturally along fence lines into pens."
+                ]
+            },
+            "oral_checkride": {
+                "checkride_id": "CR-01-02",
+                "scenario": "You are stretching a 300-foot run of woven wire for small ruminants and hogs across rocky dirt.",
+                "prompt": "In your own words, explain how you construct an immovable corner H-brace, how deep your posts must be anchored, and what specific wire and ground barrier you install to prevent predators from digging in and stock from rooting out.",
+                "required_concepts": [
+                    "H-brace assembly",
+                    "brace pipe",
+                    "diagonal twitch wire",
+                    "post depth 3-4 feet",
+                    "woven wire",
+                    "predator skirt apron"
+                ],
+                "misconceptions": [
+                    {
+                        "trigger_phrases": [
+                            "single post in concrete",
+                            "just put a wooden post and pull",
+                            "concrete post without brace"
+                        ],
+                        "remediation": "Flawed Premise Detected: A single post in concrete without a horizontal brace and tension wire will lever out of the ground under tension when soil becomes saturated. You must construct a dual-post H-brace with a diagonal twitch wire to transfer horizontal pull down to ground level."
+                    }
+                ]
+            }
+        },
+        {
+            "module_id": "MOD-01-03",
+            "title": "Feed, Nutrition & Metabolic Landmines: Rumen Dynamics vs. Fatal Bloat",
+            "lecture_video": "media/v01_m03_feed_nutrition.mp4",
+            "audio_briefing": "Module 1.3: Feed and Nutrition. Feeding animals is not simply filling a trough with sweet feed. A ruminant lives on microbes in the rumen. An abrupt change in ration or letting animals gorge on concentrated starch causes sudden acidosis, enterotoxemia, and frothy bloat that kills before sunrise.",
+            "knowledge_base": {
+                "core_principles": [
+                    "Ruminants (cattle, sheep, goats) require 10 to 14 days of gradual transition between feed types to allow rumen microflora adaptation.",
+                    "High-starch sweet feed drops rumen pH, causing rapid lactic acidosis, dehydration, and systemic shock.",
+                    "Mineral nutrition is species-specific: Sheep die from copper toxicity at levels essential for goats."
+                ]
+            },
+            "oral_checkride": {
+                "checkride_id": "CR-01-03",
+                "scenario": "You have newly arrived livestock on dry pasture. A neighbor delivers bags of high-grain calf finisher. The animals appear hungry and vocal.",
+                "prompt": "In your own words, explain the biological consequences of dumping this grain into the trough immediately, why rumen microbes collapse under carbohydrate overload, and your exact transition protocol.",
+                "required_concepts": [
+                    "lactic acidosis",
+                    "microbe die-off",
+                    "pH drop",
+                    "gradual 10-14 day transition",
+                    "roughage and hay first",
+                    "frothy bloat"
+                ],
+                "misconceptions": [
+                    {
+                        "trigger_phrases": [
+                            "feed them all they want",
+                            "fill the trough because they are hungry",
+                            "mix it with sweet feed right away"
+                        ],
+                        "remediation": "Flawed Premise Detected: Feeding hungry animals a full ration of grain causes rapid grain overload. Microbes produce excess lactic acid, dropping rumen pH below 5.0, resulting in rumen stasis, acute dehydration, and mortality within 24 hours. Hay and roughage must be established first."
+                    }
+                ]
+            }
+        },
+        {
+            "module_id": "MOD-01-04",
+            "title": "The Sovereign Farm Medicine Chest: Field Vitals & Emergency Triage",
+            "lecture_video": "media/v01_m04_farm_triage.mp4",
+            "audio_briefing": "Module 1.4: Veterinary Triage. When an animal goes down on a weekend night, emergency veterinary services are rarely available. You must maintain critical supplies on site and know how to obtain baseline vitals\u2014rectal temperature, rumen motility sounds, and mucous membrane coloration.",
+            "knowledge_base": {
+                "core_principles": [
+                    "A rectal thermometer is the primary diagnostic tool: Fever indicates infectious disease; subnormal temperature indicates metabolic collapse or shock.",
+                    "Rumen gut sounds must be evaluated by ear or stethoscope on the left paralumbar fossa (normal is 1-2 contractions per minute).",
+                    "Emergency kit must contain: large-bore needles (16G/18G), trocars, bloat drench (poloxalene/mineral oil), broad-spectrum antibiotics, sterile syringes, and electrolytes."
+                ]
+            },
+            "oral_checkride": {
+                "checkride_id": "CR-01-04",
+                "scenario": "An animal is found separated from the herd, teeth grinding, left flank distended, breathing rapidly, and refusing feed.",
+                "prompt": "In your own words, walk step-by-step through your immediate physical assessment. What baseline vitals do you take, what condition is indicated by a swollen left flank, and what emergency intervention do you administer?",
+                "required_concepts": [
+                    "rectal temperature",
+                    "rumen motility check",
+                    "left flank indicates bloat",
+                    "stomach tube or drench",
+                    "trocar emergency relief",
+                    "electrolytes"
+                ],
+                "misconceptions": [
+                    {
+                        "trigger_phrases": [
+                            "wait until morning",
+                            "give cold water",
+                            "force them to walk for hours"
+                        ],
+                        "remediation": "Flawed Premise Detected: Waiting on acute left-flank distension results in suffocation as the expanding rumen compresses the diaphragm and lungs. Immediate intervention via stomach tube, bloat drench, or trocar decompression is required."
+                    }
+                ]
+            }
+        },
+        {
+            "module_id": "MOD-01-05",
+            "title": "Mortality Protocol: Carcass Disposal & Biological Composting",
+            "lecture_video": "media/v01_m05_mortality_composting.mp4",
+            "audio_briefing": "Module 1.5: Mortality Protocol. Livestock mortality is an inevitable reality of farming. Leaving carcasses exposed spreads herd disease, contaminates watersheds, and attracts canine predators. We teach biological mortality composting: using aerobic microbial heat to break down livestock into sterile organic matter.",
+            "knowledge_base": {
+                "core_principles": [
+                    "Mortality composting requires a 2-foot base of porous carbon (wood chips or coarse straw) for aeration and liquid absorption.",
+                    "The carcass must be completely sealed with 2 feet of carbon material to prevent odor release and exclude scavengers.",
+                    "Aerobic composting temperatures exceed 130\u00b0F to 150\u00b0F, killing pathogenic bacteria and reducing soft tissues rapidly."
+                ]
+            },
+            "oral_checkride": {
+                "checkride_id": "CR-01-05",
+                "scenario": "A 250-pound animal dies unexpectedly in mid-summer. You have no heavy excavation equipment on site.",
+                "prompt": "In your own words, explain how to establish a biological mortality compost pile to safely break down the animal without attracting coyotes or generating putrid odors.",
+                "required_concepts": [
+                    "carbon base 2 feet thick",
+                    "wood chips or coarse mulch",
+                    "seal completely on all sides",
+                    "aerobic thermal heat 130-150 degrees",
+                    "predator barrier"
+                ],
+                "misconceptions": [
+                    {
+                        "trigger_phrases": [
+                            "drag into the woods",
+                            "leave for scavengers",
+                            "throw in a ditch",
+                            "burn with gasoline"
+                        ],
+                        "remediation": "Flawed Premise Detected: Leaving carcasses in woods or ditches attracts coyotes, buzzards, and feral hogs, training predators to return to your pens while violating state agricultural environmental statutes. High-carbon biological composting decomposes the animal safely on-site."
+                    }
+                ]
+            }
+        },
+        {
+            "module_id": "MOD-01-06",
+            "title": "Water Security & Winter Survival: Troughs, Flow & Freeze Defense",
+            "lecture_video": "media/v01_m06_winter_water.mp4",
+            "audio_briefing": "Module 1.6: Livestock Water Reliability. Clean water is the single most critical nutrient. An animal will survive weeks without food, but dehydrated stock succumbs to impaction colic in days. We review water requirements by species, durable float valves, gravity systems, and passive freeze defense.",
+            "knowledge_base": {
+                "core_principles": [
+                    "Water consumption spikes dramatically in hot weather (up to 30 gallons/day for cattle, 3-5 gallons for hogs/small ruminants).",
+                    "Plumbing must be protected from physical rubbing, chewing, and freezing.",
+                    "Passive geothermal earth-berming, continuous-trickle drains, and heavy insulated tire tanks prevent freezing without relying on unstable grid electricity."
+                ]
+            },
+            "oral_checkride": {
+                "checkride_id": "CR-01-06",
+                "scenario": "An extended arctic freeze drops temperatures to -5\u00b0F with widespread grid power loss for 72 hours.",
+                "prompt": "In your own words, explain how you maintain continuous drinking water access across multiple pens without relying on 120V electric immersion tank heaters.",
+                "required_concepts": [
+                    "passive geothermal berm",
+                    "insulated tire tank",
+                    "continuous trickle drain",
+                    "manual breaking protocol",
+                    "gravity reservoir"
+                ],
+                "misconceptions": [
+                    {
+                        "trigger_phrases": [
+                            "animals eat snow",
+                            "they do not need water in winter",
+                            "rely entirely on electric heaters"
+                        ],
+                        "remediation": "Flawed Premise Detected: Livestock cannot consume enough snow to meet physiological hydration demands without burning critical body fat and developing fatal impaction colic. You must have insulated, passive, or gravity water systems operational when the grid drops."
+                    }
+                ]
+            }
+        }
+    ]
+}
