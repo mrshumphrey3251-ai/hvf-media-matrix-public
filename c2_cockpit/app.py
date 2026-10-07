@@ -13,6 +13,45 @@ from datetime import datetime, timedelta
 import requests
 import subprocess
 import streamlit as st
+
+
+# ==============================================================================
+# PROJECT E.B.O.N.Y. - DYNAMIC SYSTEM SCHEMATICS (VERTICALS 01-03)
+# Executive Built Operational Networks that Never Yields
+# ==============================================================================
+SCHEMATICS = {
+    "V01_AGRI": """
++--------------------------------------------------------------------------+
+|  V01: PRECISION AGRICULTURE & PSYCHROMETRIC AERATION (ASAE D245.5)       |
++--------------------------------------------------------------------------+
+  [Ambient Intake] ---> [VFD Air Blower] ---> [Chung-Pfost Equilibrium Bed]
+           |                     |                           |
+     (Temp/RH Node)       (Flow Rate: CFM)             (EMC Sensor Array)
+           |                     |                           |
+           +-----------> [Bare-Metal Edge C2] <--------------+
+""",
+    "V02_ENERGY": """
++--------------------------------------------------------------------------+
+|  V03: DISTRIBUTED ENERGY & 480V 3-PHASE SWITCHGEAR (BTM / OK TITLE 61)   |
++--------------------------------------------------------------------------+
+  [Utility 480V Grid] ----+
+                          |---> [ATS Synchrocheck] ---> [Essential Load Bus]
+  [BESS / Solar Array] ---+            |                        |
+           |                     (Sub-Cycle Trip)       (480V 3-Phase SCADA)
+           +-----------> [Bare-Metal Edge C2] <-----------------+
+""",
+    "V03_HYDRO": """
++--------------------------------------------------------------------------+
+|  V02: INDUSTRIAL HYDROLOGY & REVERSE OSMOSIS TRANSIENT RELIEF            |
++--------------------------------------------------------------------------+
+  [Raw Feed Sump] ---> [VFD Booster Pump] ---> [RO Membrane Permeate Array]
+           |                     |                           |
+    (Darcy-Weisbach)      (Joukowsky Relief <50ms)      (Delta-P / Flow)
+           |                     |                           |
+           +-----------> [Bare-Metal Edge C2] <--------------+
+"""
+}
+
 from dotenv import load_dotenv
 from groq import Groq
 import qrcode
@@ -155,7 +194,7 @@ def get_empire_config():
             "FARM_NAME": settings.get("FARM_NAME", "HVF Omni-Industrial Matrix"),
             "FOUNDER_NAME": settings.get("FOUNDER_NAME", "Jeffery Humphrey"),
             "AI_PERSONA": settings.get("AI_PERSONA", "Ebony"),
-            "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "humphreyvirtualfarm@gmail.com")
+            "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]")
         }
 
 def update_empire_config(farm_name, founder, persona, email):
@@ -1187,9 +1226,126 @@ elif active_module == "📘 Omni-Industry Matrix":
         else:
             st.error(f"CRITICAL: Directory missing -> {folder_path}")
 
+
+def render_living_classroom_v01():
+    st.markdown("### 🏛️ E.B.O.N.Y. LIVING FLIGHT ACADEMY: VERTICAL 01")
+    st.markdown("**Core Discipline:** Sovereign Agriculture — The 6-Acre Living Baseline")
+    
+    # Module Selector
+    mod_select = st.selectbox(
+        "Select Active Operational Module:",
+        [
+            "MOD-01-01: Reading the 6 Acres (Site Layout, Elevation & Mud Defense)",
+            "MOD-01-02: Pens, Paddocks & Fencing (The Anatomy of Immovable Enclosures)",
+            "MOD-01-03: Feed, Nutrition & Metabolic Landmines (Rumen Dynamics vs. Bloat)",
+            "MOD-01-04: The Sovereign Farm Medicine Chest (Field Vitals & Triage)",
+            "MOD-01-05: Mortality Protocol (Carcass Disposal & Biological Composting)",
+            "MOD-01-06: Water Security & Winter Survival (Troughs, Flow & Freeze Defense)"
+        ]
+    )
+
+    if "MOD-01-01" in mod_select:
+        st.info("🎯 **Module 1.1 Objective:** Master topography, mud defense, and layout physics before setting a single post.")
+        
+        # 1. AUDIOVISUAL MASTERCLASS DECK
+        c1, c2 = st.columns([1, 1])
+        with c1:
+            st.markdown("#### 🎧 Operational Spoken Briefing")
+            st.markdown(
+                '> *"Welcome to Sovereign Agriculture Module 1.1. On raw acreage, gravity and water dictate survival. '
+                'Placing holding pens in a low hollow leaves animals standing in two feet of manure-mud during spring rains, '
+                'causing severe foot rot, joint ill, and equipment paralysis. In this module, we dissect topographic elevation, '
+                'prevailing winter windbreaks, and heavy-truck access routes before a single fence post is driven."*'
+            )
+        with c2:
+            st.markdown("#### 📽️ Masterclass Video Feed")
+            st.warning("📹 Video Asset: docs/01_sovereign_agriculture/media/v01_m01_site_layout.mp4 [Awaiting Local MP4 Drop]")
+
+        st.divider()
+
+        # 2. IN-LINE SME INQUIRY CONSOLE
+        st.markdown("#### 💬 Ask the E.B.O.N.Y. Agricultural SME (In-Line Real-Time Q&A)")
+        st.caption("Ask any question regarding site layout, runoff mechanics, or windbreaks until the concept is clear.")
+        user_inquiry = st.text_input("Enter your inquiry here:", placeholder="e.g., Why can't I put my pens near the creek where there is easy shade?")
+        if user_inquiry:
+            q_lower = user_inquiry.lower()
+            if any(term in q_lower for term in ["creek", "water", "shade", "bottom", "low"]):
+                st.markdown("💡 **E.B.O.N.Y. SME Clarification:** Placing pens near the creek gives shade, but creates three critical vulnerabilities: (1) Runoff will carry manure directly into the watershed, creating biosecurity and statutory violations. (2) Flat creek ground stays waterlogged for weeks, breaking down hooves and sheltering parasites. (3) Severe flash floods can trap stock. Pens belong on higher slopes; plant artificial shade or high-ground trees instead.")
+            elif any(term in q_lower for term in ["well", "wellhead", "drinking"]):
+                st.markdown("💡 **E.B.O.N.Y. SME Clarification:** Domestic and livestock wells must remain uphill and at least 100 to 150 feet away from high-density animal pens and mortality compost to prevent nitrogen, coliform, and bacterial infiltration into your aquifer.")
+            else:
+                st.markdown("💡 **E.B.O.N.Y. SME Clarification:** On 6 acres, design around water movement first. Water moves downhill, manure accumulates on flat areas, and wind cuts from the north/west in winter. Ensure truck turnarounds and dry staging zones before building pens.")
+
+        st.divider()
+
+        # 3. SOCRATIC ORAL CHECK-RIDE (FREE-FORM EVALUATION)
+        st.markdown("#### 🎙️ Socratic Oral Check-Ride (Zero Multiple Choice)")
+        st.markdown(
+            "**Operational Scenario:** You have just acquired 6 raw acres featuring a wooded ridgetop, a sloping hillside, "
+            "and a flat low pasture bordering a wet creek. You need to establish pens for small stock, an all-weather access road, "
+            "and a mortality compost site relative to your wellhead."
+        )
+        st.markdown("**Command Directive:** *In your own words, explain where you place the primary pens, where you locate compost relative to your wellhead, and how you ensure vehicle access during heavy rains.*")
+
+        operator_answer = st.text_area("State your operational strategy in your own words:", height=110, placeholder="Type your full operational response here...")
+        if st.button("Submit Operational Evaluation to E.B.O.N.Y. Engine"):
+            if not operator_answer.strip():
+                st.error("Submission rejected: Operator must articulate their operational plan before evaluation.")
+            else:
+                ans_lower = operator_answer.lower()
+                # Check for critical flawed premise
+                if any(bad in ans_lower for bad in ["creek", "bottom pasture", "flat ground near water", "low ground"]):
+                    st.error("🚨 FLAWED PREMISE DETECTED: Placing pens on flat ground near the creek guarantees waterlogging, severe foot rot, and biosecurity violations from runoff. Holding pens must be positioned on well-drained slopes or ridgetops.")
+                else:
+                    score_pts = 0
+                    if any(term in ans_lower for term in ["high", "ridge", "slope", "elevation"]):
+                        score_pts += 1
+                    if any(term in ans_lower for term in ["well", "downgradient", "buffer", "away from well"]):
+                        score_pts += 1
+                    if any(term in ans_lower for term in ["gravel", "access", "truck", "road", "high ground route"]):
+                        score_pts += 1
+                    
+                    if score_pts >= 2:
+                        st.success("✅ OPERATIONAL ATTESTATION VALIDATED: Your response reflects proper site layout physics—positioning high-density pens on well-drained ground, safeguarding the wellhead, and establishing dependable access.")
+                    else:
+                        st.warning("⚠️ INCOMPLETE ATTESTATION: Your strategy is missing critical operational parameters. Verify how far compost is kept from your wellhead and ensure your access road avoids low-lying drainage paths.")
+
+        st.divider()
+
+        # 4. KINETIC RUNOFF & SLOPE CALCULATOR
+        st.markdown("#### ⚙️ Kinetic Physics Control Bench: Terrain Slope & Runoff Velocity")
+        elev_col1, elev_col2 = st.columns(2)
+        with elev_col1:
+            elev_drop = st.slider("Elevation Drop Across Pen Run (Feet):", min_value=0.5, max_value=25.0, value=4.0, step=0.5)
+        with elev_col2:
+            horiz_dist = st.slider("Horizontal Distance of Run (Feet):", min_value=50.0, max_value=500.0, value=150.0, step=10.0)
+        
+        slope_pct = (elev_drop / horiz_dist) * 100.0
+        st.metric("Calculated Pen Slope Grade", f"{slope_pct:.2f} %")
+        if slope_pct < 2.0:
+            st.error("🛑 DANGER: Grade is below 2.0%. Soil will retain standing water, leading to severe mud churn and anaerobic conditions during rainy seasons.")
+        elif 2.0 <= slope_pct <= 6.0:
+            st.success("🟢 OPTIMAL DRAINAGE: Grade between 2% and 6% sheds excess surface water without causing severe soil erosion or gullying.")
+        else:
+            st.warning("⚠️ HIGH EROSION RISK: Grade exceeds 6.0%. High-velocity surface runoff will wash out topsoil and undermine fence post footings.")
+    else:
+        st.info("Pillars and live telemetry benches for this module are configured in syllabus.json and ready for deployment.")
+
+    slug_to_schematic = {
+        "01_sovereign_agriculture": "V01_AGRI",
+        "04_distributed_energy_grid": "V02_ENERGY",
+        "14_sovereign_hydrology": "V03_HYDRO",
+    }
+
     for i, tab in enumerate(tabs):
         with tab:
-            load_vertical(verticals[i][1])
+            slug = verticals[i][1]
+            if slug == "01_sovereign_agriculture":
+                render_living_classroom_v01()
+            else:
+                if slug in slug_to_schematic and slug_to_schematic[slug] in SCHEMATICS:
+                    st.code(SCHEMATICS[slug_to_schematic[slug]], language="text")
+                load_vertical(slug)
 
 
 
