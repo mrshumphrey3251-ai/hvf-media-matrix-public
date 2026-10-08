@@ -26,9 +26,8 @@ import autonomous_self_heal
 import deep_code_sentinel
 
 def render():
-    REPO_ROOT = Path(__file__).resolve().parent.parent
-    BASE_DIR = REPO_ROOT
-    global BASE_DIR
+    ROOT_DIR = Path(__file__).resolve().parent.parent
+    BASE_DIR = ROOT_DIR
     from pathlib import Path
     BASE_DIR = Path(BASE_DIR)
     st.markdown("## 🛡️ CEO Authorization Gate & Interactive Sandbox")
