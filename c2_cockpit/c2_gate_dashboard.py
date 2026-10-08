@@ -13,20 +13,20 @@ import streamlit as st
 # Canonical Directory Suite
 ROOT_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = ROOT_DIR
-EXT_DIR = ROOT_DIR / "level5_extensions"
-SANDBOX_DIR = ROOT_DIR / "sandbox_staging"
-AIRLOCK_DIR = ROOT_DIR / "sandbox_staging"
-DISPATCH_DIR = ROOT_DIR / "dispatch_core"
-COCKPIT_DIR = ROOT_DIR / "c2_cockpit"
-GOVERNANCE_DIR = ROOT_DIR / "governance"
+EXT_DIR = Path(ROOT_DIR) / "level5_extensions"
+SANDBOX_DIR = Path(ROOT_DIR) / "sandbox_staging"
+AIRLOCK_DIR = Path(ROOT_DIR) / "sandbox_staging"
+DISPATCH_DIR = Path(ROOT_DIR) / "dispatch_core"
+COCKPIT_DIR = Path(ROOT_DIR) / "c2_cockpit"
+GOVERNANCE_DIR = Path(ROOT_DIR) / "governance"
 ARCH_DIR = GOVERNANCE_DIR / "architecture"
 
 # Canonical Governance & Merkle Ledger File Targets
-LEDGER_FILE = ARCH_DIR / "MERKLE_AUDIT_LEDGER.json"
+LEDGER_FILE = Path(ARCH_DIR) / "MERKLE_AUDIT_LEDGER.json"
 MERKLE_FILE = LEDGER_FILE
-AUDIT_REPORT_FILE = ARCH_DIR / "DEEP_AUDIT_REPORT.json"
-BATCH_LOG_FILE = ARCH_DIR / "BATCH_PATCH_LOG.json"
-SIDEBAR_REGISTRY_FILE = ARCH_DIR / "SIDEBAR_MODULES.json"
+AUDIT_REPORT_FILE = Path(ARCH_DIR) / "DEEP_AUDIT_REPORT.json"
+BATCH_LOG_FILE = Path(ARCH_DIR) / "BATCH_PATCH_LOG.json"
+SIDEBAR_REGISTRY_FILE = Path(ARCH_DIR) / "SIDEBAR_MODULES.json"
 
 # Inject Search Paths
 for d in [ROOT_DIR, DISPATCH_DIR, COCKPIT_DIR, EXT_DIR, SANDBOX_DIR]:
@@ -55,18 +55,21 @@ except ImportError:
     autonomous_self_heal = None
 
 def render():
-
-
-
-    st.markdown("## 🛡️ CEO Authorization Gate & Interactive Sandbox")
-    st.caption("Live Interactive Validation Cradle | Iterative Directive Loop | Cryptographic Airlock")
-
-    if "gate_alert_msg" in st.session_state:
-        level, msg = st.session_state.pop("gate_alert_msg")
-        if level == "success":
-            st.success(msg)
-        else:
-            st.error(msg)
+    from pathlib import Path
+    ROOT_DIR = Path(__file__).resolve().parent.parent
+    BASE_DIR = ROOT_DIR
+    EXT_DIR = Path(ROOT_DIR / "level5_extensions")
+    SANDBOX_DIR = Path(ROOT_DIR / "sandbox_staging")
+    AIRLOCK_DIR = SANDBOX_DIR
+    DISPATCH_DIR = Path(ROOT_DIR / "dispatch_core")
+    COCKPIT_DIR = Path(ROOT_DIR / "c2_cockpit")
+    GOVERNANCE_DIR = Path(ROOT_DIR / "governance")
+    ARCH_DIR = Path(GOVERNANCE_DIR / "architecture")
+    LEDGER_FILE = Path(ARCH_DIR / "MERKLE_AUDIT_LEDGER.json")
+    MERKLE_FILE = LEDGER_FILE
+    AUDIT_REPORT_FILE = Path(ARCH_DIR / "DEEP_AUDIT_REPORT.json")
+    BATCH_LOG_FILE = Path(ARCH_DIR / "BATCH_PATCH_LOG.json")
+    SIDEBAR_REGISTRY_FILE = Path(ARCH_DIR / "SIDEBAR_MODULES.json")
 
     tab_audit, tab_test, tab_promote, tab_ext, tab_ledger = st.tabs([
         "🔍 Deep Sentinel Audit",
@@ -91,7 +94,7 @@ def render():
                     st.success("Line-by-line inspection cycle complete.")
                     st.rerun()
 
-        report_file = ROOT_DIR / "governance" / "architecture" / "DEEP_AUDIT_REPORT.json"
+        report_file = Path(ROOT_DIR) / "governance" / "architecture" / "DEEP_AUDIT_REPORT.json"
         if report_file.exists():
             with open(report_file, "r", encoding="utf-8") as rf:
                 rep_data = json.load(rf)
@@ -117,7 +120,7 @@ def render():
                     st.rerun()
 
         with c_b2:
-            patch_log_file = ROOT_DIR / "governance" / "architecture" / "BATCH_PATCH_LOG.json"
+            patch_log_file = Path(ROOT_DIR) / "governance" / "architecture" / "BATCH_PATCH_LOG.json"
             if patch_log_file.exists():
                 with open(patch_log_file, "r", encoding="utf-8") as pf:
                     plog = json.load(pf)
@@ -125,7 +128,7 @@ def render():
 
     with tab_test:
         st.markdown("### 🧪 Live Candidate Runtime & Refinement")
-        candidates = [f.name for f in SANDBOX_DIR.glob("*.py") if f.name != "__init__.py"]
+        candidates = [f.name for f in Path(SANDBOX_DIR).glob("*.py") if f.name != "__init__.py"]
 
         if not candidates:
             st.info("Quarantine staging is clear. No unverified candidates currently staged.")
@@ -133,7 +136,7 @@ def render():
             selected_file = st.selectbox("Select Candidate Module to Test:", candidates)
             st.caption(f"Mounted in isolated test namespace: `{selected_file}`")
 
-            mod_path = SANDBOX_DIR / selected_file
+            mod_path = Path(SANDBOX_DIR) / selected_file
             spec = importlib.util.spec_from_file_location(f"test_{Path(selected_file).stem}", str(mod_path))
             candidate_mod = importlib.util.module_from_spec(spec)
             err = None
@@ -170,7 +173,7 @@ def render():
 
     with tab_promote:
         st.markdown("### ⚖️ Executive Sign-Off & Production Airlock")
-        candidates = [f.name for f in SANDBOX_DIR.glob("*.py") if f.name != "__init__.py"]
+        candidates = [f.name for f in Path(SANDBOX_DIR).glob("*.py") if f.name != "__init__.py"]
         if not candidates:
             st.info("No candidates pending authorization.")
         else:
@@ -192,7 +195,7 @@ def render():
                     res = gate.sign_and_promote(promote_file, auth_token, expected_key)
                     if res.get("success"):
                         if mount_to_sidebar:
-                            reg_path = ROOT_DIR / "governance" / "architecture" / "SIDEBAR_MODULES.json"
+                            reg_path = Path(ROOT_DIR) / "governance" / "architecture" / "SIDEBAR_MODULES.json"
                             reg_data = []
                             if reg_path.exists():
                                 try:
@@ -218,7 +221,7 @@ def render():
 
     with tab_ext:
         st.markdown("### 🧩 Active Level 5 Production Extensions")
-        ext_files = [f.name for f in EXT_DIR.glob("*.py") if f.name != "__init__.py"]
+        ext_files = [f.name for f in Path(EXT_DIR).glob("*.py") if f.name != "__init__.py"]
         if not ext_files:
             st.info("No active Level 5 extensions currently mounted.")
         else:
