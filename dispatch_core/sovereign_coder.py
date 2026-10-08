@@ -40,7 +40,7 @@ def _execute_llm_synthesis(prompt: str) -> str:
             
     client = Groq(api_key=key)
     response = client.chat.completions.create(
-        model="llama3-70b-8192",
+        model="llama-3.3-70b-versatile",
         messages=[
             {"role": "system", "content": "You are E.B.O.N.Y., an elite Level 5 Autonomous AI writing precise Python code. Return ONLY valid, complete, operational Python code enclosed in ```python fences. No conversational text, no explanations, no apologies. Include Streamlit elements for UI."},
             {"role": "user", "content": prompt}

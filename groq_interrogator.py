@@ -7,7 +7,7 @@ try:
     client = Groq(api_key=key)
     res = client.chat.completions.create(
         messages=[{"role": "user", "content": "Test"}],
-        model="llama3-8b-8192"
+        model="llama-3.3-70b-versatile"
     )
     print("[+] CLOUD SUCCESS. Response:", res.choices[0].message.content)
 except Exception as e:

@@ -36,7 +36,7 @@ def generate_chat_response(prompt: str, conversation_history: list = None) -> st
             from groq import Groq
             client = Groq(api_key=groq_key)
             # Try available Groq standard models in order
-            for model_id in ["llama-3.1-8b-instant", "llama3-8b-8192", "mixtral-8x7b-32768"]:
+            for model_id in ["llama-3.1-8b-instant", "llama-3.3-70b-versatile", "mixtral-8x7b-32768"]:
                 try:
                     resp = client.chat.completions.create(
                         messages=[
@@ -104,4 +104,5 @@ def synthesize_speech_elevenlabs(text_to_speak: str) -> bytes:
 if __name__ == "__main__":
     print("[*] Testing Sovereign Communications Portal...")
     test_out = generate_chat_response("System status report.")
-    print(f"[+] Output: {test_out}")
+    print(f"[+] Output: {test_out}")
+
