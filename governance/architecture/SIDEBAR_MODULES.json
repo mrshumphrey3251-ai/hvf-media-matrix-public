@@ -22,5 +22,33 @@
   {
     "filename": "autonomous_healing_test.py",
     "title": "\u26a1 Autonomous Healing Test"
+  },
+  {
+    "filename": "ada_voice_module.py",
+    "title": "\u26a1 Ada Voice Module"
+  },
+  {
+    "filename": "alert_protocol.py",
+    "title": "\u26a1 Alert Protocol"
+  },
+  {
+    "filename": "api_gateway.py",
+    "title": "\u26a1 Api Gateway"
+  },
+  {
+    "filename": "app.py",
+    "title": "\u26a1 App"
+  },
+  {
+    "filename": "apply_account_manager_ui.py",
+    "title": "\u26a1 Apply Account Manager Ui"
+  },
+  {
+    "filename": "apply_dispatch_deck.py",
+    "title": "\u26a1 Apply Dispatch Deck"
+  },
+  {
+    "filename": "migrate_users_table.py",
+    "title": "\u26a1 Migrate Users Table"
   }
 ]

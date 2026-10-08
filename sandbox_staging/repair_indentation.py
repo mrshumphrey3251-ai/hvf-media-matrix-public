@@ -1,48 +1,110 @@
-import os
-import sys
-import py_compile
+"""
+HUMPHREY VIRTUAL FARMS LLC | LEVEL-5 SOVEREIGN INDUSTRIAL C2
+MODULE: REPAIR INDENTATION
+CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK TITLE 61 / HB 2992
+AUTONOMOUS REMEDIATION: AST-Encapsulated render() entrypoint.
+"""
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
-TARGET_FILES = [
-    os.path.join(BASE_DIR, "ebony_console.py"),
-    os.path.join(BASE_DIR, "ebony_console_GREEN.py")
-]
+from pathlib import Path
+import streamlit as st
 
-print("=" * 80)
-print("REPAIRING CONSOLE INDENTATION & VERIFYING AST INTEGRITY")
-print("=" * 80)
+def render():
+    import os
 
-for fpath in TARGET_FILES:
-    if not os.path.exists(fpath):
-        continue
+    import sys
 
-    print(f"\nAuditing: {os.path.basename(fpath)}")
-    with open(fpath, "r", encoding="utf-8") as f:
-        lines = f.readlines()
+    import py_compile
 
-    # Remove all injected PRAGMA busy_timeout lines causing indentation mismatches
-    cleaned_lines = []
-    removed_count = 0
-    for line in lines:
-        if 'PRAGMA busy_timeout = 30000;' in line:
-            removed_count += 1
+
+
+    BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+
+    TARGET_FILES = [
+
+        os.path.join(BASE_DIR, "ebony_console.py"),
+
+        os.path.join(BASE_DIR, "ebony_console_GREEN.py")
+
+    ]
+
+
+
+    print("=" * 80)
+
+    print("REPAIRING CONSOLE INDENTATION & VERIFYING AST INTEGRITY")
+
+    print("=" * 80)
+
+
+
+    for fpath in TARGET_FILES:
+
+        if not os.path.exists(fpath):
+
             continue
-        cleaned_lines.append(line)
 
-    print(f"  * Excised {removed_count} malformed inline PRAGMA statements.")
 
-    # Write back clean source
-    with open(fpath, "w", encoding="utf-8") as f:
-        f.writelines(cleaned_lines)
 
-    # Perform strict AST compilation check
-    try:
-        py_compile.compile(fpath, doraise=True)
-        print(f"  * [SUCCESS] Clean compile: Zero IndentationErrors, Zero SyntaxErrors.")
-    except py_compile.PyCompileError as e:
-        print(f"  * [FAIL] Compilation error detected:\n{e}")
-        sys.exit(1)
+        print(f"\nAuditing: {os.path.basename(fpath)}")
 
-print("\n" + "=" * 80)
-print("INDENTATION REPAIR VERIFIED ACROSS ALL CONSOLE CONTROLLERS")
-print("=" * 80)
+        with open(fpath, "r", encoding="utf-8") as f:
+
+            lines = f.readlines()
+
+
+
+        # Remove all injected PRAGMA busy_timeout lines causing indentation mismatches
+
+        cleaned_lines = []
+
+        removed_count = 0
+
+        for line in lines:
+
+            if 'PRAGMA busy_timeout = 30000;' in line:
+
+                removed_count += 1
+
+                continue
+
+            cleaned_lines.append(line)
+
+
+
+        print(f"  * Excised {removed_count} malformed inline PRAGMA statements.")
+
+
+
+        # Write back clean source
+
+        with open(fpath, "w", encoding="utf-8") as f:
+
+            f.writelines(cleaned_lines)
+
+
+
+        # Perform strict AST compilation check
+
+        try:
+
+            py_compile.compile(fpath, doraise=True)
+
+            print(f"  * [SUCCESS] Clean compile: Zero IndentationErrors, Zero SyntaxErrors.")
+
+        except py_compile.PyCompileError as e:
+
+            print(f"  * [FAIL] Compilation error detected:\n{e}")
+
+            sys.exit(1)
+
+
+
+    print("\n" + "=" * 80)
+
+    print("INDENTATION REPAIR VERIFIED ACROSS ALL CONSOLE CONTROLLERS")
+
+    print("=" * 80)
+
+
+if __name__ == "__main__":
+    render()

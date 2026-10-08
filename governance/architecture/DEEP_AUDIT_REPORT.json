@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-08T22:13:01.634654+00:00",
+  "timestamp": "2026-10-08T22:43:25.984645+00:00",
   "modules_inspected": 477,
   "modules_optimal": 106,
   "modules_needing_upgrade": 371,
@@ -760,21 +760,75 @@
       "file": "c2_gate_dashboard.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\c2_gate_dashboard.py",
       "metrics": {
-        "total_lines": 202,
-        "code_lines": 174,
+        "total_lines": 238,
+        "code_lines": 205,
         "functions": 1,
         "classes": 0,
-        "complexity_score": 35
+        "complexity_score": 20
       },
       "findings": [
         {
-          "line": 14,
+          "line": 16,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 15,
+          "line": 17,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 18,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 19,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 20,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 21,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 22,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 25,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 27,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 28,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 29,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
@@ -786,61 +840,121 @@
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 61,
+          "line": 62,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 87,
+          "line": 64,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 103,
+          "line": 65,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 61,
+          "line": 66,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 87,
+          "line": 67,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 87,
+          "line": 68,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 162,
+          "line": 70,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 82,
+          "line": 71,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 162,
+          "line": 72,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 162,
+          "line": 97,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 97,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 123,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 139,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 97,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 123,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 123,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 198,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 118,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 198,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 198,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."

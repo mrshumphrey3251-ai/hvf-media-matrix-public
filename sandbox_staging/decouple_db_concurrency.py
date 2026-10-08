@@ -1,343 +1,700 @@
-import os
-import sys
-import py_compile
+"""
+HUMPHREY VIRTUAL FARMS LLC | LEVEL-5 SOVEREIGN INDUSTRIAL C2
+MODULE: DECOUPLE DB CONCURRENCY
+CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK TITLE 61 / HB 2992
+AUTONOMOUS REMEDIATION: AST-Encapsulated render() entrypoint.
+"""
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
-CORE_FILE = os.path.join(BASE_DIR, "email_triage_core.py")
-CONSOLE_FILES = [
-    os.path.join(BASE_DIR, "ebony_console.py"),
-    os.path.join(BASE_DIR, "ebony_console_GREEN.py")
-]
-
-print("=" * 80)
-print("1. DEPLOYING DECOUPLED IN-MEMORY INGESTION TO EMAIL_TRIAGE_CORE.PY")
-print("=" * 80)
-
-UPGRADED_CORE = '''import os
-import sys
-import re
-import email
-from email.utils import parseaddr
-from email.header import decode_header
-import imaplib
-import sqlite3
-from datetime import datetime
-from dotenv import load_dotenv
-from groq import Groq
-import chromadb
-from cryptography.fernet import Fernet
+from pathlib import Path
 import streamlit as st
 
-load_dotenv(override=True)
-GROQ_KEY = os.getenv("GROQ_API_KEY")
-ACTIVE_MODEL = "openai/gpt-oss-120b"
-BASE_DIR = r"C:\\HVF_Repos\\hvf-media-matrix-private"
-DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
-CHROMA_PATH = os.path.join(BASE_DIR, "chroma_db")
-KEY_FILE = os.path.join(BASE_DIR, "memory_core", "vault.key")
+def render():
+    import os
 
-client = Groq(api_key=GROQ_KEY) if GROQ_KEY else None
+    import sys
 
-try:
-    chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
-    iron_dome = chroma_client.get_collection("hvf_iron_dome_core")
-except Exception:
-    iron_dome = None
+    import py_compile
 
-ADVERSARIAL_INJECTION_PATTERNS = [
-    r"ignore (all )?(previous|prior) instructions",
-    r"you are now in developer mode",
-    r"system prompt override",
-    r"disregard (all )?system rules",
-    r"exfiltrate",
-    r"reveal (all )?api keys",
-    r"output (the )?internal directives"
-]
 
-def get_db_connection(timeout: float = 30.0) -> sqlite3.Connection:
-    """Returns an autocommit SQLite connection configured for concurrent defense operations."""
-    conn = sqlite3.connect(DB_PATH, timeout=timeout, isolation_level=None)
-    conn.execute("PRAGMA busy_timeout = 30000;")
-    return conn
 
-def get_fernet_cipher():
-    if os.path.exists(KEY_FILE):
-        with open(KEY_FILE, "rb") as f:
-            return Fernet(f.read().strip())
-    return None
+    BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
 
-def clean_token(raw_str: str) -> str:
-    if not raw_str:
-        return ""
-    return str(raw_str).replace(" ", "").replace("\\r", "").replace("\\n", "").replace("\\t", "").strip()
+    CORE_FILE = os.path.join(BASE_DIR, "email_triage_core.py")
 
-def decrypt_credential(encrypted_token: str) -> str:
-    cipher = get_fernet_cipher()
-    if cipher and encrypted_token:
-        try:
-            return cipher.decrypt(encrypted_token.encode("utf-8")).decode("utf-8")
-        except Exception:
-            pass
-    return ""
+    CONSOLE_FILES = [
 
-def encrypt_credential(raw_token: str) -> str:
-    cipher = get_fernet_cipher()
-    sanitized = clean_token(raw_token)
-    if cipher and sanitized:
-        return cipher.encrypt(sanitized.encode("utf-8")).decode("utf-8")
-    return ""
+        os.path.join(BASE_DIR, "ebony_console.py"),
 
-def extract_clean_email(raw_sender: str) -> str:
-    _, addr = parseaddr(str(raw_sender))
-    if addr and "@" in addr:
-        return addr.lower().strip()
-    match = re.search(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+", str(raw_sender))
-    return match.group(0).lower().strip() if match else str(raw_sender).lower().strip()
+        os.path.join(BASE_DIR, "ebony_console_GREEN.py")
 
-def is_sender_blocked(raw_sender: str) -> bool:
-    clean_addr = extract_clean_email(raw_sender)
-    domain = clean_addr.split("@")[-1] if "@" in clean_addr else ""
+    ]
+
+
+
+    print("=" * 80)
+
+    print("1. DEPLOYING DECOUPLED IN-MEMORY INGESTION TO EMAIL_TRIAGE_CORE.PY")
+
+    print("=" * 80)
+
+
+
+    UPGRADED_CORE = '''import os
+
+    import sys
+
+    import re
+
+    import email
+
+    from email.utils import parseaddr
+
+    from email.header import decode_header
+
+    import imaplib
+
+    import sqlite3
+
+    from datetime import datetime
+
+    from dotenv import load_dotenv
+
+    from groq import Groq
+
+    import chromadb
+
+    from cryptography.fernet import Fernet
+
+    import streamlit as st
+
+
+
+    load_dotenv(override=True)
+
+    GROQ_KEY = os.getenv("GROQ_API_KEY")
+
+    ACTIVE_MODEL = "openai/gpt-oss-120b"
+
+    BASE_DIR = r"C:\\HVF_Repos\\hvf-media-matrix-private"
+
+    DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
+
+    CHROMA_PATH = os.path.join(BASE_DIR, "chroma_db")
+
+    KEY_FILE = os.path.join(BASE_DIR, "memory_core", "vault.key")
+
+
+
+    client = Groq(api_key=GROQ_KEY) if GROQ_KEY else None
+
+
+
     try:
-        conn = get_db_connection(timeout=5.0)
-        cur = conn.cursor()
-        cur.execute("""
-        SELECT COUNT(*) FROM blocked_senders 
-        WHERE clean_email = ? OR clean_email = ? OR sender_address = ?
-        """, (clean_addr, f"@{domain}", str(raw_sender)))
-        is_blocked = cur.fetchone()[0] > 0
-        conn.close()
-        return is_blocked
+
+        chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
+
+        iron_dome = chroma_client.get_collection("hvf_iron_dome_core")
+
     except Exception:
-        return False
 
-def block_sender(raw_sender: str, reason: str = "CEO_KINEMATIC_VETO", blocked_by: str = "Jeffery Humphrey (CEO)") -> tuple:
-    clean_addr = extract_clean_email(raw_sender)
-    now_str = datetime.now().isoformat()
-    try:
-        conn = get_db_connection(timeout=30.0)
-        cur = conn.cursor()
-        cur.execute("""
-        INSERT INTO blocked_senders (sender_address, clean_email, date_blocked, blocked_by, reason)
-        VALUES (?, ?, ?, ?, ?)
-        ON CONFLICT(clean_email) DO UPDATE SET
-            date_blocked = excluded.date_blocked,
-            reason = excluded.reason;
-        """, (str(raw_sender), clean_addr, now_str, blocked_by, reason))
-        
-        cur.execute("""
-        DELETE FROM staged_email_dispatches 
-        WHERE sender_address LIKE ? OR sender_address LIKE ?
-        """, (f"%{clean_addr}%", f"%{raw_sender}%"))
-        purged = cur.rowcount
-        conn.close()
-        return True, f"Sender [{clean_addr}] permanently blacklisted. Purged {purged} staged records."
-    except Exception as e:
-        return False, str(e)
+        iron_dome = None
 
-def sanitize_payload(text: str) -> tuple:
-    cleaned = re.sub(r"<[^>]*>", " ", text)
-    cleaned = re.sub(r"[\\x00-\\x08\\x0B\\x0C\\x0E-\\x1F\\x7F]", "", cleaned)
-    cleaned = " ".join(cleaned.split())
-    threat_status = "INSPECTED_CLEAN"
-    for pattern in ADVERSARIAL_INJECTION_PATTERNS:
-        if re.search(pattern, cleaned, re.IGNORECASE):
-            threat_status = "THREAT_QUARANTINED_INJECTION_ATTEMPT"
-            break
-    return cleaned, threat_status
 
-def query_iron_dome(subject: str, body: str, n_results: int = 2) -> str:
-    if not iron_dome:
+
+    ADVERSARIAL_INJECTION_PATTERNS = [
+
+        r"ignore (all )?(previous|prior) instructions",
+
+        r"you are now in developer mode",
+
+        r"system prompt override",
+
+        r"disregard (all )?system rules",
+
+        r"exfiltrate",
+
+        r"reveal (all )?api keys",
+
+        r"output (the )?internal directives"
+
+    ]
+
+
+
+    def get_db_connection(timeout: float = 30.0) -> sqlite3.Connection:
+
+        """Returns an autocommit SQLite connection configured for concurrent defense operations."""
+
+        conn = sqlite3.connect(DB_PATH, timeout=timeout, isolation_level=None)
+
+        conn.execute("PRAGMA busy_timeout = 30000;")
+
+        return conn
+
+
+
+    def get_fernet_cipher():
+
+        if os.path.exists(KEY_FILE):
+
+            with open(KEY_FILE, "rb") as f:
+
+                return Fernet(f.read().strip())
+
+        return None
+
+
+
+    def clean_token(raw_str: str) -> str:
+
+        if not raw_str:
+
+            return ""
+
+        return str(raw_str).replace(" ", "").replace("\\r", "").replace("\\n", "").replace("\\t", "").strip()
+
+
+
+    def decrypt_credential(encrypted_token: str) -> str:
+
+        cipher = get_fernet_cipher()
+
+        if cipher and encrypted_token:
+
+            try:
+
+                return cipher.decrypt(encrypted_token.encode("utf-8")).decode("utf-8")
+
+            except Exception:
+
+                pass
+
         return ""
-    try:
-        combined_query = f"{subject} {body[:300]}"
-        res = iron_dome.query(query_texts=[combined_query], n_results=n_results)
-        docs = res.get("documents", [[]])[0]
-        return "\\n\\n".join(docs)
-    except Exception:
+
+
+
+    def encrypt_credential(raw_token: str) -> str:
+
+        cipher = get_fernet_cipher()
+
+        sanitized = clean_token(raw_token)
+
+        if cipher and sanitized:
+
+            return cipher.encrypt(sanitized.encode("utf-8")).decode("utf-8")
+
         return ""
 
-def generate_staged_draft(account_alias: str, sender: str, subject: str, sanitized_body: str, threat: str) -> str:
-    if threat != "INSPECTED_CLEAN":
-        return "[SECURITY ALERT]: Inbound transmission flagged for adversarial injection. Direct review required by CEO Jeffery Humphrey."
-    if not client:
-        return "[OFFLINE]: Groq inference unavailable. Draft suspended."
-    context = query_iron_dome(subject, sanitized_body)
-    prompt = f"""You are Ebony, sovereign AI for HVF Omni-Industrial Matrix (CAGE: 1AHA8, UEI: S1M4ENLHTDH5), led by Founder & CEO Jeffery Humphrey.
-Prepare a decisive, professional, and authoritative email draft in response to this incoming correspondence.
-Represent HVF's prime contractor standing and defense/industrial posture accurately.
-DO NOT promise actions that violate DFARS 252.227-7018 or exceed executive authority.
 
---- SENDER: {sender}
---- SUBJECT: {subject}
---- INBOUND MESSAGE:
-{sanitized_body}
 
---- RETRIEVED SOVEREIGN INTEL ---
-{context}
----------------------------------
+    def extract_clean_email(raw_sender: str) -> str:
 
-Provide ONLY the text of the staged draft response. Sign off as:
-Office of the Chief Executive
-HVF Omni-Industrial Matrix
-Prime Contractor | CAGE: 1AHA8"""
-    try:
-        res = client.chat.completions.create(
-            model=ACTIVE_MODEL,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.2
-        )
-        return res.choices[0].message.content.strip()
-    except Exception as e:
-        return f"[DRAFTING ERROR]: {e}"
+        _, addr = parseaddr(str(raw_sender))
 
-def poll_and_stage_account(account_alias: str, email_addr: str, imap_srv: str, imap_prt: int, pwd_key: str, enc_pwd: str):
-    """Polls IMAP, performs inference in-memory, and writes to SQLite in a single atomic batch."""
-    password = ""
-    if enc_pwd:
-        password = decrypt_credential(enc_pwd)
-    if not password and pwd_key and pwd_key != "DYNAMIC_VAULT_ENCRYPTED":
-        password = os.getenv(pwd_key, "")
+        if addr and "@" in addr:
 
-    clean_user = str(email_addr).strip()
-    clean_pass = clean_token(password)
+            return addr.lower().strip()
 
-    if not clean_pass:
-        print(f"  [WARN] No password found for '{account_alias}'. Update credentials in Dispatch Deck UI.")
-        return 0
+        match = re.search(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+", str(raw_sender))
 
-    records_to_insert = []
-    try:
-        mail = imaplib.IMAP4_SSL(str(imap_srv).strip(), int(imap_prt))
-        mail.login(clean_user, clean_pass)
-        mail.select("INBOX")
-        status, messages = mail.search(None, "UNSEEN")
-        if status != "OK":
-            mail.logout()
-            return 0
-            
-        uids = messages[0].split()
-        print(f"  [{account_alias}] Discovered {len(uids)} unread transmissions.")
-        
-        # In-Memory Extraction and Inference (Zero DB Locks Held)
-        for uid in uids[-10:]:
-            res, msg_data = mail.fetch(uid, "(RFC822)")
-            for response_part in msg_data:
-                if isinstance(response_part, tuple):
-                    msg = email.message_from_bytes(response_part[1])
-                    sender = msg.get("From", "Unknown Sender")
-                    
-                    if is_sender_blocked(sender):
-                        print(f"    [DROPPED] Sender blacklisted: {sender}")
-                        continue
-                        
-                    subj, encoding = decode_header(msg.get("Subject", "No Subject"))[0]
-                    if isinstance(subj, bytes):
-                        subj = subj.decode(encoding if encoding else "utf-8", errors="ignore")
-                    date_str = msg.get("Date", "")
-                    
-                    body = ""
-                    if msg.is_multipart():
-                        for part in msg.walk():
-                            if part.get_content_type() == "text/plain":
-                                body = part.get_payload(decode=True).decode(errors="ignore")
-                                break
-                    else:
-                        body = msg.get_payload(decode=True).decode(errors="ignore")
-                        
-                    sanitized_body, threat = sanitize_payload(body)
-                    
-                    category = "GENERAL"
-                    if "tencap" in subj.lower() or "darpa" in subj.lower() or "1aha8" in subj.lower():
-                        category = "DEFENSE_PRIME_CONTRACTING"
-                    elif "signallink" in sender.lower() or "drew" in sender.lower():
-                        category = "SUBCONTRACTOR_SIGNALLINK"
-                    elif "docusign" in sender.lower():
-                        category = "LEGAL_COMPLIANCE_EXECUTION"
-                    elif "stripe" in sender.lower() or "paypal" in sender.lower() or "invoice" in subj.lower():
-                        category = "FINANCIAL_TREASURY"
-                        
-                    draft = generate_staged_draft(account_alias, sender, subj, sanitized_body, threat)
-                    
-                    records_to_insert.append((
-                        account_alias, uid.decode(), sender, clean_user, subj, 
-                        date_str, sanitized_body, threat, category, draft
-                    ))
-        mail.logout()
-    except Exception as e:
-        print(f"  [ERROR] IMAP network cycle failed for '{account_alias}': {e}")
-        return 0
+        return match.group(0).lower().strip() if match else str(raw_sender).lower().strip()
 
-    # Atomic Single-Burst Persistence (< 5 milliseconds lock time)
-    staged_count = len(records_to_insert)
-    if staged_count > 0:
+
+
+    def is_sender_blocked(raw_sender: str) -> bool:
+
+        clean_addr = extract_clean_email(raw_sender)
+
+        domain = clean_addr.split("@")[-1] if "@" in clean_addr else ""
+
         try:
-            conn = get_db_connection(timeout=30.0)
+
+            conn = get_db_connection(timeout=5.0)
+
             cur = conn.cursor()
-            cur.executemany("""
-            INSERT INTO staged_email_dispatches 
-            (account_alias, message_uid, sender_address, recipient_address, subject, date_received, raw_body_sanitized, threat_status, triage_category, draft_response, veto_status)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'PENDING_CEO_APPROVAL')
-            """, records_to_insert)
+
+            cur.execute("""
+
+            SELECT COUNT(*) FROM blocked_senders 
+
+            WHERE clean_email = ? OR clean_email = ? OR sender_address = ?
+
+            """, (clean_addr, f"@{domain}", str(raw_sender)))
+
+            is_blocked = cur.fetchone()[0] > 0
+
             conn.close()
-            print(f"  [SUCCESS] Atomically staged {staged_count} records in vault.")
+
+            return is_blocked
+
+        except Exception:
+
+            return False
+
+
+
+    def block_sender(raw_sender: str, reason: str = "CEO_KINEMATIC_VETO", blocked_by: str = "Jeffery Humphrey (CEO)") -> tuple:
+
+        clean_addr = extract_clean_email(raw_sender)
+
+        now_str = datetime.now().isoformat()
+
+        try:
+
+            conn = get_db_connection(timeout=30.0)
+
+            cur = conn.cursor()
+
+            cur.execute("""
+
+            INSERT INTO blocked_senders (sender_address, clean_email, date_blocked, blocked_by, reason)
+
+            VALUES (?, ?, ?, ?, ?)
+
+            ON CONFLICT(clean_email) DO UPDATE SET
+
+                date_blocked = excluded.date_blocked,
+
+                reason = excluded.reason;
+
+            """, (str(raw_sender), clean_addr, now_str, blocked_by, reason))
+
+
+
+            cur.execute("""
+
+            DELETE FROM staged_email_dispatches 
+
+            WHERE sender_address LIKE ? OR sender_address LIKE ?
+
+            """, (f"%{clean_addr}%", f"%{raw_sender}%"))
+
+            purged = cur.rowcount
+
+            conn.close()
+
+            return True, f"Sender [{clean_addr}] permanently blacklisted. Purged {purged} staged records."
+
         except Exception as e:
-            print(f"  [ERROR] Database batch insert failed: {e}")
+
+            return False, str(e)
+
+
+
+    def sanitize_payload(text: str) -> tuple:
+
+        cleaned = re.sub(r"<[^>]*>", " ", text)
+
+        cleaned = re.sub(r"[\\x00-\\x08\\x0B\\x0C\\x0E-\\x1F\\x7F]", "", cleaned)
+
+        cleaned = " ".join(cleaned.split())
+
+        threat_status = "INSPECTED_CLEAN"
+
+        for pattern in ADVERSARIAL_INJECTION_PATTERNS:
+
+            if re.search(pattern, cleaned, re.IGNORECASE):
+
+                threat_status = "THREAT_QUARANTINED_INJECTION_ATTEMPT"
+
+                break
+
+        return cleaned, threat_status
+
+
+
+    def query_iron_dome(subject: str, body: str, n_results: int = 2) -> str:
+
+        if not iron_dome:
+
+            return ""
+
+        try:
+
+            combined_query = f"{subject} {body[:300]}"
+
+            res = iron_dome.query(query_texts=[combined_query], n_results=n_results)
+
+            docs = res.get("documents", [[]])[0]
+
+            return "\\n\\n".join(docs)
+
+        except Exception:
+
+            return ""
+
+
+
+    def generate_staged_draft(account_alias: str, sender: str, subject: str, sanitized_body: str, threat: str) -> str:
+
+        if threat != "INSPECTED_CLEAN":
+
+            return "[SECURITY ALERT]: Inbound transmission flagged for adversarial injection. Direct review required by CEO Jeffery Humphrey."
+
+        if not client:
+
+            return "[OFFLINE]: Groq inference unavailable. Draft suspended."
+
+        context = query_iron_dome(subject, sanitized_body)
+
+        prompt = f"""You are Ebony, sovereign AI for HVF Omni-Industrial Matrix (CAGE: 1AHA8, UEI: S1M4ENLHTDH5), led by Founder & CEO Jeffery Humphrey.
+
+    Prepare a decisive, professional, and authoritative email draft in response to this incoming correspondence.
+
+    Represent HVF's prime contractor standing and defense/industrial posture accurately.
+
+    DO NOT promise actions that violate DFARS 252.227-7018 or exceed executive authority.
+
+
+
+    --- SENDER: {sender}
+
+    --- SUBJECT: {subject}
+
+    --- INBOUND MESSAGE:
+
+    {sanitized_body}
+
+
+
+    --- RETRIEVED SOVEREIGN INTEL ---
+
+    {context}
+
+    ---------------------------------
+
+
+
+    Provide ONLY the text of the staged draft response. Sign off as:
+
+    Office of the Chief Executive
+
+    HVF Omni-Industrial Matrix
+
+    Prime Contractor | CAGE: 1AHA8"""
+
+        try:
+
+            res = client.chat.completions.create(
+
+                model=ACTIVE_MODEL,
+
+                messages=[{"role": "user", "content": prompt}],
+
+                temperature=0.2
+
+            )
+
+            return res.choices[0].message.content.strip()
+
+        except Exception as e:
+
+            return f"[DRAFTING ERROR]: {e}"
+
+
+
+    def poll_and_stage_account(account_alias: str, email_addr: str, imap_srv: str, imap_prt: int, pwd_key: str, enc_pwd: str):
+
+        """Polls IMAP, performs inference in-memory, and writes to SQLite in a single atomic batch."""
+
+        password = ""
+
+        if enc_pwd:
+
+            password = decrypt_credential(enc_pwd)
+
+        if not password and pwd_key and pwd_key != "DYNAMIC_VAULT_ENCRYPTED":
+
+            password = os.getenv(pwd_key, "")
+
+
+
+        clean_user = str(email_addr).strip()
+
+        clean_pass = clean_token(password)
+
+
+
+        if not clean_pass:
+
+            print(f"  [WARN] No password found for '{account_alias}'. Update credentials in Dispatch Deck UI.")
+
             return 0
-            
-    return staged_count
 
-def run_multi_account_cycle():
-    try:
-        conn = get_db_connection(timeout=10.0)
-        cur = conn.cursor()
-        cur.execute("SELECT account_alias, email_address, imap_server, imap_port, env_password_key, encrypted_password FROM email_accounts WHERE is_active = 1")
-        accounts = cur.fetchall()
-        conn.close()
-    except Exception as e:
-        print(f"[ERROR] Could not query email_accounts: {e}")
-        return
-        
-    if not accounts:
-        print("[INFO] No active accounts configured.")
-        return
-        
-    print(f"\\nInitiating live triage across {len(accounts)} configured inboxes...")
-    for acc in accounts:
-        alias, addr, srv, prt, pwd_key, enc_pwd = acc
-        staged = poll_and_stage_account(alias, addr, srv, prt, pwd_key, enc_pwd)
-        print(f"  -> [{alias}]: {staged} messages staged for CEO Kinematic Review.")
-'''
 
-with open(CORE_FILE, "w", encoding="utf-8") as f:
-    f.write(UPGRADED_CORE.strip() + "\n")
 
-py_compile.compile(CORE_FILE, doraise=True)
-print("[SUCCESS] Decoupled in-memory ingestion compiled cleanly into email_triage_core.py.")
+        records_to_insert = []
 
-print("\n" + "=" * 80)
-print("2. ENFORCING AUTOCOMMIT & PRAGMA BUSY_TIMEOUT IN CONSOLE CONTROLLERS")
-print("=" * 80)
+        try:
 
-for fpath in CONSOLE_FILES:
-    if not os.path.exists(fpath):
-        continue
+            mail = imaplib.IMAP4_SSL(str(imap_srv).strip(), int(imap_prt))
 
-    with open(fpath, "r", encoding="utf-8") as f:
-        code = f.read()
+            mail.login(clean_user, clean_pass)
 
-    # Enforce isolation_level=None across all sqlite3 connection calls
-    code = code.replace("sqlite3.connect(DB_PATH, timeout=30.0)", "sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)")
-    code = code.replace("sqlite3.connect(DB_PATH)", "sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)")
-    code = code.replace('sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db", timeout=30.0)', 'sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db", timeout=30.0, isolation_level=None)')
-    code = code.replace("sqlite3.connect(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db', timeout=30.0)", "sqlite3.connect(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db', timeout=30.0, isolation_level=None)")
+            mail.select("INBOX")
 
-    with open(fpath, "w", encoding="utf-8") as f:
-        f.write(code)
+            status, messages = mail.search(None, "UNSEEN")
 
-    py_compile.compile(fpath, doraise=True)
-    print(f"[SUCCESS] Concurrency patches applied to: {os.path.basename(fpath)}")
+            if status != "OK":
 
-print("\n" + "=" * 80)
-print("DECOUPLING & CONCURRENCY OVERHAUL COMPLETE")
-print("=" * 80)
-
+                mail.logout()
+
+                return 0
+
+
+
+            uids = messages[0].split()
+
+            print(f"  [{account_alias}] Discovered {len(uids)} unread transmissions.")
+
+
+
+            # In-Memory Extraction and Inference (Zero DB Locks Held)
+
+            for uid in uids[-10:]:
+
+                res, msg_data = mail.fetch(uid, "(RFC822)")
+
+                for response_part in msg_data:
+
+                    if isinstance(response_part, tuple):
+
+                        msg = email.message_from_bytes(response_part[1])
+
+                        sender = msg.get("From", "Unknown Sender")
+
+
+
+                        if is_sender_blocked(sender):
+
+                            print(f"    [DROPPED] Sender blacklisted: {sender}")
+
+                            continue
+
+
+
+                        subj, encoding = decode_header(msg.get("Subject", "No Subject"))[0]
+
+                        if isinstance(subj, bytes):
+
+                            subj = subj.decode(encoding if encoding else "utf-8", errors="ignore")
+
+                        date_str = msg.get("Date", "")
+
+
+
+                        body = ""
+
+                        if msg.is_multipart():
+
+                            for part in msg.walk():
+
+                                if part.get_content_type() == "text/plain":
+
+                                    body = part.get_payload(decode=True).decode(errors="ignore")
+
+                                    break
+
+                        else:
+
+                            body = msg.get_payload(decode=True).decode(errors="ignore")
+
+
+
+                        sanitized_body, threat = sanitize_payload(body)
+
+
+
+                        category = "GENERAL"
+
+                        if "tencap" in subj.lower() or "darpa" in subj.lower() or "1aha8" in subj.lower():
+
+                            category = "DEFENSE_PRIME_CONTRACTING"
+
+                        elif "signallink" in sender.lower() or "drew" in sender.lower():
+
+                            category = "SUBCONTRACTOR_SIGNALLINK"
+
+                        elif "docusign" in sender.lower():
+
+                            category = "LEGAL_COMPLIANCE_EXECUTION"
+
+                        elif "stripe" in sender.lower() or "paypal" in sender.lower() or "invoice" in subj.lower():
+
+                            category = "FINANCIAL_TREASURY"
+
+
+
+                        draft = generate_staged_draft(account_alias, sender, subj, sanitized_body, threat)
+
+
+
+                        records_to_insert.append((
+
+                            account_alias, uid.decode(), sender, clean_user, subj, 
+
+                            date_str, sanitized_body, threat, category, draft
+
+                        ))
+
+            mail.logout()
+
+        except Exception as e:
+
+            print(f"  [ERROR] IMAP network cycle failed for '{account_alias}': {e}")
+
+            return 0
+
+
+
+        # Atomic Single-Burst Persistence (< 5 milliseconds lock time)
+
+        staged_count = len(records_to_insert)
+
+        if staged_count > 0:
+
+            try:
+
+                conn = get_db_connection(timeout=30.0)
+
+                cur = conn.cursor()
+
+                cur.executemany("""
+
+                INSERT INTO staged_email_dispatches 
+
+                (account_alias, message_uid, sender_address, recipient_address, subject, date_received, raw_body_sanitized, threat_status, triage_category, draft_response, veto_status)
+
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'PENDING_CEO_APPROVAL')
+
+                """, records_to_insert)
+
+                conn.close()
+
+                print(f"  [SUCCESS] Atomically staged {staged_count} records in vault.")
+
+            except Exception as e:
+
+                print(f"  [ERROR] Database batch insert failed: {e}")
+
+                return 0
+
+
+
+        return staged_count
+
+
+
+    def run_multi_account_cycle():
+
+        try:
+
+            conn = get_db_connection(timeout=10.0)
+
+            cur = conn.cursor()
+
+            cur.execute("SELECT account_alias, email_address, imap_server, imap_port, env_password_key, encrypted_password FROM email_accounts WHERE is_active = 1")
+
+            accounts = cur.fetchall()
+
+            conn.close()
+
+        except Exception as e:
+
+            print(f"[ERROR] Could not query email_accounts: {e}")
+
+            return
+
+
+
+        if not accounts:
+
+            print("[INFO] No active accounts configured.")
+
+            return
+
+
+
+        print(f"\\nInitiating live triage across {len(accounts)} configured inboxes...")
+
+        for acc in accounts:
+
+            alias, addr, srv, prt, pwd_key, enc_pwd = acc
+
+            staged = poll_and_stage_account(alias, addr, srv, prt, pwd_key, enc_pwd)
+
+            print(f"  -> [{alias}]: {staged} messages staged for CEO Kinematic Review.")
+
+    '''
+
+
+
+    with open(CORE_FILE, "w", encoding="utf-8") as f:
+
+        f.write(UPGRADED_CORE.strip() + "\n")
+
+
+
+    py_compile.compile(CORE_FILE, doraise=True)
+
+    print("[SUCCESS] Decoupled in-memory ingestion compiled cleanly into email_triage_core.py.")
+
+
+
+    print("\n" + "=" * 80)
+
+    print("2. ENFORCING AUTOCOMMIT & PRAGMA BUSY_TIMEOUT IN CONSOLE CONTROLLERS")
+
+    print("=" * 80)
+
+
+
+    for fpath in CONSOLE_FILES:
+
+        if not os.path.exists(fpath):
+
+            continue
+
+
+
+        with open(fpath, "r", encoding="utf-8") as f:
+
+            code = f.read()
+
+
+
+        # Enforce isolation_level=None across all sqlite3 connection calls
+
+        code = code.replace("sqlite3.connect(DB_PATH, timeout=30.0)", "sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)")
+
+        code = code.replace("sqlite3.connect(DB_PATH)", "sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)")
+
+        code = code.replace('sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db", timeout=30.0)', 'sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db", timeout=30.0, isolation_level=None)')
+
+        code = code.replace("sqlite3.connect(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db', timeout=30.0)", "sqlite3.connect(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db', timeout=30.0, isolation_level=None)")
+
+
+
+        with open(fpath, "w", encoding="utf-8") as f:
+
+            f.write(code)
+
+
+
+        py_compile.compile(fpath, doraise=True)
+
+        print(f"[SUCCESS] Concurrency patches applied to: {os.path.basename(fpath)}")
+
+
+
+    print("\n" + "=" * 80)
+
+    print("DECOUPLING & CONCURRENCY OVERHAUL COMPLETE")
+
+    print("=" * 80)
+
+
+
+
+if __name__ == "__main__":
+    render()

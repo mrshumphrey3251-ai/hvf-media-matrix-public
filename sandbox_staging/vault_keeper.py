@@ -1,35 +1,84 @@
-"""
-/// LOCAL CREDENTIAL VAULT KEEPER ///
-Purpose: Backs up .env credentials locally; restores them instantly if .env is missing or altered.
-"""
-import os
-import sys
-
-# Sovereign Root Anchor Resolution
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-BASE_DIR = os.path.dirname(CURRENT_DIR) if os.path.exists(os.path.join(os.path.dirname(CURRENT_DIR), "hvf_memory_vault.db")) else CURRENT_DIR
-ENV_PATH = os.path.join(BASE_DIR, ".env")
-BACKUP_PATH = os.path.join(BASE_DIR, ".env.vault_backup")
-
-def backup():
-    if not os.path.exists(ENV_PATH):
-        print("[VAULT]: No .env file found to backup.")
-        return
-    with open(ENV_PATH, "r", encoding="utf-8") as src, open(BACKUP_PATH, "w", encoding="utf-8") as dst:
-        dst.write(src.read())
-    print(f"[VAULT]: Local backup secured successfully -> {BACKUP_PATH}")
-
-def restore():
-    if not os.path.exists(BACKUP_PATH):
-        print("[VAULT]: No backup file found to restore from.")
-        return
-    with open(BACKUP_PATH, "r", encoding="utf-8") as src, open(ENV_PATH, "w", encoding="utf-8") as dst:
-        dst.write(src.read())
-    print(f"[VAULT]: .env restored successfully from -> {BACKUP_PATH}")
-
-if __name__ == "__main__":
-    action = sys.argv[1] if len(sys.argv) > 1 else "backup"
-    if action == "restore":
-        restore()
-    else:
-        backup()
+"""
+HUMPHREY VIRTUAL FARMS LLC | LEVEL-5 SOVEREIGN INDUSTRIAL C2
+MODULE: VAULT KEEPER
+CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK TITLE 61 / HB 2992
+AUTONOMOUS REMEDIATION: AST-Encapsulated render() entrypoint.
+"""
+
+from pathlib import Path
+import streamlit as st
+
+def render():
+    """
+
+    /// LOCAL CREDENTIAL VAULT KEEPER ///
+
+    Purpose: Backs up .env credentials locally; restores them instantly if .env is missing or altered.
+
+    """
+
+    import os
+
+    import sys
+
+
+
+    # Sovereign Root Anchor Resolution
+
+    CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+    BASE_DIR = os.path.dirname(CURRENT_DIR) if os.path.exists(os.path.join(os.path.dirname(CURRENT_DIR), "hvf_memory_vault.db")) else CURRENT_DIR
+
+    ENV_PATH = os.path.join(BASE_DIR, ".env")
+
+    BACKUP_PATH = os.path.join(BASE_DIR, ".env.vault_backup")
+
+
+
+    def backup():
+
+        if not os.path.exists(ENV_PATH):
+
+            print("[VAULT]: No .env file found to backup.")
+
+            return
+
+        with open(ENV_PATH, "r", encoding="utf-8") as src, open(BACKUP_PATH, "w", encoding="utf-8") as dst:
+
+            dst.write(src.read())
+
+        print(f"[VAULT]: Local backup secured successfully -> {BACKUP_PATH}")
+
+
+
+    def restore():
+
+        if not os.path.exists(BACKUP_PATH):
+
+            print("[VAULT]: No backup file found to restore from.")
+
+            return
+
+        with open(BACKUP_PATH, "r", encoding="utf-8") as src, open(ENV_PATH, "w", encoding="utf-8") as dst:
+
+            dst.write(src.read())
+
+        print(f"[VAULT]: .env restored successfully from -> {BACKUP_PATH}")
+
+
+
+    if __name__ == "__main__":
+
+        action = sys.argv[1] if len(sys.argv) > 1 else "backup"
+
+        if action == "restore":
+
+            restore()
+
+        else:
+
+            backup()
+
+
+if __name__ == "__main__":
+    render()
