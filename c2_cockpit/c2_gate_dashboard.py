@@ -1,34 +1,27 @@
 """
-MODULE: C2 Gate Dashboard & Sentinel Engine
-AUTHOR: Jeffery Humphrey (CEO Clearance)
-ROLE: Gate Authorization and Zero-Trust Airlock.
+HUMPHREY VIRTUAL FARMS LLC | LEVEL-5 SOVEREIGN INDUSTRIAL C2
+MODULE: C2 GATE DASHBOARD & EXECUTIVE AIRLOCK
+CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK TITLE 61 / HB 2992
 """
 
-import streamlit as st
+from pathlib import Path
 import sys
 import json
 import importlib.util
-from pathlib import Path
+import streamlit as st
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-DISPATCH_DIR = Path(BASE_DIR) / "dispatch_core"
-COCKPIT_DIR = Path(BASE_DIR) / "c2_cockpit"
-EXT_DIR = Path(BASE_DIR) / "level5_extensions"
-SANDBOX_DIR = Path(BASE_DIR) / "sandbox_staging"
-LEDGER_FILE = Path(BASE_DIR) / "governance" / "architecture" / "MERKLE_AUTHORIZATION_LEDGER.json"
+ROOT_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = ROOT_DIR
+DISPATCH_DIR = ROOT_DIR / "dispatch_core"
+COCKPIT_DIR = ROOT_DIR / "c2_cockpit"
 
-for p_dir in [str(DISPATCH_DIR), str(BASE_DIR)]:
-    if p_dir not in sys.path:
-        sys.path.insert(0, p_dir)
-
-import ceo_authorization_gate
-import autonomous_self_heal
-import deep_code_sentinel
+for d in [ROOT_DIR, DISPATCH_DIR, COCKPIT_DIR]:
+    p_str = str(d)
+    if p_str not in sys.path:
+        sys.path.insert(0, p_str)
 
 def render():
-    ROOT_DIR = Path(__file__).resolve().parent.parent
-    BASE_DIR = ROOT_DIR
-    from pathlib import Path
+
     BASE_DIR = Path(BASE_DIR)
     st.markdown("## 🛡️ CEO Authorization Gate & Interactive Sandbox")
     st.caption("Live Interactive Validation Cradle | Iterative Directive Loop | Cryptographic Airlock")
