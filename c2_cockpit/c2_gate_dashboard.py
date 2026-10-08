@@ -29,7 +29,7 @@ BATCH_LOG_FILE = Path(ARCH_DIR) / "BATCH_PATCH_LOG.json"
 SIDEBAR_REGISTRY_FILE = Path(ARCH_DIR) / "SIDEBAR_MODULES.json"
 
 # Inject Search Paths
-for d in [ROOT_DIR, DISPATCH_DIR, COCKPIT_DIR, EXT_DIR, SANDBOX_DIR]:
+for d in [ROOT_DIR, DISPATCH_DIR, COCKPIT_DIR, EXT_DIR]:
     p_str = str(d)
     if p_str not in sys.path:
         sys.path.insert(0, p_str)
