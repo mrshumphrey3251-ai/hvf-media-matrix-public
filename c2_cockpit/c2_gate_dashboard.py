@@ -11,7 +11,6 @@ import importlib.util
 import streamlit as st
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
-BASE_DIR = ROOT_DIR
 DISPATCH_DIR = ROOT_DIR / "dispatch_core"
 COCKPIT_DIR = ROOT_DIR / "c2_cockpit"
 
@@ -22,7 +21,6 @@ for d in [ROOT_DIR, DISPATCH_DIR, COCKPIT_DIR]:
 
 def render():
 
-    BASE_DIR = Path(BASE_DIR)
     st.markdown("## 🛡️ CEO Authorization Gate & Interactive Sandbox")
     st.caption("Live Interactive Validation Cradle | Iterative Directive Loop | Cryptographic Airlock")
 
