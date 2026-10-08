@@ -19,6 +19,14 @@ AIRLOCK_DIR = ROOT_DIR / "sandbox_staging"
 DISPATCH_DIR = ROOT_DIR / "dispatch_core"
 COCKPIT_DIR = ROOT_DIR / "c2_cockpit"
 GOVERNANCE_DIR = ROOT_DIR / "governance"
+ARCH_DIR = GOVERNANCE_DIR / "architecture"
+
+# Canonical Governance & Merkle Ledger File Targets
+LEDGER_FILE = ARCH_DIR / "MERKLE_AUDIT_LEDGER.json"
+MERKLE_FILE = LEDGER_FILE
+AUDIT_REPORT_FILE = ARCH_DIR / "DEEP_AUDIT_REPORT.json"
+BATCH_LOG_FILE = ARCH_DIR / "BATCH_PATCH_LOG.json"
+SIDEBAR_REGISTRY_FILE = ARCH_DIR / "SIDEBAR_MODULES.json"
 
 # Inject Search Paths
 for d in [ROOT_DIR, DISPATCH_DIR, COCKPIT_DIR, EXT_DIR, SANDBOX_DIR]:
@@ -26,9 +34,16 @@ for d in [ROOT_DIR, DISPATCH_DIR, COCKPIT_DIR, EXT_DIR, SANDBOX_DIR]:
     if p_str not in sys.path:
         sys.path.insert(0, p_str)
 
-# Ensure Required Runtime Directories Exist on Bare Metal
-for d in [EXT_DIR, SANDBOX_DIR, DISPATCH_DIR, COCKPIT_DIR, GOVERNANCE_DIR / "architecture"]:
-    d.mkdir(parents=True, exist_ok=True)
+# Ensure Required Directories & Default JSON Ledgers Exist on Bare Metal
+ARCH_DIR.mkdir(parents=True, exist_ok=True)
+for ledger, default_val in [
+    (LEDGER_FILE, []),
+    (AUDIT_REPORT_FILE, {}),
+    (BATCH_LOG_FILE, {"total_staged": 0, "staged_candidates": []}),
+    (SIDEBAR_REGISTRY_FILE, {"active_modules": []})
+]:
+    if not ledger.exists():
+        ledger.write_text(json.dumps(default_val, indent=2), encoding="utf-8")
 
 # Engine Imports
 import ceo_authorization_gate
@@ -40,6 +55,7 @@ except ImportError:
     autonomous_self_heal = None
 
 def render():
+
 
 
     st.markdown("## 🛡️ CEO Authorization Gate & Interactive Sandbox")

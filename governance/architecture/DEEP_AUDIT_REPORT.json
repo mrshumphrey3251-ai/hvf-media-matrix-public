@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-10-03T00:27:59.773328+00:00",
-  "modules_inspected": 472,
-  "modules_optimal": 105,
-  "modules_needing_upgrade": 367,
+  "timestamp": "2026-10-08T22:13:01.634654+00:00",
+  "modules_inspected": 477,
+  "modules_optimal": 106,
+  "modules_needing_upgrade": 371,
   "details": {
     "access_control.py": {
       "file": "access_control.py",
@@ -44,12 +44,32 @@
       ],
       "status": "CORRUPTED"
     },
-    "grain_silo_aeration_and_f.py": {
-      "file": "grain_silo_aeration_and_f.py",
-      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\grain_silo_aeration_and_f.py",
+    "autonomous_healing_test.py": {
+      "file": "autonomous_healing_test.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\autonomous_healing_test.py",
       "metrics": {
-        "total_lines": 66,
-        "code_lines": 56,
+        "total_lines": 3,
+        "code_lines": 2,
+        "functions": 0,
+        "classes": 0,
+        "complexity_score": 100
+      },
+      "findings": [
+        {
+          "line": 3,
+          "severity": "CRITICAL",
+          "category": "Syntax Error",
+          "detail": "Syntax error at line 3: invalid syntax"
+        }
+      ],
+      "status": "CORRUPTED"
+    },
+    "chronos_companion_engine.py": {
+      "file": "chronos_companion_engine.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_companion_engine.py",
+      "metrics": {
+        "total_lines": 104,
+        "code_lines": 94,
         "functions": 0,
         "classes": 0,
         "complexity_score": 100
@@ -63,6 +83,38 @@
         }
       ],
       "status": "CORRUPTED"
+    },
+    "grain_silo_aeration_and_f.py": {
+      "file": "grain_silo_aeration_and_f.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\grain_silo_aeration_and_f.py",
+      "metrics": {
+        "total_lines": 91,
+        "code_lines": 75,
+        "functions": 4,
+        "classes": 0,
+        "complexity_score": 85
+      },
+      "findings": [
+        {
+          "line": 12,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 12,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 12,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        }
+      ],
+      "status": "UPGRADE_RECOMMENDED"
     },
     "linkedin_lead_scheduler.py": {
       "file": "linkedin_lead_scheduler.py",
@@ -208,8 +260,8 @@
       "file": "app.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\app.py",
       "metrics": {
-        "total_lines": 1199,
-        "code_lines": 1010,
+        "total_lines": 1355,
+        "code_lines": 1138,
         "functions": 0,
         "classes": 0,
         "complexity_score": 100
@@ -668,33 +720,21 @@
       "file": "c2_cockpit_dashboard.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\c2_cockpit_dashboard.py",
       "metrics": {
-        "total_lines": 853,
-        "code_lines": 738,
-        "functions": 1,
+        "total_lines": 436,
+        "code_lines": 401,
+        "functions": 0,
         "classes": 0,
-        "complexity_score": 85
+        "complexity_score": 100
       },
       "findings": [
         {
-          "line": 346,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 538,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
           "line": 1,
-          "severity": "NOTICE",
-          "category": "Documentation",
-          "detail": "Missing top-level module docstring and operational blueprint specification."
+          "severity": "CRITICAL",
+          "category": "Syntax Error",
+          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
         }
       ],
-      "status": "UPGRADE_RECOMMENDED"
+      "status": "CORRUPTED"
     },
     "c2_forge_dashboard.py": {
       "file": "c2_forge_dashboard.py",
@@ -720,11 +760,11 @@
       "file": "c2_gate_dashboard.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\c2_gate_dashboard.py",
       "metrics": {
-        "total_lines": 196,
-        "code_lines": 170,
+        "total_lines": 202,
+        "code_lines": 174,
         "functions": 1,
         "classes": 0,
-        "complexity_score": 20
+        "complexity_score": 35
       },
       "findings": [
         {
@@ -740,97 +780,67 @@
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 16,
+          "line": 61,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 17,
+          "line": 61,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 18,
+          "line": 87,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 18,
+          "line": 103,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 18,
+          "line": 61,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 62,
+          "line": 87,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 62,
+          "line": 87,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 88,
+          "line": 162,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 104,
+          "line": 82,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 62,
+          "line": 162,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 88,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 88,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 156,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 83,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 156,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 156,
+          "line": 162,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
@@ -984,26 +994,6 @@
       "metrics": {
         "total_lines": 40,
         "code_lines": 35,
-        "functions": 0,
-        "classes": 0,
-        "complexity_score": 100
-      },
-      "findings": [
-        {
-          "line": 1,
-          "severity": "CRITICAL",
-          "category": "Syntax Error",
-          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
-        }
-      ],
-      "status": "CORRUPTED"
-    },
-    "chronos_companion_engine.py": {
-      "file": "chronos_companion_engine.py",
-      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_companion_engine.py",
-      "metrics": {
-        "total_lines": 104,
-        "code_lines": 94,
         "functions": 0,
         "classes": 0,
         "complexity_score": 100
@@ -2162,21 +2152,27 @@
       "file": "ebony_command_deck_controller.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_command_deck_controller.py",
       "metrics": {
-        "total_lines": 128,
+        "total_lines": 129,
         "code_lines": 117,
-        "functions": 0,
+        "functions": 1,
         "classes": 0,
-        "complexity_score": 100
+        "complexity_score": 90
       },
       "findings": [
         {
           "line": 1,
-          "severity": "CRITICAL",
-          "category": "Syntax Error",
-          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
+          "severity": "NOTICE",
+          "category": "Documentation",
+          "detail": "Missing top-level module docstring and operational blueprint specification."
+        },
+        {
+          "line": 1,
+          "severity": "HARDENING",
+          "category": "Fault Tolerance",
+          "detail": "Module executes business logic without local try/except isolation."
         }
       ],
-      "status": "CORRUPTED"
+      "status": "OPTIMAL"
     },
     "ebony_console.py": {
       "file": "ebony_console.py",
@@ -2242,51 +2238,93 @@
       "file": "ebony_console_GREEN.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_console_GREEN.py",
       "metrics": {
-        "total_lines": 1497,
-        "code_lines": 1289,
-        "functions": 24,
+        "total_lines": 1828,
+        "code_lines": 1579,
+        "functions": 25,
         "classes": 0,
-        "complexity_score": 60
+        "complexity_score": 25
       },
       "findings": [
         {
-          "line": 11,
+          "line": 75,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 11,
+          "line": 49,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 4,
+          "line": 75,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 11,
+          "line": 725,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 618,
+          "line": 68,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 618,
+          "line": 75,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 835,
+          "line": 786,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 795,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 803,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 803,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 1029,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 1812,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 1813,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 1813,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
@@ -3628,6 +3666,38 @@
       ],
       "status": "OPTIMAL"
     },
+    "hvf_course_runner.py": {
+      "file": "hvf_course_runner.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_course_runner.py",
+      "metrics": {
+        "total_lines": 238,
+        "code_lines": 200,
+        "functions": 2,
+        "classes": 0,
+        "complexity_score": 85
+      },
+      "findings": [
+        {
+          "line": 21,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 20,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 1,
+          "severity": "HARDENING",
+          "category": "Fault Tolerance",
+          "detail": "Module executes business logic without local try/except isolation."
+        }
+      ],
+      "status": "UPGRADE_RECOMMENDED"
+    },
     "hvf_crypto_ledger.py": {
       "file": "hvf_crypto_ledger.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_crypto_ledger.py",
@@ -4521,21 +4591,39 @@
       "file": "hvf_verticals_engine.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_verticals_engine.py",
       "metrics": {
-        "total_lines": 165,
-        "code_lines": 157,
-        "functions": 0,
-        "classes": 0,
-        "complexity_score": 100
+        "total_lines": 335,
+        "code_lines": 326,
+        "functions": 4,
+        "classes": 1,
+        "complexity_score": 80
       },
       "findings": [
         {
+          "line": 292,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 305,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
           "line": 1,
-          "severity": "CRITICAL",
-          "category": "Syntax Error",
-          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
+          "severity": "NOTICE",
+          "category": "Documentation",
+          "detail": "Missing top-level module docstring and operational blueprint specification."
+        },
+        {
+          "line": 1,
+          "severity": "HARDENING",
+          "category": "Fault Tolerance",
+          "detail": "Module executes business logic without local try/except isolation."
         }
       ],
-      "status": "CORRUPTED"
+      "status": "UPGRADE_RECOMMENDED"
     },
     "hvf_watchdog_timer.py": {
       "file": "hvf_watchdog_timer.py",
@@ -4596,6 +4684,26 @@
         }
       ],
       "status": "OPTIMAL"
+    },
+    "ingest_chunked.py": {
+      "file": "ingest_chunked.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ingest_chunked.py",
+      "metrics": {
+        "total_lines": 63,
+        "code_lines": 49,
+        "functions": 0,
+        "classes": 0,
+        "complexity_score": 100
+      },
+      "findings": [
+        {
+          "line": 1,
+          "severity": "CRITICAL",
+          "category": "Syntax Error",
+          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
+        }
+      ],
+      "status": "CORRUPTED"
     },
     "ingest_drew_phillips.py": {
       "file": "ingest_drew_phillips.py",
@@ -7280,8 +7388,8 @@
       "file": "tactical_glass_cockpit.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\tactical_glass_cockpit.py",
       "metrics": {
-        "total_lines": 853,
-        "code_lines": 741,
+        "total_lines": 410,
+        "code_lines": 378,
         "functions": 0,
         "classes": 0,
         "complexity_score": 100
@@ -9405,6 +9513,26 @@
       ],
       "status": "CORRUPTED"
     },
+    "autonomous_directive_dispatcher.py": {
+      "file": "autonomous_directive_dispatcher.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\autonomous_directive_dispatcher.py",
+      "metrics": {
+        "total_lines": 48,
+        "code_lines": 37,
+        "functions": 0,
+        "classes": 0,
+        "complexity_score": 100
+      },
+      "findings": [
+        {
+          "line": 28,
+          "severity": "CRITICAL",
+          "category": "Syntax Error",
+          "detail": "Syntax error at line 28: invalid syntax. Perhaps you forgot a comma?"
+        }
+      ],
+      "status": "CORRUPTED"
+    },
     "autonomous_self_heal.py": {
       "file": "autonomous_self_heal.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\autonomous_self_heal.py",
@@ -9431,6 +9559,80 @@
       "metrics": {
         "total_lines": 115,
         "code_lines": 96,
+        "functions": 5,
+        "classes": 1,
+        "complexity_score": 50
+      },
+      "findings": [
+        {
+          "line": 15,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 16,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 17,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 18,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 18,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 18,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 55,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 56,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 89,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 95,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        }
+      ],
+      "status": "UPGRADE_RECOMMENDED"
+    },
+    "deep_code_sentinel.py": {
+      "file": "deep_code_sentinel.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\deep_code_sentinel.py",
+      "metrics": {
+        "total_lines": 150,
+        "code_lines": 126,
         "functions": 0,
         "classes": 0,
         "complexity_score": 100
@@ -9445,12 +9647,12 @@
       ],
       "status": "CORRUPTED"
     },
-    "deep_code_sentinel.py": {
-      "file": "deep_code_sentinel.py",
-      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\deep_code_sentinel.py",
+    "ebony_command_bridge.py": {
+      "file": "ebony_command_bridge.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\ebony_command_bridge.py",
       "metrics": {
-        "total_lines": 150,
-        "code_lines": 126,
+        "total_lines": 92,
+        "code_lines": 78,
         "functions": 0,
         "classes": 0,
         "complexity_score": 100
@@ -9489,8 +9691,8 @@
       "file": "sovereign_coder.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\sovereign_coder.py",
       "metrics": {
-        "total_lines": 98,
-        "code_lines": 82,
+        "total_lines": 104,
+        "code_lines": 79,
         "functions": 0,
         "classes": 0,
         "complexity_score": 100
@@ -9509,8 +9711,8 @@
       "file": "sovereign_comms.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\sovereign_comms.py",
       "metrics": {
-        "total_lines": 107,
-        "code_lines": 90,
+        "total_lines": 123,
+        "code_lines": 112,
         "functions": 0,
         "classes": 0,
         "complexity_score": 100

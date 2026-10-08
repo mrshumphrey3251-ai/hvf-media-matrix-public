@@ -18,5 +18,9 @@
   {
     "filename": "chronos_companion_engine.py",
     "title": "\u26a1 Chronos Companion Engine"
+  },
+  {
+    "filename": "autonomous_healing_test.py",
+    "title": "\u26a1 Autonomous Healing Test"
   }
 ]

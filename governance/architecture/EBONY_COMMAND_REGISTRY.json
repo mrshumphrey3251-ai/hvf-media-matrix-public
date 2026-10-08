@@ -1,0 +1,50 @@
+{
+  "access_control": {
+    "filename": "access_control.py",
+    "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\access_control.py",
+    "has_execute": false,
+    "has_render": false,
+    "description": "/// PRIVATE ACCESS CONTROL MATRIX (V1: EXECUTIVE IAM) ///",
+    "registered_at": "2026-10-03T00:47:56.586520+00:00"
+  },
+  "action_desk": {
+    "filename": "action_desk.py",
+    "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\action_desk.py",
+    "has_execute": false,
+    "has_render": true,
+    "description": "MODULE_NAME: action_desk",
+    "registered_at": "2026-10-03T00:47:56.586520+00:00"
+  },
+  "chronos_companion_engine": {
+    "filename": "chronos_companion_engine.py",
+    "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\chronos_companion_engine.py",
+    "has_execute": false,
+    "has_render": false,
+    "description": "EBONY CHRONOS: PROACTIVE EMPATHETIC COMPANION & SOCRATIC TUTOR ENGINE (PILLAR 2)",
+    "registered_at": "2026-10-03T00:47:56.588522+00:00"
+  },
+  "grain_silo_aeration_and_f": {
+    "filename": "grain_silo_aeration_and_f.py",
+    "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\grain_silo_aeration_and_f.py",
+    "has_execute": true,
+    "has_render": true,
+    "description": "MODULE_NAME: grain_silo_aeration_and_f",
+    "registered_at": "2026-10-03T00:47:56.588522+00:00"
+  },
+  "linkedin_lead_scheduler": {
+    "filename": "linkedin_lead_scheduler.py",
+    "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\linkedin_lead_scheduler.py",
+    "has_execute": true,
+    "has_render": true,
+    "description": "MODULE_NAME: linkedin_lead_scheduler",
+    "registered_at": "2026-10-03T00:47:56.588522+00:00"
+  },
+  "sovereign_weather_scada": {
+    "filename": "sovereign_weather_scada.py",
+    "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\sovereign_weather_scada.py",
+    "has_execute": true,
+    "has_render": true,
+    "description": "MODULE_NAME: sovereign_weather_scada",
+    "registered_at": "2026-10-03T00:47:56.588522+00:00"
+  }
+}

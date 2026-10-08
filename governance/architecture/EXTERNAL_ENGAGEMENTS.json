@@ -5,7 +5,7 @@
   "contact_title": "Founder",
   "delivery_email": "rickyvanderpool15@gmail.com",
   "engagement_type": "Exploratory Infrastructure Alignment",
-  "current_status": "NDA Staged for Transmission",
+  "current_status": "NDA Dispatched via Email (Awaiting Signature)",
   "governing_law": "State of Oklahoma",
   "ip_safeguards": [
     "Pre-existing IP carve-out for Project Ebony, Protocol Lambda, Chronos SCADA",
@@ -32,6 +32,10 @@
     {
       "timestamp": "2026-10-03T16:24:01.895067+00:00",
       "event": "Binding Oklahoma Mutual NDA generated and staged"
+    },
+    {
+      "timestamp": "2026-10-03T18:17:13.825417+00:00",
+      "event": "Formal Mutual NDA PDF dispatched via secure transmission to rickyvanderpool15@gmail.com"
     }
   ]
 }
