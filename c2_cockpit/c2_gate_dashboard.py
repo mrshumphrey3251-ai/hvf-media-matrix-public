@@ -19,6 +19,10 @@ for d in [ROOT_DIR, DISPATCH_DIR, COCKPIT_DIR]:
     if p_str not in sys.path:
         sys.path.insert(0, p_str)
 
+import ceo_authorization_gate
+import deep_code_sentinel
+
+
 def render():
 
     st.markdown("## 🛡️ CEO Authorization Gate & Interactive Sandbox")
@@ -54,7 +58,7 @@ def render():
                     st.success("Line-by-line inspection cycle complete.")
                     st.rerun()
 
-        report_file = Path(BASE_DIR) / "governance" / "architecture" / "DEEP_AUDIT_REPORT.json"
+        report_file = ROOT_DIR / "governance" / "architecture" / "DEEP_AUDIT_REPORT.json"
         if report_file.exists():
             with open(report_file, "r", encoding="utf-8") as rf:
                 rep_data = json.load(rf)

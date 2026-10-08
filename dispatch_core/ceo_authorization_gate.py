@@ -1,4 +1,4 @@
-﻿"""
+"""
 EBONY SOVEREIGN CEO AUTHORIZATION GATE (v2.0 - Bi-Directional Veto & Promotion)
 ROLE: Cryptographic validation, non-repudiable promotion, and executive veto/quarantine.
 """
