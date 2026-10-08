@@ -11,11 +11,11 @@ import importlib.util
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DISPATCH_DIR = BASE_DIR / "dispatch_core"
-COCKPIT_DIR = BASE_DIR / "c2_cockpit"
-EXT_DIR = BASE_DIR / "level5_extensions"
-SANDBOX_DIR = BASE_DIR / "sandbox_staging"
-LEDGER_FILE = BASE_DIR / "governance" / "architecture" / "MERKLE_AUTHORIZATION_LEDGER.json"
+DISPATCH_DIR = Path(BASE_DIR) / "dispatch_core"
+COCKPIT_DIR = Path(BASE_DIR) / "c2_cockpit"
+EXT_DIR = Path(BASE_DIR) / "level5_extensions"
+SANDBOX_DIR = Path(BASE_DIR) / "sandbox_staging"
+LEDGER_FILE = Path(BASE_DIR) / "governance" / "architecture" / "MERKLE_AUTHORIZATION_LEDGER.json"
 
 for p_dir in [str(DISPATCH_DIR), str(BASE_DIR)]:
     if p_dir not in sys.path:
@@ -26,6 +26,11 @@ import autonomous_self_heal
 import deep_code_sentinel
 
 def render():
+    REPO_ROOT = Path(__file__).resolve().parent.parent
+    BASE_DIR = REPO_ROOT
+    global BASE_DIR
+    from pathlib import Path
+    BASE_DIR = Path(BASE_DIR)
     st.markdown("## 🛡️ CEO Authorization Gate & Interactive Sandbox")
     st.caption("Live Interactive Validation Cradle | Iterative Directive Loop | Cryptographic Airlock")
 
@@ -59,7 +64,7 @@ def render():
                     st.success("Line-by-line inspection cycle complete.")
                     st.rerun()
 
-        report_file = BASE_DIR / "governance" / "architecture" / "DEEP_AUDIT_REPORT.json"
+        report_file = Path(BASE_DIR) / "governance" / "architecture" / "DEEP_AUDIT_REPORT.json"
         if report_file.exists():
             with open(report_file, "r", encoding="utf-8") as rf:
                 rep_data = json.load(rf)
@@ -80,12 +85,12 @@ def render():
             if st.button("🛠️ EXECUTE AUTONOMOUS BATCH REMEDIATION", type="secondary", width="stretch"):
                 with st.spinner("Ebony is applying AST-safe patches and staging verified candidates..."):
                     import subprocess
-                    subprocess.run([sys.executable, str(DISPATCH_DIR / "autonomous_batch_patcher.py")], capture_output=True, text=True)
+                    subprocess.run([sys.executable, str(Path(DISPATCH_DIR) / "autonomous_batch_patcher.py")], capture_output=True, text=True)
                     st.success("Batch remediation complete. Candidates staged in sandbox quarantine.")
                     st.rerun()
 
         with c_b2:
-            patch_log_file = BASE_DIR / "governance" / "architecture" / "BATCH_PATCH_LOG.json"
+            patch_log_file = Path(BASE_DIR) / "governance" / "architecture" / "BATCH_PATCH_LOG.json"
             if patch_log_file.exists():
                 with open(patch_log_file, "r", encoding="utf-8") as pf:
                     plog = json.load(pf)
@@ -128,6 +133,13 @@ def render():
                     candidate_mod.render()
                 elif hasattr(candidate_mod, "execute"):
                     st.json(candidate_mod.execute())
+                else:
+                    st.warning("⚠️ AI Synthesis Warning: Candidate lacks an explicit 'render()' function. Forcing raw runtime execution within the cradle...")
+                    try:
+                        with open(mod_path, "r", encoding="utf-8") as f_raw:
+                            exec(f_raw.read(), globals())
+                    except Exception as raw_e:
+                        st.error(f"Raw execution inside cradle failed: {raw_e}")
 
     with tab_promote:
         st.markdown("### ⚖️ Executive Sign-Off & Production Airlock")
@@ -153,7 +165,7 @@ def render():
                     res = gate.sign_and_promote(promote_file, auth_token, expected_key)
                     if res.get("success"):
                         if mount_to_sidebar:
-                            reg_path = BASE_DIR / "governance" / "architecture" / "SIDEBAR_MODULES.json"
+                            reg_path = Path(BASE_DIR) / "governance" / "architecture" / "SIDEBAR_MODULES.json"
                             reg_data = []
                             if reg_path.exists():
                                 try:
