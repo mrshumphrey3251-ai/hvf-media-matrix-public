@@ -22,27 +22,35 @@ for p in [str(BASE_DIR / "dispatch_core"), str(BASE_DIR)]:
 import sovereign_comms
 
 def _execute_llm_synthesis(prompt: str) -> str:
-    import os
-    import toml
+    import os, toml
     from groq import Groq
-    
     key = os.environ.get("GROQ_API_KEY", "")
     sec_path = r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml"
     if not key and os.path.exists(sec_path):
         try:
             sec = toml.load(sec_path)
             key = sec.get("GROQ_API_KEY", "").strip()
-        except Exception:
-            pass
-    
-    if not key:
-        return "```python\n# CRITICAL ERROR: GROQ API KEY MISSING\n```"
-            
+        except Exception: pass
+    if not key: return "```python\n# ERROR: NO GROQ KEY\n```"
+
     client = Groq(api_key=key)
+
+    try:
+        models = client.models.list().data
+        valid = [m.id for m in models]
+        # Dynamically select highest available model tier
+        target = next((m for m in valid if "70b" in m.lower()),
+                 next((m for m in valid if "8b" in m.lower() or "11b" in m.lower()),
+                 valid[0] if valid else "llama3-8b-8192"))
+    except Exception:
+        target = "llama3-8b-8192"
+
+    print(f"[*] AUTONOMOUS ROUTING: Selected {target}")
+
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model=target,
         messages=[
-            {"role": "system", "content": "You are E.B.O.N.Y., an elite Level 5 Autonomous AI writing precise Python code. Return ONLY valid, complete, operational Python code enclosed in ```python fences. No conversational text, no explanations, no apologies. Include Streamlit elements for UI."},
+            {"role": "system", "content": "You are E.B.O.N.Y., an elite Level 5 Autonomous AI writing precise Python code. Return ONLY valid, complete, operational Python code enclosed in ```python fences. No conversational text, no explanations."},
             {"role": "user", "content": prompt}
         ],
         temperature=0.1
