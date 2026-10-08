@@ -11,8 +11,11 @@ import importlib.util
 import streamlit as st
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = ROOT_DIR
+SANDBOX_DIR = ROOT_DIR / "sandbox_staging"
 DISPATCH_DIR = ROOT_DIR / "dispatch_core"
 COCKPIT_DIR = ROOT_DIR / "c2_cockpit"
+GOVERNANCE_DIR = ROOT_DIR / "governance"
 
 for d in [ROOT_DIR, DISPATCH_DIR, COCKPIT_DIR]:
     p_str = str(d)
@@ -84,7 +87,7 @@ def render():
                     st.rerun()
 
         with c_b2:
-            patch_log_file = Path(BASE_DIR) / "governance" / "architecture" / "BATCH_PATCH_LOG.json"
+            patch_log_file = ROOT_DIR / "governance" / "architecture" / "BATCH_PATCH_LOG.json"
             if patch_log_file.exists():
                 with open(patch_log_file, "r", encoding="utf-8") as pf:
                     plog = json.load(pf)
@@ -159,7 +162,7 @@ def render():
                     res = gate.sign_and_promote(promote_file, auth_token, expected_key)
                     if res.get("success"):
                         if mount_to_sidebar:
-                            reg_path = Path(BASE_DIR) / "governance" / "architecture" / "SIDEBAR_MODULES.json"
+                            reg_path = ROOT_DIR / "governance" / "architecture" / "SIDEBAR_MODULES.json"
                             reg_data = []
                             if reg_path.exists():
                                 try:
