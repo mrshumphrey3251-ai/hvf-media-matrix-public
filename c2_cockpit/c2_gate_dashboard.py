@@ -10,23 +10,37 @@ import json
 import importlib.util
 import streamlit as st
 
+# Canonical Directory Suite
 ROOT_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = ROOT_DIR
+EXT_DIR = ROOT_DIR / "level5_extensions"
 SANDBOX_DIR = ROOT_DIR / "sandbox_staging"
+AIRLOCK_DIR = ROOT_DIR / "sandbox_staging"
 DISPATCH_DIR = ROOT_DIR / "dispatch_core"
 COCKPIT_DIR = ROOT_DIR / "c2_cockpit"
 GOVERNANCE_DIR = ROOT_DIR / "governance"
 
-for d in [ROOT_DIR, DISPATCH_DIR, COCKPIT_DIR]:
+# Inject Search Paths
+for d in [ROOT_DIR, DISPATCH_DIR, COCKPIT_DIR, EXT_DIR, SANDBOX_DIR]:
     p_str = str(d)
     if p_str not in sys.path:
         sys.path.insert(0, p_str)
 
+# Ensure Required Runtime Directories Exist on Bare Metal
+for d in [EXT_DIR, SANDBOX_DIR, DISPATCH_DIR, COCKPIT_DIR, GOVERNANCE_DIR / "architecture"]:
+    d.mkdir(parents=True, exist_ok=True)
+
+# Engine Imports
 import ceo_authorization_gate
 import deep_code_sentinel
 
+try:
+    import autonomous_self_heal
+except ImportError:
+    autonomous_self_heal = None
 
 def render():
+
 
     st.markdown("## 🛡️ CEO Authorization Gate & Interactive Sandbox")
     st.caption("Live Interactive Validation Cradle | Iterative Directive Loop | Cryptographic Airlock")
