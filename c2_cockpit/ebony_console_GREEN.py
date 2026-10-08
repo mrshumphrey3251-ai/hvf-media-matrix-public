@@ -720,30 +720,18 @@ with st.sidebar:
     # Sidebar Command Navigation Module Integration
     st.divider()
     st.markdown("### 🎛 Command Modules")
-    # Dynamic Level-5 Extension Auto-Discovery
-_ext_dir = Path(__file__).resolve().parent.parent / "level5_extensions"
-if not _ext_dir.exists():
-    _ext_dir.mkdir(parents=True, exist_ok=True)
 
-DYNAMIC_MODULES = {}
-_reg_json = Path(__file__).resolve().parent.parent / "governance" / "architecture" / "SIDEBAR_MODULES.json"
-if _reg_json.exists():
-    try:
-        with open(_reg_json, "r", encoding="utf-8") as f:
-            _ext_list = json.load(f)
-            for item in _ext_list:
-                DYNAMIC_MODULES[item.get("display_name", item.get("filename"))] = item.get("filename")
-    except Exception:
-        pass
+    # Dynamic Level-5 Extension Auto-Discovery (Decoupled from DOM)
+    _ext_dir = Path(__file__).resolve().parent.parent / "level5_extensions"
+    DYNAMIC_MODULES = {}
+    if _ext_dir.exists():
+        for _f in sorted(_ext_dir.glob("*.py")):
+            if not _f.name.startswith("__"):
+                _disp = f"⚡ {_f.stem.replace('_', ' ').title()}"
+                DYNAMIC_MODULES[_disp] = _f.name
 
-# Fallback: Auto-detect any .py file in level5_extensions
-for _f in _ext_dir.glob("*.py"):
-    if _f.name not in DYNAMIC_MODULES.values() and not _f.name.startswith("__"):
-        _disp = f"⚡ {_f.stem.replace('_', ' ').title()}"
-        DYNAMIC_MODULES[_disp] = _f.name
-
-    nav_options = [
-"🎛️ Master C2 Cockpit",
+    canonical_nav_options = [
+        "🎛️ Master C2 Cockpit",
         "⚡ Autonomous Build Forge",
         "🛡️ CEO Authorization Gate",
         "💬 Sovereign Command",
@@ -758,9 +746,11 @@ for _f in _ext_dir.glob("*.py"):
         "⚙️ Empire Config",
         "⬛ Media Matrix",
         "🎨 Asset Synthesis",
-        "📘 Omni-Industry Matrix"
-    ] + list(DYNAMIC_MODULES.keys())
-    active_module = st.radio("Navigation", list(dict.fromkeys(nav_options)), key="ebony_c2_main_nav_selector", label_visibility="collapsed")
+        "📘 Omni-Industry Matrix",
+    ]
+    all_nav_options = canonical_nav_options + [k for k in DYNAMIC_MODULES.keys() if k not in canonical_nav_options]
+    active_module = st.radio("Navigation", all_nav_options, key="ebony_c2_authoritative_nav_selector", label_visibility="collapsed")
+
 
 st.markdown("""
 <div style="background: linear-gradient(90deg, #0b110e 0%, #131d18 100%); border-left: 4px solid #00ff88; border-right: 1px solid #1f3326; border-top: 1px solid #1f3326; border-bottom: 1px solid #1f3326; border-radius: 6px; padding: 12px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
