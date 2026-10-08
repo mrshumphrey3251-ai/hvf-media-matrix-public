@@ -21,6 +21,34 @@ for p in [str(BASE_DIR / "dispatch_core"), str(BASE_DIR)]:
 
 import sovereign_comms
 
+def _execute_llm_synthesis(prompt: str) -> str:
+    import os
+    import toml
+    from groq import Groq
+    
+    key = os.environ.get("GROQ_API_KEY", "")
+    sec_path = r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml"
+    if not key and os.path.exists(sec_path):
+        try:
+            sec = toml.load(sec_path)
+            key = sec.get("GROQ_API_KEY", "").strip()
+        except Exception:
+            pass
+    
+    if not key:
+        return "```python\n# CRITICAL ERROR: GROQ API KEY MISSING\n```"
+            
+    client = Groq(api_key=key)
+    response = client.chat.completions.create(
+        model="llama3-70b-8192",
+        messages=[
+            {"role": "system", "content": "You are E.B.O.N.Y., an elite Level 5 Autonomous AI writing precise Python code. Return ONLY valid, complete, operational Python code enclosed in ```python fences. No conversational text, no explanations, no apologies. Include Streamlit elements for UI."},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.1
+    )
+    return response.choices[0].message.content
+
 class SovereignCoder:
     def __init__(self):
         self.sandbox_dir = SANDBOX_DIR
@@ -58,7 +86,7 @@ class SovereignCoder:
         else:
             prompt = f"USER SPECIFICATION:\n{specification}\n\nDeliver the production-ready Level 5 module."
 
-        raw_code = sovereign_comms.generate_chat_response(prompt)
+        raw_code = _execute_llm_synthesis(prompt)
 
         # Sanitize fences
         if "```" in raw_code:
@@ -95,4 +123,5 @@ class SovereignCoder:
                     "error": f"Harness verification failed:\n{res.stderr.strip() or res.stdout.strip()}"
                 }
         except Exception as e:
-            return {"success": False, "error": f"Execution exception: {e}"}
+            return {"success": False, "error": f"Execution exception: {e}"}
+
