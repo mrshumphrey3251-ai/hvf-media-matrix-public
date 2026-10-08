@@ -16,12 +16,21 @@ def render():
     st.caption("Sector: Security & Governance | Air-Gapped Verification Cradle | Statutory: OK Title 61 / HB 2992")
     st.markdown("---")
 
-    # Authorized Personnel Roster (Expandable Level-5 Architecture)
+    # Authorized Personnel Roster
     authorized_personnel = {
         "CEO (Jeffery Humphrey)": "AUTH-ALPHA-001",
         "Ebony AI Core": "AUTH-BETA-002",
         "Edge Field Node": "AUTH-GAMMA-003"
     }
+
+    # Pre-declare session state key to comply with Streamlit widget lifecycle
+    if "iam_token_input" not in st.session_state:
+        st.session_state["iam_token_input"] = ""
+
+    # Callback executed by Streamlit engine BEFORE widget instantiation
+    def populate_token_callback():
+        curr_user = st.session_state.get("iam_user_select", "CEO (Jeffery Humphrey)")
+        st.session_state["iam_token_input"] = authorized_personnel.get(curr_user, "")
 
     col1, col2 = st.columns([1, 1])
 
@@ -33,18 +42,18 @@ def render():
             key="iam_user_select"
         )
         
+        st.button(
+            "⚡ Auto-Populate Valid Token for Selected User",
+            key="iam_populate_btn",
+            on_click=populate_token_callback
+        )
+
         entered_token = st.text_input(
             "Cryptographic Security Token:",
             type="password",
             placeholder="Enter Sovereign Token (e.g., AUTH-ALPHA-001)",
             key="iam_token_input"
         )
-
-        test_with_valid = st.button("⚡ Auto-Populate Valid Token for Selected User", key="iam_populate_btn")
-        if test_with_valid:
-            entered_token = authorized_personnel[selected_user]
-            st.session_state["iam_token_input"] = entered_token
-            st.rerun()
 
         verify_btn = st.button("🛡️ Execute Clearance Verification", type="primary", key="iam_verify_btn")
 
