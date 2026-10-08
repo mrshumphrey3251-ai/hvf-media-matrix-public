@@ -760,7 +760,7 @@ for _f in _ext_dir.glob("*.py"):
         "🎨 Asset Synthesis",
         "📘 Omni-Industry Matrix"
     ] + list(DYNAMIC_MODULES.keys())
-    active_module = st.radio("Navigation", nav_options, label_visibility="collapsed")
+    active_module = st.radio("Navigation", list(dict.fromkeys(nav_options)), key="ebony_c2_main_nav_selector", label_visibility="collapsed")
 
 st.markdown("""
 <div style="background: linear-gradient(90deg, #0b110e 0%, #131d18 100%); border-left: 4px solid #00ff88; border-right: 1px solid #1f3326; border-top: 1px solid #1f3326; border-bottom: 1px solid #1f3326; border-radius: 6px; padding: 12px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
