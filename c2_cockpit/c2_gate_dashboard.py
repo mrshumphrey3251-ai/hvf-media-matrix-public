@@ -31,7 +31,7 @@ AUDIT_REPORT_FILE = Path(ARCH_DIR / "DEEP_AUDIT_REPORT.json")
 BATCH_LOG_FILE = Path(ARCH_DIR / "BATCH_PATCH_LOG.json")
 SIDEBAR_REGISTRY_FILE = Path(ARCH_DIR / "SIDEBAR_MODULES.json")
 
-# Excluded Orchestrators & Core Runners
+# Excluded Orchestrators & System Core Files
 EXCLUDED_MODS = {
     "app.py",
     "ebony_console_GREEN.py",
@@ -42,15 +42,18 @@ EXCLUDED_MODS = {
     "hvf_course_runner.py"
 }
 
-# Search Path Injection (Excluding SANDBOX_DIR to prevent namespace poisoning)
+# Search Path Injection (Sandbox strictly isolated)
 for d in [ROOT_DIR, DISPATCH_DIR, COCKPIT_DIR, EXT_DIR]:
     p_str = str(d)
     if p_str not in sys.path:
         sys.path.insert(0, p_str)
 
-# Ensure Required Runtime Directories Exist on Bare Metal
+# Ensure Required Runtime Directories & Ledgers Exist on Bare Metal
 for d in [EXT_DIR, SANDBOX_DIR, DISPATCH_DIR, COCKPIT_DIR, ARCH_DIR]:
     d.mkdir(parents=True, exist_ok=True)
+
+if not LEDGER_FILE.exists():
+    LEDGER_FILE.write_text("[]", encoding="utf-8")
 
 # Engine Imports
 try:
@@ -124,7 +127,7 @@ def render():
             if st.button("🛠️ EXECUTE AUTONOMOUS BATCH REMEDIATION", type="secondary", key="btn_batch_remed"):
                 with st.spinner("Ebony is applying AST-safe patches and staging verified candidates..."):
                     import subprocess
-                    patcher_script = DISPATCH_DIR / "autonomous_batch_patcher.py"
+                    patcher_script = Path(DISPATCH_DIR) / "autonomous_batch_patcher.py"
                     subprocess.run([sys.executable, str(patcher_script)], capture_output=True, text=True)
                     st.success("Batch remediation complete. Candidates staged in sandbox quarantine.")
                     st.rerun()
