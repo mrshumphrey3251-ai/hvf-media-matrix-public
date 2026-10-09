@@ -1,3 +1,40 @@
+def generate_sovereign_audio_bytes(text: str) -> bytes:
+    """Synthesizes spoken audio to PCM WAV bytes via SAPI COM (Thread-Safe)."""
+    if not text or not str(text).strip():
+        return b""
+    import re
+    import pythoncom
+    import win32com.client
+    import winsound
+    from pathlib import Path
+
+    clean = re.sub(r'[*_#>`~\[\]\(\)]', ' ', str(text)).strip()
+    sentences = re.split(r'(?<=[.!?])\s+', clean)
+    brief = " ".join(sentences[:3]) if len(sentences) > 3 else clean
+
+    wav_out = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit/ebony_vocal_stream.wav")
+    try:
+        pythoncom.CoInitialize()
+        spk = win32com.client.Dispatch("SAPI.SpVoice")
+        stm = win32com.client.Dispatch("SAPI.SpFileStream")
+        stm.Open(str(wav_out), 3, False)  # 3 = SSFMCreateForWrite
+        spk.AudioOutputStream = stm
+        spk.Speak(brief, 0)
+        stm.Close()
+        spk.AudioOutputStream = None
+        pythoncom.CoUninitialize()
+
+        try:
+            winsound.PlaySound(str(wav_out), winsound.SND_FILENAME | winsound.SND_ASYNC)
+        except Exception:
+            pass
+
+        if wav_out.exists() and wav_out.stat().st_size > 100:
+            return wav_out.read_bytes()
+    except Exception as e:
+        print(f"[!] SAPI Synthesis Fault: {e}")
+    return b""
+
 
 def generate_and_speak_sovereign_voice(text: str) -> str:
     """Synthesizes speech to WAV with thread-safe COM initialization and detached OS playback."""
@@ -1036,7 +1073,8 @@ elif active_module == "💬 Sovereign Command":
                                 # Direct In-File Neural Dispatch (Zero External Dependency)
                                 with st.spinner('⚡ Ebony Neural LLM is executing sovereign directive...'):
                                     _ebony_reply = dispatch_sovereign_vocal_directive(_clean_directive)
-                                st.session_state.messages.append({'role': 'assistant', 'content': _ebony_reply})
+                                    _audio_payload = generate_sovereign_audio_bytes(_ebony_reply)
+                                st.session_state.messages.append({'role': 'assistant', 'content': _ebony_reply, 'audio': _audio_payload})
                                 st.rerun()
 
                 if 'transcribed_directive' in locals() and transcribed_directive:
@@ -1120,11 +1158,13 @@ elif active_module == "💬 Sovereign Command":
                         st.markdown(f'<audio src="data:audio/wav;base64,{b64_audio}" autoplay controls style="width: 100%; margin-top: 10px;"></audio>', unsafe_allow_html=True)
 
         st.markdown("### 💬 Live Command Stream")
-        for msg in reversed(st.session_state.messages):
+        for _msg_idx, msg in enumerate(reversed(st.session_state.messages)):
             if msg["role"] == "user":
                 st.markdown("**CEO Humphrey:** `" + str(msg["content"]) + "`")
             else:
                 st.markdown("**Ebony (Chronos):**\n\n" + str(msg["content"]))
+                if msg.get('audio'):
+                    st.audio(msg['audio'], format='audio/wav', autoplay=(_msg_idx == 0))
                 st.divider()
     with col_hud:
         st.subheader("🛡️ Real-Time Telemetry HUD")
