@@ -854,7 +854,30 @@ elif active_module == "💬 Sovereign Command":
                         st.rerun()
 
         default_text = voice_prompt if voice_prompt else ""
-        user_directive = st.text_input("Enter or Edit Sovereign Directive:", value=st.session_state.get("sovereign_active_voice_text", ""), key="directive_input")
+        # --- LEVEL-5 DYNAMIC NONCE VOICE-TO-INPUT BINDING ---
+        # Captures Whisper transcription and populates the text box directly
+        if 'transcription' in locals() and transcription:
+            _raw_v = transcription.text if hasattr(transcription, 'text') else str(transcription)
+            _clean_v = _raw_v.strip().strip("'").strip('"')
+            if _clean_v and st.session_state.get("last_loaded_voice_nonce_text") != _clean_v:
+                st.session_state["last_loaded_voice_nonce_text"] = _clean_v
+                st.session_state["sovereign_staged_voice"] = _clean_v
+                st.session_state["sovereign_nonce_counter"] = st.session_state.get("sovereign_nonce_counter", 0) + 1
+                st.session_state["vocal_auto_dispatch_armed"] = True
+                st.rerun()
+
+        _nonce = st.session_state.get("sovereign_nonce_counter", 0)
+        _staged_val = st.session_state.get("sovereign_staged_voice", "")
+        user_directive = st.text_input(
+            "Enter or Edit Sovereign Directive:",
+            value=_staged_val,
+            key=f"sovereign_input_nonce_widget_{_nonce}"
+        )
+
+        # Priority Voice Auto-Execution Hook
+        if st.session_state.pop("vocal_auto_dispatch_armed", False) and user_directive:
+            st.session_state["force_voice_transmission"] = True
+
 
         st.markdown("**⚡ Tactical Command Quick-Action Macros:**")
         m_col1, m_col2, m_col3, m_col4 = st.columns(4)
