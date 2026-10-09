@@ -841,6 +841,23 @@ elif active_module == "💬 Sovereign Command":
                     voice_prompt = transcribe_mic(raw_bytes)
                     if voice_prompt:
                         st.success(f"Transcribed Directive: '{voice_prompt}'")
+
+                        # --- LEVEL-5 IMMEDIATE VOCAL DIRECTIVE TRANSMISSION ENGINE ---
+                        _target_cmd = locals().get('voice_prompt') or locals().get('transcribed_directive')
+                        if _target_cmd and str(_target_cmd).strip():
+                            _clean_directive = str(_target_cmd).strip().strip("'").strip('"')
+                            _vocal_hash = hash(_clean_directive)
+                            if st.session_state.get('last_executed_vocal_hash') != _vocal_hash:
+                                st.session_state['last_executed_vocal_hash'] = _vocal_hash
+                                if 'messages' not in st.session_state:
+                                    st.session_state.messages = []
+                                st.session_state.messages.append({'role': 'user', 'content': _clean_directive})
+                                from ada_voice_module import dispatch_neural_llm
+                                with st.spinner('⚡ Ebony Neural LLM is executing sovereign directive...'):
+                                    _ebony_reply = dispatch_neural_llm(_clean_directive)
+                                st.session_state.messages.append({'role': 'assistant', 'content': _ebony_reply})
+                                st.rerun()
+
                 if 'transcribed_directive' in locals() and transcribed_directive:
                     if "messages" not in st.session_state:
                         st.session_state.messages = []
