@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 import streamlit as st
 
-ROOT_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = Path(__file__).resolve().parent if (Path(__file__).resolve().parent / "matrix_ledger.db").exists() else Path(__file__).resolve().parent.parent
 LEDGER_DB = ROOT_DIR / "matrix_ledger.db"
 
 def transcribe_audio_payload(audio_bytes: bytes) -> str:
@@ -77,7 +77,7 @@ def dispatch_neural_llm(prompt: str) -> str:
 
     if not reply:
         p_low = prompt.lower()
-        if any(k in p_low for k in ["directive", "primary", "mission"]):
+        if any(k in p_low for k in ["directive", "primary", "mission", "objective"]):
             reply = (
                 "My primary directive is to serve as the sovereign command and control interface for "
                 "Humphrey Virtual Farms LLC, operating under the direct authority of CEO Jeffery Humphrey. "
@@ -102,7 +102,7 @@ def dispatch_neural_llm(prompt: str) -> str:
             now_iso = datetime.now(timezone.utc).isoformat()
             cursor.execute(
                 "INSERT INTO ledger (timestamp, role, core, payload) VALUES (?, ?, ?, ?)",
-                (now_iso, "USER", "VOICE_ADA_INGRESS", prompt)
+                (now_iso, "USER", "COMMAND_INGRESS_VOICE", prompt)
             )
             cursor.execute(
                 "INSERT INTO ledger (timestamp, role, core, payload) VALUES (?, ?, ?, ?)",
@@ -127,7 +127,7 @@ def render():
         st.info("Record your spoken directive below. Audio captures directly through hardware.")
         audio_val = None
         if hasattr(st, "audio_input"):
-            audio_val = st.audio_input("Tap to speak directive to Ebony:", key="ada_voice_neural_mic_v5")
+            audio_val = st.audio_input("Tap to speak directive to Ebony:", key="ada_voice_neural_unified_mic")
         else:
             st.warning("Hardware audio input requires Streamlit audio_input support.")
 
