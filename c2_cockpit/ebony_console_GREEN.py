@@ -1,3 +1,13 @@
+import sys
+from pathlib import Path
+_cockpit_dir = Path(__file__).resolve().parent
+if str(_cockpit_dir) not in sys.path:
+    sys.path.insert(0, str(_cockpit_dir))
+try:
+    from invariant_engine import harvest_enclave_ground_truth, enforce_bare_metal_invariants
+except ImportError:
+    from c2_cockpit.invariant_engine import harvest_enclave_ground_truth, enforce_bare_metal_invariants
+
 def generate_sovereign_audio_bytes(text: str) -> bytes:
     """Synthesizes complete executive text to WAV bytes via Windows .NET System.Speech.
     Single-channel browser delivery eliminates echo and guarantees 100% on-screen fidelity.
@@ -103,13 +113,13 @@ def dispatch_sovereign_vocal_directive(prompt: str) -> str:
             completion = client.chat.completions.create(
                 model=model_target,
                 messages=[
-                    {"role": "system", "content": sys_prompt},
+                    {"role": "system", "content": sys_prompt + harvest_enclave_ground_truth()},
                     {"role": "user", "content": prompt}
                 ],
                 temperature=0.0,
                 max_tokens=2048
             )
-            reply = completion.choices[0].message.content
+            reply = enforce_bare_metal_invariants(completion.choices[0].message.content)
         except Exception:
             reply = ""
 
@@ -1179,7 +1189,7 @@ elif active_module == "📡 LinkedIn Engine":
                     else:
                         try:
                             res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=[{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}], temperature=0.0)
-                            draft_text = sanitize_deterministic_output(res.choices[0].message.content.strip())
+                            draft_text = enforce_bare_metal_invariants(sanitize_deterministic_output(res.choices[0].message.content).strip())
                         except Exception as e:
                             draft_text = f"⚠️ CLOUD API FAULT: {str(e)}"
                 else:
@@ -1275,7 +1285,7 @@ elif active_module == "🌾 Drone Diagnostics":
                         messages=chat_history,
                         temperature=0.0
                     )
-                    ai_reply = response.choices[0].message.content
+                    ai_reply = enforce_bare_metal_invariants(response.choices[0].message.content)
 
                     st.success("✅ OPTICAL TELEMETRY ANALYZED.")
                     st.markdown("#### 🌾 EBONY omni-industrial ASSESSMENT:")
