@@ -1,0 +1,20 @@
+{
+  "submission_title": "Humphrey Virtual Farms LLC - CMMC Level 2 / NIST SP 800-171 Baseline",
+  "organization": "Humphrey Virtual Farms LLC",
+  "cage_code": "1AHA8",
+  "uei": "S1M4ENLHTDH5",
+  "assessment_date": "2026-10-09",
+  "assessment_type": "Basic (Self-Assessment per DFARS 252.204-7019/7020)",
+  "official_sprs_score": 110,
+  "scoring_scale": "DoD Assessment Methodology (-203 to +110)",
+  "total_nist_controls_evaluated": 110,
+  "open_poam_items": 0,
+  "system_security_plan_file": "hvf_cmmc_ssp_v1.md",
+  "ssp_version": "1.0.0-FINAL",
+  "physical_payload_file": "PIEE_Submission_Payload_HVFN_20261009.enc",
+  "physical_payload_bytes": 3084,
+  "physical_payload_sha256": "1ba844f2901e0e9f586eef7ad1c76d7d4e878a9c136dc5cfe92f0aa5ee2aa62a",
+  "statutory_authority": "CEO Jeffery Humphrey",
+  "portal_ingress_url": "https://piee.eb.mil",
+  "transmittal_status": "READY_FOR_HUMAN_EXECUTIVE_SUBMISSION"
+}
