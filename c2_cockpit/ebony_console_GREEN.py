@@ -1573,7 +1573,7 @@ elif active_module == "📨 Sovereign Dispatch Deck":
 
         btn_c1, btn_c2 = st.columns([2, 1])
         with btn_c1:
-            if st.button("🚀 Authorize & Dispatch Transmission", key="btn_dispatch_now", type="primary", width='stretch'):
+            if st.session_state.get('sovereign_voice_auto_fire') or st.button("🚀 Authorize & Dispatch Transmission", key="btn_dispatch_now", type="primary", width='stretch'):
                 if not out_to or not out_subj or not out_body:
                     st.error("Recipient, Subject, and Payload Body are mandatory.")
                 else:
