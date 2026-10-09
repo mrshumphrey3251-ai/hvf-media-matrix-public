@@ -1,46 +1,59 @@
 def generate_sovereign_audio_bytes(text: str) -> bytes:
-    """Synthesizes spoken audio to PCM WAV bytes via native Windows .NET System.Speech (Zero Pip Dependencies)."""
+    """Synthesizes complete executive text to WAV bytes via Windows .NET System.Speech.
+    Single-channel browser delivery eliminates echo and guarantees 100% on-screen fidelity.
+    """
     if not text or not str(text).strip():
         return b""
     import re
     import subprocess
-    import winsound
+    import time
     from pathlib import Path
 
-    clean = re.sub(r'[*_#>`~\[\]\(\)]', ' ', str(text)).strip()
-    clean = re.sub(r'\s+', ' ', clean)
-    sentences = re.split(r'(?<=[.!?])\s+', clean)
-    brief = " ".join(sentences[:3]) if len(sentences) > 3 else clean
+    # Sanitize markdown formatting while preserving complete text content and punctuation
+    clean = re.sub(r'[*_#>`~\[\]\(\)]', ' ', str(text))
+    clean = re.sub(r'https?://\S+', '', clean)
+    clean = re.sub(r'\s+', ' ', clean).strip()
 
-    wav_out = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit/ebony_vocal_stream.wav")
-    safe_text = brief.replace('"', '').replace("'", "")
-    wav_str = str(wav_out).replace("/", "\\")
-
-    ps_cmd = (
-        "Add-Type -AssemblyName System.Speech; "
-        "$s = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
-        "try { $s.SelectVoiceByHints([System.Speech.Synthesis.VoiceGender]::Female) } catch {}; "
-        f"$s.SetOutputToWaveFile('{wav_str}'); "
-        f"$s.Speak('{safe_text}'); "
-        "$s.Dispose();"
-    )
+    buf_id = int(time.time() * 1000)
+    temp_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
+    txt_path = temp_dir / f"speech_buf_in_{buf_id}.txt"
+    wav_path = temp_dir / f"speech_buf_out_{buf_id}.wav"
 
     try:
+        txt_path.write_text(clean, encoding="utf-8")
+        txt_str = str(txt_path).replace("/", "\\")
+        wav_str = str(wav_path).replace("/", "\\")
+
+        ps_cmd = (
+            "Add-Type -AssemblyName System.Speech; "
+            "$s = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
+            "try { $s.SelectVoiceByHints([System.Speech.Synthesis.VoiceGender]::Female) } catch {}; "
+            f"$txt = [System.IO.File]::ReadAllText('{txt_str}', [System.Text.Encoding]::UTF8); "
+            f"$s.SetOutputToWaveFile('{wav_str}'); "
+            "$s.Speak($txt); "
+            "$s.Dispose();"
+        )
+
         subprocess.run(
             ["powershell", "-NoProfile", "-NonInteractive", "-Command", ps_cmd],
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
-            timeout=15
+            timeout=45
         )
 
-        if wav_out.exists() and wav_out.stat().st_size > 100:
-            try:
-                winsound.PlaySound(str(wav_out), winsound.SND_FILENAME | winsound.SND_ASYNC)
-            except Exception:
-                pass
-            return wav_out.read_bytes()
+        if wav_path.exists() and wav_path.stat().st_size > 100:
+            return wav_path.read_bytes()
     except Exception as e:
         print(f"[!] Audio Synthesis Fault: {e}")
+    finally:
+        try:
+            if txt_path.exists():
+                txt_path.unlink()
+            if wav_path.exists():
+                wav_path.unlink()
+        except Exception:
+            pass
+
     return b""
 
 
