@@ -841,6 +841,17 @@ elif active_module == "💬 Sovereign Command":
                     voice_prompt = transcribe_mic(raw_bytes)
                     if voice_prompt:
                         st.success(f"Transcribed Directive: '{voice_prompt}'")
+                if 'transcribed_directive' in locals() and transcribed_directive:
+                    if "messages" not in st.session_state:
+                        st.session_state.messages = []
+                    if st.session_state.get("last_auto_streamed_prompt") != transcribed_directive:
+                        st.session_state["last_auto_streamed_prompt"] = transcribed_directive
+                        st.session_state.messages.append({"role": "user", "content": transcribed_directive})
+                        from ada_voice_module import dispatch_neural_llm
+                        with st.spinner("⚡ Ebony Neural LLM executing directive..."):
+                            reply_val = dispatch_neural_llm(transcribed_directive)
+                        st.session_state.messages.append({"role": "assistant", "content": reply_val})
+                        st.rerun()
 
         default_text = voice_prompt if voice_prompt else ""
         user_directive = st.text_input("Enter or Edit Sovereign Directive:", value=st.session_state.get("sovereign_active_voice_text", ""), key="directive_input")
