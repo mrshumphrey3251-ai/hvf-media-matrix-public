@@ -1,0 +1,15 @@
+{
+  "organization": "Humphrey Virtual Farms LLC",
+  "cage_code": "1AHA8",
+  "uei": "S1M4ENLHTDH5",
+  "framework": "NIST SP 800-171 Rev 2 / CMMC Level 2",
+  "assessment_date": "2026-10-09",
+  "total_nist_controls": 110,
+  "unimplemented_controls": 0,
+  "official_sprs_score": 110,
+  "scoring_scale": "DoD Assessment Methodology (-203 to +110)",
+  "verification_status": "EXECUTIVE_ATTESTED",
+  "ssp_reference": "hvf_cmmc_ssp_v1.md",
+  "piee_portal_ready": true,
+  "certificate_sha256": "b107ebcd4a680eb5bbd07c4d37a2a3f3f7e2d54f5285f70b8a16e5e74fb9606b"
+}
