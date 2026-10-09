@@ -1,0 +1,31 @@
+{
+  "attestation_title": "Executive Statutory Sign-Off & DoD SPRS / CMMC Level 2 Authorization",
+  "organization": "Humphrey Virtual Farms LLC",
+  "cage_code": "1AHA8",
+  "uei": "S1M4ENLHTDH5",
+  "executive_signatory": "Jeffery Humphrey",
+  "executive_title": "Chief Executive Officer & Senior Executive Official",
+  "date_signed": "2026-10-09",
+  "timestamp_utc": "2026-10-09T21:19:24.841129",
+  "statutory_assertions": {
+    "nist_sp_800_171_compliance": "100% Implemented (110 / 110 Requirements)",
+    "official_sprs_score": 110,
+    "scoring_scale": "DoD Assessment Methodology (-203 to +110)",
+    "open_poam_items": 0,
+    "governing_statutes": [
+      "DFARS 252.204-7012 / 7019 / 7020",
+      "NIST SP 800-171 Rev 2",
+      "Oklahoma Title 61 / HB 2992",
+      "Wyoming W.S. 34-29-101 et seq."
+    ]
+  },
+  "sealed_artifact_manifest": {
+    "hvf_cmmc_ssp_v1.md": "529f19019fc1bbe8b9e652b5faef3b0ce7f02591a46822ab46fb17e9c37abf8d",
+    "SPRS_Score_Certificate.json": "092c06c6397b3da9490e3cee87692e1ba90bdceaa5a56fcf6f4d6187780b96e3",
+    "PIEE_Submission_Payload_HVFN_20261009.enc": "1ba844f2901e0e9f586eef7ad1c76d7d4e878a9c136dc5cfe92f0aa5ee2aa62a",
+    "C3PAO_RFP_Package_v1.0.zip": "1d5324b769839e39f2098076a085ad370890e1c778347a86013f32ddab4fc5c7",
+    "C3PAO_Solicitation_Transmittal_Letter.md": "811a0978ff638fa6726976d742cd8e227c92def6cb6fce7d2e655aacd1a7260b"
+  },
+  "authorization_status": "FORMALLY_AUTHORIZED_FOR_FEDERAL_PORTAL_TRANSMISSION",
+  "executive_signature_sha256": "334a70a66a283634d8a7e88b09041cf319ce26e4668346e4e233b005ccfa7251"
+}
