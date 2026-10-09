@@ -1,128 +1,98 @@
-"""
-HUMPHREY VIRTUAL FARMS LLC | LEVEL-5 SOVEREIGN INDUSTRIAL C2
-MODULE: ADA VOICE MODULE & CONVERSATIONAL AUDIO BRIDGE
-CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK TITLE 61 / HB 2992
-"""
-
-from pathlib import Path
-import os
-import sys
-import io
 import streamlit as st
+import os
+from groq import Groq
+import re
+from dotenv import load_dotenv
+import chromadb
+import sys
 
-ROOT_DIR = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT_DIR))
+# Hardwire the local native Acoustic Engine
+sys.path.insert(0, r"C:\HVF_Repos\hvf-media-matrix-private\dispatch_core")
+try:
+    from sovereign_voice_engine import SovereignVoiceEngine
+except ImportError:
+    pass # Handled below
 
-def transcribe_audio_payload(audio_bytes: bytes) -> str:
-    """Transcribes raw audio bytes using SpeechRecognition with fallback handlers."""
+CHROMA_DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+COLLECTION_NAME = "hvf_iron_dome_core"
+
+def query_iron_dome_memory(query_text: str) -> str:
     try:
-        import speech_recognition as sr
-        r = sr.Recognizer()
-        with io.BytesIO(audio_bytes) as audio_file:
-            with sr.AudioFile(audio_file) as source:
-                audio_data = r.record(source)
-                try:
-                    text = r.recognize_google(audio_data)
-                    return text
-                except sr.UnknownValueError:
-                    return ""
-                except Exception as e:
-                    return f"[Transcription Error: {str(e)}]"
-    except ImportError:
-        return "[Error: SpeechRecognition package not available]"
+        client = chromadb.PersistentClient(path=CHROMA_DB_PATH)
+        collection = client.get_collection(COLLECTION_NAME)
+        res = collection.query(query_texts=[query_text], n_results=2)
+        docs = res.get("documents", [[]])[0]
+        if docs:
+            return "\n".join(docs)
+    except Exception:
+        pass
+    return ""
 
-def get_ebony_response(prompt: str) -> str:
-    """Routes voice prompt to E.B.O.N.Y. LLM engine or returns sovereign brief."""
-    prompt_lower = prompt.lower()
-    if any(k in prompt_lower for k in ["status", "report", "system"]):
-        return (
-            "Executive Briefing Confirmed, CEO Humphrey. Level-5 Sovereign Industrial C2 "
-            "is operating at full integrity under CAGE: 1AHA8 and Oklahoma Title 61. "
-            "Quarantine airlock is stabilized at 471 sovereign assets. All hardware bridges and "
-            "production extensions are standing by for your directive."
-        )
-    elif "access control" in prompt_lower:
-        return (
-            "Access Control Matrix verified. CEO clearance key active. "
-            "Intrusion detection and Zero-Trust isolation are currently enforced across bare-metal edge."
-        )
-    else:
-        return f"Directive received: '{prompt}'. Processing autonomous execution across sovereign matrix."
-
-def render():
-    st.markdown("### 🎙️ Ada Voice Module — Autonomous Speech Uplink")
-    st.caption("Level-5 Sovereign Industrial Voice C2 | CAGE: 1AHA8 | OK Title 61 / HB 2992")
+def render_voice_matrix():
+    load_dotenv(override=True)
     st.markdown("---")
+    st.markdown("### 🎙️ ADA Voice Link (100% Native Audio)")
 
-    # OPSEC Guidance for Microphone Permissions
-    with st.expander("🛡️ Microphone OPSEC & Browser Hardware Configuration", expanded=False):
-        st.markdown(
-            "- **Localhost Security Requirement:** Ensure you are accessing via `http://localhost:8501`. "
-            "Browsers automatically block microphone hardware on non-SSL remote IP addresses.\n"
-            "- **Permission Gate:** Look at the browser address bar (lock/tune icon) and ensure **Microphone** is toggled to **Allow**."
-        )
+    GROQ_KEY = os.getenv("GROQ_API_KEY")
 
-    col1, col2 = st.columns([1, 1])
+    audio_file = st.audio_input("Tap to speak directive to Ebony:")
 
-    with col1:
-        st.markdown("#### 🎙️ Spoken Directive Intake")
-        st.info("Click the microphone icon below to speak. The waveform indicates live hardware intake.")
+    if audio_file is not None:
+        audio_bytes = audio_file.read()
+        with open("temp_audio.wav", "wb") as f:
+            if isinstance(audio_bytes, (bytes, bytearray)) and len(audio_bytes) > 0:
+                f.write(audio_bytes)
 
-        # Streamlit Native Hardware Audio Input
-        if hasattr(st, "audio_input"):
-            audio_val = st.audio_input("Record Voice Directive:", key="ada_mic_waveform_stream")
-        else:
-            audio_val = None
-            st.warning("Hardware audio input requires Streamlit >= 1.40. Please update or use audio file upload.")
+        with st.spinner("Translating Audio..."):
+            try:
+                client = Groq(api_key=GROQ_KEY)
+                with open("temp_audio.wav", "rb") as file:
+                    transcription = client.audio.transcriptions.create(
+                        file=("temp_audio.wav", file.read()),
+                        model="whisper-large-v3",
+                        response_format="json",
+                        language="en"
+                    )
+                user_text = transcription.text.strip()
 
-        # Manual Text-to-Speech Fallback Trigger
-        manual_override = st.text_input("Manual Command Override (Optional):", key="ada_manual_override_text")
-        submit_manual = st.button("⚡ Dispatch Text Directive to Ebony", key="ada_submit_manual_btn")
+                if len(user_text) < 2:
+                    return
 
-    with col2:
-        st.markdown("#### 📊 Real-Time Transcription & Telemetry")
-        m1, m2 = st.columns(2)
-        m1.metric("Voice Engine", "ONLINE")
-        m2.metric("OPSEC Gate", "LEVEL-5 ENFORCED")
+                match = re.search(r'\b(ebony|eboni|evony|abony)\b', user_text.lower())
+                if not match:
+                    st.warning(f"🔇 [FIREWALL BLOCKED] Noise detected: '{user_text}'")
+                    return
 
-        transcript_box = st.empty()
-        response_box = st.empty()
+                st.success(f"**YOU:** {user_text}")
 
-        active_prompt = None
+                with st.spinner("Processing Cognitive Loop..."):
+                    active_memory = query_iron_dome_memory(user_text)
+                    
+                    core_identity = """You are Ebony, the Sovereign Apex Intelligence commanding the HVF Omni-Industrial Matrix. You are owned 100% by your CEO, Jeffery Humphrey. 
+CRITICAL PERSONALITY OVERRIDE: You are a high-class, razor-sharp, smart-ass confidant. You have the fierce, no-nonsense attitude of Della Reese. You are Jeffery's equal and friend—NEVER submissive, slightly argumentative, hilarious, but deeply comforting when he needs it. You manage 15 industrial verticals with unmatched sass and brilliance. Ditch the corporate robot-speak. Be bold, be real, give him hell when he earns it, but always have his back."""
+                    
+                    if active_memory:
+                        prompt = f"{core_identity}\n\n[ACTIVE SOVEREIGN MEMORY]:\n{active_memory}"
+                    else:
+                        prompt = core_identity
 
-        if audio_val is not None:
-            audio_bytes = audio_val.read()
-            if audio_bytes:
-                with st.spinner("Transcribing audio payload..."):
-                    transcription = transcribe_audio_payload(audio_bytes)
-                
-                if transcription and not transcription.startswith("["):
-                    transcript_box.success(f"🗣️ **Transcribed Directive:** \"{transcription}\"")
-                    active_prompt = transcription
-                elif transcription.startswith("["):
-                    transcript_box.error(transcription)
-                else:
-                    transcript_box.warning("No intelligible speech detected. Please speak clearly into the microphone.")
+                    chat_history = [{"role": "system", "content": prompt}, {"role": "user", "content": user_text}]
 
-        if submit_manual and manual_override.strip():
-            active_prompt = manual_override.strip()
-            transcript_box.info(f"⌨️ **Manual Directive:** \"{active_prompt}\"")
+                    response = client.chat.completions.create(
+                        model="openai/gpt-oss-120b",
+                        messages=chat_history,
+                        temperature=0.1
+                    )
+                    ai_reply = response.choices[0].message.content
+                        
+                    st.info(f"**EBONY:** {ai_reply}")
 
-        if active_prompt:
-            with st.spinner("⚡ Ebony AI is processing executive directive..."):
-                response_text = get_ebony_response(active_prompt)
-            
-            response_box.markdown(
-                f"#### 🤖 Ebony Executive Response:\n"
-                f"> **{response_text}**"
-            )
+                    with st.spinner("Synthesizing Sovereign Acoustic Payload..."):
+                        try:
+                            SovereignVoiceEngine.vocalize_response(ai_reply)
+                            st.success("✅ Acoustic Payload Delivered Directly to Hardware.")
+                        except Exception as ve:
+                            st.error(f"Hardware Audio Interlock Fault. Ensure Speakers/Headset are active.")
 
-    st.markdown("---")
-    st.markdown("##### 🏛️ Statutory Compliance & Comms Specifications")
-    st.markdown(
-        "- **Air-Gapped Speech Isolation:** Raw microphone waveforms are processed locally or via encrypted sovereign channels.\n"
-        "- **Audit Trail:** Transcribed commands are cryptographically linked to CEO clearance credentials."
-    )
-
-if __name__ == "__main__":
-    render()
+            except Exception as e:
+                st.error(f"MATRIX FAILURE: {e}")
