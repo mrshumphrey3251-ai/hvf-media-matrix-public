@@ -1,0 +1,20 @@
+{
+  "organization": "Humphrey Virtual Farms LLC",
+  "cage_code": "1AHA8",
+  "uei": "S1M4ENLHTDH5",
+  "framework": "NIST SP 800-171 Rev 2 / CMMC Level 2",
+  "version": "1.0.0-FINAL",
+  "timestamp_utc": "2026-10-09T17:51:07.921599",
+  "authorization_status": "EXECUTIVE_AUTHORIZED",
+  "ssp_markdown_sha256": "7ab40ccda2acef8429e64f3493bf31e78e8191a85e4f7cb5650e3f8a1dac1d88",
+  "total_controls_evaluated": 110,
+  "technical_readiness_percentage": 100.0,
+  "remediated_controls": [
+    "AC-3",
+    "AU-2",
+    "IR-4",
+    "SC-7",
+    "SC-13"
+  ],
+  "external_accreditation_pathway": "C3PAO_ENGAGEMENT_REQUIRED"
+}
