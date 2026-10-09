@@ -1,4 +1,59 @@
 
+def generate_and_speak_sovereign_voice(text: str) -> str:
+    """Synthesizes speech to WAV with thread-safe COM initialization and detached OS playback."""
+    if not text or not text.strip():
+        return ""
+    import re
+    import sys
+    import subprocess
+    import winsound
+    from pathlib import Path
+
+    # Strip markdown for clean vocal synthesis
+    clean = re.sub(r'[*_#>`~\[\]\(\)]', ' ', text).strip()
+    sentences = re.split(r'(?<=[.!?])\s+', clean)
+    brief = " ".join(sentences[:3]) if len(sentences) > 3 else clean
+
+    wav_path = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit/ebony_vocal_stream.wav")
+    
+    # 1. Thread-Safe In-Process SAPI Generation
+    try:
+        import pythoncom
+        import win32com.client
+        pythoncom.CoInitialize()  # CRITICAL: Fixes Streamlit worker thread COM crash
+        speaker = win32com.client.Dispatch("SAPI.SpVoice")
+        stream = win32com.client.Dispatch("SAPI.SpFileStream")
+        stream.Open(str(wav_path), 3, False)  # 3 = SSFMCreateForWrite
+        speaker.AudioOutputStream = stream
+        speaker.Speak(brief, 0)
+        stream.Close()
+        speaker.AudioOutputStream = None
+        pythoncom.CoUninitialize()
+    except Exception as e:
+        print(f"[!] SAPI In-Process Note: {e}")
+
+    # 2. Bare-Metal Physical Speaker Playback (Winsound + Detached Subprocess)
+    try:
+        if wav_path.exists() and wav_path.stat().st_size > 100:
+            winsound.PlaySound(str(wav_path), winsound.SND_FILENAME | winsound.SND_ASYNC)
+    except Exception:
+        pass
+
+    # 3. Detached Process Fallback to guarantee hardware audio delivery
+    try:
+        worker_script = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit/sovereign_voice_speaker.py")
+        if worker_script.exists():
+            subprocess.Popen(
+                [sys.executable, str(worker_script), brief],
+                creationflags=0x00000008 | 0x08000000,  # DETACHED_PROCESS | CREATE_NO_WINDOW
+                close_fds=True
+            )
+    except Exception:
+        pass
+
+    return str(wav_path) if wav_path.exists() else ""
+
+
 def speak_sovereign_audio(text: str):
     """Synthesizes vocal audio output via detached Windows OS process and generates audio payload."""
     if not text or not text.strip():
