@@ -4,14 +4,11 @@ MODULE: ADA VOICE MODULE & CONVERSATIONAL AUDIO BRIDGE
 CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK TITLE 61 / HB 2992
 """
 
-from pathlib import Path
 import os
-import sys
 import io
 import streamlit as st
 
 def transcribe_audio_payload(audio_bytes: bytes) -> str:
-    """Converts raw audio bytes into text via Whisper or SpeechRecognition fallback."""
     api_key = os.environ.get("OPENAI_API_KEY")
     if api_key:
         try:
@@ -50,7 +47,7 @@ def render():
         st.info("Record your spoken directive below. Audio captures directly through hardware.")
         audio_val = None
         if hasattr(st, "audio_input"):
-            audio_val = st.audio_input("Tap to speak directive to Ebony:", key="ada_voice_widget_direct")
+            audio_val = st.audio_input("Tap to speak directive to Ebony:", key="ada_voice_hardware_uplink")
         else:
             st.warning("Hardware audio input requires Streamlit audio_input support.")
 
@@ -71,8 +68,6 @@ def render():
 
                 if transcription and not transcription.startswith("["):
                     transcript_box.success(f"🗣️ **Transcribed Directive:** \"{transcription}\"")
-                    
-                    # Direct route to active executive briefing
                     prompt_lower = transcription.lower()
                     if any(k in prompt_lower for k in ["status", "report", "system", "c2"]):
                         reply = (
@@ -87,5 +82,5 @@ def render():
                 elif transcription.startswith("["):
                     transcript_box.warning(transcription)
 
-# Unconditional Render Anchor: Guarantees module displays in all execution contexts
-render()
+if __name__ == "__main__":
+    render()
