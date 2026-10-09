@@ -1,139 +1,47 @@
 def generate_sovereign_audio_bytes(text: str) -> bytes:
-    """Synthesizes spoken audio to PCM WAV bytes via SAPI COM (Thread-Safe)."""
+    """Synthesizes spoken audio to PCM WAV bytes via native Windows .NET System.Speech (Zero Pip Dependencies)."""
     if not text or not str(text).strip():
         return b""
     import re
-    import pythoncom
-    import win32com.client
+    import subprocess
     import winsound
     from pathlib import Path
 
     clean = re.sub(r'[*_#>`~\[\]\(\)]', ' ', str(text)).strip()
+    clean = re.sub(r'\s+', ' ', clean)
     sentences = re.split(r'(?<=[.!?])\s+', clean)
     brief = " ".join(sentences[:3]) if len(sentences) > 3 else clean
 
     wav_out = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit/ebony_vocal_stream.wav")
-    try:
-        pythoncom.CoInitialize()
-        spk = win32com.client.Dispatch("SAPI.SpVoice")
-        stm = win32com.client.Dispatch("SAPI.SpFileStream")
-        stm.Open(str(wav_out), 3, False)  # 3 = SSFMCreateForWrite
-        spk.AudioOutputStream = stm
-        spk.Speak(brief, 0)
-        stm.Close()
-        spk.AudioOutputStream = None
-        pythoncom.CoUninitialize()
+    safe_text = brief.replace('"', '').replace("'", "")
+    wav_str = str(wav_out).replace("/", "\\")
 
-        try:
-            winsound.PlaySound(str(wav_out), winsound.SND_FILENAME | winsound.SND_ASYNC)
-        except Exception:
-            pass
-
-        if wav_out.exists() and wav_out.stat().st_size > 100:
-            return wav_out.read_bytes()
-    except Exception as e:
-        print(f"[!] SAPI Synthesis Fault: {e}")
-    return b""
-
-
-def generate_and_speak_sovereign_voice(text: str) -> str:
-    """Synthesizes speech to WAV with thread-safe COM initialization and detached OS playback."""
-    if not text or not text.strip():
-        return ""
-    import re
-    import sys
-    import subprocess
-    import winsound
-    from pathlib import Path
-
-    # Strip markdown for clean vocal synthesis
-    clean = re.sub(r'[*_#>`~\[\]\(\)]', ' ', text).strip()
-    sentences = re.split(r'(?<=[.!?])\s+', clean)
-    brief = " ".join(sentences[:3]) if len(sentences) > 3 else clean
-
-    wav_path = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit/ebony_vocal_stream.wav")
-    
-    # 1. Thread-Safe In-Process SAPI Generation
-    try:
-        import pythoncom
-        import win32com.client
-        pythoncom.CoInitialize()  # CRITICAL: Fixes Streamlit worker thread COM crash
-        speaker = win32com.client.Dispatch("SAPI.SpVoice")
-        stream = win32com.client.Dispatch("SAPI.SpFileStream")
-        stream.Open(str(wav_path), 3, False)  # 3 = SSFMCreateForWrite
-        speaker.AudioOutputStream = stream
-        speaker.Speak(brief, 0)
-        stream.Close()
-        speaker.AudioOutputStream = None
-        pythoncom.CoUninitialize()
-    except Exception as e:
-        print(f"[!] SAPI In-Process Note: {e}")
-
-    # 2. Bare-Metal Physical Speaker Playback (Winsound + Detached Subprocess)
-    try:
-        if wav_path.exists() and wav_path.stat().st_size > 100:
-            winsound.PlaySound(str(wav_path), winsound.SND_FILENAME | winsound.SND_ASYNC)
-    except Exception:
-        pass
-
-    # 3. Detached Process Fallback to guarantee hardware audio delivery
-    try:
-        worker_script = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit/sovereign_voice_speaker.py")
-        if worker_script.exists():
-            subprocess.Popen(
-                [sys.executable, str(worker_script), brief],
-                creationflags=0x00000008 | 0x08000000,  # DETACHED_PROCESS | CREATE_NO_WINDOW
-                close_fds=True
-            )
-    except Exception:
-        pass
-
-    return str(wav_path) if wav_path.exists() else ""
-
-
-def speak_sovereign_audio(text: str):
-    """Synthesizes vocal audio output via detached Windows OS process and generates audio payload."""
-    if not text or not text.strip():
-        return None
-    import re
-    import subprocess
-    from pathlib import Path
-
-    # Strip formatting and escape quotes for clean vocal delivery
-    clean_speech = re.sub(r'[*_#>`~\[\]\(\)]', ' ', text).strip()
-    clean_speech = re.sub(r'\s+', ' ', clean_speech)
-    escaped_speech = clean_speech.replace('"', '`"').replace("'", "`'")
-
-    # Limit vocal length to first 3 sentences for snappy executive responsiveness
-    sentences = re.split(r'(?<=[.!?])\s+', escaped_speech)
-    vocal_brief = " ".join(sentences[:3]) if len(sentences) > 3 else escaped_speech
-
-    # Output file for browser audio playback
-    audio_out_path = Path("temp_ebony_vocal_response.wav").resolve()
-    audio_out_str = str(audio_out_path).replace("\\", "/")
-
-    # Detached PowerShell command that simultaneously speaks through Windows CoreAudio
-    # and writes a WAV file for browser playback
     ps_cmd = (
-        f"Add-Type -AssemblyName System.Speech; "
-        f"$synth = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
-        f"try {{ $synth.SelectVoiceByHints([System.Speech.Synthesis.VoiceGender]::Female) }} catch {{}}; "
-        f"$synth.SetOutputToDefaultAudioDevice(); "
-        f"$synth.Speak('{vocal_brief}'); "
+        "Add-Type -AssemblyName System.Speech; "
+        "$s = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
+        "try { $s.SelectVoiceByHints([System.Speech.Synthesis.VoiceGender]::Female) } catch {}; "
+        f"$s.SetOutputToWaveFile('{wav_str}'); "
+        f"$s.Speak('{safe_text}'); "
+        "$s.Dispose();"
     )
 
     try:
-        # 0x00000008 = DETACHED_PROCESS | 0x08000000 = CREATE_NO_WINDOW
-        DETACHED_FLAGS = 0x00000008 | 0x08000000
-        subprocess.Popen(
-            ["powershell", "-NoProfile", "-Command", ps_cmd],
-            creationflags=DETACHED_FLAGS,
-            close_fds=True
+        subprocess.run(
+            ["powershell", "-NoProfile", "-NonInteractive", "-Command", ps_cmd],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=15
         )
-    except Exception:
-        pass
 
-    return audio_out_path
+        if wav_out.exists() and wav_out.stat().st_size > 100:
+            try:
+                winsound.PlaySound(str(wav_out), winsound.SND_FILENAME | winsound.SND_ASYNC)
+            except Exception:
+                pass
+            return wav_out.read_bytes()
+    except Exception as e:
+        print(f"[!] Audio Synthesis Fault: {e}")
+    return b""
 
 
 def dispatch_sovereign_vocal_directive(prompt: str) -> str:
@@ -1073,6 +981,7 @@ elif active_module == "💬 Sovereign Command":
                                 # Direct In-File Neural Dispatch (Zero External Dependency)
                                 with st.spinner('⚡ Ebony Neural LLM is executing sovereign directive...'):
                                     _ebony_reply = dispatch_sovereign_vocal_directive(_clean_directive)
+                                    _audio_payload = generate_sovereign_audio_bytes(_ebony_reply)
                                     _audio_payload = generate_sovereign_audio_bytes(_ebony_reply)
                                 st.session_state.messages.append({'role': 'assistant', 'content': _ebony_reply, 'audio': _audio_payload})
                                 st.rerun()
