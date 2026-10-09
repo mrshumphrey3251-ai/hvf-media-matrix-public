@@ -1,2934 +1,481 @@
 {
-  "remediation_timestamp": "2026-10-08T22:50:07.663469+00:00",
-  "total_staged": 366,
-  "remediations": [
-    {
-      "filename": "access_control.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\access_control.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\access_control.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.691003+00:00"
-    },
-    {
-      "filename": "action_desk.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\action_desk.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\action_desk.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.699634+00:00"
-    },
-    {
-      "filename": "chronos_companion_engine.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_companion_engine.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_companion_engine.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.705652+00:00"
-    },
-    {
-      "filename": "grain_silo_aeration_and_f.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\grain_silo_aeration_and_f.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\grain_silo_aeration_and_f.py",
-      "findings_addressed": 3,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.708654+00:00"
-    },
-    {
-      "filename": "sovereign_weather_scada.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\sovereign_weather_scada.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sovereign_weather_scada.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.711653+00:00"
-    },
-    {
-      "filename": "ada_voice_module.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\ada_voice_module.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ada_voice_module.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.715538+00:00"
-    },
-    {
-      "filename": "alert_protocol.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\alert_protocol.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\alert_protocol.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.717563+00:00"
-    },
-    {
-      "filename": "api_gateway.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\api_gateway.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\api_gateway.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.731922+00:00"
-    },
-    {
-      "filename": "app.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\app.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\app.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.748685+00:00"
-    },
-    {
-      "filename": "apply_account_manager_ui.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\apply_account_manager_ui.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\apply_account_manager_ui.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.764359+00:00"
-    },
-    {
-      "filename": "apply_dispatch_deck.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\apply_dispatch_deck.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\apply_dispatch_deck.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.772835+00:00"
-    },
-    {
-      "filename": "apply_military_tactical_theme.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\apply_military_tactical_theme.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\apply_military_tactical_theme.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.776666+00:00"
-    },
-    {
-      "filename": "approval_queue.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\approval_queue.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\approval_queue.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.780065+00:00"
-    },
-    {
-      "filename": "archive_feed_post.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\archive_feed_post.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\archive_feed_post.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.782142+00:00"
-    },
-    {
-      "filename": "audit_connected_devices.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\audit_connected_devices.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\audit_connected_devices.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.782142+00:00"
-    },
-    {
-      "filename": "audit_tablet_ports.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\audit_tablet_ports.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\audit_tablet_ports.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.782142+00:00"
-    },
-    {
-      "filename": "audit_three_brain_vault.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\audit_three_brain_vault.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\audit_three_brain_vault.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.782142+00:00"
-    },
-    {
-      "filename": "audit_workstation_audio.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\audit_workstation_audio.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\audit_workstation_audio.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.798612+00:00"
-    },
-    {
-      "filename": "auth_matrix.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\auth_matrix.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\auth_matrix.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.798612+00:00"
-    },
-    {
-      "filename": "autonomous_evolution.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\autonomous_evolution.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\autonomous_evolution.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.798612+00:00"
-    },
-    {
-      "filename": "auto_commander.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\auto_commander.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\auto_commander.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.820722+00:00"
-    },
-    {
-      "filename": "auto_create_stripe_links.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\auto_create_stripe_links.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\auto_create_stripe_links.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.831973+00:00"
-    },
-    {
-      "filename": "badge_logger.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\badge_logger.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\badge_logger.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.831973+00:00"
-    },
-    {
-      "filename": "bind_droidcam_sensor.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\bind_droidcam_sensor.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\bind_droidcam_sensor.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.831973+00:00"
-    },
-    {
-      "filename": "bind_tablet_tailscale.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\bind_tablet_tailscale.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\bind_tablet_tailscale.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.831973+00:00"
-    },
-    {
-      "filename": "broadcast_engine.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\broadcast_engine.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\broadcast_engine.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.831973+00:00"
-    },
-    {
-      "filename": "build_briefing_html.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\build_briefing_html.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\build_briefing_html.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.865651+00:00"
-    },
-    {
-      "filename": "build_neural_core.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\build_neural_core.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\build_neural_core.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.881961+00:00"
-    },
-    {
-      "filename": "c2_cockpit_dashboard.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\c2_cockpit_dashboard.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\c2_cockpit_dashboard.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.899311+00:00"
-    },
-    {
-      "filename": "c2_forge_dashboard.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\c2_forge_dashboard.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\c2_forge_dashboard.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.899311+00:00"
-    },
-    {
-      "filename": "c2_gate_dashboard.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\c2_gate_dashboard.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\c2_gate_dashboard.py",
-      "findings_addressed": 32,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.915282+00:00"
-    },
-    {
-      "filename": "c2_grounding_middleware.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\c2_grounding_middleware.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\c2_grounding_middleware.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.915282+00:00"
-    },
-    {
-      "filename": "c2_qa_grounding_engine.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\c2_qa_grounding_engine.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\c2_qa_grounding_engine.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.915282+00:00"
-    },
-    {
-      "filename": "cdao_transmittal_generator.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\cdao_transmittal_generator.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\cdao_transmittal_generator.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.915282+00:00"
-    },
-    {
-      "filename": "cdn_balancer.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\cdn_balancer.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\cdn_balancer.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.932016+00:00"
-    },
-    {
-      "filename": "check_keys.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\check_keys.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\check_keys.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.932016+00:00"
-    },
-    {
-      "filename": "chronos_briefing_deck_compiler.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_briefing_deck_compiler.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_briefing_deck_compiler.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.948644+00:00"
-    },
-    {
-      "filename": "chronos_c2_cockpit.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_c2_cockpit.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_c2_cockpit.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.948644+00:00"
-    },
-    {
-      "filename": "chronos_cli.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_cli.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_cli.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.948644+00:00"
-    },
-    {
-      "filename": "chronos_defense_dossier.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_defense_dossier.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_defense_dossier.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.965344+00:00"
-    },
-    {
-      "filename": "chronos_dsp_engine.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_dsp_engine.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_dsp_engine.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.965344+00:00"
-    },
-    {
-      "filename": "chronos_emergency_guardian.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_emergency_guardian.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_emergency_guardian.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.965344+00:00"
-    },
-    {
-      "filename": "chronos_master_test_runner.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_master_test_runner.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_master_test_runner.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.965344+00:00"
-    },
-    {
-      "filename": "chronos_mesh_network.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_mesh_network.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_mesh_network.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.965344+00:00"
-    },
-    {
-      "filename": "chronos_mobile_adapter.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_mobile_adapter.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_mobile_adapter.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.982157+00:00"
-    },
-    {
-      "filename": "chronos_proposal_generator.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_proposal_generator.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_proposal_generator.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.982157+00:00"
-    },
-    {
-      "filename": "chronos_ptsd_deescalation.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_ptsd_deescalation.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_ptsd_deescalation.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.982157+00:00"
-    },
-    {
-      "filename": "chronos_quad_chart_engine.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_quad_chart_engine.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_quad_chart_engine.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.998644+00:00"
-    },
-    {
-      "filename": "chronos_sensor_hal.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_sensor_hal.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_sensor_hal.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.998644+00:00"
-    },
-    {
-      "filename": "chronos_sentinel_daemon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_sentinel_daemon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_sentinel_daemon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.998644+00:00"
-    },
-    {
-      "filename": "chronos_sentinel_runtime.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_sentinel_runtime.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_sentinel_runtime.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.998644+00:00"
-    },
-    {
-      "filename": "chronos_system_orchestrator.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_system_orchestrator.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_system_orchestrator.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.998644+00:00"
-    },
-    {
-      "filename": "chronos_tactical_hud.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\chronos_tactical_hud.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\chronos_tactical_hud.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:05.998644+00:00"
-    },
-    {
-      "filename": "clean_bom.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\clean_bom.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\clean_bom.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.022417+00:00"
-    },
-    {
-      "filename": "client.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\client.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\client.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.022417+00:00"
-    },
-    {
-      "filename": "comms_core.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\comms_core.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\comms_core.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.022417+00:00"
-    },
-    {
-      "filename": "compile_diu_pdf.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\compile_diu_pdf.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\compile_diu_pdf.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.039554+00:00"
-    },
-    {
-      "filename": "configure_sentinel_scheduler.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\configure_sentinel_scheduler.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\configure_sentinel_scheduler.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.042567+00:00"
-    },
-    {
-      "filename": "consolidate_and_poll.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\consolidate_and_poll.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\consolidate_and_poll.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.045573+00:00"
-    },
-    {
-      "filename": "create_drone_image.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\create_drone_image.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\create_drone_image.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.048670+00:00"
-    },
-    {
-      "filename": "db_migrate.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\db_migrate.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\db_migrate.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.050680+00:00"
-    },
-    {
-      "filename": "decouple_db_concurrency.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\decouple_db_concurrency.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\decouple_db_concurrency.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.061211+00:00"
-    },
-    {
-      "filename": "delivery_daemon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\delivery_daemon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\delivery_daemon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.063535+00:00"
-    },
-    {
-      "filename": "demo_rehearsal_dry_run.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\demo_rehearsal_dry_run.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\demo_rehearsal_dry_run.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.065297+00:00"
-    },
-    {
-      "filename": "deploy_and_wire_pnp.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\deploy_and_wire_pnp.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\deploy_and_wire_pnp.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.065297+00:00"
-    },
-    {
-      "filename": "deploy_blocklist.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\deploy_blocklist.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\deploy_blocklist.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.082045+00:00"
-    },
-    {
-      "filename": "deploy_filtered_listener.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\deploy_filtered_listener.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\deploy_filtered_listener.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.098649+00:00"
-    },
-    {
-      "filename": "deploy_hardened_voice_core.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\deploy_hardened_voice_core.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\deploy_hardened_voice_core.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.098649+00:00"
-    },
-    {
-      "filename": "deploy_live_stream_core.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\deploy_live_stream_core.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\deploy_live_stream_core.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.123879+00:00"
-    },
-    {
-      "filename": "deploy_sovereign_cockpit_complete.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\deploy_sovereign_cockpit_complete.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\deploy_sovereign_cockpit_complete.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.137880+00:00"
-    },
-    {
-      "filename": "deploy_stabilized_voice.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\deploy_stabilized_voice.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\deploy_stabilized_voice.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.140880+00:00"
-    },
-    {
-      "filename": "deploy_tactical_c2.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\deploy_tactical_c2.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\deploy_tactical_c2.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.145039+00:00"
-    },
-    {
-      "filename": "deploy_voice_engine.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\deploy_voice_engine.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\deploy_voice_engine.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.148026+00:00"
-    },
-    {
-      "filename": "deploy_voice_listener.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\deploy_voice_listener.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\deploy_voice_listener.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.163027+00:00"
-    },
-    {
-      "filename": "deploy_zero_lag_core.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\deploy_zero_lag_core.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\deploy_zero_lag_core.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.172128+00:00"
-    },
-    {
-      "filename": "diagnostic_models.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\diagnostic_models.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\diagnostic_models.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.172128+00:00"
-    },
-    {
-      "filename": "disaster_recovery.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\disaster_recovery.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\disaster_recovery.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.182364+00:00"
-    },
-    {
-      "filename": "discover_optical_node.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\discover_optical_node.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\discover_optical_node.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.182364+00:00"
-    },
-    {
-      "filename": "dispatch_ucf_reply.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\dispatch_ucf_reply.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\dispatch_ucf_reply.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.199348+00:00"
-    },
-    {
-      "filename": "dispense_linkedin_article.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\dispense_linkedin_article.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\dispense_linkedin_article.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.199348+00:00"
-    },
-    {
-      "filename": "diu_company_interest_payload.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\diu_company_interest_payload.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\diu_company_interest_payload.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.213839+00:00"
-    },
-    {
-      "filename": "diu_drone_dominance_brief.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\diu_drone_dominance_brief.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\diu_drone_dominance_brief.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.222950+00:00"
-    },
-    {
-      "filename": "diu_intake_dispatcher.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\diu_intake_dispatcher.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\diu_intake_dispatcher.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.222950+00:00"
-    },
-    {
-      "filename": "diu_terminal_dispenser.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\diu_terminal_dispenser.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\diu_terminal_dispenser.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.222950+00:00"
-    },
-    {
-      "filename": "dod_transition_pitch_deck.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\dod_transition_pitch_deck.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\dod_transition_pitch_deck.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.231989+00:00"
-    },
-    {
-      "filename": "drone_commander.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\drone_commander.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\drone_commander.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.231989+00:00"
-    },
-    {
-      "filename": "drone_rgb_adapter.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\drone_rgb_adapter.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\drone_rgb_adapter.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.231989+00:00"
-    },
-    {
-      "filename": "ebony_cleanroom_provenance.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_cleanroom_provenance.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_cleanroom_provenance.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.247990+00:00"
-    },
-    {
-      "filename": "ebony_console.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_console.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_console.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.265340+00:00"
-    },
-    {
-      "filename": "ebony_console_BLUE.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_console_BLUE.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_console_BLUE.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.282045+00:00"
-    },
-    {
-      "filename": "ebony_console_GREEN.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_console_GREEN.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_console_GREEN.py",
-      "findings_addressed": 15,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.332387+00:00"
-    },
-    {
-      "filename": "ebony_expansion_audit.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_expansion_audit.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_expansion_audit.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.332387+00:00"
-    },
-    {
-      "filename": "ebony_global_audit.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_global_audit.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_global_audit.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.332387+00:00"
-    },
-    {
-      "filename": "ebony_global_audit_final.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_global_audit_final.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_global_audit_final.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.348667+00:00"
-    },
-    {
-      "filename": "ebony_launch.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_launch.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_launch.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.348667+00:00"
-    },
-    {
-      "filename": "ebony_launch_BLUE.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_launch_BLUE.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_launch_BLUE.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.348667+00:00"
-    },
-    {
-      "filename": "ebony_launch_GREEN.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_launch_GREEN.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_launch_GREEN.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.348667+00:00"
-    },
-    {
-      "filename": "ebony_master_boot.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_master_boot.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_master_boot.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.365307+00:00"
-    },
-    {
-      "filename": "ebony_predict_and_act.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_predict_and_act.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_predict_and_act.py",
-      "findings_addressed": 3,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.365307+00:00"
-    },
-    {
-      "filename": "ebony_sentinel_daemon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_sentinel_daemon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_sentinel_daemon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.381987+00:00"
-    },
-    {
-      "filename": "ebony_system_audit.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_system_audit.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_system_audit.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.381987+00:00"
-    },
-    {
-      "filename": "email_triage_core.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\email_triage_core.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\email_triage_core.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.398644+00:00"
-    },
-    {
-      "filename": "enable_wal.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\enable_wal.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\enable_wal.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.398644+00:00"
-    },
-    {
-      "filename": "encryption_engine.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\encryption_engine.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\encryption_engine.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.398644+00:00"
-    },
-    {
-      "filename": "evaluator_access_logger.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\evaluator_access_logger.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\evaluator_access_logger.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.398644+00:00"
-    },
-    {
-      "filename": "evaluator_defense_matrix.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\evaluator_defense_matrix.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\evaluator_defense_matrix.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.398644+00:00"
-    },
-    {
-      "filename": "evaluator_dossier_generator.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\evaluator_dossier_generator.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\evaluator_dossier_generator.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.414700+00:00"
-    },
-    {
-      "filename": "evaluator_ingress_server.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\evaluator_ingress_server.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\evaluator_ingress_server.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.417818+00:00"
-    },
-    {
-      "filename": "evaluator_ingress_service.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\evaluator_ingress_service.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\evaluator_ingress_service.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.421804+00:00"
-    },
-    {
-      "filename": "evaluator_live_interrogation.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\evaluator_live_interrogation.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\evaluator_live_interrogation.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.423336+00:00"
-    },
-    {
-      "filename": "executive_dashboard.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\executive_dashboard.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\executive_dashboard.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.423336+00:00"
-    },
-    {
-      "filename": "explain_api.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\explain_api.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\explain_api.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.423336+00:00"
-    },
-    {
-      "filename": "feedback_api.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\feedback_api.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\feedback_api.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.432948+00:00"
-    },
-    {
-      "filename": "fix_and_verify_triage.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\fix_and_verify_triage.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\fix_and_verify_triage.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.448046+00:00"
-    },
-    {
-      "filename": "fix_c2_theme_and_buttons.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\fix_c2_theme_and_buttons.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\fix_c2_theme_and_buttons.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.458117+00:00"
-    },
-    {
-      "filename": "fix_comms_deck_targeted.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\fix_comms_deck_targeted.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\fix_comms_deck_targeted.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.471692+00:00"
-    },
-    {
-      "filename": "fix_console_imports.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\fix_console_imports.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\fix_console_imports.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.471692+00:00"
-    },
-    {
-      "filename": "fix_console_perimeter_and_voice.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\fix_console_perimeter_and_voice.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\fix_console_perimeter_and_voice.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.471692+00:00"
-    },
-    {
-      "filename": "fix_military_c2_console.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\fix_military_c2_console.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\fix_military_c2_console.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.488329+00:00"
-    },
-    {
-      "filename": "fix_wal_concurrency.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\fix_wal_concurrency.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\fix_wal_concurrency.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.488329+00:00"
-    },
-    {
-      "filename": "fix_webrtc_optical_clean.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\fix_webrtc_optical_clean.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\fix_webrtc_optical_clean.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.505001+00:00"
-    },
-    {
-      "filename": "flink_alert_job.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\flink_alert_job.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\flink_alert_job.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.505001+00:00"
-    },
-    {
-      "filename": "fms_sync.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\fms_sync.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\fms_sync.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.505001+00:00"
-    },
-    {
-      "filename": "forge_api_contracts.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\forge_api_contracts.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\forge_api_contracts.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.515356+00:00"
-    },
-    {
-      "filename": "full_mission_e2e_demonstrator.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\full_mission_e2e_demonstrator.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\full_mission_e2e_demonstrator.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.519368+00:00"
-    },
-    {
-      "filename": "full_system_feature_audit.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\full_system_feature_audit.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\full_system_feature_audit.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.535025+00:00"
-    },
-    {
-      "filename": "fuse_command_v2.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\fuse_command_v2.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\fuse_command_v2.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.538030+00:00"
-    },
-    {
-      "filename": "gateway_daemon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\gateway_daemon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\gateway_daemon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.538030+00:00"
-    },
-    {
-      "filename": "generate_batch_dispatches.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\generate_batch_dispatches.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\generate_batch_dispatches.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.538030+00:00"
-    },
-    {
-      "filename": "generate_diu_whitepaper.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\generate_diu_whitepaper.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\generate_diu_whitepaper.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.538030+00:00"
-    },
-    {
-      "filename": "generate_fs288_compliance.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\generate_fs288_compliance.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\generate_fs288_compliance.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.548645+00:00"
-    },
-    {
-      "filename": "generate_nsf_project_pitch.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\generate_nsf_project_pitch.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\generate_nsf_project_pitch.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.551657+00:00"
-    },
-    {
-      "filename": "generate_stripe_links.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\generate_stripe_links.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\generate_stripe_links.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.563778+00:00"
-    },
-    {
-      "filename": "gen_pilot_keys.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\gen_pilot_keys.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\gen_pilot_keys.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.567303+00:00"
-    },
-    {
-      "filename": "gen_test_frame.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\gen_test_frame.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\gen_test_frame.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.570363+00:00"
-    },
-    {
-      "filename": "gli_calc.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\gli_calc.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\gli_calc.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.573355+00:00"
-    },
-    {
-      "filename": "grant_solicitation_radar.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\grant_solicitation_radar.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\grant_solicitation_radar.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.585996+00:00"
-    },
-    {
-      "filename": "green_baseline.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\green_baseline.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\green_baseline.py",
-      "findings_addressed": 3,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.587988+00:00"
-    },
-    {
-      "filename": "hardware_bridge.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hardware_bridge.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hardware_bridge.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.587988+00:00"
-    },
-    {
-      "filename": "hvf_audit.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_audit.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_audit.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.587988+00:00"
-    },
-    {
-      "filename": "hvf_autonomous_patrol.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_autonomous_patrol.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_autonomous_patrol.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.587988+00:00"
-    },
-    {
-      "filename": "hvf_brain3_c2.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_brain3_c2.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_brain3_c2.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.611562+00:00"
-    },
-    {
-      "filename": "hvf_cipher_audit.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_cipher_audit.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_cipher_audit.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.611562+00:00"
-    },
-    {
-      "filename": "hvf_compliance_guard.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_compliance_guard.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_compliance_guard.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.618935+00:00"
-    },
-    {
-      "filename": "hvf_content_generator.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_content_generator.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_content_generator.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.621270+00:00"
-    },
-    {
-      "filename": "hvf_course_runner.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_course_runner.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_course_runner.py",
-      "findings_addressed": 3,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.632368+00:00"
-    },
-    {
-      "filename": "hvf_crypto_ledger.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_crypto_ledger.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_crypto_ledger.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.649675+00:00"
-    },
-    {
-      "filename": "hvf_defense_pipeline.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_defense_pipeline.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_defense_pipeline.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.658925+00:00"
-    },
-    {
-      "filename": "hvf_drone_bridge.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_drone_bridge.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_drone_bridge.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.667308+00:00"
-    },
-    {
-      "filename": "hvf_drone_vision.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_drone_vision.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_drone_vision.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.670309+00:00"
-    },
-    {
-      "filename": "hvf_economic_agent.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_economic_agent.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_economic_agent.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.671669+00:00"
-    },
-    {
-      "filename": "hvf_email_node.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\hvf_email_node.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_email_node.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.671669+00:00"
-    },
-    {
-      "filename": "hvf_farm_agent.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_farm_agent.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_farm_agent.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.671669+00:00"
-    },
-    {
-      "filename": "hvf_github_sync.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_github_sync.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_github_sync.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.681896+00:00"
-    },
-    {
-      "filename": "hvf_investor_recon_engine.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_investor_recon_engine.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_investor_recon_engine.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.685040+00:00"
-    },
-    {
-      "filename": "hvf_kinetic_relay.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_kinetic_relay.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_kinetic_relay.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.688430+00:00"
-    },
-    {
-      "filename": "hvf_linkedin_node.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_linkedin_node.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_linkedin_node.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.699671+00:00"
-    },
-    {
-      "filename": "hvf_linkedin_orchestrator.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_linkedin_orchestrator.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_linkedin_orchestrator.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.702667+00:00"
-    },
-    {
-      "filename": "hvf_master_orchestrator.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_master_orchestrator.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_master_orchestrator.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.705051+00:00"
-    },
-    {
-      "filename": "hvf_media_router.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_media_router.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_media_router.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.705051+00:00"
-    },
-    {
-      "filename": "hvf_memory_vault.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_memory_vault.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_memory_vault.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.720327+00:00"
-    },
-    {
-      "filename": "hvf_modbus_driver.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_modbus_driver.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_modbus_driver.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.735005+00:00"
-    },
-    {
-      "filename": "hvf_noaa_oracle.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_noaa_oracle.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_noaa_oracle.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.748650+00:00"
-    },
-    {
-      "filename": "hvf_observe.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_observe.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_observe.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.751662+00:00"
-    },
-    {
-      "filename": "hvf_orchestrator.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_orchestrator.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_orchestrator.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.755035+00:00"
-    },
-    {
-      "filename": "hvf_payment_gateway.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_payment_gateway.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_payment_gateway.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.755035+00:00"
-    },
-    {
-      "filename": "hvf_penetration_test_suite.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_penetration_test_suite.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_penetration_test_suite.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.755035+00:00"
-    },
-    {
-      "filename": "hvf_reenergization_daemon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_reenergization_daemon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_reenergization_daemon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.771775+00:00"
-    },
-    {
-      "filename": "hvf_release.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_release.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_release.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.771775+00:00"
-    },
-    {
-      "filename": "hvf_security.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_security.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_security.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.783004+00:00"
-    },
-    {
-      "filename": "hvf_security_audit.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_security_audit.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_security_audit.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.786012+00:00"
-    },
-    {
-      "filename": "hvf_security_gateway.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_security_gateway.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_security_gateway.py",
-      "findings_addressed": 3,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.788010+00:00"
-    },
-    {
-      "filename": "hvf_surveillance_daemon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_surveillance_daemon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_surveillance_daemon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.791011+00:00"
-    },
-    {
-      "filename": "hvf_telemetry_bridge.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_telemetry_bridge.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_telemetry_bridge.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.816317+00:00"
-    },
-    {
-      "filename": "hvf_telemetry_vault.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_telemetry_vault.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_telemetry_vault.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.818318+00:00"
-    },
-    {
-      "filename": "hvf_threat_interlock.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_threat_interlock.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_threat_interlock.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.833997+00:00"
-    },
-    {
-      "filename": "hvf_verticals_engine.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_verticals_engine.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_verticals_engine.py",
-      "findings_addressed": 4,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.849654+00:00"
-    },
-    {
-      "filename": "hvf_watchdog_timer.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\hvf_watchdog_timer.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\hvf_watchdog_timer.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.859483+00:00"
-    },
-    {
-      "filename": "identify_and_snapshot_cameras.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\identify_and_snapshot_cameras.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\identify_and_snapshot_cameras.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.867322+00:00"
-    },
-    {
-      "filename": "ingest_chunked.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ingest_chunked.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ingest_chunked.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.869329+00:00"
-    },
-    {
-      "filename": "ingest_drew_phillips.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ingest_drew_phillips.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ingest_drew_phillips.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.871645+00:00"
-    },
-    {
-      "filename": "ingest_signallink_response.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ingest_signallink_response.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ingest_signallink_response.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.871645+00:00"
-    },
-    {
-      "filename": "inject_comms.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\inject_comms.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\inject_comms.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.871645+00:00"
-    },
-    {
-      "filename": "integrate_green_core.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\integrate_green_core.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\integrate_green_core.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.871645+00:00"
-    },
-    {
-      "filename": "intrusion_detector.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\intrusion_detector.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\intrusion_detector.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.883967+00:00"
-    },
-    {
-      "filename": "kinetic_guillotine_enforcer.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\kinetic_guillotine_enforcer.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\kinetic_guillotine_enforcer.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.886965+00:00"
-    },
-    {
-      "filename": "kinetic_logo_forge.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\kinetic_logo_forge.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\kinetic_logo_forge.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.890965+00:00"
-    },
-    {
-      "filename": "kinetic_parser.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\kinetic_parser.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\kinetic_parser.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.900631+00:00"
-    },
-    {
-      "filename": "launch_ebony.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\launch_ebony.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\launch_ebony.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.903639+00:00"
-    },
-    {
-      "filename": "launch_historical_ebony.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\launch_historical_ebony.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\launch_historical_ebony.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.904633+00:00"
-    },
-    {
-      "filename": "linkedin_editorial_pipeline.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\linkedin_editorial_pipeline.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\linkedin_editorial_pipeline.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.917473+00:00"
-    },
-    {
-      "filename": "linkedin_triage.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\linkedin_triage.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\linkedin_triage.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.921792+00:00"
-    },
-    {
-      "filename": "linkedin_urn_breach.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\linkedin_urn_breach.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\linkedin_urn_breach.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.933994+00:00"
-    },
-    {
-      "filename": "list_authorized_models.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\list_authorized_models.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\list_authorized_models.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.937999+00:00"
-    },
-    {
-      "filename": "locustfile.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\locustfile.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\locustfile.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.938372+00:00"
-    },
-    {
-      "filename": "log_chat_severance_exchange.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\log_chat_severance_exchange.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\log_chat_severance_exchange.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.938372+00:00"
-    },
-    {
-      "filename": "log_competitive_intel_jev.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\log_competitive_intel_jev.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\log_competitive_intel_jev.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.938372+00:00"
-    },
-    {
-      "filename": "log_ucf_severance_confirmation.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\log_ucf_severance_confirmation.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\log_ucf_severance_confirmation.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.951649+00:00"
-    },
-    {
-      "filename": "log_ucf_withdrawal_execution.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\log_ucf_withdrawal_execution.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\log_ucf_withdrawal_execution.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.954634+00:00"
-    },
-    {
-      "filename": "manage_margins_and_compile_pdf.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\manage_margins_and_compile_pdf.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\manage_margins_and_compile_pdf.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.968362+00:00"
-    },
-    {
-      "filename": "market_scout.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\market_scout.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\market_scout.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.971679+00:00"
-    },
-    {
-      "filename": "matrix_backend_BLUE.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\matrix_backend_BLUE.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\matrix_backend_BLUE.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.971679+00:00"
-    },
-    {
-      "filename": "memory_manager.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\memory_manager.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\memory_manager.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.971679+00:00"
-    },
-    {
-      "filename": "metrics_daemon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\metrics_daemon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\metrics_daemon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.971679+00:00"
-    },
-    {
-      "filename": "mfa_authenticator.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\mfa_authenticator.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\mfa_authenticator.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.984445+00:00"
-    },
-    {
-      "filename": "migrate_email_schema.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\migrate_email_schema.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\migrate_email_schema.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.984445+00:00"
-    },
-    {
-      "filename": "migrate_email_vault_encryption.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\migrate_email_vault_encryption.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\migrate_email_vault_encryption.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.984445+00:00"
-    },
-    {
-      "filename": "migrate_users_table.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\migrate_users_table.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\migrate_users_table.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:06.984445+00:00"
-    },
-    {
-      "filename": "mission_readiness_audit.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\mission_readiness_audit.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\mission_readiness_audit.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.008675+00:00"
-    },
-    {
-      "filename": "model_recon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\model_recon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\model_recon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.010686+00:00"
-    },
-    {
-      "filename": "monitor_surrender_perimeter.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\monitor_surrender_perimeter.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\monitor_surrender_perimeter.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.013685+00:00"
-    },
-    {
-      "filename": "offline_cache.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\offline_cache.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\offline_cache.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.016679+00:00"
-    },
-    {
-      "filename": "oklahoma_defense_brief_compiler.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\oklahoma_defense_brief_compiler.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\oklahoma_defense_brief_compiler.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.019678+00:00"
-    },
-    {
-      "filename": "omni_ingestion.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\omni_ingestion.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\omni_ingestion.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.021686+00:00"
-    },
-    {
-      "filename": "onboarding_api.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\onboarding_api.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\onboarding_api.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.025463+00:00"
-    },
-    {
-      "filename": "optical_stream_daemon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\optical_stream_daemon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\optical_stream_daemon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.026986+00:00"
-    },
-    {
-      "filename": "patch.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.026986+00:00"
-    },
-    {
-      "filename": "patch_ada_voice_link.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\patch_ada_voice_link.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_ada_voice_link.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.038292+00:00"
-    },
-    {
-      "filename": "patch_auto_voice.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\patch_auto_voice.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_auto_voice.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.038292+00:00"
-    },
-    {
-      "filename": "patch_console_dispatch_action.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\patch_console_dispatch_action.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_console_dispatch_action.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.038292+00:00"
-    },
-    {
-      "filename": "patch_db_concurrency.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch_db_concurrency.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_db_concurrency.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.054654+00:00"
-    },
-    {
-      "filename": "patch_directshow_feed.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch_directshow_feed.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_directshow_feed.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.054654+00:00"
-    },
-    {
-      "filename": "patch_focused_c2_deck.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch_focused_c2_deck.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_focused_c2_deck.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.061274+00:00"
-    },
-    {
-      "filename": "patch_live_video_embed.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch_live_video_embed.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_live_video_embed.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.066348+00:00"
-    },
-    {
-      "filename": "patch_module_dispatch_robust.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\patch_module_dispatch_robust.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_module_dispatch_robust.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.078352+00:00"
-    },
-    {
-      "filename": "patch_optical_complete_live.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch_optical_complete_live.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_optical_complete_live.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.080473+00:00"
-    },
-    {
-      "filename": "patch_optical_desktop_lock.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch_optical_desktop_lock.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_optical_desktop_lock.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.083991+00:00"
-    },
-    {
-      "filename": "patch_optical_feed.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch_optical_feed.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_optical_feed.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.086993+00:00"
-    },
-    {
-      "filename": "patch_optical_matrix.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch_optical_matrix.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_optical_matrix.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.089990+00:00"
-    },
-    {
-      "filename": "patch_optical_switcher.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch_optical_switcher.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_optical_switcher.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.092982+00:00"
-    },
-    {
-      "filename": "patch_tablet_optical_matrix.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch_tablet_optical_matrix.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_tablet_optical_matrix.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.103530+00:00"
-    },
-    {
-      "filename": "patch_tactical_optical_switcher.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch_tactical_optical_switcher.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_tactical_optical_switcher.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.106543+00:00"
-    },
-    {
-      "filename": "patch_unified_optical_deck.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\patch_unified_optical_deck.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\patch_unified_optical_deck.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.120772+00:00"
-    },
-    {
-      "filename": "payload_generator.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\payload_generator.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\payload_generator.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.124772+00:00"
-    },
-    {
-      "filename": "performance_logger.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\performance_logger.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\performance_logger.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.125784+00:00"
-    },
-    {
-      "filename": "portal_terminal_dispenser.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\portal_terminal_dispenser.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\portal_terminal_dispenser.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.125784+00:00"
-    },
-    {
-      "filename": "preflight_daily_diagnostic.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\preflight_daily_diagnostic.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\preflight_daily_diagnostic.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.133983+00:00"
-    },
-    {
-      "filename": "preflight_surveillance_runner.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\preflight_surveillance_runner.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\preflight_surveillance_runner.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.135988+00:00"
-    },
-    {
-      "filename": "prepare_portal_filings.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\prepare_portal_filings.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\prepare_portal_filings.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.150138+00:00"
-    },
-    {
-      "filename": "prescriptive_sandbox.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\prescriptive_sandbox.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\prescriptive_sandbox.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.152678+00:00"
-    },
-    {
-      "filename": "probe_imap.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\probe_imap.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\probe_imap.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.155021+00:00"
-    },
-    {
-      "filename": "progress_board.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\progress_board.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\progress_board.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.155021+00:00"
-    },
-    {
-      "filename": "protocol_lambda_diode.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\protocol_lambda_diode.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\protocol_lambda_diode.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.155021+00:00"
-    },
-    {
-      "filename": "pue_metrics.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\pue_metrics.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\pue_metrics.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.155021+00:00"
-    },
-    {
-      "filename": "purge_simulated_contacts.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\purge_simulated_contacts.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\purge_simulated_contacts.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.167351+00:00"
-    },
-    {
-      "filename": "rate_limiter.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\rate_limiter.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\rate_limiter.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.170345+00:00"
-    },
-    {
-      "filename": "rbac_matrix.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\rbac_matrix.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\rbac_matrix.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.171918+00:00"
-    },
-    {
-      "filename": "rbac_middleware.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\rbac_middleware.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\rbac_middleware.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.171918+00:00"
-    },
-    {
-      "filename": "reality_firewall.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\reality_firewall.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\reality_firewall.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.171918+00:00"
-    },
-    {
-      "filename": "recon_core.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\recon_core.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\recon_core.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.171918+00:00"
-    },
-    {
-      "filename": "record_breach_dossier.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\record_breach_dossier.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\record_breach_dossier.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.183014+00:00"
-    },
-    {
-      "filename": "record_compliance_extension.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\record_compliance_extension.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\record_compliance_extension.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.185998+00:00"
-    },
-    {
-      "filename": "record_final_legal_demand.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\record_final_legal_demand.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\record_final_legal_demand.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.188309+00:00"
-    },
-    {
-      "filename": "record_public_disclosure.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\record_public_disclosure.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\record_public_disclosure.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.188309+00:00"
-    },
-    {
-      "filename": "regulatory_engine.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\regulatory_engine.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\regulatory_engine.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.188309+00:00"
-    },
-    {
-      "filename": "rehearsal_hud.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\rehearsal_hud.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\rehearsal_hud.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.188309+00:00"
-    },
-    {
-      "filename": "release_manifest_auditor.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\release_manifest_auditor.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\release_manifest_auditor.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.198656+00:00"
-    },
-    {
-      "filename": "release_tag_manager.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\release_tag_manager.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\release_tag_manager.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.202660+00:00"
-    },
-    {
-      "filename": "repair_and_sync_ucf_vault.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\repair_and_sync_ucf_vault.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\repair_and_sync_ucf_vault.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.204668+00:00"
-    },
-    {
-      "filename": "repair_indentation.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\repair_indentation.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\repair_indentation.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.207906+00:00"
-    },
-    {
-      "filename": "repair_optical_syntax.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\repair_optical_syntax.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\repair_optical_syntax.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.209913+00:00"
-    },
-    {
-      "filename": "reset_inbound_baseline.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\reset_inbound_baseline.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\reset_inbound_baseline.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.212922+00:00"
-    },
-    {
-      "filename": "revoke_dmz_and_seal_severance.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\revoke_dmz_and_seal_severance.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\revoke_dmz_and_seal_severance.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.214927+00:00"
-    },
-    {
-      "filename": "rfi_response_daemon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\rfi_response_daemon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\rfi_response_daemon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.226430+00:00"
-    },
-    {
-      "filename": "run_desktop_listener.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\run_desktop_listener.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\run_desktop_listener.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.228974+00:00"
-    },
-    {
-      "filename": "run_live_poll.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\run_live_poll.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\run_live_poll.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.237980+00:00"
-    },
-    {
-      "filename": "sam_eft_compliance_audit.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sam_eft_compliance_audit.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sam_eft_compliance_audit.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.237980+00:00"
-    },
-    {
-      "filename": "sanitize_toml.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sanitize_toml.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sanitize_toml.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.237980+00:00"
-    },
-    {
-      "filename": "save_verified_inbox.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\save_verified_inbox.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\save_verified_inbox.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.249696+00:00"
-    },
-    {
-      "filename": "seal_defense_brief.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\seal_defense_brief.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\seal_defense_brief.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.251703+00:00"
-    },
-    {
-      "filename": "seal_diu_intake_filing.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\seal_diu_intake_filing.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\seal_diu_intake_filing.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.254699+00:00"
-    },
-    {
-      "filename": "seal_three_brain_architecture.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\seal_three_brain_architecture.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\seal_three_brain_architecture.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.267414+00:00"
-    },
-    {
-      "filename": "security_daemon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\security_daemon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\security_daemon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.270408+00:00"
-    },
-    {
-      "filename": "sec_ops_data_shredder.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sec_ops_data_shredder.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sec_ops_data_shredder.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.271414+00:00"
-    },
-    {
-      "filename": "sec_ops_key_rotation.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sec_ops_key_rotation.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sec_ops_key_rotation.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.271414+00:00"
-    },
-    {
-      "filename": "sec_ops_ota_firmware.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sec_ops_ota_firmware.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sec_ops_ota_firmware.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.271414+00:00"
-    },
-    {
-      "filename": "sec_ops_pentest.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sec_ops_pentest.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sec_ops_pentest.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.271414+00:00"
-    },
-    {
-      "filename": "sec_ops_sbom_monitor.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sec_ops_sbom_monitor.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sec_ops_sbom_monitor.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.282054+00:00"
-    },
-    {
-      "filename": "seed_email_accounts.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\seed_email_accounts.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\seed_email_accounts.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.285058+00:00"
-    },
-    {
-      "filename": "sentinel_service_runner.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sentinel_service_runner.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sentinel_service_runner.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.288059+00:00"
-    },
-    {
-      "filename": "sentinel_telemetry_hud.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sentinel_telemetry_hud.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sentinel_telemetry_hud.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.288059+00:00"
-    },
-    {
-      "filename": "sentry_db_inspector.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sentry_db_inspector.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sentry_db_inspector.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.288059+00:00"
-    },
-    {
-      "filename": "sentry_status_snapshot.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sentry_status_snapshot.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sentry_status_snapshot.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.288059+00:00"
-    },
-    {
-      "filename": "sentry_watchdog_daemon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sentry_watchdog_daemon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sentry_watchdog_daemon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.300684+00:00"
-    },
-    {
-      "filename": "setup_tapo_sensor.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\setup_tapo_sensor.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\setup_tapo_sensor.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.302689+00:00"
-    },
-    {
-      "filename": "smart_contract_ledger.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\smart_contract_ledger.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\smart_contract_ledger.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.304681+00:00"
-    },
-    {
-      "filename": "sovereign_comms_core.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\sovereign_comms_core.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sovereign_comms_core.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.319380+00:00"
-    },
-    {
-      "filename": "sovereign_model_builder.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sovereign_model_builder.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sovereign_model_builder.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.321388+00:00"
-    },
-    {
-      "filename": "sovereign_sentinel.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\sovereign_sentinel.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sovereign_sentinel.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.321388+00:00"
-    },
-    {
-      "filename": "sovereign_voice_engine.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\sovereign_voice_engine.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sovereign_voice_engine.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.321388+00:00"
-    },
-    {
-      "filename": "sovereign_voice_listener.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\sovereign_voice_listener.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sovereign_voice_listener.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.337083+00:00"
-    },
-    {
-      "filename": "stage_article_03_kinetic_guillotine.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\stage_article_03_kinetic_guillotine.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\stage_article_03_kinetic_guillotine.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.348724+00:00"
-    },
-    {
-      "filename": "stage_article_04_merkle_dag.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\stage_article_04_merkle_dag.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\stage_article_04_merkle_dag.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.354736+00:00"
-    },
-    {
-      "filename": "stage_article_05_sovereign_prime.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\stage_article_05_sovereign_prime.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\stage_article_05_sovereign_prime.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.371398+00:00"
-    },
-    {
-      "filename": "stage_article_multi_brain_architecture.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\stage_article_multi_brain_architecture.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\stage_article_multi_brain_architecture.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.388028+00:00"
-    },
-    {
-      "filename": "stage_linkedin_broadcast.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\stage_linkedin_broadcast.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\stage_linkedin_broadcast.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.388028+00:00"
-    },
-    {
-      "filename": "stage_solution_brief.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\stage_solution_brief.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\stage_solution_brief.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.403691+00:00"
-    },
-    {
-      "filename": "standby_daily_brief.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\standby_daily_brief.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\standby_daily_brief.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.404697+00:00"
-    },
-    {
-      "filename": "standby_telemetry_monitor.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\standby_telemetry_monitor.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\standby_telemetry_monitor.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.404697+00:00"
-    },
-    {
-      "filename": "start_48hr_surrender_countdown.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\start_48hr_surrender_countdown.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\start_48hr_surrender_countdown.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.404697+00:00"
-    },
-    {
-      "filename": "streamline_nsf_filing.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\streamline_nsf_filing.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\streamline_nsf_filing.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.404697+00:00"
-    },
-    {
-      "filename": "stream_controller.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\stream_controller.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\stream_controller.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.417302+00:00"
-    },
-    {
-      "filename": "stripe_dispatcher.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\stripe_dispatcher.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\stripe_dispatcher.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.420301+00:00"
-    },
-    {
-      "filename": "tactical_glass_cockpit.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\tactical_glass_cockpit.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\tactical_glass_cockpit.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.434008+00:00"
-    },
-    {
-      "filename": "tailor_proposal_brief.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\tailor_proposal_brief.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\tailor_proposal_brief.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.437007+00:00"
-    },
-    {
-      "filename": "telemetry_matrix.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\telemetry_matrix.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\telemetry_matrix.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.438016+00:00"
-    },
-    {
-      "filename": "test_adversarial_stream.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_adversarial_stream.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_adversarial_stream.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.442887+00:00"
-    },
-    {
-      "filename": "test_article_03_staging.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_article_03_staging.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_article_03_staging.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.442887+00:00"
-    },
-    {
-      "filename": "test_article_04_staging.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_article_04_staging.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_article_04_staging.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.442887+00:00"
-    },
-    {
-      "filename": "test_article_05_staging.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_article_05_staging.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_article_05_staging.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.452630+00:00"
-    },
-    {
-      "filename": "test_article_staging.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_article_staging.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_article_staging.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.454648+00:00"
-    },
-    {
-      "filename": "test_cleanroom_provenance.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_cleanroom_provenance.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_cleanroom_provenance.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.454648+00:00"
-    },
-    {
-      "filename": "test_defense_brief_seal.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_defense_brief_seal.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_defense_brief_seal.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.454648+00:00"
-    },
-    {
-      "filename": "test_diu_dispenser_integrity.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_diu_dispenser_integrity.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_diu_dispenser_integrity.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.462375+00:00"
-    },
-    {
-      "filename": "test_diu_intake_alignment.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_diu_intake_alignment.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_diu_intake_alignment.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.465328+00:00"
-    },
-    {
-      "filename": "test_diu_interest_payload.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_diu_interest_payload.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_diu_interest_payload.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.468346+00:00"
-    },
-    {
-      "filename": "test_diu_pdf_integrity.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_diu_pdf_integrity.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_diu_pdf_integrity.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.471337+00:00"
-    },
-    {
-      "filename": "test_ebony_core.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\test_ebony_core.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_ebony_core.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.471337+00:00"
-    },
-    {
-      "filename": "test_editorial_dispenser.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_editorial_dispenser.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_editorial_dispenser.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.471337+00:00"
-    },
-    {
-      "filename": "test_editorial_pipeline.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_editorial_pipeline.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_editorial_pipeline.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.471337+00:00"
-    },
-    {
-      "filename": "test_filing_character_saturation.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_filing_character_saturation.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_filing_character_saturation.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.482002+00:00"
-    },
-    {
-      "filename": "test_gli_calc.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_gli_calc.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_gli_calc.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.485008+00:00"
-    },
-    {
-      "filename": "test_grant_radar_integrity.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_grant_radar_integrity.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_grant_radar_integrity.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.488007+00:00"
-    },
-    {
-      "filename": "test_inbound_triage.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\test_inbound_triage.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_inbound_triage.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.488007+00:00"
-    },
-    {
-      "filename": "test_linkedin_broadcast_audit.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_linkedin_broadcast_audit.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_linkedin_broadcast_audit.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.500911+00:00"
-    },
-    {
-      "filename": "test_margin_layout_integrity.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_margin_layout_integrity.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_margin_layout_integrity.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.500911+00:00"
-    },
-    {
-      "filename": "test_master_sentinel_suite.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_master_sentinel_suite.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_master_sentinel_suite.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.500911+00:00"
-    },
-    {
-      "filename": "test_nsf_pitch_integrity.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_nsf_pitch_integrity.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_nsf_pitch_integrity.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.500911+00:00"
-    },
-    {
-      "filename": "test_pipeline_pivot.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_pipeline_pivot.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_pipeline_pivot.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.500911+00:00"
-    },
-    {
-      "filename": "test_portal_dispenser.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_portal_dispenser.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_portal_dispenser.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.516311+00:00"
-    },
-    {
-      "filename": "test_quad_chart.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_quad_chart.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_quad_chart.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.516311+00:00"
-    },
-    {
-      "filename": "test_rag_synthesis.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\test_rag_synthesis.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_rag_synthesis.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.516311+00:00"
-    },
-    {
-      "filename": "test_sanitizer.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_sanitizer.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_sanitizer.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.516311+00:00"
-    },
-    {
-      "filename": "test_streamline_filing.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_streamline_filing.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_streamline_filing.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.516311+00:00"
-    },
-    {
-      "filename": "test_ucf_decoupling.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\test_ucf_decoupling.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\test_ucf_decoupling.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.516311+00:00"
-    },
-    {
-      "filename": "tradewinds_dispatch_packager.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\tradewinds_dispatch_packager.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\tradewinds_dispatch_packager.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.539982+00:00"
-    },
-    {
-      "filename": "tradewinds_notification_packet.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\tradewinds_notification_packet.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\tradewinds_notification_packet.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.542981+00:00"
-    },
-    {
-      "filename": "tradewinds_pitch_compiler.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\tradewinds_pitch_compiler.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\tradewinds_pitch_compiler.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.544988+00:00"
-    },
-    {
-      "filename": "unified_grant_pipeline_matrix.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\unified_grant_pipeline_matrix.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\unified_grant_pipeline_matrix.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.556823+00:00"
-    },
-    {
-      "filename": "unify_video_text_talk.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\unify_video_text_talk.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\unify_video_text_talk.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.569837+00:00"
-    },
-    {
-      "filename": "update_dossier_with_sept14_timestamp.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\update_dossier_with_sept14_timestamp.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\update_dossier_with_sept14_timestamp.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.572841+00:00"
-    },
-    {
-      "filename": "update_nsf_window_lockout.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\update_nsf_window_lockout.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\update_nsf_window_lockout.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.576844+00:00"
-    },
-    {
-      "filename": "upgrade_direct_dispatch.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\upgrade_direct_dispatch.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\upgrade_direct_dispatch.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.578840+00:00"
-    },
-    {
-      "filename": "upgrade_outbound_smtp.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\upgrade_outbound_smtp.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\upgrade_outbound_smtp.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.582439+00:00"
-    },
-    {
-      "filename": "upgrade_triage_flow.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\upgrade_triage_flow.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\upgrade_triage_flow.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.582439+00:00"
-    },
-    {
-      "filename": "urn_extractor.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\urn_extractor.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\urn_extractor.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.595787+00:00"
-    },
-    {
-      "filename": "usage_metering.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\usage_metering.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\usage_metering.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.595787+00:00"
-    },
-    {
-      "filename": "vault_keeper.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\vault_keeper.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\vault_keeper.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.595787+00:00"
-    },
-    {
-      "filename": "vector_store.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\vector_store.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\vector_store.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.595787+00:00"
-    },
-    {
-      "filename": "verify_memory_persistence.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\verify_memory_persistence.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\verify_memory_persistence.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.595787+00:00"
-    },
-    {
-      "filename": "verify_payment.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\verify_payment.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\verify_payment.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.595787+00:00"
-    },
-    {
-      "filename": "verify_tapo_stream.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\verify_tapo_stream.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\verify_tapo_stream.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.611591+00:00"
-    },
-    {
-      "filename": "verify_three_brain_proposal.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\verify_three_brain_proposal.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\verify_three_brain_proposal.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.611591+00:00"
-    },
-    {
-      "filename": "video_processor.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\video_processor.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\video_processor.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.611591+00:00"
-    },
-    {
-      "filename": "warfighter_field_terminal.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\warfighter_field_terminal.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\warfighter_field_terminal.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.611591+00:00"
-    },
-    {
-      "filename": "warfighter_gps_beacon.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\warfighter_gps_beacon.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\warfighter_gps_beacon.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.625616+00:00"
-    },
-    {
-      "filename": "webrtc_gateway_bridge.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\webrtc_gateway_bridge.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\webrtc_gateway_bridge.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.628695+00:00"
-    },
-    {
-      "filename": "wire_bridge_v4.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\wire_bridge_v4.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\wire_bridge_v4.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.628695+00:00"
-    },
-    {
-      "filename": "wire_bridge_v5.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\wire_bridge_v5.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\wire_bridge_v5.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.628695+00:00"
-    },
-    {
-      "filename": "autonomous_batch_patcher.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\autonomous_batch_patcher.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\autonomous_batch_patcher.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.628695+00:00"
-    },
-    {
-      "filename": "autonomous_self_heal.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\autonomous_self_heal.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\autonomous_self_heal.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.628695+00:00"
-    },
-    {
-      "filename": "deep_code_sentinel.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\deep_code_sentinel.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\deep_code_sentinel.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.652413+00:00"
-    },
-    {
-      "filename": "ebony_command_bridge.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\ebony_command_bridge.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\ebony_command_bridge.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.657377+00:00"
-    },
-    {
-      "filename": "level5_loader.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\level5_loader.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\level5_loader.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.660379+00:00"
-    },
-    {
-      "filename": "sovereign_coder.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\sovereign_coder.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sovereign_coder.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.663469+00:00"
-    },
-    {
-      "filename": "sovereign_comms.py",
-      "original_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\sovereign_comms.py",
-      "staged_path": "C:\\HVF_Repos\\hvf-media-matrix-private\\sandbox_staging\\sovereign_comms.py",
-      "findings_addressed": 1,
-      "status": "VERIFIED_IN_SANDBOX",
-      "timestamp": "2026-10-08T22:50:07.663469+00:00"
-    }
+  "total_staged": 476,
+  "staged_candidates": [
+    "access_control.py",
+    "action_desk.py",
+    "ada_voice_engine.py",
+    "ada_voice_module.py",
+    "agentic_test.py",
+    "alert_protocol.py",
+    "api_gateway.py",
+    "app.py",
+    "apply_account_manager_ui.py",
+    "apply_dispatch_deck.py",
+    "apply_military_tactical_theme.py",
+    "approval_queue.py",
+    "archive_feed_post.py",
+    "audit_connected_devices.py",
+    "audit_tablet_ports.py",
+    "audit_three_brain_vault.py",
+    "audit_workstation_audio.py",
+    "auth_matrix.py",
+    "autonomous_evolution.py",
+    "auto_commander.py",
+    "auto_create_stripe_links.py",
+    "badge_logger.py",
+    "bare_metal_test.py",
+    "base_agent.py",
+    "bind_droidcam_sensor.py",
+    "bind_tablet_tailscale.py",
+    "broadcast_engine.py",
+    "build_briefing_html.py",
+    "build_neural_core.py",
+    "bypass_mic.py",
+    "c2_cockpit_dashboard.py",
+    "c2_forge_dashboard.py",
+    "c2_grounding_middleware.py",
+    "c2_qa_grounding_engine.py",
+    "cdao_transmittal_generator.py",
+    "cdn_balancer.py",
+    "check_keys.py",
+    "chronos_briefing_deck_compiler.py",
+    "chronos_c2_cockpit.py",
+    "chronos_cli.py",
+    "chronos_companion_engine.py",
+    "chronos_defense_dossier.py",
+    "chronos_dsp_engine.py",
+    "chronos_emergency_guardian.py",
+    "chronos_master_test_runner.py",
+    "chronos_mesh_network.py",
+    "chronos_mobile_adapter.py",
+    "chronos_proposal_generator.py",
+    "chronos_ptsd_deescalation.py",
+    "chronos_quad_chart_engine.py",
+    "chronos_sensor_hal.py",
+    "chronos_sentinel_daemon.py",
+    "chronos_sentinel_runtime.py",
+    "chronos_system_orchestrator.py",
+    "chronos_tactical_hud.py",
+    "clean_bom.py",
+    "client.py",
+    "comms_core.py",
+    "compile_diu_pdf.py",
+    "configure_sentinel_scheduler.py",
+    "consolidate_and_poll.py",
+    "conversation_logger.py",
+    "create_drone_image.py",
+    "db_migrate.py",
+    "decouple_db_concurrency.py",
+    "delivery_daemon.py",
+    "demo_rehearsal_dry_run.py",
+    "deploy_and_wire_pnp.py",
+    "deploy_blocklist.py",
+    "deploy_filtered_listener.py",
+    "deploy_hardened_voice_core.py",
+    "deploy_live_stream_core.py",
+    "deploy_optical_tactics.py",
+    "deploy_pipeline_alpha.py",
+    "deploy_pipeline_beta.py",
+    "deploy_slot0_router.py",
+    "deploy_slot2_router.py",
+    "deploy_sovereign_cockpit_complete.py",
+    "deploy_stabilized_voice.py",
+    "deploy_tactical_c2.py",
+    "deploy_voice_engine.py",
+    "deploy_voice_listener.py",
+    "deploy_zero_lag_core.py",
+    "deploy_zero_latency.py",
+    "diagnostic_models.py",
+    "disaster_recovery.py",
+    "discover_optical_node.py",
+    "dispatch_ucf_reply.py",
+    "dispense_linkedin_article.py",
+    "diu_company_interest_payload.py",
+    "diu_drone_dominance_brief.py",
+    "diu_intake_dispatcher.py",
+    "diu_terminal_dispenser.py",
+    "dod_transition_pitch_deck.py",
+    "drone_commander.py",
+    "drone_rgb_adapter.py",
+    "ebony.py",
+    "ebony_cleanroom_provenance.py",
+    "ebony_command_deck_controller.py",
+    "ebony_console.py",
+    "ebony_console_BLUE.py",
+    "ebony_console_GOLD.py",
+    "ebony_expansion_audit.py",
+    "ebony_global_audit.py",
+    "ebony_global_audit_final.py",
+    "ebony_launch.py",
+    "ebony_launch_BLUE.py",
+    "ebony_launch_GREEN.py",
+    "ebony_master_boot.py",
+    "ebony_predict_and_act.py",
+    "ebony_sentinel_daemon.py",
+    "ebony_system_audit.py",
+    "email_triage_core.py",
+    "enable_wal.py",
+    "encryption_engine.py",
+    "evaluator_access_logger.py",
+    "evaluator_defense_matrix.py",
+    "evaluator_dossier_generator.py",
+    "evaluator_ingress_server.py",
+    "evaluator_ingress_service.py",
+    "evaluator_live_interrogation.py",
+    "executive_dashboard.py",
+    "explain_api.py",
+    "feedback_api.py",
+    "fetch_kpi_report.py",
+    "fix_and_verify_triage.py",
+    "fix_c2_theme_and_buttons.py",
+    "fix_comms_deck_targeted.py",
+    "fix_console_imports.py",
+    "fix_console_perimeter_and_voice.py",
+    "fix_military_c2_console.py",
+    "fix_wal_concurrency.py",
+    "fix_webrtc_optical_clean.py",
+    "flink_alert_job.py",
+    "fms_sync.py",
+    "forge_api_contracts.py",
+    "forge_matrix_ssl.py",
+    "full_mission_e2e_demonstrator.py",
+    "full_system_feature_audit.py",
+    "fuse_command_v2.py",
+    "gateway_daemon.py",
+    "generate_batch_dispatches.py",
+    "generate_diu_whitepaper.py",
+    "generate_fs288_compliance.py",
+    "generate_nsf_project_pitch.py",
+    "generate_stripe_links.py",
+    "gen_pilot_keys.py",
+    "gen_test_frame.py",
+    "gli_calc.py",
+    "grant_solicitation_radar.py",
+    "green_baseline.py",
+    "hardware_bridge.py",
+    "hvf_analytics_engine.py",
+    "hvf_analytics_orchestrator.py",
+    "hvf_api_router.py",
+    "hvf_audit.py",
+    "hvf_audit_core.py",
+    "hvf_audit_ebony.py",
+    "hvf_auth_gateway.py",
+    "hvf_autonomous_patrol.py",
+    "hvf_brain3_c2.py",
+    "hvf_cipher_audit.py",
+    "hvf_comm_server.py",
+    "hvf_compliance_guard.py",
+    "hvf_config_manager.py",
+    "hvf_config_vault.py",
+    "hvf_content_generator.py",
+    "hvf_core_server.py",
+    "hvf_course_runner.py",
+    "hvf_crypto_ledger.py",
+    "hvf_data_bridge.py",
+    "hvf_db_connector.py",
+    "hvf_defense_pipeline.py",
+    "hvf_drone_bridge.py",
+    "hvf_drone_vision.py",
+    "hvf_economic_agent.py",
+    "hvf_email_node.py",
+    "hvf_error_logger.py",
+    "hvf_farm_agent.py",
+    "hvf_github_sync.py",
+    "hvf_intercom_broker.py",
+    "hvf_investor_recon_engine.py",
+    "hvf_kinetic_relay.py",
+    "hvf_linkedin_engine.py",
+    "hvf_linkedin_node.py",
+    "hvf_linkedin_orchestrator.py",
+    "hvf_master_orchestrator.py",
+    "hvf_media_ingestor.py",
+    "hvf_media_orchestrator.py",
+    "hvf_media_router.py",
+    "hvf_media_storage_gateway.py",
+    "hvf_media_transcoder.py",
+    "hvf_memory_vault.py",
+    "hvf_modbus_driver.py",
+    "hvf_noaa_oracle.py",
+    "hvf_observe.py",
+    "hvf_optical_streamer.py",
+    "hvf_orchestrator.py",
+    "hvf_payment_gateway.py",
+    "hvf_penetration_test.py",
+    "hvf_penetration_test_suite.py",
+    "hvf_rbac_controller.py",
+    "hvf_reenergization_daemon.py",
+    "hvf_release.py",
+    "hvf_reporting_api.py",
+    "hvf_schema.py",
+    "hvf_security.py",
+    "hvf_security_audit.py",
+    "hvf_security_gateway.py",
+    "hvf_surveillance_daemon.py",
+    "hvf_telemetry_bridge.py",
+    "hvf_telemetry_vault.py",
+    "hvf_threat_interlock.py",
+    "hvf_token_manager.py",
+    "hvf_treasury_router.py",
+    "hvf_verticals_engine.py",
+    "hvf_watchdog_timer.py",
+    "identify_and_snapshot_cameras.py",
+    "iframe_patch.py",
+    "ingest_chunked.py",
+    "ingest_drew_phillips.py",
+    "ingest_signallink_response.py",
+    "inject_comms.py",
+    "integrate_green_core.py",
+    "intrusion_detector.py",
+    "kinetic_guillotine_enforcer.py",
+    "kinetic_logo_forge.py",
+    "kinetic_parser.py",
+    "launch_ebony.py",
+    "launch_historical_ebony.py",
+    "lens_commander.py",
+    "linkedin_editorial_pipeline.py",
+    "linkedin_triage.py",
+    "linkedin_urn_breach.py",
+    "list_authorized_models.py",
+    "locustfile.py",
+    "log_chat_severance_exchange.py",
+    "log_competitive_intel_jev.py",
+    "log_ucf_severance_confirmation.py",
+    "log_ucf_withdrawal_execution.py",
+    "main.py",
+    "manage_margins_and_compile_pdf.py",
+    "market_scout.py",
+    "master_control.py",
+    "matrix_backend_BLUE.py",
+    "memory_manager.py",
+    "metrics_daemon.py",
+    "mfa_authenticator.py",
+    "mfa_matrix.py",
+    "migrate_email_schema.py",
+    "migrate_email_vault_encryption.py",
+    "migrate_users_table.py",
+    "mission_readiness_audit.py",
+    "mobile_patch.py",
+    "model_recon.py",
+    "monitor_surrender_perimeter.py",
+    "new_script.py",
+    "nexus_health_check.py",
+    "offline_cache.py",
+    "oklahoma_defense_brief_compiler.py",
+    "omni_ingestion.py",
+    "onboarding_api.py",
+    "optical_scanner.py",
+    "optical_stream_daemon.py",
+    "patch.py",
+    "patch_ada_voice_link.py",
+    "patch_auto_voice.py",
+    "patch_broker.py",
+    "patch_console_dispatch_action.py",
+    "patch_db_concurrency.py",
+    "patch_directshow_feed.py",
+    "patch_focused_c2_deck.py",
+    "patch_live_video_embed.py",
+    "patch_module_dispatch_robust.py",
+    "patch_optical_complete_live.py",
+    "patch_optical_desktop_lock.py",
+    "patch_optical_feed.py",
+    "patch_optical_matrix.py",
+    "patch_optical_switcher.py",
+    "patch_tablet_optical_matrix.py",
+    "patch_tactical_optical_switcher.py",
+    "patch_unified_optical_deck.py",
+    "payload_generator.py",
+    "performance_logger.py",
+    "portal_terminal_dispenser.py",
+    "preflight_daily_diagnostic.py",
+    "preflight_surveillance_runner.py",
+    "prepare_portal_filings.py",
+    "prescriptive_sandbox.py",
+    "probe_imap.py",
+    "progress_board.py",
+    "protocol_lambda_diode.py",
+    "pue_metrics.py",
+    "purge_simulated_contacts.py",
+    "purify_comms.py",
+    "rate_limiter.py",
+    "rbac_matrix.py",
+    "rbac_middleware.py",
+    "reality_firewall.py",
+    "recon_core.py",
+    "record_breach_dossier.py",
+    "record_compliance_extension.py",
+    "record_final_legal_demand.py",
+    "record_public_disclosure.py",
+    "regulatory_engine.py",
+    "rehearsal_hud.py",
+    "release_manifest_auditor.py",
+    "release_tag_manager.py",
+    "repair_and_sync_ucf_vault.py",
+    "repair_indentation.py",
+    "repair_optical_syntax.py",
+    "reset_inbound_baseline.py",
+    "revoke_dmz_and_seal_severance.py",
+    "rfi_response_daemon.py",
+    "run_desktop_listener.py",
+    "run_live_poll.py",
+    "sam_eft_compliance_audit.py",
+    "sanitize_toml.py",
+    "save_verified_inbox.py",
+    "seal_defense_brief.py",
+    "seal_diu_intake_filing.py",
+    "seal_three_brain_architecture.py",
+    "security_daemon.py",
+    "sec_ops_data_shredder.py",
+    "sec_ops_key_rotation.py",
+    "sec_ops_ota_firmware.py",
+    "sec_ops_pentest.py",
+    "sec_ops_sbom_monitor.py",
+    "seed_email_accounts.py",
+    "sentinel_service_runner.py",
+    "sentinel_telemetry_hud.py",
+    "sentry_db_inspector.py",
+    "sentry_status_snapshot.py",
+    "sentry_watchdog_daemon.py",
+    "setup_tapo_sensor.py",
+    "smart_contract_ledger.py",
+    "sovereign_comms_core.py",
+    "sovereign_model_builder.py",
+    "sovereign_sentinel.py",
+    "sovereign_voice_engine.py",
+    "sovereign_voice_listener.py",
+    "stage_article_03_kinetic_guillotine.py",
+    "stage_article_04_merkle_dag.py",
+    "stage_article_05_sovereign_prime.py",
+    "stage_article_multi_brain_architecture.py",
+    "stage_linkedin_broadcast.py",
+    "stage_solution_brief.py",
+    "standby_daily_brief.py",
+    "standby_telemetry_monitor.py",
+    "start_48hr_surrender_countdown.py",
+    "streamline_nsf_filing.py",
+    "stream_controller.py",
+    "stripe_dispatcher.py",
+    "stripe_webhook_listener.py",
+    "sys_check.py",
+    "tactical_glass_cockpit.py",
+    "tailor_proposal_brief.py",
+    "telemetry_matrix.py",
+    "test_acquisition_artifacts.py",
+    "test_adversarial_stream.py",
+    "test_article_03_staging.py",
+    "test_article_04_staging.py",
+    "test_article_05_staging.py",
+    "test_article_staging.py",
+    "test_box1_live_window.py",
+    "test_briefing_deck_artifacts.py",
+    "test_briefing_session_artifacts.py",
+    "test_c2_cockpit.py",
+    "test_chronos_cli.py",
+    "test_cleanroom_provenance.py",
+    "test_cockpit_app.py",
+    "test_command_deck_controller.py",
+    "test_companion_engine.py",
+    "test_defense_brief_seal.py",
+    "test_defense_dossier.py",
+    "test_defense_matrix_artifacts.py",
+    "test_diu_dispenser_integrity.py",
+    "test_diu_drone_dominance.py",
+    "test_diu_intake_alignment.py",
+    "test_diu_interest_payload.py",
+    "test_diu_pdf_integrity.py",
+    "test_diu_whitepaper.py",
+    "test_dsp_engine.py",
+    "test_ebony_core.py",
+    "test_editorial_dispenser.py",
+    "test_editorial_pipeline.py",
+    "test_emergency_guardian.py",
+    "test_evaluator_defense_matrix.py",
+    "test_evaluator_ingress.py",
+    "test_filing_character_saturation.py",
+    "test_flight_deck_orchestrator.py",
+    "test_gli_calc.py",
+    "test_golden_master_commissioning.py",
+    "test_grant_radar_integrity.py",
+    "test_inbound_triage.py",
+    "test_linkedin_broadcast_audit.py",
+    "test_live_mission_dispatch.py",
+    "test_live_rehearsal_engine.py",
+    "test_margin_layout_integrity.py",
+    "test_master_sentinel_suite.py",
+    "test_mesh_network.py",
+    "test_mission_launch_bat.py",
+    "test_mission_operator_console.py",
+    "test_mission_terminal.py",
+    "test_mobile_adapter.py",
+    "test_native_c2_orchestrator.py",
+    "test_native_quad_deck.py",
+    "test_nsf_pitch_integrity.py",
+    "test_obs_bridge.py",
+    "test_oklahoma_artifacts.py",
+    "test_oklahoma_defense.py",
+    "test_pipeline_pivot.py",
+    "test_portal_dispenser.py",
+    "test_presentation_runner.py",
+    "test_proposal_generator.py",
+    "test_ptsd_deescalation.py",
+    "test_quad_chart.py",
+    "test_rag_synthesis.py",
+    "test_rehearsal_report_artifacts.py",
+    "test_sanitizer.py",
+    "test_sensor_hal.py",
+    "test_sentinel_daemon.py",
+    "test_sentinel_runtime.py",
+    "test_sentry_watchdog.py",
+    "test_split_screen_launcher.py",
+    "test_standby_lockdown.py",
+    "test_streamline_filing.py",
+    "test_system_orchestrator.py",
+    "test_tactical_hud.py",
+    "test_teleprompter_console.py",
+    "test_tradewinds_artifacts.py",
+    "test_tradewinds_pitch.py",
+    "test_ucf_decoupling.py",
+    "test_unified_cockpit.py",
+    "trademark_check.py",
+    "tradewinds_dispatch_packager.py",
+    "tradewinds_notification_packet.py",
+    "tradewinds_pitch_compiler.py",
+    "unified_grant_pipeline_matrix.py",
+    "unify_video_text_talk.py",
+    "update_dossier_with_sept14_timestamp.py",
+    "update_nsf_window_lockout.py",
+    "upgrade_direct_dispatch.py",
+    "upgrade_outbound_smtp.py",
+    "upgrade_triage_flow.py",
+    "urn_extractor.py",
+    "usage_metering.py",
+    "vault_keeper.py",
+    "vector_store.py",
+    "verify_env.py",
+    "verify_memory_persistence.py",
+    "verify_payment.py",
+    "verify_tapo_stream.py",
+    "verify_three_brain_proposal.py",
+    "video_processor.py",
+    "visual_cortex_engine.py",
+    "warfighter_field_terminal.py",
+    "warfighter_gps_beacon.py",
+    "webrtc_gateway_bridge.py",
+    "wire_bridge_v4.py",
+    "wire_bridge_v5.py",
+    "wire_mobile_bridge.py",
+    "access_control.py",
+    "action_desk.py",
+    "ada_voice_module.py",
+    "alert_protocol.py",
+    "api_gateway.py",
+    "app.py",
+    "apply_account_manager_ui.py",
+    "apply_dispatch_deck.py",
+    "autonomous_healing_test.py",
+    "chronos_companion_engine.py",
+    "grain_silo_aeration_and_f.py",
+    "linkedin_lead_scheduler.py",
+    "migrate_users_table.py",
+    "sovereign_weather_scada.py"
   ]
 }

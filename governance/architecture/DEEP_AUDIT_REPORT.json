@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-08T22:43:25.984645+00:00",
+  "timestamp": "2026-10-08T23:50:04.248580+00:00",
   "modules_inspected": 477,
   "modules_optimal": 106,
   "modules_needing_upgrade": 371,
@@ -30,6 +30,126 @@
       "metrics": {
         "total_lines": 37,
         "code_lines": 25,
+        "functions": 0,
+        "classes": 0,
+        "complexity_score": 100
+      },
+      "findings": [
+        {
+          "line": 1,
+          "severity": "CRITICAL",
+          "category": "Syntax Error",
+          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
+        }
+      ],
+      "status": "CORRUPTED"
+    },
+    "ada_voice_module.py": {
+      "file": "ada_voice_module.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\ada_voice_module.py",
+      "metrics": {
+        "total_lines": 98,
+        "code_lines": 78,
+        "functions": 0,
+        "classes": 0,
+        "complexity_score": 100
+      },
+      "findings": [
+        {
+          "line": 1,
+          "severity": "CRITICAL",
+          "category": "Syntax Error",
+          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
+        }
+      ],
+      "status": "CORRUPTED"
+    },
+    "alert_protocol.py": {
+      "file": "alert_protocol.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\alert_protocol.py",
+      "metrics": {
+        "total_lines": 35,
+        "code_lines": 25,
+        "functions": 0,
+        "classes": 0,
+        "complexity_score": 100
+      },
+      "findings": [
+        {
+          "line": 1,
+          "severity": "CRITICAL",
+          "category": "Syntax Error",
+          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
+        }
+      ],
+      "status": "CORRUPTED"
+    },
+    "api_gateway.py": {
+      "file": "api_gateway.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\api_gateway.py",
+      "metrics": {
+        "total_lines": 40,
+        "code_lines": 31,
+        "functions": 0,
+        "classes": 0,
+        "complexity_score": 100
+      },
+      "findings": [
+        {
+          "line": 1,
+          "severity": "CRITICAL",
+          "category": "Syntax Error",
+          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
+        }
+      ],
+      "status": "CORRUPTED"
+    },
+    "app.py": {
+      "file": "app.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\app.py",
+      "metrics": {
+        "total_lines": 1355,
+        "code_lines": 1138,
+        "functions": 0,
+        "classes": 0,
+        "complexity_score": 100
+      },
+      "findings": [
+        {
+          "line": 1,
+          "severity": "CRITICAL",
+          "category": "Syntax Error",
+          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
+        }
+      ],
+      "status": "CORRUPTED"
+    },
+    "apply_account_manager_ui.py": {
+      "file": "apply_account_manager_ui.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\apply_account_manager_ui.py",
+      "metrics": {
+        "total_lines": 187,
+        "code_lines": 156,
+        "functions": 0,
+        "classes": 0,
+        "complexity_score": 100
+      },
+      "findings": [
+        {
+          "line": 1,
+          "severity": "CRITICAL",
+          "category": "Syntax Error",
+          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
+        }
+      ],
+      "status": "CORRUPTED"
+    },
+    "apply_dispatch_deck.py": {
+      "file": "apply_dispatch_deck.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\apply_dispatch_deck.py",
+      "metrics": {
+        "total_lines": 125,
+        "code_lines": 99,
         "functions": 0,
         "classes": 0,
         "complexity_score": 100
@@ -136,6 +256,26 @@
       ],
       "status": "OPTIMAL"
     },
+    "migrate_users_table.py": {
+      "file": "migrate_users_table.py",
+      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\migrate_users_table.py",
+      "metrics": {
+        "total_lines": 44,
+        "code_lines": 34,
+        "functions": 0,
+        "classes": 0,
+        "complexity_score": 100
+      },
+      "findings": [
+        {
+          "line": 1,
+          "severity": "CRITICAL",
+          "category": "Syntax Error",
+          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
+        }
+      ],
+      "status": "CORRUPTED"
+    },
     "sovereign_weather_scada.py": {
       "file": "sovereign_weather_scada.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\sovereign_weather_scada.py",
@@ -176,26 +316,6 @@
       ],
       "status": "OPTIMAL"
     },
-    "ada_voice_module.py": {
-      "file": "ada_voice_module.py",
-      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\ada_voice_module.py",
-      "metrics": {
-        "total_lines": 98,
-        "code_lines": 78,
-        "functions": 0,
-        "classes": 0,
-        "complexity_score": 100
-      },
-      "findings": [
-        {
-          "line": 1,
-          "severity": "CRITICAL",
-          "category": "Syntax Error",
-          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
-        }
-      ],
-      "status": "CORRUPTED"
-    },
     "agentic_test.py": {
       "file": "agentic_test.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\agentic_test.py",
@@ -215,106 +335,6 @@
         }
       ],
       "status": "OPTIMAL"
-    },
-    "alert_protocol.py": {
-      "file": "alert_protocol.py",
-      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\alert_protocol.py",
-      "metrics": {
-        "total_lines": 35,
-        "code_lines": 25,
-        "functions": 0,
-        "classes": 0,
-        "complexity_score": 100
-      },
-      "findings": [
-        {
-          "line": 1,
-          "severity": "CRITICAL",
-          "category": "Syntax Error",
-          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
-        }
-      ],
-      "status": "CORRUPTED"
-    },
-    "api_gateway.py": {
-      "file": "api_gateway.py",
-      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\api_gateway.py",
-      "metrics": {
-        "total_lines": 40,
-        "code_lines": 31,
-        "functions": 0,
-        "classes": 0,
-        "complexity_score": 100
-      },
-      "findings": [
-        {
-          "line": 1,
-          "severity": "CRITICAL",
-          "category": "Syntax Error",
-          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
-        }
-      ],
-      "status": "CORRUPTED"
-    },
-    "app.py": {
-      "file": "app.py",
-      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\app.py",
-      "metrics": {
-        "total_lines": 1355,
-        "code_lines": 1138,
-        "functions": 0,
-        "classes": 0,
-        "complexity_score": 100
-      },
-      "findings": [
-        {
-          "line": 1,
-          "severity": "CRITICAL",
-          "category": "Syntax Error",
-          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
-        }
-      ],
-      "status": "CORRUPTED"
-    },
-    "apply_account_manager_ui.py": {
-      "file": "apply_account_manager_ui.py",
-      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\apply_account_manager_ui.py",
-      "metrics": {
-        "total_lines": 187,
-        "code_lines": 156,
-        "functions": 0,
-        "classes": 0,
-        "complexity_score": 100
-      },
-      "findings": [
-        {
-          "line": 1,
-          "severity": "CRITICAL",
-          "category": "Syntax Error",
-          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
-        }
-      ],
-      "status": "CORRUPTED"
-    },
-    "apply_dispatch_deck.py": {
-      "file": "apply_dispatch_deck.py",
-      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\apply_dispatch_deck.py",
-      "metrics": {
-        "total_lines": 125,
-        "code_lines": 99,
-        "functions": 0,
-        "classes": 0,
-        "complexity_score": 100
-      },
-      "findings": [
-        {
-          "line": 1,
-          "severity": "CRITICAL",
-          "category": "Syntax Error",
-          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
-        }
-      ],
-      "status": "CORRUPTED"
     },
     "apply_military_tactical_theme.py": {
       "file": "apply_military_tactical_theme.py",
@@ -760,31 +780,13 @@
       "file": "c2_gate_dashboard.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\c2_gate_dashboard.py",
       "metrics": {
-        "total_lines": 238,
-        "code_lines": 205,
-        "functions": 1,
+        "total_lines": 357,
+        "code_lines": 280,
+        "functions": 2,
         "classes": 0,
         "complexity_score": 20
       },
       "findings": [
-        {
-          "line": 16,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 17,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 18,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
         {
           "line": 19,
           "severity": "OPTIMIZATION",
@@ -798,13 +800,19 @@
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 21,
+          "line": 22,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 22,
+          "line": 23,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 24,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
@@ -816,145 +824,61 @@
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 27,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
           "line": 28,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 29,
+          "line": 30,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 61,
+          "line": 31,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 62,
+          "line": 32,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 64,
+          "line": 181,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 65,
+          "line": 242,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 66,
+          "line": 150,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 67,
+          "line": 323,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 68,
+          "line": 130,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
         },
         {
-          "line": 70,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 71,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 72,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 97,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 97,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 123,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 139,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 97,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 123,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 123,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 198,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 118,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 198,
-          "severity": "OPTIMIZATION",
-          "category": "Math Guard",
-          "detail": "Division operation detected without explicit zero-divisor guard clamp."
-        },
-        {
-          "line": 198,
+          "line": 263,
           "severity": "OPTIMIZATION",
           "category": "Math Guard",
           "detail": "Division operation detected without explicit zero-divisor guard clamp."
@@ -5432,26 +5356,6 @@
       ],
       "status": "CORRUPTED"
     },
-    "migrate_users_table.py": {
-      "file": "migrate_users_table.py",
-      "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\migrate_users_table.py",
-      "metrics": {
-        "total_lines": 44,
-        "code_lines": 34,
-        "functions": 0,
-        "classes": 0,
-        "complexity_score": 100
-      },
-      "findings": [
-        {
-          "line": 1,
-          "severity": "CRITICAL",
-          "category": "Syntax Error",
-          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
-        }
-      ],
-      "status": "CORRUPTED"
-    },
     "mission_readiness_audit.py": {
       "file": "mission_readiness_audit.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\mission_readiness_audit.py",
@@ -9611,21 +9515,57 @@
       "file": "autonomous_batch_patcher.py",
       "path": "C:\\HVF_Repos\\hvf-media-matrix-private\\dispatch_core\\autonomous_batch_patcher.py",
       "metrics": {
-        "total_lines": 129,
-        "code_lines": 97,
-        "functions": 0,
+        "total_lines": 67,
+        "code_lines": 57,
+        "functions": 2,
         "classes": 0,
-        "complexity_score": 100
+        "complexity_score": 65
       },
       "findings": [
         {
-          "line": 1,
-          "severity": "CRITICAL",
-          "category": "Syntax Error",
-          "detail": "Syntax error at line 1: invalid non-printable character U+FEFF"
+          "line": 13,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 14,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 15,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 16,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 16,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 61,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
+        },
+        {
+          "line": 55,
+          "severity": "OPTIMIZATION",
+          "category": "Math Guard",
+          "detail": "Division operation detected without explicit zero-divisor guard clamp."
         }
       ],
-      "status": "CORRUPTED"
+      "status": "UPGRADE_RECOMMENDED"
     },
     "autonomous_directive_dispatcher.py": {
       "file": "autonomous_directive_dispatcher.py",
