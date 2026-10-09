@@ -843,7 +843,7 @@ elif active_module == "💬 Sovereign Command":
                         st.success(f"Transcribed Directive: '{voice_prompt}'")
 
         default_text = voice_prompt if voice_prompt else ""
-        user_directive = st.text_input("Enter or Edit Sovereign Directive:", value=default_text, key="directive_input")
+        user_directive = st.text_input("Enter or Edit Sovereign Directive:", value=st.session_state.get("sovereign_active_voice_text", ""), key="directive_input")
 
         st.markdown("**⚡ Tactical Command Quick-Action Macros:**")
         m_col1, m_col2, m_col3, m_col4 = st.columns(4)
@@ -1690,7 +1690,7 @@ elif active_module == "📨 Sovereign Dispatch Deck":
 
         col_act1, col_act2, col_act3 = st.columns([1.2, 1, 1.2])
         with col_act1:
-            if st.button("✅ Approve & Dispatch", key=f"btn_step_app_{disp_id}", type="secondary"):
+            if st.session_state.pop('sovereign_voice_auto_fire', False) or st.button("✅ Approve & Dispatch", key=f"btn_step_app_{disp_id}", type="secondary"):
                 if is_online:
                     with st.spinner("Connecting to smtp.gmail.com:465 & dispatching transmission..."):
                         d_ok, d_msg = email_triage_core.dispatch_outbound_transmission(disp_id, updated_draft)
