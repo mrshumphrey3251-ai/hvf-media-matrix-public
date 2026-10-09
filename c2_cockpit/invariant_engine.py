@@ -18,6 +18,8 @@ def harvest_enclave_ground_truth() -> str:
         "hvf_cmmc_ssp_v1.md",
         "hvf_cmmc_ssp_v1.json",
         "C3PAO_RFP_Specification_v1.0.md",
+        "piee_sprs_submission_guide.md",
+        "c3pao_solicitation_dossier.md",
         "C3PAO_RFP_Package_v1.0.zip",
         "SPRS_Score_Certificate.json",
         "PIEE_Submission_Payload_HVFN_20261009.enc",
@@ -70,6 +72,16 @@ def enforce_bare_metal_invariants(raw_text: str) -> str:
 
     cockpit_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
     corrected = raw_text
+    # INVARIANT 0: Phonetic CAGE Code Acoustic Normalization
+    cage_acoustic_patterns = [
+        re.compile(r'\bKH1AHA8\b', re.IGNORECASE),
+        re.compile(r'\bKH1AH8\b', re.IGNORECASE),
+        re.compile(r'\b1AHAH\b', re.IGNORECASE),
+        re.compile(r'\bpage 1AHA8\b', re.IGNORECASE)
+    ]
+    for pat in cage_acoustic_patterns:
+        corrected = pat.sub("1AHA8", corrected)
+
 
     # INVARIANT 1: PIEE Statutory Definition Enforcement
     piee_patterns = [
