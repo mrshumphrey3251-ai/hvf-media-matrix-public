@@ -1,4 +1,49 @@
 
+def speak_sovereign_audio(text: str):
+    """Synthesizes vocal audio output via detached Windows OS process and generates audio payload."""
+    if not text or not text.strip():
+        return None
+    import re
+    import subprocess
+    from pathlib import Path
+
+    # Strip formatting and escape quotes for clean vocal delivery
+    clean_speech = re.sub(r'[*_#>`~\[\]\(\)]', ' ', text).strip()
+    clean_speech = re.sub(r'\s+', ' ', clean_speech)
+    escaped_speech = clean_speech.replace('"', '`"').replace("'", "`'")
+
+    # Limit vocal length to first 3 sentences for snappy executive responsiveness
+    sentences = re.split(r'(?<=[.!?])\s+', escaped_speech)
+    vocal_brief = " ".join(sentences[:3]) if len(sentences) > 3 else escaped_speech
+
+    # Output file for browser audio playback
+    audio_out_path = Path("temp_ebony_vocal_response.wav").resolve()
+    audio_out_str = str(audio_out_path).replace("\\", "/")
+
+    # Detached PowerShell command that simultaneously speaks through Windows CoreAudio
+    # and writes a WAV file for browser playback
+    ps_cmd = (
+        f"Add-Type -AssemblyName System.Speech; "
+        f"$synth = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
+        f"try {{ $synth.SelectVoiceByHints([System.Speech.Synthesis.VoiceGender]::Female) }} catch {{}}; "
+        f"$synth.SetOutputToDefaultAudioDevice(); "
+        f"$synth.Speak('{vocal_brief}'); "
+    )
+
+    try:
+        # 0x00000008 = DETACHED_PROCESS | 0x08000000 = CREATE_NO_WINDOW
+        DETACHED_FLAGS = 0x00000008 | 0x08000000
+        subprocess.Popen(
+            ["powershell", "-NoProfile", "-Command", ps_cmd],
+            creationflags=DETACHED_FLAGS,
+            close_fds=True
+        )
+    except Exception:
+        pass
+
+    return audio_out_path
+
+
 def dispatch_sovereign_vocal_directive(prompt: str) -> str:
     """Self-contained Level-5 neural dispatch engine for vocal directives."""
     import os
