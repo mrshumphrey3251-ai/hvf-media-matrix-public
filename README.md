@@ -1,16 +1,16 @@
-# Humphrey Virtual Farms LLC — Sovereign Industrial Defense Contractor
+# Humphrey Virtual Farms LLC — Sovereign Industrial Defense & Energy Contractor
 
 [![DoD SPRS Score](https://img.shields.io/badge/DoD_SPRS_NIST_800--171-110%2F110-brightgreen.svg)](SPRS_COMPLIANCE_ATTESTATION.md)
 [![CAGE Code](https://img.shields.io/badge/CAGE-1AHA8-blue.svg)](CAPABILITY_STATEMENT.md)
 [![UEI](https://img.shields.io/badge/UEI-S1M4ENLHTDH5-blue.svg)](CAPABILITY_STATEMENT.md)
 [![DFARS Status](https://img.shields.io/badge/DFARS_252.204--7019%2F7020-Compliant-success.svg)](SPRS_COMPLIANCE_ATTESTATION.md)
-[![PIEE CAM](https://img.shields.io/badge/DoD_PIEE-Active_CAM-orange.svg)](CAPABILITY_STATEMENT.md)
+[![Critical Energy C2](https://img.shields.io/badge/Critical_Energy_Infrastructure-Ready-brightgreen.svg)](ENERGY_CAPABILITY_STATEMENT.md)
 
-**Humphrey Virtual Farms LLC (HVF)** is an industrial technology defense contractor operationalizing sovereign Command and Control (C2) architectures, bare-metal autonomous decision engines, and immutable Write-Once-Read-Many (WORM) audit ledgering for mission-critical defense applications.
+**Humphrey Virtual Farms LLC (HVF)** is an industrial technology contractor operationalizing sovereign Command and Control (C2) architectures, bare-metal autonomous decision engines, and immutable Write-Once-Read-Many (WORM) audit ledgering for mission-critical defense and energy infrastructure applications.
 
 ---
 
-## Statutory Corporate Identifiers & Defense Clearance
+## Statutory Corporate Identifiers & Regulatory Clearance
 
 | Parameter | Statutory Value | Regulatory Verification |
 | :--- | :--- | :--- |
@@ -25,27 +25,27 @@
 
 ---
 
-## Statutory Defense Procurement Documentation
+## Statutory Procurement & Energy Documentation
 
-Review the official unclassified contractor filings below:
-
-1. [**Capability Statement**](CAPABILITY_STATEMENT.md) — Comprehensive core competencies, past performance foundation, NAICS classifications, and federal procurement profile.
-2. [**DFARS 252.204-7019/7020 SPRS Compliance Attestation**](SPRS_COMPLIANCE_ATTESTATION.md) — Official statutory certification of our NIST SP 800-171 110/110 score registered under DoD UID SB00165728.
-3. [**Defense Teaming & Subcontracting Matrix**](TEAMING_MATRIX.md) — NAICS alignment matrix and capability crosswalk for Tier-1 defense primes (General Dynamics, Lockheed Martin, RTX, Northrop Grumman).
-4. [**Prime Contractor Onboarding Protocol**](PARTNER_ONBOARDING.md) — Step-by-step instructions for Small Business Liaison Officers (SBLOs) and Contracting Officers onboarding HVF to Approved Vendor Lists (AVL).
-5. [**Defense Procurement Roadmap**](PROCUREMENT_ROADMAP.md) — Strategic acquisition positioning across DoD Broad Agency Announcements (BAAs), SBIR/STTR topics, and Commercial Solutions Openings.
-6. [**APEX Accelerator Capability Profile**](APEX_CAPABILITY_PROFILE.md) — Formatted intake parameters, Product Service Codes (PSC/FSC), and keyword match criteria for APEX counselors.
-7. [**Sovereign C2 Operational Demo Specification**](DEMO_SPECIFICATION.md) — Unclassified technical overview of the bare-metal C2 verification engine (HVFNexus / Ebony).
+1. [**Energy Infrastructure Capability Statement**](ENERGY_CAPABILITY_STATEMENT.md) — Autonomous microgrid C2, SCADA cybersecurity, and cryptographic WORM power accounting for Department of Commerce and utility partners.
+2. [**Capability Statement**](CAPABILITY_STATEMENT.md) — Comprehensive core competencies, past performance foundation, NAICS classifications, and federal procurement profile.
+3. [**DFARS 252.204-7019/7020 SPRS Compliance Attestation**](SPRS_COMPLIANCE_ATTESTATION.md) — Official statutory certification of our NIST SP 800-171 110/110 score registered under DoD UID SB00165728.
+4. [**Defense Teaming & Subcontracting Matrix**](TEAMING_MATRIX.md) — NAICS alignment matrix and capability crosswalk for Tier-1 defense primes.
+5. [**Prime Contractor Onboarding Protocol**](PARTNER_ONBOARDING.md) — Step-by-step instructions for Small Business Liaison Officers (SBLOs) and Contracting Officers onboarding HVF to Approved Vendor Lists (AVL).
+6. [**Defense Procurement Roadmap**](PROCUREMENT_ROADMAP.md) — Strategic acquisition positioning across DoD Broad Agency Announcements, SBIR/STTR topics, and Commercial Solutions Openings.
+7. [**APEX Accelerator Capability Profile**](APEX_CAPABILITY_PROFILE.md) — Formatted intake parameters, Product Service Codes (PSC/FSC), and keyword match criteria for APEX counselors.
+8. [**Sovereign C2 Operational Demo Specification**](DEMO_SPECIFICATION.md) — Unclassified technical overview of the bare-metal C2 verification engine (HVFNexus / Ebony).
 
 ---
 
-## Primary Defense Industry Classifications
+## Primary Industry Classifications
 
 * **NAICS 541512** — Computer Systems Design Services (Autonomous Bare-Metal C2 Systems)
+* **NAICS 541715** — R&D in Physical, Engineering, and Life Sciences (Grid Edge Autonomy)
 * **NAICS 541519** — Other Computer Related Services (Cryptographic WORM Audit Trails)
 * **NAICS 541511** — Custom Computer Programming Services (Deterministic Telemetry Ingest)
-* **NAICS 541715** — R&D in Physical, Engineering, and Life Sciences (Autonomous Edge Systems)
-* **NAICS 111998** — All Other Miscellaneous Crop Farming (Autonomous Industrial Agriculture)
+* **NAICS 111998** — All Other Miscellaneous Crop Farming (Controlled-Environment Power Optimization)
+* **NAICS 221122** — Electric Power Distribution (Support & Telemetry Services)
 
 ---
 
@@ -53,4 +53,4 @@ Review the official unclassified contractor filings below:
 * **Executive Point of Contact:** Jeffery Humphrey, Chief Executive Officer
 * **Email:** humphreyvirtualfarm@gmail.com
 * **Telephone:** (580) 677-1055
-* **Operational Facility:** Humphrey Virtual Farms Sovereign Industrial Enclave
+* **Facility:** Humphrey Virtual Farms Sovereign Industrial Enclave
