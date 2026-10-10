@@ -1,4 +1,4 @@
-# Humphrey Virtual Farms LLC â€” Sovereign Industrial Defense & Energy Contractor
+# Humphrey Virtual Farms LLC Ã¢â‚¬â€ Sovereign Industrial Defense & Energy Contractor
 
 [![DoD SPRS Score](https://img.shields.io/badge/DoD_SPRS_NIST_800--171-110%2F110-brightgreen.svg)](SPRS_COMPLIANCE_ATTESTATION.md)
 [![CAGE Code](https://img.shields.io/badge/CAGE-1AHA8-blue.svg)](CAPABILITY_STATEMENT.md)
@@ -27,30 +27,31 @@
 
 ## Statutory Procurement & Energy Documentation
 
-1. [**Energy Infrastructure Capability Statement**](ENERGY_CAPABILITY_STATEMENT.md) â€” Autonomous microgrid C2, SCADA cybersecurity, and cryptographic WORM power accounting for Department of Commerce and utility partners.
-2. [**Commerce Energy Pilot Deployment Framework**](COMMERCE_ENERGY_PILOT_FRAMEWORK.md) â€” Zero-CAPEX 4-phase structured engineering methodology for deploying autonomous C2 load-shaving into municipal utilities and industrial facilities.
-3. [**Commercial Energy Partner Engagement Protocol**](COMMERCE_PARTNER_PROTOCOL.md) â€” Onboarding procedure for regional electric cooperatives and industrial plants initiating zero-CAPEX data ingestion pilots.
-4. [**Capability Statement**](CAPABILITY_STATEMENT.md) â€” Comprehensive core competencies, past performance foundation, NAICS classifications, and federal procurement profile.
-5. [**DFARS 252.204-7019/7020 SPRS Compliance Attestation**](SPRS_COMPLIANCE_ATTESTATION.md) â€” Official statutory certification of our NIST SP 800-171 110/110 score registered under DoD UID \SB00165728\.
-6. [**Defense Teaming & Subcontracting Matrix**](TEAMING_MATRIX.md) â€” NAICS alignment matrix and capability crosswalk for Tier-1 defense primes.
-7. [**Prime Contractor Onboarding Protocol**](PARTNER_ONBOARDING.md) â€” Step-by-step instructions for Small Business Liaison Officers (SBLOs) and Contracting Officers onboarding HVF to Approved Vendor Lists (AVL).
-8. [**Defense Procurement Roadmap**](PROCUREMENT_ROADMAP.md) â€” Strategic acquisition positioning across DoD Broad Agency Announcements, SBIR/STTR topics, and Commercial Solutions Openings.
-9. [**APEX Accelerator Capability Profile**](APEX_CAPABILITY_PROFILE.md) â€” Formatted intake parameters, Product Service Codes (PSC/FSC), and keyword match criteria for APEX counselors.
-10. [**Sovereign C2 Operational Demo Specification**](DEMO_SPECIFICATION.md) â€” Unclassified technical overview of the bare-metal C2 verification engine (\HVFNexus\ / Ebony).
-11. [**Statutory Defense Verification Protocol**](VERIFICATION_PROTOCOL.md) â€” Step-by-step guidance for contracting officers verifying SAM.gov and SPRS database registrations.
-12. [**Official Release Notes v1.0.0**](RELEASE_NOTES_v1.0.0.md) â€” Baseline certification declaration and technical architecture sign-off.
-13. [**Commercial Engagement Terms & Fee Schedule**](COMMERCIAL_ENGAGEMENT_TERMS.md) — Standard commercial purchase order terms, firm-fixed-price assessment pricing, and grant sub-award rates.
+1. [**Energy Infrastructure Capability Statement**](ENERGY_CAPABILITY_STATEMENT.md) Ã¢â‚¬â€ Autonomous microgrid C2, SCADA cybersecurity, and cryptographic WORM power accounting for Department of Commerce and utility partners.
+2. [**Commerce Energy Pilot Deployment Framework**](COMMERCE_ENERGY_PILOT_FRAMEWORK.md) Ã¢â‚¬â€ Zero-CAPEX 4-phase structured engineering methodology for deploying autonomous C2 load-shaving into municipal utilities and industrial facilities.
+3. [**Commercial Energy Partner Engagement Protocol**](COMMERCE_PARTNER_PROTOCOL.md) Ã¢â‚¬â€ Onboarding procedure for regional electric cooperatives and industrial plants initiating zero-CAPEX data ingestion pilots.
+4. [**Capability Statement**](CAPABILITY_STATEMENT.md) Ã¢â‚¬â€ Comprehensive core competencies, past performance foundation, NAICS classifications, and federal procurement profile.
+5. [**DFARS 252.204-7019/7020 SPRS Compliance Attestation**](SPRS_COMPLIANCE_ATTESTATION.md) Ã¢â‚¬â€ Official statutory certification of our NIST SP 800-171 110/110 score registered under DoD UID \SB00165728\.
+6. [**Defense Teaming & Subcontracting Matrix**](TEAMING_MATRIX.md) Ã¢â‚¬â€ NAICS alignment matrix and capability crosswalk for Tier-1 defense primes.
+7. [**Prime Contractor Onboarding Protocol**](PARTNER_ONBOARDING.md) Ã¢â‚¬â€ Step-by-step instructions for Small Business Liaison Officers (SBLOs) and Contracting Officers onboarding HVF to Approved Vendor Lists (AVL).
+8. [**Defense Procurement Roadmap**](PROCUREMENT_ROADMAP.md) Ã¢â‚¬â€ Strategic acquisition positioning across DoD Broad Agency Announcements, SBIR/STTR topics, and Commercial Solutions Openings.
+9. [**APEX Accelerator Capability Profile**](APEX_CAPABILITY_PROFILE.md) Ã¢â‚¬â€ Formatted intake parameters, Product Service Codes (PSC/FSC), and keyword match criteria for APEX counselors.
+10. [**Sovereign C2 Operational Demo Specification**](DEMO_SPECIFICATION.md) Ã¢â‚¬â€ Unclassified technical overview of the bare-metal C2 verification engine (\HVFNexus\ / Ebony).
+11. [**Statutory Defense Verification Protocol**](VERIFICATION_PROTOCOL.md) Ã¢â‚¬â€ Step-by-step guidance for contracting officers verifying SAM.gov and SPRS database registrations.
+12. [**Official Release Notes v1.0.0**](RELEASE_NOTES_v1.0.0.md) Ã¢â‚¬â€ Baseline certification declaration and technical architecture sign-off.
+13. [**Commercial Engagement Terms & Fee Schedule**](COMMERCIAL_ENGAGEMENT_TERMS.md) â€” Standard commercial purchase order terms, firm-fixed-price assessment pricing, and grant sub-award rates.
+14. [**Standard Pilot Statement of Work Template**](STANDARD_PILOT_SOW_TEMPLATE.md) — Turnkey 30-day zero-CAPEX feasibility assessment contract vehicle and milestone schedule.
 
 ---
 
 ## Primary Industry Classifications
 
-* **NAICS 541512** â€” Computer Systems Design Services (Autonomous Bare-Metal C2 Systems)
-* **NAICS 541715** â€” R&D in Physical, Engineering, and Life Sciences (Grid Edge Autonomy)
-* **NAICS 541519** â€” Other Computer Related Services (Cryptographic WORM Audit Trails)
-* **NAICS 541511** â€” Custom Computer Programming Services (Deterministic Telemetry Ingest)
-* **NAICS 111998** â€” All Other Miscellaneous Crop Farming (Controlled-Environment Power Optimization)
-* **NAICS 221122** â€” Electric Power Distribution (Support & Telemetry Services)
+* **NAICS 541512** Ã¢â‚¬â€ Computer Systems Design Services (Autonomous Bare-Metal C2 Systems)
+* **NAICS 541715** Ã¢â‚¬â€ R&D in Physical, Engineering, and Life Sciences (Grid Edge Autonomy)
+* **NAICS 541519** Ã¢â‚¬â€ Other Computer Related Services (Cryptographic WORM Audit Trails)
+* **NAICS 541511** Ã¢â‚¬â€ Custom Computer Programming Services (Deterministic Telemetry Ingest)
+* **NAICS 111998** Ã¢â‚¬â€ All Other Miscellaneous Crop Farming (Controlled-Environment Power Optimization)
+* **NAICS 221122** Ã¢â‚¬â€ Electric Power Distribution (Support & Telemetry Services)
 
 ---
 
