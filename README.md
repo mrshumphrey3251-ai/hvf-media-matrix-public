@@ -6,7 +6,7 @@
 [![DFARS Status](https://img.shields.io/badge/DFARS_252.204--7019%2F7020-Compliant-success.svg)](SPRS_COMPLIANCE_ATTESTATION.md)
 [![Critical Energy C2](https://img.shields.io/badge/Critical_Energy_Infrastructure-Ready-brightgreen.svg)](ENERGY_CAPABILITY_STATEMENT.md)
 
-**Humphrey Virtual Farms LLC (HVF)** is an industrial technology contractor operationalizing sovereign Command and Control (C2) architectures, bare-metal autonomous decision engines, and immutable Write-Once-Read-Many (WORM) audit ledgering for mission-critical defense and energy infrastructure applications.
+**Humphrey Virtual Farms LLC (HVF)** is an industrial technology contractor operationalizing sovereign Command and Control (C2) architectures, bare-metal autonomous decision engines, and immutable Write-Once-Read-Many (WORM) audit ledgering for mission-critical defense and critical energy infrastructure applications.
 
 ---
 
@@ -28,13 +28,17 @@
 ## Statutory Procurement & Energy Documentation
 
 1. [**Energy Infrastructure Capability Statement**](ENERGY_CAPABILITY_STATEMENT.md) — Autonomous microgrid C2, SCADA cybersecurity, and cryptographic WORM power accounting for Department of Commerce and utility partners.
-2. [**Capability Statement**](CAPABILITY_STATEMENT.md) — Comprehensive core competencies, past performance foundation, NAICS classifications, and federal procurement profile.
-3. [**DFARS 252.204-7019/7020 SPRS Compliance Attestation**](SPRS_COMPLIANCE_ATTESTATION.md) — Official statutory certification of our NIST SP 800-171 110/110 score registered under DoD UID SB00165728.
-4. [**Defense Teaming & Subcontracting Matrix**](TEAMING_MATRIX.md) — NAICS alignment matrix and capability crosswalk for Tier-1 defense primes.
-5. [**Prime Contractor Onboarding Protocol**](PARTNER_ONBOARDING.md) — Step-by-step instructions for Small Business Liaison Officers (SBLOs) and Contracting Officers onboarding HVF to Approved Vendor Lists (AVL).
-6. [**Defense Procurement Roadmap**](PROCUREMENT_ROADMAP.md) — Strategic acquisition positioning across DoD Broad Agency Announcements, SBIR/STTR topics, and Commercial Solutions Openings.
-7. [**APEX Accelerator Capability Profile**](APEX_CAPABILITY_PROFILE.md) — Formatted intake parameters, Product Service Codes (PSC/FSC), and keyword match criteria for APEX counselors.
-8. [**Sovereign C2 Operational Demo Specification**](DEMO_SPECIFICATION.md) — Unclassified technical overview of the bare-metal C2 verification engine (HVFNexus / Ebony).
+2. [**Commerce Energy Pilot Deployment Framework**](COMMERCE_ENERGY_PILOT_FRAMEWORK.md) — Zero-CAPEX 4-phase structured engineering methodology for deploying autonomous C2 load-shaving into municipal utilities and industrial facilities.
+3. [**Commercial Energy Partner Engagement Protocol**](COMMERCE_PARTNER_PROTOCOL.md) — Onboarding procedure for regional electric cooperatives and industrial plants initiating zero-CAPEX data ingestion pilots.
+4. [**Capability Statement**](CAPABILITY_STATEMENT.md) — Comprehensive core competencies, past performance foundation, NAICS classifications, and federal procurement profile.
+5. [**DFARS 252.204-7019/7020 SPRS Compliance Attestation**](SPRS_COMPLIANCE_ATTESTATION.md) — Official statutory certification of our NIST SP 800-171 110/110 score registered under DoD UID \SB00165728\.
+6. [**Defense Teaming & Subcontracting Matrix**](TEAMING_MATRIX.md) — NAICS alignment matrix and capability crosswalk for Tier-1 defense primes.
+7. [**Prime Contractor Onboarding Protocol**](PARTNER_ONBOARDING.md) — Step-by-step instructions for Small Business Liaison Officers (SBLOs) and Contracting Officers onboarding HVF to Approved Vendor Lists (AVL).
+8. [**Defense Procurement Roadmap**](PROCUREMENT_ROADMAP.md) — Strategic acquisition positioning across DoD Broad Agency Announcements, SBIR/STTR topics, and Commercial Solutions Openings.
+9. [**APEX Accelerator Capability Profile**](APEX_CAPABILITY_PROFILE.md) — Formatted intake parameters, Product Service Codes (PSC/FSC), and keyword match criteria for APEX counselors.
+10. [**Sovereign C2 Operational Demo Specification**](DEMO_SPECIFICATION.md) — Unclassified technical overview of the bare-metal C2 verification engine (\HVFNexus\ / Ebony).
+11. [**Statutory Defense Verification Protocol**](VERIFICATION_PROTOCOL.md) — Step-by-step guidance for contracting officers verifying SAM.gov and SPRS database registrations.
+12. [**Official Release Notes v1.0.0**](RELEASE_NOTES_v1.0.0.md) — Baseline certification declaration and technical architecture sign-off.
 
 ---
 
