@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HVF Swarm Matrix</title>
+    <style>
+        body { background-color: #0a0a0a; color: #00ffcc; font-family: 'Courier New', Courier, monospace; text-align: center; margin: 0; padding: 20px; }
+        h1 { text-transform: uppercase; border-bottom: 1px solid #00ffcc; padding-bottom: 10px; }
+        .node-container { margin-top: 20px; border: 1px solid #333; padding: 20px; border-radius: 5px; }
+        video { width: 100%; max-width: 400px; border: 2px solid #00ffcc; border-radius: 5px; margin-top: 10px; background: #000; }
+        .svg-gauge { width: 100px; height: 100px; transition: stroke-dashoffset 1s ease-in-out; }
+        .controls { margin-top: 20px; }
+        button { background: #00ffcc; color: #000; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; margin: 5px; }
+        button:hover { background: #fff; }
+    </style>
+</head>
+<body>
+    <h1>HVF Swarm Matrix: Node Initialization</h1>
+    <div class="node-container" id="statusPanel">
+        <p>System Status: <span id="status">DISCONNECTED</span></p>
+        <!-- SVG Telemetry Gauge (No Canvas) -->
+        <svg class="svg-gauge" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#333" stroke-width="10"/>
+            <circle id="gaugeFill" cx="50" cy="50" r="45" fill="none" stroke="#00ffcc" stroke-width="10" stroke-dasharray="283" stroke-dashoffset="283" transform="rotate(-90 50 50)"/>
+        </svg>
+    </div>
+    
+    <!-- Socket.io Engine Binding -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        
+        socket.on('connect', () => {
+            document.getElementById('status').innerText = 'SECURE LINK ESTABLISHED (' + socket.id + ')';
+            document.getElementById('status').style.color = '#00ffcc';
+            document.getElementById('gaugeFill').style.strokeDashoffset = '0'; // Trigger SVG animation
+        });
+        
+        socket.on('disconnect', () => {
+            document.getElementById('status').innerText = 'LINK SEVERED';
+            document.getElementById('status').style.color = 'red';
+            document.getElementById('gaugeFill').style.strokeDashoffset = '283'; // Reset SVG
+        });
+    </script>
+</body>
+</html>
