@@ -56,3 +56,23 @@ cinematic_vault/logs/*.jsonl
 matrix_ledger.db
 *.db
 *.sqlite3
+
+memory_core/vault.key
+*.key
+
+# Sovereign Local Secrets Protection
+tapo_credentials.json
+*_credentials.json
+vault.key
+*.key
+temp_mic_ingress.wav
+temp_audio.wav
+temp_audio_*.wav
+c2_cockpit/ebony_c2_daemon.pid
+level5_extensions/hvf_memory_vault.db
+sandbox_staging/hvf_memory_vault.db
+hvf_memory_vault.db-journal
+matrix_ledger.db-journal
+
+server.key
+server.cert

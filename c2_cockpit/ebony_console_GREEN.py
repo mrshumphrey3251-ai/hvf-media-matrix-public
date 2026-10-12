@@ -1,3 +1,14 @@
+
+def _ebony_clean_ui_text(val):
+    if isinstance(val, dict): return val.get('reply') or val.get('response') or str(val)
+    if isinstance(val, str) and val.strip().startswith('{') and ('"reply"' in val or "'reply'" in val):
+        try:
+            import ast
+            p = ast.literal_eval(val)
+            if isinstance(p, dict): return p.get('reply', val)
+        except Exception: pass
+    return str(val)
+
 import sys
 from pathlib import Path
 _cockpit_dir = Path(__file__).resolve().parent
@@ -269,7 +280,7 @@ from datetime import datetime, timedelta
 import requests
 import subprocess
 from dotenv import load_dotenv
-from groq import Groq
+# [PURGED GROQ CLOUD IMPORT]
 import qrcode
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
@@ -783,7 +794,7 @@ if "user_session" not in st.session_state:
         "trial_expires_at": None
     }
 if "screen_wiped" not in st.session_state: st.session_state.screen_wiped = False
-if "operation_mode" not in st.session_state: st.session_state.operation_mode = "🟢 Online (Cloud Fast Link)"
+if "operation_mode" not in st.session_state: st.session_state.operation_mode = "🟢 Online (Live WAN & Radar Ingress)"
 if "demo_mode" not in st.session_state: st.session_state.demo_mode = False
 if "current_linkedin_draft" not in st.session_state: st.session_state.current_linkedin_draft = f"⚡ [{EMPIRE['FARM_NAME']} Intelligence Announcement]\n\nWe have deployed our on-premise universal aerial reconnaissance link..."
 
@@ -791,7 +802,7 @@ current_user = st.session_state.user_session["username"]
 current_name = st.session_state.user_session["full_name"]
 current_role = st.session_state.user_session["role"]
 current_cipher = st.session_state.user_session["cipher"]
-groq_client = Groq(api_key=GROQ_KEY) if GROQ_KEY else None
+# [PURGED GROQ CLIENT]
 
 def query_local_ollama_chat(messages_payload: list) -> str:
     try:
@@ -825,7 +836,7 @@ with st.sidebar:
         return "[REDACTED FOR DEMO]"
 
     st.divider()
-    mode_selection = st.radio("Select Active Engine:", ["🟢 Online (Cloud Fast Link)", "🔒 Offline (100% Sovereign Local)"], index=0 if "Online" in st.session_state.operation_mode else 1)
+    mode_selection = st.radio("Select Active Engine:", ["🟢 Online (Live WAN & Radar Ingress)", "🔒 Offline (Sovereign Fortress Air-Gap)"], index=0 if "Online" in st.session_state.operation_mode else 1)
     st.session_state.operation_mode = mode_selection
     is_online = "Online" in mode_selection
 
@@ -1005,37 +1016,34 @@ elif active_module == "💬 Sovereign Command":
         if audio_val is not None:
             raw_bytes = audio_val.read()
             if len(raw_bytes) >= 1024:
-                with st.spinner("Decoding Voice via Groq Whisper Ingestion Engine..."):
-                    from sovereign_comms import transcribe_mic
-                    voice_prompt = transcribe_mic(raw_bytes)
-                    if voice_prompt:
-                        st.success(f"Transcribed Directive: '{voice_prompt}'")
+                with st.spinner("⚡ Decoding Voice via Local Sovereign Bare-Metal Whisper..."):
+                    from sovereign_comms import transcribe_mic, run_dual_core_router
+                    transcribed_directive = transcribe_mic(raw_bytes)
 
-                        # --- LEVEL-5 IMMEDIATE VOCAL DIRECTIVE TRANSMISSION ENGINE ---
-                        _target_cmd = locals().get('voice_prompt') or locals().get('transcribed_directive')
-                        if _target_cmd and str(_target_cmd).strip():
-                            _clean_directive = str(_target_cmd).strip().strip("'").strip('"')
-                            _vocal_hash = hash(_clean_directive)
-                            if st.session_state.get('last_executed_vocal_hash') != _vocal_hash:
-                                st.session_state['last_executed_vocal_hash'] = _vocal_hash
-                                if 'messages' not in st.session_state:
-                                    st.session_state.messages = []
-                                st.session_state.messages.append({'role': 'user', 'content': _clean_directive})
-                                # Direct In-File Neural Dispatch (Zero External Dependency)
-                                with st.spinner('⚡ Ebony Neural LLM is executing sovereign directive...'):
-                                    _ebony_reply = dispatch_sovereign_vocal_directive(_clean_directive)
-                                    _audio_payload = generate_sovereign_audio_bytes(_ebony_reply)
-                                    _audio_payload = generate_sovereign_audio_bytes(_ebony_reply)
-                                st.session_state.messages.append({'role': 'assistant', 'content': _ebony_reply, 'audio': _audio_payload})
-                                st.rerun()
-
-                if 'transcribed_directive' in locals() and transcribed_directive:
-                    if "messages" not in st.session_state:
-                        st.session_state.messages = []
-                    if st.session_state.get("last_auto_streamed_prompt") != transcribed_directive:
-                        st.session_state["last_auto_streamed_prompt"] = transcribed_directive
-                        st.session_state.messages.append({"role": "user", "content": transcribed_directive})
-                        # Direct In-File Neural Dispatch (Zero External Dependency)
+                if transcribed_directive and transcribed_directive.strip():
+                    st.info(f"Transcribed Directive: '{transcribed_directive.strip()}'")
+                    _vocal_hash = hash(transcribed_directive.strip())
+                    if st.session_state.get("last_executed_vocal_hash") != _vocal_hash:
+                        st.session_state["last_executed_vocal_hash"] = _vocal_hash
+                        if "messages" not in st.session_state:
+                            st.session_state.messages = []
+                        st.session_state.messages.append({"role": "user", "content": transcribed_directive.strip()})
+                        
+                        _active_mode = st.session_state.get("active_engine", "Offline (100% Sovereign Local)")
+                        
+                        with st.spinner("⚡ Ebony Apex C2 is executing sovereign bare-metal directive..."):
+                            _ebony_reply, _audio_payload = run_dual_core_router(transcribed_directive.strip(), mode=_active_mode)
+                            _clean_text = _ebony_clean_ui_text(_ebony_reply) if "_ebony_clean_ui_text" in locals() else _ebony_reply
+                            st.session_state.messages.append({
+                                "role": "assistant",
+                                "content": _clean_text,
+                                "audio": _audio_payload
+                            })
+                            if _audio_payload and os.path.exists(_audio_payload):
+                                with open(_audio_payload, "rb") as _af:
+                                    _aud_bytes = _af.read()
+                                st.audio(_aud_bytes, format="audio/wav", autoplay=True)
+                        st.rerun()
                         with st.spinner("⚡ Ebony Neural LLM executing directive..."):
                             reply_val = dispatch_neural_llm(transcribed_directive)
                         st.session_state.messages.append({"role": "assistant", "content": reply_val})
@@ -1116,7 +1124,22 @@ elif active_module == "💬 Sovereign Command":
             else:
                 st.markdown("**Ebony (Chronos):**\n\n" + str(msg["content"]))
                 if msg.get('audio'):
-                    st.audio(msg['audio'], format='audio/wav', autoplay=(_msg_idx == 0))
+                    # --- AUDITED HISTORICAL AUDIO IN-MEMORY BYTE STREAM RENDERER ---
+                    _aud_target = msg.get('audio') if isinstance(msg, dict) else None
+                    if _aud_target and isinstance(_aud_target, str) and os.path.exists(_aud_target):
+                        try:
+                            with open(_aud_target, 'rb') as _af:
+                                _aud_data = _af.read()
+                            st.audio(_aud_data, format='audio/wav', autoplay=(_msg_idx == 0))
+                        except Exception:
+                            pass
+                if _aud_file and os.path.exists(_aud_file):
+                    try:
+                        with open(_aud_file, 'rb') as _af:
+                            _aud_data = _af.read()
+                        st.audio(_aud_data, format='audio/wav', autoplay=(_msg_idx == 0))
+                    except Exception:
+                        pass
                 st.divider()
     with col_hud:
         st.subheader("🛡️ Real-Time Telemetry HUD")
@@ -1723,7 +1746,7 @@ elif active_module == "📨 Sovereign Dispatch Deck":
         with col_flush1:
             if st.button(f"🚀 Flush Outbox ({len(queued_local_records)} Queued)", type="primary", key="btn_flush_sovereign_outbox", width='stretch'):
                 if not is_online:
-                    st.error("❌ OUTBOX FLUSH BLOCKED: Reconnect system to 🟢 Online (Cloud Fast Link) before transmitting.")
+                    st.error("❌ OUTBOX FLUSH BLOCKED: Reconnect system to 🟢 Online (Live WAN & Radar Ingress) before transmitting.")
                 else:
                     transmitted = 0
                     with st.spinner("Connecting to secure SMTP gateway & releasing sovereign queue..."):
