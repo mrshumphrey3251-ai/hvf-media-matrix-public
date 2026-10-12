@@ -3,45 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HVF Swarm Matrix</title>
+    <title>HVF Swarm Matrix: Command Center</title>
     <style>
-        body { background-color: #0a0a0a; color: #00ffcc; font-family: 'Courier New', Courier, monospace; text-align: center; margin: 0; padding: 20px; }
-        h1 { text-transform: uppercase; border-bottom: 1px solid #00ffcc; padding-bottom: 10px; }
-        .node-container { margin-top: 20px; border: 1px solid #333; padding: 20px; border-radius: 5px; }
-        video { width: 100%; max-width: 400px; border: 2px solid #00ffcc; border-radius: 5px; margin-top: 10px; background: #000; }
-        .svg-gauge { width: 100px; height: 100px; transition: stroke-dashoffset 1s ease-in-out; }
-        .controls { margin-top: 20px; }
-        button { background: #00ffcc; color: #000; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; margin: 5px; }
+        body { background: #0a0a0a; color: #00ffcc; font-family: 'Courier New', monospace; text-align: center; margin: 0; padding: 20px; }
+        h1 { border-bottom: 1px solid #00ffcc; padding-bottom: 10px; }
+        .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px; }
+        .panel { border: 1px solid #333; padding: 20px; border-radius: 5px; background: #111; width: 300px; }
+        video { width: 100%; border: 2px solid #00ffcc; border-radius: 5px; background: #000; }
+        .svg-gauge { width: 100px; height: 100px; transition: stroke-dashoffset 0.5s ease; }
+        .active-gauge { animation: pulse 1.5s infinite linear; }
+        @keyframes pulse { 0% { stroke-dashoffset: 283; } 50% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 283; } }
+        button { background: #00ffcc; color: #000; border: none; padding: 10px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px;}
         button:hover { background: #fff; }
+        .stop-btn { background: #ff0033; color: white; }
+        .stop-btn:hover { background: #ff6666; }
     </style>
 </head>
 <body>
-    <h1>HVF Swarm Matrix: Node Initialization</h1>
-    <div class="node-container" id="statusPanel">
-        <p>System Status: <span id="status">DISCONNECTED</span></p>
-        <!-- SVG Telemetry Gauge (No Canvas) -->
-        <svg class="svg-gauge" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="45" fill="none" stroke="#333" stroke-width="10"/>
-            <circle id="gaugeFill" cx="50" cy="50" r="45" fill="none" stroke="#00ffcc" stroke-width="10" stroke-dasharray="283" stroke-dashoffset="283" transform="rotate(-90 50 50)"/>
-        </svg>
+    <h1>HVF Swarm Matrix</h1>
+    <p>System Status: <span id="status" style="color: yellow;">CONNECTING...</span></p>
+
+    <!-- Master Command Center -->
+    <div class="panel" style="width: 100%; max-width: 640px; margin: 0 auto;">
+        <h3>Master Telemetry Override</h3>
+        <button onclick="sendTelemetry('ALL', 'START')">START ALL NODE VISUALS</button>
+        <button class="stop-btn" onclick="sendTelemetry('ALL', 'STOP')">STOP ALL NODE VISUALS</button>
     </div>
-    
-    <!-- Socket.io Engine Binding -->
+
+    <div class="grid">
+        <!-- Telemetry Node Gauge -->
+        <div class="panel">
+            <h3>Industry Telemetry</h3>
+            <svg class="svg-gauge" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#333" stroke-width="10"/>
+                <circle id="gaugeFill" cx="50" cy="50" r="45" fill="none" stroke="#00ffcc" stroke-width="10" stroke-dasharray="283" stroke-dashoffset="283" transform="rotate(-90 50 50)"/>
+            </svg>
+        </div>
+
+        <!-- WebRTC Comm Node -->
+        <div class="panel">
+            <h3>Local Optics (WebRTC)</h3>
+            <video id="localVideo" autoplay muted playsinline></video>
+            <button onclick="initCamera()">ENGAGE HARDWARE OPTICS</button>
+        </div>
+    </div>
+
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
+        const gauge = document.getElementById('gaugeFill');
         
         socket.on('connect', () => {
             document.getElementById('status').innerText = 'SECURE LINK ESTABLISHED (' + socket.id + ')';
             document.getElementById('status').style.color = '#00ffcc';
-            document.getElementById('gaugeFill').style.strokeDashoffset = '0'; // Trigger SVG animation
         });
-        
-        socket.on('disconnect', () => {
-            document.getElementById('status').innerText = 'LINK SEVERED';
-            document.getElementById('status').style.color = 'red';
-            document.getElementById('gaugeFill').style.strokeDashoffset = '283'; // Reset SVG
+
+        // Telemetry Command Execution
+        function sendTelemetry(target, command) {
+            socket.emit('telemetry_command', { target: target, command: command });
+        }
+
+        socket.on('telemetry_command', (data) => {
+            if(data.command === 'START') {
+                gauge.classList.add('active-gauge');
+            } else if (data.command === 'STOP') {
+                gauge.classList.remove('active-gauge');
+                gauge.style.strokeDashoffset = '283';
+            }
         });
+
+        // WebRTC Hardware Access
+        async function initCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                document.getElementById('localVideo').srcObject = stream;
+            } catch (err) {
+                console.error('Hardware access denied.', err);
+                alert('Hardware access blocked. Ensure you are on HTTPS and accepted browser permissions.');
+            }
+        }
     </script>
 </body>
 </html>
