@@ -747,55 +747,47 @@ if not st.session_state.legal_acknowledged:
     </div>
     ''', unsafe_allow_html=True)
 
+    with st.sidebar:
+        st.markdown('''
+        <div style="background-color: #0b110e; border: 1px solid #00ff88; border-radius: 6px; padding: 12px; margin-bottom: 15px;">
+            <div style="color: #00ff88; font-weight: bold; font-size: 0.85em; letter-spacing: 1px;">SOVEREIGN GOVERNANCE</div>
+            <div style="color: #ffffff; font-size: 0.8em; margin-top: 4px;"><strong>CAGE:</strong> 1AHA8</div>
+            <div style="color: #ffffff; font-size: 0.8em;"><strong>UEI:</strong> S1M4ENLHTDH5</div>
+            <div style="color: #a0aab2; font-size: 0.75em; margin-top: 4px;">STATUTORY: OK Title 61 / HB 2992</div>
+            <div style="color: #00ff88; font-size: 0.75em; font-weight: bold; margin-top: 4px;">LEVEL-5 C2 // BARE-METAL EDGE</div>
+        </div>
+        ''', unsafe_allow_html=True)
+        with st.expander("📂 INSPECT ALL REPOSITORY ASSETS (360+ FILES)", expanded=False):
+            st.markdown("**SOVEREIGN ASSET VIEWER**")
+            st.caption("Inspect Governance, Blueprints & Ledgers")
+            _repo_root = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+            if _repo_root.exists():
+                _all_files = []
+                for _r, _dirs, _files in os.walk(_repo_root):
+                    if any(_ign in _r for _ign in [".git", "__pycache__", ".pytest_cache"]): continue
+                    for _f in _files:
+                        if _f.endswith((".py", ".md", ".json", ".sql", ".txt", ".csv", ".ps1", ".sh")):
+                            _all_files.append(str(Path(_r) / _f).replace(str(_repo_root), "").lstrip("\\/").replace("\\", "/"))
+                _all_files.sort()
+                _search = st.text_input("Filter assets:", key="preflight_file_search", placeholder="e.g. oklahoma, scada, ledger")
+                _filtered = [_x for _x in _all_files if _search.lower() in _x.lower()] if _search else _all_files
+                st.write(f"Indexed Assets: **{len(_filtered)} / {len(_all_files)}**")
+                if _filtered:
+                    _sel_file = st.selectbox("Select file to inspect:", _filtered, key="preflight_file_select")
+                    if _sel_file:
+                        _target_p = _repo_root / _sel_file
+                        if _target_p.exists():
+                            try:
+                                _content = _target_p.read_text(encoding="utf-8", errors="replace")
+                                _lang = "markdown" if _sel_file.endswith(".md") else "python" if _sel_file.endswith(".py") else "json" if _sel_file.endswith(".json") else "text"
+                                st.code(_content, language=_lang)
+                            except Exception as _e:
+                                st.error(f"Cannot read file: {_e}")
+            else:
+                st.error("Repository root offline.")
+
     col1, col2, col3 = st.columns([1, 8, 1])
     with col2:
-        # --- OKLAHOMA EXECUTIVE CONFERENCE: CLICKABLE PREFLIGHT LINK ---
-        with st.expander("🏛️ OKLAHOMA EXECUTIVE CONFERENCE (OCT 13, 2026) // STATE INFRASTRUCTURE ALIGNMENT — CLICK TO VIEW BRIEFING", expanded=False):
-            st.markdown('''
-            <div style="background-color: #0b1410; border: 1px solid #00ff88; border-radius: 6px; padding: 18px; margin-top: 5px; margin-bottom: 5px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e3a29; padding-bottom: 12px; margin-bottom: 16px;">
-                    <div>
-                        <h3 style="color: #00ff88; margin: 0; font-family: monospace;">🏛️ OKLAHOMA EXECUTIVE CONFERENCE // STATE INFRASTRUCTURE ALIGNMENT</h3>
-                        <div style="color: #a0aab2; font-size: 0.85em; font-family: monospace; margin-top: 5px;">
-                            STATUTORY BASIS: OK TITLE 61 & OK HB 2992 | DEFENSE DOCKET: TRADEWINDS CDAO 9-26-3703
-                        </div>
-                    </div>
-                    <div style="text-align: right; font-family: monospace; font-size: 0.85em;">
-                        <span style="background-color: #002b16; border: 1px solid #00ff88; color: #00ff88; padding: 4px 10px; border-radius: 4px; font-weight: bold;">CAGE: 1AHA8</span>
-                        <div style="color: #a0aab2; margin-top: 4px;">DATE: TUESDAY, OCTOBER 13, 2026</div>
-                    </div>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-family: sans-serif;">
-                    <div style="background-color: #111a15; padding: 15px; border-radius: 6px; border-left: 3px solid #00ff88;">
-                        <h4 style="color: #00ff88; margin-top: 0;">📋 EXECUTIVE SUMMIT AGENDA & DIRECTIVES</h4>
-                        <ul style="color: #d1d5db; font-size: 0.9em; line-height: 1.6; padding-left: 20px; margin-bottom: 0;">
-                            <li><strong>Certified Sovereign Test Facility:</strong> Formally position HVF testbed under OK HB 2992 criteria.</li>
-                            <li><strong>Sub-Cycle Kinetic Isolation:</strong> Demonstrate &lt;16ms fast-transfer islanding deflecting grid load-shedding.</li>
-                            <li><strong>Behind-the-Meter (BTM) Alignment:</strong> Regulatory coordination for sovereign microgrid pads.</li>
-                            <li><strong>Federal Defense Pipeline:</strong> Align state economic development backing with active Tradewinds CDAO Docket 9-26-3703.</li>
-                        </ul>
-                    </div>
-                    <div style="background-color: #111a15; padding: 15px; border-radius: 6px; border-left: 3px solid #3b82f6;">
-                        <h4 style="color: #60a5fa; margin-top: 0;">⚡ LIVE OPERATIONAL BENCHMARKS (SCADA)</h4>
-                        <div style="display: flex; gap: 15px; margin-bottom: 10px;">
-                            <div style="background-color: #0d131a; padding: 10px; border-radius: 4px; flex: 1;">
-                                <div style="color: #94a3b8; font-size: 0.75em; text-transform: uppercase;">Active Current</div>
-                                <div style="color: #00ff88; font-size: 1.3em; font-weight: bold; font-family: monospace;">450.0 A</div>
-                                <div style="color: #00ff88; font-size: 0.7em;">OK Title 61 Validated</div>
-                            </div>
-                            <div style="background-color: #0d131a; padding: 10px; border-radius: 4px; flex: 1;">
-                                <div style="color: #60a5fa; font-size: 1.3em; font-weight: bold; font-family: monospace;">355.4 kW</div>
-                                <div style="color: #60a5fa; font-size: 0.7em;">Steady State Load</div>
-                            </div>
-                        </div>
-                        <div style="color: #94a3b8; font-size: 0.8em; line-height: 1.4;">
-                            <strong>Chief Talking Point:</strong> Humphrey Virtual Farms LLC provides sovereign, air-gapped industrial command and microgrid resilience with zero cloud vendor dependencies and zero recurring seat fees.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            ''', unsafe_allow_html=True)
-
         confirm_check = st.checkbox("I formally affirm that I am authorized personnel of Humphrey Virtual Farms LLC, hold Level-5 operational clearance, and agree to uphold all statutory, proprietary, and sovereign security protocols.", key="preflight_confirm")
         
         btn_col1, btn_col2, btn_col3 = st.columns([2, 4, 2])
