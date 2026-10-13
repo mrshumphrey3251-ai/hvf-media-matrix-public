@@ -1393,6 +1393,9 @@ elif active_module == "💬 Sovereign Command":
                 st.error("Swarm Offline.")
 
 
+
+        with tab_comm:
+            render_communications_dispatch_ui()
 elif active_module == "📡 LinkedIn Engine":
 
     if current_role in ["CEO", "SUPER_ADMIN"]:
@@ -2273,5 +2276,3 @@ elif active_module == "📘 Omni-Industry Matrix":
                 st.info(f"Course curriculum configuration pending for {v_meta['name']}. Deploying universal course builder.")
 
 
-with tab_comm:
-    render_communications_dispatch_ui()
