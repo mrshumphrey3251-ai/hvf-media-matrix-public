@@ -73,7 +73,10 @@ def is_ignored_sender(sender: str) -> bool:
     ignore_list = [
         "no-reply", "noreply", "notifications@", "news@", "marketing@",
         "linkedin.com", "instagram.com", "facebook.com", "twitter.com",
-        "newspapers.com", "accounts.google.com"
+        "newspapers.com", "accounts.google.com", "docusign.net", "aliexpress.com",
+        "newsletter", "info@", "store+", "read.ai", "mail.whitehouse.gov",
+        "skyeyenetwork.com", "pitchbook.com", "adorama.com", "yahboom.com",
+        "amazon.com", "promotions@", "support@"
     ]
     return any(domain in s_lower for domain in ignore_list)
 
@@ -224,13 +227,11 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                 subject = clean_decode_header(raw_subj)
                 uid = msg.get("Message-ID", str(m_id))
                 
-                # Check for sender blocklist OR automated bulk/newsletter headers
                 is_bulk = False
                 if msg.get("List-Unsubscribe") or msg.get("Precedence", "").lower() in ["bulk", "list", "junk"]:
                     is_bulk = True
 
                 if is_ignored_sender(sender) or is_bulk:
-                    # Log bulk newsletter to ledger as archived without drafting outbound replies
                     now_ts = datetime.now(timezone.utc).isoformat()
                     conn = sqlite3.connect(str(DB_PATH))
                     cur = conn.cursor()
