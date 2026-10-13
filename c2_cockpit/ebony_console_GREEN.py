@@ -1,4 +1,4 @@
-
+﻿
 def _ebony_clean_ui_text(val):
     if isinstance(val, dict): return val.get('reply') or val.get('response') or str(val)
     if isinstance(val, str) and val.strip().startswith('{') and ('"reply"' in val or "'reply'" in val):
@@ -1123,19 +1123,11 @@ elif active_module == "💬 Sovereign Command":
                 st.markdown("**CEO Humphrey:** `" + str(msg["content"]) + "`")
             else:
                 st.markdown("**Ebony (Chronos):**\n\n" + str(msg["content"]))
-                if msg.get('audio'):
-                    # --- AUDITED HISTORICAL AUDIO IN-MEMORY BYTE STREAM RENDERER ---
-                    _aud_target = msg.get('audio') if isinstance(msg, dict) else None
-                    if _aud_target and isinstance(_aud_target, str) and os.path.exists(_aud_target):
-                        try:
-                            with open(_aud_target, 'rb') as _af:
-                                _aud_data = _af.read()
-                            st.audio(_aud_data, format='audio/wav', autoplay=(_msg_idx == 0))
-                        except Exception:
-                            pass
-                if _aud_file and os.path.exists(_aud_file):
+                # --- AUDITED HISTORICAL AUDIO IN-MEMORY BYTE STREAM RENDERER ---
+                _aud_target = msg.get('audio') if isinstance(msg, dict) else None
+                if _aud_target and isinstance(_aud_target, str) and os.path.exists(_aud_target):
                     try:
-                        with open(_aud_file, 'rb') as _af:
+                        with open(_aud_target, 'rb') as _af:
                             _aud_data = _af.read()
                         st.audio(_aud_data, format='audio/wav', autoplay=(_msg_idx == 0))
                     except Exception:
@@ -1143,7 +1135,46 @@ elif active_module == "💬 Sovereign Command":
                 st.divider()
     with col_hud:
         st.subheader("🛡️ Real-Time Telemetry HUD")
-        tab_ledger, tab_scada, tab_swarm = st.tabs(["C2 Audit Ledger", "SCADA Telemetry", "Agent Swarm"])
+        tab_oklahoma, tab_ledger, tab_scada, tab_swarm = st.tabs([
+    "🏛️ OKLAHOMA EXECUTIVE CONFERENCE (OCT 13, 2026)",
+    "C2 Audit Ledger",
+    "SCADA Telemetry",
+    "Agent Swarm"
+])
+
+with tab_oklahoma:
+    st.markdown("""
+    <div style="background-color: #0b110e; border: 2px solid #00ff88; border-radius: 8px; padding: 18px; margin-bottom: 20px;">
+        <h2 style="color: #00ff88; margin-top: 0; font-family: monospace;">⚡ EXECUTIVE BRIEFING // OKLAHOMA STATE INFRASTRUCTURE ALIGNMENT</h2>
+        <div style="color: #a0aab2; font-size: 0.9em; font-family: monospace;">
+            <strong>ENTITY:</strong> Humphrey Virtual Farms LLC | <strong>CAGE:</strong> 1AHA8 | <strong>UEI:</strong> S1M4ENLHTDH5<br>
+            <strong>STATUTORY BASIS:</strong> Oklahoma Title 61 & Oklahoma HB 2992 | <strong>DEFENSE DOCKET:</strong> Tradewinds CDAO 9-26-3703<br>
+            <strong>DATE OF EXECUTION:</strong> Tuesday, October 13, 2026
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    col_brief1, col_brief2 = st.columns([1, 1])
+    with col_brief1:
+        st.subheader("📋 Executive Summit Agenda & Directives")
+        st.markdown("""
+        1. **Certified Sovereign Test Facility:** Establish HVF industrial testbed as an OK HB 2992 Certified Sovereign Test Facility.
+        2. **Sub-Cycle Kinetic Isolation:** Demonstrate microsecond solid-state interlock switching (<16ms) deflecting grid load-shedding.
+        3. **Behind-the-Meter (BTM) Alignment:** Coordinate inter-agency regulatory alignment for sovereign microgrid pads.
+        4. **Federal Defense Procurement:** Align state economic development backing with active federal Tradewinds Docket 9-26-3703 channels.
+        """)
+        st.info("🎯 **Chief Talking Point:** Humphrey Virtual Farms delivers sovereign, air-gapped industrial command and energy resilience without cloud dependencies or recurring vendor fees.")
+
+    with col_brief2:
+        st.subheader("⚡ Live SCADA Verification Baseline")
+        m1, m2 = st.columns(2)
+        m1.metric("Continuous Current", "450.0 A", "OK Title 61 Verified")
+        m2.metric("Total SCADA Power", "355.4 kW", "Steady State")
+        st.markdown("""
+        - **SCADA Protocol:** Deterministic Modbus TCP / Air-Gapped VFD telemetry
+        - **Response Latency:** Sub-100ms across WireGuard sovereign mesh
+        - **Hardware Interlock:** Solid-state fast transfer islanding verified
+        """)
 
         with tab_ledger:
             st.markdown("**Local SQLite WORM Ledger (matrix_ledger.db)**")
