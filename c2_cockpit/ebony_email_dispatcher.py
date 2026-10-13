@@ -37,11 +37,19 @@ def init_email_ledger():
             incoming_intent TEXT NOT NULL,
             drafted_response TEXT NOT NULL,
             status TEXT NOT NULL,
-            classification TEXT NOT NULL,
-            message_uid TEXT UNIQUE
+            classification TEXT NOT NULL
         )
     """)
     conn.commit()
+    
+    # Self-healing non-destructive schema migration
+    try:
+        cur.execute("SELECT message_uid FROM email_dispatch_ledger LIMIT 1")
+    except sqlite3.OperationalError as e:
+        if "no such column: message_uid" in str(e):
+            cur.execute("ALTER TABLE email_dispatch_ledger ADD COLUMN message_uid TEXT UNIQUE")
+            conn.commit()
+            
     conn.close()
 
 def detect_servers(email_addr: str):
@@ -54,6 +62,20 @@ def detect_servers(email_addr: str):
         return "imap.mail.yahoo.com", "smtp.mail.yahoo.com", 993, 465
     else:
         return f"mail.{domain}", f"mail.{domain}", 993, 465
+
+def test_account_connection(email_addr: str, password_or_app_pass: str, imap_host: str = None):
+    def_imap, _, _, _ = detect_servers(email_addr)
+    target_host = imap_host if imap_host else def_imap
+    clean_pass = password_or_app_pass.replace(" ", "").strip()
+
+    try:
+        context = ssl.create_default_context()
+        with imaplib.IMAP4_SSL(target_host, 993, ssl_context=context) as client:
+            client.login(email_addr.strip(), clean_pass)
+            status, _ = client.select("INBOX", readonly=True)
+            return status == "OK", "Connection Successful"
+    except Exception as e:
+        return False, str(e)
 
 def save_account_credentials(email_addr: str, password_or_app_pass: str, custom_imap: str = None, custom_smtp: str = None):
     def_imap, def_smtp, def_i_port, def_s_port = detect_servers(email_addr)
@@ -79,6 +101,20 @@ def save_account_credentials(email_addr: str, password_or_app_pass: str, custom_
     }
     CONFIG_PATH.write_text(json.dumps(config, indent=2), encoding="utf-8")
     return True
+
+def log_email_transaction(sender: str, recipient: str, subject: str, incoming_intent: str, drafted_response: str, classification: str = "OFFICIAL"):
+    init_email_ledger()
+    now_ts = datetime.now(timezone.utc).isoformat()
+    conn = sqlite3.connect(str(DB_PATH))
+    cur = conn.cursor()
+    cur.execute("""
+        INSERT INTO email_dispatch_ledger 
+        (timestamp, sender, recipient, subject, incoming_intent, drafted_response, status, classification)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    """, (now_ts, sender, recipient, subject, incoming_intent, drafted_response, "DRAFT_READY", classification))
+    conn.commit()
+    conn.close()
+    return now_ts
 
 def generate_autonomous_response(sender: str, subject: str, body: str) -> tuple[str, str]:
     subj_lower = subject.lower()
@@ -277,6 +313,9 @@ def get_on_demand_communications_report(limit: int = 25, format_type: str = "tex
                 lines.append("-" * 92)
         lines.append("=" * 92)
         return "\n".join(lines)
+
+def generate_executive_email_report() -> str:
+    return get_on_demand_communications_report(limit=10, format_type="text")
 
 if __name__ == "__main__":
     init_email_ledger()
