@@ -1,0 +1,11 @@
+﻿{
+  "subscriber_account_placeholder": {
+    "email": "user@agency.ok.gov",
+    "password": "[REDACTED_APP_PASSWORD]",
+    "imap_host": "imap.agency.ok.gov",
+    "smtp_host": "smtp.agency.ok.gov",
+    "imap_port": 993,
+    "smtp_port": 465,
+    "registered_at": "2026-10-13T00:00:00+00:00"
+  }
+}
