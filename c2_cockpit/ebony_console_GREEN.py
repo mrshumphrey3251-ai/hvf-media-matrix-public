@@ -757,7 +757,7 @@ if not st.session_state.get("legal_acknowledged", False):
             for _r, _dirs, _files in os.walk(_repo_root):
                 if any(_ign in _r for _ign in [".git", "__pycache__", ".pytest_cache"]): continue
                 for _f in _files:
-                    if _f.endswith((".py", ".md", ".json", ".sql", ".txt", ".csv", ".ps1", ".sh")):
+                    if _f.endswith((".md", ".txt", ".json", ".sql", ".csv")):
                         _all_files.append(str(Path(_r) / _f).replace(str(_repo_root), "").lstrip("\\/").replace("\\", "/"))
             _all_files.sort()
 
@@ -766,27 +766,24 @@ if not st.session_state.get("legal_acknowledged", False):
                 _search = st.text_input("🔍 Search File Name or Path:", key="fullpage_file_search", placeholder="e.g. oklahoma, scada, ledger, brief")
             with fc2:
                 _cat = st.selectbox("Category Filter:", [
-                    "All Sovereign Assets (360+ Files)",
+                    "All Sovereign Readable Assets",
                     "🏛️ Executive Briefings & Governance (.md)",
-                    "⚡ Technical Architecture & SCADA (.py)",
-                    "🔒 Ledgers, Databases & Schemas (.json, .sql, .csv)",
-                    "⚙️ Automation & Deployment Scripts (.ps1, .sh)"
+                    "📋 Operational Directives & Charters (.txt)",
+                    "🔒 Ledgers, Databases & Audit Records (.json, .sql, .csv)"
                 ], key="fullpage_cat_filter")
             with fc3:
                 _filtered = _all_files
                 if "Executive Briefings" in _cat:
-                    _filtered = [_x for _x in _filtered if _x.endswith((".md", ".txt"))]
-                elif "Technical Architecture" in _cat:
-                    _filtered = [_x for _x in _filtered if _x.endswith(".py")]
+                    _filtered = [_x for _x in _filtered if _x.endswith(".md")]
+                elif "Operational Directives" in _cat:
+                    _filtered = [_x for _x in _filtered if _x.endswith(".txt")]
                 elif "Ledgers, Databases" in _cat:
                     _filtered = [_x for _x in _filtered if _x.endswith((".json", ".sql", ".csv"))]
-                elif "Automation" in _cat:
-                    _filtered = [_x for _x in _filtered if _x.endswith((".ps1", ".sh"))]
 
                 if _search:
                     _filtered = [_x for _x in _filtered if _search.lower() in _x.lower()]
 
-                st.metric("Indexed Assets", f"{len(_filtered)} / {len(_all_files)}")
+                st.metric("Indexed Assets" , f"{len(_filtered)} / {len(_all_files)}")
 
             if _filtered:
                 _selected = st.selectbox("Select File to Inspect on Glass:", _filtered, key="fullpage_file_select")
