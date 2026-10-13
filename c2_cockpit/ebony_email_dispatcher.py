@@ -47,7 +47,7 @@ def init_email_ledger():
         cur.execute("SELECT message_uid FROM email_dispatch_ledger LIMIT 1")
     except sqlite3.OperationalError as e:
         if "no such column: message_uid" in str(e):
-            cur.execute("ALTER TABLE email_dispatch_ledger ADD COLUMN message_uid TEXT UNIQUE")
+            cur.execute("ALTER TABLE email_dispatch_ledger ADD COLUMN message_uid TEXT")
             conn.commit()
             
     conn.close()
@@ -211,6 +211,14 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                 now_ts = datetime.now(timezone.utc).isoformat()
                 dispatch_status = "DRAFT_READY"
 
+                # Check if this message was already processed
+                conn = sqlite3.connect(str(DB_PATH))
+                cur = conn.cursor()
+                cur.execute("SELECT id FROM email_dispatch_ledger WHERE message_uid=?", (uid,))
+                if cur.fetchone():
+                    conn.close()
+                    continue
+
                 if auto_send:
                     try:
                         reply = MIMEMultipart()
@@ -232,8 +240,6 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                     except Exception as smtp_err:
                         dispatch_status = f"SEND_FAILED: {smtp_err}"
 
-                conn = sqlite3.connect(str(DB_PATH))
-                cur = conn.cursor()
                 try:
                     cur.execute("""
                         INSERT INTO email_dispatch_ledger 
