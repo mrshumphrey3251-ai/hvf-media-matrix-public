@@ -1,6 +1,6 @@
 ﻿"""
 E.B.O.N.Y. Sovereign Autonomous Email Dispatcher & Communications Engine
-Zero-API Autonomous Ingestion, Contextual Auto-Reply & On-Demand Ledger Auditing
+Zero-API Autonomous Ingestion, Contextual Auto-Reply, RFC 2047 MIME Decoding & On-Demand Ledger Auditing
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Tier: Sovereign Tier-1 Executive Ingestion ($19.99/mo Baseline)
 Statutory Authority: Oklahoma Title 61 & OK HB 2992
@@ -14,6 +14,7 @@ import smtplib
 import sqlite3
 import argparse
 from email import message_from_bytes
+from email.header import decode_header
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timezone
@@ -37,7 +38,8 @@ def init_email_ledger():
             incoming_intent TEXT NOT NULL,
             drafted_response TEXT NOT NULL,
             status TEXT NOT NULL,
-            classification TEXT NOT NULL
+            classification TEXT NOT NULL,
+            message_uid TEXT
         )
     """)
     conn.commit()
@@ -51,12 +53,27 @@ def init_email_ledger():
             
     conn.close()
 
+def clean_decode_header(raw_header: str) -> str:
+    if not raw_header:
+        return "No Subject"
+    try:
+        decoded_parts = decode_header(raw_header)
+        cleaned = []
+        for text, encoding in decoded_parts:
+            if isinstance(text, bytes):
+                cleaned.append(text.decode(encoding or "utf-8", errors="replace"))
+            else:
+                cleaned.append(str(text))
+        return "".join(cleaned).strip()
+    except Exception:
+        return str(raw_header).strip()
+
 def is_ignored_sender(sender: str) -> bool:
     s_lower = sender.lower()
     ignore_list = [
-        "no-reply", "noreply", "notifications@", "news@", "marketing",
+        "no-reply", "noreply", "notifications@", "news@", "marketing@",
         "linkedin.com", "instagram.com", "facebook.com", "twitter.com",
-        "newspapers.com", "nvidia.com", "accounts.google.com"
+        "newspapers.com", "accounts.google.com"
     ]
     return any(domain in s_lower for domain in ignore_list)
 
@@ -201,11 +218,31 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                 raw_email = data[0][1]
                 msg = message_from_bytes(raw_email)
                 
-                sender = msg.get("From", "Unknown")
-                subject = msg.get("Subject", "No Subject")
+                raw_sender = msg.get("From", "Unknown")
+                sender = clean_decode_header(raw_sender)
+                raw_subj = msg.get("Subject", "No Subject")
+                subject = clean_decode_header(raw_subj)
                 uid = msg.get("Message-ID", str(m_id))
                 
-                if is_ignored_sender(sender):
+                # Check for sender blocklist OR automated bulk/newsletter headers
+                is_bulk = False
+                if msg.get("List-Unsubscribe") or msg.get("Precedence", "").lower() in ["bulk", "list", "junk"]:
+                    is_bulk = True
+
+                if is_ignored_sender(sender) or is_bulk:
+                    # Log bulk newsletter to ledger as archived without drafting outbound replies
+                    now_ts = datetime.now(timezone.utc).isoformat()
+                    conn = sqlite3.connect(str(DB_PATH))
+                    cur = conn.cursor()
+                    cur.execute("SELECT id FROM email_dispatch_ledger WHERE message_uid=?", (uid,))
+                    if not cur.fetchone():
+                        cur.execute("""
+                            INSERT INTO email_dispatch_ledger 
+                            (timestamp, sender, recipient, subject, incoming_intent, drafted_response, status, classification, message_uid)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """, (now_ts, sender, acc["email"], subject, "Automated Bulk Newsletter / Notification", "NO_REPLY_AUTO_FILTERED", "ARCHIVED_BULK", "NEWSLETTER_FEED", uid))
+                        conn.commit()
+                    conn.close()
                     continue
 
                 body_content = ""
@@ -270,7 +307,7 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                     "response": response_text
                 })
 
-        return results if results else [{"status": "IDLE", "message": "No new actionable emails processed. Ignored noise."}]
+        return results if results else [{"status": "IDLE", "message": "Zero actionable direct emails. Bulk mail filtered to archive."}]
     except Exception as e:
         return [{"status": "ERROR", "message": str(e)}]
 
@@ -328,6 +365,9 @@ def get_on_demand_communications_report(limit: int = 25, format_type: str = "tex
                 lines.append("-" * 92)
         lines.append("=" * 92)
         return "\n".join(lines)
+
+def generate_executive_email_report() -> str:
+    return get_on_demand_communications_report(limit=10, format_type="text")
 
 if __name__ == "__main__":
     init_email_ledger()
