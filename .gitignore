@@ -76,3 +76,5 @@ matrix_ledger.db-journal
 
 server.key
 server.cert
+
+!c2_cockpit/matrix_ledger.db
