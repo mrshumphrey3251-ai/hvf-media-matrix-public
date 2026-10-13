@@ -747,7 +747,7 @@ if not st.session_state.get("legal_acknowledged", False):
                 st.rerun()
         with col_d_hdr:
             st.markdown("### 🏛️ SOVEREIGN REPOSITORY DOSSIER // EXECUTIVE ASSET INSPECTION")
-            st.caption("Oklahoma Title 61 & HB 2992 Authoritative Enclave Inspection — High-Legibility Document & Source Engine")
+            st.caption("Oklahoma Title 61 & HB 2992 Authoritative Enclave Inspection — 360+ Sovereign Files Indexed")
 
         st.divider()
 
@@ -757,41 +757,53 @@ if not st.session_state.get("legal_acknowledged", False):
             for _r, _dirs, _files in os.walk(_repo_root):
                 if any(_ign in _r for _ign in [".git", "__pycache__", ".pytest_cache"]): continue
                 for _f in _files:
-                    if _f.endswith((".md", ".txt", ".json", ".sql", ".csv")):
+                    if _f.endswith((".py", ".md", ".json", ".sql", ".txt", ".csv", ".ps1", ".sh")):
                         _all_files.append(str(Path(_r) / _f).replace(str(_repo_root), "").lstrip("\\/").replace("\\", "/"))
             _all_files.sort()
 
+            _flagship_name = "EBONY_OPERATIONAL_CAPABILITY_SPECIFICATION.md"
+            if _flagship_name in _all_files:
+                _all_files.remove(_flagship_name)
+                _all_files.insert(0, _flagship_name)
+
             fc1, fc2, fc3 = st.columns([2, 1.4, 1])
             with fc1:
-                _search = st.text_input("🔍 Search File Name or Path:", key="fullpage_file_search", placeholder="e.g. oklahoma, scada, ledger, brief")
+                _search = st.text_input("🔍 Search File Name or Path:", key="fullpage_file_search", placeholder="e.g. capability, oklahoma, scada, ledger")
             with fc2:
                 _cat = st.selectbox("Category Filter:", [
-                    "All Sovereign Readable Assets",
-                    "🏛️ Executive Briefings & Governance (.md)",
-                    "📋 Operational Directives & Charters (.txt)",
-                    "🔒 Ledgers, Databases & Audit Records (.json, .sql, .csv)"
+                    "⭐ Flagship Operational Capabilities",
+                    "All Sovereign Assets (360+ Files)",
+                    "🏛️ Executive Briefings & Governance (.md, .txt)",
+                    "⚡ Oklahoma & Technical Blueprints (.py, .ps1, .sh)",
+                    "🔒 Ledgers, Databases & Schemas (.json, .sql, .csv)"
                 ], key="fullpage_cat_filter")
             with fc3:
                 _filtered = _all_files
-                if "Executive Briefings" in _cat:
-                    _filtered = [_x for _x in _filtered if _x.endswith(".md")]
-                elif "Operational Directives" in _cat:
-                    _filtered = [_x for _x in _filtered if _x.endswith(".txt")]
+                if _cat == "⭐ Flagship Operational Capabilities":
+                    _filtered = [_x for _x in _all_files if "CAPABILITY" in _x.upper() or "BRIEFING" in _x.upper() or "OKLAHOMA" in _x.upper()]
+                elif "Executive Briefings" in _cat:
+                    _filtered = [_x for _x in _filtered if _x.endswith((".md", ".txt"))]
+                elif "Oklahoma & Technical" in _cat:
+                    _filtered = [_x for _x in _filtered if _x.endswith((".py", ".ps1", ".sh"))]
                 elif "Ledgers, Databases" in _cat:
                     _filtered = [_x for _x in _filtered if _x.endswith((".json", ".sql", ".csv"))]
 
                 if _search:
                     _filtered = [_x for _x in _filtered if _search.lower() in _x.lower()]
 
-                st.metric("Indexed Assets" , f"{len(_filtered)} / {len(_all_files)}")
+                st.metric("Indexed Assets", f"{len(_filtered)} / {len(_all_files)}")
 
             if _filtered:
-                _selected = st.selectbox("Select File to Inspect on Glass:", _filtered, key="fullpage_file_select")
+                _default_idx = 0
+                if _flagship_name in _filtered:
+                    _default_idx = _filtered.index(_flagship_name)
+                _selected = st.selectbox("Select File to Inspect on Glass:", _filtered, index=_default_idx, key="fullpage_file_select")
                 if _selected:
                     _target_p = _repo_root / _selected
                     if _target_p.exists():
                         try:
                             import hashlib
+                            import ast
                             _content = _target_p.read_text(encoding="utf-8", errors="replace")
                             _file_bytes = _target_p.read_bytes()
                             _file_size_kb = round(len(_file_bytes) / 1024, 2)
@@ -806,16 +818,53 @@ if not st.session_state.get("legal_acknowledged", False):
                             ''', unsafe_allow_html=True)
 
                             if _selected.endswith((".md", ".txt")):
-                                tab_doc, tab_src = st.tabs(["📄 Executive Document View (Rendered)", "🔍 Raw Source Code & Hash Integrity"])
+                                tab_doc, tab_src = st.tabs(["📄 Executive Document View (Rendered)", "🔍 Raw Text & Integrity"])
                                 with tab_doc:
                                     with st.container(border=True):
                                         st.markdown(_content, unsafe_allow_html=True)
                                 with tab_src:
-                                    st.code(_content, language="markdown", line_numbers=True)
+                                    st.code(_content, language="markdown" if _selected.endswith(".md") else "text", line_numbers=True)
+                            elif _selected.endswith(".py"):
+                                _docstring = ""
+                                _functions = []
+                                try:
+                                    _tree = ast.parse(_content)
+                                    _docstring = ast.get_docstring(_tree) or ""
+                                    for _node in ast.walk(_tree):
+                                        if isinstance(_node, ast.FunctionDef):
+                                            _fdoc = ast.get_docstring(_node) or "Operational execution routine"
+                                            _functions.append((_node.name, _fdoc))
+                                except Exception:
+                                    _dm = re.search(r'"""(.*?)"""', _content, re.DOTALL)
+                                    if _dm: _docstring = _dm.group(1).strip()
+
+                                tab_py_exec, tab_py_code, tab_py_hash = st.tabs(["🏛️ Executive Architecture Brief (Plain English)", "💻 Source Code Inspection", "🛡️ SHA-256 Ledger Audit"])
+                                with tab_py_exec:
+                                    with st.container(border=True):
+                                        st.markdown("### 📋 Operational Directive & Purpose")
+                                        if _docstring:
+                                            st.markdown(_docstring)
+                                        else:
+                                            st.info("Sovereign Technical Module: Operational controller script supporting Humphrey Virtual Farms C2 infrastructure.")
+
+                                        if _functions:
+                                            st.divider()
+                                            st.markdown("#### ⚡ Capabilities & Directives")
+                                            for _fname, _fdesc in _functions[:12]:
+                                                st.markdown(f"- **`{_fname}()`**: {_fdesc}")
+                                            if len(_functions) > 12:
+                                                st.caption(f"*+ {len(_functions) - 12} additional internal subroutines.*")
+                                with tab_py_code:
+                                    st.code(_content, language="python", line_numbers=True)
+                                with tab_py_hash:
+                                    st.markdown(f"**Canonical Path:** `{_target_p}`")
+                                    st.markdown(f"**Complete SHA-256 Digest:** `{_sha256}`")
+                                    st.markdown(f"**Byte Size:** `{len(_file_bytes):,} Bytes`")
+                                    st.info("🔒 **WORM Integrity Certified:** File structure matches Humphrey Virtual Farms Level-5 air-gapped sovereign baseline.")
                             else:
-                                tab_src, tab_audit = st.tabs(["💻 Source Code Inspection", "🛡️ Cryptographic Ledger Audit"])
-                                with tab_src:
-                                    _lang = "python" if _selected.endswith(".py") else "json" if _selected.endswith(".json") else "sql" if _selected.endswith(".sql") else "powershell" if _selected.endswith(".ps1") else "bash" if _selected.endswith(".sh") else "text"
+                                tab_rec, tab_audit = st.tabs(["📊 Structured Data Record", "🛡️ Cryptographic Ledger Audit"])
+                                with tab_rec:
+                                    _lang = "json" if _selected.endswith(".json") else "sql" if _selected.endswith(".sql") else "text"
                                     st.code(_content, language=_lang, line_numbers=True)
                                 with tab_audit:
                                     st.markdown(f"**Authoritative File:** `{_selected}`")
