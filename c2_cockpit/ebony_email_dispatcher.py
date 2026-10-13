@@ -42,7 +42,6 @@ def init_email_ledger():
     """)
     conn.commit()
     
-    # Self-healing non-destructive schema migration
     try:
         cur.execute("SELECT message_uid FROM email_dispatch_ledger LIMIT 1")
     except sqlite3.OperationalError as e:
@@ -51,6 +50,15 @@ def init_email_ledger():
             conn.commit()
             
     conn.close()
+
+def is_ignored_sender(sender: str) -> bool:
+    s_lower = sender.lower()
+    ignore_list = [
+        "no-reply", "noreply", "notifications@", "news@", "marketing",
+        "linkedin.com", "instagram.com", "facebook.com", "twitter.com",
+        "newspapers.com", "nvidia.com", "accounts.google.com"
+    ]
+    return any(domain in s_lower for domain in ignore_list)
 
 def detect_servers(email_addr: str):
     domain = email_addr.split("@")[-1].lower()
@@ -67,7 +75,6 @@ def test_account_connection(email_addr: str, password_or_app_pass: str, imap_hos
     def_imap, _, _, _ = detect_servers(email_addr)
     target_host = imap_host if imap_host else def_imap
     clean_pass = password_or_app_pass.replace(" ", "").strip()
-
     try:
         context = ssl.create_default_context()
         with imaplib.IMAP4_SSL(target_host, 993, ssl_context=context) as client:
@@ -198,6 +205,9 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                 subject = msg.get("Subject", "No Subject")
                 uid = msg.get("Message-ID", str(m_id))
                 
+                if is_ignored_sender(sender):
+                    continue
+
                 body_content = ""
                 if msg.is_multipart():
                     for part in msg.walk():
@@ -211,7 +221,6 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                 now_ts = datetime.now(timezone.utc).isoformat()
                 dispatch_status = "DRAFT_READY"
 
-                # Check if this message was already processed
                 conn = sqlite3.connect(str(DB_PATH))
                 cur = conn.cursor()
                 cur.execute("SELECT id FROM email_dispatch_ledger WHERE message_uid=?", (uid,))
@@ -261,7 +270,7 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                     "response": response_text
                 })
 
-        return results if results else [{"status": "IDLE", "message": "No new actionable emails processed."}]
+        return results if results else [{"status": "IDLE", "message": "No new actionable emails processed. Ignored noise."}]
     except Exception as e:
         return [{"status": "ERROR", "message": str(e)}]
 
@@ -319,9 +328,6 @@ def get_on_demand_communications_report(limit: int = 25, format_type: str = "tex
                 lines.append("-" * 92)
         lines.append("=" * 92)
         return "\n".join(lines)
-
-def generate_executive_email_report() -> str:
-    return get_on_demand_communications_report(limit=10, format_type="text")
 
 if __name__ == "__main__":
     init_email_ledger()
