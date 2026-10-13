@@ -722,70 +722,7 @@ st.markdown("""
 if "legal_acknowledged" not in st.session_state:
     st.session_state.legal_acknowledged = False
 
-if not st.session_state.legal_acknowledged:
-    st.markdown('''
-    <div style="background-color: #0b110e; border: 2px solid #00ff88; border-radius: 8px; padding: 25px; margin: 30px auto; max-width: 900px; box-shadow: 0 0 25px rgba(0, 255, 136, 0.2);">
-        <div style="text-align: center; margin-bottom: 20px;">
-            <div style="font-size: 32px; font-weight: 900; letter-spacing: 4px; color: #00ff88; text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);">
-                E.B.O.N.Y.
-            </div>
-            <div style="font-size: 14px; font-weight: 700; letter-spacing: 2px; color: #ffd700; margin-top: 5px;">
-                EXECUTIVE-BUILT OPERATIONS THAT NEVER-YIELD
-            </div>
-            <div style="font-size: 11px; letter-spacing: 1.5px; color: #8899a6; margin-top: 4px;">
-                HUMPHREY VIRTUAL FARMS LLC // SOVEREIGN INDUSTRIAL C2 // BARE-METAL NODE
-            </div>
-        </div>
-        <hr style="border: 0; border-top: 1px solid #1f3326; margin: 15px 0;">
-        <div style="font-size: 12px; color: #e1e8ed; line-height: 1.6; font-family: monospace; background: #050807; padding: 15px; border-radius: 4px; border: 1px solid #14241b;">
-            <p style="color: #00ff88; font-weight: bold; margin-bottom: 8px;">=== MANDATORY PRE-FLIGHT OPERATIONAL & STATUTORY BRIEFING ===</p>
-            <p><strong>1. SOVEREIGN PROPRIETARY ASSET:</strong> This terminal, its neural routing parameters, local WORM audit ledgers, and all 15 industrial matrix verticals are the exclusive proprietary property of <strong>Humphrey Virtual Farms LLC</strong>. All rights reserved.</p>
-            <p><strong>2. STATUTORY & FEDERAL REGISTRATION:</strong> Operating under Federal CAGE Code <strong>1AHA8</strong> and SAM.gov Unique Entity Identifier (UEI) <strong>S1M4ENLHTDH5</strong>. Fully governed by Oklahoma Statutes Title 61 and Oklahoma House Bill 2992 (OK HB 2992) compliance frameworks.</p>
-            <p><strong>3. ZERO-CLOUD SOVEREIGNTY MANDATE:</strong> This system runs on dedicated bare-metal infrastructure (<code>HVFNexus</code>). It does not yield to cloud subscriptions, recurring vendor fees, external kill-switches, or third-party telemetry scraping. All data remains air-gapped on local disk.</p>
-            <p><strong>4. SECURITY & PENALTY WARNING:</strong> Access is restricted strictly to Level-5 authorized personnel and CEO-delegated operators. Unauthorized access, tampering, payload exfiltration, or reverse engineering is strictly prohibited and subject to severe civil and criminal penalties under <strong>18 U.S.C. Section 1030 (Computer Fraud and Abuse Act)</strong> and applicable state and federal trade secret protections.</p>
-        </div>
-    </div>
-    ''', unsafe_allow_html=True)
-
-    with st.sidebar:
-        st.markdown('''
-        <div style="background-color: #0b110e; border: 1px solid #00ff88; border-radius: 6px; padding: 12px; margin-bottom: 15px;">
-            <div style="color: #00ff88; font-weight: bold; font-size: 0.85em; letter-spacing: 1px;">SOVEREIGN GOVERNANCE</div>
-            <div style="color: #ffffff; font-size: 0.8em; margin-top: 4px;"><strong>CAGE:</strong> 1AHA8</div>
-            <div style="color: #ffffff; font-size: 0.8em;"><strong>UEI:</strong> S1M4ENLHTDH5</div>
-            <div style="color: #a0aab2; font-size: 0.75em; margin-top: 4px;">STATUTORY: OK Title 61 / HB 2992</div>
-            <div style="color: #00ff88; font-size: 0.75em; font-weight: bold; margin-top: 4px;">LEVEL-5 C2 // BARE-METAL EDGE</div>
-        </div>
-        ''', unsafe_allow_html=True)
-        with st.expander("📂 INSPECT ALL REPOSITORY ASSETS (360+ FILES)", expanded=False):
-            st.markdown("**SOVEREIGN ASSET VIEWER**")
-            st.caption("Inspect Governance, Blueprints & Ledgers")
-            _repo_root = Path(r"C:\hvf_c2\hvf-media-matrix-private")
-            if _repo_root.exists():
-                _all_files = []
-                for _r, _dirs, _files in os.walk(_repo_root):
-                    if any(_ign in _r for _ign in [".git", "__pycache__", ".pytest_cache"]): continue
-                    for _f in _files:
-                        if _f.endswith((".py", ".md", ".json", ".sql", ".txt", ".csv", ".ps1", ".sh")):
-                            _all_files.append(str(Path(_r) / _f).replace(str(_repo_root), "").lstrip("\\/").replace("\\", "/"))
-                _all_files.sort()
-                _search = st.text_input("Filter assets:", key="preflight_file_search", placeholder="e.g. oklahoma, scada, ledger")
-                _filtered = [_x for _x in _all_files if _search.lower() in _x.lower()] if _search else _all_files
-                st.write(f"Indexed Assets: **{len(_filtered)} / {len(_all_files)}**")
-                if _filtered:
-                    _sel_file = st.selectbox("Select file to inspect:", _filtered, key="preflight_file_select")
-                    if _sel_file:
-                        _target_p = _repo_root / _sel_file
-                        if _target_p.exists():
-                            try:
-                                _content = _target_p.read_text(encoding="utf-8", errors="replace")
-                                _lang = "markdown" if _sel_file.endswith(".md") else "python" if _sel_file.endswith(".py") else "json" if _sel_file.endswith(".json") else "text"
-                                st.code(_content, language=_lang)
-                            except Exception as _e:
-                                st.error(f"Cannot read file: {_e}")
-            else:
-                st.error("Repository root offline.")
-
+if not st.session_state.get("legal_acknowledged", False):
     with st.sidebar:
         st.markdown('''
         <div style="background-color: #0b110e; border: 1px solid #00ff88; border-radius: 6px; padding: 12px; margin-bottom: 15px;">
@@ -797,89 +734,7 @@ if not st.session_state.legal_acknowledged:
         </div>
         ''', unsafe_allow_html=True)
         _dossier_active = st.session_state.get("view_dossier", False)
-        _btn_text = "⬅ RETURN TO PREFLIGHT" if _dossier_active else "📂 OPEN REPOSITORY DOSSIER (360+ FILES)"
-        if st.button(_btn_text, key="btn_preflight_dossier", use_container_width=True):
-            st.session_state.view_dossier = not _dossier_active
-            st.rerun()
-
-    if st.session_state.get("view_dossier", False):
-        col_d_back, col_d_hdr = st.columns([1.5, 5])
-        with col_d_back:
-            if st.button("⬅ RETURN TO PREFLIGHT GATE", key="btn_close_dossier_main", use_container_width=True):
-                st.session_state.view_dossier = False
-                st.rerun()
-        with col_d_hdr:
-            st.markdown("### 🏛️ SOVEREIGN REPOSITORY DOSSIER // ASSET INSPECTION (360+ FILES)")
-            st.caption("Oklahoma Title 61 & HB 2992 Authoritative Enclave Inspection — Full Glass Reading Mode")
-
-        st.divider()
-
-        _repo_root = Path(r"C:\hvf_c2\hvf-media-matrix-private")
-        if _repo_root.exists():
-            _all_files = []
-            for _r, _dirs, _files in os.walk(_repo_root):
-                if any(_ign in _r for _ign in [".git", "__pycache__", ".pytest_cache"]): continue
-                for _f in _files:
-                    if _f.endswith((".py", ".md", ".json", ".sql", ".txt", ".csv", ".ps1", ".sh")):
-                        _all_files.append(str(Path(_r) / _f).replace(str(_repo_root), "").lstrip("\\/").replace("\\", "/"))
-            _all_files.sort()
-
-            fc1, fc2, fc3 = st.columns([2, 1.2, 1])
-            with fc1:
-                _search = st.text_input("🔍 Search File Name or Path:", key="fullpage_file_search", placeholder="e.g. oklahoma, scada, ledger, ebony")
-            with fc2:
-                _cat = st.selectbox("Category Filter:", ["All Assets", "Governance & Legal (.md)", "Python Architecture (.py)", "Data & Ledgers (.json, .sql, .csv)"], key="fullpage_cat_filter")
-            with fc3:
-                _filtered = _all_files
-                if _cat == "Governance & Legal (.md)":
-                    _filtered = [_x for _x in _filtered if _x.endswith(".md")]
-                elif _cat == "Python Architecture (.py)":
-                    _filtered = [_x for _x in _filtered if _x.endswith(".py")]
-                elif _cat == "Data & Ledgers (.json, .sql, .csv)":
-                    _filtered = [_x for _x in _filtered if _x.endswith((".json", ".sql", ".csv"))]
-
-                if _search:
-                    _filtered = [_x for _x in _filtered if _search.lower() in _x.lower()]
-
-                st.metric("Indexed Assets", f"{len(_filtered)} / {len(_all_files)}")
-
-            if _filtered:
-                _selected = st.selectbox("Select File to Inspect on Glass:", _filtered, key="fullpage_file_select")
-                if _selected:
-                    _target_p = _repo_root / _selected
-                    if _target_p.exists():
-                        try:
-                            _content = _target_p.read_text(encoding="utf-8", errors="replace")
-                            _file_size_kb = round(os.path.getsize(_target_p) / 1024, 2)
-                            _line_count = len(_content.splitlines())
-
-                            mc1, mc2, mc3 = st.columns(3)
-                            mc1.caption(f"**Path:** `{_selected}`")
-                            mc2.caption(f"**Size:** `{_file_size_kb} KB` | **Lines:** `{_line_count}`")
-                            mc3.caption("**Compliance:** OK Title 61 / CAGE 1AHA8 Verified")
-
-                            _lang = "markdown" if _selected.endswith(".md") else "python" if _selected.endswith(".py") else "json" if _selected.endswith(".json") else "text"
-                            st.code(_content, language=_lang, line_numbers=True)
-                        except Exception as _e:
-                            st.error(f"Cannot read file: {_e}")
-            else:
-                st.warning("No files matched the current filter criteria.")
-        else:
-            st.error("Repository root offline.")
-        st.stop()
-
-    with st.sidebar:
-        st.markdown('''
-        <div style="background-color: #0b110e; border: 1px solid #00ff88; border-radius: 6px; padding: 12px; margin-bottom: 15px;">
-            <div style="color: #00ff88; font-weight: bold; font-size: 0.85em; letter-spacing: 1px;">SOVEREIGN GOVERNANCE</div>
-            <div style="color: #ffffff; font-size: 0.8em; margin-top: 4px;"><strong>CAGE:</strong> 1AHA8</div>
-            <div style="color: #ffffff; font-size: 0.8em;"><strong>UEI:</strong> S1M4ENLHTDH5</div>
-            <div style="color: #a0aab2; font-size: 0.75em; margin-top: 4px;">STATUTORY: OK Title 61 / HB 2992</div>
-            <div style="color: #00ff88; font-size: 0.75em; font-weight: bold; margin-top: 4px;">LEVEL-5 C2 // BARE-METAL EDGE</div>
-        </div>
-        ''', unsafe_allow_html=True)
-        _dossier_active = st.session_state.get("view_dossier", False)
-        _btn_text = "⬅ RETURN TO PREFLIGHT" if _dossier_active else "📂 OPEN REPOSITORY DOSSIER (360+ FILES)"
+        _btn_text = "⬅ RETURN TO PREFLIGHT GATE" if _dossier_active else "📂 OPEN REPOSITORY DOSSIER (360+ FILES)"
         if st.button(_btn_text, key="btn_preflight_dossier", use_container_width=True):
             st.session_state.view_dossier = not _dossier_active
             st.rerun()
@@ -950,10 +805,29 @@ if not st.session_state.legal_acknowledged:
             st.error("Repository root offline.")
         st.stop()
 
+    st.markdown('''
+    <div style="background-color: #0b110e; border: 2px solid #00ff88; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
+        <h2 style="color: #00ff88; margin-top: 0; font-family: monospace; letter-spacing: 2px;">⚡ E.B.O.N.Y. SOVEREIGN INDUSTRIAL COMMAND GATE</h2>
+        <div style="color: #a0aab2; font-size: 0.9em; font-family: monospace; margin-bottom: 15px;">
+            <strong>ENTITY:</strong> Humphrey Virtual Farms LLC | <strong>CAGE:</strong> 1AHA8 | <strong>UEI:</strong> S1M4ENLHTDH5<br>
+            <strong>STATUTORY JURISDICTION:</strong> State of Oklahoma (Title 61 & HB 2992 Framework) | <strong>NODE:</strong> HVFNexus
+        </div>
+        <div style="color: #ffffff; font-size: 0.95em; line-height: 1.6; border-top: 1px solid #1e3a29; padding-top: 15px;">
+            <p><strong>=== MANDATORY PRE-FLIGHT OPERATIONAL & STATUTORY BRIEFING ===</strong></p>
+            <ol style="margin-left: 20px; padding-left: 10px;">
+                <li><strong>SOVEREIGN PROPRIETARY ASSET:</strong> This terminal, its neural routing parameters, local WORM audit ledgers, and all 15 industrial matrix verticals are the exclusive proprietary property of Humphrey Virtual Farms LLC. All rights reserved.</li>
+                <li><strong>STATUTORY & FEDERAL REGISTRATION:</strong> Operating under Federal CAGE Code 1AHA8 and SAM.gov Unique Entity Identifier (UEI) S1M4ENLHTDH5. Fully governed by Oklahoma Statutes Title 61 and Oklahoma House Bill 2992 (OK HB 2992) compliance frameworks.</li>
+                <li><strong>ZERO-CLOUD SOVEREIGNTY MANDATE:</strong> This system runs on dedicated bare-metal infrastructure (HVFNexus). It does not yield to cloud subscriptions, recurring vendor fees, external kill-switches, or third-party telemetry scraping. All data remains air-gapped on local disk.</li>
+                <li><strong>SECURITY & PENALTY WARNING:</strong> Access is restricted strictly to Level-5 authorized personnel and CEO-delegated operators. Unauthorized access, tampering, payload exfiltration, or reverse engineering is strictly prohibited and subject to severe civil and criminal penalties under 18 U.S.C. Section 1030 (Computer Fraud and Abuse Act) and applicable state and federal trade secret protections.</li>
+            </ol>
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
+
     col1, col2, col3 = st.columns([1, 8, 1])
     with col2:
         confirm_check = st.checkbox("I formally affirm that I am authorized personnel of Humphrey Virtual Farms LLC, hold Level-5 operational clearance, and agree to uphold all statutory, proprietary, and sovereign security protocols.", key="preflight_confirm")
-        
+
         btn_col1, btn_col2, btn_col3 = st.columns([2, 4, 2])
         with btn_col2:
             if st.button("AFFIRM AND ENTER SOVEREIGN COMMAND", use_container_width=True):
@@ -977,7 +851,7 @@ if not st.session_state.legal_acknowledged:
                             )
                             conn.commit()
                             conn.close()
-                    except Exception as e:
+                    except Exception:
                         pass
                     st.session_state.legal_acknowledged = True
                     st.rerun()
