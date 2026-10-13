@@ -749,6 +749,53 @@ if not st.session_state.legal_acknowledged:
 
     col1, col2, col3 = st.columns([1, 8, 1])
     with col2:
+        # --- OKLAHOMA EXECUTIVE CONFERENCE: CLICKABLE PREFLIGHT LINK ---
+        with st.expander("🏛️ OKLAHOMA EXECUTIVE CONFERENCE (OCT 13, 2026) // STATE INFRASTRUCTURE ALIGNMENT — CLICK TO VIEW BRIEFING", expanded=False):
+            st.markdown('''
+            <div style="background-color: #0b1410; border: 1px solid #00ff88; border-radius: 6px; padding: 18px; margin-top: 5px; margin-bottom: 5px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e3a29; padding-bottom: 12px; margin-bottom: 16px;">
+                    <div>
+                        <h3 style="color: #00ff88; margin: 0; font-family: monospace;">🏛️ OKLAHOMA EXECUTIVE CONFERENCE // STATE INFRASTRUCTURE ALIGNMENT</h3>
+                        <div style="color: #a0aab2; font-size: 0.85em; font-family: monospace; margin-top: 5px;">
+                            STATUTORY BASIS: OK TITLE 61 & OK HB 2992 | DEFENSE DOCKET: TRADEWINDS CDAO 9-26-3703
+                        </div>
+                    </div>
+                    <div style="text-align: right; font-family: monospace; font-size: 0.85em;">
+                        <span style="background-color: #002b16; border: 1px solid #00ff88; color: #00ff88; padding: 4px 10px; border-radius: 4px; font-weight: bold;">CAGE: 1AHA8</span>
+                        <div style="color: #a0aab2; margin-top: 4px;">DATE: TUESDAY, OCTOBER 13, 2026</div>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-family: sans-serif;">
+                    <div style="background-color: #111a15; padding: 15px; border-radius: 6px; border-left: 3px solid #00ff88;">
+                        <h4 style="color: #00ff88; margin-top: 0;">📋 EXECUTIVE SUMMIT AGENDA & DIRECTIVES</h4>
+                        <ul style="color: #d1d5db; font-size: 0.9em; line-height: 1.6; padding-left: 20px; margin-bottom: 0;">
+                            <li><strong>Certified Sovereign Test Facility:</strong> Formally position HVF testbed under OK HB 2992 criteria.</li>
+                            <li><strong>Sub-Cycle Kinetic Isolation:</strong> Demonstrate &lt;16ms fast-transfer islanding deflecting grid load-shedding.</li>
+                            <li><strong>Behind-the-Meter (BTM) Alignment:</strong> Regulatory coordination for sovereign microgrid pads.</li>
+                            <li><strong>Federal Defense Pipeline:</strong> Align state economic development backing with active Tradewinds CDAO Docket 9-26-3703.</li>
+                        </ul>
+                    </div>
+                    <div style="background-color: #111a15; padding: 15px; border-radius: 6px; border-left: 3px solid #3b82f6;">
+                        <h4 style="color: #60a5fa; margin-top: 0;">⚡ LIVE OPERATIONAL BENCHMARKS (SCADA)</h4>
+                        <div style="display: flex; gap: 15px; margin-bottom: 10px;">
+                            <div style="background-color: #0d131a; padding: 10px; border-radius: 4px; flex: 1;">
+                                <div style="color: #94a3b8; font-size: 0.75em; text-transform: uppercase;">Active Current</div>
+                                <div style="color: #00ff88; font-size: 1.3em; font-weight: bold; font-family: monospace;">450.0 A</div>
+                                <div style="color: #00ff88; font-size: 0.7em;">OK Title 61 Validated</div>
+                            </div>
+                            <div style="background-color: #0d131a; padding: 10px; border-radius: 4px; flex: 1;">
+                                <div style="color: #60a5fa; font-size: 1.3em; font-weight: bold; font-family: monospace;">355.4 kW</div>
+                                <div style="color: #60a5fa; font-size: 0.7em;">Steady State Load</div>
+                            </div>
+                        </div>
+                        <div style="color: #94a3b8; font-size: 0.8em; line-height: 1.4;">
+                            <strong>Chief Talking Point:</strong> Humphrey Virtual Farms LLC provides sovereign, air-gapped industrial command and microgrid resilience with zero cloud vendor dependencies and zero recurring seat fees.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ''', unsafe_allow_html=True)
+
         confirm_check = st.checkbox("I formally affirm that I am authorized personnel of Humphrey Virtual Farms LLC, hold Level-5 operational clearance, and agree to uphold all statutory, proprietary, and sovereign security protocols.", key="preflight_confirm")
         
         btn_col1, btn_col2, btn_col3 = st.columns([2, 4, 2])
