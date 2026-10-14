@@ -9,6 +9,8 @@ import json
 from pathlib import Path
 import sys
 
+from ebony_stripe_billing import get_checkout_url_for_tier, STRIPE_TIER_CATALOG
+
 _cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
 if str(_cdir) not in sys.path:
     sys.path.insert(0, str(_cdir))
@@ -192,6 +194,9 @@ def render_tier_restriction_screen(module_name: str, required_tier_name: str, cu
         return
 
     cur_meta = TIER_METADATA.get(current_tier, {})
+    required_tier_key = MODULE_TIER_MAPPING.get(module_name, TIER_COMMAND)
+    checkout_url = get_checkout_url_for_tier(required_tier_key)
+    
     st.markdown(f"""
     <div style="background-color: #140b0b; border: 2px solid #ff4444; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
         <h2 style="color: #ff4444; margin-top: 0; font-family: monospace; letter-spacing: 2px;">🔒 ACCESS RESTRICTED // HIGHER SUBSCRIPTION TIER REQUIRED</h2>
@@ -204,27 +209,22 @@ def render_tier_restriction_screen(module_name: str, required_tier_name: str, cu
             <p><strong>YOUR ACTIVE SUBSCRIPTION:</strong> <span style="color: #00ff88; font-weight: bold;">{cur_meta.get('name', current_tier)}</span></p>
             <p><strong>REQUIRED COMMERCIAL TIER:</strong> <span style="color: #ffcc00; font-weight: bold;">{required_tier_name}</span></p>
             <p style="margin-top: 15px; color: #d0d7de;">
-                Access to this sovereign command capability is governed by commercial licensing tiers. Upgrade your subscription to unlock active operational glass.
+                Access to this sovereign command capability is governed by commercial licensing tiers. Select the Stripe Checkout option below to instantly unlock this capability.
             </p>
         </div>
     </div>
     """, unsafe_allow_html=True)
     
-    col1, col2, col3 = st.columns([1.5, 2, 1.5])
+    col1, col2, col3 = st.columns([1.2, 2.2, 1.2])
     with col2:
         with st.container(border=True):
-            st.markdown("#### ⚡ Upgrade Your Subscription Tier")
-            st.markdown("Direct sole-source procurement and commercial licensing available under **CAGE 1AHA8**.")
-            st.info(f"Target Capability: **{required_tier_name}**")
+            st.markdown(f"#### 💳 Commercial Upgrade: {required_tier_name}")
+            st.markdown("Direct automated billing powered by **Stripe Sovereign Ingress** under **CAGE 1AHA8**.")
+            st.link_button("💳 PROCEED TO SECURE STRIPE CHECKOUT", url=checkout_url, use_container_width=True)
             
-            c_u1, c_u2 = st.columns(2)
-            with c_u1:
-                if st.button("📋 UPGRADE LICENSE", key=f"btn_upg_req_{module_name}", use_container_width=True):
-                    st.success("Upgrade inquiry registered. An executive dispatch has been staged for processing.")
-            with c_u2:
-                if st.button("⬅ RETURN TO DISPATCH DECK", key=f"btn_ret_comms_{module_name}", use_container_width=True):
-                    st.session_state["nav_module_override"] = "📨 Sovereign Dispatch Deck"
-                    st.rerun()
+            if st.button("⬅ RETURN TO DISPATCH DECK", key=f"btn_ret_comms_{module_name}", use_container_width=True):
+                st.session_state["nav_module_override"] = "📨 Sovereign Dispatch Deck"
+                st.rerun()
 
 def render_maintenance_screen(module_name: str):
     st.markdown(f"""
