@@ -221,12 +221,12 @@ def render_tier_restriction_screen(module_name: str, required_tier_name: str, cu
             st.markdown(f"#### 💳 Commercial Upgrade: {required_tier_name}")
             st.markdown("Direct automated billing powered by **Stripe Sovereign Ingress** under **CAGE 1AHA8**.")
             if is_live:
-                st.link_button("💳 PROCEED TO SECURE STRIPE CHECKOUT", url=checkout_url, use_container_width=True)
+                st.link_button("💳 PROCEED TO SECURE STRIPE CHECKOUT", url=checkout_url, width="stretch")
             else:
-                st.link_button("⚡ SIMULATE STRIPE PAYMENT & PROVISION LICENSE", url=checkout_url, use_container_width=True)
+                st.link_button("⚡ SIMULATE STRIPE PAYMENT & PROVISION LICENSE", url=checkout_url, width="stretch")
                 st.caption("ℹ️ Sovereign Testing Mode: Activates this tier instantaneously on glass without external network calls.")
             
-            if st.button("⬅ RETURN TO DISPATCH DECK", key=f"btn_ret_comms_{module_name}", use_container_width=True):
+            if st.button("⬅ RETURN TO DISPATCH DECK", key=f"btn_ret_comms_{module_name}", width="stretch"):
                 st.session_state["nav_module_override"] = "📨 Sovereign Dispatch Deck"
                 st.rerun()
 
@@ -253,7 +253,7 @@ def render_maintenance_screen(module_name: str):
     
     col1, col2, col3 = st.columns([1.5, 2, 1.5])
     with col2:
-        if st.button("⬅ RETURN TO DISPATCH DECK", key=f"btn_ret_auth_{module_name}", use_container_width=True):
+        if st.button("⬅ RETURN TO DISPATCH DECK", key=f"btn_ret_auth_{module_name}", width="stretch"):
             st.session_state["nav_module_override"] = "📨 Sovereign Dispatch Deck"
             st.rerun()
 
