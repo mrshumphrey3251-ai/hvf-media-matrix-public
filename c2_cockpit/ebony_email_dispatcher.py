@@ -1,4 +1,4 @@
-"""
+﻿"""
 E.B.O.N.Y. Sovereign Autonomous Email Dispatcher & Executive Travel Autopilot Engine
 Zero-API Autonomous Ingestion, Contextual SMTP Auto-Reply & Return Debrief Auditing
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
@@ -96,6 +96,23 @@ def detect_servers(email_addr: str):
     else:
         return f"mail.{domain}", f"mail.{domain}", 993, 465
 
+def get_configured_accounts() -> dict:
+    if not CONFIG_PATH.exists():
+        return {}
+    try:
+        return json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+def remove_account_credentials(email_addr: str) -> bool:
+    config = get_configured_accounts()
+    clean_email = email_addr.strip().lower()
+    if clean_email in config:
+        del config[clean_email]
+        CONFIG_PATH.write_text(json.dumps(config, indent=2), encoding="utf-8")
+        return True
+    return False
+
 def test_account_connection(email_addr: str, password_or_app_pass: str, imap_host: str = None):
     def_imap, _, _, _ = detect_servers(email_addr)
     target_host = imap_host if imap_host else def_imap
@@ -113,12 +130,7 @@ def save_account_credentials(email_addr: str, password_or_app_pass: str, custom_
     def_imap, def_smtp, def_i_port, def_s_port = detect_servers(email_addr)
     imap_host = custom_imap if custom_imap else def_imap
     smtp_host = custom_smtp if custom_smtp else def_smtp
-    config = {}
-    if CONFIG_PATH.exists():
-        try:
-            config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-        except Exception:
-            config = {}
+    config = get_configured_accounts()
     clean_pass = password_or_app_pass.replace(" ", "").strip()
     config[email_addr.strip().lower()] = {
         "email": email_addr.strip(),
@@ -174,14 +186,9 @@ def generate_autonomous_response(sender: str, subject: str, body: str) -> tuple[
 
 def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> list[dict]:
     init_email_ledger()
-    if not CONFIG_PATH.exists():
-        return [{"status": "IDLE", "message": "No configured email account found in email_accounts.json."}]
-    try:
-        config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-    except Exception as e:
-        return [{"status": "ERROR", "message": f"Config read error: {e}"}]
+    config = get_configured_accounts()
     if not config:
-        return [{"status": "IDLE", "message": "email_accounts.json contains zero registered accounts."}]
+        return [{"status": "IDLE", "message": "No email account configured. Please sign in via the Mailbox Manager on glass."}]
     target_email = email_addr.lower() if email_addr else list(config.keys())[0]
     if target_email not in config:
         return [{"status": "ERROR", "message": f"Account {target_email} not registered."}]
