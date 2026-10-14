@@ -2084,7 +2084,6 @@ elif active_module == "📨 Sovereign Dispatch Deck":
                 key=f"stepper_draft_{disp_id}",
             )
 
-            render_communications_dispatch_ui(key_suffix="sovereign_deck_main")
 
         col_act1, col_act2, col_act3 = st.columns([1.2, 1, 1.2])
         with col_act1:
@@ -2130,6 +2129,8 @@ elif active_module == "📨 Sovereign Dispatch Deck":
                     st.error(f"Block error: {b_err}")
                 st.rerun()
 
+
+    render_communications_dispatch_ui(key_suffix="sovereign_deck_main")
 elif active_module == "📡 Sovereign Comms Deck":
     from sovereign_comms_core import SovereignCommsEngine
     SovereignCommsEngine.render()

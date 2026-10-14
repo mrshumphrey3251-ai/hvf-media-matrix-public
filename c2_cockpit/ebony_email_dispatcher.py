@@ -1,6 +1,6 @@
-﻿"""
-E.B.O.N.Y. Sovereign Autonomous Email Dispatcher & Communications Engine
-Zero-API Autonomous Ingestion, Contextual Auto-Reply, RFC 2047 MIME Decoding & On-Demand Ledger Auditing
+"""
+E.B.O.N.Y. Sovereign Autonomous Email Dispatcher & Executive Travel Autopilot Engine
+Zero-API Autonomous Ingestion, Contextual SMTP Auto-Reply & Return Debrief Auditing
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Tier: Sovereign Tier-1 Executive Ingestion ($19.99/mo Baseline)
 Statutory Authority: Oklahoma Title 61 & OK HB 2992
@@ -43,14 +43,12 @@ def init_email_ledger():
         )
     """)
     conn.commit()
-    
     try:
         cur.execute("SELECT message_uid FROM email_dispatch_ledger LIMIT 1")
     except sqlite3.OperationalError as e:
         if "no such column: message_uid" in str(e):
             cur.execute("ALTER TABLE email_dispatch_ledger ADD COLUMN message_uid TEXT")
             conn.commit()
-            
     conn.close()
 
 def clean_decode_header(raw_header: str) -> str:
@@ -108,14 +106,12 @@ def save_account_credentials(email_addr: str, password_or_app_pass: str, custom_
     def_imap, def_smtp, def_i_port, def_s_port = detect_servers(email_addr)
     imap_host = custom_imap if custom_imap else def_imap
     smtp_host = custom_smtp if custom_smtp else def_smtp
-
     config = {}
     if CONFIG_PATH.exists():
         try:
             config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
         except Exception:
             config = {}
-
     clean_pass = password_or_app_pass.replace(" ", "").strip()
     config[email_addr.strip().lower()] = {
         "email": email_addr.strip(),
@@ -129,24 +125,9 @@ def save_account_credentials(email_addr: str, password_or_app_pass: str, custom_
     CONFIG_PATH.write_text(json.dumps(config, indent=2), encoding="utf-8")
     return True
 
-def log_email_transaction(sender: str, recipient: str, subject: str, incoming_intent: str, drafted_response: str, classification: str = "OFFICIAL"):
-    init_email_ledger()
-    now_ts = datetime.now(timezone.utc).isoformat()
-    conn = sqlite3.connect(str(DB_PATH))
-    cur = conn.cursor()
-    cur.execute("""
-        INSERT INTO email_dispatch_ledger 
-        (timestamp, sender, recipient, subject, incoming_intent, drafted_response, status, classification)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    """, (now_ts, sender, recipient, subject, incoming_intent, drafted_response, "DRAFT_READY", classification))
-    conn.commit()
-    conn.close()
-    return now_ts
-
 def generate_autonomous_response(sender: str, subject: str, body: str) -> tuple[str, str]:
     subj_lower = subject.lower()
     body_lower = body.lower()
-    
     if any(k in subj_lower or k in body_lower for k in ["grant", "funding", "budget", "ocast", "odaa", "odot"]):
         category = "STATE_INFRASTRUCTURE_GRANT"
         response = (
@@ -187,50 +168,39 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
     init_email_ledger()
     if not CONFIG_PATH.exists():
         return [{"status": "IDLE", "message": "No configured email account found in email_accounts.json."}]
-
     try:
         config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     except Exception as e:
         return [{"status": "ERROR", "message": f"Config read error: {e}"}]
-
     if not config:
         return [{"status": "IDLE", "message": "email_accounts.json contains zero registered accounts."}]
-
     target_email = email_addr.lower() if email_addr else list(config.keys())[0]
     if target_email not in config:
         return [{"status": "ERROR", "message": f"Account {target_email} not registered."}]
-
     acc = config[target_email]
     results = []
-
     try:
         context = ssl.create_default_context()
         with imaplib.IMAP4_SSL(acc["imap_host"], acc["imap_port"], ssl_context=context) as imap_client:
             imap_client.login(acc["email"], acc["password"])
             imap_client.select("INBOX")
-
             status, messages = imap_client.search(None, "UNSEEN")
             if status != "OK" or not messages[0]:
                 return [{"status": "IDLE", "message": "Zero unread messages detected in INBOX."}]
-
             msg_ids = messages[0].split()
-            for m_id in msg_ids[-10:]:
+            for m_id in msg_ids[-15:]:
                 res, data = imap_client.fetch(m_id, "(RFC822)")
                 if res != "OK": continue
-                
                 raw_email = data[0][1]
                 msg = message_from_bytes(raw_email)
-                
                 raw_sender = msg.get("From", "Unknown")
                 sender = clean_decode_header(raw_sender)
                 raw_subj = msg.get("Subject", "No Subject")
                 subject = clean_decode_header(raw_subj)
                 uid = msg.get("Message-ID", str(m_id))
-                
                 is_bulk = False
                 if msg.get("List-Unsubscribe") or msg.get("Precedence", "").lower() in ["bulk", "list", "junk"]:
                     is_bulk = True
-
                 if is_ignored_sender(sender) or is_bulk:
                     now_ts = datetime.now(timezone.utc).isoformat()
                     conn = sqlite3.connect(str(DB_PATH))
@@ -245,7 +215,6 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                         conn.commit()
                     conn.close()
                     continue
-
                 body_content = ""
                 if msg.is_multipart():
                     for part in msg.walk():
@@ -254,18 +223,15 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                             break
                 else:
                     body_content = msg.get_payload(decode=True).decode(errors="replace")
-
                 response_text, classification = generate_autonomous_response(sender, subject, body_content)
                 now_ts = datetime.now(timezone.utc).isoformat()
                 dispatch_status = "DRAFT_READY"
-
                 conn = sqlite3.connect(str(DB_PATH))
                 cur = conn.cursor()
                 cur.execute("SELECT id FROM email_dispatch_ledger WHERE message_uid=?", (uid,))
                 if cur.fetchone():
                     conn.close()
                     continue
-
                 if auto_send:
                     try:
                         reply = MIMEMultipart()
@@ -273,7 +239,6 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                         reply["To"] = sender
                         reply["Subject"] = f"Re: {subject}"
                         reply.attach(MIMEText(response_text, "plain"))
-
                         if acc["smtp_port"] == 465:
                             with smtplib.SMTP_SSL(acc["smtp_host"], acc["smtp_port"], context=context) as smtp_client:
                                 smtp_client.login(acc["email"], acc["password"])
@@ -286,7 +251,6 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                         dispatch_status = "SENT_AUTONOMOUSLY"
                     except Exception as smtp_err:
                         dispatch_status = f"SEND_FAILED: {smtp_err}"
-
                 try:
                     cur.execute("""
                         INSERT INTO email_dispatch_ledger 
@@ -298,7 +262,6 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                     pass
                 finally:
                     conn.close()
-
                 results.append({
                     "timestamp": now_ts,
                     "sender": sender,
@@ -307,85 +270,69 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                     "classification": classification,
                     "response": response_text
                 })
-
         return results if results else [{"status": "IDLE", "message": "Zero actionable direct emails. Bulk mail filtered to archive."}]
     except Exception as e:
         return [{"status": "ERROR", "message": str(e)}]
 
-def get_on_demand_communications_report(limit: int = 25, format_type: str = "text") -> str:
+def generate_travel_debrief_report() -> str:
     init_email_ledger()
+    if not DB_PATH.exists():
+        return "Matrix WORM Ledger offline. No records available."
     conn = sqlite3.connect(str(DB_PATH))
     cur = conn.cursor()
     cur.execute("""
-        SELECT timestamp, sender, recipient, subject, classification, status, drafted_response 
+        SELECT timestamp, sender, subject, classification, status, drafted_response 
         FROM email_dispatch_ledger 
-        ORDER BY timestamp DESC LIMIT ?
-    """, (limit,))
+        ORDER BY timestamp DESC
+    """)
     rows = cur.fetchall()
     conn.close()
-
-    if format_type == "markdown":
-        lines = [
-            "### 📋 E.B.O.N.Y. ON-DEMAND COMMUNICATIONS AUDIT LEDGER",
-            f"**Generated:** `{datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}` | **Enclave:** `HVFNexus` | **CAGE:** `1AHA8`",
-            "",
-            "| Timestamp (UTC) | Sender / From | Subject | Category | Status | Dispatched Response Summary |",
-            "| :--- | :--- | :--- | :--- | :--- | :--- |"
-        ]
-        for r in rows:
-            ts = r[0][:19]
-            snd = r[1].replace("|", "-")[:25]
-            sub = r[3].replace("|", "-")[:22]
-            cat = r[4]
-            stat = r[5]
-            resp = r[6].replace("\n", " ").replace("|", "-")[:45] + "..."
-            lines.append(f"| `{ts}` | **{snd}** | {sub} | `{cat}` | **{stat}** | {resp} |")
-        return "\n".join(lines)
+    total = len(rows)
+    auto_resolved = sum(1 for r in rows if r[4] == 'SENT_AUTONOMOUSLY')
+    archived_bulk = sum(1 for r in rows if r[4] == 'ARCHIVED_BULK')
+    drafts_pending = sum(1 for r in rows if r[4] == 'DRAFT_READY')
+    priority_flagged = [r for r in rows if any(k in (r[3] or '').upper() for k in ['GRANT', 'STATE', 'EXECUTIVE', 'TITLE61', 'ODOT'])]
+    lines = [
+        "=" * 92,
+        "     E.B.O.N.Y. EXECUTIVE TRAVEL RETURN DEBRIEF // MISSION READOUT REPORT      ",
+        "=" * 92,
+        f"GENERATED: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')} | OPERATIONAL NODE: HVFNexus",
+        "ENTITY: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5",
+        "STATUTORY FRAMEWORK: Oklahoma Title 61 & OK HB 2992 Certified Enclave",
+        "-" * 92,
+        "EXECUTIVE MACRO-LEVEL SUMMARY WHILE AWAY:",
+        f"• Total Transmissions Ingested:        {total}",
+        f"• Autonomously Answered & Dispatched:  {auto_resolved}",
+        f"• Commercial Newsletters Archived:    {archived_bulk}",
+        f"• Drafts Pending Executive Review:     {drafts_pending}",
+        f"• High-Priority Action Items:          {len(priority_flagged)}",
+        "-" * 92,
+        "PRIORITY ACTION ITEMS REQUIRING DIRECT EXECUTIVE ATTENTION:"
+    ]
+    if not priority_flagged:
+        lines.append("  [✓] Zero urgent bottlenecks detected. All operational inquiries resolved autonomously.")
     else:
-        lines = [
-            "=" * 92,
-            "               E.B.O.N.Y. EXECUTIVE COMMUNICATIONS REPORT // ON-DEMAND AUDIT            ",
-            "=" * 92,
-            f"GENERATED: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')} | OPERATIONAL ENCLAVE: HVFNexus",
-            f"CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OKLAHOMA TITLE 61 & OK HB 2992",
-            "-" * 92,
-            f"{'TIMESTAMP (UTC)':<20} | {'SENDER':<24} | {'SUBJECT':<20} | {'STATUS':<12} | {'CATEGORY'}",
-            "-" * 92
-        ]
-        if not rows:
-            lines.append("No recorded communications in ledger.")
-        else:
-            for r in rows:
-                ts = r[0][:19]
-                snd = (r[1][:21] + "...") if len(r[1]) > 24 else r[1]
-                sub = (r[3][:17] + "...") if len(r[3]) > 20 else r[3]
-                stat = r[5][:12]
-                cat = r[4]
-                lines.append(f"{ts:<20} | {snd:<24} | {sub:<20} | {stat:<12} | {cat}")
-                lines.append(f"  └─ DISPATCHED RESPONSE: {r[6][:75]}...")
-                lines.append("-" * 92)
-        lines.append("=" * 92)
-        return "\n".join(lines)
+        for idx, item in enumerate(priority_flagged[:5], 1):
+            ts = item[0][:19]
+            snd = item[1][:28]
+            sbj = item[2][:32]
+            lines.append(f"  [{idx}] [{ts}] FROM: {snd} | SUBJ: {sbj}")
+            lines.append(f"      STATUS: {item[4]} | CATEGORY: {item[3]}")
+    lines.append("-" * 92)
+    lines.append(f"{'TIMESTAMP (UTC)':<20} | {'SENDER':<24} | {'STATUS':<18} | {'CATEGORY'}")
+    lines.append("-" * 92)
+    for r in rows[:10]:
+        ts = r[0][:19]
+        snd = (r[1][:21] + "...") if len(r[1]) > 24 else r[1]
+        stat = r[4][:18]
+        cat = r[3][:18]
+        lines.append(f"{ts:<20} | {snd:<24} | {stat:<18} | {cat}")
+    lines.append("=" * 92)
+    return "\n".join(lines)
 
-def generate_executive_email_report() -> str:
-    return get_on_demand_communications_report(limit=10, format_type="text")
+def get_on_demand_communications_report(limit: int = 25, format_type: str = "text") -> str:
+    return generate_travel_debrief_report()
 
 if __name__ == "__main__":
     init_email_ledger()
-    parser = argparse.ArgumentParser(description="E.B.O.N.Y. Sovereign Autonomous Email Dispatcher")
-    parser.add_argument("--poll", action="store_true", help="Poll configured INBOX and auto-generate responses")
-    parser.add_argument("--send", action="store_true", help="Immediately send generated replies via SMTP")
-    parser.add_argument("--report", action="store_true", help="Generate on-demand communications report")
-    parser.add_argument("--markdown", action="store_true", help="Output report in Markdown format")
-    args = parser.parse_args()
-
-    if args.poll:
-        res = poll_and_auto_dispatch(auto_send=args.send)
-        print(f"[POLL COMPLETED] Processed {len(res)} event(s):")
-        for item in res:
-            print(f" • [{item.get('status')}] {item.get('sender', '')} - {item.get('subject', item.get('message', ''))}")
-    elif args.report:
-        fmt = "markdown" if args.markdown else "text"
-        print(get_on_demand_communications_report(format_type=fmt))
-    else:
-        print(get_on_demand_communications_report(format_type="text"))
+    print(generate_travel_debrief_report())

@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Executive Travel Autopilot & Return Debrief Glass UI
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Tier: Sovereign Tier-1 Executive Ingestion ($19.99/mo Baseline)
