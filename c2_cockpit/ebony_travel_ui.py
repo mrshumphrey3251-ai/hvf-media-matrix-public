@@ -1,5 +1,5 @@
 """
-E.B.O.N.Y. Executive Travel Autopilot, Priority Triage & Response Inspector
+E.B.O.N.Y. Executive Travel Autopilot, Priority Triage & Sovereign Comms Gate UI
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Tier: Sovereign Tier-1 Executive Ingestion ($19.99/mo Baseline)
 Statutory Authority: Oklahoma Title 61 & OK HB 2992
@@ -12,6 +12,99 @@ import sys
 from pathlib import Path
 from datetime import datetime, timezone
 
+def render_comms_gate(key_suffix="sovereign_deck_main"):
+    if hasattr(sys.stdout, "reconfigure"):
+        try:
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+            sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
+    _cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+    if str(_cdir) not in sys.path:
+        sys.path.insert(0, str(_cdir))
+
+    from ebony_email_dispatcher import (
+        get_configured_accounts,
+        save_account_credentials,
+        remove_account_credentials,
+        test_account_connection,
+        detect_servers
+    )
+
+    accounts = get_configured_accounts()
+    is_authenticated = False
+    active_email = ""
+
+    if st.session_state.get("comms_deck_authenticated", False):
+        is_authenticated = True
+        active_email = st.session_state.get("comms_active_email", "")
+    elif accounts and not st.session_state.get("comms_force_signout", False):
+        first_email = list(accounts.keys())[0]
+        if accounts[first_email].get("stay_signed_in", True):
+            st.session_state.comms_deck_authenticated = True
+            st.session_state.comms_active_email = first_email
+            is_authenticated = True
+            active_email = first_email
+
+    if not is_authenticated:
+        st.markdown("""
+        <div style="background-color: #0b110e; border: 2px solid #00ff88; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
+            <h2 style="color: #00ff88; margin-top: 0; font-family: monospace; letter-spacing: 2px;">⚡ SOVEREIGN COMMUNICATIONS ACCESS GATE</h2>
+            <div style="color: #a0aab2; font-size: 0.9em; font-family: monospace; margin-bottom: 15px;">
+                <strong>ENTITY:</strong> Humphrey Virtual Farms LLC | <strong>CAGE:</strong> 1AHA8 | <strong>UEI:</strong> S1M4ENLHTDH5<br>
+                <strong>STATUTORY JURISDICTION:</strong> State of Oklahoma (Title 61 & HB 2992 Framework) | <strong>NODE:</strong> HVFNexus
+            </div>
+            <div style="color: #ffffff; font-size: 0.95em; line-height: 1.6; border-top: 1px solid #1e3a29; padding-top: 15px;">
+                <p><strong>=== MANDATORY SECURE MAILBOX AUTHENTICATION ===</strong></p>
+                <p>This communications enclave connects directly to designated sovereign mail servers via air-gapped TLS/SSL protocols (Port 993/465). No third-party cloud APIs, OAuth project secrets, or external telemetry harvesters are utilized.</p>
+                <p>Authenticate with your executive email credentials or dedicated 16-character App Password to unlock the Sovereign Communications & Dispatch Deck.</p>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        col1, col2, col3 = st.columns([1, 8, 1])
+        with col2:
+            default_e = list(accounts.keys())[0] if accounts else ""
+            in_email = st.text_input("Executive Email Address:", value=default_e, placeholder="e.g. humphreyvirtualfarm@gmail.com or evaluator@ok.gov", key=f"gate_email_{key_suffix}")
+            in_pass = st.text_input("Password / 16-Character App Password:", type="password", placeholder="•••• •••• •••• ••••", key=f"gate_pass_{key_suffix}")
+
+            stay_signed_in = st.checkbox("Remember credentials and stay signed in across sessions", value=True, key=f"gate_stay_{key_suffix}")
+
+            btn_col1, btn_col2, btn_col3 = st.columns([2, 4, 2])
+            with btn_col2:
+                if st.button("VERIFY CREDENTIALS & ENTER SOVEREIGN COMMS", use_container_width=True, key=f"gate_btn_{key_suffix}"):
+                    if not in_email or not in_pass:
+                        st.error("ACCESS DENIED: Both Email Address and Password are required.")
+                    else:
+                        with st.spinner("Probing live TLS/SSL socket (Port 993)..."):
+                            def_i, def_s, _, _ = detect_servers(in_email)
+                            ok, msg = test_account_connection(in_email, in_pass, def_i)
+                            if ok:
+                                save_account_credentials(in_email, in_pass, def_i, def_s, stay_signed_in=stay_signed_in)
+                                st.session_state.comms_deck_authenticated = True
+                                st.session_state.comms_active_email = in_email.strip().lower()
+                                st.session_state.comms_force_signout = False
+                                st.success("AUTHENTICATION VERIFIED: Entering Sovereign Communications Enclave...")
+                                st.rerun()
+                            else:
+                                st.error(f"AUTHENTICATION DENIED: {msg}")
+
+        st.stop()
+    else:
+        col_sb1, col_sb2 = st.columns([4, 1.2])
+        with col_sb1:
+            st.markdown(f"""
+            <div style="background-color: #0b1410; border: 1px solid #1e3a29; border-left: 3px solid #00ff88; border-radius: 6px; padding: 10px 16px; margin-bottom: 15px; font-family: monospace; font-size: 0.85em;">
+                <strong style="color: #00ff88;">AUTHENTICATED ENCLAVE SESSION:</strong> <span style="color: #ffffff;">{active_email}</span> &nbsp;|&nbsp; <span style="color: #00ff88;">TLS/SSL (993/465) ACTIVE</span>
+            </div>
+            """, unsafe_allow_html=True)
+        with col_sb2:
+            if st.button("🚪 SIGN OUT / SWITCH", key=f"btn_header_signout_{key_suffix}", use_container_width=True):
+                st.session_state.comms_deck_authenticated = False
+                st.session_state.comms_force_signout = True
+                st.rerun()
+
 def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     if hasattr(sys.stdout, "reconfigure"):
         try:
@@ -23,6 +116,10 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     st.divider()
     st.markdown("## ✈️ EXECUTIVE TRAVEL AUTOPILOT // INBOX GHOSTWRITER & DEBRIEF")
     st.caption("Autonomous Inbound Ingestion, Contextual SMTP Auto-Response & Executive Return Briefing // Level-5 Authority")
+
+    _cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+    if str(_cdir) not in sys.path:
+        sys.path.insert(0, str(_cdir))
 
     db_p = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\matrix_ledger.db")
     total_count, sent_count, archived_count, flagged_count = 0, 0, 0, 0
@@ -46,8 +143,6 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
             total_count = len(records)
             sent_count = sum(1 for r in records if r["status"] == "SENT_AUTONOMOUSLY")
             archived_count = sum(1 for r in records if r["status"] in ["ARCHIVED_BULK", "ARCHIVED_LOOP"])
-            
-            # True Action Items: must be an active priority category and NOT archived or resolved
             flagged_count = sum(
                 1 for r in records 
                 if r["status"] not in ["ARCHIVED_BULK", "ARCHIVED_LOOP", "RESOLVED_BY_CEO"]
@@ -64,13 +159,11 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     col3.metric("Newsletters Filtered", f"{archived_count} Archived")
     col4.metric("Priority Action Items", f"{flagged_count} Flagged", delta="Action Required" if flagged_count > 0 else "Clear")
 
-    # 2. Executive Autopilot Control Bar
+    # 2. Executive Autopilot Command Bar
     c1, c2, c3 = st.columns([1.5, 1.2, 1.3])
     with c1:
         if st.button("🚀 ENGAGE TRAVEL AUTOPILOT (AUTO-REPLY ALL)", key=f"btn_autopilot_send_{key_suffix}", use_container_width=True):
             try:
-                _cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
-                if str(_cdir) not in sys.path: sys.path.insert(0, str(_cdir))
                 from ebony_travel_autopilot import run_travel_cycle
                 res = run_travel_cycle(auto_send=True)
                 st.success(f"Autopilot Complete: Processed {len(res)} transmission(s) and dispatched via SMTP.")
@@ -81,8 +174,6 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     with c2:
         if st.button("📥 RECON INBOX (READ ONLY)", key=f"btn_recon_draft_{key_suffix}", use_container_width=True):
             try:
-                _cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
-                if str(_cdir) not in sys.path: sys.path.insert(0, str(_cdir))
                 from ebony_travel_autopilot import run_travel_cycle
                 res = run_travel_cycle(auto_send=False)
                 st.info(f"Recon Complete: Ingested {len(res)} transmission(s) into WORM ledger.")
@@ -93,8 +184,6 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     with c3:
         if st.button("📱 EMAIL DEBRIEF TO MY PHONE", key=f"btn_email_debrief_{key_suffix}", use_container_width=True):
             try:
-                _cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
-                if str(_cdir) not in sys.path: sys.path.insert(0, str(_cdir))
                 from ebony_travel_autopilot import run_travel_cycle
                 run_travel_cycle(auto_send=False, email_summary_to="humphreyvirtualfarm@gmail.com")
                 st.success("Executive Return Debrief transmitted to humphreyvirtualfarm@gmail.com.")

@@ -13,6 +13,15 @@ import sys
 from pathlib import Path
 
 
+def render_comms_gate(key_suffix="sovereign_deck_main"):
+    import sys
+    from pathlib import Path
+    _p = str(Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"))
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+    from ebony_travel_ui import render_comms_gate as _g
+    return _g(key_suffix)
+
 def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     import sys
     from pathlib import Path
@@ -1850,6 +1859,7 @@ elif active_module == "🎨 Asset Synthesis":
                 st.error(f"Matrix Offline: {e}")
 
 elif active_module == "📨 Sovereign Dispatch Deck":
+    render_comms_gate(key_suffix="sovereign_deck_main")
     st.markdown("""
     <div style="background: linear-gradient(90deg, #0b110e 0%, #15221b 100%); border-left: 4px solid #00ff88; border-radius: 6px; padding: 14px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
         <div>

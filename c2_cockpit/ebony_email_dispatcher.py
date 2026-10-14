@@ -109,7 +109,7 @@ def test_account_connection(email_addr: str, password_or_app_pass: str, imap_hos
     except Exception as e:
         return False, str(e)
 
-def save_account_credentials(email_addr: str, password_or_app_pass: str, custom_imap: str = None, custom_smtp: str = None):
+def save_account_credentials(email_addr: str, password_or_app_pass: str, custom_imap: str = None, custom_smtp: str = None, stay_signed_in: bool = True):
     def_imap, def_smtp, def_i_port, def_s_port = detect_servers(email_addr)
     imap_host = custom_imap if custom_imap else def_imap
     smtp_host = custom_smtp if custom_smtp else def_smtp
@@ -127,6 +127,7 @@ def save_account_credentials(email_addr: str, password_or_app_pass: str, custom_
         "smtp_host": smtp_host,
         "imap_port": def_i_port,
         "smtp_port": def_s_port,
+        "stay_signed_in": stay_signed_in,
         "registered_at": datetime.now(timezone.utc).isoformat()
     }
     CONFIG_PATH.write_text(json.dumps(config, indent=2), encoding="utf-8")
