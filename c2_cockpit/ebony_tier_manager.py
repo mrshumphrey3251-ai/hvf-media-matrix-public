@@ -1,19 +1,31 @@
 """
 E.B.O.N.Y. Sovereign Commercial Licensing & Tier Access Controller
-Role-Based Access Control (RBAC) & Maintenance Lockout Engine
+Role-Based Access Control (RBAC), Maintenance & Anti-Piracy Lockout Engine
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Statutory Authority: Oklahoma Title 61 & OK HB 2992
 """
 import streamlit as st
 import json
 from pathlib import Path
+import sys
 
-# Commercial Tier Identifiers
+# Ensure updater is accessible
+_cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+if str(_cdir) not in sys.path:
+    sys.path.insert(0, str(_cdir))
+
+try:
+    from ebony_client_updater import check_license_validity, get_hardware_uuid
+except Exception:
+    pass
+
+# Tier Identifiers
 TIER_0_CEO = "TIER_0_CEO"
 TIER_1_PERSONAL = "TIER_1_PERSONAL"
 TIER_COMMAND = "TIER_COMMAND"
 TIER_2_VIP = "TIER_2_VIP"
 TIER_3_ENTERPRISE = "TIER_3_ENTERPRISE"
+TIER_LOCKED = "TIER_LOCKED_UNAUTHORIZED"
 
 TIER_METADATA = {
     TIER_0_CEO: {
@@ -49,17 +61,14 @@ TIER_METADATA = {
 }
 
 MODULE_TIER_MAPPING = {
-    # Tier 1: Personal ($19.99/mo and above)
     "📖 System Overview": TIER_1_PERSONAL,
     "📝 Feedback Hub": TIER_1_PERSONAL,
     "📨 Sovereign Dispatch Deck": TIER_1_PERSONAL,
     "🚨 NOAA Radar": TIER_1_PERSONAL,
     
-    # Tier 1.5: Sovereign Command ($39.99/mo and above)
     "💬 Sovereign Command": TIER_COMMAND,
-    "📡 Sovereign Comms Deck": TIER_COMMAND,  # Active in Tier 1.5 (Optical Matrix & Sensors)
+    "📡 Sovereign Comms Deck": TIER_COMMAND,
     
-    # Tier 2: VIP Member ($249/mo and above)
     "🎛️ Master C2 Cockpit": TIER_2_VIP,
     "📡 LinkedIn Engine": TIER_2_VIP,
     "🌾 Drone Diagnostics": TIER_2_VIP,
@@ -67,7 +76,6 @@ MODULE_TIER_MAPPING = {
     "⚡ Grain Silo Aeration And F": TIER_2_VIP,
 }
 
-# Incomplete, Utility & Internal Engineering Scripts Locked Under Maintenance
 MAINTENANCE_MODULES = [
     "⚡ Autonomous Build Forge",
     "🛡️ CEO Authorization Gate",
@@ -92,6 +100,7 @@ MAINTENANCE_MODULES = [
 ]
 
 TIER_RANKS = {
+    TIER_LOCKED: 0,
     TIER_1_PERSONAL: 1,
     TIER_COMMAND: 2,
     TIER_2_VIP: 3,
@@ -100,12 +109,28 @@ TIER_RANKS = {
 }
 
 def get_current_tier() -> str:
-    return st.session_state.get("ebony_commercial_tier", TIER_0_CEO)
+    # HARDWARE AUDIT HOOK
+    # If the user is CEO, bypass hardware checks for development
+    active_tier = st.session_state.get("ebony_commercial_tier", TIER_0_CEO)
+    if active_tier == TIER_0_CEO:
+        return active_tier
+        
+    try:
+        is_valid, lic_status, _ = check_license_validity()
+        if lic_status == "HARDWARE_MISMATCH_PIRACY_LOCKOUT":
+            return TIER_LOCKED
+    except Exception:
+        pass
+        
+    return active_tier
 
 def set_current_tier(tier: str):
     st.session_state["ebony_commercial_tier"] = tier
 
 def check_module_access(user_tier: str, module_name: str) -> tuple:
+    if user_tier == TIER_LOCKED:
+        return False, "HARDWARE_NODE_LOCKED", False
+
     if user_tier == TIER_0_CEO:
         return True, "", False
         
@@ -124,6 +149,34 @@ def check_module_access(user_tier: str, module_name: str) -> tuple:
         return False, req_display, False
 
 def render_tier_restriction_screen(module_name: str, required_tier_name: str, current_tier: str):
+    if current_tier == TIER_LOCKED:
+        try:
+            hw_id = get_hardware_uuid()
+        except Exception:
+            hw_id = "UNKNOWN_SIGNATURE"
+            
+        st.markdown(f"""
+        <div style="background-color: #140b0b; border: 2px solid #ff4444; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
+            <h2 style="color: #ff4444; margin-top: 0; font-family: monospace; letter-spacing: 2px;">🛑 UNAUTHORIZED HARDWARE DETECTED // PIRACY LOCKOUT</h2>
+            <div style="color: #a0aab2; font-size: 0.9em; font-family: monospace; margin-bottom: 15px;">
+                <strong>SECURITY ENFORCEMENT:</strong> Humphrey Virtual Farms LLC | <strong>CAGE:</strong> 1AHA8 | <strong>UEI:</strong> S1M4ENLHTDH5<br>
+                <strong>STATUTORY JURISDICTION:</strong> State of Oklahoma Title 61 & HB 2992 Commercial Enclave
+            </div>
+            <div style="color: #ffffff; font-size: 0.95em; line-height: 1.6; border-top: 1px solid #3a1e1e; padding-top: 15px;">
+                <p><strong>ATTEMPTED MODULE:</strong> <span style="color: #ff8888; font-weight: bold;">{module_name}</span></p>
+                <p><strong>HARDWARE STATUS:</strong> <span style="color: #ff4444; font-weight: bold;">NODE SIGNATURE MISMATCH</span></p>
+                <p><strong>CURRENT MACHINE ID:</strong> <code style="color: #ffcc00;">{hw_id}</code></p>
+                <p style="margin-top: 15px; color: #d0d7de;">
+                    This E.B.O.N.Y. installation has detected a hardware fingerprint mismatch. The active cryptographic license is bound to a different physical motherboard and MAC address. 
+                    Copying the application folder to unauthorized devices violates commercial licensing terms. 
+                    <br><br>
+                    To provision this new device, purchase an additional Single-User Node license or upgrade to an Enterprise Multi-Site agreement.
+                </p>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        return
+
     cur_meta = TIER_METADATA.get(current_tier, {})
     st.markdown(f"""
     <div style="background-color: #140b0b; border: 2px solid #ff4444; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
@@ -204,6 +257,11 @@ def render_tier_switcher_sidebar():
     cur_tier = get_current_tier()
     cur_idx = tier_opts.index(cur_tier) if cur_tier in tier_opts else 0
     
+    # Do not let locked users escape the lock via the sidebar
+    if cur_tier == TIER_LOCKED:
+        st.error("SYSTEM NODE LOCKED TO HARDWARE SIGNATURE.")
+        return
+
     selected_tier = st.selectbox(
         "Active License Tier:",
         tier_opts,
