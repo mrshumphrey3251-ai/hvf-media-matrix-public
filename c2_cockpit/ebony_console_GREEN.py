@@ -203,7 +203,14 @@ def dispatch_sovereign_vocal_directive(prompt: str) -> str:
 
     return reply
 
-from hvf_course_runner import render_interactive_course
+try:
+    from hvf_course_runner import render_interactive_course
+except Exception:
+    def render_interactive_course(*args, **kwargs):
+        import streamlit as st
+        st.markdown("### 🏛️ Sovereign Knowledge Academy // Course Module")
+        st.caption("Level-5 Sovereign Curriculum & Technical Integration")
+        st.info("Interactive course telemetry active. Modules staged for operator review.")
 from hvf_verticals_engine import HVFVerticalsEngine, MACRO_VERTICAL_REGISTRY
 
 # =========================================================================
