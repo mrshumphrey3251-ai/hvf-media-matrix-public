@@ -195,7 +195,7 @@ def render_tier_restriction_screen(module_name: str, required_tier_name: str, cu
 
     cur_meta = TIER_METADATA.get(current_tier, {})
     required_tier_key = MODULE_TIER_MAPPING.get(module_name, TIER_COMMAND)
-    checkout_url = get_checkout_url_for_tier(required_tier_key)
+    checkout_url, is_live = get_checkout_url_for_tier(required_tier_key)
     
     st.markdown(f"""
     <div style="background-color: #140b0b; border: 2px solid #ff4444; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
@@ -220,7 +220,11 @@ def render_tier_restriction_screen(module_name: str, required_tier_name: str, cu
         with st.container(border=True):
             st.markdown(f"#### 💳 Commercial Upgrade: {required_tier_name}")
             st.markdown("Direct automated billing powered by **Stripe Sovereign Ingress** under **CAGE 1AHA8**.")
-            st.link_button("💳 PROCEED TO SECURE STRIPE CHECKOUT", url=checkout_url, use_container_width=True)
+            if is_live:
+                st.link_button("💳 PROCEED TO SECURE STRIPE CHECKOUT", url=checkout_url, use_container_width=True)
+            else:
+                st.link_button("⚡ SIMULATE STRIPE PAYMENT & PROVISION LICENSE", url=checkout_url, use_container_width=True)
+                st.caption("ℹ️ Sovereign Testing Mode: Activates this tier instantaneously on glass without external network calls.")
             
             if st.button("⬅ RETURN TO DISPATCH DECK", key=f"btn_ret_comms_{module_name}", use_container_width=True):
                 st.session_state["nav_module_override"] = "📨 Sovereign Dispatch Deck"
