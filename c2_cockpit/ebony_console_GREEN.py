@@ -1531,7 +1531,7 @@ elif active_module == "🌾 Drone Diagnostics":
             st.video(local_vid_path, loop=True, autoplay=True, muted=True)
         else:
             # Fallback to a raw, open-source MP4 video stream (Zero YouTube)
-            st.video("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", loop=True, autoplay=True, muted=True)
+            st.video("https://raw.githubusercontent.com/intel-iot-devkit/sample-videos/master/person-bicycle-car-detection.mp4", loop=True, autoplay=True, muted=True)
             st.caption("⚙️ **Sovereign Mode:** Playing raw native MP4 (YouTube Engine Severed).")
             st.info("💡 Drop an MP4 file named 'drone_training.mp4' into your master folder to replace this video.")
             st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")

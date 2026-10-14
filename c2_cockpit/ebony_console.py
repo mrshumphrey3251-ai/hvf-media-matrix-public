@@ -172,7 +172,7 @@ def get_empire_config():
         "FARM_NAME": settings.get("FARM_NAME", "HVF Omni-Industrial Matrix"),
         "FOUNDER_NAME": settings.get("FOUNDER_NAME", "Jeffery Humphrey"),
         "AI_PERSONA": settings.get("AI_PERSONA", "Ebony"),
-        "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "humphreyvirtualfarm@gmail.com")
+        "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]")
     }
 
 def update_empire_config(farm_name, founder, persona, email):
@@ -804,7 +804,7 @@ elif active_module == "ðŸŒ¾ Drone Diagnostics":
             st.video(local_vid_path, loop=True, autoplay=True, muted=True)
         else:
             # Fallback to a raw, open-source MP4 video stream (Zero YouTube)
-            st.video("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", loop=True, autoplay=True, muted=True)
+            st.video("https://raw.githubusercontent.com/intel-iot-devkit/sample-videos/master/person-bicycle-car-detection.mp4", loop=True, autoplay=True, muted=True)
             st.caption("âš™ï¸ **Sovereign Mode:** Playing raw native MP4 (YouTube Engine Severed).")
             st.info("ðŸ’¡ Drop an MP4 file named 'drone_training.mp4' into your master folder to replace this video.")
             st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
@@ -1185,7 +1185,7 @@ elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
                 "FINANCIAL_TREASURY",
                 "GENERAL_EXECUTIVE"
             ], key="direct_out_cat")
-            st.markdown("<div style='font-size:0.85em; color:#94a3b8; margin-top:5px;'><b>Originating Endpoint:</b><br><span style='color:#e2a03f; font-family:monospace;'>humphreyvirtualfarm@gmail.com</span></div>", unsafe_allow_html=True)
+            st.markdown("<div style='font-size:0.85em; color:#94a3b8; margin-top:5px;'><b>Originating Endpoint:</b><br><span style='color:#e2a03f; font-family:monospace;'>[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]</span></div>", unsafe_allow_html=True)
 
         with st.expander("âš¡ Draft Assistance with Ebony AI (Grounded in Iron Dome Intel)", expanded=False):
             ai_directive = st.text_input("Strategic Directive for Ebony AI", key="ai_out_directive", placeholder="e.g. Confirm executed LSA with Drew Phillips Jr. and coordinate DAF TENCAP Volume 2.")
