@@ -1,6 +1,6 @@
-"""
+﻿"""
 E.B.O.N.Y. Sovereign Commercial Licensing & Tier Access Controller
-Role-Based Access Control (RBAC), Maintenance & Dynamic Multi-Node Locking Engine
+Role-Based Access Control (RBAC), 7-Day Pilot Clock & Tier 1 Paywall Gate
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Statutory Authority: Oklahoma Title 61 & OK HB 2992
 """
@@ -9,14 +9,29 @@ import json
 from pathlib import Path
 import sys
 
-from ebony_stripe_billing import get_checkout_url_for_tier, STRIPE_TIER_CATALOG
-
 _cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
 if str(_cdir) not in sys.path:
     sys.path.insert(0, str(_cdir))
 
 try:
-    from ebony_client_updater import check_license_validity, get_hardware_uuid
+    from ebony_client_updater import check_license_validity, get_hardware_uuid, init_or_read_license
+except Exception:
+    def get_hardware_uuid():
+        return "UNKNOWN_SIGNATURE"
+    def check_license_validity():
+        return True, "ACTIVE", 30
+    def init_or_read_license():
+        return {}
+
+try:
+    from ebony_stripe_billing import get_checkout_url_for_tier, STRIPE_TIER_CATALOG
+except Exception:
+    def get_checkout_url_for_tier(t):
+        return "", False
+    STRIPE_TIER_CATALOG = {}
+
+try:
+    from ebony_license_issuer import generate_sovereign_license, install_license_to_disk
 except Exception:
     pass
 
@@ -27,8 +42,8 @@ TIER_COMMAND = "TIER_COMMAND"
 TIER_2_VIP = "TIER_2_VIP"
 TIER_3_ENTERPRISE = "TIER_3_ENTERPRISE"
 TIER_LOCKED = "TIER_LOCKED_UNAUTHORIZED"
+TIER_EXPIRED = "TIER_EXPIRED"
 
-# Dynamic Hardware Device Allocations Per Tier
 TIER_NODE_LIMITS = {
     TIER_1_PERSONAL: 1,     # 1 Device Node ($19.99/mo)
     TIER_COMMAND: 3,        # 3 Device Nodes ($39.99/mo)
@@ -76,7 +91,7 @@ TIER_METADATA = {
 }
 
 MODULE_TIER_MAPPING = {
-    "📖 System Overview": TIER_1_PERSONAL,
+    "📖 System Overview": None,              # Open public overview and license store
     "📝 Feedback Hub": TIER_1_PERSONAL,
     "📨 Sovereign Dispatch Deck": TIER_1_PERSONAL,
     "🚨 NOAA Radar": TIER_1_PERSONAL,
@@ -115,6 +130,7 @@ MAINTENANCE_MODULES = [
 ]
 
 TIER_RANKS = {
+    TIER_EXPIRED: 0,
     TIER_LOCKED: 0,
     TIER_1_PERSONAL: 1,
     TIER_COMMAND: 2,
@@ -129,9 +145,11 @@ def get_current_tier() -> str:
         return active_tier
         
     try:
-        is_valid, lic_status, _ = check_license_validity()
+        is_valid, lic_status, days_left = check_license_validity()
         if lic_status == "HARDWARE_MISMATCH_PIRACY_LOCKOUT":
             return TIER_LOCKED
+        if lic_status == "EXPIRED" or not is_valid:
+            return TIER_EXPIRED
     except Exception:
         pass
         
@@ -139,10 +157,20 @@ def get_current_tier() -> str:
 
 def set_current_tier(tier: str):
     st.session_state["ebony_commercial_tier"] = tier
+    st.session_state["sb_commercial_tier_selector"] = tier
 
 def check_module_access(user_tier: str, module_name: str) -> tuple:
+    # System Overview is always accessible to inspect features and subscribe
+    if module_name == "📖 System Overview":
+        return True, "", False
+
     if user_tier == TIER_LOCKED:
         return False, "HARDWARE_NODE_LIMIT_EXCEEDED", False
+
+    if user_tier == TIER_EXPIRED:
+        req_meta = TIER_METADATA.get(TIER_1_PERSONAL, {})
+        req_display = f"{req_meta.get('name', 'Tier 1: Personal')} ({req_meta.get('price', '$19.99 / Month')})"
+        return False, req_display, False
 
     if user_tier == TIER_0_CEO:
         return True, "", False
@@ -151,6 +179,9 @@ def check_module_access(user_tier: str, module_name: str) -> tuple:
         return False, "Level-5 Sovereign Engineering R&D", True
         
     required_tier = MODULE_TIER_MAPPING.get(module_name, TIER_0_CEO)
+    if required_tier is None:
+        return True, "", False
+
     user_rank = TIER_RANKS.get(user_tier, 1)
     req_rank = TIER_RANKS.get(required_tier, 99)
     
@@ -162,6 +193,7 @@ def check_module_access(user_tier: str, module_name: str) -> tuple:
         return False, req_display, False
 
 def render_tier_restriction_screen(module_name: str, required_tier_name: str, current_tier: str):
+    # Lockout 1: Hardware Anti-Piracy Lockout
     if current_tier == TIER_LOCKED:
         try:
             hw_id = get_hardware_uuid()
@@ -180,19 +212,53 @@ def render_tier_restriction_screen(module_name: str, required_tier_name: str, cu
                 <p><strong>HARDWARE STATUS:</strong> <span style="color: #ff4444; font-weight: bold;">NODE SEAT CAPACITY REACHED</span></p>
                 <p><strong>MACHINE FINGERPRINT:</strong> <code style="color: #ffcc00;">{hw_id}</code></p>
                 <p style="margin-top: 15px; color: #d0d7de;">
-                    This subscription has reached its maximum authorized device quota:
-                    <br>• Tier 1: 1 Device Node ($19.99/mo)
-                    <br>• Tier 1.5: 3 Device Nodes ($39.99/mo)
-                    <br>• Tier 2: 5 Device Nodes ($249/mo)
-                    <br>• Tier 3: 10 Device Nodes ($2,499/yr)
-                    <br><br>
-                    To authorize this new physical machine, upgrade your subscription tier to unlock additional hardware seats.
+                    This subscription has reached its maximum authorized device quota. Upgrade to unlock additional hardware seats.
                 </p>
             </div>
         </div>
         """, unsafe_allow_html=True)
         return
 
+    # Lockout 2: Expired 7-Day Pilot (Tier 1 Modules Locked)
+    if current_tier == TIER_EXPIRED:
+        t1_url, is_live = get_checkout_url_for_tier(TIER_1_PERSONAL)
+        st.markdown(f"""
+        <div style="background-color: #1a0b0b; border: 2px solid #ff4444; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
+            <h2 style="color: #ff4444; margin-top: 0; font-family: monospace; letter-spacing: 2px;">🛑 7-DAY SOVEREIGN PILOT EXPIRED // TIER 1 PAYWALL LOCKOUT</h2>
+            <div style="color: #a0aab2; font-size: 0.9em; font-family: monospace; margin-bottom: 15px;">
+                <strong>SECURITY ENFORCEMENT:</strong> Humphrey Virtual Farms LLC | <strong>CAGE:</strong> 1AHA8 | <strong>UEI:</strong> S1M4ENLHTDH5<br>
+                <strong>STATUTORY JURISDICTION:</strong> State of Oklahoma Title 61 & HB 2992 Commercial Enclave
+            </div>
+            <div style="color: #ffffff; font-size: 0.95em; line-height: 1.6; border-top: 1px solid #3a1e1e; padding-top: 15px;">
+                <p><strong>ATTEMPTED MODULE:</strong> <span style="color: #ff8888; font-weight: bold;">{module_name}</span></p>
+                <p><strong>PILOT STATUS:</strong> <span style="color: #ff4444; font-weight: bold;">7-DAY TRIAL WINDOW CONCLUDED</span></p>
+                <p style="margin-top: 15px; color: #d0d7de;">
+                    Your complimentary 7-day sovereign evaluation period has expired. Continued access to the Sovereign Dispatch Deck, NOAA Doppler Radar, and WORM Encrypted Ledgers requires an active commercial subscription.
+                </p>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        col1, col2, col3 = st.columns([1.2, 2.2, 1.2])
+        with col2:
+            with st.container(border=True):
+                st.markdown("#### 💳 Activate Tier 1: Personal Comms ($19.99/mo)")
+                st.markdown("Immediate bare-metal node renewal powered by **Stripe Sovereign Ingress** under **CAGE 1AHA8**.")
+                if is_live:
+                    st.link_button("💳 PROCEED TO SECURE STRIPE CHECKOUT ($19.99/MO)", url=t1_url, width="stretch")
+                else:
+                    if st.button("⚡ SIMULATE STRIPE PAYMENT & PROVISION TIER 1", key="btn_sim_t1_expired", width="stretch"):
+                        lic = generate_sovereign_license("Subscriber", "client@sovereign.org", TIER_1_PERSONAL, duration_days=30)
+                        install_license_to_disk(lic)
+                        set_current_tier(TIER_1_PERSONAL)
+                        st.session_state["tier_upgrade_success_banner"] = "🎉 Tier 1 Subscription Activated!"
+                        st.rerun()
+                if st.button("📖 VIEW SYSTEM OVERVIEW & ALL TIERS", key="btn_ret_overview_exp", width="stretch"):
+                    st.session_state["nav_module_override"] = "📖 System Overview"
+                    st.rerun()
+        return
+
+    # Lockout 3: Higher Tier Access Gate (Tier 1.5, Tier 2, Tier 3)
     cur_meta = TIER_METADATA.get(current_tier, {})
     required_tier_key = MODULE_TIER_MAPPING.get(module_name, TIER_COMMAND)
     checkout_url, is_live = get_checkout_url_for_tier(required_tier_key)
@@ -209,7 +275,7 @@ def render_tier_restriction_screen(module_name: str, required_tier_name: str, cu
             <p><strong>YOUR ACTIVE SUBSCRIPTION:</strong> <span style="color: #00ff88; font-weight: bold;">{cur_meta.get('name', current_tier)}</span></p>
             <p><strong>REQUIRED COMMERCIAL TIER:</strong> <span style="color: #ffcc00; font-weight: bold;">{required_tier_name}</span></p>
             <p style="margin-top: 15px; color: #d0d7de;">
-                Access to this sovereign command capability is governed by commercial licensing tiers. Select the Stripe Checkout option below to instantly unlock this capability.
+                Access to this sovereign command capability is governed by commercial licensing tiers. Select the checkout option below to unlock active operational glass.
             </p>
         </div>
     </div>
@@ -220,14 +286,21 @@ def render_tier_restriction_screen(module_name: str, required_tier_name: str, cu
         with st.container(border=True):
             st.markdown(f"#### 💳 Commercial Upgrade: {required_tier_name}")
             st.markdown("Direct automated billing powered by **Stripe Sovereign Ingress** under **CAGE 1AHA8**.")
+            
             if is_live:
                 st.link_button("💳 PROCEED TO SECURE STRIPE CHECKOUT", url=checkout_url, width="stretch")
             else:
-                st.link_button("⚡ SIMULATE STRIPE PAYMENT & PROVISION LICENSE", url=checkout_url, width="stretch")
-                st.caption("ℹ️ Sovereign Testing Mode: Activates this tier instantaneously on glass without external network calls.")
+                btn_key = f"btn_sim_atomic_{required_tier_key}_{module_name.replace(' ', '_')}"
+                if st.button("⚡ SIMULATE STRIPE PAYMENT & PROVISION LICENSE", key=btn_key, width="stretch"):
+                    lic = generate_sovereign_license("Verified Subscriber", "ceo@humphreyfarms.org", required_tier_key, duration_days=30, claim_current_node=True)
+                    install_license_to_disk(lic)
+                    set_current_tier(required_tier_key)
+                    st.session_state["tier_upgrade_success_banner"] = f"🎉 Successfully provisioned {required_tier_name} on this hardware node!"
+                    st.rerun()
+                st.caption("ℹ️ Sovereign Testing Mode: Provisions cryptographic license to disk and unlocks this module instantly without reloading the platform.")
             
-            if st.button("⬅ RETURN TO DISPATCH DECK", key=f"btn_ret_comms_{module_name}", width="stretch"):
-                st.session_state["nav_module_override"] = "📨 Sovereign Dispatch Deck"
+            if st.button("⬅ RETURN TO OVERVIEW", key=f"btn_ret_comms_{module_name}", width="stretch"):
+                st.session_state["nav_module_override"] = "📖 System Overview"
                 st.rerun()
 
 def render_maintenance_screen(module_name: str):
@@ -242,10 +315,7 @@ def render_maintenance_screen(module_name: str):
             <p><strong>MODULE UNDER CALIBRATION:</strong> <span style="color: #ffcc00; font-weight: bold;">{module_name}</span></p>
             <p><strong>OPERATIONAL STATUS:</strong> <span style="color: #ffaa00; font-weight: bold;">ACTIVE HARDENING & CONSOLIDATION IN PROGRESS</span></p>
             <p style="margin-top: 15px; color: #d0d7de;">
-                This module has been consolidated or designated as an internal engineering workbench. It is currently locked behind Level-5 R&D maintenance protocols to preserve commercial production integrity.
-            </p>
-            <p style="color: #8b949e; font-size: 0.85em;">
-                Access is restricted strictly to Level-5 Authorized Systems Engineering Personnel. Commercial subscribers should navigate to their authorized command modules.
+                This module is currently designated as an internal engineering workbench and locked behind Level-5 R&D maintenance protocols.
             </p>
         </div>
     </div>
@@ -253,8 +323,8 @@ def render_maintenance_screen(module_name: str):
     
     col1, col2, col3 = st.columns([1.5, 2, 1.5])
     with col2:
-        if st.button("⬅ RETURN TO DISPATCH DECK", key=f"btn_ret_auth_{module_name}", width="stretch"):
-            st.session_state["nav_module_override"] = "📨 Sovereign Dispatch Deck"
+        if st.button("⬅ RETURN TO OVERVIEW", key=f"btn_ret_auth_{module_name}", width="stretch"):
+            st.session_state["nav_module_override"] = "📖 System Overview"
             st.rerun()
 
 def render_tier_switcher_sidebar():
@@ -264,6 +334,22 @@ def render_tier_switcher_sidebar():
     </div>
     """, unsafe_allow_html=True)
     
+    if "tier_upgrade_success_banner" in st.session_state:
+        st.success(st.session_state["tier_upgrade_success_banner"])
+        del st.session_state["tier_upgrade_success_banner"]
+    
+    # Check 7-Day Pilot Telemetry
+    try:
+        is_valid, lic_status, days_left = check_license_validity()
+        lic_data = init_or_read_license()
+        if lic_data.get("license_type") == "7_DAY_SOVEREIGN_PILOT":
+            if is_valid and days_left > 0:
+                st.warning(f"⏱️ 7-Day Sovereign Pilot: **{days_left} Days Remaining**")
+            elif not is_valid or lic_status == "EXPIRED":
+                st.error("🛑 7-Day Pilot Expired: Tier 1 Locked")
+    except Exception:
+        pass
+
     tier_opts = [
         TIER_0_CEO,
         TIER_1_PERSONAL,
@@ -278,6 +364,11 @@ def render_tier_switcher_sidebar():
     if cur_tier == TIER_LOCKED:
         st.error("HARDWARE LOCKOUT: DEVICE QUOTA EXCEEDED.")
         return
+    if cur_tier == TIER_EXPIRED:
+        st.error("TRIAL EXPIRED: TIER 1 LOCKOUT ACTIVE.")
+
+    if st.session_state.get("sb_commercial_tier_selector") != cur_tier and cur_tier in tier_opts:
+        st.session_state["sb_commercial_tier_selector"] = cur_tier
 
     selected_tier = st.selectbox(
         "Active License Tier:",
@@ -288,6 +379,6 @@ def render_tier_switcher_sidebar():
         label_visibility="collapsed"
     )
     
-    if selected_tier != cur_tier:
+    if selected_tier != cur_tier and cur_tier != TIER_EXPIRED and cur_tier != TIER_LOCKED:
         set_current_tier(selected_tier)
         st.rerun()
