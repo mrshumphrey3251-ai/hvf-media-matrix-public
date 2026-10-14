@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Sovereign Commercial Licensing & Tier Access Controller
 Role-Based Access Control (RBAC) & Maintenance Lockout Engine
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
@@ -54,10 +54,10 @@ MODULE_TIER_MAPPING = {
     "📝 Feedback Hub": TIER_1_COMMS,
     "📨 Sovereign Dispatch Deck": TIER_1_COMMS,
     "📡 Sovereign Comms Deck": TIER_1_COMMS,
-    "🚨 NOAA Radar": TIER_1_COMMS,  # Transferred to Tier 1 per directive
+    "🚨 NOAA Radar": TIER_1_COMMS,
     
     # Tier 1.5 Entitlements ($39.99/mo and above)
-    "💬 Sovereign Command": TIER_COMMAND,  # Assigned to $39.99 Command Tier
+    "💬 Sovereign Command": TIER_COMMAND,
     
     # Tier 2 Entitlements ($299/mo and above)
     "🎛️ Master C2 Cockpit": TIER_2_SCADA,
@@ -188,33 +188,32 @@ def render_maintenance_screen(module_name: str):
             st.rerun()
 
 def render_tier_switcher_sidebar():
-    with st.sidebar:
-        st.markdown("""
-        <div style="background-color: #0b110e; border: 1px solid #00ff88; border-radius: 6px; padding: 10px; margin-bottom: 10px;">
-            <div style="color: #00ff88; font-weight: bold; font-size: 0.8em; letter-spacing: 1px;">ACTIVE LICENSE TIER</div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        tier_opts = [
-            TIER_0_CEO,
-            TIER_1_COMMS,
-            TIER_COMMAND,
-            TIER_2_SCADA,
-            TIER_3_DRONE
-        ]
-        
-        cur_tier = get_current_tier()
-        cur_idx = tier_opts.index(cur_tier) if cur_tier in tier_opts else 0
-        
-        selected_tier = st.selectbox(
-            "Active License Tier:",
-            tier_opts,
-            index=cur_idx,
-            format_func=lambda x: TIER_METADATA.get(x, {}).get("label", x),
-            key="sb_commercial_tier_selector",
-            label_visibility="collapsed"
-        )
-        
-        if selected_tier != cur_tier:
-            set_current_tier(selected_tier)
-            st.rerun()
+    st.markdown("""
+    <div style="background-color: #0b110e; border: 1px solid #00ff88; border-radius: 6px; padding: 10px; margin-bottom: 10px;">
+        <div style="color: #00ff88; font-weight: bold; font-size: 0.8em; letter-spacing: 1px;">ACTIVE LICENSE TIER</div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    tier_opts = [
+        TIER_0_CEO,
+        TIER_1_COMMS,
+        TIER_COMMAND,
+        TIER_2_SCADA,
+        TIER_3_DRONE
+    ]
+    
+    cur_tier = get_current_tier()
+    cur_idx = tier_opts.index(cur_tier) if cur_tier in tier_opts else 0
+    
+    selected_tier = st.selectbox(
+        "Active License Tier:",
+        tier_opts,
+        index=cur_idx,
+        format_func=lambda x: TIER_METADATA.get(x, {}).get("label", x),
+        key="sb_commercial_tier_selector",
+        label_visibility="collapsed"
+    )
+    
+    if selected_tier != cur_tier:
+        set_current_tier(selected_tier)
+        st.rerun()
