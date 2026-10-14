@@ -387,8 +387,13 @@ def render_tier_switcher_sidebar():
     if cur_tier == TIER_EXPIRED:
         st.error("PILOT CONCLUDED: ALL MODULES LOCKED.")
 
-    if st.session_state.get("sb_commercial_tier_selector") != cur_tier and cur_tier in tier_opts:
-        st.session_state["sb_commercial_tier_selector"] = cur_tier
+    def _on_tier_change_callback():
+        new_choice = st.session_state.get("sb_commercial_tier_selector")
+        if new_choice:
+            st.session_state["ebony_commercial_tier"] = new_choice
+
+    if "ebony_commercial_tier" not in st.session_state:
+        st.session_state["ebony_commercial_tier"] = cur_tier
 
     selected_tier = st.selectbox(
         "Active License Tier:",
@@ -396,9 +401,6 @@ def render_tier_switcher_sidebar():
         index=cur_idx,
         format_func=lambda x: TIER_METADATA.get(x, {}).get("label", x),
         key="sb_commercial_tier_selector",
+        on_change=_on_tier_change_callback,
         label_visibility="collapsed"
     )
-    
-    if selected_tier != cur_tier and cur_tier != TIER_EXPIRED and cur_tier != TIER_LOCKED:
-        set_current_tier(selected_tier)
-        st.rerun()

@@ -2211,8 +2211,17 @@ elif active_module == "📨 Sovereign Dispatch Deck":
 
     render_communications_dispatch_ui(key_suffix="sovereign_deck_main")
 elif active_module == "📡 Sovereign Comms Deck":
-    from sovereign_comms_core import SovereignCommsEngine
-    SovereignCommsEngine.render()
+    _c_tier = get_current_tier()
+    _allowed, _req, _is_m = check_module_access(_c_tier, "📡 Sovereign Comms Deck")
+    if not _allowed:
+        if _is_m:
+            render_maintenance_screen("📡 Sovereign Comms Deck")
+        else:
+            render_tier_restriction_screen("📡 Sovereign Comms Deck", _req, _c_tier)
+    else:
+
+        from sovereign_comms_core import SovereignCommsEngine
+        SovereignCommsEngine.render()
 
 elif active_module == "🌾 Grain Silo Aeration":
     st.subheader("🌾 SOVEREIGN GRAIN SILO AERATION & BIOMASS PRESERVATION")
