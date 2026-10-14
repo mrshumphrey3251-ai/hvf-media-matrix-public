@@ -1,0 +1,12 @@
+﻿{
+  "stripe_publishable_key": "pk_live_CUSTOMER_ENTER_KEY",
+  "stripe_secret_key": "sk_live_CUSTOMER_ENTER_KEY",
+  "webhook_secret": "whsec_CUSTOMER_ENTER_KEY",
+  "custom_payment_links": {
+    "TIER_1_PERSONAL": "https://buy.stripe.com/your_tier1_link",
+    "TIER_COMMAND": "https://buy.stripe.com/your_tier15_link",
+    "TIER_2_VIP": "https://buy.stripe.com/your_tier2_link",
+    "TIER_3_ENTERPRISE": "https://buy.stripe.com/your_tier3_link",
+    "TIER_APPLIANCE": "https://buy.stripe.com/your_appliance_link"
+  }
+}
