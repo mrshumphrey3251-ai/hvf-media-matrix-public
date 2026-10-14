@@ -8,12 +8,12 @@ import streamlit as st
 import json
 from pathlib import Path
 
-# Tier Identifiers
+# Commercial Tier Identifiers
 TIER_0_CEO = "TIER_0_CEO"
-TIER_1_COMMS = "TIER_1_COMMS"
+TIER_1_PERSONAL = "TIER_1_PERSONAL"
 TIER_COMMAND = "TIER_COMMAND"
-TIER_2_SCADA = "TIER_2_SCADA"
-TIER_3_DRONE = "TIER_3_DRONE"
+TIER_2_VIP = "TIER_2_VIP"
+TIER_3_ENTERPRISE = "TIER_3_ENTERPRISE"
 
 TIER_METADATA = {
     TIER_0_CEO: {
@@ -22,53 +22,52 @@ TIER_METADATA = {
         "price": "Sovereign Executive Baseline",
         "desc": "Unrestricted administrative, hardware, and engineering access across all enclave matrices."
     },
-    TIER_1_COMMS: {
-        "name": "Tier 1: Sovereign Executive Comms & NOAA Radar",
-        "label": "Tier 1: Executive Comms & Radar ($19.99/mo)",
+    TIER_1_PERSONAL: {
+        "name": "🌱 Personal Executive & Comms",
+        "label": "🌱 Personal: Comms & Radar ($19.99/mo)",
         "price": "$19.99 / Month",
-        "desc": "Autonomous email triage, threat scrubbing, NOAA weather radar, contextual ghostwriting, and travel debriefs."
+        "desc": "Single-user node, zero-API email triage, travel autopilot, NOAA radar, and encrypted WORM ledger."
     },
     TIER_COMMAND: {
-        "name": "Tier 1.5: Sovereign Command & Tactical Intelligence",
-        "label": "Tier 1.5: Sovereign Command ($39.99/mo)",
+        "name": "⚡ Sovereign Command & Optical Surveillance",
+        "label": "⚡ Command: Tactical AI & Optics ($39.99/mo)",
         "price": "$39.99 / Month",
-        "desc": "Air-gapped deterministic neural routing, direct executive command terminal, and strategic ghostwriting."
+        "desc": "Air-gapped neural routing, 💬 Sovereign Command, and 📡 Live Optical Multi-Sensor Bus (Arducam & Tapo IP)."
     },
-    TIER_2_SCADA: {
-        "name": "Tier 2: Industrial SCADA & Grid Infrastructure",
-        "label": "Tier 2: SCADA & Grid ($299/mo)",
-        "price": "$299 / Month",
-        "desc": "Sub-16ms kinetic grid islanding, 450A busbar telemetry, and Title 61 power supervision."
+    TIER_2_VIP: {
+        "name": "💎 VIP Operational, Drone & B2B Engine",
+        "label": "💎 VIP: Drone, SCADA & B2B ($249/mo)",
+        "price": "$249 / Month",
+        "desc": "Sub-16ms kinetic grid islanding, Master C2 Cockpit, LinkedIn engine, drone diagnostics, and GLI analytics."
     },
-    TIER_3_DRONE: {
-        "name": "Tier 3: VIP Autonomous Drone Fleet & Physical Defense",
-        "label": "Tier 3: VIP Drone Defense ($999/mo)",
-        "price": "$999 / Month",
-        "desc": "Tethered continuous-power UAS, inductive docking, ODOT bridge crack detection, and Triad Swarm control."
+    TIER_3_ENTERPRISE: {
+        "name": "🏛️ Enterprise Sovereign Infrastructure",
+        "label": "🏛️ Enterprise CEO ($2,499/yr)",
+        "price": "$2,499 / Year",
+        "desc": "State infrastructure C2, multi-node keys, multi-facility yield, and Oklahoma Title 61 grant interlocks."
     }
 }
 
 MODULE_TIER_MAPPING = {
-    # Tier 1 Entitlements ($19.99/mo and above)
-    "📖 System Overview": TIER_1_COMMS,
-    "📝 Feedback Hub": TIER_1_COMMS,
-    "📨 Sovereign Dispatch Deck": TIER_1_COMMS,
-    "📡 Sovereign Comms Deck": TIER_1_COMMS,
-    "🚨 NOAA Radar": TIER_1_COMMS,
+    # Tier 1: Personal ($19.99/mo and above)
+    "📖 System Overview": TIER_1_PERSONAL,
+    "📝 Feedback Hub": TIER_1_PERSONAL,
+    "📨 Sovereign Dispatch Deck": TIER_1_PERSONAL,
+    "🚨 NOAA Radar": TIER_1_PERSONAL,
     
-    # Tier 1.5 Entitlements ($39.99/mo and above)
+    # Tier 1.5: Sovereign Command ($39.99/mo and above)
     "💬 Sovereign Command": TIER_COMMAND,
+    "📡 Sovereign Comms Deck": TIER_COMMAND,  # Active in Tier 1.5 (Optical Matrix & Sensors)
     
-    # Tier 2 Entitlements ($299/mo and above)
-    "🎛️ Master C2 Cockpit": TIER_2_SCADA,
-    "⚡ Sovereign Weather Scada": TIER_2_SCADA,
-    "⚡ Grain Silo Aeration And F": TIER_2_SCADA,
-    
-    # Tier 3 Entitlements ($999/mo and above)
-    "🌾 Drone Diagnostics": TIER_3_DRONE,
-    "📡 LinkedIn Engine": TIER_3_DRONE,
+    # Tier 2: VIP Member ($249/mo and above)
+    "🎛️ Master C2 Cockpit": TIER_2_VIP,
+    "📡 LinkedIn Engine": TIER_2_VIP,
+    "🌾 Drone Diagnostics": TIER_2_VIP,
+    "⚡ Sovereign Weather Scada": TIER_2_VIP,
+    "⚡ Grain Silo Aeration And F": TIER_2_VIP,
 }
 
+# Incomplete, Utility & Internal Engineering Scripts Locked Under Maintenance
 MAINTENANCE_MODULES = [
     "⚡ Autonomous Build Forge",
     "🛡️ CEO Authorization Gate",
@@ -93,10 +92,10 @@ MAINTENANCE_MODULES = [
 ]
 
 TIER_RANKS = {
-    TIER_1_COMMS: 1,
+    TIER_1_PERSONAL: 1,
     TIER_COMMAND: 2,
-    TIER_2_SCADA: 3,
-    TIER_3_DRONE: 4,
+    TIER_2_VIP: 3,
+    TIER_3_ENTERPRISE: 4,
     TIER_0_CEO: 99
 }
 
@@ -170,7 +169,7 @@ def render_maintenance_screen(module_name: str):
         </div>
         <div style="color: #ffffff; font-size: 0.95em; line-height: 1.6; border-top: 1px solid #3a2e1e; padding-top: 15px;">
             <p><strong>MODULE UNDER CALIBRATION:</strong> <span style="color: #ffcc00; font-weight: bold;">{module_name}</span></p>
-            <p><strong>OPERATIONAL STATUS:</strong> <span style="color: #ffaa00; font-weight: bold;">ACTIVE HARDENING & STATUTORY ALIGNMENT IN PROGRESS</span></p>
+            <p><strong>OPERATIONAL STATUS:</strong> <span style="color: #ffaa00; font-weight: bold;">ACTIVE HARDENING & CONSOLIDATION IN PROGRESS</span></p>
             <p style="margin-top: 15px; color: #d0d7de;">
                 This module is designated as an internal engineering workbench, diagnostic tool, or migration script. It is currently locked behind Level-5 R&D maintenance protocols to preserve commercial production integrity.
             </p>
@@ -196,10 +195,10 @@ def render_tier_switcher_sidebar():
     
     tier_opts = [
         TIER_0_CEO,
-        TIER_1_COMMS,
+        TIER_1_PERSONAL,
         TIER_COMMAND,
-        TIER_2_SCADA,
-        TIER_3_DRONE
+        TIER_2_VIP,
+        TIER_3_ENTERPRISE
     ]
     
     cur_tier = get_current_tier()

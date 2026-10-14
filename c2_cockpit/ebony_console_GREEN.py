@@ -1549,6 +1549,26 @@ elif active_module == "📖 System Overview":
     with tc2:
         with st.container(border=True):
             st.markdown("#### ⚡ COMMAND\n**$39.99/mo**")
+            st.caption("✔ Everything in Personal\n✔ 💬 Sovereign Command AI\n✔ 📡 Live Optical Sensor Bus\n✔ Arducam & Tapo IP Stream")
+    with tc3:
+        with st.container(border=True):
+            st.markdown("#### 💎 VIP MEMBER\n**$249/mo**")
+            st.caption("✔ Everything in Command\n✔ 🎛️ Master C2 Cockpit\n✔ 🌾 Drone Diagnostics\n✔ 📡 LinkedIn Engine")
+    with tc4:
+        with st.container(border=True):
+            st.markdown("#### 🏛️ ENTERPRISE\n**$2,499/yr**")
+            st.caption("✔ Everything in VIP\n✔ State Title 61 Master\n✔ Multi-Site Admin Keys\n✔ Dedicated Grant Deck")
+    with tc5:
+        with st.container(border=True):
+            st.markdown("#### 📦 APPLIANCE\n**$4,950 setup**")
+            st.caption("✔ Bare-Metal Hardware\n✔ 100% Air-Gapped Rack\n✔ sub-16ms Kinetic Island\n✔ + $299/mo Maint.")
+
+
+            st.markdown("#### 🌱 PERSONAL\n**$19.99/mo**")
+            st.caption("✔ Single-User Node\n✔ Sovereign Email Triage\n✔ 🚨 NOAA Weather Radar\n✔ Encrypted Vault")
+    with tc2:
+        with st.container(border=True):
+            st.markdown("#### ⚡ COMMAND\n**$39.99/mo**")
             st.caption("✔ Everything in Personal\n✔ 💬 Sovereign Command AI\n✔ Neural Prompt Routing\n✔ Contextual Ghostwriter")
     with tc3:
         with st.container(border=True):
