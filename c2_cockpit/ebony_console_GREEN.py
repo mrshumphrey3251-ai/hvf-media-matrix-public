@@ -1111,7 +1111,6 @@ with st.sidebar:
                 DYNAMIC_MODULES[_disp] = _f.name
 
 
-                render_communications_dispatch_ui()
     canonical_nav_options = [
         "🎛️ Master C2 Cockpit",
         "⚡ Autonomous Build Forge",
@@ -2124,11 +2123,13 @@ elif active_module == "📨 Sovereign Dispatch Deck":
             st.error("⚠️ Inbound transmission flagged for adversarial injection. Automated inference suspended.")
         else:
             updated_draft = st.text_area(
-                f"Tactical Executive Response Payload (Queue #{disp_id})", 
-                value=draft, 
+                f"Tactical Executive Response Payload (Queue #{disp_id})",
+                value=draft,
                 height=180,
-                key=f"stepper_draft_{disp_id}"
+                key=f"stepper_draft_{disp_id}",
             )
+
+            render_communications_dispatch_ui(key_suffix="sovereign_deck_main")
 
         col_act1, col_act2, col_act3 = st.columns([1.2, 1, 1.2])
         with col_act1:
