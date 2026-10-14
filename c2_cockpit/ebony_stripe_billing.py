@@ -6,8 +6,6 @@ Statutory Authority: Oklahoma Title 61 & OK HB 2992
 import os
 import sys
 import json
-import urllib.request
-import urllib.parse
 from pathlib import Path
 
 COCKPIT_DIR = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
@@ -73,11 +71,6 @@ def init_or_read_stripe_config() -> dict:
         return {}
 
 def get_checkout_url_for_tier(tier_key: str, base_url: str = "http://localhost:8501") -> tuple:
-    """
-    Returns (checkout_url, is_live_stripe).
-    If no registered live Stripe Payment Link is present, returns an in-cockpit
-    sovereign activation URL that fulfills the license directly on glass with zero XML errors.
-    """
     cfg = init_or_read_stripe_config()
     links = cfg.get("custom_payment_links", {})
     custom = links.get(tier_key, "").strip()
