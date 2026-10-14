@@ -591,13 +591,13 @@ with st.sidebar:
 st.title(f"⚡ {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
 st.caption(f"Active User: **{current_name}** | 🛡️ *Mode: {st.session_state.operation_mode}*")
 
-elif active_module == "🛡️ CEO Authorization Gate":
+if active_module == "🛡️ CEO Authorization Gate":
     import c2_gate_dashboard
     c2_gate_dashboard.render()
 
 elif active_module == "🎛️ Master C2 Cockpit":
-import c2_cockpit_dashboard
-c2_cockpit_dashboard.render()
+    import c2_cockpit_dashboard
+    c2_cockpit_dashboard.render()
 
 elif active_module == "💬 Sovereign Command":
     st.markdown("### ⚡ Sovereign Command Nexus")
