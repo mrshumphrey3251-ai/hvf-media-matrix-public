@@ -11,6 +11,19 @@ def _ebony_clean_ui_text(val):
 
 import sys
 from pathlib import Path
+import sys
+from pathlib import Path
+_cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+if str(_cdir) not in sys.path:
+    sys.path.insert(0, str(_cdir))
+from ebony_tier_manager import (
+    check_module_access,
+    render_tier_restriction_screen,
+    render_maintenance_screen,
+    render_tier_switcher_sidebar,
+    get_current_tier
+)
+
 
 
 def render_comms_gate(key_suffix="sovereign_deck_main"):
@@ -1094,6 +1107,7 @@ with st.sidebar:
         "📘 Omni-Industry Matrix",
     ]
     all_nav_options = canonical_nav_options + [k for k in DYNAMIC_MODULES.keys() if k not in canonical_nav_options]
+    render_tier_switcher_sidebar()
     active_module = st.radio("Navigation", all_nav_options, key="ebony_c2_authoritative_nav_selector", label_visibility="collapsed")
 
 
@@ -1112,6 +1126,17 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.title(f"⚡ {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
 st.caption(f"Active User: **{current_name}** | 🛡️ *Mode: {st.session_state.operation_mode}*")
+
+
+# --- SOVEREIGN COMMERCIAL TIER BARRIER & MAINTENANCE LOCKOUT ---
+_user_tier = get_current_tier()
+_allowed, _req_tier, _is_maint = check_module_access(_user_tier, active_module)
+if not _allowed:
+    if _is_maint:
+        render_maintenance_screen(active_module)
+    else:
+        render_tier_restriction_screen(active_module, _req_tier, _user_tier)
+    st.stop()
 
 if active_module == "🎛️ Master C2 Cockpit":
     import c2_cockpit_dashboard
