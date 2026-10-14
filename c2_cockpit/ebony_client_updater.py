@@ -1,4 +1,4 @@
-"""
+﻿"""
 E.B.O.N.Y. Sovereign Client Downstream Updater & License Enforcement Engine
 Authoritative Unidirectional Code Distribution & Hardware Node Locking Architecture
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
@@ -59,7 +59,7 @@ def init_or_read_license() -> dict:
     if not LICENSE_FILE.exists():
         pilot_license = {
             "license_type": "7_DAY_SOVEREIGN_PILOT",
-            "tier": "TIER_1_PERSONAL",
+            "tier": "TIER_COMMAND",
             "licensed_to": "Prospective Sovereign Subscriber",
             "hardware_signature": hw_id,
             "installed_at": datetime.now(timezone.utc).isoformat(),
@@ -149,3 +149,4 @@ def check_and_apply_downstream_updates() -> dict:
 
 if __name__ == "__main__":
     check_and_apply_downstream_updates()
+
