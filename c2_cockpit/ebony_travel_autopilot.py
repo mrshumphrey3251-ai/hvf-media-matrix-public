@@ -13,6 +13,14 @@ import argparse
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Enforce UTF-8 encoding across Windows console streams
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
 if str(cockpit_dir) not in sys.path:
     sys.path.insert(0, str(cockpit_dir))
@@ -25,6 +33,14 @@ from ebony_email_dispatcher import (
 )
 
 def run_travel_cycle(auto_send=True, email_summary_to=None):
+    # Enforce stream encoding inside execution thread
+    if hasattr(sys.stdout, "reconfigure"):
+        try:
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+            sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
     print("=" * 88)
     print("     E.B.O.N.Y. EXECUTIVE TRAVEL AUTOPILOT // AUTONOMOUS SWEEP ENGAGED      ")
     print(f"     TIMESTAMP: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')} | NODE: HVFNexus")
@@ -40,7 +56,10 @@ def run_travel_cycle(auto_send=True, email_summary_to=None):
         print(f"  • [{status}] {sender[:30]} | {subj[:40]}")
     print("\n[*] Compiling Executive Return Debrief from WORM Ledger...")
     debrief_text = generate_travel_debrief_report()
-    print(debrief_text)
+    try:
+        print(debrief_text)
+    except Exception:
+        print(debrief_text.encode("ascii", "replace").decode("ascii"))
     if email_summary_to and CONFIG_PATH.exists():
         try:
             import smtplib
@@ -54,7 +73,7 @@ def run_travel_cycle(auto_send=True, email_summary_to=None):
                 msg["From"] = acc["email"]
                 msg["To"] = email_summary_to
                 msg["Subject"] = f"E.B.O.N.Y. TRAVEL DEBRIEF: {processed_count} Transmissions Handled While Away"
-                msg.attach(MIMEText(debrief_text, "plain"))
+                msg.attach(MIMEText(debrief_text, "plain", "utf-8"))
                 context = ssl.create_default_context()
                 with smtplib.SMTP_SSL(acc["smtp_host"], acc["smtp_port"], context=context) as client:
                     client.login(acc["email"], acc["password"])

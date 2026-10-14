@@ -12,6 +12,14 @@ import sys
 from pathlib import Path
 
 def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
+    # Enforce stream encoding inside Streamlit worker thread
+    if hasattr(sys.stdout, "reconfigure"):
+        try:
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+            sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
     st.divider()
     st.markdown("## ✈️ EXECUTIVE TRAVEL AUTOPILOT // INBOX GHOSTWRITER & DEBRIEF")
     st.caption("Autonomous Inbound Ingestion, Contextual SMTP Auto-Response & Executive Return Briefing // Level-5 Authority")

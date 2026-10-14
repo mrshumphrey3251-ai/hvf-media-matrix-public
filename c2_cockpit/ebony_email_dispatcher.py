@@ -20,6 +20,14 @@ from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Enforce UTF-8 encoding across Windows console streams
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 DB_PATH = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\matrix_ledger.db")
 CONFIG_PATH = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\email_accounts.json")
 
@@ -238,7 +246,7 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                         reply["From"] = acc["email"]
                         reply["To"] = sender
                         reply["Subject"] = f"Re: {subject}"
-                        reply.attach(MIMEText(response_text, "plain"))
+                        reply.attach(MIMEText(response_text, "plain", "utf-8"))
                         if acc["smtp_port"] == 465:
                             with smtplib.SMTP_SSL(acc["smtp_host"], acc["smtp_port"], context=context) as smtp_client:
                                 smtp_client.login(acc["email"], acc["password"])
@@ -310,7 +318,7 @@ def generate_travel_debrief_report() -> str:
         "PRIORITY ACTION ITEMS REQUIRING DIRECT EXECUTIVE ATTENTION:"
     ]
     if not priority_flagged:
-        lines.append("  [✓] Zero urgent bottlenecks detected. All operational inquiries resolved autonomously.")
+        lines.append("  [OK] Zero urgent bottlenecks detected. All operational inquiries resolved autonomously.")
     else:
         for idx, item in enumerate(priority_flagged[:5], 1):
             ts = item[0][:19]
