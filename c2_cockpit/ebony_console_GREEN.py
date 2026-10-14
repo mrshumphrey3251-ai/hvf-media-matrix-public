@@ -13,13 +13,14 @@ import sys
 from pathlib import Path
 
 
-def render_communications_dispatch_ui():
-    st.markdown("### 📬 SOVEREIGN COMMUNICATIONS DISPATCH // EXECUTIVE LEDGER")
-    st.caption("Air-gapped Zero-API Email Ingestion & Autonomous Dispatch Attestation")
+def render_communications_dispatch_ui(key_suffix="deck"):
+    st.divider()
+    st.markdown("### 📋 SOVEREIGN COMMUNICATIONS AUDIT LEDGER")
+    st.caption("Air-gapped Zero-API Email Ingestion & Autonomous Dispatch Attestation // Local WORM Ledger")
     
     col_act, col_stat = st.columns([2, 1])
     with col_act:
-        if st.button("⚡ EXECUTE AUTONOMOUS INBOX POLL", key="btn_trigger_email_poll_hud", use_container_width=True):
+        if st.button("⚡ EXECUTE AUTONOMOUS INBOX POLL", key=f"btn_trigger_email_poll_{key_suffix}", use_container_width=True):
             try:
                 import sys
                 from pathlib import Path
@@ -65,13 +66,6 @@ def render_communications_dispatch_ui():
     except Exception as _err:
         st.error(f"Cannot query ledger: {_err}")
 
-_cockpit_dir = Path(__file__).resolve().parent
-if str(_cockpit_dir) not in sys.path:
-    sys.path.insert(0, str(_cockpit_dir))
-try:
-    from invariant_engine import harvest_enclave_ground_truth, enforce_bare_metal_invariants
-except ImportError:
-    from c2_cockpit.invariant_engine import harvest_enclave_ground_truth, enforce_bare_metal_invariants
 
 def generate_sovereign_audio_bytes(text: str) -> bytes:
     """Synthesizes complete executive text to WAV bytes via Windows .NET System.Speech.
