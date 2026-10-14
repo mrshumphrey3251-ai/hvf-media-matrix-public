@@ -1540,32 +1540,29 @@ elif active_module == "🌾 Drone Diagnostics":
 6. Tap **Start Streaming**.""")
 
 elif active_module == "📖 System Overview":
-    st.subheader("💳 Commercial Subscriptions & Features")
-    feedback_cleared = has_user_submitted_feedback(current_user)
-    is_unlocked = feedback_cleared or current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO"]
+    st.markdown("### 💳 Commercial Subscriptions & Features")
+    tc1, tc2, tc3, tc4, tc5 = st.columns(5)
+    with tc1:
+        with st.container(border=True):
+            st.markdown("#### 🌱 PERSONAL\n**$19.99/mo**")
+            st.caption("✔ Single-User Node\n✔ Sovereign Email Triage\n✔ 🚨 NOAA Weather Radar\n✔ Encrypted Vault")
+    with tc2:
+        with st.container(border=True):
+            st.markdown("#### ⚡ COMMAND\n**$39.99/mo**")
+            st.caption("✔ Everything in Personal\n✔ 💬 Sovereign Command AI\n✔ Neural Prompt Routing\n✔ Contextual Ghostwriter")
+    with tc3:
+        with st.container(border=True):
+            st.markdown("#### 💎 VIP MEMBER\n**$249/mo**")
+            st.caption("✔ Everything in Command\n✔ 🎛️ Master C2 Cockpit\n✔ 🌾 Drone Diagnostics\n✔ 📡 LinkedIn Engine")
+    with tc4:
+        with st.container(border=True):
+            st.markdown("#### 🏛️ ENTERPRISE\n**$2,499/yr**")
+            st.caption("✔ Everything in VIP\n✔ State Title 61 Master\n✔ Multi-Site Admin Keys\n✔ Dedicated Grant Deck")
+    with tc5:
+        with st.container(border=True):
+            st.markdown("#### 📦 APPLIANCE\n**$4,950 setup**")
+            st.caption("✔ Bare-Metal Hardware\n✔ 100% Air-Gapped Rack\n✔ sub-16ms Kinetic Island\n✔ + $299/mo Maint.")
 
-    if not is_unlocked: st.warning("🔒 **COMMERCIAL ACCESS LOCKED:** You must submit field telemetry and a platform review in the **Feedback Hub** (Tab 6) before commercial tier gateways are unlocked.")
-
-    col_p1, col_p2, col_p3, col_p4 = st.columns(4)
-    with col_p1:
-        st.markdown(f'<div class="pricing-card"><div class="pricing-tier">🌱 PERSONAL</div><div class="pricing-price">$19.99<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Single-User Node<br>✔ Dual-Engine AI<br>✔ Encrypted Vault</p></div>', unsafe_allow_html=True)
-        if is_unlocked: st.link_button("🌱 Personal ($19.99/mo)", STRIPE_PERSONAL_LINK, width='stretch')
-        else: st.button("🔒 Locked", disabled=True, key="lock1", width='stretch')
-    with col_p2:
-        st.markdown(f'<div class="pricing-card"><div class="pricing-tier">💎 VIP MEMBER</div><div class="pricing-price">$249<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Everything in Personal<br>✔ Drone Spectator<br>✔ GLI Analytics</p></div>', unsafe_allow_html=True)
-        if is_unlocked: st.link_button("💎 VIP ($249/mo)", STRIPE_MONTHLY_LINK, width='stretch')
-        else: st.button("🔒 Locked", disabled=True, key="lock2", width='stretch')
-    with col_p3:
-        st.markdown(f'<div class="pricing-card" style="border-color:#70FF00;"><div class="pricing-tier">🏛️ ENTERPRISE CEO</div><div class="pricing-price">$2,499<span style="font-size:0.85rem;color:#8899A6;">/yr</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Client Dashboard<br>✔ Issue Staff Keys<br>✔ Multi-Ranch Yield</p></div>', unsafe_allow_html=True)
-        if is_unlocked: st.link_button("🏛️ Enterprise Annual", STRIPE_ANNUAL_LINK, width='stretch')
-        else: st.button("🔒 Locked", disabled=True, key="lock3", width='stretch')
-    with col_p4:
-        st.markdown(f'<div class="pricing-card"><div class="pricing-tier">📦 HARDWARE APPLIANCE</div><div class="pricing-price">$4,950<span style="font-size:0.85rem;color:#8899A6;">setup</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Physical Server<br>✔ 100% Air-Gapped<br>✔ + $299/mo Maint.</p></div>', unsafe_allow_html=True)
-        if is_unlocked: st.link_button("📦 Order Hardware", PAYPAL_PAY_LINK, width='stretch')
-        else: st.button("🔒 Locked", disabled=True, key="lock4", width='stretch')
-
-    st.divider()
-    if current_role in ["CEO", "SUPER_ADMIN"]:
         with st.expander("👑 [MASTER PLATFORM ROOT]: Live Diagnostic Mesh & Summary", expanded=True):
             st.markdown("#### 🖥️ Master Node Diagnostic Readout")
             conn = sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)
