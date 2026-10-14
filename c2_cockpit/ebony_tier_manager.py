@@ -1,6 +1,6 @@
 """
 E.B.O.N.Y. Sovereign Commercial Licensing & Tier Access Controller
-Role-Based Access Control (RBAC), Maintenance & Anti-Piracy Lockout Engine
+Role-Based Access Control (RBAC), Maintenance & Dynamic Multi-Node Locking Engine
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Statutory Authority: Oklahoma Title 61 & OK HB 2992
 """
@@ -9,7 +9,6 @@ import json
 from pathlib import Path
 import sys
 
-# Ensure updater is accessible
 _cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
 if str(_cdir) not in sys.path:
     sys.path.insert(0, str(_cdir))
@@ -19,7 +18,7 @@ try:
 except Exception:
     pass
 
-# Tier Identifiers
+# Commercial Tier Identifiers
 TIER_0_CEO = "TIER_0_CEO"
 TIER_1_PERSONAL = "TIER_1_PERSONAL"
 TIER_COMMAND = "TIER_COMMAND"
@@ -27,36 +26,50 @@ TIER_2_VIP = "TIER_2_VIP"
 TIER_3_ENTERPRISE = "TIER_3_ENTERPRISE"
 TIER_LOCKED = "TIER_LOCKED_UNAUTHORIZED"
 
+# Dynamic Hardware Device Allocations Per Tier
+TIER_NODE_LIMITS = {
+    TIER_1_PERSONAL: 1,     # 1 Device Node ($19.99/mo)
+    TIER_COMMAND: 3,        # 3 Device Nodes ($39.99/mo)
+    TIER_2_VIP: 5,          # 5 Device Nodes ($249/mo)
+    TIER_3_ENTERPRISE: 10,  # 10 Device Nodes ($2,499/yr)
+    TIER_0_CEO: 999         # Unlimited Enterprise Operation Nodes
+}
+
 TIER_METADATA = {
     TIER_0_CEO: {
         "name": "👑 Level-5 Sovereign Root (CEO Clearance)",
-        "label": "👑 CEO Clearance (Unrestricted)",
+        "label": "👑 CEO Clearance (Unlimited Nodes)",
         "price": "Sovereign Executive Baseline",
-        "desc": "Unrestricted administrative, hardware, and engineering access across all enclave matrices."
+        "nodes": "Unlimited Nodes",
+        "desc": "Unrestricted administrative, hardware, and engineering access across unlimited machines."
     },
     TIER_1_PERSONAL: {
-        "name": "🌱 Personal Executive & Comms",
-        "label": "🌱 Personal: Comms & Radar ($19.99/mo)",
+        "name": "🌱 Personal Executive & Comms (1 Device)",
+        "label": "🌱 Personal: 1 Device ($19.99/mo)",
         "price": "$19.99 / Month",
+        "nodes": "1 Device Node",
         "desc": "Single-user node, zero-API email triage, travel autopilot, NOAA radar, and encrypted WORM ledger."
     },
     TIER_COMMAND: {
-        "name": "⚡ Sovereign Command & Optical Surveillance",
-        "label": "⚡ Command: Tactical AI & Optics ($39.99/mo)",
+        "name": "⚡ Sovereign Command & Optical Surveillance (3 Devices)",
+        "label": "⚡ Command: 3 Devices ($39.99/mo)",
         "price": "$39.99 / Month",
-        "desc": "Air-gapped neural routing, 💬 Sovereign Command, and 📡 Live Optical Multi-Sensor Bus (Arducam & Tapo IP)."
+        "nodes": "3 Device Nodes",
+        "desc": "Air-gapped neural routing, 💬 Sovereign Command, and 📡 Optical Multi-Sensor Bus across up to 3 authorized machines."
     },
     TIER_2_VIP: {
-        "name": "💎 VIP Operational, Drone & B2B Engine",
-        "label": "💎 VIP: Drone, SCADA & B2B ($249/mo)",
+        "name": "💎 VIP Operational, Drone & B2B Engine (5 Devices)",
+        "label": "💎 VIP: 5 Devices ($249/mo)",
         "price": "$249 / Month",
-        "desc": "Sub-16ms kinetic grid islanding, Master C2 Cockpit, LinkedIn engine, drone diagnostics, and GLI analytics."
+        "nodes": "5 Device Nodes",
+        "desc": "Sub-16ms kinetic grid islanding, Master C2 Cockpit, LinkedIn engine, drone diagnostics, and GLI analytics across up to 5 machines."
     },
     TIER_3_ENTERPRISE: {
-        "name": "🏛️ Enterprise Sovereign Infrastructure",
-        "label": "🏛️ Enterprise CEO ($2,499/yr)",
+        "name": "🏛️ Enterprise Sovereign Infrastructure (10 Devices)",
+        "label": "🏛️ Enterprise: 10 Devices ($2,499/yr)",
         "price": "$2,499 / Year",
-        "desc": "State infrastructure C2, multi-node keys, multi-facility yield, and Oklahoma Title 61 grant interlocks."
+        "nodes": "10 Device Nodes",
+        "desc": "State infrastructure C2, 10 multi-node keys, multi-facility yield, and Oklahoma Title 61 grant interlocks."
     }
 }
 
@@ -109,8 +122,6 @@ TIER_RANKS = {
 }
 
 def get_current_tier() -> str:
-    # HARDWARE AUDIT HOOK
-    # If the user is CEO, bypass hardware checks for development
     active_tier = st.session_state.get("ebony_commercial_tier", TIER_0_CEO)
     if active_tier == TIER_0_CEO:
         return active_tier
@@ -129,7 +140,7 @@ def set_current_tier(tier: str):
 
 def check_module_access(user_tier: str, module_name: str) -> tuple:
     if user_tier == TIER_LOCKED:
-        return False, "HARDWARE_NODE_LOCKED", False
+        return False, "HARDWARE_NODE_LIMIT_EXCEEDED", False
 
     if user_tier == TIER_0_CEO:
         return True, "", False
@@ -157,20 +168,23 @@ def render_tier_restriction_screen(module_name: str, required_tier_name: str, cu
             
         st.markdown(f"""
         <div style="background-color: #140b0b; border: 2px solid #ff4444; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
-            <h2 style="color: #ff4444; margin-top: 0; font-family: monospace; letter-spacing: 2px;">🛑 UNAUTHORIZED HARDWARE DETECTED // PIRACY LOCKOUT</h2>
+            <h2 style="color: #ff4444; margin-top: 0; font-family: monospace; letter-spacing: 2px;">🛑 DEVICE LIMIT EXCEEDED // PIRACY LOCKOUT</h2>
             <div style="color: #a0aab2; font-size: 0.9em; font-family: monospace; margin-bottom: 15px;">
                 <strong>SECURITY ENFORCEMENT:</strong> Humphrey Virtual Farms LLC | <strong>CAGE:</strong> 1AHA8 | <strong>UEI:</strong> S1M4ENLHTDH5<br>
                 <strong>STATUTORY JURISDICTION:</strong> State of Oklahoma Title 61 & HB 2992 Commercial Enclave
             </div>
             <div style="color: #ffffff; font-size: 0.95em; line-height: 1.6; border-top: 1px solid #3a1e1e; padding-top: 15px;">
                 <p><strong>ATTEMPTED MODULE:</strong> <span style="color: #ff8888; font-weight: bold;">{module_name}</span></p>
-                <p><strong>HARDWARE STATUS:</strong> <span style="color: #ff4444; font-weight: bold;">NODE SIGNATURE MISMATCH</span></p>
-                <p><strong>CURRENT MACHINE ID:</strong> <code style="color: #ffcc00;">{hw_id}</code></p>
+                <p><strong>HARDWARE STATUS:</strong> <span style="color: #ff4444; font-weight: bold;">NODE SEAT CAPACITY REACHED</span></p>
+                <p><strong>MACHINE FINGERPRINT:</strong> <code style="color: #ffcc00;">{hw_id}</code></p>
                 <p style="margin-top: 15px; color: #d0d7de;">
-                    This E.B.O.N.Y. installation has detected a hardware fingerprint mismatch. The active cryptographic license is bound to a different physical motherboard and MAC address. 
-                    Copying the application folder to unauthorized devices violates commercial licensing terms. 
+                    This subscription has reached its maximum authorized device quota:
+                    <br>• Tier 1: 1 Device Node ($19.99/mo)
+                    <br>• Tier 1.5: 3 Device Nodes ($39.99/mo)
+                    <br>• Tier 2: 5 Device Nodes ($249/mo)
+                    <br>• Tier 3: 10 Device Nodes ($2,499/yr)
                     <br><br>
-                    To provision this new device, purchase an additional Single-User Node license or upgrade to an Enterprise Multi-Site agreement.
+                    To authorize this new physical machine, upgrade your subscription tier to unlock additional hardware seats.
                 </p>
             </div>
         </div>
@@ -224,7 +238,7 @@ def render_maintenance_screen(module_name: str):
             <p><strong>MODULE UNDER CALIBRATION:</strong> <span style="color: #ffcc00; font-weight: bold;">{module_name}</span></p>
             <p><strong>OPERATIONAL STATUS:</strong> <span style="color: #ffaa00; font-weight: bold;">ACTIVE HARDENING & CONSOLIDATION IN PROGRESS</span></p>
             <p style="margin-top: 15px; color: #d0d7de;">
-                This module is designated as an internal engineering workbench, diagnostic tool, or migration script. It is currently locked behind Level-5 R&D maintenance protocols to preserve commercial production integrity.
+                This module has been consolidated or designated as an internal engineering workbench. It is currently locked behind Level-5 R&D maintenance protocols to preserve commercial production integrity.
             </p>
             <p style="color: #8b949e; font-size: 0.85em;">
                 Access is restricted strictly to Level-5 Authorized Systems Engineering Personnel. Commercial subscribers should navigate to their authorized command modules.
@@ -257,9 +271,8 @@ def render_tier_switcher_sidebar():
     cur_tier = get_current_tier()
     cur_idx = tier_opts.index(cur_tier) if cur_tier in tier_opts else 0
     
-    # Do not let locked users escape the lock via the sidebar
     if cur_tier == TIER_LOCKED:
-        st.error("SYSTEM NODE LOCKED TO HARDWARE SIGNATURE.")
+        st.error("HARDWARE LOCKOUT: DEVICE QUOTA EXCEEDED.")
         return
 
     selected_tier = st.selectbox(
