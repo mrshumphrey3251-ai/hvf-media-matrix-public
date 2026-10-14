@@ -1116,6 +1116,8 @@ with st.sidebar:
                 _disp = f"⚡ {_f.stem.replace('_', ' ').title()}"
                 DYNAMIC_MODULES[_disp] = _f.name
 
+
+                render_communications_dispatch_ui()
     canonical_nav_options = [
         "🎛️ Master C2 Cockpit",
         "⚡ Autonomous Build Forge",
@@ -1341,7 +1343,7 @@ elif active_module == "💬 Sovereign Command":
                 st.divider()
     with col_hud:
         st.subheader("🛡️ Real-Time Telemetry HUD")
-        tab_ledger, tab_scada, tab_swarm, tab_comm = st.tabs(["C2 Audit Ledger", "SCADA Telemetry", "Agent Swarm", "📬 Communications Dispatch"])
+        tab_ledger, tab_scada, tab_swarm = st.tabs(["C2 Audit Ledger", "SCADA Telemetry", "Agent Swarm"])
 
         with tab_ledger:
             st.markdown("**Local SQLite WORM Ledger (matrix_ledger.db)**")
@@ -1394,8 +1396,6 @@ elif active_module == "💬 Sovereign Command":
 
 
 
-        with tab_comm:
-            render_communications_dispatch_ui()
 elif active_module == "📡 LinkedIn Engine":
 
     if current_role in ["CEO", "SUPER_ADMIN"]:
