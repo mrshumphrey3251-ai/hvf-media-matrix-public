@@ -20,7 +20,6 @@ from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timezone
 from pathlib import Path
 
-# Enforce UTF-8 encoding across Windows console streams
 if hasattr(sys.stdout, "reconfigure"):
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -163,7 +162,7 @@ def generate_autonomous_response(sender: str, subject: str, body: str) -> tuple[
             "Executive Office // Humphrey Virtual Farms LLC"
         )
     else:
-        category = "GENERAL_EXECUTIVE_DISPATCH"
+        category = "GENERAL_INQUIRY"
         response = (
             "Thank you for reaching out to Humphrey Virtual Farms LLC.\n\n"
             "Your transmission has been securely ingested by the E.B.O.N.Y. Sovereign Dispatch Engine and committed "
@@ -186,6 +185,7 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
     if target_email not in config:
         return [{"status": "ERROR", "message": f"Account {target_email} not registered."}]
     acc = config[target_email]
+    my_email_clean = acc["email"].strip().lower()
     results = []
     try:
         context = ssl.create_default_context()
@@ -196,7 +196,7 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
             if status != "OK" or not messages[0]:
                 return [{"status": "IDLE", "message": "Zero unread messages detected in INBOX."}]
             msg_ids = messages[0].split()
-            for m_id in msg_ids[-15:]:
+            for m_id in msg_ids[-20:]:
                 res, data = imap_client.fetch(m_id, "(RFC822)")
                 if res != "OK": continue
                 raw_email = data[0][1]
@@ -206,6 +206,26 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                 raw_subj = msg.get("Subject", "No Subject")
                 subject = clean_decode_header(raw_subj)
                 uid = msg.get("Message-ID", str(m_id))
+                
+                # --- SELF-LOOP CIRCUIT BREAKER ---
+                sender_lower = sender.lower()
+                subj_lower = subject.lower()
+                if my_email_clean in sender_lower or "humphreyvirtualfarm" in sender_lower or "[sovereign_local]" in subj_lower:
+                    now_ts = datetime.now(timezone.utc).isoformat()
+                    conn = sqlite3.connect(str(DB_PATH))
+                    cur = conn.cursor()
+                    cur.execute("SELECT id FROM email_dispatch_ledger WHERE message_uid=?", (uid,))
+                    if not cur.fetchone():
+                        cur.execute("""
+                            INSERT INTO email_dispatch_ledger 
+                            (timestamp, sender, recipient, subject, incoming_intent, drafted_response, status, classification, message_uid)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """, (now_ts, sender, acc["email"], subject, "Self-Originated / Local Daemon Transmission", "SELF_LOOP_SUPPRESSED_AUTO_ARCHIVED", "ARCHIVED_LOOP", "INTERNAL_SYSTEM_LOOP", uid))
+                        conn.commit()
+                    conn.close()
+                    continue
+
+                # --- BULK / MARKETING FILTER ---
                 is_bulk = False
                 if msg.get("List-Unsubscribe") or msg.get("Precedence", "").lower() in ["bulk", "list", "junk"]:
                     is_bulk = True
@@ -223,6 +243,7 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                         conn.commit()
                     conn.close()
                     continue
+
                 body_content = ""
                 if msg.is_multipart():
                     for part in msg.walk():
@@ -231,6 +252,7 @@ def poll_and_auto_dispatch(email_addr: str = None, auto_send: bool = False) -> l
                             break
                 else:
                     body_content = msg.get_payload(decode=True).decode(errors="replace")
+
                 response_text, classification = generate_autonomous_response(sender, subject, body_content)
                 now_ts = datetime.now(timezone.utc).isoformat()
                 dispatch_status = "DRAFT_READY"
@@ -297,9 +319,14 @@ def generate_travel_debrief_report() -> str:
     conn.close()
     total = len(rows)
     auto_resolved = sum(1 for r in rows if r[4] == 'SENT_AUTONOMOUSLY')
-    archived_bulk = sum(1 for r in rows if r[4] == 'ARCHIVED_BULK')
+    archived_bulk = sum(1 for r in rows if r[4] in ['ARCHIVED_BULK', 'ARCHIVED_LOOP'])
     drafts_pending = sum(1 for r in rows if r[4] == 'DRAFT_READY')
-    priority_flagged = [r for r in rows if any(k in (r[3] or '').upper() for k in ['GRANT', 'STATE', 'EXECUTIVE', 'TITLE61', 'ODOT'])]
+    priority_flagged = [
+        r for r in rows 
+        if r[4] not in ['ARCHIVED_BULK', 'ARCHIVED_LOOP', 'RESOLVED_BY_CEO'] 
+        and (r[3] in ['STATE_INFRASTRUCTURE_GRANT', 'ODOT_AEROSPACE_INSPECTION', 'EXECUTIVE_SCHEDULING', 'HIGH_PRIORITY_REVIEW']
+             or any(k in (r[3] or '').upper() for k in ['GRANT', 'ODOT', 'TITLE61', 'HB2992']))
+    ]
     lines = [
         "=" * 92,
         "     E.B.O.N.Y. EXECUTIVE TRAVEL RETURN DEBRIEF // MISSION READOUT REPORT      ",
@@ -311,7 +338,7 @@ def generate_travel_debrief_report() -> str:
         "EXECUTIVE MACRO-LEVEL SUMMARY WHILE AWAY:",
         f"• Total Transmissions Ingested:        {total}",
         f"• Autonomously Answered & Dispatched:  {auto_resolved}",
-        f"• Commercial Newsletters Archived:    {archived_bulk}",
+        f"• Newsletters & System Loops Archived: {archived_bulk}",
         f"• Drafts Pending Executive Review:     {drafts_pending}",
         f"• High-Priority Action Items:          {len(priority_flagged)}",
         "-" * 92,

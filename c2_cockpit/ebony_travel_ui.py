@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Executive Travel Autopilot, Priority Triage & Response Inspector
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Tier: Sovereign Tier-1 Executive Ingestion ($19.99/mo Baseline)
@@ -45,8 +45,15 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
             
             total_count = len(records)
             sent_count = sum(1 for r in records if r["status"] == "SENT_AUTONOMOUSLY")
-            archived_count = sum(1 for r in records if r["status"] == "ARCHIVED_BULK")
-            flagged_count = sum(1 for r in records if any(k in (r["classification"] or "").upper() for k in ["GRANT", "STATE", "EXECUTIVE", "TITLE61", "ODOT"]))
+            archived_count = sum(1 for r in records if r["status"] in ["ARCHIVED_BULK", "ARCHIVED_LOOP"])
+            
+            # True Action Items: must be an active priority category and NOT archived or resolved
+            flagged_count = sum(
+                1 for r in records 
+                if r["status"] not in ["ARCHIVED_BULK", "ARCHIVED_LOOP", "RESOLVED_BY_CEO"]
+                and (r["classification"] in ["STATE_INFRASTRUCTURE_GRANT", "ODOT_AEROSPACE_INSPECTION", "EXECUTIVE_SCHEDULING", "HIGH_PRIORITY_REVIEW"]
+                     or any(k in (r["classification"] or "").upper() for k in ["GRANT", "ODOT", "TITLE61", "HB2992"]))
+            )
         except Exception:
             pass
 
@@ -103,7 +110,12 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
 
     # TAB 1: PRIORITY MATTERS REQUIRING ATTENTION
     with tab_priority:
-        priority_items = [r for r in records if any(k in (r["classification"] or "").upper() for k in ["GRANT", "STATE", "EXECUTIVE", "TITLE61", "ODOT"])]
+        priority_items = [
+            r for r in records 
+            if r["status"] not in ["ARCHIVED_BULK", "ARCHIVED_LOOP", "RESOLVED_BY_CEO"]
+            and (r["classification"] in ["STATE_INFRASTRUCTURE_GRANT", "ODOT_AEROSPACE_INSPECTION", "EXECUTIVE_SCHEDULING", "HIGH_PRIORITY_REVIEW"]
+                 or any(k in (r["classification"] or "").upper() for k in ["GRANT", "ODOT", "TITLE61", "HB2992"]))
+        ]
         if not priority_items:
             st.success("🟢 Zero urgent bottlenecks detected. All operational inquiries have been categorized and resolved.")
         else:
