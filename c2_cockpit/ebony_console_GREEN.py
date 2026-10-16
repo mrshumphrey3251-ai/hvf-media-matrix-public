@@ -1,4 +1,12 @@
-﻿
+import sys
+from pathlib import Path
+
+# Force active cockpit directory to absolute index 0 of sys.path
+_cockpit_dir = str(Path(__file__).resolve().parent)
+if _cockpit_dir not in sys.path:
+    sys.path.insert(0, _cockpit_dir)
+
+
 def _ebony_clean_ui_text(val):
     if isinstance(val, dict): return val.get('reply') or val.get('response') or str(val)
     if isinstance(val, str) and val.strip().startswith('{') and ('"reply"' in val or "'reply'" in val):
@@ -211,7 +219,12 @@ except Exception:
         st.markdown("### 🏛️ Sovereign Knowledge Academy // Course Module")
         st.caption("Level-5 Sovereign Curriculum & Technical Integration")
         st.info("Interactive course telemetry active. Modules staged for operator review.")
-from hvf_verticals_engine import HVFVerticalsEngine, MACRO_VERTICAL_REGISTRY
+try:
+    from hvf_verticals_engine import HVFVerticalsEngine, MACRO_VERTICAL_REGISTRY
+except ImportError:
+    # Explicit fallback to active file directory
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from hvf_verticals_engine import HVFVerticalsEngine, MACRO_VERTICAL_REGISTRY
 
 # =========================================================================
 # EXACT SIDEBAR COMMAND MODULE DEFINITIONS (NOT VERTICALS)
