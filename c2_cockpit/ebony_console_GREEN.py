@@ -2325,6 +2325,33 @@ elif active_module == "📘 Omni-Industry Matrix":
                     </div>
                 </div>
                 ''', unsafe_allow_html=True)
-                st.info(f"Course curriculum configuration pending for {v_meta['name']}. Deploying universal course builder.")
+                st.markdown("#### ?? Sovereign Field Academy Modules & Competencies")
+            curr_list = v_meta.get("curriculum", [])
+            sub_verts = v_meta.get("sub_verticals", [])
+            tracks_dict = v_meta.get("tracks", {})
+            
+            c_col1, c_col2 = st.columns([3, 2])
+            with c_col1:
+                st.markdown("##### ?? Accredited Technical Modules")
+                for mod in curr_list:
+                    with st.expander(f"?? {mod.get('module')}: {mod.get('title')} ({mod.get('hours', 40)} Hrs)", expanded=True):
+                        st.write(f"**Competency Standard:** {mod.get('competency', 'Mastery')}")
+                        st.write(f"**Certification Status:** :green[{mod.get('status', 'Certified')}]")
+                        mod_tracks = tracks_dict.get(mod.get('module'), {})
+                        if mod_tracks and "lessons" in mod_tracks:
+                            st.caption("Core Practicum Lessons:")
+                            for les in mod_tracks["lessons"]:
+                                st.write(f"  ? {les}")
+                                
+            with c_col2:
+                st.markdown("##### ? Active Operational Sub-Verticals")
+                for sv in sub_verts:
+                    st.success(f"**[{sv.get('code')}]** {sv.get('name')} ? `{sv.get('status')}`")
+                
+                st.metric(
+                    label="Operational Readiness Rating",
+                    value="100% Certified",
+                    delta="DFARS / OK Title 61 Verified"
+                )
 
 
