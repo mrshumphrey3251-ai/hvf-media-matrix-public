@@ -1,3 +1,5 @@
+import pandas as pd
+import sqlite3
 import sys
 from pathlib import Path
 
@@ -2356,7 +2358,7 @@ elif active_module == "📘 Omni-Industry Matrix":
 
             # Live Civil Inspection Mission Dockets Interface
             st.markdown("---")
-            st.markdown("#### ?? Active Title 61 Civil Infrastructure Mission Dockets")
+            st.markdown("#### 📋 Active Title 61 Civil Infrastructure Mission Dockets")
             st.caption("Immutable WORM Ledger Records | Governing Authority: Oklahoma Title 61, Title 74 & ODOT / County CED Standards")
             
             _db_cand = [
@@ -2367,6 +2369,8 @@ elif active_module == "📘 Omni-Industry Matrix":
             
             if _active_db:
                 try:
+                    import pandas as pd
+                    import sqlite3
                     conn_civ = sqlite3.connect(str(_active_db))
                     df_civ = pd.read_sql_query(
                         """SELECT docket_number AS 'Docket #',
