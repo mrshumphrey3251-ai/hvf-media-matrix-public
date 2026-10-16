@@ -55,6 +55,20 @@
       "division": "OMES Construction & Properties (Title 61 CAP)",
       "target_capability": "Yield Optimization, Precision Aeration Control, Title 61 Infrastructure",
       "status": "ACTIVE_REGISTERED"
+    },
+    {
+      "code": "81101500",
+      "title": "Civil Engineering & Structural Infrastructure Inspection Services",
+      "division": "OMES Construction & Properties (Title 61 CAP)",
+      "target_capability": "Autonomous Bridge Deck Photogrammetry, Fracture-Critical NDT, Pier Scour",
+      "status": "ACTIVE_REGISTERED"
+    },
+    {
+      "code": "41113800",
+      "title": "Non-Destructive Testing (NDT) & Structural Examination Systems",
+      "division": "OMES Construction & Properties (Title 61 CAP)",
+      "target_capability": "Thermal Radiometric Delamination Mapping, Ultrasonic Flaw Detection",
+      "status": "ACTIVE_REGISTERED"
     }
   ],
   "naics_crosswalk_codes": [
@@ -77,6 +91,10 @@
     {
       "code": "115112",
       "title": "Soil Preparation, Planting, and Cultivating (AgTech Sensing)"
+    },
+    {
+      "code": "541380",
+      "title": "Testing Laboratories and Non-Destructive Examination (NDT)"
     }
   ],
   "procurement_portals": {

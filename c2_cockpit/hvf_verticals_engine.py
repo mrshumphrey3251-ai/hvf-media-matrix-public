@@ -1,7 +1,8 @@
-"""
+﻿"""
 HVF Macro Verticals Engine & Commercial Architecture
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Statutory Framework: Oklahoma Title 61, Title 74 & OK HB 2992
+Priority Focus: Title 61 / ODOT Bridge & Critical Infrastructure Structural Inspection
 """
 import os
 import sys
@@ -15,12 +16,12 @@ class ResilientVerticalDict(dict):
         if key in self:
             return super().__getitem__(key)
         defaults = {
-            "category": "Sovereign Industrial Engineering & Autonomous C2",
+            "category": "Sovereign Industrial Engineering & Infrastructure C2",
             "discipline": "Level-5 Bare-Metal Systems Architecture",
             "description": self.get("focus", "Active Sovereign Vertical Discipline"),
-            "focus": "Autonomous edge operations, SCADA telemetry, and statutory compliance.",
+            "focus": "Autonomous edge operations, structural inspection, and statutory compliance.",
             "status": "OPERATIONAL",
-            "icon": "?",
+            "icon": "⚡",
             "authority": "CEO Jeffery Humphrey (Level 5 Clearance)",
             "clearance": "CEO Clearance (Level 5)",
             "lead_engineer": "Jeffery Humphrey (SME / CEO)",
@@ -33,6 +34,39 @@ class ResilientVerticalDict(dict):
         return defaults.get(key, "Active / Operational")
 
 MACRO_VERTICAL_REGISTRY = {
+    "VERTICAL_STRUCTURAL_BRIDGE": {
+        "id": "VERTICAL_STRUCTURAL_BRIDGE",
+        "key": "VERTICAL_STRUCTURAL_BRIDGE",
+        "name": "Bridge & Critical Structural Inspection",
+        "category": "Title 61 Civil Infrastructure & NDT Diagnostics",
+        "discipline": "Autonomous Bridge Inspection & Fracture-Critical Member NDT",
+        "statutory_authority": "Oklahoma Title 61 & ODOT / County CED Standards",
+        "unspsc_codes": ["81101500", "41113800", "25131705"],
+        "naics_codes": ["541330", "541380", "541715"],
+        "focus": "Autonomous drone bridge inspection, deck delamination NDT, sub-millimeter crack detection, pier scour profiling.",
+        "description": "High-assurance autonomous bridge, culvert, and structural inspection under Oklahoma Title 61 public works authority.",
+        "status": "OPERATIONAL",
+        "icon": "🌉",
+        "lead_engineer": "Jeffery Humphrey (Level 5 CEO / SME)",
+        "curriculum_configured": True,
+        "has_curriculum": True,
+        "curriculum": [
+            {"module": "STR-01", "title": "Autonomous UAS Bridge Inspection & Photogrammetry", "hours": 40, "status": "Certified", "competency": "Level-5 Mastery"},
+            {"module": "STR-02", "title": "Thermal NDT Concrete Deck Delamination & Void Mapping", "hours": 40, "status": "Certified", "competency": "Level-5 Mastery"},
+            {"module": "STR-03", "title": "Fracture-Critical Member Crack Analysis & Scour Profiling", "hours": 40, "status": "Certified", "competency": "Level-5 Mastery"}
+        ],
+        "tracks": {
+            "STR-01": {"title": "Autonomous Bridge Inspection", "lessons": ["Under-Deck GPS-Denied Navigation", "Sub-Millimeter Surface Photogrammetry", "ODOT Element-Level Coding"]},
+            "STR-02": {"title": "Thermal NDT Diagnostics", "lessons": ["Radiometric Heat Flux Profiling", "Concrete Subsurface Void Detection", "Delamination Boundary Extraction"]},
+            "STR-03": {"title": "Fracture-Critical Analysis", "lessons": ["Fatigue-Prone Member Imaging", "Optical Micro-Crack Measurement", "Pier Hydrologic Scour Sonar/LiDAR"]}
+        },
+        "sub_verticals": [
+            {"code": "V01", "name": "Autonomous UAS Bridge Deck & Pier Photogrammetry", "status": "ONLINE"},
+            {"code": "V02", "name": "Radiometric Thermal Deck Delamination Mapping", "status": "ONLINE"},
+            {"code": "V03", "name": "Fracture-Critical Member Ultrasonic/Optical NDT", "status": "ONLINE"},
+            {"code": "V04", "name": "Sub-Surface Pier Scour & Structural Sonar Profiling", "status": "ONLINE"}
+        ]
+    },
     "VERTICAL_AGTECH": {
         "id": "VERTICAL_AGTECH",
         "key": "VERTICAL_AGTECH",
@@ -45,7 +79,7 @@ MACRO_VERTICAL_REGISTRY = {
         "focus": "Grain bin aeration SCADA, kinetic silo control, crop health telemetry.",
         "description": "Grain bin aeration SCADA, kinetic silo control, crop health telemetry.",
         "status": "OPERATIONAL",
-        "icon": "??",
+        "icon": "🌾",
         "lead_engineer": "Jeffery Humphrey (Level 5 CEO / SME)",
         "curriculum_configured": True,
         "has_curriculum": True,
@@ -60,41 +94,9 @@ MACRO_VERTICAL_REGISTRY = {
             "AG-03": {"title": "Yield Telemetry Networks", "lessons": ["LoRaWAN Mesh", "Soil Moisture Profiling", "Title 61 Agronomic Reporting"]}
         },
         "sub_verticals": [
-            {"code": "V01", "name": "Grain Silo Aeration & Storage SCADA", "status": "ONLINE"},
-            {"code": "V02", "name": "Crop Canopy Remote Sensing & Yield Analytics", "status": "ONLINE"},
-            {"code": "V03", "name": "Precision Irrigation & Water Resource SCADA", "status": "ONLINE"}
-        ]
-    },
-    "VERTICAL_UAS": {
-        "id": "VERTICAL_UAS",
-        "key": "VERTICAL_UAS",
-        "name": "Autonomous Drone Diagnostics & Multispectral Sensing",
-        "category": "Tactical Avionics & Autonomous Remote Sensing",
-        "discipline": "Edge Drone Autopilot & Computer Vision",
-        "statutory_authority": "OCAST OARP & OK HB 2992",
-        "unspsc_codes": ["25131705"],
-        "naics_codes": ["541715"],
-        "focus": "Autonomous edge compute, air-gapped canopy imaging, flight pathing.",
-        "description": "Autonomous edge compute, air-gapped canopy imaging, flight pathing.",
-        "status": "OPERATIONAL",
-        "icon": "??",
-        "lead_engineer": "Jeffery Humphrey (Level 5 CEO / SME)",
-        "curriculum_configured": True,
-        "has_curriculum": True,
-        "curriculum": [
-            {"module": "UAS-01", "title": "Air-Gapped Mission Planning & RTK Navigation", "hours": 40, "status": "Certified", "competency": "Level-5 Mastery"},
-            {"module": "UAS-02", "title": "Multispectral Imaging & NDVI Index Synthesis", "hours": 40, "status": "Certified", "competency": "Level-5 Mastery"},
-            {"module": "UAS-03", "title": "Edge Computer Vision & Canopy Anomaly Triage", "hours": 40, "status": "Certified", "competency": "Level-5 Mastery"}
-        ],
-        "tracks": {
-            "UAS-01": {"title": "Autonomous Flight Planning", "lessons": ["RTK Base Calibration", "Geofence Enforcement", "Autonomous RTL Protocols"]},
-            "UAS-02": {"title": "Multispectral Synthesis", "lessons": ["Narrowband NIR Calibration", "NDVI Radiometric Correction", "Orthomosaic Staging"]},
-            "UAS-03": {"title": "Edge Computer Vision", "lessons": ["YOLO Edge Inference", "Weed/Pest Detection", "OCAST Data Packaging"]}
-        },
-        "sub_verticals": [
-            {"code": "V04", "name": "Autonomous Edge Flight Autopilot & UAS Pathing", "status": "ONLINE"},
-            {"code": "V05", "name": "Multispectral Computer Vision & NDVI Analytics", "status": "ONLINE"},
-            {"code": "V06", "name": "UAS Fleet Avionics Bridge & LiPo Telemetry", "status": "ONLINE"}
+            {"code": "V05", "name": "Grain Silo Aeration & Storage SCADA", "status": "ONLINE"},
+            {"code": "V06", "name": "Crop Canopy Remote Sensing & Yield Analytics", "status": "ONLINE"},
+            {"code": "V07", "name": "Precision Irrigation & Water Resource SCADA", "status": "ONLINE"}
         ]
     },
     "VERTICAL_MICROGRID": {
@@ -109,7 +111,7 @@ MACRO_VERTICAL_REGISTRY = {
         "focus": "Sub-16ms electrical islanding, solar/storage optimization, zero-carbon grid.",
         "description": "Sub-16ms electrical islanding, solar/storage optimization, zero-carbon grid.",
         "status": "OPERATIONAL",
-        "icon": "?",
+        "icon": "⚡",
         "lead_engineer": "Jeffery Humphrey (Level 5 CEO / SME)",
         "curriculum_configured": True,
         "has_curriculum": True,
@@ -124,9 +126,10 @@ MACRO_VERTICAL_REGISTRY = {
             "PWR-03": {"title": "Title 61 Compliance", "lessons": ["State Facility Standards", "Black-Start Protocols", "REAP Audit Generation"]}
         },
         "sub_verticals": [
-            {"code": "V07", "name": "Sub-16ms Kinetic Islanding & Switchgear SCADA", "status": "ONLINE"},
-            {"code": "V08", "name": "Solar Array SCADA & Battery Optimization", "status": "ONLINE"},
-            {"code": "V09", "name": "Rural Facility Energy Resilience & Load Shedding", "status": "ONLINE"}
+            {"code": "V08", "name": "Sub-16ms Kinetic Islanding & Switchgear SCADA", "status": "ONLINE"},
+            {"code": "V09", "name": "Solar Array SCADA & Battery Optimization", "status": "ONLINE"},
+            {"code": "V10", "name": "Rural Facility Energy Resilience & Load Shedding", "status": "ONLINE"},
+            {"code": "V11", "name": "Substation High-Voltage Automation & Interlocks", "status": "ONLINE"}
         ]
     },
     "VERTICAL_SOVEREIGN_C2": {
@@ -141,7 +144,7 @@ MACRO_VERTICAL_REGISTRY = {
         "focus": "Zero-API email triage, HMAC anti-tamper security, distributed bare-metal mesh.",
         "description": "Zero-API email triage, HMAC anti-tamper security, distributed bare-metal mesh.",
         "status": "OPERATIONAL",
-        "icon": "???",
+        "icon": "🛡️",
         "lead_engineer": "Jeffery Humphrey (Level 5 CEO / SME)",
         "curriculum_configured": True,
         "has_curriculum": True,
@@ -156,11 +159,9 @@ MACRO_VERTICAL_REGISTRY = {
             "C2-03": {"title": "WORM Ledger Compliance", "lessons": ["Immutable SQLite Docketing", "Title 61 Auditing", "Automated Cold-Storage Snapshots"]}
         },
         "sub_verticals": [
-            {"code": "V10", "name": "Zero-API Point-to-Point TLS Email Dispatcher", "status": "ONLINE"},
-            {"code": "V11", "name": "HMAC-SHA256 Anti-Tamper & Zeroize Circuit", "status": "ONLINE"},
-            {"code": "V12", "name": "Autonomous Build Forge & Code Synthesis", "status": "ONLINE"},
-            {"code": "V13", "name": "Sovereign Private Tailscale Mesh Architecture", "status": "ONLINE"},
-            {"code": "V14", "name": "Commercial Stripe Payout & Billing Gateway", "status": "ONLINE"},
+            {"code": "V12", "name": "Zero-API Point-to-Point TLS Email Dispatcher", "status": "ONLINE"},
+            {"code": "V13", "name": "HMAC-SHA256 Anti-Tamper & Zeroize Circuit", "status": "ONLINE"},
+            {"code": "V14", "name": "Autonomous Build Forge & Code Synthesis", "status": "ONLINE"},
             {"code": "V15", "name": "Sovereign WORM Ledgers & Statutory Compliance", "status": "ONLINE"}
         ]
     }
@@ -217,24 +218,6 @@ class HVFVerticalsEngine:
 
     def get_vertical_details(self, vertical_key: str) -> dict:
         return self.get_verticals().get(vertical_key, {})
-
-    def get_curriculum(self, key_or_name: str) -> list:
-        v = self.get_vertical(key_or_name)
-        if not v:
-            for item in MACRO_VERTICAL_REGISTRY.values():
-                if item["name"] == key_or_name:
-                    v = item
-                    break
-        return v.get("curriculum", []) if v else []
-
-    def get_tracks(self, key_or_name: str) -> dict:
-        v = self.get_vertical(key_or_name)
-        if not v:
-            for item in MACRO_VERTICAL_REGISTRY.values():
-                if item["name"] == key_or_name:
-                    v = item
-                    break
-        return v.get("tracks", {}) if v else {}
 
     def get_all_15_sub_verticals(self) -> list:
         all_15 = []
