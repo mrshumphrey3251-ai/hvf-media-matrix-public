@@ -2354,4 +2354,56 @@ elif active_module == "📘 Omni-Industry Matrix":
                     delta="DFARS / OK Title 61 Verified"
                 )
 
+            # Live Civil Inspection Mission Dockets Interface
+            st.markdown("---")
+            st.markdown("#### ?? Active Title 61 Civil Infrastructure Mission Dockets")
+            st.caption("Immutable WORM Ledger Records | Governing Authority: Oklahoma Title 61, Title 74 & ODOT / County CED Standards")
+            
+            _db_cand = [
+                Path(__file__).resolve().parent / "matrix_ledger.db",
+                Path(__file__).resolve().parent.parent / "matrix_ledger.db"
+            ]
+            _active_db = next((p for p in _db_cand if p.exists()), None)
+            
+            if _active_db:
+                try:
+                    conn_civ = sqlite3.connect(str(_active_db))
+                    df_civ = pd.read_sql_query(
+                        """SELECT docket_number AS 'Docket #',
+                                  asset_name AS 'Asset Target',
+                                  sector_type AS 'Sector',
+                                  governing_agency AS 'Governing Agency',
+                                  location_county AS 'County',
+                                  mission_status AS 'Status',
+                                  sha256_docket_seal AS 'SHA-256 Seal'
+                           FROM civil_inspection_dockets
+                           ORDER BY id DESC""",
+                        conn_civ
+                    )
+                    conn_civ.close()
+                    st.dataframe(df_civ, use_container_width=True)
+                    
+                    with st.expander("?? View Detailed Sensor Payloads & Flight Profiles", expanded=False):
+                        conn_civ = sqlite3.connect(str(_active_db))
+                        cur_civ = conn_civ.cursor()
+                        cur_civ.execute("SELECT docket_number, asset_name, sensor_payloads, inspection_focus FROM civil_inspection_dockets ORDER BY id DESC")
+                        rows_civ = cur_civ.fetchall()
+                        conn_civ.close()
+                        
+                        for d_num, a_name, s_pay, i_foc in rows_civ:
+                            st.write(f"**{d_num}** ? *{a_name}*")
+                            st.caption(f"Inspection Scope: {i_foc}")
+                            try:
+                                p_list = json.loads(s_pay)
+                                for p in p_list:
+                                    st.write(f"  ? {p}")
+                            except Exception:
+                                st.write(f"  ? {s_pay}")
+                            st.write("")
+                except Exception as e_civ:
+                    st.error(f"Error reading civil inspection dockets: {e_civ}")
+            else:
+                st.warning("Master ledger database not available.")
+
+
 
