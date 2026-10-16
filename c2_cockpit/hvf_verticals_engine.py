@@ -2,7 +2,7 @@
 HVF Macro Verticals Engine & Commercial Architecture
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Statutory Framework: Oklahoma Title 61, Title 74 & OK HB 2992
-Priority Focus: Title 61 / ODOT Bridge & Critical Infrastructure Structural Inspection
+Priority Focus: Bridge, Commercial Building & Roadway Structural Inspection
 """
 import os
 import sys
@@ -33,40 +33,43 @@ class ResilientVerticalDict(dict):
         }
         return defaults.get(key, "Active / Operational")
 
-MACRO_VERTICAL_REGISTRY = {
-    "VERTICAL_STRUCTURAL_BRIDGE": {
-        "id": "VERTICAL_STRUCTURAL_BRIDGE",
-        "key": "VERTICAL_STRUCTURAL_BRIDGE",
-        "name": "Bridge & Critical Structural Inspection",
-        "category": "Title 61 Civil Infrastructure & NDT Diagnostics",
-        "discipline": "Autonomous Bridge Inspection & Fracture-Critical Member NDT",
-        "statutory_authority": "Oklahoma Title 61 & ODOT / County CED Standards",
-        "unspsc_codes": ["81101500", "41113800", "25131705"],
-        "naics_codes": ["541330", "541380", "541715"],
-        "focus": "Autonomous drone bridge inspection, deck delamination NDT, sub-millimeter crack detection, pier scour profiling.",
-        "description": "High-assurance autonomous bridge, culvert, and structural inspection under Oklahoma Title 61 public works authority.",
-        "status": "OPERATIONAL",
-        "icon": "🌉",
-        "lead_engineer": "Jeffery Humphrey (Level 5 CEO / SME)",
-        "curriculum_configured": True,
-        "has_curriculum": True,
-        "curriculum": [
-            {"module": "STR-01", "title": "Autonomous UAS Bridge Inspection & Photogrammetry", "hours": 40, "status": "Certified", "competency": "Level-5 Mastery"},
-            {"module": "STR-02", "title": "Thermal NDT Concrete Deck Delamination & Void Mapping", "hours": 40, "status": "Certified", "competency": "Level-5 Mastery"},
-            {"module": "STR-03", "title": "Fracture-Critical Member Crack Analysis & Scour Profiling", "hours": 40, "status": "Certified", "competency": "Level-5 Mastery"}
-        ],
-        "tracks": {
-            "STR-01": {"title": "Autonomous Bridge Inspection", "lessons": ["Under-Deck GPS-Denied Navigation", "Sub-Millimeter Surface Photogrammetry", "ODOT Element-Level Coding"]},
-            "STR-02": {"title": "Thermal NDT Diagnostics", "lessons": ["Radiometric Heat Flux Profiling", "Concrete Subsurface Void Detection", "Delamination Boundary Extraction"]},
-            "STR-03": {"title": "Fracture-Critical Analysis", "lessons": ["Fatigue-Prone Member Imaging", "Optical Micro-Crack Measurement", "Pier Hydrologic Scour Sonar/LiDAR"]}
-        },
-        "sub_verticals": [
-            {"code": "V01", "name": "Autonomous UAS Bridge Deck & Pier Photogrammetry", "status": "ONLINE"},
-            {"code": "V02", "name": "Radiometric Thermal Deck Delamination Mapping", "status": "ONLINE"},
-            {"code": "V03", "name": "Fracture-Critical Member Ultrasonic/Optical NDT", "status": "ONLINE"},
-            {"code": "V04", "name": "Sub-Surface Pier Scour & Structural Sonar Profiling", "status": "ONLINE"}
-        ]
+CIVIL_PILLAR_DATA = {
+    "id": "VERTICAL_STRUCTURAL_CIVIL",
+    "key": "VERTICAL_STRUCTURAL_CIVIL",
+    "name": "Bridge, Building & Roadway Structural Inspection",
+    "category": "Title 61 Civil Infrastructure, Building Envelope & Pavement NDT",
+    "discipline": "Autonomous Infrastructure Inspection & Fracture-Critical Member NDT",
+    "statutory_authority": "Oklahoma Title 61 (Public Works & Buildings), Title 74 & ODOT/CED Standards",
+    "unspsc_codes": ["81101500", "72102900", "41113800", "25131705"],
+    "naics_codes": ["541330", "541350", "541380", "541715"],
+    "focus": "Bridge member fracture inspection, commercial building roof thermal NDT, envelope audit, and ASTM D6433 roadway pavement distress mapping.",
+    "description": "High-assurance autonomous bridge, public building, and roadway pavement inspections under Oklahoma Title 61 public works authority.",
+    "status": "OPERATIONAL",
+    "icon": "🏛️",
+    "lead_engineer": "Jeffery Humphrey (Level 5 CEO / SME)",
+    "curriculum_configured": True,
+    "has_curriculum": True,
+    "curriculum": [
+        {"module": "STR-01", "title": "Bridge Deck, Pier & Fracture-Critical Member Inspection", "hours": 40, "status": "Certified", "competency": "Level-5 Mastery"},
+        {"module": "STR-02", "title": "Building Envelope, Roof Membrane Moisture & Facade NDT", "hours": 40, "status": "Certified", "competency": "Level-5 Mastery"},
+        {"module": "STR-03", "title": "Roadway Pavement Distress, Rutting & ASTM D6433 PCI Survey", "hours": 40, "status": "Certified", "competency": "Level-5 Mastery"}
+    ],
+    "tracks": {
+        "STR-01": {"title": "Bridge & Structural Member NDT", "lessons": ["Under-Deck GPS-Denied UAS Flight", "Sub-Millimeter Crack Photogrammetry", "Pier Scour Bathymetric Sonar"]},
+        "STR-02": {"title": "Building Envelope & Roof NDT", "lessons": ["Radiometric Thermal Roof Moisture Mapping", "Facade Spalling & Masonry Inspection", "Title 61 Energy Loss Auditing"]},
+        "STR-03": {"title": "Roadway Pavement Condition Index", "lessons": ["ASTM D6433 Crack & Rutting Classification", "Digital Elevation Model (DEM) Cross-Slope", "Right-of-Way Culvert Drainage Triage"]}
     },
+    "sub_verticals": [
+        {"code": "V01", "name": "Bridge Deck, Pier & Fracture-Critical Photogrammetry", "status": "ONLINE"},
+        {"code": "V02", "name": "Commercial Building Roof Moisture & Thermal Envelope NDT", "status": "ONLINE"},
+        {"code": "V03", "name": "Roadway Pavement Distress & ASTM D6433 PCI Profiling", "status": "ONLINE"},
+        {"code": "V04", "name": "Sub-Surface Pier Scour & Culvert Hydrologic Sonar", "status": "ONLINE"}
+    ]
+}
+
+MACRO_VERTICAL_REGISTRY = {
+    "VERTICAL_STRUCTURAL_CIVIL": CIVIL_PILLAR_DATA,
+    "VERTICAL_STRUCTURAL_BRIDGE": CIVIL_PILLAR_DATA,  # Dual-key backward-compatible alias
     "VERTICAL_AGTECH": {
         "id": "VERTICAL_AGTECH",
         "key": "VERTICAL_AGTECH",
@@ -169,8 +172,13 @@ MACRO_VERTICAL_REGISTRY = {
 
 class VerticalsContainer(list):
     def __init__(self, data_dict: dict):
-        wrapped = [ResilientVerticalDict(v) for v in data_dict.values()]
-        super().__init__(wrapped)
+        unique_objs = []
+        seen_keys = set()
+        for k, v in data_dict.items():
+            if v["name"] not in seen_keys:
+                seen_keys.add(v["name"])
+                unique_objs.append(ResilientVerticalDict(v))
+        super().__init__(unique_objs)
         self._dict = {k: ResilientVerticalDict(v) for k, v in data_dict.items()}
 
     def __getitem__(self, item):
@@ -211,7 +219,7 @@ class HVFVerticalsEngine:
         return MACRO_VERTICAL_REGISTRY
 
     def list_verticals(self) -> list:
-        return list(MACRO_VERTICAL_REGISTRY.values())
+        return list(self.get_verticals())
 
     def get_vertical(self, vertical_key: str) -> dict:
         return self.get_verticals().get(vertical_key, {})
@@ -220,16 +228,36 @@ class HVFVerticalsEngine:
         return self.get_verticals().get(vertical_key, {})
 
     def get_all_15_sub_verticals(self) -> list:
+        seen_codes = set()
         all_15 = []
         for macro in MACRO_VERTICAL_REGISTRY.values():
-            all_15.extend(macro.get("sub_verticals", []))
+            for sv in macro.get("sub_verticals", []):
+                if sv["code"] not in seen_codes:
+                    seen_codes.add(sv["code"])
+                    all_15.append(sv)
         return all_15
 
     def get_aggregate_metrics(self) -> dict:
         return {
-            "total_macro_pillars": len(MACRO_VERTICAL_REGISTRY),
+            "total_macro_pillars": len(self.get_verticals()),
             "total_operational_verticals": len(self.get_all_15_sub_verticals()),
             "cage_code": "1AHA8",
             "statutory_framework": "Oklahoma Title 61 & OK HB 2992",
-            "active_systems": [v["name"] for v in MACRO_VERTICAL_REGISTRY.values()]
+            "active_systems": [v["name"] for v in self.get_verticals()]
         }
+
+if __name__ == "__main__":
+    engine = HVFVerticalsEngine()
+    print("=" * 80)
+    print("     HVF DUAL-KEY ENGINE SELF-VERIFICATION     ")
+    print("=" * 80)
+    v = engine.get_verticals()
+    assert "VERTICAL_STRUCTURAL_CIVIL" in v, "Primary civil key failed!"
+    assert "VERTICAL_STRUCTURAL_BRIDGE" in v, "Alias bridge key failed!"
+    assert len(v) == 4, f"Unique macro pillars should be 4, got {len(v)}"
+    all_15 = engine.get_all_15_sub_verticals()
+    assert len(all_15) == 15, f"Sub-verticals should be 15, got {len(all_15)}"
+    print(f"[PASS] Primary Key: 'VERTICAL_STRUCTURAL_CIVIL' -> {v['VERTICAL_STRUCTURAL_CIVIL']['name']}")
+    print(f"[PASS] Alias Key:   'VERTICAL_STRUCTURAL_BRIDGE' -> {v['VERTICAL_STRUCTURAL_BRIDGE']['name']}")
+    print(f"[PASS] Total Deduplicated Operational Sub-Verticals: {len(all_15)} / 15")
+    print("=" * 80)

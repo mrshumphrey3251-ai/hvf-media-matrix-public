@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.0.0",
-  "last_updated_utc": "2026-10-14T00:00:00Z",
+  "schema_version": "1.1.0",
+  "last_updated_utc": "2026-10-16T00:00:00Z",
   "corporate_identity": {
     "legal_entity_name": "Humphrey Virtual Farms LLC",
     "cage_code": "1AHA8",
@@ -14,6 +14,27 @@
     "merchant_email": "humphreyvirtualfarm@gmail.com"
   },
   "unspsc_commodity_codes": [
+    {
+      "code": "81101500",
+      "title": "Civil Engineering & Structural Infrastructure Inspection Services",
+      "division": "OMES Construction & Properties (Title 61 CAP)",
+      "target_capability": "Autonomous Bridge Deck Photogrammetry, Fracture-Critical NDT, Pier Scour",
+      "status": "ACTIVE_REGISTERED"
+    },
+    {
+      "code": "72102900",
+      "title": "Facility and Building Maintenance and Inspection Services",
+      "division": "OMES Construction & Properties (Title 61 CAP)",
+      "target_capability": "Building Envelope Audit, Commercial Roof Moisture Thermal Mapping, Facade Spalling",
+      "status": "ACTIVE_REGISTERED"
+    },
+    {
+      "code": "41113800",
+      "title": "Non-Destructive Testing (NDT) & Structural Examination Systems",
+      "division": "OMES Construction & Properties (Title 61 CAP)",
+      "target_capability": "Thermal Radiometric Delamination Mapping, Ultrasonic Flaw Detection",
+      "status": "ACTIVE_REGISTERED"
+    },
     {
       "code": "43230000",
       "title": "Software (System, Operating, and Security Applications)",
@@ -55,23 +76,21 @@
       "division": "OMES Construction & Properties (Title 61 CAP)",
       "target_capability": "Yield Optimization, Precision Aeration Control, Title 61 Infrastructure",
       "status": "ACTIVE_REGISTERED"
-    },
-    {
-      "code": "81101500",
-      "title": "Civil Engineering & Structural Infrastructure Inspection Services",
-      "division": "OMES Construction & Properties (Title 61 CAP)",
-      "target_capability": "Autonomous Bridge Deck Photogrammetry, Fracture-Critical NDT, Pier Scour",
-      "status": "ACTIVE_REGISTERED"
-    },
-    {
-      "code": "41113800",
-      "title": "Non-Destructive Testing (NDT) & Structural Examination Systems",
-      "division": "OMES Construction & Properties (Title 61 CAP)",
-      "target_capability": "Thermal Radiometric Delamination Mapping, Ultrasonic Flaw Detection",
-      "status": "ACTIVE_REGISTERED"
     }
   ],
   "naics_crosswalk_codes": [
+    {
+      "code": "541330",
+      "title": "Engineering Services (Energy & Infrastructure)"
+    },
+    {
+      "code": "541350",
+      "title": "Building Inspection Services (Commercial Roof & Envelope NDT)"
+    },
+    {
+      "code": "541380",
+      "title": "Testing Laboratories and Non-Destructive Examination (NDT)"
+    },
     {
       "code": "541511",
       "title": "Custom Computer Programming Services"
@@ -85,22 +104,13 @@
       "title": "Research and Development in the Physical, Engineering, and Life Sciences"
     },
     {
-      "code": "541330",
-      "title": "Engineering Services (Energy & Infrastructure)"
-    },
-    {
       "code": "115112",
       "title": "Soil Preparation, Planting, and Cultivating (AgTech Sensing)"
-    },
-    {
-      "code": "541380",
-      "title": "Testing Laboratories and Non-Destructive Examination (NDT)"
     }
   ],
   "procurement_portals": {
     "supplier_portal": "https://supplierportal.ok.gov",
     "cap_portal": "https://oklahoma.gov/omes/divisions/capital-assets-management/construction-and-properties.html",
     "cap_submission_email": "cap@omes.ok.gov"
-  },
-  "future_expansions": []
+  }
 }
