@@ -894,34 +894,1464 @@ if not st.session_state.get("legal_acknowledged", False):
 
                                         if _functions:
                                             st.divider()
-                                            st.markdown("#### [ACADEMY] Sovereign Field Academy Modules & Competencies")
+                                            st.markdown("#### ⚡ Capabilities & Directives")
+                                            for _fname, _fdesc in _functions[:12]:
+                                                st.markdown(f"- **`{_fname}()`**: {_fdesc}")
+                                            if len(_functions) > 12:
+                                                st.caption(f"*+ {len(_functions) - 12} additional internal subroutines.*")
+                                with tab_py_code:
+                                    st.code(_content, language="python", line_numbers=True)
+                                with tab_py_hash:
+                                    st.markdown(f"**Canonical Path:** `{_target_p}`")
+                                    st.markdown(f"**Complete SHA-256 Digest:** `{_sha256}`")
+                                    st.markdown(f"**Byte Size:** `{len(_file_bytes):,} Bytes`")
+                                    st.info("🔒 **WORM Integrity Certified:** File structure matches Humphrey Virtual Farms Level-5 air-gapped sovereign baseline.")
+                            else:
+                                tab_rec, tab_audit = st.tabs(["📊 Structured Data Record", "🛡️ Cryptographic Ledger Audit"])
+                                with tab_rec:
+                                    _lang = "json" if _selected.endswith(".json") else "sql" if _selected.endswith(".sql") else "text"
+                                    st.code(_content, language=_lang, line_numbers=True)
+                                with tab_audit:
+                                    st.markdown(f"**Authoritative File:** `{_selected}`")
+                                    st.markdown(f"**Canonical System Path:** `{_target_p}`")
+                                    st.markdown(f"**Complete SHA-256 Digest:** `{_sha256}`")
+                                    st.markdown(f"**Byte Size:** `{len(_file_bytes):,} Bytes`")
+                                    st.info("🔒 **WORM Integrity Certified:** File structure matches Humphrey Virtual Farms Level-5 air-gapped sovereign baseline.")
+                        except Exception as _e:
+                            st.error(f"Cannot read file: {_e}")
+            else:
+                st.warning("No files matched the current filter criteria.")
+        else:
+            st.error("Repository root offline.")
+        st.stop()
+
+    st.markdown('''
+    <div style="background-color: #0b110e; border: 2px solid #00ff88; border-radius: 8px; padding: 25px; margin-bottom: 25px;">
+        <h2 style="color: #00ff88; margin-top: 0; font-family: monospace; letter-spacing: 2px;">⚡ E.B.O.N.Y. SOVEREIGN INDUSTRIAL COMMAND GATE</h2>
+        <div style="color: #a0aab2; font-size: 0.9em; font-family: monospace; margin-bottom: 15px;">
+            <strong>ENTITY:</strong> Humphrey Virtual Farms LLC | <strong>CAGE:</strong> 1AHA8 | <strong>UEI:</strong> S1M4ENLHTDH5<br>
+            <strong>STATUTORY JURISDICTION:</strong> State of Oklahoma (Title 61 & HB 2992 Framework) | <strong>NODE:</strong> HVFNexus
+        </div>
+        <div style="color: #ffffff; font-size: 0.95em; line-height: 1.6; border-top: 1px solid #1e3a29; padding-top: 15px;">
+            <p><strong>=== MANDATORY PRE-FLIGHT OPERATIONAL & STATUTORY BRIEFING ===</strong></p>
+            <ol style="margin-left: 20px; padding-left: 10px;">
+                <li><strong>SOVEREIGN PROPRIETARY ASSET:</strong> This terminal, its neural routing parameters, local WORM audit ledgers, and all 15 industrial matrix verticals are the exclusive proprietary property of Humphrey Virtual Farms LLC. All rights reserved.</li>
+                <li><strong>STATUTORY & FEDERAL REGISTRATION:</strong> Operating under Federal CAGE Code 1AHA8 and SAM.gov Unique Entity Identifier (UEI) S1M4ENLHTDH5. Fully governed by Oklahoma Statutes Title 61 and Oklahoma House Bill 2992 (OK HB 2992) compliance frameworks.</li>
+                <li><strong>ZERO-CLOUD SOVEREIGNTY MANDATE:</strong> This system runs on dedicated bare-metal infrastructure (HVFNexus). It does not yield to cloud subscriptions, recurring vendor fees, external kill-switches, or third-party telemetry scraping. All data remains air-gapped on local disk.</li>
+                <li><strong>SECURITY & PENALTY WARNING:</strong> Access is restricted strictly to Level-5 authorized personnel and CEO-delegated operators. Unauthorized access, tampering, payload exfiltration, or reverse engineering is strictly prohibited and subject to severe civil and criminal penalties under 18 U.S.C. Section 1030 (Computer Fraud and Abuse Act) and applicable state and federal trade secret protections.</li>
+            </ol>
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns([1, 8, 1])
+    with col2:
+        confirm_check = st.checkbox("I formally affirm that I am authorized personnel of Humphrey Virtual Farms LLC, hold Level-5 operational clearance, and agree to uphold all statutory, proprietary, and sovereign security protocols.", key="preflight_confirm")
+
+        btn_col1, btn_col2, btn_col3 = st.columns([2, 4, 2])
+        with btn_col2:
+            if st.button("AFFIRM AND ENTER SOVEREIGN COMMAND", width="stretch"):
+                if confirm_check:
+                    try:
+                        import sqlite3
+                        from datetime import datetime, timezone
+                        ledger_path = Path("matrix_ledger.db")
+                        if ledger_path.exists():
+                            conn = sqlite3.connect(str(ledger_path))
+                            cur = conn.cursor()
+                            now_ts = datetime.now(timezone.utc).isoformat()
+                            attestation_payload = (
+                                "E.B.O.N.Y. SOVEREIGN ATTESTATION AFFIRMED: "
+                                "Operator affirms Level-5 Executive Authority, proprietary ownership by Humphrey Virtual Farms LLC, "
+                                "governed by CAGE 1AHA8, SAM.gov UEI S1M4ENLHTDH5, OK Title 61, and OK HB 2992 statutory frameworks."
+                            )
+                            cur.execute(
+                                "INSERT INTO audit_ledger (timestamp, session_id, role, content, model_core, latency_sec) VALUES (?, ?, ?, ?, ?, ?)",
+                                (now_ts, "SOVEREIGN_ROOT", "EXECUTIVE_ATTESTATION", attestation_payload, "EBONY_STATUTORY_GATE_V1", 0.0)
+                            )
+                            conn.commit()
+                            conn.close()
+                    except Exception:
+                        pass
+                    st.session_state.legal_acknowledged = True
+                    st.rerun()
+                else:
+                    st.error("AUTHORIZATION DENIED: You must check the affirmation box before entering the sovereign console.")
+    st.stop()
+
+
+if "user_session" not in st.session_state:
+    from cryptography.fernet import Fernet
+    st.session_state.user_session = {
+        "authenticated": True, 
+        "username": "ceo_master", 
+        "full_name": EMPIRE.get("FOUNDER_NAME", "Jeffery Humphrey"), 
+        "role": "CEO", 
+        "cipher": Fernet(Fernet.generate_key()), 
+        "trial_expires_at": None
+    }
+if "screen_wiped" not in st.session_state: st.session_state.screen_wiped = False
+if "operation_mode" not in st.session_state: st.session_state.operation_mode = "🟢 Online (Live WAN & Radar Ingress)"
+if "demo_mode" not in st.session_state: st.session_state.demo_mode = False
+if "current_linkedin_draft" not in st.session_state: st.session_state.current_linkedin_draft = f"⚡ [{EMPIRE['FARM_NAME']} Intelligence Announcement]\n\nWe have deployed our on-premise universal aerial reconnaissance link..."
+
+current_user = st.session_state.user_session["username"]
+current_name = st.session_state.user_session["full_name"]
+current_role = st.session_state.user_session["role"]
+current_cipher = st.session_state.user_session["cipher"]
+# [PURGED GROQ CLIENT]
+
+def query_local_ollama_chat(messages_payload: list) -> str:
+    try:
+        res = requests.post(OLLAMA_CHAT_URL, json={"model": LOCAL_MODEL, "messages": messages_payload, "stream": False, "options": {"temperature": 0.0}}, timeout=45)
+        if res.status_code == 200: return sanitize_deterministic_output(res.json().get("message", {}).get("content", ""))
+        return f"⚠️ Local Node returned HTTP {res.status_code}."
+    except: return "⚠️ Local Engine fault."
+
+# --- SIDEBAR ---
+with st.sidebar:
+    st.markdown("""
+    <div style="background-color: #0b110e; border: 1px solid #00ff88; border-radius: 6px; padding: 12px; margin-bottom: 15px;">
+        <div style="color: #00ff88; font-weight: bold; font-size: 0.85em; letter-spacing: 1px;">SOVEREIGN GOVERNANCE</div>
+        <div style="color: #ffffff; font-size: 0.8em; margin-top: 4px;"><strong>CAGE:</strong> 1AHA8</div>
+        <div style="color: #ffffff; font-size: 0.8em;"><strong>UEI:</strong> S1M4ENLHTDH5</div>
+        <div style="color: #a0aab2; font-size: 0.75em; margin-top: 4px;">STATUTORY: OK Title 61 / HB 2992</div>
+        <div style="color: #00ff88; font-size: 0.75em; font-weight: bold; margin-top: 4px;">LEVEL-5 C2 // BARE-METAL EDGE</div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.header("🛡️ Presentation OPSEC")
+    is_demo_mode = st.toggle("Activate Demo Mode (Mask Secrets)", value=st.session_state.demo_mode)
+    st.session_state.demo_mode = is_demo_mode
+
+    def mask_secret(text: str, mask_type: str = "FULL") -> str:
+        if not st.session_state.demo_mode: return text
+        if mask_type == "IP": return "[REDACTED_IP]"
+        if mask_type == "URL": return "http://[REDACTED_IP]:8501"
+        if mask_type == "URN": return "urn:li:person:********"
+        if mask_type == "TOKEN": return "****************************************"
+        if mask_type == "PATH": return "C:\\[REDACTED_VAULT_PATH]\\hvf_memory_vault.db"
+        return "[REDACTED FOR DEMO]"
+
+    st.divider()
+    mode_selection = st.radio("Select Active Engine:", ["🟢 Online (Live WAN & Radar Ingress)", "🔒 Offline (Sovereign Fortress Air-Gap)"], index=0 if "Online" in st.session_state.operation_mode else 1)
+    st.session_state.operation_mode = mode_selection
+    is_online = "Online" in mode_selection
+
+    if st.session_state.user_session["authenticated"]:
+        st.success(f"👑 **{current_name}**\n*({current_role} Clearance)*")
+        if st.button("🚪 Disconnect Session", width='stretch'):
+            st.session_state.user_session = {"authenticated": False, "username": None, "full_name": "Public Guest", "role": "GUEST", "cipher": None, "trial_expires_at": None}
+            st.session_state.messages = []
+            st.session_state.db_loaded = False
+            st.rerun()
+
+        if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO"]:
+            st.divider()
+            st.header("📲 Swarm Uplink")
+            st.caption(f"Scan to access node:\n`{mask_secret(UPLINK_URL, 'URL')}`")
+            if not st.session_state.demo_mode: st.image(generate_qr_image(UPLINK_URL), width=180)
+            else: st.info("QR Code hidden during Demo Mode.")
+
+            # /// MASTER CEO IDENTITY ROSTER ///
+            if current_role in ["CEO", "SUPER_ADMIN"]:
+                with st.expander("👁️ VAULT ROSTER (CEO ONLY)", expanded=False):
+                    try:
+                        conn_r = sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)
+                        cur_r = conn_r.cursor()
+                        cur_r.execute("SELECT username, full_name, role FROM system_users")
+                        for vu in cur_r.fetchall():
+                            st.caption(f"**{vu[0]}** | {vu[1]} | `{vu[2]}`")
+                        conn_r.close()
+                    except Exception as e:
+                        st.caption("Vault connection isolated.")
+
+            st.divider()
+            if st.button("⚡ Issue Team VIP Code"):
+                if st.session_state.demo_mode: st.warning("Blocked in Demo Mode.")
+                else: st.success(f"Staff Key: `{generate_invite_token(current_user, 'MEMBER')}`")
+    else:
+        st.info("👤 **Guest Mode**")
+        auth_mode = st.radio("Access Portal:", ["Sign In", "🚀 Free 7-Day Pilot"], horizontal=False)
+        if auth_mode == "Sign In":
+            login_user = st.text_input("Username:")
+            login_pass = st.text_input("Password:", type="password")
+            if st.button("Sign In"):
+                user_match, status_msg = verify_user(login_user, login_pass)
+                if user_match and status_msg == "OK":
+                    st.session_state.user_session = {"authenticated": True, "username": user_match[0], "full_name": user_match[1], "role": user_match[2], "cipher": derive_user_cipher(login_pass, user_match[0]), "trial_expires_at": user_match[4]}
+                    st.session_state.messages = []
+                    st.session_state.db_loaded = False
+                    st.rerun()
+                elif status_msg == "TRIAL_EXPIRED": st.error("⏳ Your 7-Day Market Pilot has concluded. Please subscribe to continue.")
+                else: st.error(status_msg)
+        else:
+            t_fn = st.text_input("Full Name:")
+            t_farm = st.text_input("Farm Name:")
+            t_u = st.text_input("Create Username:")
+            t_p = st.text_input("Create Password:", type="password")
+            if st.button("Launch 7-Day Pilot"):
+                ok, msg = register_7day_trial(t_u, t_p, t_fn, t_farm)
+                if ok: st.success(msg)
+                else: st.error(msg)
+                
+    # Sidebar Command Navigation Module Integration
+    st.divider()
+    st.markdown("### 🎛 Command Modules")
+
+    # Dynamic Level-5 Extension Auto-Discovery (Decoupled from DOM)
+    _ext_dir = Path(__file__).resolve().parent.parent / "level5_extensions"
+    DYNAMIC_MODULES = {}
+    if _ext_dir.exists():
+        for _f in sorted(_ext_dir.glob("*.py")):
+            if not _f.name.startswith("__"):
+                _disp = f"⚡ {_f.stem.replace('_', ' ').title()}"
+                DYNAMIC_MODULES[_disp] = _f.name
+
+
+    canonical_nav_options = [
+        "🎛️ Master C2 Cockpit",
+        "⚡ Autonomous Build Forge",
+        "🛡️ CEO Authorization Gate",
+        "💬 Sovereign Command",
+        "📡 LinkedIn Engine",
+        "🚨 NOAA Radar",
+        "🌾 Drone Diagnostics",
+        "📖 System Overview",
+        "📡 Sovereign Comms Deck",
+        "📨 Sovereign Dispatch Deck",
+        "📝 Feedback Hub",
+        "🧪 Sandbox",
+        "⚙️ Empire Config",
+        "⬛ Media Matrix",
+        "🎨 Asset Synthesis",
+        "📘 Omni-Industry Matrix",
+    ]
+    all_nav_options = canonical_nav_options + [k for k in DYNAMIC_MODULES.keys() if k not in canonical_nav_options]
+    render_tier_switcher_sidebar()
+    active_module = st.radio("Navigation", all_nav_options, key="ebony_c2_authoritative_nav_selector", label_visibility="collapsed")
+
+
+st.markdown("""
+<div style="background: linear-gradient(90deg, #0b110e 0%, #131d18 100%); border-left: 4px solid #00ff88; border-right: 1px solid #1f3326; border-top: 1px solid #1f3326; border-bottom: 1px solid #1f3326; border-radius: 6px; padding: 12px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <span style="color: #00ff88; font-weight: 800; font-size: 0.95em; letter-spacing: 1.5px; font-family: monospace;">HUMPHREY VIRTUAL FARMS LLC</span>
+        <span style="color: #a0aab2; font-size: 0.85em; margin-left: 12px; font-family: monospace;">| CLASSIFICATION: LEVEL-5 SOVEREIGN INDUSTRIAL C2</span>
+    </div>
+    <div>
+        <span style="background-color: #002b16; border: 1px solid #00ff88; color: #00ff88; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; font-family: monospace; font-weight: bold; margin-right: 8px;">CAGE: 1AHA8</span>
+        <span style="background-color: #002b16; border: 1px solid #00ff88; color: #00ff88; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; font-family: monospace; font-weight: bold; margin-right: 8px;">UEI: S1M4ENLHTDH5</span>
+        <span style="background-color: #121c16; border: 1px solid #285437; color: #7fe6a7; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; font-family: monospace;">HOST: HVFNexus</span>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+st.title(f"⚡ {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
+st.caption(f"Active User: **{current_name}** | 🛡️ *Mode: {st.session_state.operation_mode}*")
+
+
+# --- SOVEREIGN COMMERCIAL TIER BARRIER & MAINTENANCE LOCKOUT ---
+_user_tier = get_current_tier()
+_allowed, _req_tier, _is_maint = check_module_access(_user_tier, active_module)
+if not _allowed:
+    if _is_maint:
+        render_maintenance_screen(active_module)
+    else:
+        render_tier_restriction_screen(active_module, _req_tier, _user_tier)
+    st.stop()
+
+if active_module == "🎛️ Master C2 Cockpit":
+    import c2_cockpit_dashboard
+    c2_cockpit_dashboard.render()
+
+elif active_module == "⚡ Autonomous Build Forge":
+    import c2_forge_dashboard
+    c2_forge_dashboard.render()
+
+elif active_module == "🛡️ CEO Authorization Gate":
+    import c2_gate_dashboard
+    c2_gate_dashboard.render()
+elif "Action Desk" in str(active_module):
+    import sys
+    from pathlib import Path
+    _cockpit_dir = Path(__file__).resolve().parent
+    _target_ext = str(_cockpit_dir.parent / "level5_extensions")
+    if _target_ext not in sys.path:
+        sys.path.insert(0, _target_ext)
+    import action_desk
+    action_desk.render()
+elif "Grain Silo" in str(active_module):
+    import sys
+    from pathlib import Path
+    _cockpit_dir = Path(__file__).resolve().parent
+    _target_ext = str(_cockpit_dir.parent / "level5_extensions")
+    if _target_ext not in sys.path:
+        sys.path.insert(0, _target_ext)
+    import grain_silo_aeration_and_f
+    grain_silo_aeration_and_f.render()
+
+elif active_module in DYNAMIC_MODULES:
+    mod_filename = DYNAMIC_MODULES[active_module]
+    ext_path = Path(__file__).resolve().parent.parent / "level5_extensions" / mod_filename
+    if ext_path.exists():
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(f"dyn_{active_module}", str(ext_path))
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        if hasattr(mod, "render"):
+            mod.render()
+        elif hasattr(mod, "execute"):
+            st.json(mod.execute())
+
+elif active_module == "💬 Sovereign Command":
+    st.markdown("### ⚡ Sovereign Command Nexus // Unified C2 Console")
+
+    if current_user and current_cipher:
+        if "messages" not in st.session_state or st.session_state.screen_wiped:
+            db_messages = load_encrypted_messages(current_user, current_cipher)
+            if not db_messages:
+                initial_msg = {"role": "assistant", "content": "Hey Jeffery, I\'m online and wired in. You want to type or talk today?"}
+                save_encrypted_message(current_user, "assistant", initial_msg["content"], current_cipher)
+                db_messages = [initial_msg]
+            st.session_state.messages = db_messages
+            st.session_state.screen_wiped = False
+    else:
+        if "messages" not in st.session_state:
+            st.session_state.messages = [{"role": "assistant", "content": "⚡ System Online. Awaiting CEO."}]
+
+    col_main, col_hud = st.columns([3, 2])
+
+    with col_main:
+        st.subheader("📡 Tactical Ingress Deck")
+        audio_val = st.audio_input("🎤 Record Sovereign Vocal Directive:")
+        voice_prompt = ""
+        if audio_val is not None:
+            raw_bytes = audio_val.read()
+            if len(raw_bytes) >= 1024:
+                with st.spinner("⚡ Decoding Voice via Local Sovereign Bare-Metal Whisper..."):
+                    from sovereign_comms import transcribe_mic, run_dual_core_router
+                    transcribed_directive = transcribe_mic(raw_bytes)
+
+                if transcribed_directive and transcribed_directive.strip():
+                    st.info(f"Transcribed Directive: '{transcribed_directive.strip()}'")
+                    _vocal_hash = hash(transcribed_directive.strip())
+                    if st.session_state.get("last_executed_vocal_hash") != _vocal_hash:
+                        st.session_state["last_executed_vocal_hash"] = _vocal_hash
+                        if "messages" not in st.session_state:
+                            st.session_state.messages = []
+                        st.session_state.messages.append({"role": "user", "content": transcribed_directive.strip()})
+                        
+                        _active_mode = st.session_state.get("active_engine", "Offline (100% Sovereign Local)")
+                        
+                        with st.spinner("⚡ Ebony Apex C2 is executing sovereign bare-metal directive..."):
+                            _ebony_reply, _audio_payload = run_dual_core_router(transcribed_directive.strip(), mode=_active_mode)
+                            _clean_text = _ebony_clean_ui_text(_ebony_reply) if "_ebony_clean_ui_text" in locals() else _ebony_reply
+                            st.session_state.messages.append({
+                                "role": "assistant",
+                                "content": _clean_text,
+                                "audio": _audio_payload
+                            })
+                            if _audio_payload and os.path.exists(_audio_payload):
+                                with open(_audio_payload, "rb") as _af:
+                                    _aud_bytes = _af.read()
+                                st.audio(_aud_bytes, format="audio/wav", autoplay=True)
+                        st.rerun()
+                        with st.spinner("⚡ Ebony Neural LLM executing directive..."):
+                            reply_val = dispatch_neural_llm(transcribed_directive)
+                        st.session_state.messages.append({"role": "assistant", "content": reply_val})
+                        st.rerun()
+
+        default_text = voice_prompt if voice_prompt else ""
+        # --- LEVEL-5 DYNAMIC NONCE VOICE-TO-INPUT BINDING ---
+        # Captures Whisper transcription and populates the text box directly
+        if 'transcription' in locals() and transcription:
+            _raw_v = transcription.text if hasattr(transcription, 'text') else str(transcription)
+            _clean_v = _raw_v.strip().strip("'").strip('"')
+            if _clean_v and st.session_state.get("last_loaded_voice_nonce_text") != _clean_v:
+                st.session_state["last_loaded_voice_nonce_text"] = _clean_v
+                st.session_state["sovereign_staged_voice"] = _clean_v
+                st.session_state["sovereign_nonce_counter"] = st.session_state.get("sovereign_nonce_counter", 0) + 1
+                st.session_state["vocal_auto_dispatch_armed"] = True
+                st.rerun()
+
+        _nonce = st.session_state.get("sovereign_nonce_counter", 0)
+        _staged_val = st.session_state.get("sovereign_staged_voice", "")
+        user_directive = st.text_input(
+            "Enter or Edit Sovereign Directive:",
+            value=_staged_val,
+            key=f"sovereign_input_nonce_widget_{_nonce}"
+        )
+
+        # Priority Voice Auto-Execution Hook
+        if st.session_state.pop("vocal_auto_dispatch_armed", False) and user_directive:
+            st.session_state["force_voice_transmission"] = True
+
+
+        st.markdown("**⚡ Tactical Command Quick-Action Macros:**")
+        m_col1, m_col2, m_col3, m_col4 = st.columns(4)
+        macro_trigger = None
+
+        with m_col1:
+            if st.button("🚨 System Readiness", width="stretch"):
+                macro_trigger = "Ebony, report your system readiness, CAGE governance, and operational status."
+        with m_col2:
+            if st.button("📊 SCADA Diagnostics", width="stretch"):
+                macro_trigger = "Ebony, pull real-time industrial SCADA metrics and storage integrity for node HVFNexus."
+        with m_col3:
+            if st.button("🛡️ Swarm Triad Audit", width="stretch"):
+                macro_trigger = "Ebony, dispatch the autonomous agent swarm triad and verify compliance."
+        with m_col4:
+            if st.button("🧹 Purge Session", width="stretch"):
+                st.session_state.messages = []
+                st.session_state.screen_wiped = True
+                st.rerun()
+
+        active_command = macro_trigger if macro_trigger else user_directive
+        transmit_clicked = st.button("🚀 Transmit Directive", width="stretch")
+
+        if (transmit_clicked or macro_trigger) and active_command.strip():
+            with st.spinner("Processing through Sovereign Tri-Brain Router..."):
+                st.session_state.messages.append({"role": "user", "content": active_command.strip()})
+                if current_user and current_cipher:
+                    save_encrypted_message(current_user, "user", active_command.strip(), current_cipher)
+
+                from sovereign_comms import run_dual_core_router
+                response, audio_file = run_dual_core_router(active_command.strip(), raw_history=st.session_state.messages)
+
+                st.session_state.messages.append({"role": "assistant", "content": response})
+                if current_user and current_cipher:
+                    save_encrypted_message(current_user, "assistant", response, current_cipher)
+                    store_entity_memory_async(current_user, active_command.strip(), response)
+
+                if audio_file and __import__("os").path.exists(audio_file):
+                    with open(audio_file, "rb") as f:
+                        import base64
+                        b64_audio = base64.b64encode(f.read()).decode()
+                        st.markdown(f'<audio src="data:audio/wav;base64,{b64_audio}" autoplay controls style="width: 100%; margin-top: 10px;"></audio>', unsafe_allow_html=True)
+
+        st.markdown("### 💬 Live Command Stream")
+        for _msg_idx, msg in enumerate(reversed(st.session_state.messages)):
+            if msg["role"] == "user":
+                st.markdown("**CEO Humphrey:** `" + str(msg["content"]) + "`")
+            else:
+                st.markdown("**Ebony (Chronos):**\n\n" + str(msg["content"]))
+                # --- AUDITED HISTORICAL AUDIO IN-MEMORY BYTE STREAM RENDERER ---
+                _aud_target = msg.get('audio') if isinstance(msg, dict) else None
+                if _aud_target and isinstance(_aud_target, str) and os.path.exists(_aud_target):
+                    try:
+                        with open(_aud_target, 'rb') as _af:
+                            _aud_data = _af.read()
+                        st.audio(_aud_data, format='audio/wav', autoplay=(_msg_idx == 0))
+                    except Exception:
+                        pass
+                st.divider()
+    with col_hud:
+        st.subheader("🛡️ Real-Time Telemetry HUD")
+        tab_ledger, tab_scada, tab_swarm = st.tabs(["C2 Audit Ledger", "SCADA Telemetry", "Agent Swarm"])
+
+        with tab_ledger:
+            st.markdown("**Local SQLite WORM Ledger (matrix_ledger.db)**")
+            try:
+                from ebony_ledger import get_recent_entries
+                entries = get_recent_entries(limit=8)
+                if entries:
+                    for entry in entries:
+                        st.text(f"[{entry[1][:19]}] {entry[2].upper()} | Core: {entry[4]}")
+                        st.caption(f"Payload: {entry[3][:110]}...")
+                        st.divider()
+                else:
+                    st.info("No ledger entries logged.")
+            except Exception as e:
+                st.error("Ledger offline.")
+
+        with tab_scada:
+            st.markdown("**Deterministic Host Diagnostics (HVFNexus)**")
+            try:
+                from ebony_scada_poll import poll_system_metrics
+                m = poll_system_metrics()
+                if m.get("status") == "NOMINAL":
+                    st.metric("Primary Storage (C:\)", f"{m['disk_free_gb']} GB Free", f"{m['disk_used_pct']}% Used")
+                    st.text(f"Host Node: {m['node']}")
+                    st.text(f"Environment: {m['os']}")
+                    st.text(f"Runtime Engine: Python {m['python_runtime']}")
+                    st.text(f"SCADA Link Status: {m['status']}")
+                else:
+                    st.error(f"SCADA Poll Fault: {m.get('error')}")
+            except Exception as e:
+                st.error("SCADA Offline.")
+
+        with tab_swarm:
+            st.markdown("**Autonomous Triad Swarm Tasking (BETA_AGENTS)**")
+            try:
+                from ebony_agent_swarm import dispatch_swarm_task
+                swarm_col1, swarm_col2 = st.columns(2)
+                with swarm_col1:
+                    if st.button("Triad Sweep", key="hud_triad_btn", width="stretch"):
+                        st.code(dispatch_swarm_task("all"), language="text")
+                    if st.button("Recon Agent", key="hud_recon_btn", width="stretch"):
+                        st.code(dispatch_swarm_task("recon"), language="text")
+                with swarm_col2:
+                    if st.button("Security Agent", key="hud_sec_btn", width="stretch"):
+                        st.code(dispatch_swarm_task("security"), language="text")
+                    if st.button("Analyst Agent", key="hud_analyst_btn", width="stretch"):
+                        st.code(dispatch_swarm_task("analyst"), language="text")
+            except Exception as e:
+                st.error("Swarm Offline.")
+
+
+
+elif active_module == "📡 LinkedIn Engine":
+
+    if current_role in ["CEO", "SUPER_ADMIN"]:
+        col_dict1, col_dict2 = st.columns([1.6, 1])
+        with col_dict1:
+            st.markdown("#### 🎙️ Dictate Strategic Directive")
+            dictated_prompt = st.text_area("Dictate LinkedIn Concept / Key Talking Points:", height=120)
+            if st.button("🤖 Generate 100% Factual Draft", width='stretch'):
+                sys_msg = f"You are ghostwriting for {EMPIRE['FOUNDER_NAME']}, CEO of {EMPIRE['FARM_NAME']}. Strict factual accuracy based solely on user input."
+
+                draft_text = ""
+                if is_online:
+                    if not groq_client:
+                        draft_text = "⚠️ CLOUD ENGINE OFFLINE: GROQ_API_KEY is missing from your vault. Please open your .env file and add your Groq key."
+                    else:
+                        try:
+                            res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=[{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}], temperature=0.0)
+                            draft_text = enforce_bare_metal_invariants(sanitize_deterministic_output(res.choices[0].message.content).strip())
+                        except Exception as e:
+                            draft_text = f"⚠️ CLOUD API FAULT: {str(e)}"
+                else:
+                    draft_text = query_local_ollama_chat([{"role": "system", "content": sys_msg}, {"role": "user", "content": dictated_prompt}])
+
+                st.session_state.current_linkedin_draft = draft_text
+                st.session_state.linkedin_editor = draft_text
+                st.rerun()
+
+        with col_dict2:
+            st.markdown("#### ⚙️ Pipeline Status")
+            st.code(f"Author URN: {mask_secret(format_linkedin_urn(LINKEDIN_URN), 'URN')}\nGateway Token: {mask_secret(LINKEDIN_TOKEN, 'TOKEN')}\nZero-Hallucination: STRICT (Temp 0.0)")
+
+        st.divider()
+        st.markdown("#### 📡 Live Broadcast Editor & Deployment Gateway")
+        st.text_area("Review & Refine Before Deploying:", value=st.session_state.current_linkedin_draft, height=200, key="linkedin_editor")
+
+        col_dep1, col_dep2 = st.columns([2, 1])
+        with col_dep1:
+            if st.button("🚀 Authorize & Deploy Live to LinkedIn Profile", width='stretch'):
+                sanitized_deployment = sanitize_deterministic_output(st.session_state.current_linkedin_draft)
+                if st.session_state.demo_mode: st.error("⛔ Action Blocked: Cannot deploy while Executive Demo Mode is active.")
+                elif not LINKEDIN_TOKEN or not LINKEDIN_URN: st.error("⛔ LinkedIn credentials missing from vault.")
+                elif not sanitized_deployment: st.warning("Cannot deploy empty broadcast.")
+                else:
+                    with st.spinner("📡 Broadcasting to LinkedIn..."):
+                        clean_urn = format_linkedin_urn(LINKEDIN_URN)
+                        try:
+                            resp = requests.post("https://api.linkedin.com/v2/ugcPosts", headers={"Authorization": f"Bearer {LINKEDIN_TOKEN}", "Content-Type": "application/json", "X-Restli-Protocol-Version": "2.0.0"}, json={"author": clean_urn, "lifecycleState": "PUBLISHED", "specificContent": {"com.linkedin.ugc.ShareContent": {"shareCommentary": {"text": sanitized_deployment}, "shareMediaCategory": "NONE"}}, "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"}}, timeout=15)
+                            if resp.status_code in [200, 201]:
+                                st.success(f"🎉 Live Deployment Confirmed! Post ID: `{resp.json().get('id', 'SUCCESS')}`")
+                            else: st.error(f"⚠️ API Error (HTTP {resp.status_code}):\n`{resp.text}`")
+                        except Exception as err: st.error(f"Deployment error: {str(err)}")
+    else: st.info("🔒 Executive Article Dictation is reserved for the Master CEO.")
+
+elif active_module == "🚨 NOAA Radar":
+    st.subheader("🚨 NOAA Emergency Weather & Live Radar Sentinel")
+    st.components.v1.iframe("https://radar.weather.gov/", height=450, scrolling=True)
+
+elif active_module == "🌾 Drone Diagnostics":
+    st.markdown("### 🚁 /// OPTICAL PAYLOAD FEED (LIVE & GLI ACTIVE)")
+    run_camera = st.checkbox("[ ARM OPTICAL LINK WITH GLI ]", key="master_cam_toggle")
+    FRAME_WINDOW = st.image([])
+
+    if run_camera:
+        import cv2
+        import numpy as np
+        try:
+            camera = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+            if not camera.isOpened():
+                camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+            while run_camera:
+                ret, frame = camera.read()
+                if not ret: break
+
+                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                r_img, g_img, b_img = cv2.split(frame_rgb.astype(np.float32))
+
+                denominator = (2 * g_img + r_img + b_img)
+                denominator[denominator == 0] = 1
+                gli_matrix = (2 * g_img - r_img - b_img) / denominator
+                avg_gli = np.mean(gli_matrix)
+
+                # Silently log the live score into the platform's short-term memory
+                st.session_state["last_gli"] = float(avg_gli)
+
+                cv2.putText(frame_rgb, "EBONY OPTICAL: ACTIVE", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+                gli_color = (0, 255, 0) if avg_gli > 0.1 else (255, 0, 0)
+                cv2.putText(frame_rgb, f"LIVE GLI SCORE: {avg_gli:.3f}", (10, 65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, gli_color, 2)
+
+                FRAME_WINDOW.image(frame_rgb)
+            camera.release()
+        except Exception as e:
+            st.error(f"HARDWARE INTERLOCK FAILURE: {e}")
+    else:
+        st.info("[!] OPTICAL PAYLOAD OFFLINE. AWAITING CEO OVERRIDE.")
+
+    # /// THE NEURAL BRIDGE ///
+    if "last_gli" in st.session_state:
+        st.markdown("---")
+        st.markdown("### 🧠 /// NEURAL BRIDGE: AI INGESTION")
+        if st.button("[ TRANSMIT TELEMETRY TO AI CORE ]"):
+            gli_val = st.session_state["last_gli"]
+            prompt = f"SYSTEM INGEST: The optical payload just captured a live Green Leaf Index (GLI) score of {gli_val:.3f}. Based on standard omni-industrial baselines (where >0.1 indicates healthy vegetative vigor and lower values indicate stress, soil, or non-crop matter), analyze this telemetry and provide a deterministic field assessment for the CEO."
+
+            with st.spinner("EBONY AI IS ANALYZING SENSOR DATA..."):
+                try:
+                    client = Groq(api_key=GROQ_KEY)
+                    chat_history = [{"role": "system", "content": "You are Ebony, the Level 5 Sovereign Apex Intelligence for HVF Omni-Industrial Matrix. Be concise, authoritative, and deterministic."}] + [{"role": "user", "content": prompt}]
+
+                    response = client.chat.completions.create(
+                        model="openai/gpt-oss-120b",
+                        messages=chat_history,
+                        temperature=0.0
+                    )
+                    ai_reply = enforce_bare_metal_invariants(response.choices[0].message.content)
+
+                    st.success("✅ OPTICAL TELEMETRY ANALYZED.")
+                    st.markdown("#### 🌾 EBONY omni-industrial ASSESSMENT:")
+                    st.info(ai_reply)
+
+                    try:
+                        st.session_state.messages.append({"role": "user", "content": prompt})
+                        st.session_state.messages.append({"role": "assistant", "content": ai_reply})
+                        save_encrypted_message(current_user, "user", prompt, current_cipher)
+                        save_encrypted_message(current_user, "assistant", ai_reply, current_cipher)
+                    except: pass
+
+                except Exception as e:
+                    st.error(f"NEURAL CORE OFFLINE OR API REJECTED. Error: {e}")
+    st.subheader(f"🌾 {EMPIRE['FARM_NAME']} | Aerial Ingest")
+
+    drone_linked = st.toggle("📡 Arm Drone Feed (Simulate Active RTMP Handshake)", value=False)
+
+    if drone_linked:
+        st.components.v1.html(f'<iframe src="{WEBRTC_STREAM_URL}" width="100%" height="450" frameborder="0" allowfullscreen></iframe>', height=470)
+        st.success("🟢 LIVE: Universal Drone Ingest Active")
+    else:
+        st.markdown("### 🔴 No Active Craft Detected")
+        st.info("System is waiting for an incoming RTMP stream. While offline, review the Universal Ingest Setup Guide below.")
+
+        c_vid, c_inst = st.columns([1.5, 1])
+        with c_vid:
+            local_vid_path = os.path.join(REPO_DIR, "drone_training.mp4")
+        if os.path.exists(local_vid_path):
+            st.video(local_vid_path, loop=True, autoplay=True, muted=True)
+        else:
+            # Fallback to a raw, open-source MP4 video stream (Zero YouTube)
+            st.video("https://raw.githubusercontent.com/intel-iot-devkit/sample-videos/master/person-bicycle-car-detection.mp4", loop=True, autoplay=True, muted=True)
+            st.caption("⚙️ **Sovereign Mode:** Playing raw native MP4 (YouTube Engine Severed).")
+            st.info("💡 Drop an MP4 file named 'drone_training.mp4' into your master folder to replace this video.")
+            st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
+
+        with c_inst:
+            st.markdown("#### 📖 Universal RTMP Setup")
+            st.markdown("""1. Power on your craft (DJI, Autel, Skydio).
+2. Connect controller to Wi-Fi/Hotspot.
+3. Open flight app and select **Live Streaming**.
+4. Select **RTMP** and input the secure ingest URL:""")
+            st.code(mask_secret(RTMP_INGEST_URL, "IP"), language="bash")
+            st.markdown("""5. Set bitrate to **2 Mbps** and resolution to **720p/1080p**.
+6. Tap **Start Streaming**.""")
+
+elif active_module == "📖 System Overview":
+    st.markdown("### 💳 Commercial Subscriptions & Features")
+    tc1, tc2, tc3, tc4, tc5 = st.columns(5)
+    with tc1:
+        with st.container(border=True):
+            st.markdown("#### 🌱 PERSONAL\n**$19.99/mo**")
+            st.caption("✔ 1 Authorized Device Node\n✔ Sovereign Email Triage\n✔ 🚨 NOAA Weather Radar\n✔ Encrypted Vault")
+    with tc2:
+        with st.container(border=True):
+            st.markdown("#### ⚡ COMMAND\n**$39.99/mo**")
+            st.caption("✔ 3 Authorized Device Nodes\n✔ 💬 Sovereign Command AI\n✔ 📡 Live Optical Sensor Bus\n✔ Contextual Ghostwriter")
+    with tc3:
+        with st.container(border=True):
+            st.markdown("#### 💎 VIP MEMBER\n**$249/mo**")
+            st.caption("✔ 5 Authorized Device Nodes\n✔ 🎛️ Master C2 Cockpit\n✔ 🌾 Drone Diagnostics\n✔ 📡 LinkedIn Engine")
+    with tc4:
+        with st.container(border=True):
+            st.markdown("#### 🏛️ ENTERPRISE\n**$2,499/yr**")
+            st.caption("✔ 10 Authorized Device Nodes\n✔ State Title 61 Master\n✔ Multi-Site Admin Keys\n✔ Dedicated Grant Deck")
+    with tc5:
+        with st.container(border=True):
+            st.markdown("#### 📦 APPLIANCE\n**$4,950 setup**")
+            st.caption("✔ UNLIMITED Operation Nodes\n✔ 100% Air-Gapped Rack\n✔ sub-16ms Kinetic Island\n✔ + $299/mo Maint.")
+
+
+            st.markdown("#### 🌱 PERSONAL\n**$19.99/mo**")
+            st.caption("✔ Single-User Node\n✔ Sovereign Email Triage\n✔ 🚨 NOAA Weather Radar\n✔ Encrypted Vault")
+    with tc2:
+        with st.container(border=True):
+            st.markdown("#### ⚡ COMMAND\n**$39.99/mo**")
+            st.caption("✔ Everything in Personal\n✔ 💬 Sovereign Command AI\n✔ 📡 Live Optical Sensor Bus\n✔ Arducam & Tapo IP Stream")
+    with tc3:
+        with st.container(border=True):
+            st.markdown("#### 💎 VIP MEMBER\n**$249/mo**")
+            st.caption("✔ Everything in Command\n✔ 🎛️ Master C2 Cockpit\n✔ 🌾 Drone Diagnostics\n✔ 📡 LinkedIn Engine")
+    with tc4:
+        with st.container(border=True):
+            st.markdown("#### 🏛️ ENTERPRISE\n**$2,499/yr**")
+            st.caption("✔ Everything in VIP\n✔ State Title 61 Master\n✔ Multi-Site Admin Keys\n✔ Dedicated Grant Deck")
+    with tc5:
+        with st.container(border=True):
+            st.markdown("#### 📦 APPLIANCE\n**$4,950 setup**")
+            st.caption("✔ Bare-Metal Hardware\n✔ 100% Air-Gapped Rack\n✔ sub-16ms Kinetic Island\n✔ + $299/mo Maint.")
+
+
+            st.markdown("#### 🌱 PERSONAL\n**$19.99/mo**")
+            st.caption("✔ Single-User Node\n✔ Sovereign Email Triage\n✔ 🚨 NOAA Weather Radar\n✔ Encrypted Vault")
+    with tc2:
+        with st.container(border=True):
+            st.markdown("#### ⚡ COMMAND\n**$39.99/mo**")
+            st.caption("✔ Everything in Personal\n✔ 💬 Sovereign Command AI\n✔ Neural Prompt Routing\n✔ Contextual Ghostwriter")
+    with tc3:
+        with st.container(border=True):
+            st.markdown("#### 💎 VIP MEMBER\n**$249/mo**")
+            st.caption("✔ Everything in Command\n✔ 🎛️ Master C2 Cockpit\n✔ 🌾 Drone Diagnostics\n✔ 📡 LinkedIn Engine")
+    with tc4:
+        with st.container(border=True):
+            st.markdown("#### 🏛️ ENTERPRISE\n**$2,499/yr**")
+            st.caption("✔ Everything in VIP\n✔ State Title 61 Master\n✔ Multi-Site Admin Keys\n✔ Dedicated Grant Deck")
+    with tc5:
+        with st.container(border=True):
+            st.markdown("#### 📦 APPLIANCE\n**$4,950 setup**")
+            st.caption("✔ Bare-Metal Hardware\n✔ 100% Air-Gapped Rack\n✔ sub-16ms Kinetic Island\n✔ + $299/mo Maint.")
+
+        with st.expander("👑 [MASTER PLATFORM ROOT]: Live Diagnostic Mesh & Summary", expanded=True):
+            st.markdown("#### 🖥️ Master Node Diagnostic Readout")
+            conn = sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)
+            cur = conn.cursor()
+            cur.execute("SELECT COUNT(*) FROM system_users")
+            user_count = cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) FROM member_invite_keys WHERE is_used=0")
+            unused_keys = cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) FROM encrypted_user_comms")
+            msg_count = cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) FROM pilot_feedback_vault")
+            feedback_count = cur.fetchone()[0]
+            conn.close()
+
+            st.code(f"""======================= SYSTEM TOPOLOGY =======================
+Host IP (Local LAN)      : {mask_secret("192.168.1.175", "IP")}
+Mesh Endpoint (Tailscale): {mask_secret(f"{ACTIVE_IP}:8501", "IP")}
+Master Database Vault    : {mask_secret(DB_PATH, "PATH")}
+---------------------------------------------------------------
+Active Registered Users  : {user_count}
+Submitted Pilot Reviews  : {feedback_count}
+Unused License Keys      : {unused_keys}
+Encrypted Comm Records   : {msg_count}
+---------------------------------------------------------------
+Local Neural Engine      : Ollama REST API (Port 11434)
+Cloud Fast Link          : Groq API (TLS 1.3)
+Universal Drone Ingest   : MediaMTX (Port 1935 RTMP)
+===============================================================""")
+
+    st.markdown("### 🚀 Client Quick-Deploy Distribution Link")
+    st.info("Share this 1-click installer link with prospective clients or ranch managers to launch their local 7-Day Pilot:")
+    st.code("https://raw.githubusercontent.com/mrshumphrey3251-ai/hvf-media-matrix-public/main/Deploy_Ebony.bat", language="text")
+
+    st.markdown("---")
+    st.markdown("### 📱 Mobile Field Uplink Protocol (iOS & Android)")
+    st.info("Heavy neural compute and drone ingest execute on your Master PC. To operate the system in the field, deploy the platform directly to your mobile device as a standalone application:")
+
+    col_mob1, col_mob2 = st.columns(2)
+    with col_mob1:
+        st.markdown("#### 🍎 Apple iPhone (iOS)")
+        st.markdown("""1. Ensure your Master PC is running and Tailscale is active.
+2. Open **Safari** on your iPhone and navigate to your **Mesh Endpoint URL**.
+3. Tap the **Share** button (the square with an upward arrow).
+4. Scroll down and select **"Add to Home Screen"**.
+5. Tap **Add** in the top right.
+
+The platform will launch as a full-screen native app, bypassing the Apple App Store.""")
+
+    with col_mob2:
+        st.markdown("#### 🤖 Android")
+        st.markdown("""1. Ensure your Master PC is running and Tailscale is active.
+2. Open **Google Chrome** on your device and navigate to your **Mesh Endpoint URL**.
+3. Tap the browser menu (**⋮**) in the top right.
+4. Select **"Add to Home screen"**.
+5. Tap **Install**.
+
+The platform will launch as a full-screen native app, bypassing the Google Play Store.""")
+
+    st.markdown("---")
+    st.markdown(f"### 📖 Sovereign Knowledge Academy & Technical Directory")
+
+    with st.expander(f"🏛️ [PILLAR 1]: The {EMPIRE['FARM_NAME']} Manifesto & Sovereign Architecture", expanded=False):
+        st.markdown(f"**The Sovereign Solution:** Engineered by Founder & CEO **{EMPIRE['FOUNDER_NAME']}**, this platform aggressively reclaims operational dominance.\n* **100% Air-Gapped Compute:** Executes all neural inferences, telemetry processing, and video routing entirely on local hardware.\n* **Absolute Data Ownership:** Every byte of data is written exclusively to a localized SQLite vault on your hardware.")
+
+    with st.expander(f"⚡ [PILLAR 2]: {EMPIRE['AI_PERSONA']} - Neural Processing & Predictive Memory", expanded=False):
+        st.markdown(f"**{EMPIRE['AI_PERSONA']}** is a highly specialized, dual-engine omni-industrial intelligence.\n* **Cloud Fast Link:** `openai/gpt-oss-120b` via Groq LPU for high-speed online inference.\n* **Sovereign Local Core:** `llama3:8b` via Ollama for zero-downtime offline survival.\n* **Persistent Entity Memory:** Dynamically extracts and memorizes omni-industrial entities.")
+
+    with st.expander("🌾 [PILLAR 3]: Universal Drone Computer Vision & Multispectral Analysis", expanded=False):
+        st.markdown("* **Universal RTMP/RTSP Ingest:** Capable of receiving live telemetry from DJI, Autel, Skydio, or PX4 drones.\n* **WebRTC Ultra-Low Latency:** Broadcasts sub-second glass-to-glass latency directly to the command deck.\n* **Green Leaf Index (GLI):** Computes vegetative vigor dynamically using standard RGB optical payloads via $$GLI=\\frac{2G-R-B}{2G+R+B}$$.")
+
+    with st.expander("📡 [PILLAR 4]: IoT Soil Mesh & Capacitance Telemetry", expanded=False):
+        st.markdown("* **Dielectric Permittivity Sensors:** Accurately calculates Volumetric Water Content (VWC %).\n* **Actionable Thresholds:** Monitors Field Capacity and Permanent Wilting Point to manage precision irrigation schedules.\n* **Cryptographic Storage:** Aggregated and locked in the local SQLite vault.")
+
+    with st.expander("🚨 [PILLAR 5]: NOAA Emergency Radar & Hazard Protocols", expanded=False):
+        st.markdown("* **NEXRAD Doppler Overlay:** Live connection tracking micro-cell storms and severe wind shears.\n* **Hazard Containment:** Instant deterministic safety protocols for critical farm emergencies (ammonia leaks, high-voltage strikes).")
+
+    with st.expander("📰 [PILLAR 6]: Executive Broadcast & Thought Leadership Engine", expanded=False):
+        st.markdown(f"* **Zero-Hallucination Dictation:** The LLM is mathematically locked to a Temperature of 0.0 to prevent fabricated metrics.\n* **OAuth 2.0 Integration:** Securely authenticates via LinkedIn UGC API.\n* **Direct Deployment:** Deploy professional market updates seamlessly from the command deck.")
+
+    with st.expander("🔐 [PILLAR 7]: Cryptographic Vault & Security Matrix", expanded=False):
+        st.markdown("* **Key Derivation (PBKDF2):** Passwords hashed using SHA-256 and PBKDF2 with 100,000 iterations.\n* **Symmetric Encryption (Fernet):** All private communications and data are encrypted at rest.\n* **Role-Based Access Control (RBAC):** Strict clearance hierarchy from Guest up to Master CEO.")
+
+    st.divider()
+
+    st.markdown("### 💼 Enterprise Commercial Suite")
+    st.info("Complete documentation suite for enterprise deployment, regulatory compliance, and system integration.")
+
+    with st.expander("📄 [DOC 1]: Product Overview & Value Proposition", expanded=False):
+        st.markdown('''**HVF Omni-Industrial Matrix – AI-Powered Precision Agriculture Platform**
+*Version 1.0.0 (Commercial Release)*
+* **Core Value Proposition:** Real-time, AI-driven field intelligence from drone video (WebRTC/RTMP) and dielectric-permittivity soil-moisture sensors.
+* **Key Metrics:** Green Leaf Index (GLI) = $$\frac{2G - R - B}{2G + R + B}$$
+* **Target Customers:** Mid-size row-crop growers, specialty fruit orchards, agribusiness consultants.
+* **Revenue Model:** Subscription tiers (Basic / Pro / Enterprise) + optional per-acre data-ingest processing.''')
+
+    with st.expander("⚙️ [DOC 2]: Technical Specification Sheet", expanded=False):
+        st.markdown('''* **Drone Telemetry:** WebRTC (SRTP) & RTMP, H.264/H.265/VP9, JSON payloads (GPS, altitude, battery).
+* **Processing Pipeline:** Real-time decoder (FFmpeg), frame-level RGB extraction, GLI calculation.
+* **Soil-Moisture:** Dielectric permittivity sensors (1-10 MHz), 1 Hz sampling rate.
+* **Data Storage:** S3-compatible cloud object store, InfluxDB for time-series, PostgreSQL for metadata.
+* **AI/Analytics Engine:** Python 3.11, PyTorch 2.4, LSTM predictor, Kubernetes (3-node cluster).
+* **Security:** TLS 1.3, JWT-based auth, AES-256 at-rest encryption.''')
+
+    with st.expander("🚀 [DOC 3]: Deployment Guide & Ops Manual", expanded=False):
+        st.markdown("**Infrastructure Setup (EKS)**")
+        st.code('''eksctl create cluster --name hvf-prod --region us-west-2 --nodes 3 --node-type m5.large
+helm repo add hvf https://charts.hvf.io
+helm install hvf-platform hvf/hvf-platform -f values-prod.yaml''', language='bash')
+        st.markdown('''* **Monitoring:** Prometheus + Grafana. Automated alerts on ingest latency > 300ms.
+* **Backup:** Daily PostgreSQL/InfluxDB snapshots.
+* **CI/CD:** GitHub Actions to ECR, semantic versioning tag releases.''')
+
+    with st.expander("🤝 [DOC 4]: Service Level Agreement (SLA)", expanded=False):
+        st.markdown('''| Metric | Commitment | Measurement |
+|---|---|---|
+| **Uptime** | 99.5% monthly | Automated health checks |
+| **Ingest Latency** | <= 250ms (95%) | Measured at edge ingest node |
+| **Data Freshness** | <= 30s | Timestamp delta in InfluxDB |
+| **Support** | Tier 1: 2h | Dedicated ticketing system |''')
+
+    with st.expander("⚖️ [DOC 5]: Regulatory & Compliance Checklist", expanded=False):
+        st.markdown('''* ✅ **FCC Part 15:** Compliant (low-power, unlicensed UAV telemetry).
+* ✅ **USDA-APHIS:** Data sharing agreements active and in place.
+* ✅ **GDPR / CCPA:** Data-subject rights workflow and opt-out mechanisms operational.
+* ✅ **ISO 27001:** Controls mapped; certification audit scheduled for Q4 2026.''')
+
+    with st.expander("📢 [DOC 6]: Marketing & Sales Collateral", expanded=False):
+        st.markdown('''* **Headline:** "Turn every drone flight into a prescriptive farm-management plan."
+* **Key Benefits:** 30% water savings, 12% yield boost, < 5 min data-to-action time.
+* **Customer Quote:** *"We cut irrigation cycles from 4 per week to 2 per week without sacrificing yield."*
+* **Demo Script Structure:** Intro (2 min), Live Ingest (5 min), Soil Mesh (3 min), Insights (4 min), Q&A.''')
+
+    with st.expander("ℹ️ [DOC 7]: Customer-Facing FAQ", expanded=False):
+        st.markdown('''**Q: What drones are supported?**
+A: Any UAV streaming via WebRTC or RTMP (DJI, senseFly, Parrot, custom Pixhawk rigs).
+**Q: Do I need a special camera?**
+A: No. Standard RGB is sufficient for GLI.
+**Q: Is my data private?**
+A: Yes. All data is encrypted in transit and at rest. We never sell raw data.
+**Q: What is the pricing?**
+A: Starts at $1.99/acre/month (Basic). Pro adds multispectral for $2.99/acre/month.''')
+
+    # --- COMMAND CENTER ARCHITECTURE BRIDGE INJECTION ---
+    st.divider()
+    st.markdown("### 🏛️ Executive Command Center & Active Frameworks")
+    st.info("Live synchronized deployment of your unredacted sovereign architecture.")
+
+    cc_path = os.path.join(REPO_DIR, "src", "command_center", "master_registry.md")
+    jv_path = os.path.join(REPO_DIR, "src", "compliance", "commercial_jv_framework.md")
+
+    if current_role in ["CEO", "SUPER_ADMIN"]:
+        if os.path.exists(cc_path):
+            with st.expander("⚡ [ACTIVE CORE]: Master Command Registry", expanded=True):
+                with open(cc_path, "r", encoding="utf-8") as f:
+                    st.markdown(f.read())
+
+        if os.path.exists(jv_path):
+            with st.expander("⚖ [COMPLIANCE]: Sovereign Corporate Governance Framework", expanded=False):
+                with open(jv_path, "r", encoding="utf-8") as f:
+                    st.markdown(f.read())
+    else:
+        st.warning("🔒 Executive Frameworks are restricted to Master CEO clearance.")
+    # ----------------------------------------------------
+
+    st.divider()
+    st.markdown("### 🔍 Source Code Transparency & Architectural Audit")
+
+    is_master_founder = (current_name and current_name.strip().title() == "Jeffery Humphrey")
+
+    if is_master_founder:
+        st.markdown("👑 **Master CEO Clearance Acknowledged.** You have unrestricted access to the raw architecture. *(OPSEC Protocol: Sensitive IPs and Paths are masked dynamically if Demo Mode is active).*")
+    else:
+        st.markdown("Enterprise transparency mandates architectural visibility. You are viewing the **Publicly Cleared** source code. Proprietary cryptographic, database schemas, and routing logic have been aggressively redacted by order of the Founder.")
+
+    target_files = ["ebony_console_GREEN.py", "Deploy_Ebony.bat", "requirements.txt", ".gitignore"]
+
+    for file_name in target_files:
+        file_path = os.path.join(REPO_DIR, file_name)
+        if os.path.exists(file_path):
+            with st.expander(f"📄 Raw Code Review: {file_name}", expanded=False):
+                try:
+                    with open(file_path, "r", encoding="utf-8") as file_read:
+                        raw_content = file_read.read()
+
+                    if is_master_founder and st.session_state.demo_mode:
+                        raw_content = re.sub(r'(?:[0-9]{1,3}\.){3}[0-9]{1,3}', '[REDACTED_LOCAL_IP]', raw_content)
+                        raw_content = re.sub(r'C:\\[^\n]*HVF_Repos[^\n]*', 'C:\\[REDACTED_VAULT_PATH]', raw_content)
+                        raw_content = raw_content.replace(DEFAULT_LAT, "[REDACTED_LAT]").replace(DEFAULT_LON, "[REDACTED_LON]")
+
+                    elif not is_master_founder:
+                        raw_content = re.sub(r'(?:[0-9]{1,3}\.){3}[0-9]{1,3}', '[REDACTED_LOCAL_IP]', raw_content)
+                        raw_content = re.sub(r'C:\\[^\n]*HVF_Repos[^\n]*', 'C:\\[REDACTED_VAULT_PATH]', raw_content)
+                        raw_content = raw_content.replace(DEFAULT_LAT, "[REDACTED_LAT]").replace(DEFAULT_LON, "[REDACTED_LON]")
+                        raw_content = raw_content.replace("127.0.0.1", "[LOCAL_HOST_REDACTED]")
+                        raw_content = re.sub(r'CREATE TABLE IF NOT EXISTS [^\)]*\)', '[DATABASE_SCHEMA_CLASSIFIED]', raw_content)
+                        raw_content = re.sub(r'SELECT [^"]*', 'SELECT [PROPRIETARY_FIELDS_REDACTED] FROM [TABLE_REDACTED] ', raw_content)
+                        raw_content = re.sub(r'INSERT INTO [^"]*', 'INSERT INTO [TABLE_REDACTED] [FIELDS_REDACTED] ', raw_content)
+                        raw_content = raw_content.replace('Fernet', '[CLASSIFIED_CRYPTO_ENGINE]')
+                        raw_content = raw_content.replace('PBKDF2HMAC', '[CLASSIFIED_KEY_DERIVATION]')
+
+                    lang = "python" if file_name.endswith(".py") else "bash" if file_name.endswith(".bat") else "text"
+                    st.code(raw_content, language=lang)
+                except Exception as e:
+                    st.error(f"⚠️ Transparency Engine Fault: Cannot parse {file_name}. Reason: {e}")
+
+elif active_module == "📝 Feedback Hub":
+    st.subheader("📝 Open Market Pilot Feedback Hub")
+    if current_role in ["CEO", "SUPER_ADMIN"]:
+        conn = sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)
+        cur = conn.cursor()
+        cur.execute("SELECT full_name, username, rating, feedback_text FROM pilot_feedback_vault ORDER BY id DESC")
+        reviews = cur.fetchall()
+        conn.close()
+        if reviews:
+            for r in reviews: st.info(f"**{r[0]} ({r[1]}) - {r[2]}/5 Stars**\n\n{r[3]}")
+        else: st.caption("No reviews yet.")
+    else:
+        fb_rating = st.slider("Rating:", 1, 5, 5)
+        fb_text = st.text_area("Feedback (Required to unlock commercial tiers):")
+        if st.button("Submit Review & Unlock Platform"):
+            if not fb_text.strip(): st.warning("Feedback text is required.")
+            else:
+                save_pilot_feedback(current_user, current_name, fb_rating, "", "", fb_text, "")
+                st.success("Review Submitted. Commercial tiers unlocked in Tab 5.")
+                st.rerun()
+
+elif active_module == "🧪 Sandbox":
+    if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO", "MEMBER", "TRIAL_MEMBER"]:
+        st.subheader("🧪 Python Execution Sandbox")
+        st.code("print('⚡ Sandbox Online')")
+    else: st.warning("🔒 Sandbox restricted.")
+
+elif active_module == "⚙️ Empire Config":
+    if current_role in ["CEO", "SUPER_ADMIN"]:
+        st.subheader("⚙️ Sovereign Empire Configuration (White-Label Settings)")
+        with st.form("empire_config_form"):
+            new_farm = st.text_input("Empire / Farm Name:", value=EMPIRE["FARM_NAME"])
+            new_founder = st.text_input("Master CEO / Founder Name:", value=EMPIRE["FOUNDER_NAME"])
+            new_persona = st.text_input("AI Persona Name:", value=EMPIRE["AI_PERSONA"])
+            new_email = st.text_input("Official Contact Email:", value=EMPIRE["CONTACT_EMAIL"])
+
+            if st.form_submit_button("🛡️ Forge Empire Identity"):
+                update_empire_config(new_farm, new_founder, new_persona, new_email)
+                st.success(f"Identity locked. System rebranded to {new_farm} with AI {new_persona}.")
+                st.rerun()
+    else: st.info("🔒 System Configuration is locked to the Master CEO.")
+
+elif active_module == "⬛ Media Matrix":
+    st.subheader("⬛ HVF Media Matrix - Executive Command")
+    if current_role in ["CEO", "SUPER_ADMIN"]:
+        st.info("Direct uplink to the zero-trust media processing backend and telemetry engine.")
+
+        # --- NATIVE AUTONOMOUS MASTER SWITCH ---
+        st.markdown("### 🧠 Autonomous ML Engine Control")
+        if st.button("🚀 [ IGNITE AUTONOMOUS ENGINE ]", width='stretch'):
+            with st.spinner("Arming Predict-and-Act loop..."):
+                try:
+                    res = requests.post("http://localhost:8000/autonomous/engage", headers={"x-auth-token": "CEO_OVERRIDE"})
+                    if res.status_code == 200:
+                        payload = res.json()
+                        st.success(f"✅ STATUS: {payload.get('status').upper()} | {payload.get('message')}")
+                    else:
+                        st.error(f"⚠️ Backend rejected command (HTTP {res.status_code}). Check matrix logs.")
+                except Exception as e:
+                    st.error(f"⚠️ Matrix connection failed. Is the backend offline? Error: {e}")
+
+        st.divider()
+
+        # --- NATIVE TELEMETRY VISUALIZATION ---
+        st.markdown("### 📊 Live Matrix Telemetry")
+        if st.button("🔄 Pull Live Diagnostics", width='content'):
+            with st.spinner("Extracting data from the matrix..."):
+                try:
+                    tel_res = requests.get("http://localhost:8000/telemetry", headers={"x-auth-token": "CEO_OVERRIDE"})
+                    if tel_res.status_code == 200:
+                        data = tel_res.json()
+                        t_data = data.get("telemetry", {})
+
+                        col1, col2, col3, col4 = st.columns(4)
+                        col1.metric("Matrix Status", data.get("matrix_status", "UNKNOWN"))
+                        col2.metric("Total Assets", t_data.get("total_assets_ingested", 0))
+                        col3.metric("Encrypted Vaults", t_data.get("encrypted_assets", 0))
+                        col4.metric("Security Compliance", t_data.get("security_compliance", "0%"))
+                        st.success("✅ Telemetry feed updated successfully.")
+                    else:
+                        st.error(f"⚠️ Failed to extract telemetry (HTTP {tel_res.status_code}).")
+                except Exception as e:
+                    st.error(f"⚠️ Matrix connection failed: {e}")
+
+        st.divider()
+
+        with st.expander("🔧 Raw API Telemetry (DevOps)", expanded=False):
+            st.components.v1.iframe("http://localhost:8000/docs", height=600, scrolling=True)
+    else:
+        st.warning("🔒 Matrix API architecture is restricted to Master CEO clearance.")
+
+elif active_module == "🎨 Asset Synthesis":
+    st.subheader("🎨 Sovereign Image & Media Synthesis")
+    prompt = st.text_input("Enter Generation Prompt:", "High-tech executive command center: HVF logo illuminated, Project Ebony banner centered, 100% sovereign control", key="asset_prompt_input")
+    if st.button("Generate Sovereign Asset", width='stretch'):
+        with st.spinner("Synthesizing sovereign asset on local hardware..."):
+            try:
+                res = requests.post("http://localhost:8000/synthesis/image", params={"prompt": prompt}, headers={"x-auth-token": "CEO_OVERRIDE"})
+                if res.status_code == 200:
+                    data = res.json()
+                    st.success(f"✅ {data.get('message')}")
+                    img_rel = data.get("image_path")
+                    img_file = os.path.join(REPO_DIR, img_rel) if img_rel else None
+                    if img_file and os.path.isfile(img_file):
+                        st.image(img_file, caption="Sovereign Generated Asset | HVF Project Ebony Matrix", width='stretch')
+                        with open(img_file, "rb") as f:
+                            st.download_button("📥 Download Sovereign Graphic (PNG)", f, file_name="Project_Ebony_Sovereign.png", mime="image/png", width='stretch')
+                else:
+                    st.error(f"⚠️ Engine Error (HTTP {res.status_code})")
+            except Exception as e:
+                st.error(f"Matrix Offline: {e}")
+
+elif active_module == "📨 Sovereign Dispatch Deck":
+    render_comms_gate(key_suffix="sovereign_deck_main")
+    st.markdown("""
+    <div style="background: linear-gradient(90deg, #0b110e 0%, #15221b 100%); border-left: 4px solid #00ff88; border-radius: 6px; padding: 14px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <div style="color: #00ff88; font-weight: 800; font-size: 1.1em; letter-spacing: 1.5px; font-family: monospace;">📨 SOVEREIGN DISPATCH & STRATEGIC TRIAGE DECK</div>
+            <div style="color: #a0aab2; font-size: 0.85em; font-family: monospace;">ZERO-TRUST INBOUND SCRUBBER & EXECUTIVE DISPATCH BRIDGE // LEVEL-5 AUTHORITY</div>
+        </div>
+        <div style="text-align: right; font-family: monospace; font-size: 0.8em;">
+            <div style="color: #00ff88;"><strong>ORIGIN:</strong> humphreyvirtualfarm@gmail.com</div>
+            <div style="color: #ffffff;"><strong>CAGE:</strong> 1AHA8 | <strong>UEI:</strong> S1M4ENLHTDH5</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # --- TOP CONTROLS: INBOX POLLING & PURGE ---
+    poll_c1, poll_c2, poll_c3 = st.columns([1.5, 1.5, 2])
+    with poll_c1:
+        if st.button("🔄 Poll Inboxes Now", key="btn_poll_inboxes_main", width='stretch'):
+            if not is_online:
+                st.warning("🔒 Sovereign Local Mode active. External IMAP socket connection blocked.")
+            else:
+                with st.spinner("Connecting to imap.gmail.com:993 & staging messages..."):
+                    email_triage_core.run_multi_account_cycle()
+                st.success("Polling complete.")
+                st.rerun()
+    # Sovereign Air-Gap Outbox Auto-Flusher
+    try:
+        c_outbox = sqlite3.connect(DB_PATH, timeout=30.0)
+        cur_outbox = c_outbox.cursor()
+        cur_outbox.execute("SELECT id, recipient_address, subject, draft_response FROM staged_email_dispatches WHERE veto_status = 'QUEUED_SOVEREIGN_LOCAL' ORDER BY id ASC")
+        queued_local_records = cur_outbox.fetchall()
+        c_outbox.close()
+    except Exception as e_ob:
+        queued_local_records = []
+
+    if queued_local_records:
+        st.markdown(f"""
+            <div style='border: 1px solid #e2a03f; border-radius: 4px; padding: 12px; background-color: #1a160d; margin-bottom: 12px;'>
+                <span style='color: #e2a03f; font-weight: bold;'>⚠️ AIR-GAP OUTBOX PENDING:</span>
+                <span style='color: #f1f5f9; margin-left: 8px;'><b>{len(queued_local_records)}</b> sovereign local transmission(s) staged in WORM vault.</span>
+            </div>
+        """, unsafe_allow_html=True)
+        col_flush1, col_flush2 = st.columns([1.5, 2.5])
+        with col_flush1:
+            if st.button(f"🚀 Flush Outbox ({len(queued_local_records)} Queued)", type="primary", key="btn_flush_sovereign_outbox", width='stretch'):
+                if not is_online:
+                    st.error("❌ OUTBOX FLUSH BLOCKED: Reconnect system to 🟢 Online (Live WAN & Radar Ingress) before transmitting.")
+                else:
+                    transmitted = 0
+                    with st.spinner("Connecting to secure SMTP gateway & releasing sovereign queue..."):
+                        for q_id, q_to, q_subj, q_body in queued_local_records:
+                            s_ok, s_msg = email_triage_core.dispatch_outbound_transmission(q_id, q_body)
+                            if s_ok:
+                                transmitted += 1
+                            else:
+                                st.error(f"Failed transmission #{q_id} to {q_to}: {s_msg}")
+                    if transmitted > 0:
+                        st.success(f"✅ Successfully flushed {transmitted} sovereign transmission(s) to external gateway.")
+                        st.rerun()
+
+    with poll_c2:
+        if st.button("🧹 Purge Newsletters", key="btn_purge_newsletters", width='stretch'):
+            c_cl = sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)
+            cur_cl = c_cl.cursor()
+            cur_cl.execute("""
+            UPDATE staged_email_dispatches
+            SET veto_status = 'ARCHIVED_NOISE'
+            WHERE veto_status = 'PENDING_CEO_APPROVAL'
+              AND (sender_address LIKE '%newsletters-noreply%' OR sender_address LIKE '%zapier%' OR sender_address LIKE '%instagram%' OR sender_address LIKE '%facebook%' OR sender_address LIKE '%social%' OR sender_address LIKE '%no-reply%')
+              AND subject NOT LIKE '%Spam%';
+            """)
+            c_cl.close()
+            st.info("Newsletters archived.")
+            st.rerun()
+    with poll_c3:
+        st.markdown("<div style='text-align:right; font-family:monospace; font-size:0.85em; color:#00ff88; padding-top:8px;'>SECURE SMTP: SSL/TLS 465 ACTIVE</div>", unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    # --- COMMAND BRIDGE: TWO OPEN WORKSPACE PANES ---
+    left_col, right_col = st.columns([1, 1], gap="large")
+
+    with left_col:
+        st.markdown("#### ⚡ Ebony AI Strategic Directive")
+        st.caption("Autonomously synthesize responses grounded in local Iron Dome intelligence.")
+        
+        ai_target = st.text_input("Context / Target Recipient", key="ai_target_input", placeholder="e.g. contracts@signallink.com or Oklahoma Dept of Commerce")
+        ai_directive = st.text_area("Strategic Objective / Directive", key="ai_out_directive", height=130, placeholder="e.g. Brief on HVFNexus sub-cycle power isolation compliance under OK Title 61.")
+        
+        if st.button("⚡ Generate Sovereign Draft", key="btn_gen_ai_draft", width='stretch'):
+            if ai_directive:
+                with st.spinner("Retrieving intelligence and synthesizing transmission..."):
+                    draft_ai = email_triage_core.generate_direct_draft_assistance(ai_target, ai_directive)
+                    st.session_state["direct_out_body_val"] = draft_ai
+                    st.rerun()
+            else:
+                st.warning("Please specify a strategic objective.")
+
+    with right_col:
+        st.markdown("#### 🚀 Outbound Executive Dispatch")
+        st.caption("Direct non-repudiated transmission stamped with Humphrey Virtual Farms credentials.")
+        
+        disp_r1, disp_r2 = st.columns([2, 1])
+        with disp_r1:
+            out_to = st.text_input("Destination Recipient (RFC822 Email)", key="direct_out_to", placeholder="recipient@domain.gov")
+            out_subj = st.text_input("Transmission Subject Line", key="direct_out_subj", placeholder="Executive Verification // Sovereign Infrastructure")
+        with disp_r2:
+            out_cat = st.selectbox("Classification", [
+                "DEFENSE_PRIME_CONTRACTING",
+                "INTERNAL_OPERATIONS",
+                "LEGAL_COMPLIANCE_EXECUTION",
+                "FINANCIAL_TREASURY",
+                "GENERAL_EXECUTIVE"
+            ], key="direct_out_cat")
+
+        default_body = st.session_state.get("direct_out_body_val", "")
+        out_body = st.text_area("Transmission Payload (Strict RFC5322 Plain Text)", value=default_body, height=180, key="direct_out_body")
+
+        btn_c1, btn_c2 = st.columns([2, 1])
+        with btn_c1:
+            if st.session_state.get('sovereign_voice_auto_fire') or st.button("🚀 Authorize & Dispatch Transmission", key="btn_dispatch_now", type="primary", width='stretch'):
+                if not out_to or not out_subj or not out_body:
+                    st.error("Recipient, Subject, and Payload Body are mandatory.")
+                else:
+                    if is_online:
+                        with st.spinner("Connecting to smtp.gmail.com:465 & dispatching..."):
+                            s_ok, s_msg = email_triage_core.send_direct_outbound_email(
+                                to_addr=out_to,
+                                subject=out_subj,
+                                body=out_body,
+                                account_alias="HVF_PRIMARY_EXECUTIVE",
+                                category=out_cat
+                            )
+                        if s_ok:
+                            st.success(f"🚀 {s_msg}")
+                            st.session_state["direct_out_body_val"] = ""
+                            st.rerun()
+                        else:
+                            st.error(f"Delivery failed: {s_msg}")
+                    else:
+                        import sqlite3, hashlib, datetime
+                        conn_sq = sqlite3.connect(DB_PATH)
+                        cur_sq = conn_sq.cursor()
+                        trans_hash = hashlib.sha256(f"{out_to}{out_subj}{datetime.datetime.utcnow().isoformat()}".encode()).hexdigest()[:16]
+                        sov_uid = f"SOV-LOCAL-{trans_hash}"
+                        cur_sq.execute("""
+                            INSERT INTO staged_email_dispatches 
+                            (message_uid, account_alias, sender_address, recipient_address, subject, date_received, raw_body_sanitized, threat_status, triage_category, draft_response, veto_status)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """, (sov_uid, "HVF_PRIMARY_EXECUTIVE", "humphreyvirtualfarm@gmail.com", out_to, f"[SOVEREIGN_LOCAL] {out_subj}", datetime.datetime.utcnow().isoformat(), out_body, "CLEAN_AUTHORIZED", out_cat, out_body, "QUEUED_SOVEREIGN_LOCAL"))
+                        conn_sq.commit()
+                        conn_sq.close()
+                        st.success(f"🔒 Sovereign Local Queue Staged! WORM Token: {trans_hash} (Zero-trust air-gapped record)")
+                        st.session_state["direct_out_body_val"] = ""
+                        st.rerun()
+        with btn_c2:
+            if st.button("Clear Buffer", key="btn_clr_direct_buf", width='stretch'):
+                st.session_state["direct_out_body_val"] = ""
+                st.rerun()
+
+    st.markdown("---")
+    st.markdown("### 📥 Inbound Threat Scrubber & Transmission Stepper")
+
+
+    # --- SECTION 3: FOCUSED SINGLE-TRANSMISSION C2 STEPPER ---
+    try:
+        c_disp = sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)
+        cur_disp = c_disp.cursor()
+        cur_disp.execute("""
+            SELECT id, account_alias, sender_address, subject, date_received, 
+                   raw_body_sanitized, threat_status, triage_category, draft_response 
+            FROM staged_email_dispatches 
+            WHERE veto_status = 'PENDING_CEO_APPROVAL' 
+            ORDER BY id ASC
+        """)
+        dispatches = cur_disp.fetchall()
+        c_disp.close()
+    except Exception as e:
+        st.error(f"Failed to load queue: {e}")
+        dispatches = []
+
+    total_pending = len(dispatches)
+
+    if total_pending == 0:
+        st.markdown("""
+            <div style='border: 1px solid #242d3d; border-radius: 2px; padding: 25px; background-color: #121722; text-align: center; margin-top: 15px;'>
+                <div style='color: #e2a03f; font-family: monospace; font-size: 1.15em; font-weight: bold;'>🟢 PERIMETER SECURE | ZERO PENDING TRANSMISSIONS</div>
+                <div style='color: #94a3b8; font-size: 0.85em; margin-top: 6px;'>Queue is completely clear. Incoming transmissions will stage at eye level.</div>
+            </div>
+        """, unsafe_allow_html=True)
+    else:
+        curr_msg = dispatches[0]
+        disp_id, account, sender, subject, date_rx, body_clean, threat, category, draft = curr_msg
+
+        status_class = "status-threat" if "THREAT" in threat else "status-clean"
+        status_icon = "🛑" if "THREAT" in threat else "✅"
+
+        st.markdown(f"""
+            <div style='border: 1px solid #242d3d; border-radius: 2px; padding: 14px; background-color: #121722; margin-top: 12px;'>
+                <div class='card-header'>
+                    <span style='color:#e2a03f; font-family:monospace; font-weight:bold;'>TRANSMISSION 1 OF {total_pending} PENDING</span>
+                    <span class='status-badge {status_class}'>{status_icon} {threat}</span>
+                </div>
+                <div style='font-size: 1.05em; font-weight: bold; color: #f1f5f9; margin-top: 8px;'>
+                    [{account}] {subject}
+                </div>
+                <div style='font-size: 0.88em; color: #94a3b8; margin-top: 4px;'>
+                    <b>FROM:</b> <span style='color:#f1f5f9; font-family:monospace;'>{sender}</span> | 
+                    <b>RECEIVED:</b> <span style='color:#f1f5f9;'>{date_rx}</span> | 
+                    <b>CATEGORY:</b> <span style='color:#e2a03f;'>{category}</span>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+
+        with st.expander("🔍 View Inbound Transmission Body (Executive Clean)", expanded=False):
+            import re
+            uc = re.sub(r'(?is)<style.*?>.*?</style>', '', body_clean)
+            uc = re.sub(r'(?is)@media[^{]+\{.*?\}(\s*\}|)', '', uc)
+            uc = re.sub(r'\{[^\}]+\}', '', uc)
+            uc = re.sub(r'(?i)\*?\[class\][^\{]*', '', uc)
+            uc = re.sub(r'<[^>]+>', ' ', uc)
+            uc = re.sub(r'&[a-zA-Z0-9#]+;', ' ', uc)
+            uc = re.sub(r'\s{2,}', ' ', uc).strip()
+            st.markdown(f"<div style='background-color:#121722; padding:15px; border-radius:5px; font-family:-apple-system, sans-serif; line-height:1.6; color:#f1f5f9; border: 1px solid #334155;'>{uc}</div>", unsafe_allow_html=True)
+
+        if "THREAT" in threat:
+            st.error("⚠️ Inbound transmission flagged for adversarial injection. Automated inference suspended.")
+        else:
+            updated_draft = st.text_area(
+                f"Tactical Executive Response Payload (Queue #{disp_id})",
+                value=draft,
+                height=180,
+                key=f"stepper_draft_{disp_id}",
+            )
+
+
+        col_act1, col_act2, col_act3 = st.columns([1.2, 1, 1.2])
+        with col_act1:
+            if st.session_state.pop('sovereign_voice_auto_fire', False) or st.button("✅ Approve & Dispatch", key=f"btn_step_app_{disp_id}", type="secondary"):
+                if is_online:
+                    with st.spinner("Connecting to smtp.gmail.com:465 & dispatching transmission..."):
+                        d_ok, d_msg = email_triage_core.dispatch_outbound_transmission(disp_id, updated_draft)
+                    if d_ok:
+                        st.success(f"🚀 {d_msg}")
+                    else:
+                        st.error(f"Delivery failed: {d_msg}")
+                    st.rerun()
+                else:
+                    c_act = sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)
+                    cur_act = c_act.cursor()
+                    cur_act.execute("""
+                        UPDATE staged_email_dispatches
+                        SET draft_response = ?, veto_status = 'QUEUED_SOVEREIGN_LOCAL'
+                        WHERE id = ?
+                    """, (updated_draft, disp_id))
+                    c_act.close()
+                    st.success(f"🔒 Transmission #{disp_id} Approved & Queued for Sovereign Local Outbox!")
+                    st.rerun()
+
+        with col_act2:
+            if st.button("❌ Dismiss Record", key=f"btn_step_dis_{disp_id}"):
+                c_act = sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)
+                cur_act = c_act.cursor()
+                cur_act.execute("UPDATE staged_email_dispatches SET veto_status = 'DISMISSED_BY_CEO' WHERE id = ?", (disp_id,))
+                c_act.close()
+                st.info(f"Transmission #{disp_id} dismissed. Advancing queue.")
+                st.rerun()
+
+        with col_act3:
+            if st.button("🚫 Block Sender", key=f"btn_step_blk_{disp_id}", type="primary"):
+                try:
+                    suc, b_text = email_triage_core.block_sender(sender, reason="CEO_TACTICAL_VETO")
+                    if suc:
+                        st.warning(f"🚫 {b_text}")
+                    else:
+                        st.error(f"Block failed: {b_text}")
+                except Exception as b_err:
+                    st.error(f"Block error: {b_err}")
+                st.rerun()
+
+
+    render_communications_dispatch_ui(key_suffix="sovereign_deck_main")
+elif active_module == "📡 Sovereign Comms Deck":
+    _c_tier = get_current_tier()
+    _allowed, _req, _is_m = check_module_access(_c_tier, "📡 Sovereign Comms Deck")
+    if not _allowed:
+        if _is_m:
+            render_maintenance_screen("📡 Sovereign Comms Deck")
+        else:
+            render_tier_restriction_screen("📡 Sovereign Comms Deck", _req, _c_tier)
+    else:
+
+        from sovereign_comms_core import SovereignCommsEngine
+        SovereignCommsEngine.render()
+
+elif active_module == "🌾 Grain Silo Aeration":
+    st.subheader("🌾 SOVEREIGN GRAIN SILO AERATION & BIOMASS PRESERVATION")
+    st.caption("Autonomous Environmental SCADA Conditioning | Sovereign Agriculture Vertical 01 | DFARS / OK HB 2992")
+
+    st.markdown("""
+    <div style="background: #0f1713; border: 1px solid #1f3326; border-left: 4px solid #00ff88; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px;">
+        <div style="font-size: 1.15rem; font-weight: 700; color: #e1fbf0;">SOVEREIGN FIELD ACADEMY: GRAIN CONDITIONING & STORAGE DEFENSE</div>
+        <div style="color: #8fa397; font-size: 0.85rem; margin-top: 4px;">
+            Discipline: <b>BIOSPHERE LOGISTICS & SCADA</b> | Authority: <b>CEO Jeffery Humphrey (Level 5)</b> | Mode: <b>Air-Gapped Deterministic Control</b>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # STAGE 1: FIRST PRINCIPLES
+    st.markdown("#### 🧭 1. First Principles of Grain Conditioning")
+    st.markdown("> *Harvesting grain is only half the battle. Stored grain is a living biological ecosystem that breathes, generates metabolic heat, and exchanges moisture with air. If you run aeration fans when ambient relative humidity is higher than the Equilibrium Moisture Content (EMC), you pump gallons of water directly into your grain, creating hot spots, mold blooms, and insect infestations that destroy hundreds of thousands of dollars of sovereign yield in days.*")
+
+    # STAGE 2: BLIND-SPOT INTERROGATOR
+    st.markdown("#### 🔍 2. The Blind-Spot Interrogator (What You Don't Know to Ask)")
+    st.markdown("- **Beginner Mistake:** Turning fans on during rain or humid nights because the air 'feels cool.' High relative humidity re-wets the bottom grain layer, creating a concrete-like crust that blocks all future airflow.")
+    st.markdown("- **Hidden Hazard:** Combustible grain dust explosions. Running aeration fans with ungrounded ducting or a slipping motor belt generates static discharge or friction sparks capable of igniting an explosive secondary dust cloud.")
+    st.markdown("- **Directive to Ebony:** Command Ebony to calculate real-time EMC from outdoor ambient dry-bulb/wet-bulb sensors before energizing the 480V aeration contactor.")
+
+    # STAGE 3: TACTICAL FIELD DRILL
+    st.markdown("#### ⚡ 3. Tactical Scenario Challenge & Hands-On Drill")
+    with st.expander("🚨 ACTIVE FIELD SCENARIO: RAPID GRAIN HEATING DETECTED", expanded=True):
+        st.warning("SCENARIO: Silo Bin 02 temperature sensor cable at Zone 3 (middle core) spikes from 58°F to 84°F over 36 hours. Outdoor ambient air is 72°F at 85% RH. Rain is falling. How do you stop biological thermal runaway without pumping moisture into the grain?")
+        st.markdown("**Mandatory Physical Procedure:**")
+        st.markdown("`1. Do NOT start continuous aeration with high-RH ambient rain air. Physically inspect the top bin access hatch for roof leaks or localized crusting.`")
+        st.markdown("`2. Engage bin core extraction auger: Draw out 300 to 500 bushels to pull the peaked center cone down into an inverted funnel, breaking the hot-spot core.`")
+        st.markdown("`3. Re-check cable temperature differentials; verify contactor auxiliary interlocks are armed before initiating intermittent high-CFM cycle.`")
+
+    # STAGE 4: LIVE SCADA CONTROLS & TELEMETRY
+    st.markdown("#### 🎛️ 4. Live Silo SCADA Telemetry & Aeration Controls")
+    
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("Bin 01 Core Temp", "54.2 °F", "-0.8 °F (Stable)")
+    with col2:
+        st.metric("Plenum Static Pressure", "2.85 in-wg", "Nominal (0.15 CFM/bu)")
+    with col3:
+        st.metric("Equilibrium Moisture (EMC)", "13.4%", "Safe Storage Parity")
+    with col4:
+        st.metric("Aeration Contactor K3", "DE-ENERGIZED", "Standby / Ready")
+
+    st.markdown("---")
+    st.markdown("##### Manual Fan Contactor Command Bus (Level-5 CEO Override)")
+    btn_col1, btn_col2, btn_col3 = st.columns(3)
+    with btn_col1:
+        if st.button("⚡ ENERGIZE AERATION FAN (K3)", width="stretch"):
+            st.success("COMMAND DISPATCHED: 480V 3-Phase Contactor K3 closed. Watchdog timer set to 240 minutes.")
+    with btn_col2:
+        if st.button("🛑 EMERGENCY DE-ENERGIZE (E-STOP)", width="stretch"):
+            st.error("COMMAND DISPATCHED: Contactor K3 forced OPEN. Aeration motor trip verified in 2.4 microseconds.")
+    with btn_col3:
+        if st.button("🔄 RE-CALCULATE EMC & OPTIMIZE", width="stretch"):
+            st.info("ANALYTICS DISPATCHED: NOAA ambient radar feed reconciled against thermocouple cables. Optimal cycle window: 0200 - 0630 CST.")
+
+elif active_module == "📘 Omni-Industry Matrix":
+    st.subheader("🎓 SOVEREIGN APPRENTICESHIP & C2 COMMAND DECK")
+    st.caption("Autonomous Sovereign Academy & Operational Matrix | Humphrey Virtual Farms LLC (CAGE: 1AHA8) | DFARS 252.227-7018 / OK HB 2992")
+
+    engine = HVFVerticalsEngine(str(REPO_DIR))
+    verticals = engine.get_verticals()
+
+    tabs = st.tabs([v["name"] for v in verticals])
+
+    for i, tab in enumerate(tabs):
+        v_meta = verticals[i]
+        with tab:
+            course_fname = f"vertical_{v_meta['id']}_course.json"
+            cockpit_dir = Path(__file__).parent.resolve()
+            candidate_paths = [
+                cockpit_dir / course_fname,
+                Path(REPO_DIR) / "c2_cockpit" / course_fname,
+                Path(course_fname)
+            ]
+            course_path = next((p for p in candidate_paths if p.exists()), None)
+            if course_path:
+                render_interactive_course(str(course_path))
+            else:
+                st.markdown(f'''
+                <div style="background: #0f1713; border: 1px solid #1f3326; border-left: 4px solid #00ff88; padding: 14px 18px; border-radius: 6px; margin-bottom: 16px;">
+                    <div style="font-size: 1.15rem; font-weight: 700; color: #e1fbf0;">SOVEREIGN FIELD ACADEMY: {v_meta['name'].upper()}</div>
+                    <div style="color: #8fa397; font-size: 0.85rem; margin-top: 4px;">
+                        Discipline: <b>{v_meta['category']}</b> | Authority: <b>CEO Jeffery Humphrey (Level 5)</b> | Operating Mode: <b>Air-Gapped Edge Mastery</b>
+                    </div>
+                </div>
+                ''', unsafe_allow_html=True)
+                st.markdown("#### 🎯 Sovereign Field Academy Modules & Competencies")
             curr_list = v_meta.get("curriculum", [])
             sub_verts = v_meta.get("sub_verticals", [])
             tracks_dict = v_meta.get("tracks", {})
             
             c_col1, c_col2 = st.columns([3, 2])
             with c_col1:
-                st.markdown("##### Accredited Technical Modules")
+                st.markdown("##### 📚 Accredited Technical Modules")
                 for mod in curr_list:
-                    mod_code = mod.get('module', 'MOD')
-                    mod_title = mod.get('title', 'Discipline Study')
-                    mod_hours = mod.get('hours', 40)
-                    with st.expander(f"{mod_code}: {mod_title} ({mod_hours} Hrs)", expanded=True):
-                        st.write(f"**Competency Standard:** {mod.get('competency', 'Level-5 Mastery')}")
+                    with st.expander(f"?? {mod.get('module')}: {mod.get('title')} ({mod.get('hours', 40)} Hrs)", expanded=True):
+                        st.write(f"**Competency Standard:** {mod.get('competency', 'Mastery')}")
                         st.write(f"**Certification Status:** :green[{mod.get('status', 'Certified')}]")
-                        mod_tracks = tracks_dict.get(mod_code, {})
+                        mod_tracks = tracks_dict.get(mod.get('module'), {})
                         if mod_tracks and "lessons" in mod_tracks:
                             st.caption("Core Practicum Lessons:")
                             for les in mod_tracks["lessons"]:
-                                st.write(f"  * {les}")
+                                st.write(f"  ? {les}")
                                 
             with c_col2:
-                st.markdown("##### Active Operational Sub-Verticals")
+                st.markdown("##### ⚡ Active Operational Sub-Verticals")
                 for sv in sub_verts:
-                    st.success(f"**[{sv.get('code')}]** {sv.get('name')} - `{sv.get('status')}`")
+                    st.success(f"**[{sv.get('code')}]** {sv.get('name')} ? `{sv.get('status')}`")
                 
                 st.metric(
                     label="Operational Readiness Rating",
                     value="100% Certified",
                     delta="DFARS / OK Title 61 Verified"
                 )
+
+

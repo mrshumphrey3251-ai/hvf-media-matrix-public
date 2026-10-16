@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Sovereign Commercial Licensing & Tier Access Controller
 Role-Based Access Control (RBAC), 7-Day Pilot (Tier 1 & 1.5) & Optical Maintenance Enclave
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
