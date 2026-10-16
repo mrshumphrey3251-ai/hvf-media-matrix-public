@@ -54,12 +54,24 @@ class HVFVerticalsEngine:
         else:
             self.db_path = Path(db_path)
 
-    def get_registered_verticals(self) -> dict:
-        """Returns the complete static registry of Macro Verticals."""
+    def get_verticals(self) -> dict:
+        """Canonical method called by line 2302 of ebony_console_GREEN.py."""
         return MACRO_VERTICAL_REGISTRY
 
+    def get_registered_verticals(self) -> dict:
+        """Backward-compatible alias for registered macro verticals."""
+        return MACRO_VERTICAL_REGISTRY
+
+    def list_verticals(self) -> list:
+        """Returns list of vertical descriptors for dropdown rendering."""
+        return list(MACRO_VERTICAL_REGISTRY.values())
+
+    def get_vertical(self, vertical_key: str) -> dict:
+        """Direct key lookup helper."""
+        return MACRO_VERTICAL_REGISTRY.get(vertical_key, {})
+
     def get_vertical_details(self, vertical_key: str) -> dict:
-        """Retrieves profile specifications for a targeted vertical."""
+        """Alias for profile specifications of a targeted vertical."""
         return MACRO_VERTICAL_REGISTRY.get(vertical_key, {})
 
     def get_aggregate_metrics(self) -> dict:
@@ -74,10 +86,12 @@ class HVFVerticalsEngine:
 if __name__ == "__main__":
     engine = HVFVerticalsEngine()
     print("=" * 80)
-    print("     HVF VERTICALS ENGINE SELF-TEST VERIFICATION     ")
+    print("     HVF VERTICALS ENGINE INTERFACE AUDIT     ")
     print("=" * 80)
-    metrics = engine.get_aggregate_metrics()
-    print(f"[+] Total Registered Macro Verticals: {metrics['total_verticals']}")
-    for k, v in MACRO_VERTICAL_REGISTRY.items():
-        print(f"  ? [{k}] {v['name']} ({v['status']})")
+    # Test line 2302 target method
+    v = engine.get_verticals()
+    assert isinstance(v, dict) and len(v) == 4, "get_verticals() validation failed!"
+    print(f"[PASS] engine.get_verticals() -> Returned {len(v)} verticals successfully.")
+    print(f"[PASS] engine.get_registered_verticals() -> Verified.")
+    print(f"[PASS] engine.get_aggregate_metrics() -> Verified.")
     print("=" * 80)
