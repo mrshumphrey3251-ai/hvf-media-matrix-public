@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated_utc": "2026-10-14T00:00:00Z",
+  "corporate_identity": {
+    "legal_entity_name": "Humphrey Virtual Farms LLC",
+    "cage_code": "1AHA8",
+    "uei": "S1M4ENLHTDH5",
+    "state_of_incorporation": "Oklahoma",
+    "statutory_authorities": [
+      "Oklahoma Title 61 Public Buildings and Public Works",
+      "Oklahoma Title 74 Central Purchasing Act",
+      "Oklahoma HB 2992 Sovereign Infrastructure Authority"
+    ],
+    "merchant_email": "humphreyvirtualfarm@gmail.com"
+  },
+  "unspsc_commodity_codes": [
+    {
+      "code": "43230000",
+      "title": "Software (System, Operating, and Security Applications)",
+      "division": "OMES Central Purchasing (Title 74)",
+      "target_capability": "E.B.O.N.Y. Core Operating System, Cryptographic Enclave, Threat Scrubber",
+      "status": "ACTIVE_REGISTERED"
+    },
+    {
+      "code": "43232600",
+      "title": "Industry Specific Software (SCADA, Command & Agricultural Management)",
+      "division": "OMES Central Purchasing (Title 74)",
+      "target_capability": "Grain Silo SCADA, Kinetic Islanding, Dispatch Deck, Feedback Hub",
+      "status": "ACTIVE_REGISTERED"
+    },
+    {
+      "code": "25131705",
+      "title": "Unmanned Aerial Vehicles (UAV) / Autonomous Drone Systems",
+      "division": "OMES Central Purchasing & OCAST Grants",
+      "target_capability": "Autonomous Drone Diagnostics, Multispectral Canopy Ingress, Flight Computing",
+      "status": "ACTIVE_REGISTERED"
+    },
+    {
+      "code": "81111800",
+      "title": "Systems and System Component Administration Services / Edge Operations",
+      "division": "OMES Central Purchasing (Title 74)",
+      "target_capability": "Bare-Metal Edge Computing, Sovereign Tailscale Mesh, WORM Ledgers",
+      "status": "ACTIVE_REGISTERED"
+    },
+    {
+      "code": "26111600",
+      "title": "Power Generation & Renewable Energy Microgrid Management Systems",
+      "division": "OMES Construction & Properties (Title 61 CAP)",
+      "target_capability": "Sub-16ms Microgrid Islanding, Battery Storage SCADA, REAP Energy Integration",
+      "status": "ACTIVE_REGISTERED"
+    },
+    {
+      "code": "70131500",
+      "title": "Agricultural Facility and Crop Resource Management Services",
+      "division": "OMES Construction & Properties (Title 61 CAP)",
+      "target_capability": "Yield Optimization, Precision Aeration Control, Title 61 Infrastructure",
+      "status": "ACTIVE_REGISTERED"
+    }
+  ],
+  "naics_crosswalk_codes": [
+    {
+      "code": "541511",
+      "title": "Custom Computer Programming Services"
+    },
+    {
+      "code": "541512",
+      "title": "Computer Systems Design Services"
+    },
+    {
+      "code": "541715",
+      "title": "Research and Development in the Physical, Engineering, and Life Sciences"
+    },
+    {
+      "code": "541330",
+      "title": "Engineering Services (Energy & Infrastructure)"
+    },
+    {
+      "code": "115112",
+      "title": "Soil Preparation, Planting, and Cultivating (AgTech Sensing)"
+    }
+  ],
+  "procurement_portals": {
+    "supplier_portal": "https://supplierportal.ok.gov",
+    "cap_portal": "https://oklahoma.gov/omes/divisions/capital-assets-management/construction-and-properties.html",
+    "cap_submission_email": "cap@omes.ok.gov"
+  },
+  "future_expansions": []
+}
