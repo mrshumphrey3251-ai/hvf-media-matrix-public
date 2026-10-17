@@ -2336,19 +2336,19 @@ elif active_module == "📘 Omni-Industry Matrix":
             with c_col1:
                 st.markdown("##### 📚 Accredited Technical Modules")
                 for mod in curr_list:
-                    with st.expander(f"?? {mod.get('module')}: {mod.get('title')} ({mod.get('hours', 40)} Hrs)", expanded=True):
+                    with st.expander(f"\U0001F4CC {mod.get('module')}: {mod.get('title')} ({mod.get('hours', 40)} Hrs)", expanded=True):
                         st.write(f"**Competency Standard:** {mod.get('competency', 'Mastery')}")
                         st.write(f"**Certification Status:** :green[{mod.get('status', 'Certified')}]")
                         mod_tracks = tracks_dict.get(mod.get('module'), {})
                         if mod_tracks and "lessons" in mod_tracks:
                             st.caption("Core Practicum Lessons:")
                             for les in mod_tracks["lessons"]:
-                                st.write(f"  ? {les}")
+                                st.write(f"  \u2022 {les}")
                                 
             with c_col2:
                 st.markdown("##### ⚡ Active Operational Sub-Verticals")
                 for sv in sub_verts:
-                    st.success(f"**[{sv.get('code')}]** {sv.get('name')} ? `{sv.get('status')}`")
+                    st.success(f"**[{sv.get('code')}]** {sv.get('name')} \u2014 `{sv.get('status')}`")
                 
                 st.metric(
                     label="Operational Readiness Rating",
@@ -2522,7 +2522,6 @@ elif active_module == "📘 Omni-Industry Matrix":
                                 )
                         except Exception as ex_rep:
                             st.error(f"Report synthesis failed: {ex_rep}")
-
 
 
 
