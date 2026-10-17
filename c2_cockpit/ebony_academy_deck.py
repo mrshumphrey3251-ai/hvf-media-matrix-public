@@ -1,8 +1,8 @@
 ﻿"""
 E.B.O.N.Y. Sovereign Field Academy // $2,500.00 Accredited 40-Hour Engineering Institute
-Renders the 10-Unit (40.0 Credit Hour) Master Textbooks, WORM CEU Credit Ledger,
-Multi-Variable Engineering Workbenches, Forensic Failure Reconstructions,
-4-Phase Flight Sortie SOPs, and the 3-Tier State Examination Gauntlet.
+Renders the 10-Module Interactive Engineering Workstation (4 Sub-Tabs per Module),
+Quantitative Calculation Verification Gates, Module Mastery Quizzes, WORM CEU Credit Ledger,
+Multi-Variable Engineering Workbenches, and the 3-Tier State Examination Gauntlet.
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 """
 import streamlit as st
@@ -30,7 +30,7 @@ except Exception as e:
 
 
 def render_academy_deck():
-    st.header("🎓 Sovereign Field Academy // Accredited 40-Hour Engineering Institute")
+    st.header("🎓 Sovereign Field Academy // $2,500.00 Accredited 40-Hour Engineering Institute")
     st.info(
         "**Statutory & Copyright Attribution:** Technical standards, formulations, and condition states "
         "referenced herein are the intellectual property of their respective governing bodies (AASHTO, "
@@ -87,39 +87,40 @@ def render_academy_deck():
     pct_complete = min(earned_hours / 40.0, 1.0)
 
     m_col1, m_col2, m_col3, m_col4 = st.columns(4)
-    m_col1.metric("Accredited Curriculum", "10 Units / 40.0 Hrs", "4.0 Continuing Ed Units (CEUs)")
+    m_col1.metric("Accredited Curriculum", "10 Modules / 40.0 Hrs", "4.0 Continuing Ed Units (CEUs)")
     m_col2.metric("Commercial Tuition Value", active_course["tuition"], "State Title 61 Voucher Eligible")
-    m_col3.metric("Logged Credit Hours (WORM)", f"{earned_hours:.1f} / 40.0 Hrs", f"{len(completed_map)} / 10 Units Signed Off")
+    m_col3.metric("Verified WORM Credit Hours", f"{earned_hours:.1f} / 40.0 Hrs", f"{len(completed_map)} / 10 Modules Sealed")
     m_col4.metric("Target State Credential", selected_code, active_course["badge"])
 
-    st.progress(pct_complete, text=f"Accredited 40-Hour Seat Time & Unit Mastery Progress: {earned_hours:.1f} / 40.0 Credit Hours Completed ({pct_complete*100:.0f}%)")
+    st.progress(pct_complete, text=f"Mandatory 40-Hour Accredited Seat-Time & Calculation Gate Progress: {earned_hours:.1f} / 40.0 Credit Hours Verified ({pct_complete*100:.0f}%)")
     st.markdown("---")
 
     tab_ch1, tab_ch2, tab_ch3, tab_ch4, tab_exam = st.tabs([
-        "📚 Ch 1: 10-Unit / 40-Hr Master Textbook",
+        "📚 Ch 1: 10-Module / 40-Hr Workstation",
         "⚙️ Ch 2: Engineering Physics Workbenches & Schematics",
         "💥 Ch 3: NTSB & Forensic Failure Reconstructions",
         "🎬 Ch 4: Flight Sortie Videos & 4-Phase Field SOPs",
         "📝 Ch 5: 3-Tier State Certification Exam (155 Qs)"
     ])
 
-    # CHAPTER 1: 10-UNIT / 40-HOUR MASTER TEXTBOOK & WORM CREDIT LEDGER
+    # CHAPTER 1: 10-MODULE INTERACTIVE ENGINEERING WORKSTATION
     with tab_ch1:
+        st.markdown("### 🏛️ 10-Module Accredited Engineering Curriculum Navigator (4.0 Credit Hours per Module)")
         u_col1, u_col2 = st.columns([3, 1])
         with u_col1:
             unit_options = [u["unit"] for u in units]
             selected_unit_num = st.selectbox(
-                "Select Academic Textbook Unit (Units 01–10 // 4.0 Credit Hours Each = 40.0 Hours Total):",
+                "Select Active 4.0-Hour Engineering Module (Complete All 4 Sub-Stations to Unlock Credit Seal):",
                 unit_options,
                 format_func=lambda u_num: (
-                    f"{'✅' if u_num in completed_map else '📖'} {units[u_num-1]['title']} ({units[u_num-1]['hours']:.1f} Hrs)"
+                    f"{'✅ [SEALED 4.0 HRS]' if u_num in completed_map else '🔒 [REQUIRED 4.0 HRS]'} {units[u_num-1]['title']}"
                 ),
                 key=f"unit_sel_{selected_code}"
             )
         with u_col2:
             full_md = export_full_course_textbook_markdown(selected_code, active_course["title"])
             st.download_button(
-                label=f"📥 Download All 10 Units ({selected_code} Master Textbook)",
+                label=f"📥 Download Complete 10-Volume Textbook",
                 data=full_md,
                 file_name=f"{selected_code}_40HR_MASTER_ENGINEERING_TEXTBOOK.md",
                 mime="text/markdown",
@@ -131,52 +132,102 @@ def render_academy_deck():
 
         st.subheader(f"{active_unit['title']}")
         st.caption(
-            f"**Accredited Unit Credit:** `{active_unit['hours']:.1f} Credit Hours (0.4 CEUs)` | "
-            f"**Status:** `{'CERTIFIED IN WORM LEDGER' if is_done else 'IN PROGRESS — SIGN OFF AT BOTTOM OF UNIT'}` | "
-            f"**Statutory Authority:** `{active_course['framework']}`"
+            f"**Module Credit Allocation:** `1.5 Hrs Statutory/Physics Lecture + 1.0 Hr Math Derivation + 1.0 Hr Field Practicum + 0.5 Hr Calculation & Quiz Gate = 4.0 Credit Hours` | "
+            f"**Ledger Status:** `{'✅ CERTIFIED IN WORM LEDGER' if is_done else '⏳ PENDING CALCULATION & QUIZ VERIFICATION'}`"
         )
-        st.markdown("---")
 
-        st.markdown(active_unit["theory"])
-        st.markdown("### Governing Mathematical Formulations & Boundary Conditions")
-        st.code(active_unit["equations"], language="text")
-        st.markdown("### Worked Field Engineering Calculation & Statutory Disposition")
-        st.info(active_unit["worked_example"])
-        st.markdown("### Mandatory Field Telemetry & Laboratory Practicum Protocol (2.4 Hrs Practicum)")
-        st.warning(active_unit["lab_protocol"])
+        sub_t1, sub_t2, sub_t3, sub_t4 = st.tabs([
+            "📖 1.5-Hr Engineering Treatise",
+            "🧮 1.0-Hr Mathematical Derivations & Worked Case",
+            "🛰️ 1.0-Hr Field Practicum & Telemetry SOP",
+            "🔐 0.5-Hr Calculation Gate & Mastery Quiz (4.0-Hr Sign-Off)"
+        ])
 
-        st.markdown("---")
-        st.markdown(f"### 🛡️ Unit {selected_unit_num:02d} Mastery Sign-Off & WORM Credit-Hour Attestation")
-        if is_done:
-            seal_info = completed_map[selected_unit_num]
-            st.success(
-                f"✅ **Unit {selected_unit_num:02d} Completed & Sealed ({seal_info['hours']:.1f} Credit Hours)** | "
-                f"Timestamp: `{seal_info['utc']}` | SHA-256 Seal: `{seal_info['seal']}`"
-            )
-        else:
-            attest_chk = st.checkbox(
-                f"I, {student_name} ({student_id}), attest under Oklahoma Title 61 that I have completed the theoretical treatise, "
-                f"mathematical derivations, worked engineering calculation, and laboratory practicum protocol for {active_unit['title']} (4.0 Credit Hours).",
-                key=f"attest_{selected_code}_u{selected_unit_num}"
-            )
-            if st.button(
-                f"⚡ Log 4.0 Accredited Credit Hours for Unit {selected_unit_num:02d} into WORM Ledger",
-                disabled=not attest_chk,
-                use_container_width=True,
-                key=f"btn_log_{selected_code}_u{selected_unit_num}"
-            ):
-                seal = log_unit_completion(
-                    student_id=student_id,
-                    course_code=selected_code,
-                    unit_number=selected_unit_num,
-                    unit_title=active_unit["title"],
-                    credit_hours=active_unit["hours"]
+        with sub_t1:
+            st.markdown(active_unit["theory"])
+            st.info("👉 Proceed to **Sub-Tab 2 (🧮 1.0-Hr Mathematical Derivations & Worked Case)** after mastering the statutory and physical treatise above.")
+
+        with sub_t2:
+            st.markdown("### Governing Mathematical Formulations & Boundary Value Equations")
+            st.code(active_unit["equations"], language="text")
+            st.markdown("### Step-by-Step Worked Field Engineering Calculation")
+            st.info(active_unit["worked_example"])
+            st.caption(" Note the mathematical derivation steps above—you will be required to solve and verify the numerical engineering parameter in Sub-Tab 4.")
+
+        with sub_t3:
+            st.markdown("### Mandatory Field Telemetry & Laboratory Practicum Protocol")
+            st.warning(active_unit["lab_protocol"])
+            if active_course["diagram"].exists():
+                st.image(str(active_course["diagram"]), caption=f"Module {selected_unit_num:02d} Field Sensor & Structural Load Path Reference", use_container_width=True)
+
+        with sub_t4:
+            st.markdown(f"### 🔐 Module {selected_unit_num:02d} Quantitative Engineering Calculation Gate & Mastery Exam")
+            if is_done:
+                seal_info = completed_map[selected_unit_num]
+                st.success(
+                    f"✅ **Module {selected_unit_num:02d} Verified & Sealed ({seal_info['hours']:.1f} Accredited Credit Hours)**\n\n"
+                    f"* **Completion Timestamp (UTC):** `{seal_info['utc']}`\n"
+                    f"* **WORM SQLite SHA-256 Digest:** `{seal_info['seal']}`"
                 )
-                st.success(f"Logged 4.0 Credit Hours! WORM SHA-256 Digest: `{seal}`")
-                st.rerun()
+            else:
+                st.write(
+                    "To earn **4.0 Accredited Credit Hours (0.4 CEUs)** for this module, you must solve the **Quantitative Engineering Calculation Gate** "
+                    "and score **100% (3/3)** on the **Module Mastery Verification Quiz** below."
+                )
+                calc_ch = active_unit["calc_challenge"]
+                st.markdown("#### Part A: Quantitative Engineering Calculation Gate")
+                st.markdown(f"**Engineering Problem:** {calc_ch['prompt']}")
+                user_calc_val = st.number_input(
+                    f"Enter Calculated Value ({calc_ch['unit_label']}):",
+                    value=0.0,
+                    step=0.01,
+                    format="%.2f",
+                    key=f"calc_in_{selected_code}_u{selected_unit_num}"
+                )
+                with st.expander("💡 Need Formula Reference / Engineering Hint?"):
+                    st.code(calc_ch["hint"], language="text")
 
-        with st.expander("📖 View Complete 10-Unit (40.0-Hour) Master Textbook Continuous Reader", expanded=False):
-            st.markdown(full_md)
+                st.markdown("#### Part B: 3-Question Module Mastery Verification Quiz (100% Required)")
+                quiz_answers = {}
+                for q_i, q_obj in enumerate(active_unit["unit_quiz"]):
+                    st.markdown(f"**Q{q_i+1}.** {q_obj['q']}")
+                    sel_opt = st.radio(
+                        f"Select answer for Q{q_i+1}:",
+                        q_obj["opts"],
+                        key=f"uquiz_{selected_code}_u{selected_unit_num}_q{q_i}",
+                        label_visibility="collapsed"
+                    )
+                    quiz_answers[q_i] = sel_opt[0]
+
+                if st.button(
+                    f"⚡ Verify Calculation & Grade Module {selected_unit_num:02d} to Seal 4.0 Credit Hours",
+                    use_container_width=True,
+                    key=f"btn_verify_{selected_code}_u{selected_unit_num}"
+                ):
+                    calc_ok = abs(user_calc_val - calc_ch["target"]) <= calc_ch["tol"]
+                    quiz_correct = sum(
+                        1 for idx, q_obj in enumerate(active_unit["unit_quiz"])
+                        if quiz_answers.get(idx) == q_obj["ans"]
+                    )
+                    if not calc_ok:
+                        st.error(
+                            f"❌ **Calculation Gate Failed:** Your entry `{user_calc_val:.2f} {calc_ch['unit_label']}` is outside the allowable engineering tolerance. "
+                            f"Review Sub-Tab 2 (`{calc_ch['hint']}`) and try again."
+                        )
+                    elif quiz_correct < 3:
+                        st.error(
+                            f"❌ **Module Mastery Quiz Incomplete:** You scored `{quiz_correct} / 3` (100% required). Review the treatise and resubmit."
+                        )
+                    else:
+                        seal = log_unit_completion(
+                            student_id=student_id,
+                            course_code=selected_code,
+                            unit_number=selected_unit_num,
+                            unit_title=active_unit["title"],
+                            credit_hours=active_unit["hours"]
+                        )
+                        st.success(f"✅ **100% Mastery Verified! 4.0 Credit Hours Sealed in WORM Ledger:** `{seal}`")
+                        st.rerun()
 
     # CHAPTER 2: ENGINEERING PHYSICS WORKBENCHES & SCHEMATICS
     with tab_ch2:
@@ -312,8 +363,8 @@ def render_academy_deck():
 
         if earned_hours < 40.0:
             st.warning(
-                f"🎓 **Accredited Credit-Hour Notice:** You have logged **{earned_hours:.1f} / 40.0 Credit Hours** in Chapter 1. "
-                f"Be sure to sign off all 10 Academic Units in Chapter 1 to fulfill your 40.0-hour statutory seat-time ledger alongside your 3-Tier Exam."
+                f"🎓 **Accredited Seat-Time & Calculation Gate Notice:** You have verified **{earned_hours:.1f} / 40.0 Credit Hours** ({len(completed_map)}/10 Modules) in Chapter 1. "
+                f"Complete the Quantitative Calculation Gates across all 10 Modules to achieve 100% 40-Hour WORM Accreditation alongside your 3-Tier Exam."
             )
         else:
             st.success("✅ **40.0 / 40.0 Accredited Credit Hours Verified in WORM Ledger!** Candidate is fully cleared for Official State Licensing.")
@@ -386,7 +437,7 @@ def render_academy_deck():
                         use_container_width=True
                     )
             else:
-                st.error("Candidate did not achieve the required passing threshold. Review the 10-Unit Master Textbook in Chapter 1 and resubmit.")
+                st.error("Candidate did not achieve the required passing threshold. Review the 10-Module Workstation in Chapter 1 and resubmit.")
 
             with st.expander("🔍 View Technical Question Feedback & Explanations", expanded=False):
                 for fb in grade_res["detailed_feedback"]:
