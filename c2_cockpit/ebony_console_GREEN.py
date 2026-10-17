@@ -2397,14 +2397,14 @@ elif active_module == "📘 Omni-Industry Matrix":
                         conn_civ.close()
                         
                         for d_num, a_name, s_pay, i_foc in rows_civ:
-                            st.write(f"**{d_num}** ? *{a_name}*")
+                            st.write(f"**{d_num}** \u2014 *{a_name}*")
                             st.caption(f"Inspection Scope: {i_foc}")
                             try:
                                 p_list = json.loads(s_pay)
                                 for p in p_list:
-                                    st.write(f"  ? {p}")
+                                    st.write(f"  \u2022 {p}")
                             except Exception:
-                                st.write(f"  ? {s_pay}")
+                                st.write(f"  \u2022 {s_pay}")
                             st.write("")
                 except Exception as e_civ:
                     st.error(f"Error reading civil inspection dockets: {e_civ}")
