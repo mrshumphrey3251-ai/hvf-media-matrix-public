@@ -2336,19 +2336,19 @@ elif active_module == "📘 Omni-Industry Matrix":
             with c_col1:
                 st.markdown("##### 📚 Accredited Technical Modules")
                 for mod in curr_list:
-                    with st.expander(f"\U0001F4CC {mod.get('module')}: {mod.get('title')} ({mod.get('hours', 40)} Hrs)", expanded=True):
+                    with st.expander(f"?? {mod.get('module')}: {mod.get('title')} ({mod.get('hours', 40)} Hrs)", expanded=True):
                         st.write(f"**Competency Standard:** {mod.get('competency', 'Mastery')}")
                         st.write(f"**Certification Status:** :green[{mod.get('status', 'Certified')}]")
                         mod_tracks = tracks_dict.get(mod.get('module'), {})
                         if mod_tracks and "lessons" in mod_tracks:
                             st.caption("Core Practicum Lessons:")
                             for les in mod_tracks["lessons"]:
-                                st.write(f"  \u2022 {les}")
+                                st.write(f"  ? {les}")
                                 
             with c_col2:
                 st.markdown("##### ⚡ Active Operational Sub-Verticals")
                 for sv in sub_verts:
-                    st.success(f"**[{sv.get('code')}]** {sv.get('name')} \u2014 `{sv.get('status')}`")
+                    st.success(f"**[{sv.get('code')}]** {sv.get('name')} ? `{sv.get('status')}`")
                 
                 st.metric(
                     label="Operational Readiness Rating",
@@ -2395,14 +2395,14 @@ elif active_module == "📘 Omni-Industry Matrix":
                         conn_civ.close()
                         
                         for d_num, a_name, s_pay, i_foc in rows_civ:
-                            st.write(f"**{d_num}** \u2014 *{a_name}*")
+                            st.write(f"**{d_num}** ? *{a_name}*")
                             st.caption(f"Inspection Scope: {i_foc}")
                             try:
                                 p_list = json.loads(s_pay)
                                 for p in p_list:
-                                    st.write(f"  \u2022 {p}")
+                                    st.write(f"  ? {p}")
                             except Exception:
-                                st.write(f"  \u2022 {s_pay}")
+                                st.write(f"  ? {s_pay}")
                             st.write("")
                 except Exception as e_civ:
                     st.error(f"Error reading civil inspection dockets: {e_civ}")
@@ -2410,8 +2410,7 @@ elif active_module == "📘 Omni-Industry Matrix":
                 st.warning("Master ledger database not available.")
 
             # ==============================================================================
-            # TRI-SECTOR CIVIL OPERATIONS: WORKFORCE APPRENTICESHIP, DRONE SORTIE & REPORTS
-            # Gated strictly to Civil Infrastructure to prevent duplicate element keys
+            # TRI-SECTOR CIVIL OPERATIONS: APPRENTICESHIP, COURSEWARE READER & FLIGHT ENGINE
             # ==============================================================================
             if v_meta.get("id") in ["VERTICAL_STRUCTURAL_CIVIL", "VERTICAL_STRUCTURAL_BRIDGE"]:
                 # 1. State Registered Apprenticeship & Job Creation Plan
@@ -2437,21 +2436,20 @@ elif active_module == "📘 Omni-Industry Matrix":
                                 data=dossier_path.read_text(encoding="utf-8"),
                                 file_name="OK_APPRENTICESHIP_CIVIL_NDT_120HR.md",
                                 mime="text/markdown",
-                                key="btn_dl_apprenticeship_dossier",
+                                key="btn_dl_app_syllabus_clean",
                                 use_container_width=True
                             )
+                    except Exception as ex_ap:
+                        st.caption(f"Apprenticeship dossier: {ex_ap}")
 
-                # ==============================================================================
-                # INTERACTIVE COURSEWARE READER & ACCREDITED STUDENT REGISTRY
-                # ==============================================================================
-                st.markdown("---")
+                # 2. Sovereign Field Academy Courseware Reader & Student Credential Registry
                 with st.expander("\U0001F4D6 Sovereign Field Academy Courseware Reader & Student Credential Registry", expanded=False):
                     st.markdown("##### \U0001F393 120-Hour Accredited Technical Courseware (OK Title 61 / ODOT / CareerTech)")
                     
                     _course_dir_cand = [
                         Path(r"C:\hvf_c2\courses"),
-                        Path(__file__).resolve().parent / "courses",
-                        Path(__file__).resolve().parent.parent / "courses"
+                        Path(r"C:\hvf_c2\hvf-media-matrix-private\courses"),
+                        Path(__file__).resolve().parent / "courses"
                     ]
                     _active_course_dir = next((p for p in _course_dir_cand if p.exists()), None)
                     
@@ -2464,10 +2462,9 @@ elif active_module == "📘 Omni-Industry Matrix":
                                 "STR_02_BUILDING_ENVELOPE_COURSEWARE.md",
                                 "STR_03_ROADWAY_PCI_COURSEWARE.md"
                             ],
-                            key="sel_courseware_manual"
+                            key="sel_manual_doc_clean"
                         )
                         
-                        # Student Credential Status from Database
                         if _active_db:
                             try:
                                 conn_stu = sqlite3.connect(str(_active_db))
@@ -2485,7 +2482,7 @@ elif active_module == "📘 Omni-Industry Matrix":
                                 st.markdown("##### \U0001F3DB Verified State Certifications")
                                 st.dataframe(df_stu, use_container_width=True)
                             except Exception as ex_stu:
-                                st.caption(f"Student registry query: {ex_stu}")
+                                st.caption(f"Student registry: {ex_stu}")
                                 
                     with c_col2:
                         if _active_course_dir:
@@ -2499,10 +2496,7 @@ elif active_module == "📘 Omni-Industry Matrix":
                         else:
                             st.warning("Courseware directory not detected.")
 
-                    except Exception as ex_ap:
-                        st.caption(f"Apprenticeship dossier available in C:\\hvf_c2\\reports\\ ({ex_ap})")
-
-                # 2. Sovereign Flight Sortie & State Certification Engine
+                # 3. Sovereign Flight Sortie & State Certification Engine
                 st.markdown("---")
                 st.markdown("### \u26A1 Sovereign Flight Sortie & State Certification Engine")
                 st.caption("Prime Authority: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | OK Title 61 & ODOT Element-Level Verification")
@@ -2521,17 +2515,17 @@ elif active_module == "📘 Omni-Industry Matrix":
                 if _c_dockets:
                     c_sel, c_act1, c_act2 = st.columns([3, 2, 2])
                     with c_sel:
-                        target_doc = st.selectbox("Select Target Docket for Execution:", _c_dockets, key="sel_civ_doc_flow_primary")
+                        target_doc = st.selectbox("Select Target Docket for Execution:", _c_dockets, key="sel_target_doc_clean")
                     
                     with c_act1:
                         st.write("")
                         st.write("")
-                        btn_launch = st.button("\U0001F680 Dispatch Drone Sortie", key="btn_dispatch_drone_primary", use_container_width=True)
+                        btn_launch = st.button("\U0001F680 Dispatch Drone Sortie", key="btn_dispatch_drone_clean", use_container_width=True)
                         
                     with c_act2:
                         st.write("")
                         st.write("")
-                        btn_cert = st.button("\U0001F4C4 Synthesize Deliverable", key="btn_certify_dossier_primary", use_container_width=True)
+                        btn_cert = st.button("\U0001F4C4 Synthesize Deliverable", key="btn_certify_dossier_clean", use_container_width=True)
                     
                     if btn_launch:
                         try:
@@ -2576,10 +2570,12 @@ elif active_module == "📘 Omni-Industry Matrix":
                                     data=report_file.read_text(encoding="utf-8"),
                                     file_name=report_file.name,
                                     mime="text/markdown",
-                                    key="btn_dl_state_deliverable_primary",
+                                    key="btn_dl_state_dossier_clean",
                                     use_container_width=True
                                 )
                         except Exception as ex_rep:
                             st.error(f"Report synthesis failed: {ex_rep}")
+
+
 
 
