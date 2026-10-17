@@ -2327,36 +2327,34 @@ elif active_module == "📘 Omni-Industry Matrix":
                     </div>
                 </div>
                 ''', unsafe_allow_html=True)
-                st.markdown("#### \U0001F3AF Sovereign Field Academy Modules & Competencies")
-                curr_list = v_meta.get("curriculum", [])
-                sub_verts = v_meta.get("sub_verticals", [])
-                tracks_dict = v_meta.get("tracks", {})
-
-                c_col1, c_col2 = st.columns([3, 2])
-                with c_col1:
-                    st.markdown("##### \U0001F4DA Accredited Technical Modules")
-                    for mod in curr_list:
-                        m_code = mod.get('module', 'MOD')
-                        m_title = mod.get('title', 'Discipline Study')
-                        m_hours = mod.get('hours', 40)
-                        with st.expander(f"\U0001F4CC {m_code}: {m_title} ({m_hours} Hrs)", expanded=False):
-                            st.write(f"**Competency Standard:** {mod.get('competency', 'Level-5 Mastery')}")
-                            st.write(f"**Certification Status:** :green[{mod.get('status', 'Certified')}]")
-                            mod_tracks = tracks_dict.get(m_code, {})
-                            if mod_tracks and 'lessons' in mod_tracks:
-                                st.caption('Core Practicum Lessons:')
-                                for les in mod_tracks['lessons']:
-                                    st.write(f"  \u2022 {les}")
-                with c_col2:
-                    st.markdown("##### \u26A1 Active Operational Sub-Verticals")
-                    for sv in sub_verts:
-                        st.success(f"**[{sv.get('code')}]** {sv.get('name')} \u2014 `{sv.get('status')}`")
-
-                    st.metric(
-                        label="Operational Readiness Rating",
-                        value="100% Certified",
-                        delta="DFARS / OK Title 61 Verified"
-                    )
+                st.markdown("#### 🎯 Sovereign Field Academy Modules & Competencies")
+            curr_list = v_meta.get("curriculum", [])
+            sub_verts = v_meta.get("sub_verticals", [])
+            tracks_dict = v_meta.get("tracks", {})
+            
+            c_col1, c_col2 = st.columns([3, 2])
+            with c_col1:
+                st.markdown("##### 📚 Accredited Technical Modules")
+                for mod in curr_list:
+                    with st.expander(f"?? {mod.get('module')}: {mod.get('title')} ({mod.get('hours', 40)} Hrs)", expanded=True):
+                        st.write(f"**Competency Standard:** {mod.get('competency', 'Mastery')}")
+                        st.write(f"**Certification Status:** :green[{mod.get('status', 'Certified')}]")
+                        mod_tracks = tracks_dict.get(mod.get('module'), {})
+                        if mod_tracks and "lessons" in mod_tracks:
+                            st.caption("Core Practicum Lessons:")
+                            for les in mod_tracks["lessons"]:
+                                st.write(f"  ? {les}")
+                                
+            with c_col2:
+                st.markdown("##### ⚡ Active Operational Sub-Verticals")
+                for sv in sub_verts:
+                    st.success(f"**[{sv.get('code')}]** {sv.get('name')} ? `{sv.get('status')}`")
+                
+                st.metric(
+                    label="Operational Readiness Rating",
+                    value="100% Certified",
+                    delta="DFARS / OK Title 61 Verified"
+                )
 
             # Live Civil Inspection Mission Dockets Interface
             st.markdown("---")
@@ -2406,88 +2404,125 @@ elif active_module == "📘 Omni-Industry Matrix":
                             except Exception:
                                 st.write(f"  \u2022 {s_pay}")
                             st.write("")
-
-            # Sovereign Flight Sortie & State Certification Engine
-            st.markdown("---")
-            st.markdown("### \u26A1 Sovereign Flight Sortie & State Certification Engine")
-            st.caption("Prime Authority: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | OK Title 61 & ODOT Element-Level Verification")
-            
-            docket_options = df_civ['Docket #'].tolist() if not df_civ.empty else []
-            if docket_options:
-                c_sel, c_act1, c_act2 = st.columns([3, 2, 2])
-                with c_sel:
-                    target_doc = st.selectbox("Select Target Docket for Execution:", docket_options, key="sel_civ_doc_flow")
-                
-                with c_act1:
-                    st.write("")
-                    st.write("")
-                    btn_launch = st.button("\U0001F680 Dispatch Drone Sortie", use_container_width=True)
-                    
-                with c_act2:
-                    st.write("")
-                    st.write("")
-                    btn_cert = st.button("\U0001F4C4 Synthesize Deliverable", use_container_width=True)
-                
-                if btn_launch:
-                    try:
-                        import sys
-                        _c_dir = str(Path(__file__).resolve().parent)
-                        if _c_dir not in sys.path:
-                            sys.path.insert(0, _c_dir)
-                            
-                        from ebony_drone_mission_planner import generate_autonomous_flight_plan
-                        from ebony_drone_bridge import log_completed_flight_sortie
-                        
-                        with st.spinner("Dispatching HVF-SPECTRE-X8 autonomous flight profile..."):
-                            plan_res = generate_autonomous_flight_plan(target_doc)
-                            sortie_res = log_completed_flight_sortie(
-                                mission_id=plan_res["mission_id"],
-                                docket_number=target_doc,
-                                flight_duration_minutes=24.5,
-                                battery_start_v=50.2,
-                                battery_end_v=45.6,
-                                optical_flow_quality=98,
-                                images_captured=420
-                            )
-                        st.success(f"Flight Sortie Successfully Executed: `{sortie_res['sortie_id']}`")
-                        f_col1, f_col2, f_col3, f_col4 = st.columns(4)
-                        f_col1.metric("Mission Flight Time", f"{sortie_res['duration_min']} min", "Nominal Profile")
-                        f_col2.metric("Images Captured", f"{sortie_res['images']} Frames", "Geo-Tagged / RTK")
-                        f_col3.metric("Optical Flow Lock", f"{sortie_res['optical_flow_lock']}%", "GPS-Denied Verified")
-                        f_col4.metric("Telemetry Seal", f"{sortie_res['sortie_hash'][:8]}...", "WORM Anchored")
-                        st.info(f"Navigation Mode: **{plan_res['nav_mode']}** | Flight Profile: **{plan_res['profile']}**")
-                    except Exception as ex_flight:
-                        st.error(f"Flight execution failed: {ex_flight}")
-                        
-                if btn_cert:
-                    try:
-                        import sys
-                        _c_dir = str(Path(__file__).resolve().parent)
-                        if _c_dir not in sys.path:
-                            sys.path.insert(0, _c_dir)
-                            
-                        from ebony_inspection_report_generator import generate_formal_civil_report
-                        with st.spinner("Synthesizing multi-sensor NDT telemetry & calculating element ratings..."):
-                            rep_res = generate_formal_civil_report(target_doc)
-                        
-                        st.success(f"Title 61 Engineering Dossier Certified: `{rep_res['docket_number']}`")
-                        st.metric("Executive Structural Sufficiency", rep_res["sufficiency_rating"], f"{rep_res['elements_evaluated']} AASHTO Elements Scored")
-                        st.caption(f"Immutable SHA-256 Deliverable Seal: `{rep_res['report_sha256']}`")
-                        
-                        report_file = Path(rep_res["report_file"])
-                        if report_file.exists():
-                            st.download_button(
-                                label="\U0001F4E5 Download Certified State Deliverable (ODOT / Title 61 Markdown)",
-                                data=report_file.read_text(encoding="utf-8"),
-                                file_name=report_file.name,
-                                mime="text/markdown",
-                                use_container_width=True
-                            )
-                    except Exception as ex_rep:
-                        st.error(f"Report synthesis failed: {ex_rep}")
-
                 except Exception as e_civ:
                     st.error(f"Error reading civil inspection dockets: {e_civ}")
             else:
                 st.warning("Master ledger database not available.")
+
+            # ==============================================================================
+            # TRI-SECTOR CIVIL OPERATIONS: WORKFORCE APPRENTICESHIP, DRONE SORTIE & REPORTS
+            # Gated strictly to Civil Infrastructure to prevent duplicate element keys
+            # ==============================================================================
+            if v_meta.get("id") in ["VERTICAL_STRUCTURAL_CIVIL", "VERTICAL_STRUCTURAL_BRIDGE"]:
+                # 1. State Registered Apprenticeship & Job Creation Plan
+                with st.expander("\U0001F393 State Registered Apprenticeship & Oklahoma Job Creation Plan", expanded=False):
+                    st.markdown("##### \U0001F3DB Oklahoma Workforce Development & Registered Apprenticeship (USDOL / OK Title 61)")
+                    st.write(
+                        "Humphrey Virtual Farms LLC pairs every state infrastructure contract with a formal **Registered Apprenticeship Program**. "
+                        "We train local Oklahoma technicians, rural youth, and military veterans through a debt-free, progressive wage model "
+                        "($24.50/hr to $42.50/hr) combining 120 hours of Related Technical Instruction (RTI) with 2,000 hours of mentored on-the-job training."
+                    )
+                    ap_col1, ap_col2, ap_col3 = st.columns(3)
+                    ap_col1.metric("Accredited RTI Training", "120 Hours", "STR-01 / 02 / 03")
+                    ap_col2.metric("OJT Field Apprenticeship", "2,000 Hours", "USDOL Registered Standards")
+                    ap_col3.metric("Journeyman Wage Peak", "$42.50 / hr", "Oklahoma Technical Equity")
+                    
+                    try:
+                        from ebony_academy_curriculum import generate_state_apprenticeship_dossier
+                        ap_dossier = generate_state_apprenticeship_dossier()
+                        dossier_path = Path(ap_dossier["dossier_file"])
+                        if dossier_path.exists():
+                            st.download_button(
+                                label="\U0001F4E5 Download Certified Oklahoma Apprenticeship Syllabus & Workforce Dossier",
+                                data=dossier_path.read_text(encoding="utf-8"),
+                                file_name="OK_APPRENTICESHIP_CIVIL_NDT_120HR.md",
+                                mime="text/markdown",
+                                key="btn_dl_apprenticeship_dossier",
+                                use_container_width=True
+                            )
+                    except Exception as ex_ap:
+                        st.caption(f"Apprenticeship dossier available in C:\\hvf_c2\\reports\\ ({ex_ap})")
+
+                # 2. Sovereign Flight Sortie & State Certification Engine
+                st.markdown("---")
+                st.markdown("### \u26A1 Sovereign Flight Sortie & State Certification Engine")
+                st.caption("Prime Authority: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | OK Title 61 & ODOT Element-Level Verification")
+                
+                _c_dockets = []
+                if _active_db:
+                    try:
+                        _cx = sqlite3.connect(str(_active_db))
+                        _cx_cur = _cx.cursor()
+                        _cx_cur.execute("SELECT docket_number FROM civil_inspection_dockets ORDER BY id DESC")
+                        _c_dockets = [r[0] for r in _cx_cur.fetchall()]
+                        _cx.close()
+                    except Exception:
+                        _c_dockets = []
+
+                if _c_dockets:
+                    c_sel, c_act1, c_act2 = st.columns([3, 2, 2])
+                    with c_sel:
+                        target_doc = st.selectbox("Select Target Docket for Execution:", _c_dockets, key="sel_civ_doc_flow_primary")
+                    
+                    with c_act1:
+                        st.write("")
+                        st.write("")
+                        btn_launch = st.button("\U0001F680 Dispatch Drone Sortie", key="btn_dispatch_drone_primary", use_container_width=True)
+                        
+                    with c_act2:
+                        st.write("")
+                        st.write("")
+                        btn_cert = st.button("\U0001F4C4 Synthesize Deliverable", key="btn_certify_dossier_primary", use_container_width=True)
+                    
+                    if btn_launch:
+                        try:
+                            from ebony_drone_mission_planner import generate_autonomous_flight_plan
+                            from ebony_drone_bridge import log_completed_flight_sortie
+                            
+                            with st.spinner("Dispatching HVF-SPECTRE-X8 autonomous flight profile..."):
+                                plan_res = generate_autonomous_flight_plan(target_doc)
+                                sortie_res = log_completed_flight_sortie(
+                                    mission_id=plan_res["mission_id"],
+                                    docket_number=target_doc,
+                                    flight_duration_minutes=24.5,
+                                    battery_start_v=50.2,
+                                    battery_end_v=45.6,
+                                    optical_flow_quality=98,
+                                    images_captured=420
+                                )
+                            st.success(f"Flight Sortie Successfully Executed: `{sortie_res['sortie_id']}`")
+                            f_col1, f_col2, f_col3, f_col4 = st.columns(4)
+                            f_col1.metric("Mission Flight Time", f"{sortie_res['duration_min']} min", "Nominal Profile")
+                            f_col2.metric("Images Captured", f"{sortie_res['images']} Frames", "Geo-Tagged / RTK")
+                            f_col3.metric("Optical Flow Lock", f"{sortie_res['optical_flow_lock']}%", "GPS-Denied Verified")
+                            f_col4.metric("Telemetry Seal", f"{sortie_res['sortie_hash'][:8]}...", "WORM Anchored")
+                            st.info(f"Navigation Mode: **{plan_res['nav_mode']}** | Flight Profile: **{plan_res['profile']}**")
+                        except Exception as ex_flight:
+                            st.error(f"Flight execution failed: {ex_flight}")
+                            
+                    if btn_cert:
+                        try:
+                            from ebony_inspection_report_generator import generate_formal_civil_report
+                            with st.spinner("Synthesizing multi-sensor NDT telemetry & calculating element ratings..."):
+                                rep_res = generate_formal_civil_report(target_doc)
+                            
+                            st.success(f"Title 61 Engineering Dossier Certified: `{rep_res['docket_number']}`")
+                            st.metric("Executive Structural Sufficiency", rep_res["sufficiency_rating"], f"{rep_res['elements_evaluated']} AASHTO Elements Scored")
+                            st.caption(f"Immutable SHA-256 Deliverable Seal: `{rep_res['report_sha256']}`")
+                            
+                            report_file = Path(rep_res["report_file"])
+                            if report_file.exists():
+                                st.download_button(
+                                    label="\U0001F4E5 Download Certified State Deliverable (ODOT / Title 61 Markdown)",
+                                    data=report_file.read_text(encoding="utf-8"),
+                                    file_name=report_file.name,
+                                    mime="text/markdown",
+                                    key="btn_dl_state_deliverable_primary",
+                                    use_container_width=True
+                                )
+                        except Exception as ex_rep:
+                            st.error(f"Report synthesis failed: {ex_rep}")
+
+
+
 
