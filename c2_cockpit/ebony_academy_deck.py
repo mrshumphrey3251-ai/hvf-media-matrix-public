@@ -20,8 +20,10 @@ try:
         COURSE_METADATA, STAGE_METADATA,
         generate_course_stage_questions, grade_course_stage_exam, issue_course_stage_certificate
     )
+    EXAM_ENGINE_ONLINE = True
 except Exception as e:
-    st.error(f"Engine import error: {e}")
+    EXAM_ENGINE_ONLINE = False
+    EXAM_ENGINE_ERR = str(e)
 
 def render_academy_deck():
     st.header("🎓 Sovereign Field Academy // Master Engineering Institute")
@@ -39,7 +41,16 @@ def render_academy_deck():
             "badge": "AASHTO / ODOT Level-5 Bridge Inspector",
             "diagram": assets_img_dir / "bridge_girder_diagram.svg",
             "video_demo": "https://www.w3schools.com/html/mov_bbb.mp4",
-            "manual": courses_dir / "STR_01_BRIDGE_INSPECTION_COURSEWARE.md"
+            "manual": courses_dir / "STR_01_BRIDGE_INSPECTION_COURSEWARE.md",
+            "ch1_fallback": """### 1.1 The Legal Mandate of Bridge Inspections
+Under **Oklahoma Title 61** and **Title 74**, the State is legally obligated to maintain continuous biennial (24-month) element-level safety evaluations across more than 23,000 bridges.
+### 1.2 AASHTO National Bridge Inventory (NBI) Condition State Architecture
+* **Condition State 1 (Good):** Member operates at 100% design capacity.
+* **Condition State 2 (Fair):** Minor surface hairline cracking (<0.04 in).
+* **Condition State 3 (Poor):** Advanced structural section loss. **Mandates immediate priority maintenance.**
+* **Condition State 4 (Severe):** Critical structural compromise. Mandates immediate emergency closure.
+### 1.3 Criminal & Civil Chain-of-Custody Liability
+Falsification carries severe liability. HVF LLC aircraft telemetry is signed with an immutable **SHA-256 cryptographic digest** in a WORM SQLite ledger."""
         },
         "STR-02": {
             "title": "STR-02: Commercial Building Envelope, Roof Membrane Moisture & Facade NDT",
@@ -48,7 +59,11 @@ def render_academy_deck():
             "badge": "Title 61 Commercial Building Diagnostic Specialist",
             "diagram": assets_img_dir / "roof_thermal_moisture.svg",
             "video_demo": "https://www.w3schools.com/html/mov_bbb.mp4",
-            "manual": courses_dir / "STR_02_BUILDING_ENVELOPE_COURSEWARE.md"
+            "manual": courses_dir / "STR_02_BUILDING_ENVELOPE_COURSEWARE.md",
+            "ch1_fallback": """### 1.1 Title 61 State Building Audits
+OMES Construction and Properties (CAP) oversees all state-owned facilities under Oklahoma Title 61.
+### 1.2 ASTM C1153 Standard Practice for Radiometric Thermal Surveys
+Establishes the legal baseline for non-destructive infrared inspections of low-slope commercial roofs. Must be conducted by certified Level II/III thermographers during the nocturnal radiant cooling window."""
         },
         "STR-03": {
             "title": "STR-03: Roadway Pavement Distress, Rutting & ASTM D6433 PCI Survey",
@@ -57,7 +72,11 @@ def render_academy_deck():
             "badge": "ASTM D6433 Certified Roadway & Drainage Inspector",
             "diagram": assets_img_dir / "roadway_pavement_rutting.svg",
             "video_demo": "https://www.w3schools.com/html/mov_bbb.mp4",
-            "manual": courses_dir / "STR_03_ROADWAY_PCI_COURSEWARE.md"
+            "manual": courses_dir / "STR_03_ROADWAY_PCI_COURSEWARE.md",
+            "ch1_fallback": """### 1.1 Highway & Thoroughfare Governance
+Roadway asset management under Oklahoma Title 61 and ODOT mandates objective, repeatable condition indices (ASTM D6433) to allocate state highway maintenance funds.
+### 1.2 ASTM D6433 Standard Practice
+Framework for identifying and quantifying 19 distinct asphalt and concrete distress types to compute the Pavement Condition Index (PCI)."""
         }
     }
 
@@ -86,52 +105,57 @@ def render_academy_deck():
 
     with tab_ch1:
         st.subheader(f"Chapter 1: Statutory Governance & Master Textbook // {selected_code}")
+        st.markdown(active_course["ch1_fallback"])
         if active_course["manual"].exists():
+            st.markdown("---")
+            st.markdown("### Complete Accredited Reference Manual")
             with st.container(height=420):
                 st.markdown(active_course["manual"].read_text(encoding="utf-8"))
-        else:
-            st.warning("Master course manual not found on disk.")
 
     with tab_ch2:
         st.subheader("Chapter 2: Structural Mechanics & Technical Schematics")
         if active_course["diagram"].exists():
             st.image(str(active_course["diagram"]), caption=f"Figure: {active_course['title']} Engineering Schematic", use_container_width=True)
         if selected_code == "STR-01":
-            st.markdown("### Interactive Delamination Calculator (D_%)")
+            st.markdown("### 2.1 Concrete Delamination Formulation & Interactive Calculator (D_%)")
+            st.code("D_% = (Area_delam / Area_total) * 100", language="text")
             gc1, gc2 = st.columns(2)
             with gc1:
                 gross = st.number_input("Gross Deck Span Area (sq ft):", value=15000, step=500, key="gc_deck")
             with gc2:
                 delam = st.number_input("Detected Delamination Area (sq ft):", value=1800, step=50, key="gc_delam")
             dpct = (delam / gross) * 100.0 if gross > 0 else 0.0
-            st.metric("Delamination Percentage", f"{dpct:.2f}%", "MANDATES HYDRODEMOLITION" if dpct >= 10.0 else "Monitoring Permitted")
+            st.metric("Delamination Percentage", f"{dpct:.2f}%", "MANDATES HYDRODEMOLITION (>=10%)" if dpct >= 10.0 else "Monitoring Permitted (<10%)")
+            st.markdown("### 2.2 Hydrologic Pier Scour Bathymetry")
+            st.code("d_s = y_0 - y_bed", language="text")
+            st.markdown("If scour depth undermines footing, bridge is classified **Scour Critical (ODOT Item 113)**.")
         elif selected_code == "STR-02":
-            st.markdown("### ASTM C1153 Roof Thermal Anomaly Formulation")
+            st.markdown("### 2.1 ASTM C1153 Roof Thermal Anomaly Formulation")
             st.code("Delta_T >= 2.0 degrees C", language="text")
-            st.markdown("### Conductive Heat Loss Equation")
+            st.markdown("### 2.2 Conductive Heat Loss Equation")
             st.code("Q = U * A * Delta_T", language="text")
         else:
-            st.markdown("### ASTM D6433 Pavement Condition Index Formulation")
+            st.markdown("### 2.1 ASTM D6433 Pavement Condition Index Formulation")
             st.code("PCI = 100 - SUM(CDV)", language="text")
-            st.markdown("### Transverse Rut Depth Threshold")
+            st.markdown("### 2.2 Transverse Rut Depth Threshold")
             st.code("d_rut = y_straightedge - y_pavement >= 0.25 in", language="text")
 
     with tab_ch3:
         st.subheader("Chapter 3: Forensic Engineering Failure Case Studies")
         if selected_code == "STR-01":
             st.markdown("""
-            * **Silver Bridge Collapse (1967):** Single 0.1-inch stress corrosion fracture in Eyebar 330 caused total progressive collapse in <60s (46 fatalities). Mandates 100% inspection of FCM tension nodes.
-            * **I-35W Mississippi River Bridge Disaster (2007):** Undersized 0.5-inch steel gusset plates bowed and fractured under dead load. Mandates 3D point-cloud distortion measurement.
+* **Silver Bridge Collapse (1967):** Single 0.1-inch stress corrosion fracture in Eyebar 330 caused total progressive collapse in <60s (46 fatalities). Mandates 100% inspection of Fracture-Critical Members (FCM) in tension.
+* **I-35W Mississippi River Bridge Disaster (2007):** Undersized 0.5-inch steel gusset plates bowed and fractured under dead load. Mandates millimeter-accurate 3D point-cloud distortion measurement.
             """)
         elif selected_code == "STR-02":
             st.markdown("""
-            * **Champlain Towers South Collapse (2021):** Decades of unmitigated water penetration through failed pool deck waterproofing corroded structural support column rebar, leading to catastrophic failure.
-            * **High-Rise Masonry Rust-Jacking:** Moisture penetrating behind brick facades oxidizes structural steel shelf angles, generating expansive tensile stresses exceeding 10,000 psi.
+* **Champlain Towers South Collapse (2021):** Decades of unmitigated water penetration through failed pool deck waterproofing corroded structural support column rebar, leading to catastrophic failure.
+* **High-Rise Masonry Rust-Jacking:** Moisture penetrating behind brick facades oxidizes structural steel shelf angles, generating expansive tensile stresses exceeding **10,000 psi**.
             """)
         else:
             st.markdown("""
-            * **US Route 66 Embankment Shear Failure:** Failed RCB culvert separated at internal barrel joints, piping pressurized water into highway subgrade and causing a 30-foot slope blowout.
-            * **Wheel-Path Hydroplaning Catastrophe:** Rut depth >=0.25 inches creates water pooling, causing dynamic hydroplaning and multi-vehicle roadway crossover crashes.
+* **US Route 66 Embankment Shear Failure:** Failed RCB culvert separated at internal barrel joints, piping pressurized water into highway subgrade and causing a 30-foot slope blowout.
+* **Wheel-Path Hydroplaning Catastrophe:** Rut depth >=0.25 inches creates water pooling, causing dynamic hydroplaning and multi-vehicle roadway crossover crashes.
             """)
 
     with tab_ch4:
@@ -140,25 +164,28 @@ def render_academy_deck():
         st.caption("Operational Flight Telemetry & Sensor Deployment Sortie Demonstration")
         if selected_code == "STR-01":
             st.markdown("""
-            1. **Optical Flow Navigation:** Minimum 15 lux surface illumination required.
-            2. **Ingress Speed:** Abutment entry speed <= 1.5 m/s.
-            3. **LiDAR Rangefinding:** Downward TF02-i altitude hold maintained within +/- 0.1m.
+1. **Optical Flow Navigation:** Minimum **15 lux** surface illumination required under GPS-denied bridge decks.
+2. **Ingress Speed:** Abutment entry velocity must not exceed **1.5 m/s**.
+3. **LiDAR Rangefinding:** Downward TF02-i altitude hold maintained within +/- 0.1m.
             """)
         elif selected_code == "STR-02":
             st.markdown("""
-            1. **Window:** 45-90 minutes post-sunset during clear sky conditions.
-            2. **Emissivity:** Set thermal camera emissivity to 0.92 for single-ply membranes.
-            3. **Standoff:** Maintain 10-foot minimum standoff from parapet edge.
+1. **Window:** 45–90 minutes post-sunset during clear sky conditions (cloud cover < 20%).
+2. **Emissivity:** Set thermal camera emissivity to **0.92** for single-ply membranes.
+3. **Standoff:** Maintain **10-foot minimum** standoff from parapet edge.
             """)
         else:
             st.markdown("""
-            1. **Traffic Escort:** Moving roadway escort vehicle maintaining continuous visual line of sight.
-            2. **No Hover Over Moving Traffic:** Sustained hovering over moving vehicles prohibited under FAA Part 107.
-            3. **LiDAR Scan Rate:** Maintain 300,000 pts/sec rate across corridor sweeps.
+1. **Traffic Escort:** Moving roadway escort vehicle maintaining continuous visual line of sight (VLOS).
+2. **No Hover Over Moving Traffic:** Sustained hovering over moving vehicles prohibited under FAA Part 107.
+3. **LiDAR Scan Rate:** Maintain 300,000 pts/sec rate across corridor sweeps.
             """)
 
     with tab_exam:
         st.subheader(f"Chapter 5: Official {selected_code} State Certification Exam")
+        if not EXAM_ENGINE_ONLINE:
+            st.error(f"Exam Engine Offline: {EXAM_ENGINE_ERR}")
+            return
         st.write("Candidates must conquer all three progressive examination stages (Stage 1: 20 Qs, Stage 2: 45 Qs, Stage 3: 90 Qs) to earn official state credentials under Oklahoma Title 61.")
 
         e_col1, e_col2, e_col3 = st.columns([2, 2, 2])

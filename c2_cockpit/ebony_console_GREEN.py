@@ -1162,7 +1162,9 @@ if not _allowed:
         render_tier_restriction_screen(active_module, _req_tier, _user_tier)
     st.stop()
 
-if active_module == "🎛️ Master C2 Cockpit":
+if active_module == "🎓 Sovereign Field Academy":
+    render_academy_deck()
+elif active_module == "🎛️ Master C2 Cockpit":
     import c2_cockpit_dashboard
     c2_cockpit_dashboard.render()
 
