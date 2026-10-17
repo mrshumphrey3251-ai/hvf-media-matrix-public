@@ -2387,7 +2387,7 @@ elif active_module == "📘 Omni-Industry Matrix":
                     conn_civ.close()
                     st.dataframe(df_civ, use_container_width=True)
                     
-                    with st.expander("?? View Detailed Sensor Payloads & Flight Profiles", expanded=False):
+                    with st.expander("🔍 View Detailed Sensor Payloads & Flight Profiles", expanded=False):
                         conn_civ = sqlite3.connect(str(_active_db))
                         cur_civ = conn_civ.cursor()
                         cur_civ.execute("SELECT docket_number, asset_name, sensor_payloads, inspection_focus FROM civil_inspection_dockets ORDER BY id DESC")
