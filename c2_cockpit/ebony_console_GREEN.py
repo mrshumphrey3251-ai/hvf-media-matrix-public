@@ -1,3 +1,4 @@
+from ebony_academy_deck import render_academy_deck
 import pandas as pd
 import sqlite3
 import sys
@@ -1112,6 +1113,7 @@ with st.sidebar:
 
     canonical_nav_options = [
         "🎛️ Master C2 Cockpit",
+        "🎓 Sovereign Field Academy",
         "⚡ Autonomous Build Forge",
         "🛡️ CEO Authorization Gate",
         "💬 Sovereign Command",
