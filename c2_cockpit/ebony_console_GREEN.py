@@ -2440,6 +2440,65 @@ elif active_module == "📘 Omni-Industry Matrix":
                                 key="btn_dl_apprenticeship_dossier",
                                 use_container_width=True
                             )
+
+                # ==============================================================================
+                # INTERACTIVE COURSEWARE READER & ACCREDITED STUDENT REGISTRY
+                # ==============================================================================
+                st.markdown("---")
+                with st.expander("\U0001F4D6 Sovereign Field Academy Courseware Reader & Student Credential Registry", expanded=False):
+                    st.markdown("##### \U0001F393 120-Hour Accredited Technical Courseware (OK Title 61 / ODOT / CareerTech)")
+                    
+                    _course_dir_cand = [
+                        Path(r"C:\hvf_c2\courses"),
+                        Path(__file__).resolve().parent / "courses",
+                        Path(__file__).resolve().parent.parent / "courses"
+                    ]
+                    _active_course_dir = next((p for p in _course_dir_cand if p.exists()), None)
+                    
+                    c_col1, c_col2 = st.columns([2, 3])
+                    with c_col1:
+                        selected_course_file = st.selectbox(
+                            "Select Technical Course Manual:",
+                            [
+                                "STR_01_BRIDGE_INSPECTION_COURSEWARE.md",
+                                "STR_02_BUILDING_ENVELOPE_COURSEWARE.md",
+                                "STR_03_ROADWAY_PCI_COURSEWARE.md"
+                            ],
+                            key="sel_courseware_manual"
+                        )
+                        
+                        # Student Credential Status from Database
+                        if _active_db:
+                            try:
+                                conn_stu = sqlite3.connect(str(_active_db))
+                                df_stu = pd.read_sql_query(
+                                    """SELECT student_id AS 'Student ID',
+                                              full_name AS 'Name',
+                                              course_code AS 'Course',
+                                              hours_completed AS 'Hours',
+                                              certification_status AS 'Status'
+                                       FROM student_course_records
+                                       ORDER BY id DESC LIMIT 5""",
+                                    conn_stu
+                                )
+                                conn_stu.close()
+                                st.markdown("##### \U0001F3DB Verified State Certifications")
+                                st.dataframe(df_stu, use_container_width=True)
+                            except Exception as ex_stu:
+                                st.caption(f"Student registry query: {ex_stu}")
+                                
+                    with c_col2:
+                        if _active_course_dir:
+                            manual_path = _active_course_dir / selected_course_file
+                            if manual_path.exists():
+                                st.markdown(f"**Manual File:** `{manual_path.name}`")
+                                with st.container(height=380):
+                                    st.markdown(manual_path.read_text(encoding="utf-8"))
+                            else:
+                                st.warning(f"Manual {selected_course_file} not found on disk.")
+                        else:
+                            st.warning("Courseware directory not detected.")
+
                     except Exception as ex_ap:
                         st.caption(f"Apprenticeship dossier available in C:\\hvf_c2\\reports\\ ({ex_ap})")
 
@@ -2522,6 +2581,5 @@ elif active_module == "📘 Omni-Industry Matrix":
                                 )
                         except Exception as ex_rep:
                             st.error(f"Report synthesis failed: {ex_rep}")
-
 
 
