@@ -2327,34 +2327,36 @@ elif active_module == "📘 Omni-Industry Matrix":
                     </div>
                 </div>
                 ''', unsafe_allow_html=True)
-                st.markdown("#### 🎯 Sovereign Field Academy Modules & Competencies")
-            curr_list = v_meta.get("curriculum", [])
-            sub_verts = v_meta.get("sub_verticals", [])
-            tracks_dict = v_meta.get("tracks", {})
-            
-            c_col1, c_col2 = st.columns([3, 2])
-            with c_col1:
-                st.markdown("##### 📚 Accredited Technical Modules")
-                for mod in curr_list:
-                    with st.expander(f"?? {mod.get('module')}: {mod.get('title')} ({mod.get('hours', 40)} Hrs)", expanded=True):
-                        st.write(f"**Competency Standard:** {mod.get('competency', 'Mastery')}")
-                        st.write(f"**Certification Status:** :green[{mod.get('status', 'Certified')}]")
-                        mod_tracks = tracks_dict.get(mod.get('module'), {})
-                        if mod_tracks and "lessons" in mod_tracks:
-                            st.caption("Core Practicum Lessons:")
-                            for les in mod_tracks["lessons"]:
-                                st.write(f"  ? {les}")
-                                
-            with c_col2:
-                st.markdown("##### ⚡ Active Operational Sub-Verticals")
-                for sv in sub_verts:
-                    st.success(f"**[{sv.get('code')}]** {sv.get('name')} ? `{sv.get('status')}`")
-                
-                st.metric(
-                    label="Operational Readiness Rating",
-                    value="100% Certified",
-                    delta="DFARS / OK Title 61 Verified"
-                )
+                st.markdown("#### \U0001F3AF Sovereign Field Academy Modules & Competencies")
+                curr_list = v_meta.get("curriculum", [])
+                sub_verts = v_meta.get("sub_verticals", [])
+                tracks_dict = v_meta.get("tracks", {})
+
+                c_col1, c_col2 = st.columns([3, 2])
+                with c_col1:
+                    st.markdown("##### \U0001F4DA Accredited Technical Modules")
+                    for mod in curr_list:
+                        m_code = mod.get('module', 'MOD')
+                        m_title = mod.get('title', 'Discipline Study')
+                        m_hours = mod.get('hours', 40)
+                        with st.expander(f"\U0001F4CC {m_code}: {m_title} ({m_hours} Hrs)", expanded=False):
+                            st.write(f"**Competency Standard:** {mod.get('competency', 'Level-5 Mastery')}")
+                            st.write(f"**Certification Status:** :green[{mod.get('status', 'Certified')}]")
+                            mod_tracks = tracks_dict.get(m_code, {})
+                            if mod_tracks and 'lessons' in mod_tracks:
+                                st.caption('Core Practicum Lessons:')
+                                for les in mod_tracks['lessons']:
+                                    st.write(f"  \u2022 {les}")
+                with c_col2:
+                    st.markdown("##### \u26A1 Active Operational Sub-Verticals")
+                    for sv in sub_verts:
+                        st.success(f"**[{sv.get('code')}]** {sv.get('name')} \u2014 `{sv.get('status')}`")
+
+                    st.metric(
+                        label="Operational Readiness Rating",
+                        value="100% Certified",
+                        delta="DFARS / OK Title 61 Verified"
+                    )
 
             # Live Civil Inspection Mission Dockets Interface
             st.markdown("---")
@@ -2408,6 +2410,5 @@ elif active_module == "📘 Omni-Industry Matrix":
                     st.error(f"Error reading civil inspection dockets: {e_civ}")
             else:
                 st.warning("Master ledger database not available.")
-
 
 
