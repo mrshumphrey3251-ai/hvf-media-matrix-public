@@ -67,6 +67,7 @@ def _enrich_unit(u_dict, course_code):
     """Adds mandatory Quantitative Calculation Gate and 3-Question Mastery Quiz to each 4.0-Hr Unit."""
     u_num = u_dict["unit"]
     calc_bank = {
+        # STR-01: BRIDGES (10 MODULES)
         ("STR-01", 1): {
             "prompt": "Calculate the total extreme-ends opening length L_total (in feet) for a 3-barrel RCB culvert where each barrel is 6.0 ft wide separated by two 1.5 ft interior walls:",
             "target": 21.0, "tol": 0.2, "unit_label": "feet",
@@ -116,6 +117,108 @@ def _enrich_unit(u_dict, course_code):
             "prompt": "Calculate the AASHTO LRFR Rating Factor (RF) when girder capacity C = 1,850 kip-ft, factored dead load = 720 kip-ft, wearing surface = 180 kip-ft, and live load = 1,250 kip-ft:",
             "target": 0.76, "tol": 0.03, "unit_label": "RF",
             "hint": "RF = (1850 - 720 - 180) / 1250 = 0.76"
+        },
+        # STR-02: COMMERCIAL BUILDING ENVELOPE (10 MODULES)
+        ("STR-02", 1): {
+            "prompt": "Calculate the percentage of state capital taxpayer savings (%) when surgical wet-core recovery + coating costs USD 834,000 versus a full tear-off quote of USD 2,400,000:",
+            "target": 65.25, "tol": 0.5, "unit_label": "% savings",
+            "hint": "Savings_% = ((2400000 - 834000) / 2400000) * 100 = 65.25%"
+        },
+        ("STR-02", 2): {
+            "prompt": "Using h_conv = 5.7 + 3.8 * v (where v is wind speed in m/s), calculate the convective heat transfer coefficient h_conv (in W/m^2K) at calm wind v = 2.0 m/s:",
+            "target": 13.30, "tol": 0.25, "unit_label": "W/(m^2*K)",
+            "hint": "h_conv = 5.7 + (3.8 * 2.0) = 13.30 W/(m^2*K)"
+        },
+        ("STR-02", 3): {
+            "prompt": "Using Wien's Displacement Law lambda_max = 2897.8 / T_Kelvin, calculate the peak infrared emission wavelength (in micrometers) for a roof membrane at T = 285 K:",
+            "target": 10.17, "tol": 0.15, "unit_label": "micrometers",
+            "hint": "lambda_max = 2897.8 / 285 = 10.17 um"
+        },
+        ("STR-02", 4): {
+            "prompt": "Calculate the conductive heat loss Q_wet (in Watts) across A = 232.26 m^2 of saturated roof insulation (R_SI = 0.70 m^2K/W) at a temperature differential of Delta_T = 25 K:",
+            "target": 8295.0, "tol": 15.0, "unit_label": "Watts",
+            "hint": "Q_wet = (1 / 0.70) * 232.26 * 25 = 8295.0 Watts"
+        },
+        ("STR-02", 5): {
+            "prompt": "Enter the interstitial Dew-Point Temperature T_dp (in degrees C) from Worked Problem 5.1 for a hospital envelope at T = 23.0 C and RH = 55% (gamma = 0.9250):",
+            "target": 13.47, "tol": 0.25, "unit_label": "deg C",
+            "hint": "T_dp = (243.12 * 0.9250) / (17.62 - 0.9250) = 13.47 C"
+        },
+        ("STR-02", 6): {
+            "prompt": "Calculate the gravimetric moisture content percentage MC_% by dry weight for an insulation core weighing m_wet = 48.5 g wet and m_dry = 14.2 g oven-dry:",
+            "target": 241.55, "tol": 1.0, "unit_label": "% moisture",
+            "hint": "MC_% = ((48.5 - 14.2) / 14.2) * 100 = 241.55%"
+        },
+        ("STR-02", 7): {
+            "prompt": "Calculate the out-of-plane deflection ratio (H_panel / Delta_bow) for a 144-inch tall masonry wall panel bowed outward by 0.85 inches due to shelf-angle rust-jacking:",
+            "target": 169.41, "tol": 1.0, "unit_label": "L/Delta ratio",
+            "hint": "Ratio = 144.0 / 0.85 = 169.41 (Fails BIA 360 criterion)"
+        },
+        ("STR-02", 8): {
+            "prompt": "Enter the factored ACI 318 two-way slab punching shear capacity phi_V_c (in kips) from Worked Problem 8.1 (24x24 in column, d = 7.5 in, b_0 = 126 in, f'_c = 4,000 psi):",
+            "target": 179.30, "tol": 1.0, "unit_label": "kips",
+            "hint": "phi_V_c = 0.75 * 4 * sqrt(4000) * 126.0 * 7.5 / 1000 = 179.3 kips"
+        },
+        ("STR-02", 9): {
+            "prompt": "Calculate the added hydrostatic ponding load (in psf) caused by 8.0 inches of standing water on a flat roof bay (unit weight of water = 62.4 lb/ft^3):",
+            "target": 41.60, "tol": 0.5, "unit_label": "psf",
+            "hint": "q_water = (8.0 / 12.0) * 62.4 = 41.60 psf"
+        },
+        ("STR-02", 10): {
+            "prompt": "Calculate the maximum UAS flight altitude H (in meters AGL) to achieve a 35.0 mm/px thermal GSD using a sensor with focal length f = 13.0 mm and pixel pitch p = 0.012 mm:",
+            "target": 37.92, "tol": 0.5, "unit_label": "meters AGL",
+            "hint": "H = (35.0 * 13.0) / 0.012 = 37916.7 mm = 37.92 m"
+        },
+        # STR-03: ROADWAY PAVEMENT & ASTM D6433 PCI (10 MODULES)
+        ("STR-03", 1): {
+            "prompt": "Using the ASTM D6433 sample size equation n = (N * s^2) / (((e^2 / 4) * (N - 1)) + s^2) for N = 80 units, s = 10.0, and e = 5.0, calculate the exact unrounded value of n:",
+            "target": 13.47, "tol": 0.6, "unit_label": "sample units",
+            "hint": "n = (80 * 100) / ((6.25 * 79) + 100) = 8000 / 593.75 = 13.47 (rounds up to 14)"
+        },
+        ("STR-03", 2): {
+            "prompt": "Calculate the certified ASTM D6433 Pavement Condition Index (PCI) when the iterative Corrected Deduct Value solver yields a maximum CDV of 44.0:",
+            "target": 56.0, "tol": 0.5, "unit_label": "PCI",
+            "hint": "PCI = 100.0 - max(CDV) = 100.0 - 44.0 = 56.0"
+        },
+        ("STR-03", 3): {
+            "prompt": "Enter the Boussinesq vertical compressive stress sigma_z (in psi) at subgrade depth z = 12.0 inches beneath a circular tire footprint of radius a = 4.5 in and pressure p = 110 psi:",
+            "target": 19.68, "tol": 0.35, "unit_label": "psi",
+            "hint": "sigma_z = 110 * (1 - (1 / (1 + (4.5/12.0)^2))^1.5) = 19.68 psi"
+        },
+        ("STR-03", 4): {
+            "prompt": "Using the NASA Horne hydroplaning equation V_p = 10.35 * sqrt(P_tire), calculate the critical dynamic hydroplaning velocity (in mph) for a tire pressure of P_tire = 32.0 psi:",
+            "target": 58.55, "tol": 0.5, "unit_label": "mph",
+            "hint": "V_p = 10.35 * sqrt(32.0) = 58.55 mph"
+        },
+        ("STR-03", 5): {
+            "prompt": "Calculate the daytime thermal curling tensile bending stress sigma_curl (in psi) in a PCC slab with E = 4.2e6 psi, alpha = 5.5e-6 /F, mu = 0.15, and Delta_T = 22 F:",
+            "target": 298.94, "tol": 1.0, "unit_label": "psi",
+            "hint": "sigma_curl = (4.2e6 * 5.5e-6 * 22) / (2 * (1 - 0.15)) = 508.2 / 1.70 = 298.94 psi"
+        },
+        ("STR-03", 6): {
+            "prompt": "Calculate the International Roughness Index (IRI in inches/mile) when the Quarter-Car simulation accumulates 92.5 inches of vertical suspension motion over a 0.50-mile segment:",
+            "target": 185.0, "tol": 1.0, "unit_label": "inches/mile",
+            "hint": "IRI = 92.5 in / 0.50 miles = 185.0 in/mi"
+        },
+        ("STR-03", 7): {
+            "prompt": "Using Manning's open-channel equation Q = (1.486/n) * A * R_h^(2/3) * S^(1/2), enter the culvert discharge capacity Q (in cfs) from Worked Problem 7.1 (n=0.013, A=12, R_h=1.20, S=0.01):",
+            "target": 154.90, "tol": 1.5, "unit_label": "cfs",
+            "hint": "Q = (1.486 / 0.013) * 12.0 * (1.20)^0.6667 * (0.01)^0.5 = 154.9 cfs"
+        },
+        ("STR-03", 8): {
+            "prompt": "Calculate the Vertical Root-Mean-Square Error RMSE_z (in mm) across 5 ODOT checkpoints with vertical residuals of +3.0, -4.0, +2.0, -3.0, and +1.0 mm:",
+            "target": 2.79, "tol": 0.15, "unit_label": "mm",
+            "hint": "RMSE_z = sqrt((9 + 16 + 4 + 9 + 1) / 5) = sqrt(7.8) = 2.79 mm"
+        },
+        ("STR-03", 9): {
+            "prompt": "Using Terzaghi's soil boiling equation i_c = (G_s - 1) / (1 + e), calculate the critical upward hydraulic gradient i_c for a silty embankment fill with G_s = 2.68 and void ratio e = 0.68:",
+            "target": 1.00, "tol": 0.05, "unit_label": "gradient (ft/ft)",
+            "hint": "i_c = (2.68 - 1.0) / (1.0 + 0.68) = 1.68 / 1.68 = 1.00"
+        },
+        ("STR-03", 10): {
+            "prompt": "Under Sovereign FAA Part 107.39 / 107.145 highway corridor flight rules, enter the minimum required lateral shoulder offset distance (in feet) from live moving traffic lanes:",
+            "target": 15.0, "tol": 0.5, "unit_label": "feet",
+            "hint": "Minimum_Lateral_Offset_From_Live_Lane = 15.0 ft"
         }
     }
     default_calc = {
@@ -157,6 +260,18 @@ def _enrich_unit(u_dict, course_code):
             "ans": "A"
         }
     ]
+
+
+    if f"### {u_num}.2 " not in u_dict["theory"]:
+        u_dict["theory"] += (
+            f"\n\n### {u_num}.2 Statutory Enforcement, Field Instrumentation & Evidentiary Chain of Custody\n"
+            f"Under **Oklahoma Statutes Title 61** and federal **18 U.S.C. 1001**, every engineering measurement recorded during **{u_dict['title']}** "
+            "constitutes an official state infrastructure audit record. Field inspectors operating under **Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)** "
+            "must verify that all airborne and terrestrial NDT sensors hold active NIST-traceable calibration certificates prior to sortie launch. "
+            "Raw radiometric, acoustic, and LiDAR point-cloud payloads must be hardware-serialized, geocoded against dual-frequency L1/L2 RTK base stations "
+            "(or EKF3 Optical SLAM covariance matrices in GPS-denied zones), and cryptographically hashed into `matrix_ledger.db` using **FIPS 180-4 SHA-256** "
+            "before signing the statutory remediation or capital replacement docket."
+        )
 
     # Expand theory with comprehensive 4.0-Hour Engineering Reference Matrices
     bt = chr(96) * 3
@@ -431,10 +546,10 @@ Max_Posting_Tons = Legal_Truck_Weight_Tons * RF   [When RF < 1.0]""",
                 "unit": 1, "hours": 4.0,
                 "title": "Unit 01: Oklahoma Title 61 Public Facilities Governance & OMES CAP Statutory Mandates",
                 "theory": """### 1.1 Statutory Authority of OMES Construction and Properties (CAP)
-Under **Oklahoma Statutes Title 61**, the **OMES Construction and Properties (CAP)** division governs capital roof replacements and building envelope audits across all state facilities. Quantitative **ASTM C1153** infrared thermography is required prior to authorizing full tear-offs ($24+/sq ft) versus surgical wet-core recovery ($6–$8/sq ft), saving taxpayers up to 65% in capital outlays.""",
+Under **Oklahoma Statutes Title 61**, the **OMES Construction and Properties (CAP)** division governs capital roof replacements and building envelope audits across all state facilities. Quantitative **ASTM C1153** infrared thermography is required prior to authorizing full tear-offs (USD 24+/sq ft) versus surgical wet-core recovery (USD 6 to USD 8/sq ft), saving taxpayers up to 65% in capital outlays.""",
                 "equations": """Lifecycle_Savings = (Area_total * Cost_TearOff) - [ (Area_wet * Cost_SurgicalRepair) + (Area_total * Cost_Coating) ]""",
                 "worked_example": """#### Worked Problem 1.1: Title 61 Capital Tear-Off vs. Surgical Recovery Audit
-* **Scenario:** 100,000 sq ft state roof tear-off quote is $2,400,000 ($24/sq ft). UAS survey finds only 11,500 sq ft (11.5%) wet core. Surgical repair ($16/sq ft) + full silicone restoration ($6.50/sq ft) costs $834,000 -> **Net Taxpayer Savings = $1,566,000 (65.25%)**.""",
+* **Scenario:** 100,000 sq ft state roof tear-off quote is USD 2,400,000 (USD 24.00/sq ft). UAS survey finds only 11,500 sq ft (11.5%) wet core. Surgical repair (USD 16.00/sq ft) + full silicone restoration (USD 6.50/sq ft) costs USD 834,000 -> **Net Taxpayer Savings = USD 1,566,000 (65.25%)**.""",
                 "lab_protocol": """1. Verify OMES CAP Facility Asset ID and pull historical roof assembly cross-section blueprints.
 2. Log membrane type (TPO, EPDM, PVC, Mod-Bit, BUR) and insulation R-value."""
             },
@@ -560,7 +675,7 @@ Thermal RJPEG frames must be captured with **80% frontal and 75% side overlap** 
                 "unit": 1, "hours": 4.0,
                 "title": "Unit 01: Oklahoma Title 61, 23 CFR Part 515 (TAMP) & ASTM D6433 Highway Asset Governance",
                 "theory": """### 1.1 Statutory Transportation Asset Management Plans (TAMP)
-Under **23 CFR Part 515** and **Oklahoma Title 61**, ODOT and county highway districts use **ASTM D6433 Pavement Condition Index (PCI)** surveys to target preventive preservation in the **70–85 PCI window** ($3.50/sq yd) before roadways drop into the reconstruction zone ($65+/sq yd).""",
+Under **23 CFR Part 515** and **Oklahoma Title 61**, ODOT and county highway districts use **ASTM D6433 Pavement Condition Index (PCI)** surveys to target preventive preservation in the **70–85 PCI window** (USD 3.50/sq yd) before roadways drop into the reconstruction zone (USD 65.00+/sq yd).""",
                 "equations": """Sample_Unit_Area_Asphalt = 2,500 +/- 1,000 sq ft
 Minimum_Sample_Units (n) = (N * s^2) / [ ((e^2 / 4) * (N - 1)) + s^2 ]""",
                 "worked_example": """#### Worked Problem 1.1: ASTM D6433 Minimum Statistical Sample Unit Calculation
