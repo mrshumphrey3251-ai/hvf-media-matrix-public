@@ -2496,6 +2496,107 @@ elif active_module == "📘 Omni-Industry Matrix":
                         else:
                             st.warning("Courseware directory not detected.")
 
+                # 3. Per-Course 3-Tier Industrial Examination Gauntlet (20 / 45 / 90 Qs)
+                with st.expander("\U0001F4DD Sovereign Field Academy Examination Gauntlet (20 / 45 / 90 Qs Per Course)", expanded=False):
+                    st.markdown("##### \U0001F393 Course Qualification Gauntlet (Oklahoma Title 61 / CAGE 1AHA8)")
+                    st.write(
+                        "Modeled after high-consequence crane operator and ASNT Level III NDT qualification standards. "
+                        "Every candidate must conquer all three rigorous technical exams at the conclusion of each course: "
+                        "**Stage 1 (20 Qs / 85%)**, **Stage 2 (45 Qs / 85%)**, and **Stage 3 (90 Qs / 90% Master Capstone)**."
+                    )
+                    
+                    try:
+                        from ebony_exam_engine import (
+                            COURSE_METADATA, STAGE_METADATA,
+                            generate_course_stage_questions, grade_course_stage_exam, issue_course_stage_certificate
+                        )
+                        
+                        g_col1, g_col2, g_col3 = st.columns([2, 2, 2])
+                        with g_col1:
+                            active_c_code = st.selectbox(
+                                "Target Inspection Discipline:",
+                                ["STR-01", "STR-02", "STR-03"],
+                                format_func=lambda x: f"{x}: {COURSE_METADATA[x]['title'][:38]}...",
+                                key="sel_course_gauntlet_target"
+                            )
+                        with g_col2:
+                            active_s_num = st.selectbox(
+                                "Select Qualification Stage:",
+                                [1, 2, 3],
+                                format_func=lambda x: f"Stage {x}: {STAGE_METADATA[x]['name']} ({STAGE_METADATA[x]['questions_count']} Qs)",
+                                key="sel_stage_gauntlet_target"
+                            )
+                        with g_col3:
+                            cand_name = st.text_input("Candidate Full Name:", value="Jeffery Humphrey", key="txt_candidate_name_pc")
+                            cand_id = st.text_input("Candidate ID:", value="HVF-TECH-001", key="txt_candidate_id_pc")
+                            
+                        stage_meta = STAGE_METADATA[active_s_num]
+                        st.markdown(f"**Target Discipline:** `{active_c_code}` | **Active Stage:** `{stage_meta['name']}` | **Questions:** `{stage_meta['questions_count']}` | **Passing Standard:** `>= {stage_meta['passing_pct']}%`")
+                        
+                        course_stage_questions = generate_course_stage_questions(active_c_code, active_s_num)
+                        
+                        with st.form(key=f"form_exam_pc_{active_c_code}_s{active_s_num}"):
+                            submitted_answers = {}
+                            for q_idx, q in enumerate(course_stage_questions):
+                                st.markdown(f"**Question {q_idx + 1:02d} / {stage_meta['questions_count']}:** {q['question']}")
+                                chosen = st.radio(
+                                    f"Answer for {q['id']}:",
+                                    q["options"],
+                                    key=f"q_radio_pc_{active_c_code}_s{active_s_num}_{q['id']}",
+                                    label_visibility="collapsed"
+                                )
+                                submitted_answers[q["id"]] = chosen[0]
+                                st.write("")
+                                
+                            btn_submit_gauntlet = st.form_submit_button(
+                                f"⚡ Submit {active_c_code} Stage {active_s_num} Exam ({stage_meta['questions_count']} Questions) for Official State Grading",
+                                use_container_width=True
+                            )
+                            
+                        if btn_submit_gauntlet:
+                            grade_res = grade_course_stage_exam(active_c_code, active_s_num, submitted_answers)
+                            st.markdown("---")
+                            st.subheader(f"Official Examination Results // {active_c_code} {grade_res['stage_name']}")
+                            
+                            m_col1, m_col2, m_col3 = st.columns(3)
+                            m_col1.metric("Final Score", f"{grade_res['score_pct']:.1f}%", f"{grade_res['correct_count']} / {grade_res['total_questions']} Correct")
+                            m_col2.metric("Required Passing Threshold", f"{grade_res['passing_threshold_pct']:.1f}%", "Oklahoma Title 61 Standard")
+                            m_col3.metric("Qualification Status", "PASSED / CERTIFIED" if grade_res["passed"] else "FAILED / RETEST REQUIRED", ":green[Certified]" if grade_res["passed"] else ":red[Retest]")
+                            
+                            if grade_res["passed"]:
+                                cert_info = issue_course_stage_certificate(
+                                    student_id=cand_id,
+                                    student_name=cand_name,
+                                    course_code=active_c_code,
+                                    stage_num=active_s_num,
+                                    score_pct=grade_res["score_pct"]
+                                )
+                                st.success(f"State Credential Issued: `{cert_info['credential_title']}`")
+                                st.caption(f"Docket Seal: `{cert_info['certificate_id']}` | SHA-256 Digest: `{cert_info['sha256_seal']}`")
+                                
+                                cert_file = Path(cert_info["certificate_file"])
+                                if cert_file.exists():
+                                    st.download_button(
+                                        label=f"\U0001F4E5 Download Official State Certificate ({active_c_code} Stage {active_s_num})",
+                                        data=cert_file.read_text(encoding="utf-8"),
+                                        file_name=cert_file.name,
+                                        mime="text/markdown",
+                                        key=f"btn_dl_pc_cert_{active_c_code}_s{active_s_num}",
+                                        use_container_width=True
+                                    )
+                            else:
+                                st.error(f"Candidate did not achieve the required {stage_meta['passing_pct']:.1f}% passing threshold. Review the {active_c_code} technical manual and resubmit.")
+                                
+                            with st.expander("🔍 View Technical Question Feedback & Explanations", expanded=False):
+                                for fb in grade_res["detailed_feedback"]:
+                                    if fb["status"] == "CORRECT":
+                                        st.write(f":green[**{fb['id']} (Correct):**] {fb['explanation']}")
+                                    else:
+                                        st.write(f":red[**{fb['id']} (Incorrect):**] Selected: `{fb['your_answer']}` | Correct: `{fb['correct_answer']}` — {fb['explanation']}")
+                    except Exception as ex_pc_exam:
+                        st.error(f"Examination gauntlet execution error: {ex_pc_exam}")
+
+
                 # 3. Sovereign Flight Sortie & State Certification Engine
                 st.markdown("---")
                 st.markdown("### \u26A1 Sovereign Flight Sortie & State Certification Engine")
@@ -2575,6 +2676,5 @@ elif active_module == "📘 Omni-Industry Matrix":
                                 )
                         except Exception as ex_rep:
                             st.error(f"Report synthesis failed: {ex_rep}")
-
 
 
