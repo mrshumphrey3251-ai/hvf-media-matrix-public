@@ -145,6 +145,7 @@ def render_academy_deck():
 
         with sub_t1:
             st.markdown(active_unit["theory"])
+            st.markdown(active_unit.get("deep_supplement", ""))
             st.info("👉 Proceed to **Sub-Tab 2 (🧮 1.0-Hr Mathematical Derivations & Worked Case)** after mastering the statutory and physical treatise above.")
 
         with sub_t2:

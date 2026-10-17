@@ -1,4 +1,11 @@
-from ebony_academy_deck import render_academy_deck
+import importlib
+import ebony_textbook_library
+import ebony_academy_deck
+def _run_hot_academy_deck():
+    importlib.reload(ebony_textbook_library)
+    importlib.reload(ebony_academy_deck)
+    ebony_academy_deck.render_academy_deck()
+
 import pandas as pd
 import sqlite3
 import sys
@@ -1163,7 +1170,7 @@ if not _allowed:
     st.stop()
 
 if active_module == "🎓 Sovereign Field Academy":
-    render_academy_deck()
+    _run_hot_academy_deck()
 elif active_module == "🎛️ Master C2 Cockpit":
     import c2_cockpit_dashboard
     c2_cockpit_dashboard.render()
