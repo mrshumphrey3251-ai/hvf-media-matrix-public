@@ -323,6 +323,62 @@ def _enrich_unit(u_dict, course_code):
         "* **[STEP 06 — WORM Cryptographic Sealing]:** Commit the raw sensor packet, defect polygons, and calculated engineering parameters to `matrix_ledger.db` under CAGE `1AHA8` / UEI `S1M4ENLHTDH5`.",
     ])
     _attach_beginner_aids(u_dict, u_num)
+
+    # Resolve exact U.S. Customary target unit from calc_challenge and bind into equation_legend
+    _cc = u_dict.get("calc_challenge", {})
+    _raw_u = str(_cc.get("unit") or _cc.get("units") or u_dict.get("calc_unit") or "").strip()
+    _prompt_str = str(_cc.get("prompt", "") or _cc.get("label", ""))
+    if not _raw_u:
+        _p_low = _prompt_str.lower()
+        if "in feet" in _p_low or "(ft)" in _p_low or " ft" in _p_low:
+            _raw_u = "ft"
+        elif "mils" in _p_low:
+            _raw_u = "mils"
+        elif "in inches" in _p_low or "(in)" in _p_low or "inches" in _p_low:
+            _raw_u = "in"
+        elif "psi" in _p_low:
+            _raw_u = "psi"
+        elif "ksi" in _p_low:
+            _raw_u = "ksi"
+        elif "kips" in _p_low:
+            _raw_u = "kips"
+        elif "btu" in _p_low:
+            _raw_u = "BTU/hr"
+        elif "°f" in _p_low or "fahrenheit" in _p_low or "deg f" in _p_low:
+            _raw_u = "°F"
+        elif "pci" in _p_low:
+            _raw_u = "PCI"
+        elif "percent" in _p_low or "(%)" in _p_low or "%" in _p_low:
+            _raw_u = "%"
+        elif "cfs" in _p_low:
+            _raw_u = "cfs"
+        elif "sq ft" in _p_low or "square feet" in _p_low:
+            _raw_u = "sq ft"
+    _u_desc_map = {
+        "ft": "feet (ft) — U.S. Customary Linear Feet (12 inches = 1.0 foot)",
+        "in": "inches (in) — U.S. Customary Inches (1/12 of a foot)",
+        "mils": "mils (0.001 in) — Thousandths of an Inch (1,000 mils = 1.0 inch)",
+        "sq ft": "square feet (sq ft) — U.S. Customary Surface Area (Length_ft * Width_ft)",
+        "%": "Percent (%) — Percentage Score / Ratio (0% to 100%)",
+        "psi": "psi (Pounds per Square Inch) — U.S. Customary Stress / Pressure",
+        "ksi": "ksi (Kips per Square Inch) — 1,000 Pounds per Square Inch",
+        "kips": "kips (Kilopounds) — U.S. Customary Structural Load (1 kip = 1,000 lbs)",
+        "lbs": "pounds (lbs) — U.S. Customary Force / Weight",
+        "psf": "psf (Pounds per Square Foot) — U.S. Customary Area Load",
+        "°F": "degrees Fahrenheit (°F) — U.S. Customary Temperature",
+        "BTU/hr": "BTU/hr (British Thermal Units per Hour) — U.S. Customary Heat Flow Rate",
+        "cfs": "cfs (Cubic Feet per Second) — U.S. Customary Hydraulic Discharge",
+        "PCI": "PCI Points (0 to 100 Scale) — ASTM D6433 Pavement Condition Index",
+        "RF": "Rating Factor (RF) — AASHTO Load & Resistance Factor Ratio (RF >= 1.00 is Safe)",
+    }
+    _resolved_u_str = _u_desc_map.get(_raw_u, f"{_raw_u} — U.S. Customary Engineering Unit" if _raw_u else "feet (ft) / inches (in) / psi / °F — U.S. Customary Units")
+    u_dict["resolved_us_unit"] = _resolved_u_str
+    if "equation_legend" in u_dict and isinstance(u_dict["equation_legend"], str):
+        u_dict["equation_legend"] = u_dict["equation_legend"].replace(
+            "Measured in U.S. Customary Units",
+            _resolved_u_str
+        )
+
     return u_dict
 
 

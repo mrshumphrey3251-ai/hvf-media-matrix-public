@@ -198,11 +198,27 @@ def render_academy_deck():
             st.markdown("---")
             st.markdown("### Step-by-Step Worked Field Engineering Calculation")
             st.info(active_unit["worked_example"])
+            _we_lines = [s.strip("* -") for s in str(active_unit.get("worked_example", "")).splitlines() if ("Step 1" in s or "Step 2" in s or "=" in s) and not s.strip().startswith("#")]
+            if _we_lines:
+                st.markdown("**⬛ Worked Field Calculation Summary (Black Box Copy-and-Paste Reference):**")
+                st.code(chr(10).join(_we_lines), language="text")
             st.caption(" Note the mathematical derivation steps above—you will be required to solve and verify the numerical engineering parameter in Sub-Tab 4.")
 
         with sub_t3:
             st.markdown("### Mandatory Field Telemetry & Laboratory Practicum Protocol")
             st.warning(active_unit["lab_protocol"])
+            st.markdown("#### 🛰️ Standard U.S. Customary Field Telemetry Packet & Sensor Limits")
+            _t_unit_str = active_unit.get("resolved_us_unit", "U.S. Customary Engineering Units")
+            _t_title_str = active_unit.get("title", "")
+            _pkt_lines = [
+                f"MODULE {selected_unit_num:02d}: {_t_title_str}",
+                "STATUTORY AUTHORITY: CAGE 1AHA8 | UEI S1M4ENLHTDH5 | OKLAHOMA TITLE 61 / 23 CFR 650",
+                "WEATHER & LIGHTING GATE: Wind < 15.0 mph | Surface Brightness >= 1.4 foot-candles | Thermal Delta_T >= +3.6 °F",
+                "POSITIONAL & OPTICAL GATE: RTK Lock <= 0.60 in Horiz / <= 0.18 in Vert | Optical GSD <= 0.004 in/px (4 mils)",
+                f"TARGET SUB-TAB 4 UNIT: {_t_unit_str}",
+                "WORM LEDGER TARGET: matrix_ledger.db (FIPS 180-4 SHA-256 Cryptographic Seal)",
+            ]
+            st.code(chr(10).join(_pkt_lines), language="text")
             if active_course["diagram"].exists():
                 st.image(str(active_course["diagram"]), caption=f"Module {selected_unit_num:02d} Field Sensor & Structural Load Path Reference", use_container_width=True)
 
