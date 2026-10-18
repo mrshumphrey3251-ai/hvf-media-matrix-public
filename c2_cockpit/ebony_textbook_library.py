@@ -334,8 +334,9 @@ Every structure on a public roadway with an opening measured along the center of
 
 ### 1.2 Inspector Qualification & Criminal Liability (18 U.S.C. § 1001 & OK Title 61)
 Under **23 CFR § 650.309**, a Program Manager or Team Leader must hold either a **Professional Engineer (PE)** license or meet strict engineering experience requirements combined with comprehensive accredited bridge inspection training. Signing an inspection docket with uncalibrated instrumentation, fabricated GPS coordinates, or omitted CS-4 defects constitutes a felony false statement under **18 U.S.C. § 1001** and triggers civil forfeiture under **Oklahoma Title 61**. To ensure absolute evidentiary integrity, all Humphrey Virtual Farms LLC (CAGE: 1AHA8) field sorties seal raw telemetry inside a **Write-Once-Read-Many (WORM) SQLite ledger** signed with a **FIPS 180-4 SHA-256 cryptographic digest**.""",
-                "equations": """Span_Length_L > 20.0 ft (6.10 m)  -->  Mandatory NBI & OK Title 61 Jurisdiction
-Sufficiency_Rating (SR) = S_1 (Structural Adequacy: 55%) + S_2 (Serviceability: 30%) + S_3 (Essentiality: 15%) - S_4 (Special Reductions: max 13%)""",
+                "equations": """L_total (ft) = (Number_of_Barrels * Barrel_Width_ft) + (Number_of_Interior_Walls * Wall_Thickness_ft)
+Rule: If L_total > 20.0 feet  -->  Mandatory NBI Bridge & OK Title 61 Jurisdiction (24-Month Inspection)
+Sufficiency_Rating (SR %) = S_1 (Structural Adequacy: 55%) + S_2 (Serviceability: 30%) + S_3 (Essentiality: 15%) - S_4 (Special Reductions: max 13%)""",
                 "worked_example": """#### Worked Engineering Problem 1.1: Multi-Barrel Culvert NBI Jurisdiction Determination
 * **Field Scenario:** An inspector evaluates a 3-barrel Reinforced Concrete Box (RCB) culvert under a county highway in Canadian County, Oklahoma. Each barrel measures 6.0 ft wide individually, separated by two 1.5 ft interior concrete walls, skewed at 0 degrees to the roadway centerline.
 * **Step 1 (Calculate Extreme Ends Opening):** Measure from the inside face of the west exterior wall to the inside face of the east exterior wall:
@@ -476,7 +477,7 @@ d_water = (c_sound_water * Delta_t_echo) / 2,   where c_sound_water = 4,856 ft/s
                 "theory": """### 7.1 Stress-Wave Impact-Echo (ASTM C1383) & Ground Penetrating Radar (GPR — ASTM D6087)
 * **Impact-Echo:** Mechanical impact generates compressional P-waves (`c_p ~ 13,120 ft/s`) that reflect off internal delaminations. FFT peak frequency `f` yields flaw depth: `T = (0.96 * c_p) / (2 * f)`.
 * **Ground Penetrating Radar (GPR):** 1.5–2.6 GHz electromagnetic pulses reflect strongly off chloride-wet concrete (`epsilon_r ~ 81` vs. dry concrete `epsilon_r ~ 6`).""",
-                "equations": """Depth_T = (0.96 * c_p) / (2 * f_peak)
+                "equations": """Depth_Depth_in = (0.96 * c_p_ft_s * 12 in/ft) / (2 * f_peak_Hz)
 Depth_rebar = (c_0 * t_two_way) / (2 * sqrt(epsilon_r)),   where c_0 = 11.8 in/ns""",
                 "worked_example": """#### Worked Engineering Problem 7.1: Impact-Echo Delamination Depth Calculation
 * **Field Scenario:** Concrete deck thickness 8.50 in (c_p = 13,120 ft/s, beta = 0.96). Point A FFT frequency is 8,890 Hz; Point B shifts to 30,200 Hz.
@@ -601,7 +602,7 @@ Ratio_Volumetric_Heat_Capacity = (rho_water * cp_water) / (rho_ISO * cp_ISO) = 9
                 "title": "Unit 05: Psychrometrics, Vapor Drive, Dew-Point Condensation & Air Barrier Failure",
                 "theory": """### 5.1 Magnus-Tetens Dew-Point Formulation & Interstitial Condensation
 Warm, humid indoor air exfiltrating through unsealed parapet or curtain-wall joints condenses into liquid water whenever it contacts a structural surface at or below the **Dew-Point Temperature (`T_dp`)**.""",
-                "equations": """gamma = ln(RH / 100) + (17.62 * T_C) / (243.12 + T_C)
+                "equations": """gamma = ln(RH / 100) + (17.62 * T_F) / (243.12 + T_F)
 T_dew_point_C = (243.12 * gamma) / (17.62 - gamma)""",
                 "worked_example": """#### Worked Problem 5.1: Hospital Envelope Dew-Point Condensation Audit
 * **Scenario:** Indoor hospital conditions are T = 73.4 °F (23.0 °C) and Relative Humidity RH = 55%.
@@ -915,20 +916,24 @@ def _attach_beginner_aids(u_dict: dict, u_num: int):
     ]
     u_dict["beginner_primer"] = nl.join(primer_lines)
 
+    calc_info = u_dict.get("calc_gate", {})
+    target_unit = calc_info.get("unit_label", "U.S. Customary Units")
+    target_hint = calc_info.get("hint", "See worked step-by-step calculation below.")
     legend_lines = [
-        "#### 🔎 Beginner's Symbol-by-Symbol Equation & Calculator Guide",
-        "Every letter or symbol in the formula box above simply stands for a real-world measurement in U.S. Customary units:",
+        f"#### 🔎 Beginner's Symbol-by-Symbol Equation & Calculator Guide (Module {u_num:02d})",
+        f"* **Target Calculation Output for This Module:** Measured in **`{target_unit}`**",
+        f"* **Exact Calculator Formula Used in Sub-Tab 4:** `{target_hint}`",
         "",
         "| Symbol in Formula | How to Pronounce It | Plain-English Meaning | U.S. Measurement Unit & Calculator Tip |",
         "| :--- | :--- | :--- | :--- |",
-        "| **`L` / `b` / `d` / `x` / `z` / `H`** | Length / Width / Depth / Height | Physical size, span opening, thickness, or flight altitude | Measured in **feet (ft)** or **inches (in)** (12 inches = 1 foot). |",
-        "| **`A` or `Area`** | Surface Area | Length multiplied by Width of a bridge deck, roof, or road section | Measured in **square feet (sq ft)**. |",
-        "| **`Delta` (`Δ` or `Delta_T`)** | DEL-tuh (Difference) | Subtract the second reading from the first reading | Example: `Delta_T = Indoor °F - Outdoor °F` (`72 °F - 27 °F = 45 °F`). |",
-        "| **`sigma` (`σ`) or `P` / `f_r`** | SIG-muh (Stress / Load) | Pulling, pushing, or bending force pressing on the material | Measured in **psi** (lbs/sq in), **ksi** (1,000 lbs/sq in), or **kips** (1,000 lbs). |",
+        "| **`L_total` / `L` / `b` / `d` / `x` / `z` / `H`** | Length / Width / Depth / Height | Total span opening, barrel width, wall thickness, rebar depth, or flight altitude | Measured in **feet (ft)** or **inches (in)** (12 inches = 1 foot). |",
+        "| **`SR` / `D_%` / `MC_%` / `PCI` / `RF`** | Rating or Condition Score | Percentage or index score showing structural health or moisture saturation | Measured in **Percent (`%`)**, **0–100 PCI Points**, or **Rating Factor (`RF`)**. |",
+        "| **`A` or `Area_sqft`** | Surface Area | Length multiplied by Width of a bridge deck, roof bay, or highway lane | Measured in **square feet (sq ft)**. |",
+        "| **`Delta` (`Δ` or `Delta_T` / `Delta_s`)** | DEL-tuh (Difference / Shift) | Subtract the second reading from the first reading (or sideways movement) | Example: `Delta_T = Indoor °F - Outdoor °F` (`72 °F - 27 °F = 45 °F`). |",
+        "| **`sigma` (`σ`) / `P` / `f_r` / `K_Ic`** | SIG-muh (Stress / Load) | Pulling, pushing, or bending force pressing on steel, concrete, or soil | Measured in **psi** (lbs/sq in), **ksi** (1,000 lbs/sq in), or **kips** (1,000 lbs). |",
         "| **`sqrt(...)` or `^0.5`** | Square Root | Press the **`[√]`** button on your calculator | Example: `sqrt(32.0) = 5.657` (because `5.657 * 5.657 = 32.0`). |",
         "| **`^2` or `^3` or `^4`** | Squared / Exponent | Multiply the number by itself (`x^2 = x * x`) or use the **`[x^y]`** key | Example: `(2.0)^2 = 2.0 * 2.0 = 4.0`. |",
-        "| **`pi` (`π`)** | PIE (Circle Constant) | Always equals **`3.1416`** | Type `3.1416` whenever you see `pi` in an equation. |",
-        "| **`R` / `U` / `Q`** | Thermal R-Value / Heat Loss | `R` = Insulation rating; `Q` = Heat escaping through a wet roof | Measured in **BTU/hr** (British Thermal Units per hour) and **°F**. |",
+        "| **`R` / `U_wind` / `Q` / `T_dp`** | Thermal & Dew-Point Terms | `R` = Insulation rating; `Q` = Heat loss; `T_dp` = Condensation temperature | Measured in **BTU/hr** (British Thermal Units per hour) and **°F**. |",
         ""
     ]
     u_dict["equation_legend"] = nl.join(legend_lines)

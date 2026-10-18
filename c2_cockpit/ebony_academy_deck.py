@@ -159,7 +159,8 @@ def render_academy_deck():
             st.info("👉 Proceed to **Sub-Tab 2 (🧮 1.0-Hr Mathematical Derivations & Worked Case)** after mastering the statutory and physical treatise above.")
 
         with sub_t2:
-            st.markdown("### Governing Mathematical Formulations & Boundary Value Equations")
+            st.markdown(f"### 📐 Official U.S. Customary Formula Sheet — {active_unit['title']}")
+            st.info("💡 **How to Use This Page:** Below is the exact U.S. Customary engineering formula for this module, followed by a plain-English symbol decoder and a worked example showing every math step you will use in **Sub-Tab 4**.")
             st.code(active_unit["equations"], language="text")
             st.markdown(active_unit.get("equation_legend", ""))
             st.markdown("---")
