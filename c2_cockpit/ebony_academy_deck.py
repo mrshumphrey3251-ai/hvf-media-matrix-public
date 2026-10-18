@@ -14,6 +14,9 @@ _cockpit_dir = str(Path(__file__).resolve().parent)
 if _cockpit_dir not in sys.path:
     sys.path.insert(0, _cockpit_dir)
 
+import importlib
+import ebony_textbook_library
+importlib.reload(ebony_textbook_library)
 from ebony_textbook_library import (
     get_course_units, log_unit_completion, get_completed_units, export_full_course_textbook_markdown, get_master_glossary_and_references
 )
@@ -59,12 +62,6 @@ def _describe_us_customary_unit(u_obj):
     return cu_map.get(raw_u, f"{raw_u} — U.S. Customary Engineering Unit" if raw_u else "U.S. Customary Engineering Units")
 
 def render_academy_deck():
-    import importlib
-    import ebony_textbook_library as _etl_hot
-    importlib.reload(_etl_hot)
-    global CURRICULUM_TRACKS, get_course_units
-    CURRICULUM_TRACKS = _etl_hot.CURRICULUM_TRACKS
-    get_course_units = _etl_hot.get_course_units
     st.header("🎓 Sovereign Field Academy // $2,500.00 Accredited 40-Hour Engineering Institute")
     st.info(
         "**Statutory & Copyright Attribution:** Technical standards, formulations, and condition states "
