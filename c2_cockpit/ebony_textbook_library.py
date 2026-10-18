@@ -283,9 +283,9 @@ def _enrich_unit(u_dict, course_code):
         "| Engineering Parameter / Audit Gate | Governing Standard | Allowable Field Tolerance | Mandatory Rejection / Invalidation Trigger | Statutory Recordation Format |\n"
         "| :--- | :--- | :--- | :--- | :--- |\n"
         "| **Primary Sensor Payload Calibration** | NIST / ASTM / ISO-17025 | +/- 0.5% Full-Scale Reading | Expired calibration certificate (> 12 mos) or post-sortie zero-drift > 1.0% | Embedded in RJPEG / LAS / Sonar Header + SQLite WORM |\n"
-        "| **Geospatial RTK / SLAM Positional Lock** | ASPRS Positional Accuracy | Horizontal <= 0.60 in, Vertical <= 0.18 in (or +/- 6.0 in Optical SLAM) | PDOP > 3.5, GNSS cycle slip, or surface illuminance < 1.4 foot-candles (15 lux) in GPS-denied zones | NMEA GGA / EKF3 Covariance Matrix Log |\n"
+        "| **Geospatial RTK / SLAM Positional Lock** | ASPRS Positional Accuracy | Horizontal <= 0.60 in, Vertical <= 0.18 in (or +/- 6.0 in Optical SLAM) | PDOP > 3.5, GNSS cycle slip, or surface illuminance < 1.4 foot-candles in GPS-denied zones | NMEA GGA / EKF3 Covariance Matrix Log |\n"
         "| **Defect Dimensional Sizing (Optical GSD)** | AASHTO MBEI / ASTM D6433 | Ground Sampling Distance <= 0.004 in/px (4 mils FCM) or <= 0.20 in/px (Deck/Road) | Motion blur > 1.5 px, oblique angle < 45 deg, or specular glare saturation | Orthorectified GeoTIFF + DXF Defect Polygon |\n"
-        "| **Environmental Boundary Compliance** | ASTM C1153 / HEC-18 / NBIS | Wind < 15.0 mph, Dry Surface > 24 hrs, Thermal Delta_T >= +3.6 °F (+2.0 °C) | Standing surface water, convective wind stripping, or uncompensated water temp | Kestrel Meteorological Station Telemetry |\n"
+        "| **Environmental Boundary Compliance** | ASTM C1153 / HEC-18 / NBIS | Wind < 15.0 mph, Dry Surface > 24 hrs, Thermal Delta_T >= +3.6 °F | Standing surface water, convective wind stripping, or uncompensated water temp | Kestrel Meteorological Station Telemetry |\n"
         "| **Cryptographic Chain-of-Custody Seal** | FIPS 180-4 / 18 U.S.C. 1001 | 256-Bit Hexadecimal Collision-Free Hash | Any post-acquisition byte modification or missing UTC nanosecond timestamp | matrix_ledger.db (sha256_seal Column) |\n\n"
         "---\n\n"
         f"### {u_num}.4 Step-by-Step Mathematical Derivation & Dimensional Analysis\n\n"
@@ -303,9 +303,9 @@ def _enrich_unit(u_dict, course_code):
         "Before advancing to **Sub-Tab 4 (Quantitative Calculation Gate & Mastery Exam)**, verify that you can execute each of the following 6 field-audit steps without error:\n\n"
         f"* **[STEP 01 — Statutory Authority Verification]:** Cite the exact federal and Oklahoma statutory clauses governing {u_dict['title']} and verify structure/facility jurisdiction in the master asset registry.\n"
         "* **[STEP 02 — Pre-Sortie Instrument Zeroing]:** Verify NIST-traceable calibration status of the primary NDT payload (48MP Optical Zoom, LWIR Radiometric Microbolometer, 300k pts/sec LiDAR, or 200 kHz Bathymetric Sonar).\n"
-        "* **[STEP 03 — Boundary Condition Logging]:** Record ambient dry-bulb temperature, relative humidity, wind velocity, surface illuminance (lux), and GNSS/SLAM covariance metrics prior to data capture.\n"
+        "* **[STEP 03 — Boundary Condition Logging]:** Record ambient dry-bulb temperature, relative humidity, wind velocity, surface brightness (foot-candles), and GNSS/SLAM covariance metrics prior to data capture.\n"
         "* **[STEP 04 — Raw Telemetry Acquisition]:** Execute the prescribed flight or bathymetric trajectory while maintaining mandatory overlap (80% frontal / 75% side) and standoff safety buffers.\n"
-        f"* **[STEP 05 — Quantitative Engineering Calculation]:** Solve the governing formulation for {u_dict['title']} using field measurements and verify dimensional consistency across US Customary and SI units.\n"
+        f"* **[STEP 05 — Quantitative Engineering Calculation]:** Solve the governing formulation for {u_dict['title']} using field measurements and verify dimensional consistency exclusively in U.S. Customary units (ft, in, mils, psi, kips, °F, BTU/hr).\n"
         "* **[STEP 06 — WORM Cryptographic Sealing]:** Commit the raw sensor packet, defect polygons, and calculated engineering parameters to matrix_ledger.db under CAGE 1AHA8 / UEI S1M4ENLHTDH5.\n"
     )
     _attach_beginner_aids(u_dict, u_num)
@@ -439,9 +439,9 @@ Flying beneath a reinforced concrete deck and steel girder grid induces two leth
 2. **Ferromagnetic Compass Deviation:** Massive steel girders warp the Earth's magnetic field, inducing 45 to 90 degree yaw errors in fluxgate magnetometers.
 
 ### 5.2 Extended Kalman Filter (EKF3) Optical Flow + LiDAR Rangefinding Fusion
-The Sovereign flight controller inhibits magnetometer yaw (`COMPASS_USE = 0`) and fuses **HereFlow Optical Flow** angular pixel rates (`omega_px`) with **TF02-i LiDAR** rangefinding (`z`) and MEMS ring-laser gyros (`omega_gyro`). Optical flow requires a minimum surface illuminance of **1.4 foot-candles (15 lux)** via onboard LED luminaire bars.""",
+The Sovereign flight controller inhibits magnetometer yaw (`COMPASS_USE = 0`) and fuses **HereFlow Optical Flow** angular pixel rates (`omega_px`) with **TF02-i LiDAR** rangefinding (`z`) and MEMS ring-laser gyros (`omega_gyro`). Optical flow requires a minimum surface illuminance of **1.4 foot-candles** via onboard LED luminaire bars.""",
                 "equations": """v_x = z_lidar * (omega_pixel_x - omega_gyro_y)
-Luminous_Intensity (I_candela) >= 1.4 foot-candles (15 lux) * (d_meters)^2""",
+Luminous_Intensity (I_candela) >= 1.4 foot-candles * (d_meters)^2""",
                 "worked_example": """#### Worked Engineering Problem 5.1: Optical Flow Velocity & LED Illumination Sizing Beneath a Dark Box Girder
 * **Field Scenario:** The UAS hovers at standoff z = 8.2 ft (2.5 m) beneath a dark girder. Optical flow reports pixel rate 0.48 rad/s while pitch gyro rate is 0.08 rad/s.
 * **Step 1 (True Horizontal Velocity v_x):** `v_x = 2.5 m * (0.48 - 0.08) = 3.28 ft/s (1.00 m/s)`.
@@ -595,7 +595,7 @@ Ratio_Volumetric_Heat_Capacity = (rho_water * cp_water) / (rho_ISO * cp_ISO) = 9
 * **Scenario:** Compare heat loss across 2,500 sq ft of dry Polyiso insulation (R-25) vs. water-logged insulation (R-4) when Indoor Temp = 72 °F and Outdoor Night Temp = 27 °F (Delta_T = 45 °F).
 * **Calculation:** Q_dry = (2,500 / 25) * 45 = **4,500 BTU/hr** vs. Q_wet = (2,500 / 4) * 45 = **28,125 BTU/hr** (**6.25x energy bleed!**).""",
                 "lab_protocol": """1. Measure thermal anomaly surface Delta_T = T_wet - T_dry across all RJPEG orthomosaic polygons.
-2. Flag any polygon exhibiting Delta_T >= +3.6 °F (+2.0 °C) for ground-truth impedance verification."""
+2. Flag any polygon exhibiting Delta_T >= +3.6 °F for ground-truth impedance verification."""
             },
             {
                 "unit": 5, "hours": 4.0,
@@ -850,7 +850,7 @@ def get_master_glossary_and_references(course_code: str = "ALL"):
         {"unit": "psf (Pounds per Square Foot)", "what": "Weight spread over a 1 ft x 1 ft floor or roof square", "benchmark": "A typical commercial flat roof is designed for 20 psf live load. 8 inches of ponded rainwater weighs 41.6 psf (208% overload!)."},
         {"unit": "BTU/hr (British Thermal Units per Hour)", "what": "Standard U.S. rate of heat energy loss or AC/heating capacity", "benchmark": "1 BTU is the heat from a single wooden kitchen match. 12,000 BTU/hr = 1 Ton of commercial air conditioning."},
         {"unit": "cfs (Cubic Feet per Second)", "what": "Volume of stormwater flowing through a culvert or river each second", "benchmark": "1 cfs = 7.48 gallons per second (about 150 cfs fills an Olympic swimming pool in 10 minutes)."},
-        {"unit": "foot-candle (fc) / lux", "what": "Brightness of light shining on a surface so drone optical cameras can lock onto texture", "benchmark": "1.4 foot-candles (15 lux) is dim twilight—the minimum light required by onboard LED bars under a dark bridge."}
+        {"unit": "foot-candle (fc) / lux", "what": "Brightness of light shining on a surface so drone optical cameras can lock onto texture", "benchmark": "1.4 foot-candles is dim twilight—the minimum light required by onboard LED bars under a dark bridge."}
     ]
 
     terms = [
