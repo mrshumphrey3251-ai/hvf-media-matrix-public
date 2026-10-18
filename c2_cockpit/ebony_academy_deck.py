@@ -29,7 +29,42 @@ except Exception as e:
     EXAM_ENGINE_ERR = str(e)
 
 
+
+def _describe_us_customary_unit(u_obj):
+    raw_u = str(u_obj.get("calc_unit") or u_obj.get("unit") or "").strip()
+    cu_map = {
+        "ft": "feet (ft) — U.S. Customary Linear Feet (12 inches = 1.0 foot)",
+        "in": "inches (in) — U.S. Customary Inches (1/12 of a foot)",
+        "mils": "mils (0.001 in) — Thousandths of an Inch (1,000 mils = 1.0 inch)",
+        "sq ft": "square feet (sq ft) — U.S. Customary Surface Area (Length_ft * Width_ft)",
+        "%": "Percent (%) — Percentage Score / Ratio (0% to 100%)",
+        "psi": "psi (Pounds per Square Inch) — U.S. Customary Stress / Pressure",
+        "ksi": "ksi (Kips per Square Inch) — 1,000 Pounds per Square Inch",
+        "kips": "kips (Kilopounds) — U.S. Customary Structural Load (1 kip = 1,000 lbs)",
+        "lbs": "pounds (lbs) — U.S. Customary Force / Weight",
+        "psf": "psf (Pounds per Square Foot) — U.S. Customary Area Load",
+        "pcf": "pcf (Pounds per Cubic Foot) — U.S. Customary Unit Weight",
+        "°F": "degrees Fahrenheit (°F) — U.S. Customary Temperature",
+        "BTU/hr": "BTU/hr (British Thermal Units per Hour) — U.S. Customary Heat Transfer Rate",
+        "BTU/(hr·ft²·°F)": "BTU/(hr·ft²·°F) — U.S. Customary Thermal U-Factor",
+        "hr·ft²·°F/BTU": "R-Value (hr·ft²·°F/BTU) — U.S. Customary Thermal Resistance",
+        "cfs": "cfs (Cubic Feet per Second) — U.S. Customary Hydraulic Flow Rate",
+        "fps": "fps (Feet per Second) — U.S. Customary Velocity",
+        "mph": "mph (Miles per Hour) — U.S. Customary Wind / Vehicle Speed",
+        "PCI": "PCI Points (0 to 100 Scale) — ASTM D6433 Pavement Condition Index",
+        "RF": "Rating Factor (RF) — AASHTO Load & Resistance Factor Ratio (RF >= 1.00 is Safe)",
+        "ksi*sqrt(in)": "ksi*sqrt(in) — U.S. Customary Fracture Toughness Stress Intensity",
+        "in/sec": "inches per second (in/sec) — U.S. Customary Peak Particle Velocity",
+    }
+    return cu_map.get(raw_u, f"{raw_u} — U.S. Customary Engineering Unit" if raw_u else "U.S. Customary Engineering Units")
+
 def render_academy_deck():
+    import importlib
+    import ebony_textbook_library as _etl_hot
+    importlib.reload(_etl_hot)
+    global CURRICULUM_TRACKS, get_course_units
+    CURRICULUM_TRACKS = _etl_hot.CURRICULUM_TRACKS
+    get_course_units = _etl_hot.get_course_units
     st.header("🎓 Sovereign Field Academy // $2,500.00 Accredited 40-Hour Engineering Institute")
     st.info(
         "**Statutory & Copyright Attribution:** Technical standards, formulations, and condition states "
