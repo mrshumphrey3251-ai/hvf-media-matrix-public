@@ -250,7 +250,7 @@ def render_academy_deck():
                 with st.expander("💡 Need Formula Reference / Engineering Hint?"):
                     st.code(calc_ch["hint"], language="text")
 
-                st.markdown("#### Part B: 3-Question Module Mastery Verification Quiz (100% Required)")
+                st.markdown("#### Part B: 20-Question Milestone Mastery Verification Exam (100% Required — 20/20 to Seal 4.0 Hrs)")
                 quiz_answers = {}
                 for q_i, q_obj in enumerate(active_unit["unit_quiz"]):
                     st.markdown(f"**Q{q_i+1}.** {q_obj['q']}")

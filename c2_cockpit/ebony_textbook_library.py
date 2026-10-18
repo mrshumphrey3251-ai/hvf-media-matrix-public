@@ -383,7 +383,7 @@ def _enrich_unit(u_dict, course_code):
 
 
 
-def get_course_units(course_code: str):
+def _orig_get_course_units(course_code: str):
     if course_code == "STR-01":
         raw_units = [
             {
@@ -1006,3 +1006,226 @@ def _attach_beginner_aids(u_dict: dict, u_num: int):
     ]
     u_dict["equation_legend"] = nl.join(legend_lines)
     return u_dict
+
+
+def _build_20_question_milestone_exam(u_dict, course_code):
+    """Generates a comprehensive 20-question accredited milestone mastery exam (Q1-Q20) in U.S. Customary units."""
+    import re as _re
+    u_num = int(u_dict.get("unit", 1))
+    u_title = str(u_dict.get("title", f"Module {u_num:02d}"))
+    cc = u_dict.get("calc_challenge", {})
+    c_prompt = str(cc.get("prompt", "Solve the module engineering calculation in U.S. Customary units."))
+    c_ans = cc.get("answer", 0.0)
+    c_tol = cc.get("tolerance", 0.25)
+    c_unit = str(u_dict.get("resolved_us_unit", "feet (ft) — U.S. Customary Units"))
+    eq_raw = [ln.strip() for ln in str(u_dict.get("equations", "")).splitlines() if ln.strip()]
+    primary_eq = eq_raw[0] if eq_raw else "L_total (ft) = (Number_of_Barrels * Barrel_Width_ft) + (Number_of_Interior_Walls * Wall_Thickness_ft)"
+
+    base_quiz = list(u_dict.get("unit_quiz", []))
+    questions = []
+    for idx, q_item in enumerate(base_quiz[:3], start=1):
+        q_copy = dict(q_item)
+        q_txt = str(q_copy.get("q", ""))
+        q_txt = _re.sub(r"^\[[^\]]+\]\s*", "", q_txt)
+        q_copy["q"] = f"[{course_code} Unit {u_num:02d} Milestone Q{idx:02d}] {q_txt}"
+        questions.append(q_copy)
+
+    extra_specs = [
+        (
+            f"What is the primary U.S. Customary engineering measurement unit required for the Part A Quantitative Calculation Gate in {u_title}?",
+            f"{c_unit}",
+            "SI Metric millimeters (mm) and Pascals (Pa) only",
+            "Uncalibrated arbitrary pixel counts without physical scale",
+            "Degrees Celsius (°C) and Newton-meters (N·m) only",
+        ),
+        (
+            f"Which primary governing mathematical formulation defines the physical engineering relationship evaluated in {u_title}?",
+            f"{primary_eq}",
+            "Visual estimation without mathematical formulation or physical measurement",
+            "Random number generation divorced from structural geometry",
+            "Unverified consumer barometer approximation without statutory bounds",
+        ),
+        (
+            f"When solving the Part A Calculation Gate ('{c_prompt[:85]}...'), what is the verified target engineering value in U.S. Customary units?",
+            f"{c_ans} (within an allowable engineering tolerance of +/- {c_tol})",
+            f"{round(float(c_ans) * 3.25 + 14.0, 2)} (uncalibrated metric drift error)",
+            "0.00 (zero structural load or geometry assumption)",
+            f"-{abs(float(c_ans)) + 10.0} (inverted sign convention error)",
+        ),
+        (
+            "When keying a multi-step engineering formula into a field calculator, which order of operations (PEMDAS) must be followed to prevent calculation error?",
+            "Solve inside Parentheses ( ) first, then Exponents/Roots (^ or sqrt), then Multiplication/Division (* or /), and finally Addition/Subtraction (+ or -)",
+            "Add and subtract all numbers from left to right before multiplying or solving parentheses",
+            "Round all intermediate numbers to zero before applying square roots",
+            "Ignore parentheses and multiply only the first and last terms",
+        ),
+        (
+            "What is the mandatory maximum sustained wind speed limit in U.S. Customary units for conducting a calibrated Level-5 sUAS structural or thermal inspection sortie?",
+            "Less than 15.0 mph sustained wind speed (with gusts below statutory airframe stability limits)",
+            "Up to 65.0 mph gale-force winds during active precipitation",
+            "Wind speed is never measured or recorded during forensic flight operations",
+            "Exactly 45.0 mph crosswind during manual attitude-mode flight",
+        ),
+        (
+            "To capture legally defensible optical crack and spall telemetry under AASHTO / ODOT standards, what minimum surface illumination and maximum Ground Sample Distance (GSD) are required?",
+            "Surface brightness >= 1.4 foot-candles and Optical GSD <= 0.004 in/px (4 mils)",
+            "Complete darkness (0.0 foot-candles) and 2.50 in/px coarse satellite resolution",
+            "Direct blinding glare without exposure calibration at 12.0 in/px",
+            "100 mils per pixel using digital zoom from 1,500 ft AGL",
+        ),
+        (
+            "What is the mandatory minimum thermal temperature differential (Delta_T) in degrees Fahrenheit (°F) required to detect subsurface delamination or moisture entrapment via ASTM D4788 / C1153 thermography?",
+            "Delta_T >= +3.6 °F (+2.0 °C equivalent) above the adjacent sound baseline material",
+            "Delta_T = 0.0 °F isothermal equilibrium during heavy rain",
+            "Delta_T <= -50.0 °F without emissivity calibration",
+            "Thermal differentials are measured in psi rather than degrees Fahrenheit (°F)",
+        ),
+        (
+            "What RTK/PPK GNSS positional accuracy threshold (in U.S. Customary inches) must be locked before recording georeferenced structural defect coordinates?",
+            "Horizontal error <= 0.60 inches and Vertical error <= 0.18 inches with verified base-station lock",
+            "Horizontal drift of +/- 45.0 feet using standalone consumer phone GPS",
+            "No GNSS receiver is needed if the pilot estimates location from memory",
+            "Vertical error of +/- 120.0 inches without atmospheric correction",
+        ),
+        (
+            "In U.S. Customary bridge, pavement, and coating inspections, how is 1 mil defined when measuring crack widths, optical GSD, or protective coating thickness?",
+            "1 mil = 0.001 inches (one thousandth of an inch; 1,000 mils = 1.0 inch)",
+            "1 mil = 1.0 millimeter (metric length unit)",
+            "1 mil = 1,000.0 feet of highway right-of-way",
+            "1 mil = 1.0 million pounds of axial live load",
+        ),
+        (
+            "Under 23 CFR § 650.305 (National Bridge Inspection Standards) and Oklahoma Title 61, what minimum clear opening length along the roadway centerline classifies a structure as an NBI Bridge?",
+            "More than 20.0 feet (L_total > 20.0 ft) measured between extreme ends of the opening",
+            "More than 500.0 feet only",
+            "Less than 2.0 feet of pipe diameter",
+            "Span length has no legal effect on NBI inspection jurisdiction",
+        ),
+        (
+            "Under the AASHTO Manual for Bridge Element Inspection (MBEI), what does Condition State 1 (CS-1: Good) signify compared to Condition State 4 (CS-4: Severe)?",
+            "CS-1 indicates no physical distress beyond minor maintenance, whereas CS-4 indicates severe distress requiring immediate structural review or load restriction",
+            "CS-1 indicates imminent collapse, whereas CS-4 indicates brand-new construction",
+            "CS-1 and CS-4 are interchangeable cosmetic labels with no engineering meaning",
+            "CS-4 allows inspectors to skip inspections for 10 years",
+        ),
+        (
+            "Under 18 U.S.C. § 1001 and Oklahoma Title 61 / Title 74, what are the legal consequences of falsifying, backdating, or fabricating structural inspection telemetry on a public works docket?",
+            "Federal felony liability (up to 5 years imprisonment), state statutory debarment, PE/credential revocation, and civil false-claims penalties",
+            "No legal consequence as long as the report is formatted neatly",
+            "Automatic approval of state tuition vouchers without audit",
+            "A minor verbal reminder during the next 60-month cycle",
+        ),
+        (
+            "How does the Sovereign Field Academy C2 Cockpit guarantee non-repudiation when a candidate seals 4.0 Accredited Credit Hours in Sub-Tab 4?",
+            "By computing a deterministic FIPS 180-4 SHA-256 cryptographic hash of the candidate ID, module telemetry, and timestamp and writing it to matrix_ledger.db",
+            "By storing temporary browser cookies that clear when the window closes",
+            "By allowing anonymous edits to completed credit records without hashing",
+            "By printing an unsigned text note with no database persistence",
+        ),
+        (
+            "When converting U.S. Customary linear measurements during field geometry checks, how many inches are in 1.0 linear foot, and how many square inches are in 1.0 square foot?",
+            "12.0 inches = 1.0 linear foot, and 144.0 square inches (12 in * 12 in) = 1.0 square foot",
+            "10.0 inches = 1.0 linear foot, and 100.0 square inches = 1.0 square foot",
+            "36.0 inches = 1.0 linear foot, and 36.0 square inches = 1.0 square foot",
+            "100.0 mils = 1.0 linear foot, and 1,000.0 square inches = 1.0 square foot",
+        ),
+        (
+            "In U.S. Customary structural load and stress calculations, how are kips (kilopounds), psi, and ksi related?",
+            "1.0 kip = 1,000 pounds (lbs) of force, and 1.0 ksi = 1,000 psi (pounds per square inch)",
+            "1.0 kip = 100 pounds (lbs), and 1.0 ksi = 10 psi",
+            "1.0 kip = 1,000 kilograms, and 1.0 ksi = 1.0 Pascal",
+            "kips and ksi measure thermal conductivity rather than mechanical force or stress",
+        ),
+        (
+            f"Before initiating the field practicum for {u_title}, what must be verified first in the Sub-Tab 3 Mandatory Field Telemetry & Laboratory Practicum Protocol?",
+            "Verify the Team Leader PE / Sovereign Level-5 Credential ID in matrix_ledger.db and pull the historical baseline inventory sheet",
+            "Launch the aircraft immediately without checking airspace, weather, or credential logs",
+            "Disable all onboard GNSS and optical calibration sensors to save battery",
+            "Delete prior inspection records from the SQLite database",
+        ),
+        (
+            f"What is the mandatory minimum passing score required on this 20-question milestone exam (together with the Part A Calculation Gate) to unlock the 4.0-Hour WORM Credit Seal for {u_title}?",
+            "100% Mastery (20 out of 20 questions correct) plus an exact U.S. Customary numerical calculation within engineering tolerance",
+            "50% (10 out of 20 questions correct) with Part A left blank",
+            "15% (3 out of 20 questions correct) without calculation verification",
+            "No minimum score is enforced for state Title 61 certification",
+        ),
+    ]
+
+    for offset, (stem, right_ans, w1, w2, w3) in enumerate(extra_specs, start=4):
+        q_idx = offset
+        pos = (u_num + q_idx) % 4
+        distractors = [w1, w2, w3]
+        raw_choices = []
+        d_ptr = 0
+        for slot in range(4):
+            if slot == pos:
+                raw_choices.append(right_ans)
+            else:
+                raw_choices.append(distractors[d_ptr])
+                d_ptr += 1
+        letters = ["A", "B", "C", "D"]
+        formatted_opts = [f"{letters[i]}) {raw_choices[i]}" for i in range(4)]
+        questions.append({
+            "q": f"[{course_code} Unit {u_num:02d} Milestone Q{q_idx:02d}] {stem}",
+            "options": formatted_opts,
+            "answer": formatted_opts[pos],
+        })
+
+    return questions[:20]
+
+
+def get_course_units(course_code: str):
+    units = _orig_get_course_units(course_code)
+    _u_desc_map = {
+        "ft": "feet (ft) — U.S. Customary Linear Feet (12 inches = 1.0 foot)",
+        "in": "inches (in) — U.S. Customary Inches (1/12 of a foot)",
+        "mils": "mils (0.001 in) — Thousandths of an Inch (1,000 mils = 1.0 inch)",
+        "sq ft": "square feet (sq ft) — U.S. Customary Surface Area (Length_ft * Width_ft)",
+        "%": "Percent (%) — Percentage Score / Ratio (0% to 100%)",
+        "psi": "psi (Pounds per Square Inch) — U.S. Customary Stress / Pressure",
+        "ksi": "ksi (Kips per Square Inch) — 1,000 Pounds per Square Inch",
+        "kips": "kips (Kilopounds) — U.S. Customary Structural Load (1 kip = 1,000 lbs)",
+        "lbs": "pounds (lbs) — U.S. Customary Force / Weight",
+        "psf": "psf (Pounds per Square Foot) — U.S. Customary Area Load",
+        "°F": "degrees Fahrenheit (°F) — U.S. Customary Temperature",
+        "BTU/hr": "BTU/hr (British Thermal Units per Hour) — U.S. Customary Heat Flow Rate",
+        "cfs": "cfs (Cubic Feet per Second) — U.S. Customary Hydraulic Discharge",
+        "PCI": "PCI Points (0 to 100 Scale) — ASTM D6433 Pavement Condition Index",
+        "RF": "Rating Factor (RF) — AASHTO Load & Resistance Factor Ratio (RF >= 1.00 is Safe)",
+    }
+    for _u_item in units:
+        _cc = _u_item.get("calc_challenge", {})
+        _raw_u = str(_cc.get("unit") or _cc.get("units") or _u_item.get("calc_unit") or "").strip()
+        _p_low = str(_cc.get("prompt", "") or _cc.get("label", "")).lower()
+        if not _raw_u:
+            if "in feet" in _p_low or "(ft)" in _p_low or " ft" in _p_low:
+                _raw_u = "ft"
+            elif "mils" in _p_low:
+                _raw_u = "mils"
+            elif "in inches" in _p_low or "(in)" in _p_low or "inches" in _p_low:
+                _raw_u = "in"
+            elif "psi" in _p_low:
+                _raw_u = "psi"
+            elif "ksi" in _p_low:
+                _raw_u = "ksi"
+            elif "kips" in _p_low:
+                _raw_u = "kips"
+            elif "btu" in _p_low:
+                _raw_u = "BTU/hr"
+            elif "°f" in _p_low or "fahrenheit" in _p_low or "deg f" in _p_low:
+                _raw_u = "°F"
+            elif "pci" in _p_low:
+                _raw_u = "PCI"
+            elif "percent" in _p_low or "(%)" in _p_low or "%" in _p_low:
+                _raw_u = "%"
+            elif "cfs" in _p_low:
+                _raw_u = "cfs"
+            elif "sq ft" in _p_low or "square feet" in _p_low:
+                _raw_u = "sq ft"
+        _res_u = _u_desc_map.get(_raw_u, f"{_raw_u} — U.S. Customary Engineering Unit" if _raw_u else "feet (ft) — U.S. Customary Engineering Units")
+        _u_item["resolved_us_unit"] = _res_u
+        if "equation_legend" in _u_item:
+            _u_item["equation_legend"] = str(_u_item["equation_legend"]).replace("Measured in U.S. Customary Units", _res_u)
+        _u_item["unit_quiz"] = _build_20_question_milestone_exam(_u_item, course_code)
+    return units
