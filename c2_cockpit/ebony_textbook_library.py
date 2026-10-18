@@ -288,17 +288,19 @@ def _enrich_unit(u_dict, course_code):
         "| **Environmental Boundary Compliance** | ASTM C1153 / HEC-18 / NBIS | Wind < 15.0 mph, Dry Surface > 24 hrs, Thermal Delta_T >= +3.6 °F | Standing surface water, convective wind stripping, or uncompensated water temp | Kestrel Meteorological Station Telemetry |\n"
         "| **Cryptographic Chain-of-Custody Seal** | FIPS 180-4 / 18 U.S.C. 1001 | 256-Bit Hexadecimal Collision-Free Hash | Any post-acquisition byte modification or missing UTC nanosecond timestamp | matrix_ledger.db (sha256_seal Column) |\n\n"
         "---\n\n"
-        f"### {u_num}.4 Step-by-Step Mathematical Derivation & Dimensional Analysis\n\n"
-        f"Every equation in **Module {u_num:02d}** is derived from first principles of continuum mechanics, conservation of mass/energy, and electromagnetic wave propagation:\n\n"
-        "1. **Conservation & Continuum Baseline:** Field sensors do not measure condition states directly; they measure physical flux quantities—photon radiance (Q in BTU/hr*ft^2), acoustic two-way travel time (Delta_t in microseconds), laser phase shift (Delta_phi), or pixel optical angular displacement (omega_px in rad/s).\n"
-        "2. **Boundary Condition Normalization:** Raw sensor signals are normalized against ambient environmental boundary conditions (subtracting reflected sky temperature T_refl, compensating gyroscope pitch rate omega_y, or dividing by gross sample unit area A_total).\n"
-        "3. **Critical Limit Comparison:** The normalized engineering state variable is compared against the material's constitutive failure threshold (concrete tensile rupture f_r = 7.5 * sqrt(f'_c), steel plane-strain fracture toughness K_Ic, or Terzaghi critical hydraulic gradient i_c).\n"
-        "4. **Statutory Disposition Mapping:** Whenever the calculated demand-to-capacity ratio approaches or exceeds unity (D / C >= 1.0), the inspector is legally prohibited from exercising subjective discretion and must issue the mandatory **Condition State 3 / Condition State 4** or **ASTM Rehabilitation Docket**.\n\n"
-        + bt + "latex\n"
-        f"% Continuum Sensor Normalization & Constitutive Failure Gate (Module {u_num:02d})\n"
-        r"\Phi_{\text{norm}} = \mathcal{F}\left( W_{\text{sensor}},\ \Delta t_{\text{echo}},\ \dot{\theta}_{\text{px}} - \omega_y \right) \implies \text{Demand Ratio } \frac{\Phi_{\text{norm}}}{\Phi_{\text{critical}} \left( f_r,\ K_{Ic},\ i_c \right)} \ge 1.0 \longrightarrow \text{Mandatory Title 61 Action}" + "\n"
-        + bt + "\n\n"
-        "---\n\n"
+        f"### {u_num}.4 How the Engineering Math Works in Plain English (4-Step Field Logic)",
+        f"Every calculation in **Module {u_num:02d}** follows four simple, common-sense steps using **U.S. Customary Units**:",
+        "1. **Step 1 — Take the Raw Sensor Measurement:** Our drone cameras, thermal sensors, lasers (LiDAR), and sonar measure real physical quantities in U.S. units—such as heat flow (`BTU/hr` per sq ft), sound-wave echo time (microseconds), crack width (`inches` or `mils`), or span length (`feet`).",
+        "2. **Step 2 — Adjust for Weather & Flight Conditions:** We adjust the raw reading for outdoor conditions (for example, subtracting reflected sky temperature in `°F`, steadying camera movement, or dividing the defect size by the total area in `square feet`).",
+        "3. **Step 3 — Compare Against the Safe Code Limit:** We compare our field measurement against the material's safe legal limit—such as concrete cracking strength (`f_r = 7.5 * sqrt(f'_c)` in `psi`), steel fracture toughness (`K_Ic` in `ksi*sqrt(in)`), or the `20.0-foot` Federal NBI bridge span rule.",
+        "4. **Step 4 — Make the Mandatory Oklahoma Title 61 Call:** We divide the **Actual Measured Defect (`Demand`)** by the **Maximum Safe Code Limit (`Capacity`)**. Whenever `Demand / Capacity` reaches or exceeds **`1.00` (100% of the safe limit)**, the inspector is required by law to issue a mandatory **Condition State 3 / Condition State 4** or **ASTM Rehabilitation Action**.",
+        "",
+        "```text",
+        f"Master Safety Rule (Module {u_num:02d} — U.S. Customary Units):",
+        "Safety_Demand_Ratio (D / C) = Measured_Field_Defect (ft, in, mils, psi, kips, °F, BTU/hr) / Maximum_Safe_Code_Limit",
+        "If Safety_Demand_Ratio >= 1.00  -->  Mandatory Oklahoma Title 61 / NBIS / ASTM Action Required",
+        "```",
+        "",
         f"### {u_num}.5 Inspector Field Audit Checklist & QA/QC Sign-Off Protocol (Module {u_num:02d})\n\n"
         "Before advancing to **Sub-Tab 4 (Quantitative Calculation Gate & Mastery Exam)**, verify that you can execute each of the following 6 field-audit steps without error:\n\n"
         f"* **[STEP 01 — Statutory Authority Verification]:** Cite the exact federal and Oklahoma statutory clauses governing {u_dict['title']} and verify structure/facility jurisdiction in the master asset registry.\n"
