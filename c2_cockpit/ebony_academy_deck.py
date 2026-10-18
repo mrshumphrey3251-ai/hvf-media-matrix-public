@@ -17,6 +17,7 @@ if _cockpit_dir not in sys.path:
 import importlib
 import ebony_textbook_library
 importlib.reload(ebony_textbook_library)
+get_course_units = ebony_textbook_library.get_course_units
 from ebony_textbook_library import (
     get_course_units, log_unit_completion, get_completed_units, export_full_course_textbook_markdown, get_master_glossary_and_references
 )
@@ -235,7 +236,7 @@ def render_academy_deck():
             else:
                 st.write(
                     "To earn **4.0 Accredited Credit Hours (0.4 CEUs)** for this module, you must solve the **Quantitative Engineering Calculation Gate** "
-                    "and score **100% (3/3)** on the **Module Mastery Verification Quiz** below."
+                    "and score **100% (20/20)** on the **Module Mastery Verification Quiz** below."
                 )
                 calc_ch = active_unit["calc_challenge"]
                 st.markdown("#### Part A: Quantitative Engineering Calculation Gate")

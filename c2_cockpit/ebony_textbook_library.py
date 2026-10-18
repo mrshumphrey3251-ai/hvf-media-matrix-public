@@ -1028,6 +1028,13 @@ def _build_20_question_milestone_exam(u_dict, course_code):
         q_txt = str(q_copy.get("q", ""))
         q_txt = _re.sub(r"^\[[^\]]+\]\s*", "", q_txt)
         q_copy["q"] = f"[{course_code} Unit {u_num:02d} Milestone Q{idx:02d}] {q_txt}"
+        _opts_list = list(q_copy.get("opts") or q_copy.get("options") or [])
+        q_copy["opts"] = _opts_list
+        q_copy["options"] = _opts_list
+        if "ans" in q_copy and "answer" not in q_copy:
+            q_copy["answer"] = _opts_list[q_copy["ans"]] if isinstance(q_copy["ans"], int) and 0 <= q_copy["ans"] < len(_opts_list) else q_copy["ans"]
+        elif "answer" in q_copy and "ans" not in q_copy:
+            q_copy["ans"] = q_copy["answer"]
         questions.append(q_copy)
 
     extra_specs = [
@@ -1166,9 +1173,14 @@ def _build_20_question_milestone_exam(u_dict, course_code):
                 d_ptr += 1
         letters = ["A", "B", "C", "D"]
         formatted_opts = [f"{letters[i]}) {raw_choices[i]}" for i in range(4)]
+        _ans_val = formatted_opts[pos]
+        if base_quiz and isinstance(base_quiz[0].get("ans"), int):
+            _ans_val = pos
         questions.append({
             "q": f"[{course_code} Unit {u_num:02d} Milestone Q{q_idx:02d}] {stem}",
+            "opts": formatted_opts,
             "options": formatted_opts,
+            "ans": _ans_val,
             "answer": formatted_opts[pos],
         })
 
