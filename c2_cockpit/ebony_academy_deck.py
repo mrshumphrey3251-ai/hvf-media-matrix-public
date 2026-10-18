@@ -194,11 +194,11 @@ def render_academy_deck():
             st.markdown(f"### 📐 Official U.S. Customary Formula Sheet — {active_unit['title']}")
             st.info("💡 **How to Use This Page:** Below is the exact U.S. Customary engineering formula for this module, followed by a plain-English symbol decoder and a worked example showing every math step you will use in **Sub-Tab 4**.")
             st.code(active_unit["equations"], language="text")
-            st.markdown(active_unit.get("equation_legend", ""))
+            st.markdown(str(active_unit.get("equation_legend", "")).replace("Measured in U.S. Customary Units", str(active_unit.get("resolved_us_unit", "U.S. Customary Units"))))
             st.markdown("---")
             st.markdown("### Step-by-Step Worked Field Engineering Calculation")
             st.info(active_unit["worked_example"])
-            _we_lines = [s.strip("* -") for s in str(active_unit.get("worked_example", "")).splitlines() if ("Step 1" in s or "Step 2" in s or "=" in s) and not s.strip().startswith("#")]
+            _we_lines = [s.strip("* -").replace("**", "").replace("`", "") for s in str(active_unit.get("worked_example", "")).splitlines() if ("Step 1" in s or "Step 2" in s or "=" in s) and not s.strip().startswith("#")]
             if _we_lines:
                 st.markdown("**⬛ Worked Field Calculation Summary (Black Box Copy-and-Paste Reference):**")
                 st.code(chr(10).join(_we_lines), language="text")
