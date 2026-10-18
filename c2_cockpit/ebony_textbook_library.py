@@ -308,6 +308,7 @@ def _enrich_unit(u_dict, course_code):
         f"* **[STEP 05 — Quantitative Engineering Calculation]:** Solve the governing formulation for {u_dict['title']} using field measurements and verify dimensional consistency across US Customary and SI units.\n"
         "* **[STEP 06 — WORM Cryptographic Sealing]:** Commit the raw sensor packet, defect polygons, and calculated engineering parameters to matrix_ledger.db under CAGE 1AHA8 / UEI S1M4ENLHTDH5.\n"
     )
+    _attach_beginner_aids(u_dict, u_num)
     return u_dict
 
 
@@ -819,3 +820,116 @@ def export_full_course_textbook_markdown(course_code: str, course_title: str) ->
         lines.append(u["lab_protocol"])
         lines.append("\n---\n")
     return "\n".join(lines)
+
+
+
+def get_master_glossary_and_references(course_code: str = "ALL"):
+    """Modular Beginner's Glossary, Mathematical Symbol Decoder, U.S. Customary Unit Guide, and Statutory References."""
+    symbols = [
+        {"sym": "Delta (Δ)", "say": "DEL-tuh", "meaning": "Change or Difference between two measurements", "example": "Delta_T = Indoor Temp minus Outdoor Temp (e.g., 72 °F - 27 °F = 45 °F difference)."},
+        {"sym": "sigma (σ)", "say": "SIG-muh", "meaning": "Mechanical Stress (internal pressure or force inside concrete, steel, or soil)", "example": "Measured in psi (pounds per square inch) or ksi (thousands of pounds per square inch)."},
+        {"sym": "gamma (γ)", "say": "GAM-uh", "meaning": "Shear Strain (how far a rubber bearing pad leans sideways divided by its height) or Psychrometric Factor", "example": "gamma = 1.65 in sideways shift / 2.50 in pad height = 0.66 in/in."},
+        {"sym": "epsilon (ε)", "say": "EP-suh-lon", "meaning": "Emissivity (how well a roof surface radiates heat, from 0.0 to 1.0) or Dielectric Constant", "example": "A dull TPO/EPDM roof has epsilon = 0.92 (92% efficient heat radiator); shiny bare metal is 0.20."},
+        {"sym": "pi (π)", "say": "PIE", "meaning": "Circle Constant = 3.1416 (circumference of any circle divided by its width)", "example": "Used whenever stress spreads in a circle around a crack tip or tire footprint."},
+        {"sym": "sqrt(x) or √x", "say": "Square Root", "meaning": "The number that, when multiplied by itself, equals x", "example": "sqrt(32.0) = 5.657 because 5.657 * 5.657 = 32.0. Press the [√] key on any calculator."},
+        {"sym": "x^2 or x^3", "say": "Squared / Cubed", "meaning": "Multiply the number x by itself 2 times (x * x) or 3 times (x * x * x)", "example": "(2.0 in)^2 = 2.0 * 2.0 = 4.0 sq in."},
+        {"sym": "K_I and K_Ic", "say": "K-one / K-one-C", "meaning": "K_I = Current Stress Intensity at a crack tip; K_Ic = Critical Fracture Toughness (breaking point of steel)", "example": "When K_I reaches K_Ic (e.g., 45 ksi*sqrt(in)), steel snaps instantaneously like glass."},
+        {"sym": "R-Value (R)", "say": "R-Value", "meaning": "Thermal Resistance (how well building insulation blocks heat flow)", "example": "Dry roof foam is R-25 (blocks heat well); water-soaked foam drops to R-4 (leaks heat 6.25x faster)."},
+        {"sym": "U-Value (U)", "say": "U-Factor", "meaning": "Heat Transfer Coefficient (how fast heat escapes per square foot per degree °F, equal to 1 / R)", "example": "Measured in BTU/(hr * sq ft * °F). Higher U-Value = worse insulation / faster heat loss."},
+        {"sym": "Fr_1", "say": "Froude Number", "meaning": "Ratio of river current speed to gravity wave speed around a bridge pier", "example": "Fr_1 = V_1 / sqrt(32.174 * water_depth). Higher flood speed = deeper streambed scour hole."},
+        {"sym": "erf(z)", "say": "Error Function", "meaning": "Standard bell-curve probability lookup table used for road salt soaking into concrete", "example": "Tells us what percentage of winter de-icing salt has soaked down to the depth of the steel rebar."}
+    ]
+
+    units_guide = [
+        {"unit": "°F (Degrees Fahrenheit)", "what": "Standard U.S. temperature scale", "benchmark": "Water freezes at 32 °F; comfortable room temp is 72 °F; hot Oklahoma summer day is 100+ °F."},
+        {"unit": "in (Inches) & ft (Feet)", "what": "Standard U.S. length & distance units", "benchmark": "12 inches = 1 foot; 5,280 feet = 1 mile. A structure legally becomes a Bridge at > 20.0 feet span."},
+        {"unit": "mil (Thousandth of an Inch)", "what": "1 mil = 0.001 inches (used for hairline concrete cracks and steel coating thickness)", "benchmark": "A human hair is ~3 mils (0.003 in) thick; a credit card is 30 mils (0.030 in) thick. CS-1 cracks are < 12 mils (0.012 in)."},
+        {"unit": "psi (Pounds per Square Inch)", "what": "Pressure or stress pressing on 1 square inch of surface area", "benchmark": "Car tire pressure is ~32 psi; semi-truck tire is ~110 psi; structural bridge concrete strength is 4,000+ psi."},
+        {"unit": "kip (Kilopound = 1,000 lbs)", "what": "Engineering shorthand for 1,000 pounds of force or load", "benchmark": "1 kip = 1,000 lbs; 36 tons = 72,000 lbs = 72 kips. ksi means kips per square inch (1 ksi = 1,000 psi)."},
+        {"unit": "psf (Pounds per Square Foot)", "what": "Weight spread over a 1 ft x 1 ft floor or roof square", "benchmark": "A typical commercial flat roof is designed for 20 psf live load. 8 inches of ponded rainwater weighs 41.6 psf (208% overload!)."},
+        {"unit": "BTU/hr (British Thermal Units per Hour)", "what": "Standard U.S. rate of heat energy loss or AC/heating capacity", "benchmark": "1 BTU is the heat from a single wooden kitchen match. 12,000 BTU/hr = 1 Ton of commercial air conditioning."},
+        {"unit": "cfs (Cubic Feet per Second)", "what": "Volume of stormwater flowing through a culvert or river each second", "benchmark": "1 cfs = 7.48 gallons per second (about 150 cfs fills an Olympic swimming pool in 10 minutes)."},
+        {"unit": "foot-candle (fc) / lux", "what": "Brightness of light shining on a surface so drone optical cameras can lock onto texture", "benchmark": "1.4 foot-candles (15 lux) is dim twilight—the minimum light required by onboard LED bars under a dark bridge."}
+    ]
+
+    terms = [
+        {"term": "AASHTO", "cat": "All / Bridges", "def": "American Association of State Highway and Transportation Officials — the national body that writes the official U.S. bridge design and inspection manuals."},
+        {"term": "ASTM International", "cat": "All Courses", "def": "The U.S. standards organization that defines exact testing rules (such as ASTM C1153 for infrared roof moisture scans and ASTM D6433 for roadway PCI surveys)."},
+        {"term": "NBIS (23 CFR § 650)", "cat": "STR-01 Bridges", "def": "National Bridge Inspection Standards — the federal law passed after the 1967 Silver Bridge collapse requiring every public bridge (>20 ft) to be inspected at least every 24 months."},
+        {"term": "ODOT & OMES CAP", "cat": "Oklahoma Law", "def": "Oklahoma Department of Transportation (manages state bridges/highways) and Office of Management and Enterprise Services — Construction and Properties (manages state buildings/roofs under Title 61)."},
+        {"term": "Oklahoma Title 61", "cat": "Statutory Law", "def": "The Oklahoma Public Buildings and Public Works statute governing state construction, engineering inspections, competitive bidding, and infrastructure safety."},
+        {"term": "Condition States (CS-1 to CS-4)", "cat": "STR-01 Bridges", "def": "The 4-tier AASHTO grading scale for every square foot of a bridge: CS-1 = Good, CS-2 = Fair (minor cracks), CS-3 = Poor (needs priority repair), CS-4 = Severe (unsafe / immediate emergency closure or load restriction)."},
+        {"term": "Delamination & Spalling", "cat": "STR-01 & STR-02", "def": "Delamination is a hidden horizontal split inside concrete caused by rusting rebar expanding; when that loose top slab finally breaks out leaving a pothole, it is called a Spall."},
+        {"term": "Fracture-Critical Member (FCM)", "cat": "STR-01 Bridges", "def": "A steel bridge component under tension (pulling force) with no backup load path—if that single steel girder or eyebar cracks through, the bridge collapses."},
+        {"term": "Scour (HEC-18)", "cat": "STR-01 Bridges", "def": "Fast floodwater vortices digging away the sand and gravel river bottom from underneath a bridge pier foundation—the #1 cause of bridge collapses in America."},
+        {"term": "NDT (Non-Destructive Testing)", "cat": "All Courses", "def": "Inspecting inside concrete, roofs, or steel using thermal cameras, ultrasound, radar (GPR), or sound waves without breaking or damaging the structure."},
+        {"term": "Radiometric Infrared (RJPEG)", "cat": "STR-02 Buildings", "def": "A specialized thermal camera image where every single pixel records an exact calibrated temperature in °F (unlike a regular photo that only shows colors)."},
+        {"term": "Dew Point Temperature (T_dp)", "cat": "STR-02 Buildings", "def": "The exact temperature (°F) at which invisible moisture in warm indoor air condenses into liquid water droplets when touching a cold roof deck or wall."},
+        {"term": "Rust-Jacking", "cat": "STR-02 Buildings", "def": "When steel support angles behind a brick wall rust, the rust expands up to 600% in thickness, prying and bowing the brick facade outward with up to 10,000 psi of force."},
+        {"term": "PCI (Pavement Condition Index)", "cat": "STR-03 Roadways", "def": "The official ASTM D6433 0-to-100 numerical score for a road surface (100 = brand new road; 70-85 = ideal time for low-cost preventive seal; <55 = requires expensive reconstruction)."},
+        {"term": "Deduct Value (DV) & CDV", "cat": "STR-03 Roadways", "def": "Points subtracted from 100 based on how severe and how widespread road cracks and ruts are. PCI = 100 minus the Corrected Deduct Value (CDV)."},
+        {"term": "ESAL (18-kip Equivalent Single Axle Load)", "cat": "STR-03 Roadways", "def": "A way to measure road wear by converting heavy semi-truck axles into equivalent 18,000-lb standard axles. Doubling axle weight multiplies road damage by 16x (2^4)!"},
+        {"term": "IRI (International Roughness Index)", "cat": "STR-03 Roadways", "def": "Measures how bumpy a highway is in inches of up-and-down shock-absorber movement per mile driven. Over 170 inches/mile is rated Poor by the Federal Highway Administration."},
+        {"term": "GSD (Ground Sampling Distance)", "cat": "All Courses", "def": "How much real-world surface area fits inside 1 single camera pixel (e.g., 0.003 inches/pixel lets you see a hairline steel crack; 1.38 inches/pixel maps roof moisture)."},
+        {"term": "RTK / PPK GPS & Optical SLAM", "cat": "All Courses", "def": "RTK/PPK uses a ground base station to make drone GPS accurate to 0.18 inches; Optical SLAM uses downward cameras and lasers to hold position under a bridge where GPS is blocked."},
+        {"term": "WORM Ledger & SHA-256 Seal", "cat": "Legal / C2", "def": "Write-Once-Read-Many database (matrix_ledger.db) locked with a 64-character digital fingerprint (SHA-256). If anyone alters even 1 character or pixel in an inspection report, the fingerprint breaks, proving court-admissible chain of custody."}
+    ]
+
+    references = [
+        {"code": "Oklahoma Statutes Title 61 & Title 74", "agency": "State of Oklahoma / OMES CAP / ODOT", "scope": "Public Buildings and Public Works Act — governs state capital asset inspections, engineering certification, and statutory bidding."},
+        {"code": "23 CFR § 650 Subpart C (NBIS)", "agency": "Federal Highway Administration (FHWA)", "scope": "National Bridge Inspection Standards — mandates 24-month NBI inspections, Fracture-Critical hands-on/NDT rules, and Scour Plans of Action."},
+        {"code": "AASHTO MBEI & LRFR Manual", "agency": "American Association of State Highway & Transportation Officials", "scope": "Manual for Bridge Element Inspection (Condition States CS-1 to CS-4) and Load and Resistance Factor Rating (RF) equations."},
+        {"code": "FHWA HEC-18 (Hydraulic Engineering Circular No. 18)", "agency": "FHWA / Colorado State University", "scope": "Evaluating Scour at Bridges — defines the CSU equilibrium pier scour depth equation (y_s) and Froude number hydrodynamics."},
+        {"code": "ASTM C1153 & ISO 6781", "agency": "ASTM International", "scope": "Standard Practice for Location of Wet Insulation in Roofing Systems Using Infrared Imaging (<15 mph wind, >24 hr dry surface, nocturnal window)."},
+        {"code": "ASTM C876 & ASTM C1383", "agency": "ASTM International", "scope": "Half-Cell Potentials of Uncoated Reinforcing Steel in Concrete (-350 mV corrosion threshold) and Impact-Echo delamination depth testing."},
+        {"code": "ASTM D6433 & AASHTO R 85", "agency": "ASTM International / AASHTO", "scope": "Standard Practice for Roads and Parking Lots Pavement Condition Index (PCI) Surveys (19 distress types) and International Roughness Index (IRI)."},
+        {"code": "14 CFR Part 107 (§ 107.29 & § 107.39)", "agency": "Federal Aviation Administration (FAA)", "scope": "Small Unmanned Aircraft Systems — rules for nocturnal anti-collision lighting and lateral standoff corridors alongside moving highway traffic."},
+        {"code": "18 U.S.C. § 1001 & FIPS PUB 180-4", "agency": "U.S. Department of Justice / NIST", "scope": "Federal False Statements Act (criminal liability for falsified inspection dockets) and Secure Hash Standard (SHA-256 cryptographic sealing)."}
+    ]
+
+    return {
+        "symbols": symbols,
+        "units_guide": units_guide,
+        "terms": terms,
+        "references": references
+    }
+
+
+def _attach_beginner_aids(u_dict: dict, u_num: int):
+    """Attaches Section X.0 Plain-English Orientation and Sub-Tab 2 Symbol-by-Symbol Equation Decoder using chr(10)."""
+    nl = chr(10)
+    primer_lines = [
+        f"### {u_num}.0 Beginner's Plain-English Orientation: What You Will Learn & Key Terms Decoded",
+        f"> **Welcome to Module {u_num:02d} ({u_dict['title']})!** You do **not** need prior engineering experience to master this module. Every technical term, government code, and math symbol used in this lesson is translated into plain English right here:",
+        "",
+        "* **Why This Module Matters in the Real World:** In state infrastructure inspection under **Oklahoma Title 61**, we never guess whether a bridge, building roof, or highway is safe. We use drone cameras, lasers (**LiDAR**), heat sensors (**Infrared**), and sound waves (**Sonar/Impact-Echo**) to measure defects in **U.S. Customary Units** (**inches, feet, degrees Fahrenheit °F, pounds per square inch psi, and BTU/hr**), plug those measurements into a proven step-by-step formula, and lock the result into a tamper-proof database (**WORM Ledger**).",
+        "* **Key Acronyms Decoded for Beginners:**",
+        "  * **NBI / NBIS:** *National Bridge Inventory / Inspection Standards* — The federal safety list and law covering every public bridge longer than **20.0 feet**.",
+        "  * **ODOT & OMES CAP:** *Oklahoma Dept. of Transportation* (bridges/roads) & *Office of Management and Enterprise Services* (state buildings/roofs).",
+        "  * **AASHTO & ASTM:** The national engineering boards that write the official U.S. inspection rulebooks.",
+        "  * **CS-1, CS-2, CS-3, CS-4 (Condition States):** The 1-to-4 health grade for bridge parts (**CS-1 = Good**, **CS-2 = Fair**, **CS-3 = Poor/Repair Needed**, **CS-4 = Severe/Emergency Closure**).",
+        "  * **NDT (Non-Destructive Testing):** Finding hidden cracks, rust, or trapped water inside concrete/roofs using sensors *without* cutting or breaking the structure.",
+        "  * **WORM & SHA-256:** *Write-Once-Read-Many* database sealed with a 64-character digital fingerprint (**SHA-256**) so inspection data cannot be faked or altered.",
+        "---",
+        ""
+    ]
+    u_dict["beginner_primer"] = nl.join(primer_lines)
+
+    legend_lines = [
+        "#### 🔎 Beginner's Symbol-by-Symbol Equation & Calculator Guide",
+        "Every letter or symbol in the formula box above simply stands for a real-world measurement in U.S. Customary units:",
+        "",
+        "| Symbol in Formula | How to Pronounce It | Plain-English Meaning | U.S. Measurement Unit & Calculator Tip |",
+        "| :--- | :--- | :--- | :--- |",
+        "| **`L` / `b` / `d` / `x` / `z` / `H`** | Length / Width / Depth / Height | Physical size, span opening, thickness, or flight altitude | Measured in **feet (ft)** or **inches (in)** (12 inches = 1 foot). |",
+        "| **`A` or `Area`** | Surface Area | Length multiplied by Width of a bridge deck, roof, or road section | Measured in **square feet (sq ft)**. |",
+        "| **`Delta` (`Δ` or `Delta_T`)** | DEL-tuh (Difference) | Subtract the second reading from the first reading | Example: `Delta_T = Indoor °F - Outdoor °F` (`72 °F - 27 °F = 45 °F`). |",
+        "| **`sigma` (`σ`) or `P` / `f_r`** | SIG-muh (Stress / Load) | Pulling, pushing, or bending force pressing on the material | Measured in **psi** (lbs/sq in), **ksi** (1,000 lbs/sq in), or **kips** (1,000 lbs). |",
+        "| **`sqrt(...)` or `^0.5`** | Square Root | Press the **`[√]`** button on your calculator | Example: `sqrt(32.0) = 5.657` (because `5.657 * 5.657 = 32.0`). |",
+        "| **`^2` or `^3` or `^4`** | Squared / Exponent | Multiply the number by itself (`x^2 = x * x`) or use the **`[x^y]`** key | Example: `(2.0)^2 = 2.0 * 2.0 = 4.0`. |",
+        "| **`pi` (`π`)** | PIE (Circle Constant) | Always equals **`3.1416`** | Type `3.1416` whenever you see `pi` in an equation. |",
+        "| **`R` / `U` / `Q`** | Thermal R-Value / Heat Loss | `R` = Insulation rating; `Q` = Heat escaping through a wet roof | Measured in **BTU/hr** (British Thermal Units per hour) and **°F**. |",
+        ""
+    ]
+    u_dict["equation_legend"] = nl.join(legend_lines)
+    return u_dict

@@ -15,7 +15,7 @@ if _cockpit_dir not in sys.path:
     sys.path.insert(0, _cockpit_dir)
 
 from ebony_textbook_library import (
-    get_course_units, log_unit_completion, get_completed_units, export_full_course_textbook_markdown
+    get_course_units, log_unit_completion, get_completed_units, export_full_course_textbook_markdown, get_master_glossary_and_references
 )
 
 try:
@@ -95,12 +95,13 @@ def render_academy_deck():
     st.progress(pct_complete, text=f"Mandatory 40-Hour Accredited Seat-Time & Calculation Gate Progress: {earned_hours:.1f} / 40.0 Credit Hours Verified ({pct_complete*100:.0f}%)")
     st.markdown("---")
 
-    tab_ch1, tab_ch2, tab_ch3, tab_ch4, tab_exam = st.tabs([
+    tab_ch1, tab_ch2, tab_ch3, tab_ch4, tab_exam, tab_glossary = st.tabs([
         "📚 Ch 1: 10-Module / 40-Hr Workstation",
         "⚙️ Ch 2: Engineering Physics Workbenches & Schematics",
         "💥 Ch 3: NTSB & Forensic Failure Reconstructions",
         "🎬 Ch 4: Flight Sortie Videos & 4-Phase Field SOPs",
-        "📝 Ch 5: 3-Tier State Certification Exam (155 Qs)"
+        "📝 Ch 5: 3-Tier State Certification Exam (155 Qs)",
+        "📖 Ch 6: Beginner's Glossary, Symbols & References"
     ])
 
     # CHAPTER 1: 10-MODULE INTERACTIVE ENGINEERING WORKSTATION
@@ -118,7 +119,7 @@ def render_academy_deck():
                 key=f"unit_sel_{selected_code}"
             )
         with u_col2:
-            full_md = export_full_course_textbook_markdown(selected_code, active_course["title"])
+            full_md = export_full_course_textbook_markdown, get_master_glossary_and_references(selected_code, active_course["title"])
             st.download_button(
                 label=f"📥 Download Complete 10-Volume Textbook",
                 data=full_md,
@@ -144,6 +145,15 @@ def render_academy_deck():
         ])
 
         with sub_t1:
+            st.markdown(active_unit.get("beginner_primer", ""))
+            with st.expander("📖 Need to Look Up a Term, Acronym, U.S. Unit, or Math Symbol? (Click to Open Beginner's Quick-Reference Glossary)", expanded=False):
+                g_data = get_master_glossary_and_references(selected_code)
+                st.markdown("#### 1. Common U.S. Customary Engineering Units Used in This Course")
+                for u_item in g_data["units_guide"]:
+                    st.markdown(f"* **`{u_item['unit']}`** — {u_item['what']}. *(Real-World Benchmark: {u_item['benchmark']})*")
+                st.markdown("#### 2. Key Engineering & Statutory Terms Decoded")
+                for t_item in g_data["terms"]:
+                    st.markdown(f"* **{t_item['term']}** *({t_item['cat']})*: {t_item['def']}")
             st.markdown(active_unit["theory"])
             st.markdown(active_unit.get("deep_supplement", ""))
             st.info("👉 Proceed to **Sub-Tab 2 (🧮 1.0-Hr Mathematical Derivations & Worked Case)** after mastering the statutory and physical treatise above.")
@@ -151,6 +161,8 @@ def render_academy_deck():
         with sub_t2:
             st.markdown("### Governing Mathematical Formulations & Boundary Value Equations")
             st.code(active_unit["equations"], language="text")
+            st.markdown(active_unit.get("equation_legend", ""))
+            st.markdown("---")
             st.markdown("### Step-by-Step Worked Field Engineering Calculation")
             st.info(active_unit["worked_example"])
             st.caption(" Note the mathematical derivation steps above—you will be required to solve and verify the numerical engineering parameter in Sub-Tab 4.")
@@ -448,3 +460,54 @@ def render_academy_deck():
                         st.write(f":green[**{fb['id']} (Correct):**] {fb['explanation']}")
                     else:
                         st.write(f":red[**{fb['id']} (Incorrect):**] Selected: `{fb['your_answer']}` | Correct: `{fb['correct_answer']}` — {fb['explanation']}")
+
+
+    # CHAPTER 6: BEGINNER'S GLOSSARY, SYMBOL DECODER, U.S. UNITS & STATUTORY REFERENCES
+    with tab_glossary:
+        st.subheader("📖 Beginner's Master Glossary, Math Symbol Decoder, U.S. Units & Statutory References")
+        st.success(
+            "💡 **Zero-Jargon Training Guarantee:** Every symbol, acronym, U.S. measurement unit, and federal/state law "
+            "used across all 30 modules is explained below in plain, everyday English so any student can master the curriculum from scratch."
+        )
+        g_all = get_master_glossary_and_references(selected_code)
+
+        search_q = st.text_input("🔍 Search Any Term, Acronym, Symbol, or Law (e.g., 'kip', 'mils', 'scour', 'sigma', 'PCI', 'Title 61'):", value="", key="gloss_search").strip().lower()
+
+        g_tab1, g_tab2, g_tab3, g_tab4 = st.tabs([
+            "🔤 A–Z Engineering & Legal Glossary",
+            "🧮 Math & Greek Symbol Decoder",
+            "📏 U.S. Customary Units Guide (°F, ft, in, psi, BTU)",
+            "⚖️ Official Federal & Oklahoma Statutory References"
+        ])
+
+        with g_tab1:
+            st.markdown("### A–Z Plain-English Engineering & Inspection Glossary")
+            for item in g_all["terms"]:
+                if not search_q or search_q in item["term"].lower() or search_q in item["def"].lower() or search_q in item["cat"].lower():
+                    st.markdown(f"#### 📌 {item['term']}  `[{item['cat']}]`")
+                    st.write(item["def"])
+                    st.markdown("---")
+
+        with g_tab2:
+            st.markdown("### Mathematical & Greek Symbol Decoder (How to Read & Calculate Every Equation)")
+            for s_item in g_all["symbols"]:
+                if not search_q or search_q in s_item["sym"].lower() or search_q in s_item["meaning"].lower() or search_q in s_item["example"].lower():
+                    st.markdown(f"#### 🔹 Symbol: `{s_item['sym']}`  *(Pronounced: {s_item['say']})*")
+                    st.markdown(f"* **Plain-English Meaning:** {s_item['meaning']}")
+                    st.markdown(f"* **How to Use It on Your Calculator:** {s_item['example']}")
+                    st.markdown("---")
+
+        with g_tab3:
+            st.markdown("### U.S. Customary Measurement Units Guide (American Field Standards)")
+            for u_item in g_all["units_guide"]:
+                if not search_q or search_q in u_item["unit"].lower() or search_q in u_item["what"].lower() or search_q in u_item["benchmark"].lower():
+                    st.markdown(f"#### 📏 `{u_item['unit']}` — {u_item['what']}")
+                    st.info(f"**Real-World Comparison:** {u_item['benchmark']}")
+
+        with g_tab4:
+            st.markdown("### Official Federal & State of Oklahoma Statutory Reference Library")
+            for r_item in g_all["references"]:
+                if not search_q or search_q in r_item["code"].lower() or r_item["agency"].lower() or search_q in r_item["scope"].lower():
+                    st.markdown(f"#### ⚖️ {r_item['code']}  —  *{r_item['agency']}*")
+                    st.write(r_item["scope"])
+                    st.markdown("---")
