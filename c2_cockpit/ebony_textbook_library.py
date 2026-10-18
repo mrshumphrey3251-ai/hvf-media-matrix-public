@@ -916,13 +916,11 @@ def _attach_beginner_aids(u_dict: dict, u_num: int):
     ]
     u_dict["beginner_primer"] = nl.join(primer_lines)
 
-    calc_info = u_dict.get("calc_gate", {})
-    target_unit = calc_info.get("unit_label", "U.S. Customary Units")
-    target_hint = calc_info.get("hint", "See worked step-by-step calculation below.")
+    target_unit = u_dict.get("calc_unit", "U.S. Customary Units")
     legend_lines = [
         f"#### 🔎 Beginner's Symbol-by-Symbol Equation & Calculator Guide (Module {u_num:02d})",
-        f"* **Target Calculation Output for This Module:** Measured in **`{target_unit}`**",
-        f"* **Exact Calculator Formula Used in Sub-Tab 4:** `{target_hint}`",
+        f"* **Target U.S. Measurement Unit for Sub-Tab 4:** Measured in **`{target_unit}`**",
+        "* **Calculator Keystroke Rule (PEMDAS):** Always solve numbers inside **parentheses `( ... )`** first, then **square roots/exponents (`sqrt` or `^`)**, then **multiply/divide (`*` or `/`)**, and finally **add/subtract (`+` or `-`)**.",
         "",
         "| Symbol in Formula | How to Pronounce It | Plain-English Meaning | U.S. Measurement Unit & Calculator Tip |",
         "| :--- | :--- | :--- | :--- |",
