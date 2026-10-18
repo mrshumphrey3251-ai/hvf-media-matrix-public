@@ -119,7 +119,7 @@ def render_academy_deck():
                 key=f"unit_sel_{selected_code}"
             )
         with u_col2:
-            full_md = export_full_course_textbook_markdown, get_master_glossary_and_references(selected_code, active_course["title"])
+            full_md = export_full_course_textbook_markdown(selected_code, active_course["title"])
             st.download_button(
                 label=f"📥 Download Complete 10-Volume Textbook",
                 data=full_md,
