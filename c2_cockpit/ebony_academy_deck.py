@@ -288,28 +288,30 @@ def render_academy_deck():
             sc2.metric("Predicted HEC-18 Scour Depth (y_s)", f"{ys_scour:.2f} ft", "ODOT ITEM 113 SCOUR CRITICAL (Exceeds Footing!)" if ys_scour >= foot_d else "Footing Embedment Safe")
 
         elif selected_code == "STR-02":
-            st.markdown("### Workbench 2.1: ASTM C1153 Roof Conductive Heat Loss (Q) & Psychrometric Dew-Point (T_dp) Solver")
-            st.code("Q_Watts = (1 / R_SI) * Area_m2 * (T_indoor - T_outdoor)\nT_dp = (243.12 * gamma) / (17.62 - gamma),  where gamma = ln(RH/100) + (17.62 * T_C)/(243.12 + T_C)", language="text")
+            st.markdown("### Workbench 2.1: ASTM C1153 Roof Conductive Heat Loss (BTU/hr) & Dew-Point (°F) Solver")
+            st.code("Q_BTU_hr = (Area_sqft / R_Value_US) * (T_indoor_F - T_outdoor_F)\nDew_Point_F = (T_dp_C * 1.8) + 32.0   [U.S. Customary ASHRAE Psychrometric Formulation]", language="text")
             b1, b2, b3, b4 = st.columns(4)
             with b1:
                 wet_sqft = st.number_input("Saturated Roof Core Area (sq ft):", value=3500.0, step=250.0, key="wb2_area")
             with b2:
-                t_in_c = st.number_input("Indoor Temperature (°C):", value=22.0, step=1.0, key="wb2_tin")
+                t_in_f = st.number_input("Indoor Building Temp (°F):", value=72.0, step=1.0, key="wb2_tin_f")
             with b3:
                 rh_in = st.number_input("Indoor Relative Humidity (%):", value=52.0, step=2.0, key="wb2_rh")
             with b4:
-                t_out_c = st.number_input("Nocturnal Ambient Temp (°C):", value=4.0, step=1.0, key="wb2_tout")
+                t_out_f = st.number_input("Nocturnal Outdoor Temp (°F):", value=38.0, step=1.0, key="wb2_tout_f")
 
-            area_m2 = wet_sqft * 0.092903
-            q_dry = (1.0 / 4.40) * area_m2 * max(t_in_c - t_out_c, 0.0)
-            q_wet = (1.0 / 0.70) * area_m2 * max(t_in_c - t_out_c, 0.0)
+            delta_t_f = max(t_in_f - t_out_f, 0.0)
+            q_dry_btu = (wet_sqft / 25.0) * delta_t_f
+            q_wet_btu = (wet_sqft / 4.0) * delta_t_f
+            t_in_c = (t_in_f - 32.0) / 1.8
             gamma_v = math.log(max(rh_in, 1.0) / 100.0) + (17.62 * t_in_c) / (243.12 + t_in_c)
-            t_dp = (243.12 * gamma_v) / (17.62 - gamma_v)
+            t_dp_c = (243.12 * gamma_v) / (17.62 - gamma_v)
+            t_dp_f = (t_dp_c * 1.8) + 32.0
 
             r1, r2, r3 = st.columns(3)
-            r1.metric("Dry Insulation Heat Flux (R-25)", f"{q_dry:.0f} Watts", "Baseline Design Conduction")
-            r2.metric("Saturated Core Heat Bleed (R-4)", f"{q_wet:.0f} Watts", f"+{q_wet - q_dry:.0f} W Waste (6.3x Loss)")
-            r3.metric("Interstitial Dew-Point Temp (T_dp)", f"{t_dp:.2f} °C ({t_dp*1.8+32:.1f} °F)", "ACTIVE CONDENSATION ON DECK" if t_out_c <= t_dp else "Above Dew Point")
+            r1.metric("Dry Insulation Heat Loss (R-25)", f"{q_dry_btu:,.0f} BTU/hr", "Baseline Design Conduction")
+            r2.metric("Wet Core Heat Bleed (R-4)", f"{q_wet_btu:,.0f} BTU/hr", f"+{q_wet_btu - q_dry_btu:,.0f} BTU/hr Waste (6.25x Loss)")
+            r3.metric("Interstitial Dew-Point Temp", f"{t_dp_f:.1f} °F", "ACTIVE CONDENSATION ON DECK" if t_out_f <= t_dp_f else "Safe (Above Dew Point)")
 
         else:
             st.markdown("### Workbench 2.1: ASTM D6433 PCI Solver, Boussinesq Subgrade Stress (sigma_z) & Hydroplaning Speed (V_p)")

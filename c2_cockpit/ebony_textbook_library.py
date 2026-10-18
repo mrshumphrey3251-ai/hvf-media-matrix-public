@@ -67,11 +67,11 @@ def _enrich_unit(u_dict, course_code):
     """Adds mandatory Quantitative Calculation Gate and 3-Question Mastery Quiz to each 4.0-Hr Unit."""
     u_num = u_dict["unit"]
     calc_bank = {
-        # STR-01: BRIDGES (10 MODULES)
+        # STR-01: BRIDGES (10 MODULES — 100% U.S. CUSTOMARY UNITS)
         ("STR-01", 1): {
             "prompt": "Calculate the total extreme-ends opening length L_total (in feet) for a 3-barrel RCB culvert where each barrel is 6.0 ft wide separated by two 1.5 ft interior walls:",
             "target": 21.0, "tol": 0.2, "unit_label": "feet",
-            "hint": "L_total = (3 * 6.0) + (2 * 1.5) = 21.0 ft"
+            "hint": "L_total = (3 * 6.0 ft) + (2 * 1.5 ft) = 21.0 feet"
         },
         ("STR-01", 2): {
             "prompt": "Calculate the defective deck percentage D_% (CS-3 + CS-4) for a 12,800 sq ft bridge deck with 1,650 sq ft of CS-3 delamination and 50 sq ft of CS-4 spalling:",
@@ -79,101 +79,101 @@ def _enrich_unit(u_dict, course_code):
             "hint": "D_% = ((1650 + 50) / 12800) * 100 = 13.28%"
         },
         ("STR-01", 3): {
-            "prompt": "Using Fick's Second Law solution from Worked Problem 3.1 (x = 5.08 cm, D_c = 0.378 cm^2/yr, z = 0.813), enter the time to rebar depassivation t (in years):",
+            "prompt": "Using Fick's Second Law in U.S. Customary units from Worked Problem 3.1 (clear cover x = 2.0 inches, D_c = 0.0586 in^2/yr, z = 0.813), enter the time to rebar corrosion initiation t (in years):",
             "target": 25.8, "tol": 0.5, "unit_label": "years",
-            "hint": "t = 5.08^2 / (4 * 0.378 * 0.813^2) = 25.8 years"
+            "hint": "t = (2.0 in)^2 / (4 * 0.0586 in^2/yr * 0.813^2) = 25.8 years"
         },
         ("STR-01", 4): {
-            "prompt": "Calculate the critical brittle fracture crack length a_c (in inches) for an A36 tension flange with K_Ic = 45.0 ksi*sqrt(in), Y = 1.12, and sigma_max = 22.0 ksi:",
+            "prompt": "Calculate the critical brittle fracture crack length a_c (in inches) for an A36 steel tension flange with K_Ic = 45.0 ksi*sqrt(in), Y = 1.12, and sigma_max = 22.0 ksi:",
             "target": 1.06, "tol": 0.05, "unit_label": "inches",
-            "hint": "a_c = (1 / pi) * (45.0 / (1.12 * 22.0))^2 = 1.062 in"
+            "hint": "a_c = (1 / pi) * (45.0 / (1.12 * 22.0))^2 = 1.062 inches"
         },
         ("STR-01", 5): {
-            "prompt": "Calculate the minimum required onboard LED luminous intensity I_min (in candelas) to maintain 25.0 lux of surface illuminance at a standoff distance of z = 2.5 meters:",
-            "target": 156.25, "tol": 1.5, "unit_label": "candelas",
-            "hint": "I_min = 25.0 lux * (2.5 m)^2 = 156.25 cd"
+            "prompt": "Calculate the true horizontal under-deck velocity v_x (in ft/s) when hovering at a LiDAR standoff of z = 8.20 feet with net optical angular rate (omega_px - omega_gyro) = 0.40 rad/s:",
+            "target": 3.28, "tol": 0.15, "unit_label": "ft/s",
+            "hint": "v_x = 8.20 ft * 0.40 rad/s = 3.28 ft/s"
         },
         ("STR-01", 6): {
-            "prompt": "Enter the predicted HEC-18 equilibrium pier scour depth y_s (in feet) from Worked Problem 6.1 (y_1 = 14 ft, b = 4 ft, V_1 = 11.2 ft/s, Fr_1 = 0.5277, K3 = 1.1):",
+            "prompt": "Enter the predicted HEC-18 equilibrium pier scour depth y_s (in feet) from Worked Problem 6.1 (y_1 = 14.0 ft, b = 4.0 ft, V_1 = 11.2 ft/s, Fr_1 = 0.5277, K3 = 1.1):",
             "target": 10.37, "tol": 0.25, "unit_label": "feet",
-            "hint": "y_s = 14.0 * 2.0 * 1.1 * (4/14)^0.65 * (0.5277)^0.43 = 10.37 ft"
+            "hint": "y_s = 14.0 * 2.0 * 1.1 * (4/14)^0.65 * (0.5277)^0.43 = 10.37 feet"
         },
         ("STR-01", 7): {
-            "prompt": "Using the ASTM C1383 Impact-Echo equation T = (0.96 * c_p) / (2 * f), calculate the delamination depth (in inches) when c_p = 4,000 m/s and peak FFT frequency f = 30,200 Hz:",
+            "prompt": "Using the ASTM C1383 Impact-Echo equation in U.S. Customary units, enter the top-mat rebar delamination depth (in inches) at Point B when c_p = 13,120 ft/s and peak FFT frequency f = 30,200 Hz:",
             "target": 2.50, "tol": 0.15, "unit_label": "inches",
-            "hint": "T = (0.96 * 4000) / (2 * 30200) = 0.0636 m = 2.50 inches"
+            "hint": "T = (0.96 * 13120 ft/s * 12 in/ft) / (2 * 30200 Hz) = 2.50 inches"
         },
         ("STR-01", 8): {
-            "prompt": "Calculate the elastomeric bearing pad horizontal shear strain gamma for a 2.50-inch elastomer thickness sheared horizontally by Delta_s = 1.65 inches:",
-            "target": 0.66, "tol": 0.03, "unit_label": "strain (in/in)",
-            "hint": "gamma = 1.65 / 2.50 = 0.66"
+            "prompt": "Calculate the elastomeric bearing pad horizontal shear strain gamma (in/in) at 102 °F for a 2.50-inch elastomer thickness sheared horizontally by Delta_s = 1.65 inches:",
+            "target": 0.66, "tol": 0.03, "unit_label": "in/in strain",
+            "hint": "gamma = 1.65 in / 2.50 in = 0.66"
         },
         ("STR-01", 9): {
-            "prompt": "Calculate the gross Whitmore section compressive stress (in ksi) on a 0.50-inch thick gusset plate with Whitmore width b_w = 41.71 in under axial load P = 1,450 kips:",
+            "prompt": "Calculate the gross Whitmore section compressive stress (in ksi) on a 0.50-inch thick gusset plate with Whitmore width b_w = 41.71 inches under axial load P = 1,450 kips:",
             "target": 69.51, "tol": 0.5, "unit_label": "ksi",
-            "hint": "sigma_w = 1450 / (41.71 * 0.50) = 69.51 ksi"
+            "hint": "sigma_w = 1450 kips / (41.71 in * 0.50 in) = 69.51 ksi"
         },
         ("STR-01", 10): {
-            "prompt": "Calculate the AASHTO LRFR Rating Factor (RF) when girder capacity C = 1,850 kip-ft, factored dead load = 720 kip-ft, wearing surface = 180 kip-ft, and live load = 1,250 kip-ft:",
+            "prompt": "Calculate the AASHTO LRFR Rating Factor (RF) when girder capacity C = 1,850 kip-ft, factored dead load = 720 kip-ft, wearing surface = 180 kip-ft, and 36-ton truck live load = 1,250 kip-ft:",
             "target": 0.76, "tol": 0.03, "unit_label": "RF",
-            "hint": "RF = (1850 - 720 - 180) / 1250 = 0.76"
+            "hint": "RF = (1850 - 720 - 180) / 1250 = 0.76 (Post bridge at 27 Tons)"
         },
-        # STR-02: COMMERCIAL BUILDING ENVELOPE (10 MODULES)
+        # STR-02: COMMERCIAL BUILDING ENVELOPE (10 MODULES — 100% U.S. CUSTOMARY UNITS)
         ("STR-02", 1): {
             "prompt": "Calculate the percentage of state capital taxpayer savings (%) when surgical wet-core recovery + coating costs USD 834,000 versus a full tear-off quote of USD 2,400,000:",
             "target": 65.25, "tol": 0.5, "unit_label": "% savings",
             "hint": "Savings_% = ((2400000 - 834000) / 2400000) * 100 = 65.25%"
         },
         ("STR-02", 2): {
-            "prompt": "Using h_conv = 5.7 + 3.8 * v (where v is wind speed in m/s), calculate the convective heat transfer coefficient h_conv (in W/m^2K) at calm wind v = 2.0 m/s:",
-            "target": 13.30, "tol": 0.25, "unit_label": "W/(m^2*K)",
-            "hint": "h_conv = 5.7 + (3.8 * 2.0) = 13.30 W/(m^2*K)"
+            "prompt": "Using the U.S. Customary wind convection equation U_wind = 1.0 + 0.30 * v_mph, calculate the surface heat stripping coefficient (in BTU/hr*ft^2*°F) at a calm wind speed of v = 5.0 mph:",
+            "target": 2.50, "tol": 0.15, "unit_label": "BTU/(hr*ft^2*°F)",
+            "hint": "U_wind = 1.0 + (0.30 * 5.0 mph) = 2.50 BTU/(hr*ft^2*°F)"
         },
         ("STR-02", 3): {
-            "prompt": "Using Wien's Displacement Law lambda_max = 2897.8 / T_Kelvin, calculate the peak infrared emission wavelength (in micrometers) for a roof membrane at T = 285 K:",
-            "target": 10.17, "tol": 0.15, "unit_label": "micrometers",
-            "hint": "lambda_max = 2897.8 / 285 = 10.17 um"
+            "prompt": "Convert an ambient roof membrane temperature of T = 53.3 °F (285 K) into its peak infrared emission wavelength (in micrometers / microns) using Wien's Law (lambda_max = 2897.8 / 285):",
+            "target": 10.17, "tol": 0.15, "unit_label": "microns (um)",
+            "hint": "lambda_max = 2897.8 / 285 K = 10.17 microns"
         },
         ("STR-02", 4): {
-            "prompt": "Calculate the conductive heat loss Q_wet (in Watts) across A = 232.26 m^2 of saturated roof insulation (R_SI = 0.70 m^2K/W) at a temperature differential of Delta_T = 25 K:",
-            "target": 8295.0, "tol": 15.0, "unit_label": "Watts",
-            "hint": "Q_wet = (1 / 0.70) * 232.26 * 25 = 8295.0 Watts"
+            "prompt": "Using Q = (Area_sqft / R_value) * (T_in_F - T_out_F), calculate the conductive heat loss Q_wet (in BTU/hr) across 2,500 sq ft of water-soaked insulation (R-4) when Indoor = 72 °F and Outdoor = 27 °F (Delta_T = 45 °F):",
+            "target": 28125.0, "tol": 25.0, "unit_label": "BTU/hr",
+            "hint": "Q_wet = (2500 sq ft / 4.0) * 45 °F = 28,125.0 BTU/hr"
         },
         ("STR-02", 5): {
-            "prompt": "Enter the interstitial Dew-Point Temperature T_dp (in degrees C) from Worked Problem 5.1 for a hospital envelope at T = 23.0 C and RH = 55% (gamma = 0.9250):",
-            "target": 13.47, "tol": 0.25, "unit_label": "deg C",
-            "hint": "T_dp = (243.12 * 0.9250) / (17.62 - 0.9250) = 13.47 C"
+            "prompt": "Enter the interstitial Dew-Point Temperature T_dp (in degrees Fahrenheit °F) from Worked Problem 5.1 for a hospital building envelope at Indoor Temp = 73.4 °F and Relative Humidity = 55%:",
+            "target": 56.25, "tol": 0.35, "unit_label": "°F",
+            "hint": "At 73.4 °F and 55% RH, Dew Point T_dp = 56.25 °F"
         },
         ("STR-02", 6): {
-            "prompt": "Calculate the gravimetric moisture content percentage MC_% by dry weight for an insulation core weighing m_wet = 48.5 g wet and m_dry = 14.2 g oven-dry:",
-            "target": 241.55, "tol": 1.0, "unit_label": "% moisture",
-            "hint": "MC_% = ((48.5 - 14.2) / 14.2) * 100 = 241.55%"
+            "prompt": "Calculate the gravimetric moisture content percentage MC_% by dry weight for an insulation core weighing m_wet = 17.10 oz wet and m_dry = 5.00 oz oven-dry:",
+            "target": 242.0, "tol": 1.0, "unit_label": "% moisture",
+            "hint": "MC_% = ((17.10 oz - 5.00 oz) / 5.00 oz) * 100 = 242.0%"
         },
         ("STR-02", 7): {
-            "prompt": "Calculate the out-of-plane deflection ratio (H_panel / Delta_bow) for a 144-inch tall masonry wall panel bowed outward by 0.85 inches due to shelf-angle rust-jacking:",
-            "target": 169.41, "tol": 1.0, "unit_label": "L/Delta ratio",
-            "hint": "Ratio = 144.0 / 0.85 = 169.41 (Fails BIA 360 criterion)"
+            "prompt": "Calculate the out-of-plane deflection ratio (H_panel / Delta_bow) for a 144-inch (12.0 ft) tall brick masonry panel bowed outward by 0.85 inches due to steel shelf-angle rust-jacking:",
+            "target": 169.41, "tol": 1.0, "unit_label": "H/Delta ratio",
+            "hint": "Ratio = 144.0 in / 0.85 in = 169.41 (Fails BIA 360 criterion)"
         },
         ("STR-02", 8): {
             "prompt": "Enter the factored ACI 318 two-way slab punching shear capacity phi_V_c (in kips) from Worked Problem 8.1 (24x24 in column, d = 7.5 in, b_0 = 126 in, f'_c = 4,000 psi):",
             "target": 179.30, "tol": 1.0, "unit_label": "kips",
-            "hint": "phi_V_c = 0.75 * 4 * sqrt(4000) * 126.0 * 7.5 / 1000 = 179.3 kips"
+            "hint": "phi_V_c = 0.75 * 4 * sqrt(4000) * 126.0 * 7.5 / 1000 = 179.30 kips"
         },
         ("STR-02", 9): {
-            "prompt": "Calculate the added hydrostatic ponding load (in psf) caused by 8.0 inches of standing water on a flat roof bay (unit weight of water = 62.4 lb/ft^3):",
-            "target": 41.60, "tol": 0.5, "unit_label": "psf",
-            "hint": "q_water = (8.0 / 12.0) * 62.4 = 41.60 psf"
+            "prompt": "Calculate the added hydrostatic ponding load (in lbs/sq ft, psf) caused by 8.0 inches of standing water on a flat roof bay (unit weight of water = 62.4 lb/ft^3):",
+            "target": 41.60, "tol": 0.5, "unit_label": "psf (lbs/sq ft)",
+            "hint": "q_water = (8.0 in / 12.0 in/ft) * 62.4 lb/ft^3 = 41.60 psf"
         },
         ("STR-02", 10): {
-            "prompt": "Calculate the maximum UAS flight altitude H (in meters AGL) to achieve a 35.0 mm/px thermal GSD using a sensor with focal length f = 13.0 mm and pixel pitch p = 0.012 mm:",
-            "target": 37.92, "tol": 0.5, "unit_label": "meters AGL",
-            "hint": "H = (35.0 * 13.0) / 0.012 = 37916.7 mm = 37.92 m"
+            "prompt": "Enter the maximum UAS flight altitude H (in feet AGL) from Worked Problem 10.1 to achieve a 1.38 in/px (3.5 cm/px) thermal GSD over a state facility roof:",
+            "target": 124.40, "tol": 1.0, "unit_label": "feet AGL",
+            "hint": "H = 124.40 feet AGL"
         },
-        # STR-03: ROADWAY PAVEMENT & ASTM D6433 PCI (10 MODULES)
+        # STR-03: ROADWAY PAVEMENT & ASTM D6433 PCI (10 MODULES — 100% U.S. CUSTOMARY UNITS)
         ("STR-03", 1): {
-            "prompt": "Using the ASTM D6433 sample size equation n = (N * s^2) / (((e^2 / 4) * (N - 1)) + s^2) for N = 80 units, s = 10.0, and e = 5.0, calculate the exact unrounded value of n:",
+            "prompt": "Using the ASTM D6433 sample size equation n = (N * s^2) / (((e^2 / 4) * (N - 1)) + s^2) for N = 80 sample units (2,400 sq ft each), s = 10.0, and e = 5.0, calculate the exact unrounded value of n:",
             "target": 13.47, "tol": 0.6, "unit_label": "sample units",
-            "hint": "n = (80 * 100) / ((6.25 * 79) + 100) = 8000 / 593.75 = 13.47 (rounds up to 14)"
+            "hint": "n = (80 * 100) / ((6.25 * 79) + 100) = 8000 / 593.75 = 13.47"
         },
         ("STR-03", 2): {
             "prompt": "Calculate the certified ASTM D6433 Pavement Condition Index (PCI) when the iterative Corrected Deduct Value solver yields a maximum CDV of 44.0:",
@@ -181,44 +181,44 @@ def _enrich_unit(u_dict, course_code):
             "hint": "PCI = 100.0 - max(CDV) = 100.0 - 44.0 = 56.0"
         },
         ("STR-03", 3): {
-            "prompt": "Enter the Boussinesq vertical compressive stress sigma_z (in psi) at subgrade depth z = 12.0 inches beneath a circular tire footprint of radius a = 4.5 in and pressure p = 110 psi:",
+            "prompt": "Enter the Boussinesq vertical compressive stress sigma_z (in psi) at subgrade depth z = 12.0 inches beneath a circular truck tire footprint of radius a = 4.5 inches and pressure p = 110 psi:",
             "target": 19.68, "tol": 0.35, "unit_label": "psi",
-            "hint": "sigma_z = 110 * (1 - (1 / (1 + (4.5/12.0)^2))^1.5) = 19.68 psi"
+            "hint": "sigma_z = 110 psi * (1 - (1 / (1 + (4.5/12.0)^2))^1.5) = 19.68 psi"
         },
         ("STR-03", 4): {
-            "prompt": "Using the NASA Horne hydroplaning equation V_p = 10.35 * sqrt(P_tire), calculate the critical dynamic hydroplaning velocity (in mph) for a tire pressure of P_tire = 32.0 psi:",
+            "prompt": "Using the NASA Horne hydroplaning equation V_p = 10.35 * sqrt(P_tire), calculate the critical dynamic hydroplaning speed (in mph) for a vehicle tire pressure of P_tire = 32.0 psi:",
             "target": 58.55, "tol": 0.5, "unit_label": "mph",
-            "hint": "V_p = 10.35 * sqrt(32.0) = 58.55 mph"
+            "hint": "V_p = 10.35 * sqrt(32.0 psi) = 58.55 mph"
         },
         ("STR-03", 5): {
-            "prompt": "Calculate the daytime thermal curling tensile bending stress sigma_curl (in psi) in a PCC slab with E = 4.2e6 psi, alpha = 5.5e-6 /F, mu = 0.15, and Delta_T = 22 F:",
+            "prompt": "Calculate the daytime thermal curling tensile bending stress sigma_curl (in psi) in a 10-inch PCC concrete slab with E = 4.2e6 psi, alpha = 5.5e-6 /°F, mu = 0.15, and Delta_T = 22 °F:",
             "target": 298.94, "tol": 1.0, "unit_label": "psi",
-            "hint": "sigma_curl = (4.2e6 * 5.5e-6 * 22) / (2 * (1 - 0.15)) = 508.2 / 1.70 = 298.94 psi"
+            "hint": "sigma_curl = (4.2e6 * 5.5e-6 * 22 °F) / (2 * (1 - 0.15)) = 298.94 psi"
         },
         ("STR-03", 6): {
-            "prompt": "Calculate the International Roughness Index (IRI in inches/mile) when the Quarter-Car simulation accumulates 92.5 inches of vertical suspension motion over a 0.50-mile segment:",
+            "prompt": "Calculate the International Roughness Index (IRI in inches/mile) when the Quarter-Car simulation accumulates 92.5 inches of vertical suspension motion over a 0.50-mile highway segment:",
             "target": 185.0, "tol": 1.0, "unit_label": "inches/mile",
-            "hint": "IRI = 92.5 in / 0.50 miles = 185.0 in/mi"
+            "hint": "IRI = 92.5 inches / 0.50 miles = 185.0 inches/mile"
         },
         ("STR-03", 7): {
-            "prompt": "Using Manning's open-channel equation Q = (1.486/n) * A * R_h^(2/3) * S^(1/2), enter the culvert discharge capacity Q (in cfs) from Worked Problem 7.1 (n=0.013, A=12, R_h=1.20, S=0.01):",
-            "target": 154.90, "tol": 1.5, "unit_label": "cfs",
-            "hint": "Q = (1.486 / 0.013) * 12.0 * (1.20)^0.6667 * (0.01)^0.5 = 154.9 cfs"
+            "prompt": "Using Manning's open-channel equation Q = (1.486/n) * A * R_h^(2/3) * S^(1/2), enter the culvert discharge capacity Q (in cubic feet per second, cfs) from Worked Problem 7.1 (n=0.013, A=12 sq ft, R_h=1.20 ft, S=0.01):",
+            "target": 154.90, "tol": 1.5, "unit_label": "cfs (cu ft/sec)",
+            "hint": "Q = (1.486 / 0.013) * 12.0 * (1.20)^0.6667 * (0.01)^0.5 = 154.90 cfs"
         },
         ("STR-03", 8): {
-            "prompt": "Calculate the Vertical Root-Mean-Square Error RMSE_z (in mm) across 5 ODOT checkpoints with vertical residuals of +3.0, -4.0, +2.0, -3.0, and +1.0 mm:",
-            "target": 2.79, "tol": 0.15, "unit_label": "mm",
-            "hint": "RMSE_z = sqrt((9 + 16 + 4 + 9 + 1) / 5) = sqrt(7.8) = 2.79 mm"
+            "prompt": "Enter the Vertical Root-Mean-Square Error RMSE_z (in inches) across the 5 ODOT survey checkpoints from Worked Problem 8.1 (+0.12, -0.16, +0.08, -0.12, and +0.04 inches):",
+            "target": 0.11, "tol": 0.02, "unit_label": "inches",
+            "hint": "RMSE_z = sqrt((0.0144 + 0.0256 + 0.0064 + 0.0144 + 0.0016) / 5) = 0.11 inches"
         },
         ("STR-03", 9): {
-            "prompt": "Using Terzaghi's soil boiling equation i_c = (G_s - 1) / (1 + e), calculate the critical upward hydraulic gradient i_c for a silty embankment fill with G_s = 2.68 and void ratio e = 0.68:",
-            "target": 1.00, "tol": 0.05, "unit_label": "gradient (ft/ft)",
-            "hint": "i_c = (2.68 - 1.0) / (1.0 + 0.68) = 1.68 / 1.68 = 1.00"
+            "prompt": "Using Terzaghi's soil boiling equation i_c = (G_s - 1) / (1 + e), calculate the critical upward hydraulic gradient i_c (in ft/ft) for a silty embankment fill with G_s = 2.68 and void ratio e = 0.68:",
+            "target": 1.00, "tol": 0.05, "unit_label": "ft/ft gradient",
+            "hint": "i_c = (2.68 - 1.0) / (1.0 + 0.68) = 1.00 ft/ft"
         },
         ("STR-03", 10): {
             "prompt": "Under Sovereign FAA Part 107.39 / 107.145 highway corridor flight rules, enter the minimum required lateral shoulder offset distance (in feet) from live moving traffic lanes:",
             "target": 15.0, "tol": 0.5, "unit_label": "feet",
-            "hint": "Minimum_Lateral_Offset_From_Live_Lane = 15.0 ft"
+            "hint": "Minimum_Lateral_Offset_From_Live_Lane = 15.0 feet"
         }
     }
     default_calc = {
@@ -283,14 +283,14 @@ def _enrich_unit(u_dict, course_code):
         "| Engineering Parameter / Audit Gate | Governing Standard | Allowable Field Tolerance | Mandatory Rejection / Invalidation Trigger | Statutory Recordation Format |\n"
         "| :--- | :--- | :--- | :--- | :--- |\n"
         "| **Primary Sensor Payload Calibration** | NIST / ASTM / ISO-17025 | +/- 0.5% Full-Scale Reading | Expired calibration certificate (> 12 mos) or post-sortie zero-drift > 1.0% | Embedded in RJPEG / LAS / Sonar Header + SQLite WORM |\n"
-        "| **Geospatial RTK / SLAM Positional Lock** | ASPRS Positional Accuracy | Horizontal <= 1.5 cm, Vertical <= 4.5 mm (or +/- 0.15 m Optical SLAM) | PDOP > 3.5, GNSS cycle slip, or surface illuminance < 15.0 lux in GPS-denied zones | NMEA GGA / EKF3 Covariance Matrix Log |\n"
-        "| **Defect Dimensional Sizing (Optical GSD)** | AASHTO MBEI / ASTM D6433 | Ground Sampling Distance <= 0.10 mm/px (FCM) or <= 5.0 mm/px (Deck/Road) | Motion blur > 1.5 px, oblique angle < 45 deg, or specular glare saturation | Orthorectified GeoTIFF + DXF Defect Polygon |\n"
-        "| **Environmental Boundary Compliance** | ASTM C1153 / HEC-18 / NBIS | Wind < 15.0 mph, Dry Surface > 24 hrs, Thermal Delta_T >= +2.0 C | Standing surface water, convective wind stripping, or uncompensated water temp | Kestrel Meteorological Station Telemetry |\n"
+        "| **Geospatial RTK / SLAM Positional Lock** | ASPRS Positional Accuracy | Horizontal <= 0.60 in, Vertical <= 0.18 in (or +/- 6.0 in Optical SLAM) | PDOP > 3.5, GNSS cycle slip, or surface illuminance < 1.4 foot-candles (15 lux) in GPS-denied zones | NMEA GGA / EKF3 Covariance Matrix Log |\n"
+        "| **Defect Dimensional Sizing (Optical GSD)** | AASHTO MBEI / ASTM D6433 | Ground Sampling Distance <= 0.004 in/px (4 mils FCM) or <= 0.20 in/px (Deck/Road) | Motion blur > 1.5 px, oblique angle < 45 deg, or specular glare saturation | Orthorectified GeoTIFF + DXF Defect Polygon |\n"
+        "| **Environmental Boundary Compliance** | ASTM C1153 / HEC-18 / NBIS | Wind < 15.0 mph, Dry Surface > 24 hrs, Thermal Delta_T >= +3.6 °F (+2.0 °C) | Standing surface water, convective wind stripping, or uncompensated water temp | Kestrel Meteorological Station Telemetry |\n"
         "| **Cryptographic Chain-of-Custody Seal** | FIPS 180-4 / 18 U.S.C. 1001 | 256-Bit Hexadecimal Collision-Free Hash | Any post-acquisition byte modification or missing UTC nanosecond timestamp | matrix_ledger.db (sha256_seal Column) |\n\n"
         "---\n\n"
         f"### {u_num}.4 Step-by-Step Mathematical Derivation & Dimensional Analysis\n\n"
         f"Every equation in **Module {u_num:02d}** is derived from first principles of continuum mechanics, conservation of mass/energy, and electromagnetic wave propagation:\n\n"
-        "1. **Conservation & Continuum Baseline:** Field sensors do not measure condition states directly; they measure physical flux quantities—photon radiance (W in W/m^2), acoustic two-way travel time (Delta_t in microseconds), laser phase shift (Delta_phi), or pixel optical angular displacement (omega_px in rad/s).\n"
+        "1. **Conservation & Continuum Baseline:** Field sensors do not measure condition states directly; they measure physical flux quantities—photon radiance (Q in BTU/hr*ft^2), acoustic two-way travel time (Delta_t in microseconds), laser phase shift (Delta_phi), or pixel optical angular displacement (omega_px in rad/s).\n"
         "2. **Boundary Condition Normalization:** Raw sensor signals are normalized against ambient environmental boundary conditions (subtracting reflected sky temperature T_refl, compensating gyroscope pitch rate omega_y, or dividing by gross sample unit area A_total).\n"
         "3. **Critical Limit Comparison:** The normalized engineering state variable is compared against the material's constitutive failure threshold (concrete tensile rupture f_r = 7.5 * sqrt(f'_c), steel plane-strain fracture toughness K_Ic, or Terzaghi critical hydraulic gradient i_c).\n"
         "4. **Statutory Disposition Mapping:** Whenever the calculated demand-to-capacity ratio approaches or exceeds unity (D / C >= 1.0), the inspector is legally prohibited from exercising subjective discretion and must issue the mandatory **Condition State 3 / Condition State 4** or **ASTM Rehabilitation Docket**.\n\n"
@@ -322,7 +322,7 @@ def get_course_units(course_code: str):
                 "theory": """### 1.1 Federal & State Statutory Evolution of Bridge Safety
 Following the catastrophic collapse of the U.S. Route 35 Silver Bridge on December 15, 1967 (46 fatalities), Congress enacted the **Federal-Aid Highway Act of 1968**, establishing the **National Bridge Inspection Standards (NBIS)** codified at **23 CFR § 650 Subpart C**. Within the State of Oklahoma, federal NBIS requirements are integrated into **Oklahoma Statutes Title 61 (Public Buildings and Public Works)** and **Title 74**, administered by the **Oklahoma Department of Transportation (ODOT) Bridge Division**.
 
-Every structure on a public roadway with an opening measured along the center of the roadway of more than **20.0 feet (6.1 meters)** between undercopings of abutments or spring lines of arches, or extreme ends of openings for multiple boxes, is legally classified as a **Bridge** and must be cataloged in the **National Bridge Inventory (NBI)**.
+Every structure on a public roadway with an opening measured along the center of the roadway of more than **20.0 feet** between undercopings of abutments or spring lines of arches, or extreme ends of openings for multiple boxes, is legally classified as a **Bridge** and must be cataloged in the **National Bridge Inventory (NBI)**.
 
 | Statutory Mandate | Code Citation | Maximum Interval | Legal / Engineering Requirement |
 | :--- | :--- | :--- | :--- |
@@ -353,9 +353,9 @@ Under the **AASHTO Manual for Bridge Element Inspection (MBEI)**, inspectors do 
 
 | Condition State | Severity | Crack Width (w_c) | Spalling / Delamination | Reinforcing / Structural Steel State | Required Statutory Action |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CS-1 (Good)** | None / Hairline | w_c < 0.012 in (0.3 mm) | Zero delamination; sound acoustic/thermal return. | Intact passive oxide film or coating; zero corrosion. | Routine 24-month cycle; preventive silane seal. |
+| **CS-1 (Good)** | None / Hairline | w_c < 0.012 inches (12 mils) | Zero delamination; sound acoustic/thermal return. | Intact passive oxide film or coating; zero corrosion. | Routine 24-month cycle; preventive silane seal. |
 | **CS-2 (Fair)** | Moderate | 0.012 in <= w_c <= 0.050 in | Delamination present; spalls <= 1.0 in deep and <= 6.0 in diameter. | Minor surface freckle rust; no exposed rebar section loss. | Epoxy crack injection; localized concrete patching. |
-| **CS-3 (Poor)** | Advanced | w_c > 0.050 in (1.27 mm) | Spalls > 1.0 in deep; widespread hollow delamination plane. | Exposed rebar with active oxidation; measurable section loss < 10%, capacity intact. | **Mandatory Priority Maintenance Docket.** Hydrodemolition if deck D_% >= 10%. |
+| **CS-3 (Poor)** | Advanced | w_c > 0.050 inches (50 mils) | Spalls > 1.0 in deep; widespread hollow delamination plane. | Exposed rebar with active oxidation; measurable section loss < 10%, capacity intact. | **Mandatory Priority Maintenance Docket.** Hydrodemolition if deck D_% >= 10%. |
 | **CS-4 (Severe)** | Critical | Structural shear / flexure cracks | Full-depth slab punch-through or bearing crushing. | Severe section loss >= 10% in tension path or active fatigue crack. | **IMMEDIATE EMERGENCY CLOSURE / LOAD RESTRICTION** under OK Title 61. |""",
                 "equations": """Total_Element_Area (A_total) = A_CS1 + A_CS2 + A_CS3 + A_CS4
 Weighted_Health_Index (HI) = [ (1.00 * A_CS1) + (0.67 * A_CS2) + (0.33 * A_CS3) + (0.00 * A_CS4) ] / A_total * 100""",
@@ -392,10 +392,10 @@ Once `C(x_rebar, t)` reaches the **Critical Chloride Threshold (C_crit = 1.2 to 
                 "equations": """C(x, t) = C_0 * [ 1 - erf( x / (2 * sqrt(D_c * t)) ) ]
 P_rust (4,000 to 7,000 psi) >> f_r = 7.5 * sqrt(f'_c) (~475 to 580 psi)  -->  Horizontal Delamination Fracture""",
                 "worked_example": """#### Worked Engineering Problem 3.1: Time-to-Depassivation Calculation for Bridge Deck Rebar
-* **Field Scenario:** A concrete bridge deck has a clear rebar cover depth of x = 2.0 in (5.08 cm), surface chloride concentration C_0 = 6.0 lb/yd^3, critical threshold C_crit = 1.5 lb/yd^3, and apparent diffusion coefficient D_c = 0.378 cm^2/yr.
+* **Field Scenario:** A concrete bridge deck has a clear rebar cover depth of x = 2.0 inches, surface chloride concentration C_0 = 6.0 lb/yd^3, critical threshold C_crit = 1.5 lb/yd^3, and apparent diffusion coefficient D_c = 0.0586 in^2/yr.
 * **Step 1 (Error Function Ratio):** `C_crit / C_0 = 1.5 / 6.0 = 0.25 = 1 - erf(z)  -->  erf(z) = 0.75  -->  z = 0.813`.
 * **Step 2 (Solve for Time to Corrosion Initiation t):**
-  `t = x^2 / (4 * D_c * z^2) = (5.08 cm)^2 / (4 * 0.378 * 0.813^2) = 25.806 / 1.000 = 25.8 years`.""",
+  `t = x^2 / (4 * D_c * z^2) = (2.0 in)^2 / (4 * 0.0586 in^2/yr * 0.813^2) = 4.00 / 0.155 = 25.8 years`.""",
                 "lab_protocol": """1. Perform core-drilled powder sampling at 0.5 in depth increments for acid-soluble chloride titration (AASHTO T 260).
 2. Conduct ASTM C876 Cu/CuSO4 half-cell potential grid survey on a 4.0 ft spacing.
 3. Overlay half-cell equipotential contour maps (<-350 mV) directly onto aerial radiometric IR delamination polygons."""
@@ -410,7 +410,7 @@ Under **23 CFR § 650.305**, a **Fracture-Critical Member (FCM)** is a steel mem
 ### 4.2 Stress Intensity Factor (K_I) & Plane-Strain Fracture Toughness (K_Ic)
 In **Linear-Elastic Fracture Mechanics (LEFM)**, the elastic stress field at the tip of a crack of length `a` subjected to tensile stress `sigma` is defined by the **Mode I Stress Intensity Factor (K_I)**:
 * `K_I = Y * sigma * sqrt(pi * a)`
-Catastrophic brittle cleavage fracture occurs instantaneously at the speed of sound in steel (5,900 m/s) when **K_I >= K_Ic** (Plane-Strain Fracture Toughness).
+Catastrophic brittle cleavage fracture occurs instantaneously at the speed of sound in steel (19,350 ft/s) when **K_I >= K_Ic** (Plane-Strain Fracture Toughness).
 
 ### 4.3 Cyclic Fatigue Crack Growth: The Paris-Erdogan Law
 Under repetitive truck axle stress ranges (`Delta_sigma`), sub-critical fatigue cracks propagate at rate `da/dN = C * (Delta_K)^m`, where `m = 3.0` for ferritic bridge steels.""",
@@ -423,9 +423,9 @@ N_f = [ 2 / (C * Y^3 * (Delta_sigma)^3 * pi^1.5) ] * [ (1 / sqrt(a_0)) - (1 / sq
   `a_c = (1 / 3.1416) * (45.0 / (1.12 * 22.0))^2 = 0.3183 * (1.8263)^2 = 1.062 inches`.
 * **Step 2 (Remaining Cycles N_f):**
   `N_f = [ 2 / (6.077e-7) ] * (1/sqrt(0.25) - 1/sqrt(1.062)) = 3,388,500 truck cycles` (Code immediately as **CS-4**).""",
-                "lab_protocol": """1. Deploy upward-tilted (+60 deg) 48MP optical zoom payload at 1.5 m standoff to achieve GSD <= 0.08 mm/pixel.
+                "lab_protocol": """1. Deploy upward-tilted (+60 deg) 48MP optical zoom payload at 5.0 ft standoff to achieve GSD <= 0.003 in/pixel (3 mils/px).
 2. Inspect all AASHTO Category E/E' details: welded cover plate ends, web-stiffener toe welds, and gusset nodes.
-3. Flag any linear indication >= 0.10 mm for hands-on Ultrasonic Phased-Array (PAUT) sizing."""
+3. Flag any linear indication >= 0.004 inches (4 mils) for hands-on Ultrasonic Phased-Array (PAUT) sizing."""
             },
             {
                 "unit": 5,
@@ -437,16 +437,16 @@ Flying beneath a reinforced concrete deck and steel girder grid induces two leth
 2. **Ferromagnetic Compass Deviation:** Massive steel girders warp the Earth's magnetic field, inducing 45 to 90 degree yaw errors in fluxgate magnetometers.
 
 ### 5.2 Extended Kalman Filter (EKF3) Optical Flow + LiDAR Rangefinding Fusion
-The Sovereign flight controller inhibits magnetometer yaw (`COMPASS_USE = 0`) and fuses **HereFlow Optical Flow** angular pixel rates (`omega_px`) with **TF02-i LiDAR** rangefinding (`z`) and MEMS ring-laser gyros (`omega_gyro`). Optical flow requires a minimum surface illuminance of **15.0 lux** via onboard LED luminaire bars.""",
+The Sovereign flight controller inhibits magnetometer yaw (`COMPASS_USE = 0`) and fuses **HereFlow Optical Flow** angular pixel rates (`omega_px`) with **TF02-i LiDAR** rangefinding (`z`) and MEMS ring-laser gyros (`omega_gyro`). Optical flow requires a minimum surface illuminance of **1.4 foot-candles (15 lux)** via onboard LED luminaire bars.""",
                 "equations": """v_x = z_lidar * (omega_pixel_x - omega_gyro_y)
-Luminous_Intensity (I_candela) >= 15.0 lux * (d_meters)^2""",
+Luminous_Intensity (I_candela) >= 1.4 foot-candles (15 lux) * (d_meters)^2""",
                 "worked_example": """#### Worked Engineering Problem 5.1: Optical Flow Velocity & LED Illumination Sizing Beneath a Dark Box Girder
-* **Field Scenario:** The UAS hovers at standoff z = 2.5 m beneath a dark girder. Optical flow reports pixel rate 0.48 rad/s while pitch gyro rate is 0.08 rad/s.
-* **Step 1 (True Horizontal Velocity v_x):** `v_x = 2.5 m * (0.48 - 0.08) = 1.00 m/s`.
-* **Step 2 (Minimum LED Intensity for 25 lux safety margin at 2.5 m):** `I_min = 25.0 lux * (2.5 m)^2 = 156.25 candelas`.""",
+* **Field Scenario:** The UAS hovers at standoff z = 8.2 ft (2.5 m) beneath a dark girder. Optical flow reports pixel rate 0.48 rad/s while pitch gyro rate is 0.08 rad/s.
+* **Step 1 (True Horizontal Velocity v_x):** `v_x = 2.5 m * (0.48 - 0.08) = 3.28 ft/s (1.00 m/s)`.
+* **Step 2 (Minimum LED Intensity for 25 lux safety margin at 2.5 m):** `I_min = 2.3 foot-candles (25 lux) * (2.5 m / 8.2 ft)^2 = 156.25 candelas`.""",
                 "lab_protocol": """1. Set EKF3 primary velocity source to Optical Flow (`EK3_SRC1_VELXY = 5`) and altitude to Rangefinder (`EK3_SRC1_POSZ = 2`).
 2. Disable magnetic compass yaw fusion (`COMPASS_USE = 0`) before crossing beneath the fascia girder.
-3. Cap maximum under-deck ingress speed at <= 1.5 m/s with a 1.5 m 360-degree LiDAR obstacle avoidance bubble."""
+3. Cap maximum under-deck ingress speed at <= 5.0 ft/s (3.4 mph) with a 5.0 ft 360-degree LiDAR obstacle avoidance bubble."""
             },
             {
                 "unit": 6,
@@ -473,13 +473,13 @@ d_water = (c_sound_water * Delta_t_echo) / 2,   where c_sound_water = 4,856 ft/s
                 "hours": 4.0,
                 "title": "Unit 07: Non-Destructive Testing (NDT) Physics — Ultrasonic Phased-Array, Impact-Echo & GPR",
                 "theory": """### 7.1 Stress-Wave Impact-Echo (ASTM C1383) & Ground Penetrating Radar (GPR — ASTM D6087)
-* **Impact-Echo:** Mechanical impact generates compressional P-waves (`c_p ~ 4,000 m/s`) that reflect off internal delaminations. FFT peak frequency `f` yields flaw depth: `T = (0.96 * c_p) / (2 * f)`.
+* **Impact-Echo:** Mechanical impact generates compressional P-waves (`c_p ~ 13,120 ft/s`) that reflect off internal delaminations. FFT peak frequency `f` yields flaw depth: `T = (0.96 * c_p) / (2 * f)`.
 * **Ground Penetrating Radar (GPR):** 1.5–2.6 GHz electromagnetic pulses reflect strongly off chloride-wet concrete (`epsilon_r ~ 81` vs. dry concrete `epsilon_r ~ 6`).""",
                 "equations": """Depth_T = (0.96 * c_p) / (2 * f_peak)
 Depth_rebar = (c_0 * t_two_way) / (2 * sqrt(epsilon_r)),   where c_0 = 11.8 in/ns""",
                 "worked_example": """#### Worked Engineering Problem 7.1: Impact-Echo Delamination Depth Calculation
-* **Field Scenario:** Concrete deck thickness 8.50 in (c_p = 4,000 m/s, beta = 0.96). Point A FFT frequency is 8,890 Hz; Point B shifts to 30,200 Hz.
-* **Calculation:** Point A depth = `(0.96 * 4000) / (2 * 8890) = 0.216 m` (**8.50 in sound slab**). Point B depth = `(0.96 * 4000) / (2 * 30200) = 0.0636 m` (**2.50 in top-mat rebar delamination!**).""",
+* **Field Scenario:** Concrete deck thickness 8.50 in (c_p = 13,120 ft/s, beta = 0.96). Point A FFT frequency is 8,890 Hz; Point B shifts to 30,200 Hz.
+* **Calculation:** Point A depth = `(0.96 * 13,120 ft/s * 12 in/ft) / (2 * 8,890 Hz) = 8.50 inches` (**8.50 in sound slab**). Point B depth = `(0.96 * 13,120 ft/s * 12 in/ft) / (2 * 30,200 Hz) = 2.50 inches` (**2.50 in top-mat rebar delamination!**).""",
                 "lab_protocol": """1. Calibrate P-wave velocity over a known sound core location before running Impact-Echo grid scans.
 2. Configure 2.0 GHz GPR antenna scan spacing at 1.0 ft longitudinal passes across all lanes.
 3. Export rebar cover depth contour maps to calibrate hydrodemolition milling depth."""
@@ -496,10 +496,10 @@ Following the I-35W truss collapse, inspectors must measure exact gusset plate t
                 "equations": """Delta_L = alpha * L_span * (T_current - T_install)
 Shear_Strain_gamma = Delta_s / h_elastomer <= 0.50 (AASHTO LRFD Limit)""",
                 "worked_example": """#### Worked Engineering Problem 8.1: Elastomeric Bearing Pad Shear Strain Audit
-* **Field Scenario:** An elastomeric pad with elastomer thickness h_rt = 2.50 in has sheared horizontally by Delta_s = 1.65 in at 102 F.
+* **Field Scenario:** An elastomeric pad with elastomer thickness h_rt = 2.50 in has sheared horizontally by Delta_s = 1.65 in at 102 °F.
 * **Calculation:** `gamma = 1.65 / 2.50 = 0.66 > 0.50 limit` -> Code **Element 310 as CS-3 (Poor)** and issue girder jacking/reset docket.""",
                 "lab_protocol": """1. Record steel surface temperature via radiometric spot sensor during every bearing inspection.
-2. Measure rocker tilt angle or elastomeric shear offset relative to 60 F neutral point.
+2. Measure rocker tilt angle or elastomeric shear offset relative to 60 °F neutral point.
 3. Scan truss gusset plates with 3D LiDAR to detect out-of-plane distortion > 0.125 in."""
             },
             {
@@ -507,7 +507,7 @@ Shear_Strain_gamma = Delta_s / h_elastomer <= 0.50 (AASHTO LRFD Limit)""",
                 "hours": 4.0,
                 "title": "Unit 09: Forensic Structural Failure Reconstructions — Silver Bridge, Mianus River & I-35W",
                 "theory": """### 9.1 Silver Bridge (1967 — 46 Fatalities): Stress-Corrosion Cracking of Non-Redundant Eyebar 330
-A **0.125-inch** stress-corrosion crack inside the pinhole of SAE 1060 high-carbon steel Eyebar 330 reached critical fracture toughness (`K_Ic ~ 42 ksi*sqrt(in)` at 30 F), causing instantaneous brittle cleavage and total progressive collapse in 47 seconds.
+A **0.125-inch** stress-corrosion crack inside the pinhole of SAE 1060 high-carbon steel Eyebar 330 reached critical fracture toughness (`K_Ic ~ 42 ksi*sqrt(in)` at 30 °F), causing instantaneous brittle cleavage and total progressive collapse in 47 seconds.
 
 ### 9.2 Mianus River Bridge (1983 — 3 Fatalities): Pack-Rust Prying of Pin-and-Hanger Assembly
 Unmitigated de-icing salt runoff built up expansive **pack rust** behind the southeast hanger strap, generating >150 kips of lateral force that pushed the strap off the 7-inch steel pin.
@@ -559,13 +559,13 @@ Under **Oklahoma Statutes Title 61**, the **OMES Construction and Properties (CA
                 "theory": """### 2.1 Strict Meteorological Boundary Conditions under ASTM C1153
 1. **Daytime Solar Loading:** Minimum 50% sunny skies prior to inspection.
 2. **Dry Surface Mandate:** 100% free of standing water, snow, or ice (>24 hrs post-rain).
-3. **Wind Speed Ceiling:** Ambient wind **v_wind < 15.0 mph (6.7 m/s)** to prevent convective stripping.
+3. **Wind Speed Ceiling:** Ambient wind **v_wind < 15.0 mph** to prevent convective stripping.
 4. **Nocturnal Window:** **45 to 120 minutes post-sunset** under clear skies (<20% cloud cover).""",
-                "equations": """h_conv = 5.7 + 3.8 * v_wind_m_s   [Convective Heat Transfer Coefficient, W/(m^2*K)]
+                "equations": """U_wind_BTU = 1.0 + 0.30 * v_wind_mph   [Convective Surface Coefficient, BTU/(hr*ft^2*°F)]
 ASTM_C1153_Valid = (Wind_mph < 15.0) AND (Hours_Post_Rain >= 24.0) AND (Min_Post_Sunset >= 45)""",
                 "worked_example": """#### Worked Problem 2.1: Convective Wind Stripping Coefficient Calculation
-* **Scenario:** Compare h_conv at v = 2.0 m/s (4.5 mph) vs. invalid wind v = 9.0 m/s (20.1 mph).
-* **Result:** At 2.0 m/s, h_conv = **13.3 W/m^2K** (strong Delta_T preserved). At 9.0 m/s, h_conv = **39.9 W/m^2K** (3x convective stripping erases thermal anomaly).""",
+* **Scenario:** Compare convective surface heat stripping at calm wind v = 5.0 mph vs. high wind v = 20.0 mph.
+* **Result:** At 5.0 mph, U_wind = **2.50 BTU/(hr*ft^2*°F)** (strong thermal contrast preserved). At 20.0 mph, U_wind = **7.00 BTU/(hr*ft^2*°F)** (nearly 3x wind stripping erases the roof anomaly).""",
                 "lab_protocol": """1. Deploy Kestrel ultrasonic anemometer at roof parapet elevation 60 minutes prior to takeoff.
 2. Log ambient dry-bulb temp, relative humidity, dew point, and wind velocity into Title 61 docket."""
             },
@@ -573,13 +573,13 @@ ASTM_C1153_Valid = (Wind_mph < 15.0) AND (Hours_Post_Rain >= 24.0) AND (Min_Post
                 "unit": 3, "hours": 4.0,
                 "title": "Unit 03: Quantum & Thermodynamic Physics — Planck's Law, Wien's Displacement & Emissivity",
                 "theory": """### 3.1 Wien's Displacement Law & Longwave Infrared (LWIR) Sensors
-Peak blackbody emission wavelength is `lambda_max = 2897.8 / T_Kelvin`. At ambient roof temperatures (~290 K), peak radiation occurs at **10.0 micrometers**, requiring an uncooled VOx **LWIR (7.5 to 13.5 um)** microbolometer with **NETD <= 50 mK (0.05 C)** and emissivity correction (`epsilon = 0.92` for single-ply membranes).""",
+Peak blackbody emission wavelength is `lambda_max = 2897.8 / T_Kelvin`. At ambient roof temperatures (~62 °F), peak radiation occurs at **10.0 micrometers**, requiring an uncooled VOx **LWIR (7.5 to 13.5 um)** microbolometer with **NETD <= 0.09 °F (50 mK)** and emissivity correction (`epsilon = 0.92` for single-ply membranes).""",
                 "equations": """lambda_max = 2897.8 / T_Kelvin   [micrometers]
 W_tot = epsilon * tau * sigma * T_obj^4 + (1 - epsilon) * tau * sigma * T_refl^4""",
                 "worked_example": """#### Worked Problem 3.1: Wien's Peak Wavelength Calculation
-* **Scenario:** A TPO roof membrane is at T = 285 K (11.85 C).
+* **Scenario:** A TPO roof membrane is at T = 53.3 °F (285 K).
 * **Calculation:** lambda_max = 2897.8 / 285 = **10.17 micrometers** (centered in LWIR 7.5-13.5 um window).""",
-                "lab_protocol": """1. Input epsilon = 0.92 for single-ply membranes and T_refl = -35 C (clear night sky) into RJPEG processor.
+                "lab_protocol": """1. Input epsilon = 0.92 for single-ply membranes and T_refl = -31 °F (-35 °C) (clear night sky) into RJPEG processor.
 2. Mask out unpainted sheet-metal flashing and HVAC housings (epsilon ~ 0.20) to prevent false anomalies."""
             },
             {
@@ -587,13 +587,13 @@ W_tot = epsilon * tau * sigma * T_obj^4 + (1 - epsilon) * tau * sigma * T_refl^4
                 "title": "Unit 04: Heat Transfer Mechanics — Fourier Conduction, Volumetric Heat Capacity & R-Value Loss",
                 "theory": """### 4.1 The 93x Volumetric Heat Capacity Disparity
 Dry polyisocyanurate foam has volumetric heat capacity `rho * c_p = 44.8 kJ/(m^3*K)`, whereas liquid water has `4,184 kJ/(m^3*K)`—**93.4x higher volumetric heat storage!** Simultaneously, water destroys insulation R-value, driving massive conductive energy loss (`Q = U * A * Delta_T`).""",
-                "equations": """Q_loss_Watts = (1 / R_SI) * Area_m2 * (T_in - T_out)
+                "equations": """Q_loss_BTU_hr = (Area_sqft / R_value_US) * (T_in_F - T_out_F)
 Ratio_Volumetric_Heat_Capacity = (rho_water * cp_water) / (rho_ISO * cp_ISO) = 93.4""",
                 "worked_example": """#### Worked Problem 4.1: Conductive Heat Flux Increase Across Saturated Roof Insulation
-* **Scenario:** Compare heat loss across 2,500 sq ft (232.26 m^2) of dry ISO (R_SI = 4.40) vs. wet ISO (R_SI = 0.70) at Delta_T = 25 K.
-* **Calculation:** Q_dry = **1,320 Watts** vs. Q_wet = **8,295 Watts** (**6.28x energy bleed**).""",
+* **Scenario:** Compare heat loss across 2,500 sq ft of dry Polyiso insulation (R-25) vs. water-logged insulation (R-4) when Indoor Temp = 72 °F and Outdoor Night Temp = 27 °F (Delta_T = 45 °F).
+* **Calculation:** Q_dry = (2,500 / 25) * 45 = **4,500 BTU/hr** vs. Q_wet = (2,500 / 4) * 45 = **28,125 BTU/hr** (**6.25x energy bleed!**).""",
                 "lab_protocol": """1. Measure thermal anomaly surface Delta_T = T_wet - T_dry across all RJPEG orthomosaic polygons.
-2. Flag any polygon exhibiting Delta_T >= +2.0 C for ground-truth impedance verification."""
+2. Flag any polygon exhibiting Delta_T >= +3.6 °F (+2.0 °C) for ground-truth impedance verification."""
             },
             {
                 "unit": 5, "hours": 4.0,
@@ -603,8 +603,8 @@ Warm, humid indoor air exfiltrating through unsealed parapet or curtain-wall joi
                 "equations": """gamma = ln(RH / 100) + (17.62 * T_C) / (243.12 + T_C)
 T_dew_point_C = (243.12 * gamma) / (17.62 - gamma)""",
                 "worked_example": """#### Worked Problem 5.1: Hospital Envelope Dew-Point Condensation Audit
-* **Scenario:** Indoor conditions are T = 23.0 C and RH = 55%.
-* **Calculation:** gamma = 0.9250 -> T_dp = (243.12 * 0.9250) / (17.62 - 0.9250) = **13.47 C (56.2 F)**. Any steel deck below 56.2 F experiences active condensation.""",
+* **Scenario:** Indoor hospital conditions are T = 73.4 °F (23.0 °C) and Relative Humidity RH = 55%.
+* **Calculation:** gamma = 0.9250 -> T_dp = (243.12 * 0.9250) / (17.62 - 0.9250) = **56.25 °F (13.47 °C)**. Any steel deck below 56.25 °F experiences active condensation.""",
                 "lab_protocol": """1. Conduct blower-door depressurization (-50 Pa) per ASTM E1186 while scanning joints with LWIR.
 2. Distinguish diffuse wet-insulation conduction from sharp convective air-exfiltration plumes."""
             },
@@ -615,7 +615,7 @@ T_dew_point_C = (243.12 * gamma) / (17.62 - gamma)""",
 Under **ASTM C1153 Section 11**, every thermal anomaly must be verified using capacitive dielectric impedance meters, invasive resistance probes, or gravimetric core drying (`MC_% = (m_wet - m_dry) / m_dry * 100`).""",
                 "equations": """Gravimetric_Moisture_Content (MC_%) = [ (m_wet - m_dry) / m_dry ] * 100""",
                 "worked_example": """#### Worked Problem 6.1: Gravimetric Core Moisture Verification
-* **Scenario:** A 2.0 in core from a +3.4 C anomaly weighs m_wet = 48.5 g and oven-dried m_dry = 14.2 g.
+* **Scenario:** A 2.0 in core from a +6.1 °F thermal anomaly weighs m_wet = 17.10 oz (48.5 g) wet and m_dry = 5.00 oz (14.2 g) oven-dried.
 * **Calculation:** MC_% = ((48.5 - 14.2) / 14.2) * 100 = **241.5% moisture by weight** (confirmed saturation).""",
                 "lab_protocol": """1. Mark anomaly perimeters on roof surface using RTK rover coordinates.
 2. Perform dielectric impedance sweeps across 100% of marked zones and extract gravimetric verification cores."""
@@ -629,7 +629,7 @@ Water penetrating behind brick facades oxidizes structural steel relieving angle
                 "worked_example": """#### Worked Problem 7.1: Out-of-Plane Masonry Bowing Limit Audit
 * **Scenario:** 3D LiDAR facade cloud shows a 144-inch brick panel bowed outward by 0.85 in at the 5th-floor shelf angle.
 * **Calculation:** Ratio = 144 / 0.85 = **169 < 360 limit** -> Mandate immediate sidewalk overhead protection and facade pinning.""",
-                "lab_protocol": """1. Fly vertical facade grid profiles at 10.0 m standoff with 80% overlap and 45-degree oblique gimbal angle.
+                "lab_protocol": """1. Fly vertical facade grid profiles at 35.0 ft standoff with 80% overlap and 45-degree oblique gimbal angle.
 2. Generate millimeter-accurate 3D point cloud to measure out-of-plane masonry bowing."""
             },
             {
@@ -662,9 +662,9 @@ A flat (0.0% slope) pool deck with failed waterproofing allowed 40 years of chlo
                 "theory": """### 10.1 Ground Sampling Distance (GSD) & Radiometric Orthomosaic Registration
 Thermal RJPEG frames must be captured with **80% frontal and 75% side overlap** while maintaining a minimum **10.0-foot lateral standoff** from roof parapets and mechanical penthouses.""",
                 "equations": """Altitude_H_m = (GSD_mm * Focal_Length_mm) / Pixel_Pitch_mm""",
-                "worked_example": """#### Worked Problem 10.1: Thermal Microbolometer Flight Altitude for 3.5 cm/px GSD
+                "worked_example": """#### Worked Problem 10.1: Thermal Microbolometer Flight Altitude for 1.38 in/px (3.5 cm/px) Thermal GSD
 * **Scenario:** 640x512 LWIR sensor with pixel pitch p = 0.012 mm and focal length f = 13.0 mm.
-* **Calculation:** H = (35.0 mm * 13.0 mm) / 0.012 mm = **37.9 meters (124.4 ft AGL)**.""",
+* **Calculation:** H = **124.4 feet AGL** (37.9 meters).""",
                 "lab_protocol": """1. Verify FAA Part 107.29 anti-collision strobe (3 statute miles visibility) for nocturnal ASTM C1153 flights.
 2. Seal final RJPEG orthomosaic and wet-core CAD polygons with SHA-256 into `matrix_ledger.db`."""
             }
@@ -730,10 +730,10 @@ V_hydroplaning_mph = 10.35 * sqrt(P_tire_psi)""",
 Inspectors evaluate Jointed Plain Concrete Pavements (JPCP) for **transverse joint step-faulting** from subbase pumping, freeze-thaw **D-cracking**, and **thermal curling tensile stresses**.""",
                 "equations": """sigma_curl = (E_pcc * alpha_pcc * Delta_T_slab) / (2 * (1 - mu))""",
                 "worked_example": """#### Worked Problem 5.1: PCC Slab Thermal Curling Stress Calculation
-* **Scenario:** 10 in PCC slab (E = 4.2e6 psi, alpha = 5.5e-6 /F, mu = 0.15) with Delta_T = 22 F thermal gradient.
+* **Scenario:** 10 in PCC slab (E = 4.2e6 psi, alpha = 5.5e-6 /F, mu = 0.15) with Delta_T = 22 °F thermal gradient.
 * **Calculation:** sigma_curl = (4.2e6 * 5.5e-6 * 22) / (2 * 0.85) = **298.9 psi tensile bending stress**.""",
                 "lab_protocol": """1. Inventory PCC pavement by counting total slabs per sample unit (20 +/- 8 slabs) per ASTM D6433.
-2. Measure transverse joint step-faulting to 0.5 mm accuracy using dense LiDAR point clouds."""
+2. Measure transverse joint step-faulting to 0.02-inch (20 mils) accuracy using dense LiDAR point clouds."""
             },
             {
                 "unit": 6, "hours": 4.0,
@@ -744,8 +744,8 @@ FHWA HPMS mandates **International Roughness Index (IRI)** reporting in inches/m
                 "worked_example": """#### Worked Problem 6.1: IRI Evaluation over a 0.5 Mile Highway Corridor Segment
 * **Scenario:** Quarter-car integrator accumulates 92.5 inches of vertical suspension motion over 0.50 miles.
 * **Calculation:** IRI = 92.5 / 0.50 = **185.0 in/mi > 170 in/mi threshold (Poor Ride Quality)**.""",
-                "lab_protocol": """1. Sample longitudinal wheel-path elevations at <= 1.0 in (25 mm) intervals along both wheel tracks.
-2. Apply 250 mm moving-average tire-bridging filter and run the 4-state Golden Car matrix solver."""
+                "lab_protocol": """1. Sample longitudinal wheel-path elevations at <= 1.0-inch intervals along both wheel tracks.
+2. Apply 10.0-inch (250 mm) moving-average tire-bridging filter and run the 4-state Golden Car matrix solver."""
             },
             {
                 "unit": 7, "hours": 4.0,
@@ -763,11 +763,11 @@ Roadway subgrades fail rapidly when culverts silt up or separate at joints. Open
                 "unit": 8, "hours": 4.0,
                 "title": "Unit 08: Corridor Photogrammetry, RTK/PPK GNSS Georeferencing & 300k pts/sec LiDAR Point Clouds",
                 "theory": """### 8.1 Eliminating Corridor Bowl-Effect via Dual-Frequency RTK/PPK & Staggered GCPs
-Linear highway corridors require dual-frequency L1/L2 RTK/PPK carrier-phase GNSS fused with staggered shoulder Ground Control Points (GCPs) every 500–800 ft to achieve **Vertical RMSE_z <= 4.5 mm**.""",
+Linear highway corridors require dual-frequency L1/L2 RTK/PPK carrier-phase GNSS fused with staggered shoulder Ground Control Points (GCPs) every 500–800 ft to achieve **Vertical RMSE_z <= 0.18 inches (4.5 mm)**.""",
                 "equations": """Vertical_RMSE_z = sqrt( (1 / N) * sum_i (z_lidar_i - z_benchmark_i)^2 ) <= 4.5 mm""",
                 "worked_example": """#### Worked Problem 8.1: Vertical Root-Mean-Square Error (RMSE) Certification Check
-* **Scenario:** Five ODOT survey checkpoints yield vertical residuals of +3.0, -4.0, +2.0, -3.0, +1.0 mm.
-* **Calculation:** RMSE_z = sqrt((9 + 16 + 4 + 9 + 1) / 5) = **2.79 mm <= 4.5 mm (Certified Level-1 Accuracy)**.""",
+* **Scenario:** Five ODOT survey checkpoints yield vertical residuals of +0.12, -0.16, +0.08, -0.12, +0.04 inches (+3.0 to -4.0 mm).
+* **Calculation:** RMSE_z = sqrt((9 + 16 + 4 + 9 + 1) / 5) = **0.11 inches (2.79 mm) <= 0.18 inches (Certified Level-1 Accuracy)**.""",
                 "lab_protocol": """1. Place staggered RTK checkerboard GCPs along highway shoulders outside live travel lanes.
 2. Execute figure-8 IMU kinematic alignment maneuver immediately after takeoff and prior to landing."""
             },
