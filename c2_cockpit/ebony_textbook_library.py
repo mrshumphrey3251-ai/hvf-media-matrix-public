@@ -275,19 +275,25 @@ def _enrich_unit(u_dict, course_code):
 
     # Expand theory with comprehensive 4.0-Hour Engineering Reference Matrices
     bt = chr(96) * 3
-    u_dict["deep_supplement"] = (
-        "\n---\n"
-        f"### {u_num}.3 Comprehensive Engineering Reference Matrix & Sensor Tolerance Standards ({course_code} // Module {u_num:02d})\n\n"
-        "To satisfy the **4.0 Accredited Credit Hours (0.4 CEUs)** statutory requirement under **Oklahoma Title 61**, **Title 74**, and federal **23 CFR / ASTM** mandates, "
-        f"the certified inspector must master the quantitative physical tolerances, instrument calibration intervals, and legal error-boundary thresholds governing **{u_dict['title']}**:\n\n"
-        "| Engineering Parameter / Audit Gate | Governing Standard | Allowable Field Tolerance | Mandatory Rejection / Invalidation Trigger | Statutory Recordation Format |\n"
-        "| :--- | :--- | :--- | :--- | :--- |\n"
-        "| **Primary Sensor Payload Calibration** | NIST / ASTM / ISO-17025 | +/- 0.5% Full-Scale Reading | Expired calibration certificate (> 12 mos) or post-sortie zero-drift > 1.0% | Embedded in RJPEG / LAS / Sonar Header + SQLite WORM |\n"
-        "| **Geospatial RTK / SLAM Positional Lock** | ASPRS Positional Accuracy | Horizontal <= 0.60 in, Vertical <= 0.18 in (or +/- 6.0 in Optical SLAM) | PDOP > 3.5, GNSS cycle slip, or surface illuminance < 1.4 foot-candles in GPS-denied zones | NMEA GGA / EKF3 Covariance Matrix Log |\n"
-        "| **Defect Dimensional Sizing (Optical GSD)** | AASHTO MBEI / ASTM D6433 | Ground Sampling Distance <= 0.004 in/px (4 mils FCM) or <= 0.20 in/px (Deck/Road) | Motion blur > 1.5 px, oblique angle < 45 deg, or specular glare saturation | Orthorectified GeoTIFF + DXF Defect Polygon |\n"
-        "| **Environmental Boundary Compliance** | ASTM C1153 / HEC-18 / NBIS | Wind < 15.0 mph, Dry Surface > 24 hrs, Thermal Delta_T >= +3.6 °F | Standing surface water, convective wind stripping, or uncompensated water temp | Kestrel Meteorological Station Telemetry |\n"
-        "| **Cryptographic Chain-of-Custody Seal** | FIPS 180-4 / 18 U.S.C. 1001 | 256-Bit Hexadecimal Collision-Free Hash | Any post-acquisition byte modification or missing UTC nanosecond timestamp | matrix_ledger.db (sha256_seal Column) |\n\n"
-        "---\n\n"
+    bt3 = chr(96) * 3
+    u_title = u_dict["title"]
+    u_dict["deep_supplement"] = chr(10).join([
+        "",
+        "---",
+        f"### {u_num}.3 Comprehensive Engineering Reference Matrix & Sensor Tolerance Standards ({track_code} // Module {u_num:02d})",
+        "",
+        f"To satisfy the **4.0 Accredited Credit Hours (0.4 CEUs)** statutory requirement under Oklahoma Title 61, Title 74, and federal 23 CFR / ASTM mandates, the certified inspector must master the quantitative physical tolerances, instrument calibration intervals, and legal error-boundary thresholds governing **{u_title}**:",
+        "",
+        "| Engineering Parameter / Audit Gate | Governing Standard | Allowable Field Tolerance | Mandatory Rejection / Invalidation Trigger | Statutory Recordation Format |",
+        "| :--- | :--- | :--- | :--- | :--- |",
+        "| **Primary Sensor Payload Calibration** | NIST / ASTM / ISO-17025 | `+/- 0.5%` Full-Scale Reading | Expired calibration certificate (`> 12 mos`) or post-sortie zero-drift `> 1.0%` | Embedded in RJPEG / LAS / Sonar Header + SQLite WORM |",
+        "| **Geospatial RTK / SLAM Positional Lock** | ASPRS Positional Accuracy | Horizontal `<= 0.60 in`, Vertical `<= 0.18 in` (or `+/- 6.0 in` Optical SLAM) | `PDOP > 3.5`, GNSS cycle slip, or surface brightness `< 1.4 foot-candles` in GPS-denied zones | NMEA GGA / EKF3 Covariance Matrix Log |",
+        "| **Defect Dimensional Sizing (Optical GSD)** | AASHTO MBEI / ASTM D6433 | Ground Sampling Distance `<= 0.004 in/px` (`4 mils` FCM) or `<= 0.20 in/px` (Deck/Road) | Motion blur `> 1.5 px`, oblique angle `< 45 deg`, or specular glare saturation | Orthorectified GeoTIFF + DXF Defect Polygon |",
+        "| **Environmental Boundary Compliance** | ASTM C1153 / HEC-18 / NBIS | Wind `< 15.0 mph`, Dry Surface `> 24 hrs`, Thermal `Delta_T >= +3.6 °F` | Standing surface water, convective wind stripping, or uncompensated water temp | Kestrel Meteorological Station Telemetry |",
+        "| **Cryptographic Chain-of-Custody Seal** | FIPS 180-4 / 18 U.S.C. 1001 | 256-Bit Hexadecimal Collision-Free Hash | Any post-acquisition byte modification or missing UTC nanosecond timestamp | `matrix_ledger.db` (`sha256_seal` Column) |",
+        "",
+        "---",
+        "",
         f"### {u_num}.4 How the Engineering Math Works in Plain English (4-Step Field Logic)",
         f"Every calculation in **Module {u_num:02d}** follows four simple, common-sense steps using **U.S. Customary Units**:",
         "1. **Step 1 — Take the Raw Sensor Measurement:** Our drone cameras, thermal sensors, lasers (LiDAR), and sonar measure real physical quantities in U.S. units—such as heat flow (`BTU/hr` per sq ft), sound-wave echo time (microseconds), crack width (`inches` or `mils`), or span length (`feet`).",
@@ -295,21 +301,21 @@ def _enrich_unit(u_dict, course_code):
         "3. **Step 3 — Compare Against the Safe Code Limit:** We compare our field measurement against the material's safe legal limit—such as concrete cracking strength (`f_r = 7.5 * sqrt(f'_c)` in `psi`), steel fracture toughness (`K_Ic` in `ksi*sqrt(in)`), or the `20.0-foot` Federal NBI bridge span rule.",
         "4. **Step 4 — Make the Mandatory Oklahoma Title 61 Call:** We divide the **Actual Measured Defect (`Demand`)** by the **Maximum Safe Code Limit (`Capacity`)**. Whenever `Demand / Capacity` reaches or exceeds **`1.00` (100% of the safe limit)**, the inspector is required by law to issue a mandatory **Condition State 3 / Condition State 4** or **ASTM Rehabilitation Action**.",
         "",
-        "```text",
+        f"{bt3}text",
         f"Master Safety Rule (Module {u_num:02d} — U.S. Customary Units):",
         "Safety_Demand_Ratio (D / C) = Measured_Field_Defect (ft, in, mils, psi, kips, °F, BTU/hr) / Maximum_Safe_Code_Limit",
         "If Safety_Demand_Ratio >= 1.00  -->  Mandatory Oklahoma Title 61 / NBIS / ASTM Action Required",
-        "```",
+        f"{bt3}",
         "",
-        f"### {u_num}.5 Inspector Field Audit Checklist & QA/QC Sign-Off Protocol (Module {u_num:02d})\n\n"
-        "Before advancing to **Sub-Tab 4 (Quantitative Calculation Gate & Mastery Exam)**, verify that you can execute each of the following 6 field-audit steps without error:\n\n"
-        f"* **[STEP 01 — Statutory Authority Verification]:** Cite the exact federal and Oklahoma statutory clauses governing {u_dict['title']} and verify structure/facility jurisdiction in the master asset registry.\n"
-        "* **[STEP 02 — Pre-Sortie Instrument Zeroing]:** Verify NIST-traceable calibration status of the primary NDT payload (48MP Optical Zoom, LWIR Radiometric Microbolometer, 300k pts/sec LiDAR, or 200 kHz Bathymetric Sonar).\n"
-        "* **[STEP 03 — Boundary Condition Logging]:** Record ambient dry-bulb temperature, relative humidity, wind velocity, surface brightness (foot-candles), and GNSS/SLAM covariance metrics prior to data capture.\n"
-        "* **[STEP 04 — Raw Telemetry Acquisition]:** Execute the prescribed flight or bathymetric trajectory while maintaining mandatory overlap (80% frontal / 75% side) and standoff safety buffers.\n"
-        f"* **[STEP 05 — Quantitative Engineering Calculation]:** Solve the governing formulation for {u_dict['title']} using field measurements and verify dimensional consistency exclusively in U.S. Customary units (ft, in, mils, psi, kips, °F, BTU/hr).\n"
-        "* **[STEP 06 — WORM Cryptographic Sealing]:** Commit the raw sensor packet, defect polygons, and calculated engineering parameters to matrix_ledger.db under CAGE 1AHA8 / UEI S1M4ENLHTDH5.\n"
-    )
+        f"### {u_num}.5 Inspector Field Audit Checklist & QA/QC Sign-Off Protocol (Module {u_num:02d})",
+        "Before advancing to **Sub-Tab 4 (Quantitative Calculation Gate & Mastery Exam)**, verify that you can execute each of the following 6 field-audit steps without error:",
+        f"* **[STEP 01 — Statutory Authority Verification]:** Cite the exact federal and Oklahoma statutory clauses governing **{u_title}** and verify structure/facility jurisdiction in the master asset registry.",
+        "* **[STEP 02 — Pre-Sortie Instrument Zeroing]:** Verify NIST-traceable calibration status of the primary NDT payload (48MP Optical Zoom, LWIR Radiometric Microbolometer, 300k pts/sec LiDAR, or 200 kHz Bathymetric Sonar).",
+        "* **[STEP 03 — Boundary Condition Logging]:** Record ambient dry-bulb temperature (`°F`), relative humidity (`%`), wind speed (`mph`), surface brightness (`foot-candles`), and GNSS/SLAM positional lock prior to data capture.",
+        "* **[STEP 04 — Raw Telemetry Acquisition]:** Execute the prescribed flight or bathymetric trajectory while maintaining mandatory overlap (`80%` frontal / `75%` side) and standoff safety buffers in `feet`.",
+        f"* **[STEP 05 — Quantitative Engineering Calculation]:** Solve the governing formulation for **{u_title}** using field measurements and verify dimensional consistency exclusively in U.S. Customary units (`ft`, `in`, `mils`, `psi`, `kips`, `°F`, `BTU/hr`).",
+        "* **[STEP 06 — WORM Cryptographic Sealing]:** Commit the raw sensor packet, defect polygons, and calculated engineering parameters to `matrix_ledger.db` under CAGE `1AHA8` / UEI `S1M4ENLHTDH5`.",
+    ])
     _attach_beginner_aids(u_dict, u_num)
     return u_dict
 
