@@ -277,6 +277,12 @@ def _enrich_unit(u_dict, course_code):
     bt = chr(96) * 3
     bt3 = chr(96) * 3
     u_title = u_dict["title"]
+        # Ensure derivation includes a clean black code box for its worked arithmetic
+    _deriv_raw = u_dict.get("derivation", "")
+    _step_matches = [ln.strip("* -") for ln in _deriv_raw.splitlines() if "Step 1" in ln or "Step 2" in ln]
+    if _step_matches and (chr(96)*3) not in _deriv_raw:
+        _box_lines = [chr(96)*3 + "text", f"Worked Field Math Summary (Module {u_num:02d} — Target Unit: {u_dict.get('calc_unit', 'U.S. Units')}):"] + _step_matches + [chr(96)*3]
+        u_dict["derivation"] = _deriv_raw.strip() + chr(10) + chr(10) + chr(10).join(_box_lines)
     u_dict["deep_supplement"] = chr(10).join([
         "",
         "---",
