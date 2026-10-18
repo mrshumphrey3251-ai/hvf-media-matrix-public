@@ -280,7 +280,7 @@ def _enrich_unit(u_dict, course_code):
     u_dict["deep_supplement"] = chr(10).join([
         "",
         "---",
-        f"### {u_num}.3 Comprehensive Engineering Reference Matrix & Sensor Tolerance Standards ({track_code} // Module {u_num:02d})",
+        f"### {u_num}.3 Comprehensive Engineering Reference Matrix & Sensor Tolerance Standards ({course_code} // Module {u_num:02d})",
         "",
         f"To satisfy the **4.0 Accredited Credit Hours (0.4 CEUs)** statutory requirement under Oklahoma Title 61, Title 74, and federal 23 CFR / ASTM mandates, the certified inspector must master the quantitative physical tolerances, instrument calibration intervals, and legal error-boundary thresholds governing **{u_title}**:",
         "",
