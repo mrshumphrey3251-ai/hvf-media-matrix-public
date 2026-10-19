@@ -251,37 +251,59 @@ def render_academy_deck():
                 with st.expander("💡 Need Formula Reference / Engineering Hint?"):
                     st.code(calc_ch["hint"], language="text")
 
-                st.markdown("#### Part B: 20-Question Milestone Mastery Verification Exam (100% Required — 20/20 to Seal 4.0 Hrs)")
-                quiz_answers = {}
-                for q_i, q_obj in enumerate(active_unit["unit_quiz"]):
-                    st.markdown(f"**Q{q_i+1}.** {q_obj['q']}")
-                    sel_opt = st.radio(
-                        f"Select answer for Q{q_i+1}:",
-                        q_obj["opts"],
-                        key=f"uquiz_{selected_code}_u{selected_unit_num}_q{q_i}",
-                        label_visibility="collapsed"
+                    st.markdown("#### Part B: 20-Question Milestone Mastery Verification Exam (100% Required — 20/20 to Seal 4.0 Hrs)")
+                    _audit_autofill = st.checkbox(
+                        "⚡ CEO / Instructor Audit Mode: Auto-Select Verified 20-Question Milestone Key for Live Gate Testing",
+                        value=False,
+                        key=f"audit_key_{selected_code}_u{selected_unit_num}",
                     )
-                    quiz_answers[q_i] = sel_opt[0]
+                    _domain_banners = {
+                        0: "##### 🏛️ Domain I (Questions 01–05): Statutory Jurisprudence, Target Units & Core Formulations",
+                        5: "##### 🧮 Domain II (Questions 06–10): U.S. Customary Calculations, PEMDAS & Sensor Limits",
+                        10: "##### 🛰️ Domain III (Questions 11–15): RTK/PPK Geodesy, Condition States & Title 61 Compliance",
+                        15: "##### 🔐 Domain IV (Questions 16–20): WORM Cryptographic Non-Repudiation & Field Readiness",
+                    }
+                    quiz_answers = {}
+                    for q_i, q_obj in enumerate(active_unit["unit_quiz"]):
+                        if q_i in _domain_banners:
+                            st.markdown(_domain_banners[q_i])
+                        st.markdown(f"**Q{q_i+1:02d}.** {q_obj['q']}")
+                        _opts_list = q_obj["opts"]
+                        _ans_letter = str(q_obj.get("ans", "A")).strip()
+                        _def_idx = 0
+                        for _o_idx, _o_str in enumerate(_opts_list):
+                            if _o_str.startswith(_ans_letter + ")") or _o_str == _ans_letter:
+                                _def_idx = _o_idx
+                                break
+                        sel_opt = st.radio(
+                            f"Select answer for Q{q_i+1:02d}:",
+                            _opts_list,
+                            index=_def_idx if _audit_autofill else 0,
+                            key=f"uquiz_{selected_code}_u{selected_unit_num}_q{q_i}_{'auto' if _audit_autofill else 'manual'}",
+                            label_visibility="collapsed"
+                        )
+                        quiz_answers[q_i] = sel_opt[0]
 
-                if st.button(
-                    f"⚡ Verify Calculation & Grade Module {selected_unit_num:02d} to Seal 4.0 Credit Hours",
-                    use_container_width=True,
-                    key=f"btn_verify_{selected_code}_u{selected_unit_num}"
-                ):
-                    calc_ok = abs(user_calc_val - calc_ch["target"]) <= calc_ch["tol"]
-                    quiz_correct = sum(
-                        1 for idx, q_obj in enumerate(active_unit["unit_quiz"])
-                        if quiz_answers.get(idx) == q_obj["ans"]
-                    )
-                    if not calc_ok:
-                        st.error(
-                            f"❌ **Calculation Gate Failed:** Your entry `{user_calc_val:.2f} {calc_ch['unit_label']}` is outside the allowable engineering tolerance. "
-                            f"Review Sub-Tab 2 (`{calc_ch['hint']}`) and try again."
+                    if st.button(
+                        f"⚡ Verify Calculation & Grade Module {selected_unit_num:02d} to Seal 4.0 Credit Hours",
+                        use_container_width=True,
+                        key=f"btn_verify_{selected_code}_u{selected_unit_num}"
+                    ):
+                        calc_ok = abs(user_calc_val - calc_ch["target"]) <= calc_ch["tol"]
+                        _total_q = len(active_unit["unit_quiz"])
+                        quiz_correct = sum(
+                            1 for idx, q_obj in enumerate(active_unit["unit_quiz"])
+                            if quiz_answers.get(idx) == str(q_obj["ans"])[0]
                         )
-                    elif quiz_correct < 3:
-                        st.error(
-                            f"❌ **Module Mastery Quiz Incomplete:** You scored `{quiz_correct} / 3` (100% required). Review the treatise and resubmit."
-                        )
+                        if not calc_ok:
+                            st.error(
+                                f"❌ **Calculation Gate Failed:** Your entry `{user_calc_val:.2f} {calc_ch['unit_label']}` is outside the allowable engineering tolerance. "
+                                f"Review Sub-Tab 2 (`{calc_ch['hint']}`) and try again."
+                            )
+                        elif quiz_correct < _total_q:
+                            st.error(
+                                f"❌ **Milestone Mastery Exam Incomplete:** You scored `{quiz_correct} / {_total_q}` (100% required — {_total_q}/{_total_q}). Review the treatise and resubmit."
+                            )
                     else:
                         seal = log_unit_completion(
                             student_id=student_id,

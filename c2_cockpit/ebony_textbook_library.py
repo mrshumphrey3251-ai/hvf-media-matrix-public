@@ -356,6 +356,8 @@ def _enrich_unit(u_dict, course_code):
             _raw_u = "sq ft"
     _u_desc_map = {
         "ft": "feet (ft) — U.S. Customary Linear Feet (12 inches = 1.0 foot)",
+        "feet": "feet (ft) — U.S. Customary Linear Feet (12 inches = 1.0 foot)",
+        "inches": "inches (in) — U.S. Customary Inches (1/12 of a foot)",
         "in": "inches (in) — U.S. Customary Inches (1/12 of a foot)",
         "mils": "mils (0.001 in) — Thousandths of an Inch (1,000 mils = 1.0 inch)",
         "sq ft": "square feet (sq ft) — U.S. Customary Surface Area (Length_ft * Width_ft)",
@@ -1014,9 +1016,9 @@ def _build_20_question_milestone_exam(u_dict, course_code):
     u_num = int(u_dict.get("unit", 1))
     u_title = str(u_dict.get("title", f"Module {u_num:02d}"))
     cc = u_dict.get("calc_challenge", {})
-    c_prompt = str(cc.get("prompt", "Solve the module engineering calculation in U.S. Customary units."))
-    c_ans = cc.get("answer", 0.0)
-    c_tol = cc.get("tolerance", 0.25)
+    c_prompt = str(cc.get("prompt") or cc.get("question") or u_dict.get("calc_prompt") or "Solve the module engineering calculation in U.S. Customary units.")
+    c_ans = cc.get("ans") if "ans" in cc else (cc.get("answer") if "answer" in cc else (cc.get("target") if "target" in cc else u_dict.get("calc_ans", 0.0)))
+    c_tol = cc.get("tol") if "tol" in cc else (cc.get("tolerance") if "tolerance" in cc else u_dict.get("calc_tol", 0.25))
     c_unit = str(u_dict.get("resolved_us_unit", "feet (ft) — U.S. Customary Units"))
     eq_raw = [ln.strip() for ln in str(u_dict.get("equations", "")).splitlines() if ln.strip()]
     primary_eq = eq_raw[0] if eq_raw else "L_total (ft) = (Number_of_Barrels * Barrel_Width_ft) + (Number_of_Interior_Walls * Wall_Thickness_ft)"
@@ -1173,14 +1175,12 @@ def _build_20_question_milestone_exam(u_dict, course_code):
                 d_ptr += 1
         letters = ["A", "B", "C", "D"]
         formatted_opts = [f"{letters[i]}) {raw_choices[i]}" for i in range(4)]
-        _ans_val = formatted_opts[pos]
-        if base_quiz and isinstance(base_quiz[0].get("ans"), int):
-            _ans_val = pos
+        _ans_letter = letters[pos]
         questions.append({
             "q": f"[{course_code} Unit {u_num:02d} Milestone Q{q_idx:02d}] {stem}",
             "opts": formatted_opts,
             "options": formatted_opts,
-            "ans": _ans_val,
+            "ans": _ans_letter,
             "answer": formatted_opts[pos],
         })
 
@@ -1191,6 +1191,8 @@ def get_course_units(course_code: str):
     units = _orig_get_course_units(course_code)
     _u_desc_map = {
         "ft": "feet (ft) — U.S. Customary Linear Feet (12 inches = 1.0 foot)",
+        "feet": "feet (ft) — U.S. Customary Linear Feet (12 inches = 1.0 foot)",
+        "inches": "inches (in) — U.S. Customary Inches (1/12 of a foot)",
         "in": "inches (in) — U.S. Customary Inches (1/12 of a foot)",
         "mils": "mils (0.001 in) — Thousandths of an Inch (1,000 mils = 1.0 inch)",
         "sq ft": "square feet (sq ft) — U.S. Customary Surface Area (Length_ft * Width_ft)",
@@ -1208,7 +1210,7 @@ def get_course_units(course_code: str):
     }
     for _u_item in units:
         _cc = _u_item.get("calc_challenge", {})
-        _raw_u = str(_cc.get("unit") or _cc.get("units") or _u_item.get("calc_unit") or "").strip()
+        _raw_u = str(_cc.get("unit_label") or _cc.get("unit") or _cc.get("units") or _u_item.get("calc_unit") or "").strip()
         _p_low = str(_cc.get("prompt", "") or _cc.get("label", "")).lower()
         if not _raw_u:
             if "in feet" in _p_low or "(ft)" in _p_low or " ft" in _p_low:
@@ -1237,7 +1239,8 @@ def get_course_units(course_code: str):
                 _raw_u = "sq ft"
         _res_u = _u_desc_map.get(_raw_u, f"{_raw_u} — U.S. Customary Engineering Unit" if _raw_u else "feet (ft) — U.S. Customary Engineering Units")
         _u_item["resolved_us_unit"] = _res_u
-        if "equation_legend" in _u_item:
-            _u_item["equation_legend"] = str(_u_item["equation_legend"]).replace("Measured in U.S. Customary Units", _res_u)
+        for _k_str in list(_u_item.keys()):
+            if isinstance(_u_item[_k_str], str) and "Measured in U.S. Customary Units" in _u_item[_k_str]:
+                _u_item[_k_str] = _u_item[_k_str].replace("Measured in U.S. Customary Units", _res_u)
         _u_item["unit_quiz"] = _build_20_question_milestone_exam(_u_item, course_code)
     return units
