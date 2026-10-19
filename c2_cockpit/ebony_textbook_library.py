@@ -1241,6 +1241,6 @@ def get_course_units(course_code: str):
         _u_item["resolved_us_unit"] = _res_u
         for _k_str in list(_u_item.keys()):
             if isinstance(_u_item[_k_str], str) and "Measured in U.S. Customary Units" in _u_item[_k_str]:
-                _u_item[_k_str] = _u_item[_k_str].replace("Measured in U.S. Customary Units", _res_u)
+                _u_item[_k_str] = _u_item[_k_str].replace("`Measured in U.S. Customary Units`", f"`{_res_u}`").replace("Measured in U.S. Customary Units", _res_u)
         _u_item["unit_quiz"] = _build_20_question_milestone_exam(_u_item, course_code)
     return units
