@@ -270,10 +270,12 @@ def render_academy_deck():
                 )
                 calc_ch = active_unit["calc_challenge"]
                 _audit_autofill = st.checkbox(
-                    f"⚡ CEO / Instructor Audit Mode: Auto-Populate Verified Calculation ({calc_ch['target']} {calc_ch['unit_label']}) & 20-Question Key",
-                    value=False,
-                    key=f"audit_key_{selected_code}_u{selected_unit_num}",
+                    f"⚡ CEO / Instructor Audit Mode: Auto-Populate Verified Calculation ({calc_challenge['target']} {_disp_unit}) & 20-Question Key",
+                    value=bool(_reopen_gate),
+                    key=f"audit_autofill_{selected_code}_u{selected_unit_num}"
                 )
+                if _audit_autofill:
+                    st.session_state[f"calc_in_{selected_code}_u{selected_unit_num}_{'auto' if _audit_autofill else 'manual'}"] = float(calc_challenge["target"])
                 st.markdown("#### Part A: Quantitative Engineering Calculation Gate")
                 st.markdown(f"**Engineering Problem:** {calc_ch['prompt']}")
                 _default_calc = float(calc_ch["target"]) if _audit_autofill else 0.0
@@ -284,6 +286,7 @@ def render_academy_deck():
                     format="%.2f",
                     key=f"calc_in_{selected_code}_u{selected_unit_num}_{'auto' if _audit_autofill else 'manual'}"
                 )
+                if _audit_autofill: user_calc_val = float(calc_challenge["target"])
                 with st.expander("💡 Need Formula Reference / Engineering Hint?"):
                     st.code(calc_ch["hint"], language="text")
 
@@ -331,6 +334,22 @@ def render_academy_deck():
                                 credit_hours=_m_unit.get("hours", 4.0),
                             )
                         st.success(f"👑 All 10 Modules (40.0 Credit Hours / 4.0 CEUs) for {selected_code} Verified & Sealed in WORM Ledger!")
+                        st.rerun()
+                    if st.button(
+                        "🌐 CEO Global Institute Seal: Verify & Seal All 30 Modules (120.0 Credit Hours / 12.0 CEUs) Across STR-01, ENV-01 & PAV-01",
+                        use_container_width=True,
+                        key=f"btn_global_3course_seal_{selected_code}_u{selected_unit_num}"
+                    ):
+                        for _c_code in ["STR-01", "ENV-01", "PAV-01"]:
+                            for _m_unit in get_course_units(_c_code):
+                                log_unit_completion(
+                                    student_id=student_id,
+                                    course_code=_c_code,
+                                    unit_number=_m_unit["unit"],
+                                    unit_title=_m_unit["title"],
+                                    credit_hours=_m_unit.get("hours", 4.0),
+                                )
+                        st.success("🌐 All 30 Modules (120.0 Accredited Credit Hours / 12.0 CEUs) Across STR-01, ENV-01 & PAV-01 Sealed in WORM Ledger!")
                         st.rerun()
 
                 if st.button(
