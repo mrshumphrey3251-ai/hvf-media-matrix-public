@@ -1186,14 +1186,14 @@ def _build_20_question_milestone_exam(u_dict, course_code):
 
     return questions[:20]
 
-
 def get_course_units(course_code: str):
     units = _orig_get_course_units(course_code)
+    _nl = chr(10)
     _u_desc_map = {
         "ft": "feet (ft) — U.S. Customary Linear Feet (12 inches = 1.0 foot)",
         "feet": "feet (ft) — U.S. Customary Linear Feet (12 inches = 1.0 foot)",
-        "inches": "inches (in) — U.S. Customary Inches (1/12 of a foot)",
         "in": "inches (in) — U.S. Customary Inches (1/12 of a foot)",
+        "inches": "inches (in) — U.S. Customary Inches (1/12 of a foot)",
         "mils": "mils (0.001 in) — Thousandths of an Inch (1,000 mils = 1.0 inch)",
         "sq ft": "square feet (sq ft) — U.S. Customary Surface Area (Length_ft * Width_ft)",
         "%": "Percent (%) — Percentage Score / Ratio (0% to 100%)",
@@ -1243,17 +1243,9 @@ def get_course_units(course_code: str):
             if _k_field in _u_item and isinstance(_u_item[_k_field], str):
                 _s_txt = _u_item[_k_field]
                 _s_txt = _s_txt.replace("`Measured in U.S. Customary Units`", f"`{_res_u}`").replace("Measured in U.S. Customary Units", _res_u)
-                _s_txt = _s_txt.replace("|### 1.4", "|
-
-### 1.4").replace("
-### 1.4", "
-
-### 1.4").replace("
-
-
-### 1.4", "
-
-### 1.4")
+                for _sec_n in range(1, 12):
+                    _h4 = f"### {_sec_n}.4"
+                    _s_txt = _s_txt.replace("|" + _h4, "|" + _nl + _nl + _h4).replace(_nl + _h4, _nl + _nl + _h4).replace(_nl + _nl + _nl + _h4, _nl + _nl + _h4)
                 _u_item[_k_field] = _s_txt
         _u_item["unit_quiz"] = _build_20_question_milestone_exam(_u_item, course_code)
     return units
