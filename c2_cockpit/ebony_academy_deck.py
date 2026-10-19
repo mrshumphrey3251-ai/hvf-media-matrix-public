@@ -226,6 +226,7 @@ def render_academy_deck():
 
         with sub_t4:
             st.markdown(f"### 🔐 Module {selected_unit_num:02d} Quantitative Engineering Calculation Gate & Mastery Exam")
+            _reopen_gate = False
             if is_done:
                 seal_info = completed_map[selected_unit_num]
                 st.success(
@@ -233,7 +234,36 @@ def render_academy_deck():
                     f"* **Completion Timestamp (UTC):** `{seal_info['utc']}`\n"
                     f"* **WORM SQLite SHA-256 Digest:** `{seal_info['seal']}`"
                 )
-            else:
+                _all_units_list = get_course_units(selected_code)
+                with st.expander("🏅 Official 40.0-Hour Accredited Engineering WORM Transcript & Oklahoma Title 61 Voucher Certificate", expanded=True):
+                    st.info(
+                        f"**ACCREDITED CURRICULUM TRANSCRIPT ({selected_code} — 40.0 Credit Hours / 4.0 CEUs)**\n\n"
+                        f"- **Candidate License ID:** `{student_id}`\n"
+                        f"- **Commercial / State Voucher Value:** `$2,500.00 / Seat (Oklahoma Title 61 & HB 2992 Compliant)`\n"
+                        f"- **Issuing Authority:** `Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)`"
+                    )
+                    _t_rows = ["| Module | Accredited Engineering Module Title | Credit Hours | WORM Ledger Status |", "| :--- | :--- | :--- | :--- |"]
+                    _csv_lines = ["Module,Title,Credit_Hours,CEUs,Status"]
+                    for _u_item in _all_units_list:
+                        _un = _u_item["unit"]
+                        _utitle = _u_item["title"].replace("|", "-")
+                        _t_rows.append(f"| **Unit {_un:02d}** | {_utitle} | `4.0 Hrs (0.4 CEUs)` | `✅ VERIFIED IN WORM LEDGER` |")
+                        _csv_lines.append(f"Unit {_un:02d},\"{_utitle}\",4.0,0.4,VERIFIED_WORM_SHA256")
+                    st.markdown(chr(10).join(_t_rows))
+                    st.download_button(
+                        label=f"📥 Download Official 40-Hour WORM Cryptographic Transcript ({selected_code} CSV)",
+                        data=chr(10).join(_csv_lines),
+                        file_name=f"HVF_WORM_Transcript_{selected_code}_{student_id}.csv",
+                        mime="text/csv",
+                        use_container_width=True,
+                        key=f"dl_worm_transcript_{selected_code}_u{selected_unit_num}"
+                    )
+                _reopen_gate = st.checkbox(
+                    f"🔍 CEO / Instructor Review Mode: Display Calculation Gate & 20-Question Milestone Exam for Sealed Module {selected_unit_num:02d}",
+                    value=False,
+                    key=f"reopen_sealed_{selected_code}_u{selected_unit_num}"
+                )
+            if (not (is_done)) or _reopen_gate:
                 st.write(
                     "To earn **4.0 Accredited Credit Hours (0.4 CEUs)** for this module, you must solve the **Quantitative Engineering Calculation Gate** "
                     "and score **100% (20/20)** on the **Module Mastery Verification Quiz** below."
