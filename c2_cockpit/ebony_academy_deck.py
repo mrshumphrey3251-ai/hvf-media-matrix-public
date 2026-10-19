@@ -226,6 +226,40 @@ def render_academy_deck():
 
         with sub_t4:
             st.markdown(f"### 🔐 Module {selected_unit_num:02d} Quantitative Engineering Calculation Gate & Mastery Exam")
+            _ceo_top_c1, _ceo_top_c2 = st.columns(2)
+            with _ceo_top_c1:
+                if st.button(
+                    f"👑 CEO Seal: All 10 Modules (40.0 Hrs) for {selected_code}",
+                    use_container_width=True,
+                    key=f"btn_perm_course_seal_{selected_code}_u{selected_unit_num}"
+                ):
+                    for _m_unit in get_course_units(selected_code):
+                        log_unit_completion(
+                            student_id=student_id,
+                            course_code=selected_code,
+                            unit_number=_m_unit["unit"],
+                            unit_title=_m_unit["title"],
+                            credit_hours=_m_unit.get("hours", 4.0),
+                        )
+                    st.success(f"👑 All 10 Modules (40.0 Credit Hours / 4.0 CEUs) for {selected_code} Sealed in WORM Ledger!")
+                    st.rerun()
+            with _ceo_top_c2:
+                if st.button(
+                    "🌐 CEO Global Seal: All 30 Modules (120.0 Hrs: STR-01, ENV-01 & PAV-01)",
+                    use_container_width=True,
+                    key=f"btn_perm_global_seal_{selected_code}_u{selected_unit_num}"
+                ):
+                    for _c_code in ["STR-01", "ENV-01", "PAV-01"]:
+                        for _m_unit in get_course_units(_c_code):
+                            log_unit_completion(
+                                student_id=student_id,
+                                course_code=_c_code,
+                                unit_number=_m_unit["unit"],
+                                unit_title=_m_unit["title"],
+                                credit_hours=_m_unit.get("hours", 4.0),
+                            )
+                    st.success("🌐 All 30 Modules (120.0 Accredited Credit Hours / 12.0 CEUs) Across STR-01, ENV-01 & PAV-01 Sealed in WORM Ledger!")
+                    st.rerun()
             _reopen_gate = False
             if is_done:
                 seal_info = completed_map[selected_unit_num]
@@ -272,6 +306,7 @@ def render_academy_deck():
                 calc_challenge = active_unit.get("calc_challenge") or active_unit.get("calculation") or calc
                 _raw_u = str(calc_challenge.get("unit") or calc_challenge.get("units") or "U.S. Customary")
                 _disp_unit = _raw_u.split("—")[0].strip()
+                if _reopen_gate and f"audit_autofill_{selected_code}_u{selected_unit_num}" not in st.session_state: st.session_state[f"audit_autofill_{selected_code}_u{selected_unit_num}"] = True
                 _audit_autofill = st.checkbox(
                     f"⚡ CEO / Instructor Audit Mode: Auto-Populate Verified Calculation ({calc_challenge.get('target', 0.0)} {_disp_unit}) & 20-Question Key",
                     value=bool(_reopen_gate),
