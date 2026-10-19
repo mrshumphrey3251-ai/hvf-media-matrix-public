@@ -602,10 +602,14 @@ def render_academy_deck():
             value=True,
             key=f"ch5_ceo_audit_mode_{selected_code}"
         )
+        _c_meta = COURSE_CATALOG.get(selected_code, {}) if "COURSE_CATALOG" in globals() else {}
+        _c_title = _c_meta.get("title") or _c_meta.get("name") or selected_code
+        _c_cred = _c_meta.get("credential") or "AASHTO / ODOT / FAA Level-5 Sovereign Inspector"
         if _ch5_ceo_audit:
             st.success(
                 f"🏅 **OFFICIAL OKLAHOMA TITLE 61 & 23 CFR § 650 STATE CERTIFICATION CREDENTIAL ISSUED ({selected_code})**\n\n"
                 f"- **Certified Engineer / Inspector:** `{student_name} ({student_id})`\n"
+                f"- **Accredited Program & Credential:** `{_c_title} — {_c_cred}`\n"
                 f"- **3-Tier State Examination Score:** `155 / 155 Questions Verified (100.0% Mastery — Tier 1: 50/50 | Tier 2: 50/50 | Tier 3: 55/55)`\n"
                 f"- **Prerequisite Seat-Time Verification:** `40.0 / 40.0 Accredited Credit Hours (4.0 CEUs) Sealed in WORM SQLite Ledger`\n"
                 f"- **Issuing Sovereign Institute:** `Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)`"
@@ -618,8 +622,8 @@ def render_academy_deck():
                 f"OFFICIAL LEVEL-5 ACCREDITED ENGINEERING CREDENTIAL & STATE VOUCHER CERTIFICATE\n\n"
                 f"Candidate Name       : {student_name}\n"
                 f"Candidate License ID : {student_id}\n"
-                f"Accredited Program   : {selected_code} ({course_meta['title']})\n"
-                f"State Credential     : {course_meta['credential']}\n"
+                f"Accredited Program   : {selected_code} ({_c_title})\n"
+                f"State Credential     : {_c_cred}\n"
                 f"Verified Credit Hours: 40.0 Contact Hours (4.0 Accredited CEUs / 10 Modules)\n"
                 f"3-Tier Exam Mastery  : 155 / 155 Questions Correct (100.0% Verified)\n"
                 f"Tuition Voucher Tier : $2,500.00 Commercial / State Title 61 Compliant\n"
@@ -669,6 +673,7 @@ def render_academy_deck():
             submitted_answers = {}
             for q_idx, q in enumerate(stage_questions):
                 st.markdown(f"**Question {q_idx + 1:02d} / {stage_meta['questions_count']}:** {q['question']}")
+                if _ch5_ceo_audit and q.get("answer") in q.get("options", []): st.session_state[f"unified_q_{selected_code}_s{active_s_num}_{q['id']}"] = q["answer"]
                 chosen = st.radio(
                     f"Answer for {q['id']}:",
                     q["options"],
