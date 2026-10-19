@@ -293,17 +293,12 @@ def render_academy_deck():
                     ):
                         for _m_unit in get_course_units(selected_code):
                             _m_num = _m_unit["unit"]
-                            _m_cc = _m_unit["calc_challenge"]
-                            _m_qlen = len(_m_unit["unit_quiz"])
                             log_unit_completion(
-                                cand_id,
-                                cand_name,
-                                selected_code,
-                                _m_num,
-                                _m_unit["title"],
-                                float(_m_cc["target"]),
-                                _m_qlen,
-                                _m_qlen,
+                                student_id=student_id,
+                                course_code=selected_code,
+                                unit_number=_m_num,
+                                unit_title=_m_unit["title"],
+                                credit_hours=_m_unit.get("hours", 4.0),
                             )
                         st.success(f"👑 All 10 Modules (40.0 Credit Hours / 4.0 CEUs) for {selected_code} Verified & Sealed in WORM Ledger!")
                         st.rerun()
