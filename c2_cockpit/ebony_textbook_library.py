@@ -1239,8 +1239,21 @@ def get_course_units(course_code: str):
                 _raw_u = "sq ft"
         _res_u = _u_desc_map.get(_raw_u, f"{_raw_u} — U.S. Customary Engineering Unit" if _raw_u else "feet (ft) — U.S. Customary Engineering Units")
         _u_item["resolved_us_unit"] = _res_u
-        for _k_str in list(_u_item.keys()):
-            if isinstance(_u_item[_k_str], str) and "Measured in U.S. Customary Units" in _u_item[_k_str]:
-                _u_item[_k_str] = _u_item[_k_str].replace("`Measured in U.S. Customary Units`", f"`{_res_u}`").replace("Measured in U.S. Customary Units", _res_u)
+        for _k_field in ("equation_legend", "theory", "deep_supplement", "worked_example", "lab_protocol"):
+            if _k_field in _u_item and isinstance(_u_item[_k_field], str):
+                _s_txt = _u_item[_k_field]
+                _s_txt = _s_txt.replace("`Measured in U.S. Customary Units`", f"`{_res_u}`").replace("Measured in U.S. Customary Units", _res_u)
+                _s_txt = _s_txt.replace("|### 1.4", "|
+
+### 1.4").replace("
+### 1.4", "
+
+### 1.4").replace("
+
+
+### 1.4", "
+
+### 1.4")
+                _u_item[_k_field] = _s_txt
         _u_item["unit_quiz"] = _build_20_question_milestone_exam(_u_item, course_code)
     return units
