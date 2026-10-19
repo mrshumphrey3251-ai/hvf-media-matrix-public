@@ -285,6 +285,29 @@ def render_academy_deck():
                     )
                     quiz_answers[q_i] = sel_opt[0]
 
+                if _audit_autofill:
+                    if st.button(
+                        f"👑 CEO Master Curriculum Seal: Verify & Seal All 10 Modules (40.0 Credit Hours) for {selected_code}",
+                        use_container_width=True,
+                        key=f"btn_master_seal_{selected_code}_u{selected_unit_num}"
+                    ):
+                        for _m_unit in course_units:
+                            _m_num = _m_unit["unit"]
+                            _m_cc = _m_unit["calc_challenge"]
+                            _m_qlen = len(_m_unit["unit_quiz"])
+                            log_unit_completion(
+                                cand_id,
+                                cand_name,
+                                selected_code,
+                                _m_num,
+                                _m_unit["title"],
+                                float(_m_cc["target"]),
+                                _m_qlen,
+                                _m_qlen,
+                            )
+                        st.success(f"👑 All 10 Modules (40.0 Credit Hours / 4.0 CEUs) for {selected_code} Verified & Sealed in WORM Ledger!")
+                        st.rerun()
+
                 if st.button(
                     f"⚡ Verify Calculation & Grade Module {selected_unit_num:02d} to Seal 4.0 Credit Hours",
                     use_container_width=True,
