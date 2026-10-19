@@ -269,6 +269,8 @@ def render_academy_deck():
                     "and score **100% (20/20)** on the **Module Mastery Verification Quiz** below."
                 )
                 calc_ch = active_unit["calc_challenge"]
+                calc_challenge = active_unit.get("calc_challenge", {})
+                _disp_unit = str(calc_challenge.get("unit", "")).split("—")[0].strip()
                 _audit_autofill = st.checkbox(
                     f"⚡ CEO / Instructor Audit Mode: Auto-Populate Verified Calculation ({calc_challenge['target']} {_disp_unit}) & 20-Question Key",
                     value=bool(_reopen_gate),
