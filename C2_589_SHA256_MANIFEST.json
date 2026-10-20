@@ -2,7 +2,7 @@
   "cage_code": "1AHA8",
   "classification": "LEVEL-5 SOVEREIGN INDUSTRIAL C2 & ACCREDITED ENGINEERING INSTITUTE",
   "entity": "Humphrey Virtual Farms LLC",
-  "master_c2_merkle_root_sha256": "285a00d75e35e75fa7cfaf2c5e83ec38b5da36d51b8a9477a57bf71ed0cd9d64",
+  "master_c2_merkle_root_sha256": "607c3b0da4f77c4ab75e5712039054ca08d80d69224668b41fdd90f90053a157",
   "module_sha256_digests": {
     "__init__.py": "795f10286e60c8fbe6ff725e033631a06873b70207c12b47bc9c7c596c489773",
     "access_control.py": "3709685f597329fd7b3042b46096d80b9769a877135920a90b97d98ab8d22c6c",
@@ -131,7 +131,7 @@
     "drone_rgb_adapter.py": "97128e2488b79c428a64f406fd7096e94640c6bd154a0f6a40f947f0a67c5e73",
     "ebony.py": "75e05054d50ba040ddad3476c56da4a342d624762801511644e57654e11d4d18",
     "ebony_academy_curriculum.py": "2984a79d3c93971f3100e18c9527667c903cae886e3eef0aec5a272e22e72a69",
-    "ebony_academy_deck.py": "c6a0cb314b68dedf17c7e0ab2a9d087e3e94f8e60458eae92a9c61bd2cf2fcc0",
+    "ebony_academy_deck.py": "50a0d1c0fa3861be9f2c650a8c211131d7034bc447c4b03750f468f42380d0bb",
     "ebony_agent_swarm.py": "242d87b3d0f9bde3db1743c9d29d61574af4bb39b89aeb2c0914764b7b96e5e3",
     "ebony_airgap_core.py": "d1a000aced1221919a11c2d0ea0fc1235756d9fa7aee4254249572f0f8c75c05",
     "ebony_automotive_master.py": "cea58877188016045f882ff61a9932dd5dd11601fbfd9e2d56b80276bdb6f540",

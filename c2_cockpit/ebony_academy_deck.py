@@ -548,6 +548,37 @@ def render_academy_deck():
             sc1.metric("Upstream Froude Number (Fr_1)", f"{fr_num:.3f}", "Supercritical Flow (Fr >= 1)" if fr_num >= 1.0 else "Subcritical Riverine Flow")
             sc2.metric("Predicted HEC-18 Scour Depth (y_s)", f"{ys_scour:.2f} ft", "ODOT ITEM 113 SCOUR CRITICAL (Exceeds Footing!)" if ys_scour >= foot_d else "Footing Embedment Safe")
 
+        elif selected_code == "AUT-01":
+            st.markdown("#### 🏎️ Interactive SAE J1349 Dynamometer, Volumetric Efficiency, Fuel Trim & ISO 11898 CAN-Bus Workbench")
+            ac1, ac2, ac3 = st.columns(3)
+            with ac1:
+                w_tq = st.slider("Engine Brake Torque (lb-ft)", 100.0, 1200.0, 365.0, 5.0, key="ch2_aut_tq")
+                w_rpm = st.slider("Engine Rotational Speed (RPM)", 800.0, 7000.0, 2800.0, 100.0, key="ch2_aut_rpm")
+            with ac2:
+                w_maf = st.slider("Mass Air Flow Sensor MAF (g/sec)", 10.0, 350.0, 115.0, 2.5, key="ch2_aut_maf")
+                w_disp = st.slider("Engine Displacement (Liters)", 1.5, 10.0, 5.0, 0.1, key="ch2_aut_disp")
+            with ac3:
+                w_stft = st.slider("Short-Term Fuel Trim STFT (%)", -25.0, 25.0, 8.5, 0.5, key="ch2_aut_stft")
+                w_ltft = st.slider("Long-Term Fuel Trim LTFT (%)", -25.0, 25.0, 18.2, 0.5, key="ch2_aut_ltft")
+
+            w_hp = (w_tq * w_rpm) / 5252.0
+            w_theo_maf = max((w_rpm / 120.0) * w_disp * 1.184, 0.001)
+            w_ve = (w_maf / w_theo_maf) * 100.0
+            w_trim = w_stft + w_ltft
+
+            ak1, ak2, ak3 = st.columns(3)
+            ak1.metric("SAE J1349 Net Power (HP = T*RPM/5252)", f"{w_hp:.1f} HP", f"{w_tq:.0f} lb-ft @ {w_rpm:.0f} RPM")
+            ak2.metric("Volumetric Efficiency (VE_%)", f"{w_ve:.1f}%", "OPTIMAL AIRFLOW (>=80%)" if w_ve >= 80.0 else "RESTRICTED / BOOST LOSS (<80%)")
+            ak3.metric("Total Fuel Trim (STFT + LTFT)", f"{w_trim:+.1f}%", "DTC P0171/P0172 FAULT (>=10%)" if abs(w_trim) >= 10.0 else "STOICHIOMETRIC LAMBDA 1.00")
+            st.code(
+                chr(10).join([
+                    "ISO 11898 HIGH-SPEED CAN-BUS SCHEMATIC (OBD-II J1962 PINS 6 & 14 / J1939 PINS C & D):",
+                    "[ECM / PCM (120 Ohm)] <====== Twisted-Pair CAN_H (3.5V) / CAN_L (1.5V) ======> [BCM / Gateway (120 Ohm)]",
+                    "                              |                                                |",
+                    "                              +---> [OBD-II Port Pin 6 & 14 (R_eq = 60.0 Ohms)] <--- [NVIDIA Three-Brain Enclave]"
+                ]),
+                language="text"
+            )
         elif selected_code in ("STR-02", "ENV-01"):
             st.markdown("### Workbench 2.1: ASTM C1153 Roof Conductive Heat Loss (BTU/hr) & Dew-Point (°F) Solver")
             st.code("Q_BTU_hr = (Area_sqft / R_Value_US) * (T_indoor_F - T_outdoor_F)\nDew_Point_F = (T_dp_C * 1.8) + 32.0   [U.S. Customary ASHRAE Psychrometric Formulation]", language="text")
