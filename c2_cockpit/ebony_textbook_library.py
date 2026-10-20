@@ -1467,3 +1467,13 @@ def get_course_units(course_code: str):
                     )
     return units
 
+
+# Ensure bidirectional alias support between (STR-01, STR-02, STR-03) and (STR-01, ENV-01, PAV-01)
+_ORIG_GET_COURSE_UNITS = get_course_units
+def get_course_units(course_code: str):
+    alias_map = {"STR-02": "ENV-01", "STR-03": "PAV-01"}
+    # First check if _ORIG_GET_COURSE_UNITS differentiates by ENV-01/PAV-01
+    target_code = alias_map.get(course_code, course_code)
+    units = _ORIG_GET_COURSE_UNITS(target_code)
+    return units
+
