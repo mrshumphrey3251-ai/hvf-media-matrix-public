@@ -1462,11 +1462,14 @@ def get_course_units(course_code: str):
                     "ans": matched_full_opt,
                     "correct_letter": ans_letter,
                 }
-        for extra_idx in [6, 14, 15, 16, 17, 19]:
-            if extra_idx < len(uquiz):
-                old_q = uquiz[extra_idx].get("q", "")
-                old_q = re.sub(r"^\[(?:STR-01|STR-02|STR-03|ENV-01|PAV-01)\s+Unit\s+\d+\s+Milestone\s+Q\d+\]\s*", "", old_q)
-                uquiz[extra_idx]["q"] = f"[{course_code} Unit {u_num:02d} Milestone Q{extra_idx+1:02d} — {prof['agency_statute']}] {old_q}"
+        gov_eq = str(u.get("governing_eq", "governing formulation")).splitlines()[0][:80]
+        for extra_idx in range(len(uquiz)):
+            if extra_idx not in replacements:
+                old_q = str(uquiz[extra_idx].get("q", "")).strip()
+                clean_body = re.sub(r"^(?:\[[^\]]+\]\s*)+", "", old_q)
+                if u_title not in clean_body:
+                    clean_body = f"In {u_title} (applying {gov_eq} under {prof['agency_statute']}), {clean_body[0].lower() + clean_body[1:] if len(clean_body) > 1 else clean_body}"
+                uquiz[extra_idx]["q"] = f"[{course_code} Unit {u_num:02d} Milestone Q{extra_idx+1:02d}] {clean_body}"
         # Normalize all 20 quiz items so q["ans"] is guaranteed to be in q["opts"]
         for q in uquiz:
             opts = q.get("opts", [])
