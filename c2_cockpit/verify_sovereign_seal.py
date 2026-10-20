@@ -4,6 +4,7 @@ CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | Statutory: OK Title 61, OAC 245:15-11, 23 CFR 
 """
 import hashlib
 import re
+import sqlite3
 import sys
 from pathlib import Path
 
@@ -52,6 +53,20 @@ def run_sovereign_verification() -> dict:
         assert len(raw_track) == 155, f"Expected 155 unique raw stems in {core_code}, got {len(raw_track)}"
     assert len(ch5_stems) == 465, f"Expected 465 unique Ch 5 questions, got {len(ch5_stems)}"
 
+    # Verify SQLite WORM & Memory Vault Table Counts
+    ledger_db = cockpit_dir / "matrix_ledger.db"
+    vault_db  = cockpit_dir / "hvf_memory_vault.db"
+    ledger_tables = 0
+    vault_tables = 0
+    if ledger_db.exists():
+        c_l = sqlite3.connect(str(ledger_db))
+        ledger_tables = len(c_l.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall())
+        c_l.close()
+    if vault_db.exists():
+        c_v = sqlite3.connect(str(vault_db))
+        vault_tables = len(c_v.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall())
+        c_v.close()
+
     print("=" * 92)
     print("   HUMPHREY VIRTUAL FARMS LLC // SOVEREIGN C2 & ACADEMY INTEGRITY SEAL   ")
     print("=" * 92)
@@ -60,12 +75,15 @@ def run_sovereign_verification() -> dict:
     print(f"Chapter 1 Unique Milestone Qs   : {len(ch1_stems)} / 600 (0 Duplicates Across 30 Modules)")
     print(f"Chapter 5 Unique State Exam Qs  : {len(ch5_stems)} / 465 (0 Duplicates Across 9 Stages)")
     print(f"Total Verified Academy Questions: {len(ch1_stems) + len(ch5_stems):,} / 1,065 (100% Verified)")
+    print(f"SQLite WORM & Vault DB Schemas  : matrix_ledger.db ({ledger_tables} tables) | hvf_memory_vault.db ({vault_tables} tables)")
     print("=" * 92)
     return {
         "modules": len(py_files),
         "merkle_root": merkle_root,
         "ch1_questions": len(ch1_stems),
         "ch5_questions": len(ch5_stems),
+        "ledger_tables": ledger_tables,
+        "vault_tables": vault_tables,
     }
 
 
