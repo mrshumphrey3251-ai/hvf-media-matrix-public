@@ -331,20 +331,30 @@ def render_automotive_master_deck():
     ])
 
     with tab_can:
+        preset_key = st.selectbox(
+            "🔄 Hot-Swap Connected Vehicle Enclave Preset (Auto-Populates VIN, CAN Bus Protocol & Live Sensor Stream):",
+            list(FLEET_VEHICLE_PRESETS.keys()),
+            format_func=lambda k: FLEET_VEHICLE_PRESETS[k]["label"],
+            key="auto_preset_selector"
+        )
+        p_data = FLEET_VEHICLE_PRESETS[preset_key]
+        proto_keys = list(CANBUS_PROTOCOLS.keys())
+        dtc_keys = list(MASTER_DTC_AND_REPAIR_LIBRARY.keys())
+
         c1, c2, c3 = st.columns(3)
         with c1:
-            vin_in = st.text_input("Vehicle 17-Char VIN (Auto-Detected via Mode $09):", value="1FTFW1E50NFA00001", key="auto_vin")
-            veh_in = st.text_input("Vehicle / Fleet Asset Description:", value="HVF Fleet Command Unit #01 (5.0L V8)", key="auto_desc")
-            proto_in = st.selectbox("Active CAN-Bus Physical Protocol:", list(CANBUS_PROTOCOLS.keys()), format_func=lambda k: CANBUS_PROTOCOLS[k]["name"], key="auto_proto")
+            vin_in = st.text_input("Vehicle 17-Char VIN (Auto-Detected via Mode $09):", value=p_data["vin"], key=f"auto_vin_{preset_key}")
+            veh_in = st.text_input("Vehicle / Fleet Asset Description:", value=p_data["desc"], key=f"auto_desc_{preset_key}")
+            proto_in = st.selectbox("Active CAN-Bus Physical Protocol:", proto_keys, index=proto_keys.index(p_data["proto"]), format_func=lambda k: CANBUS_PROTOCOLS[k]["name"], key=f"auto_proto_{preset_key}")
         with c2:
-            dtc_in = st.selectbox("Detected Diagnostic Trouble Code (DTC):", list(MASTER_DTC_AND_REPAIR_LIBRARY.keys()), format_func=lambda k: MASTER_DTC_AND_REPAIR_LIBRARY[k]["title"], key="auto_dtc")
-            stft_in = st.number_input("Short-Term Fuel Trim STFT (%):", value=8.5, step=0.5, key="auto_stft")
-            ltft_in = st.number_input("Long-Term Fuel Trim LTFT (%):", value=18.2, step=0.5, key="auto_ltft")
+            dtc_in = st.selectbox("Detected Diagnostic Trouble Code (DTC):", dtc_keys, index=dtc_keys.index(p_data["dtc"]), format_func=lambda k: MASTER_DTC_AND_REPAIR_LIBRARY[k]["title"], key=f"auto_dtc_{preset_key}")
+            stft_in = st.number_input("Short-Term Fuel Trim STFT (%):", value=float(p_data["stft"]), step=0.5, key=f"auto_stft_{preset_key}")
+            ltft_in = st.number_input("Long-Term Fuel Trim LTFT (%):", value=float(p_data["ltft"]), step=0.5, key=f"auto_ltft_{preset_key}")
         with c3:
-            rpm_in = st.number_input("Engine Speed (RPM):", value=2800.0, step=100.0, key="auto_rpm")
-            tq_in = st.number_input("Measured Engine Torque (lb-ft):", value=365.0, step=5.0, key="auto_tq")
-            maf_in = st.number_input("Mass Air Flow Sensor (g/sec):", value=115.0, step=2.0, key="auto_maf")
-            disp_in = st.number_input("Engine Displacement (Liters):", value=5.0, step=0.1, key="auto_disp")
+            rpm_in = st.number_input("Engine Speed (RPM):", value=float(p_data["rpm"]), step=100.0, key=f"auto_rpm_{preset_key}")
+            tq_in = st.number_input("Measured Engine Torque (lb-ft):", value=float(p_data["tq"]), step=5.0, key=f"auto_tq_{preset_key}")
+            maf_in = st.number_input("Mass Air Flow Sensor (g/sec):", value=float(p_data["maf"]), step=2.0, key=f"auto_maf_{preset_key}")
+            disp_in = st.number_input("Engine Displacement (Liters):", value=float(p_data["disp"]), step=0.1, key=f"auto_disp_{preset_key}")
 
         perf_sel = st.selectbox("Select Target ECU Calibration / Performance Stage:", list(PERFORMANCE_IMPROVEMENT_STAGES.keys()), format_func=lambda k: PERFORMANCE_IMPROVEMENT_STAGES[k]["title"], key="auto_perf_sel")
 
