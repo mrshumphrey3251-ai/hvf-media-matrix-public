@@ -1420,8 +1420,10 @@ _COURSE_DOMAIN_PROFILES = {
 _prev_get_course_units_fn = get_course_units
 
 def get_course_units(course_code: str):
-    units = _prev_get_course_units_fn(course_code)
-    prof = _COURSE_DOMAIN_PROFILES.get(course_code, _COURSE_DOMAIN_PROFILES["STR-01"])
+    base_code = "STR-02" if course_code in ("STR-02", "ENV-01") else ("STR-03" if course_code in ("STR-03", "PAV-01") else "STR-01")
+    prof_code = "ENV-01" if course_code in ("STR-02", "ENV-01") else ("PAV-01" if course_code in ("STR-03", "PAV-01") else "STR-01")
+    units = _prev_get_course_units_fn(base_code)
+    prof = _COURSE_DOMAIN_PROFILES.get(prof_code, _COURSE_DOMAIN_PROFILES["STR-01"])
     for u in units:
         u_num = u.get("unit", 1)
         u_title = u.get("title", f"{course_code} Unit {u_num:02d}")
@@ -1444,6 +1446,7 @@ def get_course_units(course_code: str):
                 shift = (sum(ord(ch) for ch in course_code) + u_num * 3 + q_idx) % 4
                 ordered_opts = raw_opts[shift:] + raw_opts[:shift]
                 labeled_opts = []
+                matched_full_opt = ""
                 ans_letter = "A"
                 for li, opt_txt in enumerate(ordered_opts):
                     clean_txt = re.sub(r"^[A-D]\)\s*", "", str(opt_txt))
@@ -1452,44 +1455,23 @@ def get_course_units(course_code: str):
                     labeled_opts.append(lbl)
                     if opt_txt == ans_txt:
                         ans_letter = letter
+                        matched_full_opt = lbl
                 uquiz[q_idx] = {
                     "q": f"[{course_code} Unit {u_num:02d} Milestone Q{q_idx+1:02d}] {stem}",
                     "opts": labeled_opts,
-                    "ans": ans_letter,
+                    "ans": matched_full_opt,
+                    "correct_letter": ans_letter,
                 }
         for extra_idx in [6, 14, 15, 16, 17, 19]:
             if extra_idx < len(uquiz):
                 old_q = uquiz[extra_idx].get("q", "")
-                if prof["agency_statute"] not in old_q:
-                    uquiz[extra_idx]["q"] = old_q.replace(
-                        f"[{course_code} Unit {u_num:02d} Milestone Q{extra_idx+1:02d}] ",
-                        f"[{course_code} Unit {u_num:02d} Milestone Q{extra_idx+1:02d} — {prof['agency_statute']}] "
-                    )
-    return units
-
-
-# Ensure bidirectional alias support between (STR-01, STR-02, STR-03) and (STR-01, ENV-01, PAV-01)
-_ORIG_GET_COURSE_UNITS = get_course_units
-def get_course_units(course_code: str):
-    alias_map = {"STR-02": "ENV-01", "STR-03": "PAV-01"}
-    # First check if _ORIG_GET_COURSE_UNITS differentiates by ENV-01/PAV-01
-    target_code = alias_map.get(course_code, course_code)
-    units = _ORIG_GET_COURSE_UNITS(target_code)
-    return units
-
-
-# Canonical Answer-Key Normalization & Bidirectional Course Code Alias Wrapper
-_RAW_GET_COURSE_UNITS = get_course_units
-def get_course_units(course_code: str):
-    alias_map = {"STR-02": "ENV-01", "STR-03": "PAV-01"}
-    target_code = alias_map.get(course_code, course_code)
-    units = _RAW_GET_COURSE_UNITS(target_code)
-    for u in units:
-        for q in u.get("unit_quiz", []):
+                old_q = re.sub(r"^\[(?:STR-01|STR-02|STR-03|ENV-01|PAV-01)\s+Unit\s+\d+\s+Milestone\s+Q\d+\]\s*", "", old_q)
+                uquiz[extra_idx]["q"] = f"[{course_code} Unit {u_num:02d} Milestone Q{extra_idx+1:02d} — {prof['agency_statute']}] {old_q}"
+        # Normalize all 20 quiz items so q["ans"] is guaranteed to be in q["opts"]
+        for q in uquiz:
             opts = q.get("opts", [])
             raw_ans = str(q.get("ans", "")).strip()
             if raw_ans not in opts and opts:
-                # Match by letter prefix (e.g. "B" -> "B) ...") or substring match
                 letter = raw_ans[0].upper() if raw_ans else "A"
                 matched = next((o for o in opts if o.strip().upper().startswith(f"{letter})") or o.strip().upper().startswith(f"{letter}.")), None)
                 if not matched:
@@ -1497,7 +1479,6 @@ def get_course_units(course_code: str):
                 q["ans"] = matched
             q["correct_letter"] = str(q["ans"]).strip()[0].upper() if q.get("ans") else "A"
     return units
-
 
 COURSE_CATALOG = {
     "STR-01": {
@@ -1559,4 +1540,3 @@ def export_full_course_textbook_markdown(course_code: str, course_meta: dict = N
         return _ORIG_EXPORT_TEXTBOOK(course_code, meta)
     except TypeError:
         return _ORIG_EXPORT_TEXTBOOK(course_code)
-
