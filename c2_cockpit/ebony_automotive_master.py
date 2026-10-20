@@ -6,6 +6,7 @@ Architecture: Modular, additive multi-vehicle hot-swappable NVIDIA Three-Brain d
 """
 import hashlib
 import json
+import re
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
@@ -278,26 +279,30 @@ BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
         ]
     },
     "ZONE_11_LIGHTING_WIPERS_FUSES_AND_BODY": {
-        "zone_title": "Zone 11: Headlight & Taillight Bulbs, Wiper Blades, Window Regulators & Fuse Replacement",
+        "zone_title": "Zone 11: Interior Door Panel Removal (Charger/Cars/Trucks), Window Regulators, Headlight Bulbs, Wipers & Fuses",
         "where_and_what": (
-            "1. **Headlight Bulbs (Behind Front Headlamp Housing):** Accessed from inside the engine bay by reaching behind the back of the headlight assembly, twisting the bulb socket `1/4 turn Counter-Clockwise`, and pulling it out.\n"
-            "2. **Wiper Blades (J-Hook / Push-Button Arm):** Attached to the metal wiper arm with a small plastic release tab under the pivot joint.\n"
-            "3. **Blade Fuses (5A Tan, 10A Red, 15A Blue, 20A Yellow, 25A Clear, 30A Green):** Translucent U-shaped plastic fuses inside the engine-bay and cabin fuse boxes. A blown fuse has a visibly broken/melted metal U-wire inside the clear window."
+            "1. **Interior Door Trim Panel (Dodge Charger, Sedans, SUVs & Pickup Trucks):** The padded interior panel covering the inside of your vehicle's metal door shell. It hides the **Power Window Regulator & Motor**, **Door Lock Actuator**, and **Door Speaker**. It is held on by two things: **Hidden Anchor Screws** (hidden behind small pop-out plastic covers inside the recessed cup behind the chrome interior door latch handle and inside the rubber pull-cup armrest grip) AND **8 to 12 Plastic Christmas-Tree Push Clips** around the outer perimeter edge.\n"
+            "2. **Headlight Bulbs (Behind Front Headlamp Housing):** Accessed from inside the engine bay (or through the front wheel-well liner splash door on Dodge Charger/Challenger) by twisting the bulb socket `1/4 turn Counter-Clockwise`.\n"
+            "3. **Wiper Blades & Blade Fuses (5A Tan, 10A Red, 15A Blue, 20A Yellow, 30A Green):** U-shaped translucent fuses in the engine-bay and cabin/trunk fuse boxes."
         ),
         "safety_precautions": [
-            "THE HALOGEN/HID BULB FINGERPRINT RULE: **NEVER touch the glass of a new headlight bulb with your bare fingers!** Human skin leaves microscopic natural oil on the quartz glass; when the bulb heats up to 1,000 deg F, that oil spot creates a thermal hot-spot that blisters and shatters the new bulb within days! Always wear clean nitrile gloves (or wipe the glass with 91% rubbing alcohol if accidentally touched).",
-            "THE WINDSHIELD TOWEL RULE: When changing wiper blades, ALWAYS lay a folded bath towel across the bottom of the glass windshield! If the bare metal wiper arm slips out of your hand while the blade is off, the strong spring will snap the metal hook down and crack the $600 windshield!",
-            "NEVER replace a blown fuse with a higher amperage rating (e.g., never put a 30A green fuse into a 10A red slot)—doing so turns the vehicle's wiring harness into the fuse and causes electrical fires!"
+            "THE DOOR PANEL PRY-TOOL RULE: **NEVER pry against a painted metal door edge with a metal flathead screwdriver!** A metal screwdriver scratches paint down to bare metal and cracks brittle plastic door panels. Always use a `$6` **Nylon Plastic Trim Removal Pry Tool** and a **Clip Fork**!",
+            "THE SIDE-CURTAIN / DOOR AIRBAG RULE: Before unplugging any yellow wiring connector inside a door cavity, turn the ignition OFF and disconnect the **Black Negative (-)** battery terminal (`10mm` wrench) for 2 minutes.",
+            "THE HALOGEN/HID BULB FINGERPRINT RULE: Never touch the quartz glass of a new headlight bulb with bare fingers (wear clean nitrile gloves!).",
+            "THE WINDSHIELD TOWEL RULE: Always lay a folded bath towel across the windshield when changing wiper blades so a bare metal arm cannot snap down and crack the glass."
         ],
         "tools_required": [
-            "Clean Nitrile Gloves & 91% Isopropyl Alcohol Wipe",
-            "Folded Bath Towel (to protect windshield glass during wiper change)",
-            "Plastic Fuse Puller Clip (stored inside the fuse box lid) + Matching Amperage Spare Fuses"
+            "Nylon Plastic Trim Panel Pry Tool Set & V-Notch Clip Lifter (plus a pack of spare Nylon Door Trim Push-Clips)",
+            "Small Flathead Pick / Pocket Screwdriver (for popping open the 2 tiny plastic screw-hider caps inside the door handle & pull cup)",
+            "Phillips #2 Screwdriver, Torx T20 / T25 / T30 Bit, and 7mm / 8mm / 10mm Socket with 3/8-inch Ratchet",
+            "Clean Nitrile Gloves, Folded Bath Towel, and Plastic Fuse Puller"
         ],
         "step_by_step": [
-            "Step 1 (Changing Wiper Blades Safely): Lift the wiper arm up and lay a folded towel on the windshield underneath it. Press the small plastic release tab inside the hook of the wiper blade and slide the old blade downward (toward the hood) off the J-hook. Hook the new blade onto the arm and pull upward until you hear a loud *CLICK*, then gently rest it on the glass.",
-            "Step 2 (Changing a Headlight Bulb): Put on clean nitrile gloves. Open the hood, reach behind the headlight housing, unplug the wiring connector, twist the bulb base `1/4 turn Counter-Clockwise`, and pull it straight out without touching the glass. Insert the new bulb tabs into the keyways, twist `1/4 turn Clockwise` until locked, and plug the connector back in.",
-            "Step 3 (Testing & Replacing a Blown Fuse): Read the fuse map inside the fuse box cover to find the circuit (e.g., `12V Power Outlet / Cigar Lighter = 20A Yellow`). Use the plastic fuse puller to pull the fuse straight out and hold it up to the light: if the internal metal bridge is broken in two, push in a new fuse of the **exact same amperage number and color**."
+            "Step 1 (How to Remove an Interior Door Panel on a Dodge Charger, Car, or Truck Without Breaking Clips): Roll the window all the way DOWN first (this gives your hands room to lift the top lip of the door panel off the window channel!). Turn the ignition OFF.",
+            "Step 2 (Pop Out the Hidden Screw Covers & Remove Anchor Screws): Look directly behind the interior chrome door-opening handle lever: use a thin plastic pick to pop open the small square plastic trapdoor cover and remove the screw behind it (`Phillips #2`, `Torx T20/T25`, or `7mm/8mm/10mm` bolt). Next, look inside the bottom of the recessed armrest pull-cup where you grab the door to pull it shut: lift out the small rubber mat at the bottom of the cup and remove the main anchor bolt (`7mm`, `8mm`, or `10mm`). Also check the front sail panel (mirror triangle) and bottom carpet edge of the door for any secondary screws.",
+            "Step 3 (Pop the Perimeter Push-Clips with a Nylon Trim Wedge): Slide your wide **Nylon Plastic Trim Pry Tool** between the bottom corner of the plastic door panel and the painted metal door frame. Slide the tool along the edge until it stops against a clip, then pry gently outward until you hear a crisp *POP*. Work your way around the bottom edge, up the left side, and up the right side until all perimeter push-clips release. (**DO NOT yank the panel away from the car yet**—wires and the steel latch cable are still attached inside!).",
+            "Step 4 (Lift Upward Off the Window Lip & Unhook Latch Cable + Window Switch Wires): Hold the sides of the door panel and lift it **straight UPWARD 2 inches** to unhook the top curved lip from the window weatherstrip channel. Hold the panel 4 inches away from the door and look behind it: 1) Unhook the metal **Door Handle Bowden Cable** by releasing its white/yellow plastic retainer clip and lifting the metal Z-hook or ball end out of the handle lever. 2) Press the locking tab on the **Power Window Switch & Courtesy Light Wiring Connectors** and unplug them. Set the door panel safely on a clean blanket!",
+            "Step 5 (Reinstalling the Door Panel): Inspect all plastic perimeter clips—if any clip stayed stuck in the metal door hole, pull it out with your clip fork and slide it back into the slot on the back of the door panel (replace any bent clips). Plug the window switch wires back in, snap the metal door-handle cable back into its retainer clip, hook the top lip of the door panel down over the top window sill channel first, tap around the outer perimeter with the palm of your hand to snap all clips in, and reinstall the recessed handle and pull-cup bolts!"
         ]
     },
     "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE": {
@@ -905,18 +910,130 @@ def answer_automotive_ai_query(query_text: str) -> str:
     return "\n".join(lines)
 
 
+def init_self_learning_mechanic_vault():
+    """
+    Ensures the permanent self-learning table `ebony_learned_mechanics_vault` exists in
+    hvf_memory_vault.db and matrix_ledger.db so E.B.O.N.Y. remembers every question asked.
+    """
+    vault_db_path = cockpit_dir / "hvf_memory_vault.db"
+    for target_db in [vault_db_path, db_path]:
+        conn = sqlite3.connect(str(target_db))
+        cur = conn.cursor()
+        cur.execute("""
+        CREATE TABLE IF NOT EXISTS ebony_learned_mechanics_vault (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            question_hash TEXT UNIQUE NOT NULL,
+            user_question TEXT NOT NULL,
+            vehicle_context TEXT NOT NULL,
+            matched_zone_titles TEXT NOT NULL,
+            web_learned_notes TEXT NOT NULL,
+            synthesized_guide TEXT NOT NULL,
+            source_mode TEXT NOT NULL,
+            times_recalled INTEGER NOT NULL DEFAULT 1,
+            sha256_seal TEXT NOT NULL,
+            timestamp_utc TEXT NOT NULL
+        )
+        """)
+        conn.commit()
+        conn.close()
+
+
+def record_question_to_self_learning_vault(
+    user_question: str,
+    vehicle_context: str,
+    matched_zones: list,
+    web_findings: list,
+    source_mode: str
+) -> dict:
+    """
+    Permanently records a question and its synthesized answer into E.B.O.N.Y.'s self-learning
+    SQLite vault (`hvf_memory_vault.db` and `matrix_ledger.db`) so she grows smarter with every query.
+    """
+    init_self_learning_mechanic_vault()
+    q_norm = re.sub(r"\s+", " ", str(user_question).strip().lower())
+    v_norm = re.sub(r"\s+", " ", str(vehicle_context).strip().lower())
+    q_hash = hashlib.sha256(f"{q_norm}|{v_norm}".encode("utf-8")).hexdigest()
+    now_utc = datetime.now(timezone.utc).isoformat()
+
+    z_titles = " | ".join(z["zone_title"] for z in matched_zones)
+    w_notes = "\n".join(web_findings) if web_findings else "Local Sovereign Knowledge Base Verified."
+    synth_parts = []
+    for z in matched_zones:
+        synth_parts.append(f"[{z['zone_title']}] Tools: {', '.join(z['tools_required'][:3])} | Steps: {' -> '.join(z['step_by_step'][:3])}")
+    synth_text = "\n".join(synth_parts)
+    seal = hashlib.sha256(f"{q_hash}|{z_titles}|{w_notes}|{synth_text}".encode("utf-8")).hexdigest()
+
+    vault_db_path = cockpit_dir / "hvf_memory_vault.db"
+    for target_db in [vault_db_path, db_path, cockpit_dir.parent / "hvf_memory_vault.db", cockpit_dir.parent / "matrix_ledger.db"]:
+        if not target_db.parent.exists():
+            continue
+        conn = sqlite3.connect(str(target_db))
+        cur = conn.cursor()
+        cur.execute("""
+        CREATE TABLE IF NOT EXISTS ebony_learned_mechanics_vault (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            question_hash TEXT UNIQUE NOT NULL,
+            user_question TEXT NOT NULL,
+            vehicle_context TEXT NOT NULL,
+            matched_zone_titles TEXT NOT NULL,
+            web_learned_notes TEXT NOT NULL,
+            synthesized_guide TEXT NOT NULL,
+            source_mode TEXT NOT NULL,
+            times_recalled INTEGER NOT NULL DEFAULT 1,
+            sha256_seal TEXT NOT NULL,
+            timestamp_utc TEXT NOT NULL
+        )
+        """)
+        cur.execute("""
+            INSERT INTO ebony_learned_mechanics_vault (
+                question_hash, user_question, vehicle_context, matched_zone_titles,
+                web_learned_notes, synthesized_guide, source_mode, times_recalled, sha256_seal, timestamp_utc
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?, ?)
+            ON CONFLICT(question_hash) DO UPDATE SET
+                web_learned_notes = CASE WHEN excluded.web_learned_notes != 'Local Sovereign Knowledge Base Verified.' THEN excluded.web_learned_notes ELSE ebony_learned_mechanics_vault.web_learned_notes END,
+                synthesized_guide = excluded.synthesized_guide,
+                source_mode = excluded.source_mode,
+                times_recalled = ebony_learned_mechanics_vault.times_recalled + 1,
+                sha256_seal = excluded.sha256_seal,
+                timestamp_utc = excluded.timestamp_utc
+        """, (q_hash, str(user_question).strip(), str(vehicle_context).strip(), z_titles, w_notes, synth_text, source_mode, seal, now_utc))
+        conn.commit()
+        conn.close()
+    return {"question_hash": q_hash, "sha256_seal": seal, "timestamp_utc": now_utc}
+
+
+def get_learned_mechanics_memory(limit: int = 25) -> list:
+    vault_db_path = cockpit_dir / "hvf_memory_vault.db"
+    target_db = vault_db_path if vault_db_path.exists() else db_path
+    if not target_db.exists():
+        return []
+    conn = sqlite3.connect(str(target_db))
+    cur = conn.cursor()
+    t_exists = cur.execute("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='ebony_learned_mechanics_vault'").fetchone()[0]
+    if not t_exists:
+        conn.close()
+        return []
+    rows = cur.execute("""
+        SELECT user_question, vehicle_context, matched_zone_titles, web_learned_notes,
+               source_mode, times_recalled, substr(sha256_seal, 1, 16), timestamp_utc
+        FROM ebony_learned_mechanics_vault
+        ORDER BY id DESC LIMIT ?
+    """, (limit,)).fetchall()
+    conn.close()
+    return rows
+
+
 def query_ebony_mechanic_assistant(
     user_question: str,
     allow_internet_lookup: bool = False,
     vehicle_make_model_year: str = "",
-    vin_str: str = ""
+    vin_str: str = "",
+    save_to_memory: bool = False
 ) -> dict:
     """
     Answers any open-ended user question about automotive repair, maintenance, performance, tractors,
-    or small engines/lawnmowers.
-    - By default (allow_internet_lookup=False), operates 100% air-gapped using the local 16-Zone HVF Encyclopedia.
-    - ONLY when allow_internet_lookup=True (explicitly requested by user) does it reach out to the internet
-      (NHTSA vPIC / Recalls API + DuckDuckGo Instant Technical API + Cloud AI Synthesis if configured).
+    or small engines/lawnmowers, checks E.B.O.N.Y.'s Self-Learning Memory Vault first, and saves newly
+    learned questions when save_to_memory=True.
     """
     import urllib.parse
     import urllib.request
@@ -924,7 +1041,16 @@ def query_ebony_mechanic_assistant(
     q_clean = str(user_question).strip()
     q_low = (q_clean + " " + str(vehicle_make_model_year)).lower()
 
-    # 1. Match best local Beginner-to-Master Zone(s) from the 16-Zone Encyclopedia
+    # 0. Check E.B.O.N.Y.'s Self-Learning Memory Vault for prior recall
+    prior_memories = get_learned_mechanics_memory(limit=100)
+    recalled_entry = None
+    q_norm = re.sub(r"\s+", " ", q_clean.lower())
+    for pm in prior_memories:
+        if re.sub(r"\s+", " ", str(pm[0]).strip().lower()) == q_norm:
+            recalled_entry = pm
+            break
+
+    # 1. Match all relevant Beginner-to-Master Zone(s) from the 16-Zone Encyclopedia
     matched_zones = []
     keyword_map = [
         (["jack", "stand", "lift", "pinch weld", "frame", "chock", "socket", "ratchet", "lefty"], "ZONE_01_SAFETY_JACKING_AND_TOOLS"),
@@ -937,7 +1063,7 @@ def query_ebony_mechanic_assistant(
         (["transmission", "atf", "differential", "pumpkin", "transfer case", "gear oil", "cv axle", "u-joint"], "ZONE_08_TRANSMISSION_DIFFERENTIALS_AND_DRIVETRAIN"),
         (["exhaust", "catalytic", "o2", "oxygen sensor", "dpf", "def", "muffler", "p0420"], "ZONE_09_EXHAUST_EMISSIONS_O2_AND_DIESEL_DPF"),
         (["ac", "a/c", "air condition", "heater", "blower", "cabin filter", "blend door", "clicking"], "ZONE_10_HVAC_HEATING_COOLING_AND_CABIN_AIR"),
-        (["headlight", "bulb", "taillight", "wiper", "fuse", "window"], "ZONE_11_LIGHTING_WIPERS_FUSES_AND_BODY"),
+        (["door panel", "door", "panel", "trim", "charger", "window", "regulator", "headlight", "bulb", "taillight", "wiper", "fuse", "mirror", "latch", "speaker"], "ZONE_11_LIGHTING_WIPERS_FUSES_AND_BODY"),
         (["can bus", "can-bus", "obd", "j1939", "isobus", "nvidia", "three brain", "ecu", "unplug"], "ZONE_12_PORTABLE_NVIDIA_CANBUS_PLUGIN_AND_ECU_GUIDE"),
         (["mower", "lawnmower", "small engine", "wont start", "won't start", "spark plug boot", "tip", "flywheel key"], "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE"),
         (["carburetor", "float bowl", "main jet", "ethanol", "surge", "hunting", "primer", "choke"], "ZONE_14_CARBURETOR_CLEANING_ETHANOL_AND_GOVERNOR"),
@@ -955,8 +1081,7 @@ def query_ebony_mechanic_assistant(
     web_findings = []
     network_mode = "🔒 AIR-GAPPED LOCAL SOVEREIGN KNOWLEDGE BASE ONLY (Zero Internet Traffic — Default)"
     if allow_internet_lookup:
-        network_mode = "🌐 OPT-IN LIVE INTERNET & NHTSA / OEM TECHNICAL LOOKUP ACTIVE (User Authorized)"
-        # A) If VIN provided (11-17 chars), query official U.S. DOT NHTSA vPIC API
+        network_mode = "🌐 OPT-IN LIVE INTERNET & NHTSA / TECHNICAL WEB LOOKUP ACTIVE (User Authorized)"
         clean_vin = str(vin_str).strip().upper()
         if len(clean_vin) >= 11:
             try:
@@ -976,9 +1101,8 @@ def query_ebony_mechanic_assistant(
                         f"**[LIVE U.S. DOT NHTSA vPIC VIN DECODE (`{clean_vin}`)]** Year/Make/Model: `{yr} {mk} {md}` | Engine: `{eng_l}L {cyl}-Cylinder ({fuel})` | Drivetrain: `{drive}`."
                     )
             except Exception as e_vpic:
-                web_findings.append(f"**[NHTSA vPIC Lookup Note]:** Could not reach vpic.nhtsa.dot.gov ({e_vpic}).")
+                web_findings.append(f"**[NHTSA vPIC Lookup Note]:** {e_vpic}")
 
-        # B) Query live NHTSA Recalls API if Year/Make/Model provided
         parts_ymm = str(vehicle_make_model_year).strip().split()
         if len(parts_ymm) >= 3 and parts_ymm[0].isdigit():
             try:
@@ -999,25 +1123,30 @@ def query_ebony_mechanic_assistant(
             except Exception:
                 pass
 
-        # C) Query DuckDuckGo Instant Technical Summary API for open-ended technical queries
+        # C) Multi-Term Technical Encyclopedia Search (MediaWiki API handles multi-word natural-language technical queries!)
         try:
-            search_term = f"{vehicle_make_model_year} {q_clean}".strip()
-            ddg_url = f"https://api.duckduckgo.com/?q={urllib.parse.quote(search_term)}&format=json&no_html=1&skip_disambig=1"
-            req_d = urllib.request.Request(ddg_url, headers={"User-Agent": "HVF-Sovereign-C2/5.0"})
-            with urllib.request.urlopen(req_d, timeout=5) as resp_d:
-                d_json = json.loads(resp_d.read().decode("utf-8", errors="replace"))
-                abs_txt = d_json.get("AbstractText") or ""
-                rel_topics = d_json.get("RelatedTopics") or []
-                if abs_txt:
-                    web_findings.append(f"**[LIVE WEB TECHNICAL ENCYCLOPEDIA SUMMARY]:** {abs_txt}")
-                elif rel_topics and isinstance(rel_topics[0], dict) and rel_topics[0].get("Text"):
-                    web_findings.append(f"**[LIVE WEB TECHNICAL REFERENCE]:** {rel_topics[0]['Text']}")
-                else:
-                    web_findings.append(
-                        f"**[LIVE WEB QUERY EXECUTED (`{search_term}`)]:** External endpoint queried; combining vehicle context `{vehicle_make_model_year or 'Universal Fleet/Small Engine'}` with HVF Master Repair & Torque Standards below."
-                    )
-        except Exception as e_ddg:
-            web_findings.append(f"**[Live Web Technical Query Note]:** External web lookup encountered network firewall/timeout ({e_ddg}); falling back seamlessly to HVF Sovereign Local Encyclopedia.")
+            wiki_q = f"{vehicle_make_model_year} {q_clean}".strip()
+            mw_url = f"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch={urllib.parse.quote(wiki_q)}&utf8=&format=json&srlimit=2"
+            req_mw = urllib.request.Request(mw_url, headers={"User-Agent": "HVF-Sovereign-C2/5.0 (humphreyvirtualfarm@gmail.com)"})
+            with urllib.request.urlopen(req_mw, timeout=5) as resp_mw:
+                mw_json = json.loads(resp_mw.read().decode("utf-8", errors="replace"))
+                s_hits = mw_json.get("query", {}).get("search", [])
+                for sh in s_hits[:2]:
+                    t_title = sh.get("title", "")
+                    t_snip = re.sub(r"<[^>]+>", "", str(sh.get("snippet", "")))
+                    if t_snip:
+                        web_findings.append(f"**[LIVE TECHNICAL WEB ENCYCLOPEDIA (`{t_title}`)]** {t_snip}...")
+        except Exception:
+            pass
+
+    if save_to_memory:
+        record_question_to_self_learning_vault(
+            user_question=q_clean,
+            vehicle_context=vehicle_make_model_year or "Universal Fleet & Small Engine",
+            matched_zones=matched_zones,
+            web_findings=web_findings,
+            source_mode=network_mode
+        )
 
     return {
         "question": q_clean,
@@ -1025,7 +1154,8 @@ def query_ebony_mechanic_assistant(
         "network_mode": network_mode,
         "allow_internet_lookup": allow_internet_lookup,
         "web_findings": web_findings,
-        "matched_zones": matched_zones
+        "matched_zones": matched_zones,
+        "recalled_from_memory": recalled_entry
     }
 
 
@@ -1234,6 +1364,20 @@ def render_automotive_master_deck():
         else:
             st.success(f"**Network Gate Status:** `{ans_bundle['network_mode']}` *(Check the box above if you want E.B.O.N.Y. to fetch live internet / NHTSA updates)*")
 
+        if ans_bundle.get("recalled_from_memory"):
+            rem = ans_bundle["recalled_from_memory"]
+            st.info(f"🧠 **E.B.O.N.Y. Self-Learning Memory Recall Active!** E.B.O.N.Y. already learned this question (`Recalled {rem[5]} time(s)` | WORM Seal: `{rem[6]}...` | Learned: `{rem[7]}`).")
+
+        if st.button("🧠 Teach & Lock This Question + Answer into E.B.O.N.Y.'s Permanent Self-Learning Memory Vault", use_container_width=True, key="btn_save_ebony_learned_q"):
+            mem_res = record_question_to_self_learning_vault(
+                user_question=user_mech_q,
+                vehicle_context=veh_ymm_in,
+                matched_zones=ans_bundle["matched_zones"],
+                web_findings=ans_bundle["web_findings"],
+                source_mode=ans_bundle["network_mode"]
+            )
+            st.success(f"🧠 Permanently Assimilated into E.B.O.N.Y. Self-Learning Memory Vault! Question Hash: `{mem_res['question_hash'][:16]}...` | WORM Seal: `{mem_res['sha256_seal'][:16]}...`")
+
         for mz in ans_bundle["matched_zones"]:
             st.markdown(f"#### 🛠️ E.B.O.N.Y. Beginner-to-Master Guide: `{mz['zone_title']}`")
             st.markdown("**📍 1. Where Is It & What Does It Look Like?**")
@@ -1248,6 +1392,14 @@ def render_automotive_master_deck():
             for stp in mz["step_by_step"]:
                 st.success(stp)
             st.markdown("---")
+
+        learned_rows = get_learned_mechanics_memory(limit=25)
+        st.markdown(f"### 🧠 E.B.O.N.Y. Continuous Self-Learning Knowledge Vault (`{len(learned_rows)}` Learned Questions Sealed)")
+        for lr in learned_rows:
+            with st.expander(f"🧠 Learned Q: '{lr[0]}' | Vehicle: {lr[1]} | Recalled: {lr[5]}x | Seal: {lr[6]}...", expanded=False):
+                st.markdown(f"- **Matched Beginner-to-Master Zones:** `{lr[2]}`")
+                st.markdown(f"- **Source / Network Mode:** `{lr[4]}`")
+                st.markdown(f"- **Web / NHTSA Learned Notes:**\n{lr[3]}")
 
     with tab_perf:
         st.markdown("### 🧮 Interactive Performance Injector, Boost, Torque-to-Yield & Drivetrain Calculator")
