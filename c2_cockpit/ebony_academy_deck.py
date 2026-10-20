@@ -525,7 +525,7 @@ def render_academy_deck():
             sc1.metric("Upstream Froude Number (Fr_1)", f"{fr_num:.3f}", "Supercritical Flow (Fr >= 1)" if fr_num >= 1.0 else "Subcritical Riverine Flow")
             sc2.metric("Predicted HEC-18 Scour Depth (y_s)", f"{ys_scour:.2f} ft", "ODOT ITEM 113 SCOUR CRITICAL (Exceeds Footing!)" if ys_scour >= foot_d else "Footing Embedment Safe")
 
-        elif selected_code == "STR-02":
+        elif selected_code in ("STR-02", "ENV-01"):
             st.markdown("### Workbench 2.1: ASTM C1153 Roof Conductive Heat Loss (BTU/hr) & Dew-Point (°F) Solver")
             st.code("Q_BTU_hr = (Area_sqft / R_Value_US) * (T_indoor_F - T_outdoor_F)\nDew_Point_F = (T_dp_C * 1.8) + 32.0   [U.S. Customary ASHRAE Psychrometric Formulation]", language="text")
             b1, b2, b3, b4 = st.columns(4)
