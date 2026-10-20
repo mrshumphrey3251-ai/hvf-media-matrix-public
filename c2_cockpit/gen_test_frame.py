@@ -1,8 +1,8 @@
-﻿import os
+import os
 import numpy as np
 from PIL import Image
 
-REPO_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+REPO_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 OUT_PATH = os.path.join(REPO_DIR, "test_aerial_crop.jpg")
 
 height, width = 600, 800

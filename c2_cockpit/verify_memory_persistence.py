@@ -1,4 +1,4 @@
-﻿import sqlite3
+import sqlite3
 import chromadb
 import os
 
@@ -8,8 +8,8 @@ import os
 # System: Audit Real-Time Write-Back into SQLite & ChromaDB Iron Dome
 # ==============================================================================
 
-DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db"
-CHROMA_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
+CHROMA_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\chroma_db"
 
 print("=" * 80)
 print("AUDITING AUTOMATED EPISODIC CONVERSATION PERSISTENCE")

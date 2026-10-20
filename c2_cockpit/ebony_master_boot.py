@@ -1,4 +1,4 @@
-﻿import time
+import time
 from datetime import datetime, timezone
 
 def master_boot_sequence():

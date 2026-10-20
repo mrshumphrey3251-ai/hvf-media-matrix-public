@@ -1,4 +1,4 @@
-﻿import sys
+import sys
 from pathlib import Path
 import py_compile
 

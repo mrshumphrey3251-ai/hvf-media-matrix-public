@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Evaluator Ingress & Continuous Edge Attestation Service (Dynamic Merkle Depth)
 Provides programmatic and socket-based inspection endpoints for CDAO / ACC-RI evaluators

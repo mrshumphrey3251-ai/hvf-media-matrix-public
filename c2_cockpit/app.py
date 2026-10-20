@@ -1,4 +1,4 @@
-﻿import ada_voice_module
+import ada_voice_module
 import os
 import sys
 import io
@@ -194,7 +194,7 @@ def get_empire_config():
             "FARM_NAME": settings.get("FARM_NAME", "HVF Omni-Industrial Matrix"),
             "FOUNDER_NAME": settings.get("FOUNDER_NAME", "Jeffery Humphrey"),
             "AI_PERSONA": settings.get("AI_PERSONA", "Ebony"),
-            "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]")
+            "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "[LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]")
         }
 
 def update_empire_config(farm_name, founder, persona, email):

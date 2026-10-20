@@ -72,7 +72,7 @@ def inject_ultimate_law(msg_list):
 # -----------------------------------------------
 
 
-CHROMA_DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+CHROMA_DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\chroma_db"
 COLLECTION_NAME = "hvf_iron_dome_core"
 
 try:
@@ -106,7 +106,7 @@ load_dotenv(override=True)
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 LINKEDIN_TOKEN = os.getenv("LINKEDIN_ACCESS_TOKEN")
 LINKEDIN_URN = os.getenv("LINKEDIN_AUTHOR_URN")
-REPO_DIR = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private")
+REPO_DIR = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
 DB_PATH = os.path.join(REPO_DIR, "hvf_memory_vault.db")
 
 DEFAULT_LAT = os.getenv("HVF_LATITUDE", "35.47")
@@ -167,7 +167,7 @@ def get_empire_config():
         "FARM_NAME": settings.get("FARM_NAME", "HVF Omni-Industrial Matrix"),
         "FOUNDER_NAME": settings.get("FOUNDER_NAME", "Jeffery Humphrey"),
         "AI_PERSONA": settings.get("AI_PERSONA", "Ebony"),
-        "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]")
+        "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "[LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]")
     }
 
 def update_empire_config(farm_name, founder, persona, email):
@@ -1252,7 +1252,7 @@ elif active_module == "📨 Sovereign Dispatch Deck":
                 "FINANCIAL_TREASURY",
                 "GENERAL_EXECUTIVE"
             ], key="direct_out_cat")
-            st.markdown("<div style='font-size:0.85em; color:#94a3b8; margin-top:5px;'><b>Originating Endpoint:</b><br><span style='color:#e2a03f; font-family:monospace;'>[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]</span></div>", unsafe_allow_html=True)
+            st.markdown("<div style='font-size:0.85em; color:#94a3b8; margin-top:5px;'><b>Originating Endpoint:</b><br><span style='color:#e2a03f; font-family:monospace;'>[LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]</span></div>", unsafe_allow_html=True)
 
         with st.expander("⚡ Draft Assistance with Ebony AI (Grounded in Iron Dome Intel)", expanded=False):
             ai_directive = st.text_input("Strategic Directive for Ebony AI", key="ai_out_directive", placeholder="e.g. Coordinate DAF TENCAP Volume 2 internal deployment.")

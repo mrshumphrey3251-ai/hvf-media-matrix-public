@@ -1,4 +1,4 @@
-﻿import sqlite3
+import sqlite3
 import os
 import sys
 
@@ -8,7 +8,7 @@ import sys
 # Database: hvf_memory_vault.db (Additive Non-Destructive Update)
 # ==============================================================================
 
-DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db"
+DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
 
 print("=" * 80)
 print("EXECUTING MULTI-ACCOUNT EMAIL SCHEMA MIGRATION")

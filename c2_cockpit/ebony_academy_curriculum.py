@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Sovereign Field Academy // Registered Apprenticeship Curriculum Engine
 Accredited Workforce Training Program: Autonomous Civil Infrastructure & NDT Inspection
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5

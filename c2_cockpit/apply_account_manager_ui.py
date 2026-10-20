@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 
 # ==============================================================================
@@ -8,14 +8,14 @@ import sys
 # ==============================================================================
 
 TARGET_FILES = [
-    r"C:\HVF_Repos\hvf-media-matrix-private\ebony_console.py",
-    r"C:\HVF_Repos\hvf-media-matrix-private\ebony_console_GREEN.py"
+    r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console.py",
+    r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py"
 ]
 
-OLD_MODULE_START = 'elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":'
+OLD_MODULE_START = 'elif active_module == "📨 Sovereign Dispatch Deck":'
 
-NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
-    st.subheader("ðŸ“¨ Sovereign Multi-Account Dispatch & Inbound Triage Deck")
+NEW_MODULE_BODY = """elif active_module == "📨 Sovereign Dispatch Deck":
+    st.subheader("📨 Sovereign Multi-Account Dispatch & Inbound Triage Deck")
     st.caption("Zero-Trust Inbound Adversarial Scrubber & CEO Kinematic Veto Approval Pipeline")
 
     import sqlite3
@@ -37,7 +37,7 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
                 col_f1, col_f2 = st.columns(2)
                 with col_f1:
                     new_alias = st.text_input("Account Alias / Label:", placeholder="e.g., HVF_GMAIL_MAIN")
-                    new_email = st.text_input("Email Address:", placeholder="e.g., [LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]")
+                    new_email = st.text_input("Email Address:", placeholder="e.g., [LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]")
                     new_pwd = st.text_input("App Password / Token:", type="password", placeholder="Enter 16-character App Password")
                 with col_f2:
                     new_imap_srv = st.text_input("IMAP Server:", value="imap.gmail.com")
@@ -75,8 +75,8 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
                     a_id, a_alias, a_email, a_srv, a_prt, _, _, a_act, a_enc = acc
                     c_info, c_toggle, c_del = st.columns([3, 1, 1])
                     with c_info:
-                        pass_indicator = "ðŸŸ¢ Key Encrypted" if a_enc else "ðŸŸ¡ No Password Stored"
-                        st.markdown(f"**[{a_alias}]** `{a_email}` ({a_srv}:{a_prt}) â€” {pass_indicator}")
+                        pass_indicator = "🟢 Key Encrypted" if a_enc else "ðŸŸ¡ No Password Stored"
+                        st.markdown(f"**[{a_alias}]** `{a_email}` ({a_srv}:{a_prt}) — {pass_indicator}")
                     with c_toggle:
                         toggle_lbl = "Deactivate" if a_act == 1 else "Activate"
                         if st.button(toggle_lbl, key=f"tgl_{a_id}", use_container_width=True):
@@ -101,10 +101,10 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
     # --- TOP CONTROLS & MONITOR STATUS ---
     col_acc1, col_acc2 = st.columns([2, 1])
     with col_acc1:
-        st.markdown("#### ðŸ“¬ Active Monitored Inboxes")
+        st.markdown("#### 📬 Active Monitored Inboxes")
         for acc in monitored_accs:
             if acc[7] == 1:
-                st.caption(f"**[{acc[1]}]** `{acc[2]}` | ðŸŸ¢ ACTIVE")
+                st.caption(f"**[{acc[1]}]** `{acc[2]}` | 🟢 ACTIVE")
     with col_acc2:
         if st.button("ðŸ”„ Poll Monitored Inboxes Now", use_container_width=True):
             try:
@@ -115,7 +115,7 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
                 st.error(f"Polling error: {e}")
 
     st.markdown("---")
-    st.markdown("### ðŸ›¡ï¸ Staged Inbound Transmissions (Awaiting CEO Kinematic Veto)")
+    st.markdown("### 🛡️ Staged Inbound Transmissions (Awaiting CEO Kinematic Veto)")
 
     cur.execute("SELECT id, account_alias, sender_address, subject, date_received, raw_body_sanitized, threat_status, triage_category, draft_response, veto_status FROM staged_email_dispatches WHERE veto_status='PENDING_CEO_APPROVAL' ORDER BY id DESC")
     staged_items = cur.fetchall()
@@ -124,11 +124,11 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
     if staged_items:
         for item in staged_items:
             disp_id, alias, sender, subj, dt, body, threat, cat, draft, veto = item
-            with st.expander(f"[{alias}] {subj} â€” From: {sender} | Status: {threat}", expanded=(threat == "INSPECTED_CLEAN")):
+            with st.expander(f"[{alias}] {subj} — From: {sender} | Status: {threat}", expanded=(threat == "INSPECTED_CLEAN")):
                 st.markdown(f"**Timestamp:** `{dt}` | **Category:** `{cat}`")
                 
                 if threat == "INSPECTED_CLEAN":
-                    st.success(f"ðŸ›¡ï¸ Threat Scrubber: {threat}")
+                    st.success(f"🛡️ Threat Scrubber: {threat}")
                 else:
                     st.error(f"ðŸš¨ Threat Scrubber: {threat} (Autonomous actions halted)")
 
@@ -140,7 +140,7 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
 
                 col_btn1, col_btn2 = st.columns(2)
                 with col_btn1:
-                    if st.button(f"âœ… APPROVE & DISPATCH #{disp_id}", use_container_width=True, key=f"app_{disp_id}"):
+                    if st.button(f"✅ APPROVE & DISPATCH #{disp_id}", use_container_width=True, key=f"app_{disp_id}"):
                         c_up = sqlite3.connect(DB_PATH)
                         cur_up = c_up.cursor()
                         cur_up.execute("UPDATE staged_email_dispatches SET veto_status='APPROVED_DISPATCHED', draft_response=?, dispatched_at=datetime('now') WHERE id=?", (draft_edit, disp_id))
@@ -171,7 +171,7 @@ for target in TARGET_FILES:
     with open(target, "r", encoding="utf-8") as f:
         content = f.read()
 
-    next_marker = 'elif active_module == "ðŸ“¡ Sovereign Comms Deck":'
+    next_marker = 'elif active_module == "📡 Sovereign Comms Deck":'
     if OLD_MODULE_START in content and next_marker in content:
         start_idx = content.find(OLD_MODULE_START)
         end_idx = content.find(next_marker)

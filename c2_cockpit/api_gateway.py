@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE API GATEWAY (V1: CLIENT ENTRY POINT) ///
 Sector: gateway
 Purpose: Processes external client requests, validates API keys, and issues secure access tokens for media consumption.

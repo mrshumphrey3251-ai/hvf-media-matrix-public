@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Autonomous Triad Agent Swarm Controller
 Authoritative Sovereign Multi-Agent Task Dispatcher
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5

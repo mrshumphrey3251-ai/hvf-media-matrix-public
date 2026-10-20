@@ -1,7 +1,7 @@
-﻿import os
+import os
 import hashlib
 
-BRIEF_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\proposals\DIU_AFWERX_SOLUTION_BRIEF_PROJECT_EBONY.md"
+BRIEF_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\proposals\DIU_AFWERX_SOLUTION_BRIEF_PROJECT_EBONY.md"
 
 if not os.path.exists(BRIEF_PATH):
     print(f"[CRITICAL ERROR] File missing at {BRIEF_PATH}")

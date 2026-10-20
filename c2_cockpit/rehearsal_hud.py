@@ -1,4 +1,4 @@
-﻿import streamlit as st
+import streamlit as st
 import json, os, time
 
 st.set_page_config(page_title="EBONY TACTICAL HUD", layout="wide", initial_sidebar_state="collapsed")

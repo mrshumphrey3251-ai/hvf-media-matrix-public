@@ -1,4 +1,4 @@
-﻿from core.mfa_matrix import verify_mfa_token
+from core.mfa_matrix import verify_mfa_token
 
 def verify_credentials(username, password, mfa_token=None):
     """

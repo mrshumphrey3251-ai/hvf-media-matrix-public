@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Kinetic Isolation Relay Controller — Hardware Breaker Actuator
 Autonomous sub-microsecond protective relaying engine for microgrid separation,
 kinetic hardware isolation, and catastrophic threat response.

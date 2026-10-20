@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// LOCAL CREDENTIAL VAULT KEEPER ///
 Purpose: Backs up .env credentials locally; restores them instantly if .env is missing or altered.
 """

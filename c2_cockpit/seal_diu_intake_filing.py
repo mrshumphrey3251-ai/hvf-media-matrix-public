@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | SOVEREIGN PRIME SYSTEMS
 Module: seal_diu_intake_filing.py
 Author: Jeffery Humphrey, Founder & CEO (Apex Architect)
@@ -12,7 +12,7 @@ import sqlite3
 import hashlib
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 RECEIPT_FILE = os.path.join(BASE_DIR, "proposals", "DIU_CAPABILITY_TRANSMITTAL_RECEIPT.md")
 PDF_FILE = os.path.join(BASE_DIR, "proposals", "DIU_SOLUTION_BRIEF_PROJECT_EBONY_HVF.pdf")

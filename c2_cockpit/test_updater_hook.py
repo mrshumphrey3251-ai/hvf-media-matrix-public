@@ -1,4 +1,4 @@
-﻿import sys
+import sys
 from pathlib import Path
 
 cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")

@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: DECENTRALIZED TACTICAL SQUAD MESH (MANET) ENGINE
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

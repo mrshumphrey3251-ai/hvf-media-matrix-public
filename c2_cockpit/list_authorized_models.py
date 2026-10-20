@@ -1,4 +1,4 @@
-﻿import os
+import os
 from google import genai
 
 # Sovereign Root Anchor Resolution

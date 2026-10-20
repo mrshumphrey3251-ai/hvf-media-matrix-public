@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Sovereign Autonomous Email Dispatcher & Executive Travel Autopilot Engine
 Zero-API Autonomous Ingestion, Contextual SMTP Auto-Reply & Return Debrief Auditing
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5

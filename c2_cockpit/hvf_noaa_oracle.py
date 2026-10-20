@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF NOAA Atmospheric Threat Oracle — Edge SCADA Sentinel
 Autonomous, all-tier weather threat monitoring and acoustic alerting
 engineered for off-grid rural survivability and kinetic SCADA isolation.

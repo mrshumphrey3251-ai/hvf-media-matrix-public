@@ -1,11 +1,11 @@
-﻿import os
+import os
 import json
 import sqlite3
 from datetime import datetime
 from PIL import Image
 from PIL.ExifTags import TAGS, GPSTAGS
 
-REPO_DIR = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private")
+REPO_DIR = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
 DB_PATH = os.path.join(REPO_DIR, "hvf_memory_vault.db")
 DRONE_INGEST_DIR = os.path.join(REPO_DIR, "drone_surveys")
 os.makedirs(DRONE_INGEST_DIR, exist_ok=True)

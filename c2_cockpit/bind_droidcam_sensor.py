@@ -1,10 +1,10 @@
-﻿import os
+import os
 import sys
 import json
 import socket
 import cv2
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 CONFIG_FILE = os.path.join(BASE_DIR, "tablet_config.json")
 TABLET_IP = "100.65.79.106"
 TABLET_PORT = 4747

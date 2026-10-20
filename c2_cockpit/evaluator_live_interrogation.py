@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Evaluator Ingress Live Interrogation & Audit Utility
 Fires live HTTP requests against local ingress daemon (Port 8502) and verifies

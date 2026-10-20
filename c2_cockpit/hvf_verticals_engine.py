@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Macro Verticals Engine & Commercial Architecture
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Statutory Framework: Oklahoma Title 61, Title 74 & OK HB 2992

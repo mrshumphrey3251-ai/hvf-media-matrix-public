@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Release Tagging & Manifest Sign-Off Engine
 Applies statutory release tag 'v1.0.0-tradewinds-certified' across hvf-media-matrix-private and hvf-media-matrix-public,

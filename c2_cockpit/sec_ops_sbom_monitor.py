@@ -1,4 +1,4 @@
-﻿import time
+import time
 import json
 
 def scan_sbom_for_cve(sbom_payload):

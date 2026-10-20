@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: AUTONOMOUS EMERGENCY LIFE-PRESERVATION ENGINE (PILLAR 1)
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

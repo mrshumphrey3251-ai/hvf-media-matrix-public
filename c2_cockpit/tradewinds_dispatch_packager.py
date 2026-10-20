@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: CDAO / Tradewinds Formal Assessment Notification Packager
 Generates TRADEWINDS_ASSESSMENT_DISPATCH.md and TRADEWINDS_DISPATCH_RECORD.json,

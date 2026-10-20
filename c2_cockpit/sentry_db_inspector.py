@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Step 2 - Database Telemetry & Sentry Log Inspector
 Performs deep-structure integrity audit, WAL-mode lock inspection, and statistical

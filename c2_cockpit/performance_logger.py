@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE PERFORMANCE LOGGER (V1: HISTORICAL LEDGER) ///
 Sector: metrics
 Purpose: Ingests live telemetry data and commits it to an immutable, timestamped local ledger for uptime verification.

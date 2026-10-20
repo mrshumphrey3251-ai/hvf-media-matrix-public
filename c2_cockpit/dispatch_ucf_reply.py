@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | SOVEREIGN PRIME SYSTEMS
 Module: dispatch_ucf_reply.py
 Author: Jeffery Humphrey, Founder & CEO (Apex Architect)
@@ -13,7 +13,7 @@ import hashlib
 import subprocess
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 GOV_DIR = os.path.join(BASE_DIR, "corporate_governance")
 os.makedirs(GOV_DIR, exist_ok=True)
 MSG_FILE = os.path.join(GOV_DIR, "OUTBOUND_UCF_REPLY_MESSAGE.txt")
@@ -36,7 +36,7 @@ Founder & Chief Executive Officer
 Apex Architect & Principal Investigator
 HVF Omni-Industrial Matrix
 CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
-[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]
+[LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]
 """
 
 with open(MSG_FILE, "w", encoding="utf-8") as f:

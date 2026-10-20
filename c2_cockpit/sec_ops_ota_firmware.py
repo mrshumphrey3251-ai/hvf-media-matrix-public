@@ -1,4 +1,4 @@
-﻿import hashlib
+import hashlib
 import time
 
 def verify_firmware_signature(firmware_payload, provided_signature):

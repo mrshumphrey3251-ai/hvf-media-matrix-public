@@ -1,4 +1,4 @@
-﻿def evaluate_clearance(user_tier, action_type="READ"):
+def evaluate_clearance(user_tier, action_type="READ"):
     """
     SOVEREIGN RBAC MATRIX // RECALIBRATED
     """

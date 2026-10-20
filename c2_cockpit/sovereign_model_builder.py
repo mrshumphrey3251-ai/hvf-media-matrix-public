@@ -1,4 +1,4 @@
-﻿import os
+import os
 from huggingface_hub import snapshot_download
 
 def build_sovereign_model():

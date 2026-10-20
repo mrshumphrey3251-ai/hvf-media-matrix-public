@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | FORENSIC TEST HARNESS
 Module: test_pipeline_pivot.py
 Protocol: 4-Gate Audit, Test, and Verify Protocol (Defense Pipeline Elevation)
@@ -8,7 +8,7 @@ import os
 import sys
 import sqlite3
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 BRIEF_FILE = os.path.join(BASE_DIR, "proposals", "TAILORED_BRIEF_DIU-AOI-2026-AUTONOMY.md")
 

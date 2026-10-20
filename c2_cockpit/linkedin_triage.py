@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE LINKEDIN TRIAGE MODULE (DUAL-INTAKE) ///
 Sector: autonomous_ops
 Purpose: Attempt live API fetch; fallback to local secure drop-zone on 404 denial.

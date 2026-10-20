@@ -1,10 +1,10 @@
-﻿import sys
+import sys
 from pathlib import Path
 import py_compile
 
 # 1. Inject render_interactive_course into all resolved and legacy paths
 course_paths = [
-    Path(r"C:\HVF_Repos\hvf-media-matrix-private\sandbox_staging\hvf_course_runner.py"),
+    Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\sandbox_staging\hvf_course_runner.py"),
     Path(r"C:\hvf_c2\hvf-media-matrix-private\sandbox_staging\hvf_course_runner.py"),
     Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_course_runner.py")
 ]

@@ -1,4 +1,4 @@
-﻿import protocol_lambda_diode
+import protocol_lambda_diode
 import time
 
 diode = protocol_lambda_diode.ProtocolLambdaDiode()

@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: EVALUATOR DEFENSE & STRATEGIC OBJECTION REBUTTAL MATRIX
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

@@ -1,4 +1,4 @@
-﻿import socket
+import socket
 import json
 import time
 import hashlib

@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Title 61 & ODOT Civil Infrastructure Inspection Report Generator
 Synthesizes NDT Sensor Telemetry into Cryptographically Sealed Engineering Deliverables
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5

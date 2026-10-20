@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | FORENSIC TEST HARNESS
 Module: test_editorial_pipeline.py
 Protocol: 4-Gate Audit, Test, and Verify Protocol (Editorial Pipeline Certification)
@@ -10,7 +10,7 @@ import re
 import sqlite3
 import hashlib
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 COMMS_DIR = os.path.join(BASE_DIR, "strategic_comms")
 ART2_FILE = os.path.join(COMMS_DIR, "ARTICLE_02_CLOUD_SCADA_FALLACY_A2AD.md")

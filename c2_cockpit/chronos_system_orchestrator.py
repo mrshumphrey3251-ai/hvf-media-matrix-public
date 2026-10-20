@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: SOVEREIGN SYSTEM ORCHESTRATOR & UNIFIED PLATFORM ENTRYPOINT
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

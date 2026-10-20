@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE CDN BALANCER (V1: TRAFFIC DISTRIBUTION) ///
 Sector: content_delivery
 Purpose: Monitors active connections and dynamically routes media traffic across global nodes to prevent infrastructure collapse.

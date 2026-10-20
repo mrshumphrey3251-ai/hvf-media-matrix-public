@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Step 3 - DoD Evaluator Demonstration Dry-Run Rehearsal
 Executes automated 5-phase dry run conforming to DEMO_PRESENTATION_FLIGHT_PLAN_OCT5.md.

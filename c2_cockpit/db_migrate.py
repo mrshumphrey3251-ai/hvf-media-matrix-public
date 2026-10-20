@@ -1,7 +1,7 @@
-﻿import sqlite3
+import sqlite3
 import os
 
-db_path = r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db"
+db_path = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
 conn = sqlite3.connect(db_path)
 cur = conn.cursor()
 

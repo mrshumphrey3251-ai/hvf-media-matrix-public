@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE CONTENT FORGE ///
 Sector: content_forge
 Purpose: Ingests market intel and generates executive thought leadership payloads.

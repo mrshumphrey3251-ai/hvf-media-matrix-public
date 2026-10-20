@@ -1,4 +1,4 @@
-﻿"""
+"""
 =============================================================================
 HVF MEDIA MATRIX : SMART-CONTRACT LEDGER (TARGET BRAVO)
 CLASSIFICATION   : PRIVATE_UNREDACTED

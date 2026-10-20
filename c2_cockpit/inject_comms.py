@@ -1,4 +1,4 @@
-﻿import sys
+import sys
 
 file_path = "ebony_console_GREEN.py"
 with open(file_path, "r", encoding="utf-8") as f:

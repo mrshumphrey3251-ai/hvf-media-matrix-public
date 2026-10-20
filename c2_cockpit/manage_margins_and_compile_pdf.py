@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | SOVEREIGN PRIME SYSTEMS
 Module: manage_margins_and_compile_pdf.py
 Author: Jeffery Humphrey, Founder & CEO (Apex Architect)
@@ -13,7 +13,7 @@ import hashlib
 import subprocess
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 PROP_DIR = os.path.join(BASE_DIR, "proposals")
 os.makedirs(PROP_DIR, exist_ok=True)
 HTML_FILE = os.path.join(PROP_DIR, "DIU_SOLUTION_BRIEF_PROJECT_EBONY_HVF.html")

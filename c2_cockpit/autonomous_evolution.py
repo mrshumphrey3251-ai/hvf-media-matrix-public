@@ -1,4 +1,4 @@
-﻿import os
+import os
 import re
 import time
 
@@ -10,7 +10,7 @@ def autonomously_wire_consciousness():
     print("[*] EBONY AUTONOMOUS WIRING ENGINE INITIATED...")
     time.sleep(0.5)
     
-    search_dir = r"C:\HVF_Repos\hvf-media-matrix-private\pages"
+    search_dir = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\pages"
     files_modified = 0
     
     for root, dirs, files in os.walk(search_dir):

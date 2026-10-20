@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Phase 8h - Automated Daily Pre-Flight Surveillance Runner
 Executes preflight_daily_diagnostic.py, queries the latest record from

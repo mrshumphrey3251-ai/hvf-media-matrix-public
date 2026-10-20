@@ -1,4 +1,4 @@
-﻿import json
+import json
 
 class ReinforcementOptimizer:
     def __init__(self):

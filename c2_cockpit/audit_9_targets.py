@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Authoritative 9-Target Mission Auditor
 Cryptographic SHA-256 Verification & File Integrity Ledger
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5

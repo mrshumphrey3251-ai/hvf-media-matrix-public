@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Pre-Flight Daily Diagnostic & Standby Surveillance Suite
 Executes comprehensive daily pre-flight diagnostic across network sockets,

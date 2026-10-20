@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE METRICS DAEMON (V1: MASTER ORCHESTRATOR) ///
 Sector: metrics
 Purpose: Continuously automates telemetry extraction, threshold evaluation, and ledger logging.

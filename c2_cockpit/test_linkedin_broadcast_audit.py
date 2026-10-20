@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | FORENSIC TEST HARNESS
 Module: test_linkedin_broadcast_audit.py
 Protocol: 4-Gate Audit, Test, and Verify Protocol (Strategic Directive Certification)
@@ -9,7 +9,7 @@ import sys
 import sqlite3
 import hashlib
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 DIRECTIVE_FILE = os.path.join(BASE_DIR, "strategic_comms", "STRATEGIC_LINKEDIN_DIRECTIVE.txt")
 

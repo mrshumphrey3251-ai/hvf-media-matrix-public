@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE GATEWAY DAEMON (V1: EDGE ORCHESTRATOR) ///
 Sector: gateway
 Purpose: Automates rate limiting and API client authentication at the network edge.

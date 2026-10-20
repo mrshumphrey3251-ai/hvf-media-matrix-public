@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Sovereign Autonomous Surveillance & Kinetic Guard Daemon
 Supervises continuous perimeter sweeps, real-time GLI photogrammetric canopy analysis,

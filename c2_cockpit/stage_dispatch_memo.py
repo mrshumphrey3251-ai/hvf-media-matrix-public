@@ -1,4 +1,4 @@
-﻿"""
+"""
 Generate and Log Official Post-Meeting Executive Dispatch
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Statutory Jurisdiction: Oklahoma Title 61 & OK HB 2992

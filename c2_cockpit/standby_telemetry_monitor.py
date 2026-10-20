@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Phase 8i - Standby Latency Trend & Stability Analyzer
 Computes moving averages, standard deviation, and peak variance across recent

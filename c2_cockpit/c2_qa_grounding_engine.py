@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Front-Facing C2 Q&A Grounding Engine & Deterministic Reality Shield
 Intercepts front-facing queries from C2 Deck, Streamlit HUD, and ADA Voice Link.
@@ -89,7 +89,7 @@ class C2QAGroundingEngine:
         if any(k in q for k in ["fabricat", "how do i know", "verify", "proof"]):
             lines = [
                 "Project Ebony Ground-Truth Verification Protocol:",
-                r"Every operational claim is independently verifiable on bare-metal Windows at C:\HVF_Repos\hvf-media-matrix-private\:",
+                r"Every operational claim is independently verifiable on bare-metal Windows at C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\:",
                 f"1. Git Commit Parity: Private commit {telem.get('git_provenance', {}).get('private_repo_commit', '47c6b45')} and public commit {telem.get('git_provenance', {}).get('public_repo_commit', '956d408')}",
                 "2. Physical Attestation Deliverables: Audited on disk as TRADEWINDS_ASSESSMENT_DISPATCH.md and TRADEWINDS_DISPATCH_RECORD.json",
                 "3. Active Sockets: Port 8501 (C2 Tactical HUD) and Port 8502 (Evaluator Ingress Daemon)",

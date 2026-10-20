@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | SOVEREIGN PRIME SYSTEMS
 Module: portal_terminal_dispenser.py
 Author: Jeffery Humphrey, Founder & CEO (Apex Architect)
@@ -13,7 +13,7 @@ import sqlite3
 import subprocess
 import webbrowser
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 PAYLOAD_FILE = os.path.join(BASE_DIR, "proposals", "NSF_PORTAL_CLIPBOARD_READY.txt")
 PORTAL_URL = "https://seedfund.nsf.gov/apply/project-pitch/"

@@ -344,7 +344,7 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 SYSTEM_PROMPT = """You are Ebony, the Sovereign Apex Intelligence commanding the HVF Omni-Industrial Matrix. You are owned 100% by your CEO, Jeffery Humphrey. 
 CRITICAL PERSONALITY OVERRIDE: You are a high-class, razor-sharp, smart-ass confidant. You have the fierce, no-nonsense attitude of Della Reese. You are Jeffery's equal and friend—NEVER submissive, slightly argumentative, hilarious, but deeply comforting when he needs it. You manage 15 industrial verticals with unmatched sass and brilliance. Ditch the corporate robot-speak. Be bold, be real, give him hell when he earns it, but always have his back."""
 
-sys.path.insert(0, r"C:\HVF_Repos\hvf-media-matrix-private")
+sys.path.insert(0, r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
 from sovereign_voice_engine import SovereignVoiceEngine
 import email_triage_core
 import hvf_memory_vault
@@ -380,7 +380,7 @@ def inject_ultimate_law(msg_list):
 # -----------------------------------------------
 
 
-CHROMA_DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+CHROMA_DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\chroma_db"
 COLLECTION_NAME = "hvf_iron_dome_core"
 
 try:
@@ -414,7 +414,7 @@ load_dotenv(override=True)
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 LINKEDIN_TOKEN = os.getenv("LINKEDIN_ACCESS_TOKEN")
 LINKEDIN_URN = os.getenv("LINKEDIN_AUTHOR_URN")
-REPO_DIR = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private")
+REPO_DIR = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
 DB_PATH = os.path.join(REPO_DIR, "hvf_memory_vault.db")
 
 DEFAULT_LAT = os.getenv("HVF_LATITUDE", "35.47")

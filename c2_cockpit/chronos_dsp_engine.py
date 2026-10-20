@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: EDGE DIGITAL SIGNAL PROCESSING (DSP) & ARTIFACT REJECTION PIPELINE
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

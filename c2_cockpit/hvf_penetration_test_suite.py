@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Sovereign Adversarial Cyber-Physical Penetration Test Suite
 Automated security regression and stress verification engine attacking the SCADA defense matrix:
 Dual-Key Forgery, Modbus CRC Fuzzing, Merkle Ledger Tampering, and Deadlock Starvation.

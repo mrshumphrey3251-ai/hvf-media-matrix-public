@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Ebony Chronos Public Defense Quad Chart Test Suite
 Validates existence, sanitized public specification, and HTML delivery contract.

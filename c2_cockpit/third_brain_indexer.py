@@ -1,4 +1,4 @@
-﻿import os
+import os
 from pathlib import Path
 import chromadb
 from chromadb.config import Settings
@@ -6,13 +6,13 @@ from chromadb.config import Settings
 def build_vector_vault():
     print("=== INITIALIZING EBONY THIRD BRAIN: VIP OVERRIDE INDEXER ===")
     
-    db_path = r"C:\HVF_Repos\HVF_Matrix_Core\vector_vault"
+    db_path = r"C:\hvf_c2\HVF_Matrix_Core\vector_vault"
     Path(db_path).mkdir(parents=True, exist_ok=True)
     
     client = chromadb.PersistentClient(path=db_path, settings=Settings(anonymized_telemetry=False))
     collection = client.get_or_create_collection(name="hvf_knowledge_base")
     
-    root = Path(r"C:\HVF_Repos")
+    root = Path(r"C:\hvf_c2")
     valid_exts = {".py", ".md", ".txt"}
     
     ignore_dirs = {

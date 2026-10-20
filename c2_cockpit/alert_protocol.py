@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE ALERT PROTOCOL (V1: METRICS THRESHOLD GUARD) ///
 Sector: metrics
 Purpose: Evaluates live telemetry data and triggers executive lockdown protocols if performance thresholds are breached.

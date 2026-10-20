@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: C2 Cockpit CDAO Transmittal Package Generator
 Queries live database state, validates verified benchmarks, and produces

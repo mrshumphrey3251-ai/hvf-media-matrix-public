@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE ADVANCED RECONNAISSANCE NODE (STEALTH UPGRADE) ///
 Sector: recon_intel
 Purpose: Autonomously extracts live tactical intelligence using WAF-bypass headers.

@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | STRATEGIC COMMUNICATIONS
 Module: linkedin_editorial_pipeline.py
 Author: Jeffery Humphrey, Founder & CEO (Apex Architect)
@@ -12,7 +12,7 @@ import sqlite3
 import hashlib
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 COMMS_DIR = os.path.join(BASE_DIR, "strategic_comms")
 os.makedirs(COMMS_DIR, exist_ok=True)
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")

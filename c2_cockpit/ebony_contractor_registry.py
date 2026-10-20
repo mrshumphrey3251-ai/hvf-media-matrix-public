@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. State Contractor Registry Management & Extension Engine
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Statutory Authority: Oklahoma Title 61 & Title 74

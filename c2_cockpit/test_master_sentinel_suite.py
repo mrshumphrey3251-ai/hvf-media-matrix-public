@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: MASTER SOVEREIGN REGRESSION SUITE & PLATFORM INTEGRITY AUDITOR
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Modbus RTU / RS-485 Physical Relay Serial Transceiver Driver
 Air-gapped industrial fieldbus driver for physical breaker coil actuation,
 deterministic CRC-16 checksumming, and microsecond telemetry logging.

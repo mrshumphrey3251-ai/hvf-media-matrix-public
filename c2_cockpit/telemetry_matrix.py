@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE TELEMETRY MATRIX (V1: CORE PERFORMANCE TRACKING) ///
 Sector: metrics
 Purpose: Monitors and logs CPU and Memory loads to ensure zero-downtime infrastructure stability.

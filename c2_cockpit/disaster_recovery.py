@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE DISASTER RECOVERY MATRIX (V1: COLD STORAGE BACKUP) ///
 Sector: redundancy
 Purpose: Duplicates encrypted ledgers and critical data to an isolated off-node vault to guarantee zero data loss.

@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Step 3 - Standby Daily Brief & 7-Day Pre-Flight Monitor
 Calculates exact countdown to Monday, October 5, 2026 @ 10:00 AM CDT demo presentation,

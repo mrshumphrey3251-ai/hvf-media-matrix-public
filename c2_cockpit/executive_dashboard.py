@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE EXECUTIVE DASHBOARD GENERATOR (V1: METRICS VISUALIZATION) ///
 Sector: metrics
 Purpose: Generates a high-level HTML visualization of the infrastructure telemetry.

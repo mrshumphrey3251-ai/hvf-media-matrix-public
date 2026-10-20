@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | FORENSIC TEST HARNESS
 Module: test_streamline_filing.py
 Protocol: 4-Gate Audit, Test, and Verify Protocol (Live Filing Engine)
@@ -9,7 +9,7 @@ import sys
 import sqlite3
 import subprocess
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 sys.path.append(os.path.join(BASE_DIR, "proposals"))
 from streamline_nsf_filing import load_payload, pipe_to_clipboard, PROJECT_TITLE
 

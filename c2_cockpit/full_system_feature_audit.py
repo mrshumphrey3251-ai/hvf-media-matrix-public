@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Exhaustive Master Feature Audit & Verification Suite
 Audits all 8 operational domains for accuracy, functionality, and ground-truth integrity:

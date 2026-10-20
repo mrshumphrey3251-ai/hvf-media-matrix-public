@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Sovereign Field Academy // 40-Hour Interactive Engineering Workstation Library
 Provides 10 Comprehensive Academic Units (4.0 Credit Hours per Unit = 40.0 Hours)
 with Mandatory Quantitative Engineering Calculation Gates & Unit Mastery Quizzes.

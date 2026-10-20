@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE KINETIC ASSET FORGE (V17: UNIFIED SAPPHIRE FOUNDATION) ///
 Sector: branding_assets
 Purpose: Injects the Abyssal Sapphire color profile into the foundation base plate to perfectly frame the Platinum crest.

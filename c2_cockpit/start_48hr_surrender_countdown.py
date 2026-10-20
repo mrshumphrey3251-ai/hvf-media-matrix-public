@@ -1,8 +1,8 @@
-﻿import os
+import os
 import sqlite3
 from datetime import datetime, timezone, timedelta
 
-DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db"
+DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
 
 # Hard deadline: Exactly 48 hours post-severance
 execution_time = datetime(2026, 9, 22, 12, 0, 0)

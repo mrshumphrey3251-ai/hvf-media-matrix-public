@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: TRADEWINDS SOLUTIONS MARKETPLACE VIDEO PITCH & ASSESSMENT COMPILER
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

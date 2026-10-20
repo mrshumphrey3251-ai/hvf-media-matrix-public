@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import chromadb
 import hvf_memory_vault
@@ -26,7 +26,7 @@ hvf_memory_vault.log_directive(
 )
 
 print("2. Verifying instant semantic recall from hvf_iron_dome_core...")
-db_path = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+db_path = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\chroma_db"
 chroma_client = chromadb.PersistentClient(path=db_path)
 col = chroma_client.get_collection("hvf_iron_dome_core")
 

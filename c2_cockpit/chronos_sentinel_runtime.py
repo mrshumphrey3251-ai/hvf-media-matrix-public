@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: UNIFIED MASTER SENTINEL RUNTIME & EDGE EVENT DISPATCHER
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

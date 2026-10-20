@@ -1,4 +1,4 @@
-﻿import sqlite3
+import sqlite3
 import hashlib
 from datetime import datetime
 from pathlib import Path

@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE STREAM CONTROLLER (V1: MEDIA DISTRIBUTION) ///
 Sector: content_delivery
 Purpose: Allocates heavy-iron bandwidth and encrypts media packets for zero-latency, secure content delivery.

@@ -1,4 +1,4 @@
-﻿"""
+"""
 Project Ebony: Air-Gapped Telemetry Bridge & Sentinel HMI Cockpit
 Tri-Brain 4-Perimeter Defense Matrix with 15 Core Operational Verticals.
 Multi-threaded video streaming engine (/video_feed) and dynamic GLI telemetry.

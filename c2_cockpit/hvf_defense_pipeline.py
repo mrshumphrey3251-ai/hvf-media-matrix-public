@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Autonomous SCADA Defense Pipeline Orchestrator — Cryptographically Sealed Architecture
 Integrates NOAA Threat Oracle, Dual-Key Kinetic Relay, Modbus RTU Fieldbus,
 Hardware Watchdog Supervisor, and Ed25519 Cryptographic Audit Ledger.

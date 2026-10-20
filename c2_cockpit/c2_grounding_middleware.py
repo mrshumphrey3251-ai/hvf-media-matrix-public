@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: C2 Deck Reality Grounding Middleware & Anti-Fabrication Filter
 Intercepts operational queries and conversational outputs, validating all cited paths,

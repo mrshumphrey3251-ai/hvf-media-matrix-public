@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE ANTI-SIMULATION FIREWALL ///
 Sector: security
 Purpose: Hard-locks the architecture against unauthorized simulated executions.

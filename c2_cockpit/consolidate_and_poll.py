@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import sqlite3
 import getpass
@@ -9,10 +9,10 @@ import email_triage_core
 # ==============================================================================
 # HVF Omni-Industrial Matrix | ENDPOINT CONSOLIDATION & LIVE INGESTION
 # Authority: Jeffery Humphrey, Founder & CEO (CAGE: 1AHA8, UEI: S1M4ENLHTDH5)
-# Target: [LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive] -> HVF_PRIMARY_EXECUTIVE
+# Target: [LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive] -> HVF_PRIMARY_EXECUTIVE
 # ==============================================================================
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 KEY_FILE = os.path.join(BASE_DIR, "memory_core", "vault.key")
 
@@ -58,9 +58,9 @@ WHERE (encrypted_password IS NULL OR encrypted_password = '')
 cur.execute("""
 INSERT INTO email_accounts 
 (account_alias, email_address, imap_server, imap_port, smtp_server, smtp_port, env_password_key, encrypted_password, is_active, auth_type)
-VALUES ('HVF_PRIMARY_EXECUTIVE', '[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]', 'imap.gmail.com', 993, 'smtp.gmail.com', 465, 'DYNAMIC_VAULT_ENCRYPTED', ?, 1, 'APP_PASSWORD')
+VALUES ('HVF_PRIMARY_EXECUTIVE', '[LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]', 'imap.gmail.com', 993, 'smtp.gmail.com', 465, 'DYNAMIC_VAULT_ENCRYPTED', ?, 1, 'APP_PASSWORD')
 ON CONFLICT(account_alias) DO UPDATE SET
-    email_address = '[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]',
+    email_address = '[LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]',
     env_password_key = 'DYNAMIC_VAULT_ENCRYPTED',
     encrypted_password = excluded.encrypted_password,
     is_active = 1,

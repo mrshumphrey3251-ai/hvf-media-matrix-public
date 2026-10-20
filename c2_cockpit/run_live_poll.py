@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import email_triage_core
 import importlib

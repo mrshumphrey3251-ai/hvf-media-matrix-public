@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: C2 Cockpit DoD Transition Partner Pitch Console
 Interactive evaluation component rendering targeted capabilities, CLIN architecture,

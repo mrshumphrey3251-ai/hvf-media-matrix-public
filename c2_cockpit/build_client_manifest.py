@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import py_compile
 
 cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")

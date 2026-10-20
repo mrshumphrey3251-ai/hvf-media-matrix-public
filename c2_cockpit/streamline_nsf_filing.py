@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | SOVEREIGN PRIME SYSTEMS
 Module: streamline_nsf_filing.py
 Author: Jeffery Humphrey, Founder & CEO (Apex Architect)
@@ -14,7 +14,7 @@ import subprocess
 import webbrowser
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 PAYLOAD_FILE = os.path.join(BASE_DIR, "proposals", "NSF_PORTAL_CLIPBOARD_READY.txt")
 

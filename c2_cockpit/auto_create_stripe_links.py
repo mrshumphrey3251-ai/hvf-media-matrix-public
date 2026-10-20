@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import subprocess
 
@@ -50,7 +50,7 @@ corp_pl = stripe.PaymentLink.create(
 print(f"✅ Created Enterprise CEO Link: {corp_pl.url}")
 
 # 2. Write directly into .env vault
-env_path = r"C:\HVF_Repos\hvf-media-matrix-private\.env"
+env_path = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\.env"
 lines = []
 if os.path.exists(env_path):
     with open(env_path, "r", encoding="utf-8") as f:

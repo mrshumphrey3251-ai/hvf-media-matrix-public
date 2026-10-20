@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE DELIVERY DAEMON (V1: MASTER ORCHESTRATOR) ///
 Sector: content_delivery
 Purpose: Automates network load balancing and zero-latency media streaming continuously.

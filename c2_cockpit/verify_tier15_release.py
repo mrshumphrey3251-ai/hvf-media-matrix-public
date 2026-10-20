@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Tier 1.5 Commercial Release Certification & Verification Harness
 Tests: Entitlement Access, Lockout Enforcement, Hardware Seat Quotas & Optical Ingress
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5

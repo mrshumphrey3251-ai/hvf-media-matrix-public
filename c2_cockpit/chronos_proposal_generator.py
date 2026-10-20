@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: SOVEREIGN DEFENSE FUNDING PROPOSAL GENERATOR & SBIR COMPILER
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

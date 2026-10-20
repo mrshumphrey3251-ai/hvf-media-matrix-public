@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | SOVEREIGN PRIME SYSTEMS
 Module: diu_company_interest_payload.py
 Author: Jeffery Humphrey, Founder & CEO (Apex Architect)
@@ -13,7 +13,7 @@ import subprocess
 import webbrowser
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 PDF_FILE = os.path.join(BASE_DIR, "proposals", "DIU_SOLUTION_BRIEF_PROJECT_EBONY_HVF.pdf")
 FORM_URL = "https://www.diu.mil/work-with-us/company-interest"
@@ -24,7 +24,7 @@ PITCH_300 = "HVF is a nontraditional prime submitting Project Ebony: an air-gapp
 FORM_FIELDS = [
     ("First Name", "Jeffery"),
     ("Last Name", "Humphrey"),
-    ("Email Address", "[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]"),
+    ("Email Address", "[LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]"),
     ("Company Name", "HVF Omni-Industrial Matrix"),
     ("Company Website", "https://github.com/hvf-media-matrix-public"),
     ("UEI Number", "S1M4ENLHTDH5"),

@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | SOVEREIGN PRIME SYSTEMS
 Module: compile_diu_pdf.py
 Author: Jeffery Humphrey, Founder & CEO (Apex Architect)
@@ -13,7 +13,7 @@ import hashlib
 import subprocess
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 PROP_DIR = os.path.join(BASE_DIR, "proposals")
 HTML_FILE = os.path.join(PROP_DIR, "DIU_SOLUTION_BRIEF_PROJECT_EBONY_HVF.html")
@@ -100,7 +100,7 @@ html_content = """<!DOCTYPE html>
   <li><strong>Contracting Status:</strong> Nontraditional Defense Contractor pursuant to 10 U.S.C. § 4022(d)</li>
   <li><strong>Primary SME & Principal Investigator:</strong> Jeffery Humphrey, Founder & Chief Executive Officer (Apex Architect)</li>
   <li><strong>Corporate Headquarters & Testing Proving Grounds:</strong> Oklahoma Prototyping Laboratory</li>
-  <li><strong>Primary Operational Contact:</strong> [LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]</li>
+  <li><strong>Primary Operational Contact:</strong> [LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]</li>
 </ul>
 
 <h2>2. ARCHITECTURAL SOLUTION: PROJECT EBONY</h2>

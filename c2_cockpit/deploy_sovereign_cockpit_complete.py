@@ -1,10 +1,10 @@
-﻿import os
+import os
 import sys
 import sqlite3
 import re
 import py_compile
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 TARGET_FILES = [
     os.path.join(BASE_DIR, "ebony_console.py"),
@@ -71,7 +71,7 @@ NEW_DISPATCH_DECK_CODE = '''    st.header("📨 Sovereign Multi-Account Dispatch
                 "FINANCIAL_TREASURY",
                 "GENERAL_EXECUTIVE"
             ], key="out_cat_sel")
-            st.markdown("<div style='font-size:0.85em; color:#94a3b8; margin-top:5px;'><b>Originating Endpoint:</b><br><span style='color:#e2a03f; font-family:monospace;'>[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]</span></div>", unsafe_allow_html=True)
+            st.markdown("<div style='font-size:0.85em; color:#94a3b8; margin-top:5px;'><b>Originating Endpoint:</b><br><span style='color:#e2a03f; font-family:monospace;'>[LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]</span></div>", unsafe_allow_html=True)
 
         # AI Executive Draft Assistant
         with st.expander("⚡ Draft Assistance with Ebony AI (Grounded in Iron Dome Intel)", expanded=False):

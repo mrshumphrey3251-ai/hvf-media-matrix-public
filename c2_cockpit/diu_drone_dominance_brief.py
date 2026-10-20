@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: DIU PHASE 3 DRONE DOMINANCE PROGRAM SOLUTION BRIEF COMPILER
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

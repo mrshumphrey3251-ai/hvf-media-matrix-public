@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import chromadb
 from chromadb.utils import embedding_functions
@@ -9,7 +9,7 @@ from chromadb.utils import embedding_functions
 # System: Project Ebony Iron Dome Memory Verification
 # ==============================================================================
 
-DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\chroma_db"
 COLLECTION_NAME = "hvf_iron_dome_core"
 
 def run_diagnostics():

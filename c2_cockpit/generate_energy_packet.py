@@ -1,5 +1,5 @@
 """
-HVFNexus Sovereign Industrial C2 â€” Commerce Energy Briefing Packet Generator
+HVFNexus Sovereign Industrial C2 — Commerce Energy Briefing Packet Generator
 Compiles a polished, print-ready HTML portfolio for physical briefing with Rob Teele.
 """
 import json
@@ -28,7 +28,7 @@ html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>HVF Energy Infrastructure Portfolio â€” Dept of Commerce Briefing</title>
+<title>HVF Energy Infrastructure Portfolio — Dept of Commerce Briefing</title>
 <style>
   @page {{ size: letter; margin: 0.55in; }}
   body {{ font-family: 'Segoe UI', Helvetica, Arial, sans-serif; color: #1a1a1a; line-height: 1.45; margin: 0; padding: 18px; }}

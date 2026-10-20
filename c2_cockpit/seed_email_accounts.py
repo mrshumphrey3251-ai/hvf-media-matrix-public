@@ -1,4 +1,4 @@
-﻿import sqlite3
+import sqlite3
 
 # ==============================================================================
 # HVF Omni-Industrial Matrix | MULTI-ACCOUNT REGISTRATION PROBE
@@ -6,7 +6,7 @@
 # Registers default multi-inbox accounts into email_accounts table
 # ==============================================================================
 
-DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db"
+DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
 
 accounts = [
     (

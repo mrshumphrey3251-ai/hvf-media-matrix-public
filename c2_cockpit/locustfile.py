@@ -1,4 +1,4 @@
-﻿from locust import HttpUser, task, between
+from locust import HttpUser, task, between
 
 class HVFDroneSwarm(HttpUser):
     # Aggressive polling to simulate high-throughput swarm ingestion

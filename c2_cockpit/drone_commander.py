@@ -1,4 +1,4 @@
-﻿import json
+import json
 
 class DroneC2Dispatcher:
     def __init__(self):

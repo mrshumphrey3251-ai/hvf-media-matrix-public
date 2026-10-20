@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Sovereign Field Academy // $2,500.00 Accredited 40-Hour Engineering Institute
 Renders the 10-Module Interactive Engineering Workstation (4 Sub-Tabs per Module),
 Quantitative Calculation Verification Gates, Module Mastery Quizzes, WORM CEU Credit Ledger,

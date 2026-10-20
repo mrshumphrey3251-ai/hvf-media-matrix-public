@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Zero-API Email Account Onboarding CLI
 Direct Username + Password / App Password Ingestion & Handshake Verification
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5

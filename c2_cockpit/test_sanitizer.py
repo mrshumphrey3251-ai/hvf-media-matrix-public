@@ -1,4 +1,4 @@
-﻿import re
+import re
 
 OFFICIAL_EMAIL = "humphreyvirtualfarm@gmail.com"
 OFFICIAL_FOUNDER = "Jeffery Humphrey"

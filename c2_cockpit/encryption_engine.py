@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE ENCRYPTION ENGINE (V1: LEDGER LOCKDOWN) ///
 Sector: security
 Purpose: Cryptographically locks sensitive ledger files to ensure data at rest is unreadable to unauthorized entities.

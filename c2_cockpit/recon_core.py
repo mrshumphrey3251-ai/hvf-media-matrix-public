@@ -1,4 +1,4 @@
-﻿import urllib.request
+import urllib.request
 import re
 
 def execute_recon(target_url):

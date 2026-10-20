@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: C2 Cockpit DoD RFI Rapid-Response Daemon
 Automates technical clarification generation, cross-checks vault records,

@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Standby Telemetry & Watchdog Status Snapshot Utility
 Queries ebony_active_state.db for recent watchdog cycles and probes live sockets.

@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Sovereign Commercial License Issuance Engine
 Automated Post-Payment Fulfillment, Cryptographic Stamping & Seat Binding
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5

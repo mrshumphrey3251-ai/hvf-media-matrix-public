@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | PROJECT EBONY (BRAIN ONE & THREE)
 Module: ebony_cleanroom_provenance.py
 Author: Jeffery Humphrey, Founder & CEO (52% Apex Architect)
@@ -20,7 +20,7 @@ GENESIS_BLOCK_HASH = "0000000000000000000000000000000000000000000000000000000000
 
 class EbonyProvenanceEngine:
     def __init__(self, db_path=None):
-        base_dir = r"C:\HVF_Repos\hvf-media-matrix-private"
+        base_dir = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
         self.db_path = db_path or os.path.join(base_dir, "hvf_memory_vault.db")
         self._init_vault()
 

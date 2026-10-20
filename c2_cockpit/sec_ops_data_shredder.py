@@ -1,4 +1,4 @@
-﻿import time
+import time
 import os
 
 def execute_cryptographic_shred(target_file):

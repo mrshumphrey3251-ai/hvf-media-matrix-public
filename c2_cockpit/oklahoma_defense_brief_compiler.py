@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: OKLAHOMA STATE DEFENSE & AEROSPACE TRANSITION COMPILER
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

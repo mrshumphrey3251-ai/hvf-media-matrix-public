@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Step 1 - Master Milestone Release Manifest Validator
 Cross-checks PROJECT_EBONY_RELEASE_MANIFEST_v1.0.md against live SQLite databases

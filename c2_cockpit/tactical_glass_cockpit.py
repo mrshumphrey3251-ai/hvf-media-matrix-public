@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 MODULE: c2_cockpit_dashboard.py
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT // DYNAMIC CURRENT ENGINE
@@ -11,7 +11,7 @@ import json, os, time, math, textwrap
 import sys
 import random
 
-sys.path.append(r"C:\HVF_Repos\ebony-chronos-private")
+sys.path.append(r"C:\hvf_c2\ebony-chronos-private")
 try:
     from chronus_core import seal_telemetry_block
 except:

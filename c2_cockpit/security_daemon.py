@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE SECURITY DAEMON (V2: UNIFIED MASTER ORCHESTRATOR) ///
 Sector: security
 Purpose: Automates active intrusion detection, IAM authentication, and cryptographic ledger sweeps.

@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: CDAO / Tradewinds Evaluator Verification Dossier Generator
 Extracts live ground-truth metrics across SCADA, UAS, Warfighter BFT, and Ed25519 Merkle chain,

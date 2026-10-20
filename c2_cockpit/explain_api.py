@@ -1,4 +1,4 @@
-﻿from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException
 
 app = FastAPI(title="HVF AI Explainability Layer")
 

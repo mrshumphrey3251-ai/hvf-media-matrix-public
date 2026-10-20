@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Civil Infrastructure Inspection Mission & Docketing Engine
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Statutory Framework: Oklahoma Title 61 Public Works, Title 74 & ODOT/CED Standards

@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: TACTICAL FIELD OPERATOR HUD & SCENARIO MISSION SIMULATOR
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

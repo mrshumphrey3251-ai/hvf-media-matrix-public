@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE RATE LIMITER (V1: API THROTTLE MATRIX) ///
 Sector: gateway
 Purpose: Monitors API request frequencies and throttles connections exceeding heavy-iron quotas to prevent DDoS overload.

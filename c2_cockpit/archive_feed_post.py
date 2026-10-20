@@ -1,9 +1,9 @@
-﻿import os
+import os
 import sqlite3
 import hashlib
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 GOV_DIR = os.path.join(BASE_DIR, "corporate_governance")
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 os.makedirs(GOV_DIR, exist_ok=True)
@@ -32,7 +32,7 @@ As Founder, CEO, and Apex Architect, I am asserting clear legal and technical pa
 Our published article covers the formal corporate disclosure in full detail.
 
 For acquisition program managers, prime integrators, and mission partners seeking air-gapped cyber-physical resilience:
-Inquiries: [LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]
+Inquiries: [LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]
 
 Jeffery Humphrey
 Founder & Chief Executive Officer | Apex Architect

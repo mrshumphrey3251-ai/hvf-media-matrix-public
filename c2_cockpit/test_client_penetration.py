@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Sovereign Commercial Red Team Penetration Testing Harness
 Destructive Testing: License Forgery, Hardware Hijacking, Seat Overflow,
 Secrets Extraction & Single-Letter Tamper Self-Destruct Zeroization

@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE CINEMATIC VAULT ENGINE ///
 Sector: cinematic_vault
 Purpose: Processes, formats, and stages executive video assets for deployment.

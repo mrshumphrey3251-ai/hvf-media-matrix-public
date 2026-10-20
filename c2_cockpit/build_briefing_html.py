@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Executive Presentation Compiler — Hardened Regex Markdown to Standalone HTML Deck
 DFARS 252.227-7018 Compliant Architecture.
 """

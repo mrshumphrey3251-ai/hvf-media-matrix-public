@@ -1,14 +1,14 @@
-﻿import os
+import os
 import chromadb
 from chromadb.utils import embedding_functions
 
 # Connect to the Sovereign Iron Dome
-DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\chroma_db"
 client = chromadb.PersistentClient(path=DB_PATH)
 collection = client.get_or_create_collection(name="hvf_iron_dome_core")
 
 # Target the Master Empire Directory (All 19 Repositories)
-REPOS_ROOT = r"C:\HVF_Repos"
+REPOS_ROOT = r"C:\hvf_c2"
 VALID_EXTENSIONS = {".py", ".md", ".txt", ".json", ".bat", ".ps1"}
 
 print("⚡ IGNITING OMNI-REPOSITORY NEURAL INGESTION ENGINE...")

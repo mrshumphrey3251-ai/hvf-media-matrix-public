@@ -1,4 +1,4 @@
-﻿import time
+import time
 from mfa_matrix import generate_sovereign_token
 
 def run_authenticator():

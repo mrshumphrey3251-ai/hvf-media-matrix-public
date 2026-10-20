@@ -1,10 +1,10 @@
-﻿import os
+import os
 import sys
 import subprocess
 import json
 import cv2
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 
 print("=" * 80)
 print("HVF Omni-Industrial Matrix | OPTICAL DEVICE IDENTIFICATION PROBE")

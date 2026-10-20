@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Tradewinds CDAO Assessment Notification & Attestation Engine
 Generates the formal DoD assessment notification package and cryptographic attestation

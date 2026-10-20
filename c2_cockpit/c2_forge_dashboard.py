@@ -1,4 +1,4 @@
-﻿"""
+"""
 C2 COCKPIT: AUTONOMOUS BUILD FORGE WITH ARCHITECTURAL ROUTING (v4.0)
 ROLE: CEO directive interface with target selection and module fusion controls.
 """

@@ -1,4 +1,4 @@
-﻿"""
+"""
 =============================================================================
 HVF MEDIA MATRIX : TELEMETRY VAULT ROUTER (TARGET CHARLIE)
 CLASSIFICATION   : PRIVATE_UNREDACTED

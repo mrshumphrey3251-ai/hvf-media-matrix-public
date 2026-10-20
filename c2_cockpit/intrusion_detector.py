@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE INTRUSION DETECTOR (V1: PERIMETER DEFENSE) ///
 Sector: security
 Purpose: Monitors access logs for unauthorized breach attempts and triggers automated defensive countermeasures.

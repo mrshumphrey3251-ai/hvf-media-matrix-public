@@ -1,10 +1,10 @@
-﻿import os
+import os
 import sys
 import hashlib
 import sqlite3
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 GOV_DIR = os.path.join(BASE_DIR, "corporate_governance")
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 os.makedirs(GOV_DIR, exist_ok=True)

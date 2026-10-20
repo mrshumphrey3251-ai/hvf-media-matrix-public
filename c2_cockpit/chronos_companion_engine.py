@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: PROACTIVE EMPATHETIC COMPANION & SOCRATIC TUTOR ENGINE (PILLAR 2)
 Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8

@@ -1,4 +1,4 @@
-﻿import hashlib
+import hashlib
 from pathlib import Path
 
 target = Path(r"C:\hvf_c2\hvf-media-matrix-private\EBONY_USER_MANUAL_AND_LEGAL_DISCLAIMER.md")

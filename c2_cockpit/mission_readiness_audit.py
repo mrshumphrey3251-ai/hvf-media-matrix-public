@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Ground-Truth Hardened Sovereign Mission Readiness & Verification Engine
 Audits microgrid SCADA contactors, UAS flight sorties, Blue Force Tracking warfighter positions,

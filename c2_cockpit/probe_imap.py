@@ -1,4 +1,4 @@
-﻿import imaplib
+import imaplib
 import sys
 import getpass
 

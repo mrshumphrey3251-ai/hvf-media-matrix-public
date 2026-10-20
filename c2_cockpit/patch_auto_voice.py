@@ -1,8 +1,8 @@
-﻿import os
+import os
 import sys
 import py_compile
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 CORE_FILE = os.path.join(BASE_DIR, "sovereign_comms_core.py")
 
 with open(CORE_FILE, "r", encoding="utf-8") as f:

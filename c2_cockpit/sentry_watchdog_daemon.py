@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Continuous Watchdog Sentinel Daemon
 Monitors Port 8501 Tactical HUD, Port 8502 Evaluator Ingress Daemon,

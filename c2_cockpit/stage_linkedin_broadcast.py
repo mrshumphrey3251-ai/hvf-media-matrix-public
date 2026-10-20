@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | SOVEREIGN PRIME SYSTEMS
 Module: stage_linkedin_broadcast.py
 Author: Jeffery Humphrey, Founder & CEO (Apex Architect)
@@ -13,7 +13,7 @@ import hashlib
 import subprocess
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 COMMS_DIR = os.path.join(BASE_DIR, "strategic_comms")
 os.makedirs(COMMS_DIR, exist_ok=True)
 DIRECTIVE_FILE = os.path.join(COMMS_DIR, "STRATEGIC_LINKEDIN_DIRECTIVE.txt")

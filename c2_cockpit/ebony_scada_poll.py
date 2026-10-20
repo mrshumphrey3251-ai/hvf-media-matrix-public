@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Real-Time Telemetry & SCADA Polling Module
 Authoritative Host Diagnostics & Modbus Grid Verification Engine
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5

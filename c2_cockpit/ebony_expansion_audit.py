@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 critical_paths = [
     "src/compliance/regulatory_engine.py",

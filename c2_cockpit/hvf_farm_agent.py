@@ -1,4 +1,4 @@
-﻿import os
+import os
 import json
 import sqlite3
 from datetime import datetime
@@ -9,7 +9,7 @@ from groq import Groq
 load_dotenv(override=True)
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 ACTIVE_MODEL = "openai/gpt-oss-120b"
-DB_PATH = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db")
+DB_PATH = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db")
 
 class HVFFarmAgent:
     """

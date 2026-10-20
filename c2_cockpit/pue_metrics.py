@@ -1,4 +1,4 @@
-﻿class PUECalculator:
+class PUECalculator:
     def __init__(self):
         self.target_pue = 1.3  # Oklahoma Tax Credit Threshold
 

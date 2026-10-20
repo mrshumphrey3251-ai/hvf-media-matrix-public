@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | FORENSIC TEST HARNESS
 Module: test_editorial_dispenser.py
 Protocol: 4-Gate Audit, Test, and Verify Protocol (Dispenser & Countdown Audit)
@@ -10,7 +10,7 @@ import sqlite3
 import subprocess
 from datetime import datetime, timezone, timedelta
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 SCRIPT_PATH = os.path.join(BASE_DIR, "strategic_comms", "dispense_linkedin_article.py")
 

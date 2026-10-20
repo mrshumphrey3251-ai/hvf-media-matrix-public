@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import time
 import chromadb
@@ -12,8 +12,8 @@ from chromadb.utils import embedding_functions
 # ==============================================================================
 
 CONFIG = {
-    "master_dir": r"C:\HVF_Repos",
-    "db_dir": r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db",
+    "master_dir": r"C:\hvf_c2",
+    "db_dir": r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\chroma_db",
     "collection_name": "hvf_iron_dome_core",
     "chunk_size": 1000,
     "chunk_overlap": 150,

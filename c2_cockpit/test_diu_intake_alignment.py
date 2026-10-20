@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | FORENSIC TEST HARNESS
 Module: test_diu_intake_alignment.py
 Protocol: 4-Gate Audit, Test, and Verify Protocol (DIU Intake Verification)
@@ -8,7 +8,7 @@ import os
 import sys
 import sqlite3
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 sys.path.append(os.path.join(BASE_DIR, "proposals"))
 from diu_intake_dispatcher import INTAKE_PAYLOAD, PDF_DELIVERABLE, pipe_to_clipboard
 

@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Step 1 - End-to-End Full-Mission Operational Demonstration Engine
 Interrogates all 8 core domains and drives an end-to-end tactical demonstration view

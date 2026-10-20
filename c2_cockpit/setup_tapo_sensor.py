@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import socket
 import subprocess
@@ -6,7 +6,7 @@ import json
 import re
 import cv2
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 CONFIG_FILE = os.path.join(BASE_DIR, "tapo_config.json")
 
 print("=" * 80)

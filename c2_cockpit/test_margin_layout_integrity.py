@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | FORENSIC TEST HARNESS
 Module: test_margin_layout_integrity.py
 Protocol: 4-Gate Audit, Test, and Verify Protocol (Right Margin Calibration)
@@ -10,7 +10,7 @@ import re
 import sqlite3
 import hashlib
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 PROP_DIR = os.path.join(BASE_DIR, "proposals")
 HTML_FILE = os.path.join(PROP_DIR, "DIU_SOLUTION_BRIEF_PROJECT_EBONY_HVF.html")

@@ -1,4 +1,4 @@
-﻿def parse_kinetic_intent(user_input):
+def parse_kinetic_intent(user_input):
     """
     SEMANTIC KINETIC PARSER // DYNAMIC SEVERITY TAGGING
     """

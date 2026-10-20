@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Sovereign Cryptographic Audit Ledger — Ed25519 Non-Repudiation Engine
 Tamper-proof, cryptographically linked forensic event ledger engineered for
 bare-metal edge SCADA defense, DoD CDAO Tradewinds compliance, and DFARS 252.227-7018.

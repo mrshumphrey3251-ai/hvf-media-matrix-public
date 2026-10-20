@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Persistent Sentinel Background Service Runner
 Executes autonomous cyclical sweeps across microgrid, UAS, and warfighter domains,

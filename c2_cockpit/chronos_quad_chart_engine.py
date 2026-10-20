@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: DOD DEFENSE CAPABILITY QUAD CHART COMPILATION & MERKLE ANCHOR ENGINE
 Classification: RESTRICTED // HVF PRIVATE ENCLAVE // LEVEL 5 CEO AUTHORITY
@@ -11,8 +11,8 @@ Statutory Standards: DFARS 252.227-7018 GPR | NIST SP 800-82 Rev 2 | MIL-STD-810
 import os, sys, json, sqlite3, hashlib
 from datetime import datetime
 
-priv_root = r"C:\HVF_Repos\ebony-chronos-private"
-pub_root  = r"C:\HVF_Repos\ebony-chronos-public"
+priv_root = r"C:\hvf_c2\ebony-chronos-private"
+pub_root  = r"C:\hvf_c2\ebony-chronos-public"
 db_path   = os.path.join(priv_root, "chronos_vault", "database", "chronos_active_state.db")
 
 print("=" * 80)
@@ -164,7 +164,7 @@ def build_quad_chart_html():
                 <li><span class="highlight">Authority:</span> HVF Omni-Industrial Matrix | CAGE: 1AHA8 | Active SAM.gov UEI.</li>
                 <li><span class="highlight">Socioeconomic Status:</span> EDWOSB / WOSB / Small Business Defense Innovator.</li>
                 <li><span class="highlight">Fast-Track Procurement:</span> Tradewinds Solutions Marketplace, DIU Commercial Solutions Opening (CSO), SBIR Phase III direct award.</li>
-                <li><span class="highlight">Leadership POC:</span> Mrs. Humphrey, Chief Executive Officer ([LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]).</li>
+                <li><span class="highlight">Leadership POC:</span> Mrs. Humphrey, Chief Executive Officer ([LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]).</li>
             </ul>
         </div>
     </div>

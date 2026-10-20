@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Sentinel Task Scheduler & Working Tree Hygiene Engine
 Configures Windows scheduled automation for hourly sentinel sweeps and establishes

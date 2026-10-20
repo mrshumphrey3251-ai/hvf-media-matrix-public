@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Multi-Domain Kinetic SCADA Threat Interlock & UAS Recall Engine
 Coordinates high-speed kinetic line de-energization (Vector 1), emergency UAS Return-To-Home (Vector 2),

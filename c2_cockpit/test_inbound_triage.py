@@ -1,4 +1,4 @@
-﻿import sqlite3
+import sqlite3
 import os
 import sys
 from email_triage_core import sanitize_payload, generate_staged_draft
@@ -9,7 +9,7 @@ from email_triage_core import sanitize_payload, generate_staged_draft
 # Tests: 1. Clean Defense Contracting Inbound | 2. Adversarial Injection Attack
 # ==============================================================================
 
-DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db"
+DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
 
 print("=" * 80)
 print("EXECUTING INBOUND TRIAGE & ADVERSARIAL INJECTION SCRUBBER TEST")

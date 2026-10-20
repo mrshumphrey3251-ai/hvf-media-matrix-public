@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Autonomous Edge Sentinel Daemon
 Continuous background watch daemon auditing microgrid contactor synchronization,

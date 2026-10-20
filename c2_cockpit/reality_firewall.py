@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Ground-Truth Reality Boundary & Anti-Fabrication Firewall
 Enforces strict demarcation between physical hardware IO, certified cryptographic databases,

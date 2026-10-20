@@ -1,4 +1,4 @@
-﻿"""
+"""
 E.B.O.N.Y. Sovereign Client Downstream Updater & License Enforcement Engine
 Authoritative Unidirectional Code Distribution & Hardware Node Locking Architecture
 Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5

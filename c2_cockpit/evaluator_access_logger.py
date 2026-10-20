@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Evaluator Ingress Access Logger & Cryptographic Audit Monitor
 Monitors and logs CDAO / Tradewinds evaluator queries against Port 8502 HTTP ingress routes,

@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: C2 Cockpit Sentinel Telemetry HUD Component
 Ingests time-series JSONL audit trails from persistent sentinel watchdog sweeps,

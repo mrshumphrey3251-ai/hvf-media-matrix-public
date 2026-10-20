@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE ACCESS CONTROL MATRIX (V1: EXECUTIVE IAM) ///
 Sector: security
 Purpose: Authenticates executive personnel before allowing access to encrypted ledgers or core infrastructure controls.

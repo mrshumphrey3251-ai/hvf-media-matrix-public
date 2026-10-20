@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE BROADCAST ENGINE (LIVE-FIRE PUBLISHING NODE) ///
 Sector: global_comms
 Purpose: Sweep outbox, format JSON payloads, and force-publish to the external network.
