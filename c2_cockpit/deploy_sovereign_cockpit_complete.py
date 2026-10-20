@@ -71,7 +71,7 @@ NEW_DISPATCH_DECK_CODE = '''    st.header("📨 Sovereign Multi-Account Dispatch
                 "FINANCIAL_TREASURY",
                 "GENERAL_EXECUTIVE"
             ], key="out_cat_sel")
-            st.markdown("<div style='font-size:0.85em; color:#94a3b8; margin-top:5px;'><b>Originating Endpoint:</b><br><span style='color:#e2a03f; font-family:monospace;'>humphreyvirtualfarm@gmail.com</span></div>", unsafe_allow_html=True)
+            st.markdown("<div style='font-size:0.85em; color:#94a3b8; margin-top:5px;'><b>Originating Endpoint:</b><br><span style='color:#e2a03f; font-family:monospace;'>[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]</span></div>", unsafe_allow_html=True)
 
         # AI Executive Draft Assistant
         with st.expander("⚡ Draft Assistance with Ebony AI (Grounded in Iron Dome Intel)", expanded=False):

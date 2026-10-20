@@ -37,7 +37,7 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
                 col_f1, col_f2 = st.columns(2)
                 with col_f1:
                     new_alias = st.text_input("Account Alias / Label:", placeholder="e.g., HVF_GMAIL_MAIN")
-                    new_email = st.text_input("Email Address:", placeholder="e.g., humphreyvirtualfarm@gmail.com")
+                    new_email = st.text_input("Email Address:", placeholder="e.g., [LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]")
                     new_pwd = st.text_input("App Password / Token:", type="password", placeholder="Enter 16-character App Password")
                 with col_f2:
                     new_imap_srv = st.text_input("IMAP Server:", value="imap.gmail.com")

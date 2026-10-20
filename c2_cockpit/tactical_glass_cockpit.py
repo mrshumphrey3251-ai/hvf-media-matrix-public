@@ -1,5 +1,6 @@
 ﻿# -*- coding: utf-8 -*-
 """
+MODULE: c2_cockpit_dashboard.py
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT // DYNAMIC CURRENT ENGINE
 Real-Time Kirchhoff Current Calculations on Every Interaction
 Authority: CEO Jeffery Humphrey (Level 5 Authority) // CAGE: 1AHA8
@@ -181,7 +182,6 @@ def render():
     master_ipeak = master_i * 1.414
     master_kw = (math.sqrt(3) * master_v * master_i * 0.95) / 1000.0 if master_v > 0.0 else 0.0
 
-    # DYNAMIC ASSET INJECTION LOGIC (Fixing Tab 1 Void)
     bus_a_active = master_v > 0
     bus_a_status = "ONLINE (CRITICAL)" if bus_a_active else "OFFLINE (DEAD BUS)"
     bus_a_color = "#10b981" if bus_a_active else "#ef4444"

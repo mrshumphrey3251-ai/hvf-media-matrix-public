@@ -1,4 +1,4 @@
-﻿# ==============================================================================
+# ==============================================================================
 # HVF Omni-Industrial Matrix | SOVEREIGN COMMUNICATIONS CORE
 # Zero-Latency Multi-Sensor Matrix: Arducam USB + Wire-Speed Tapo RTSP
 # Authority: Mr. Humphrey (Founder & CEO) | DFARS 252.227-7018 Compliant
@@ -108,21 +108,29 @@ class BaseOpticalProvider(ABC):
     def stream_live(self, placeholder) -> None:
         pass
 
-class ArducamUSBProvider(BaseOpticalProvider):
-    name = "🖥️ Sensor 1: Desktop Arducam"
+class UniversalUSBUplink(BaseOpticalProvider):
+    def __init__(self, device_index=0, label="🖥️ Universal USB Optical Uplink", model_tag="GENERIC-UVC-1080P"):
+        self._device_index = device_index
+        self._label = label
+        self._model_tag = model_tag
 
     @property
-    def telemetry(self):
+    def name(self) -> str:
+        return self._label
+
+    @property
+    def telemetry(self) -> dict:
         return {
-            "Hardware": "Arducam-1080P-HDR",
-            "Bus Type": "DirectShow USB Bus",
-            "Resolution": "1280x720 HD",
-            "Architecture": "In-Process DirectShow",
-            "Compliance": "DFARS 252.227-7018"
+            "Hardware": self._model_tag,
+            "Bus Type": "DirectShow / UVC Direct Bus",
+            "Target Device Index": str(self._device_index),
+            "Resolution": "1280x720 HD Auto-Negotiated",
+            "Transport": "Direct In-Process Socket",
+            "Compliance": "DFARS 252.227-7018 / Zero-Trust Bus"
         }
 
     def _open_camera(self):
-        for idx in [1, 0, 2]:
+        for idx in [self._device_index, 0, 1, 2]:
             try:
                 cap = cv2.VideoCapture(idx, cv2.CAP_DSHOW)
                 if cap.isOpened():
@@ -145,7 +153,7 @@ class ArducamUSBProvider(BaseOpticalProvider):
                 ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
                 cv2.rectangle(frame, (0, 0), (w, 38), (11, 14, 20), -1)
                 cv2.line(frame, (0, 38), (w, 38), (0, 255, 128), 2)
-                cv2.putText(frame, f"HVF-C2 // ARDUCAM-1080P-HDR // INDEX [{idx}] // {ts}", 
+                cv2.putText(frame, f"HVF-C2 // {self._model_tag} // BUS [{idx}] // {ts}",
                             (15, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (0, 255, 128), 2, cv2.LINE_AA)
                 return True, cv2.cvtColor(frame, cv2.COLOR_BGR2RGB), ts
         except Exception:
@@ -154,7 +162,7 @@ class ArducamUSBProvider(BaseOpticalProvider):
 
     def stream_live(self, placeholder):
         cap = None
-        for idx in [1, 0, 2]:
+        for idx in [self._device_index, 0, 1, 2]:
             try:
                 c = cv2.VideoCapture(idx, cv2.CAP_DSHOW)
                 if c.isOpened():
@@ -168,41 +176,64 @@ class ArducamUSBProvider(BaseOpticalProvider):
             except Exception:
                 pass
 
-        if not cap or not cap.isOpened():
-            placeholder.error("Arducam USB camera unavailable on DirectShow bus. Confirm device connection.")
+        if not cap:
+            placeholder.error(f"Cannot initialize optical stream on {self._label}.")
             return
 
         try:
             while True:
                 ret, frame = cap.read()
                 if not ret or frame is None:
-                    time.sleep(0.01)
-                    continue
+                    break
                 h, w = frame.shape[:2]
                 ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
                 cv2.rectangle(frame, (0, 0), (w, 38), (11, 14, 20), -1)
                 cv2.line(frame, (0, 38), (w, 38), (0, 255, 128), 2)
-                cv2.putText(frame, f"HVF-C2 // ARDUCAM-1080P-HDR // LIVE 30 FPS // {ts}", 
+                cv2.putText(frame, f"HVF-C2 // {self._model_tag} // LIVE STREAM // {ts}",
                             (15, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (0, 255, 128), 2, cv2.LINE_AA)
-                render_image(placeholder, cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+                rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                render_image(placeholder, rgb)
                 time.sleep(0.033)
         finally:
             cap.release()
 
-class TapoRTSPProvider(BaseOpticalProvider):
-    name = "📹 Sensor 2: TP-Link Tapo (192.168.1.165)"
+class UniversalRTSPUplink(BaseOpticalProvider):
+    def __init__(self, endpoint_url=None, label="📹 Universal RTSP/IP Optical Uplink", model_tag="GENERIC-IP-RTSP"):
+        self._endpoint_url = endpoint_url
+        self._label = label
+        self._model_tag = model_tag
 
     @property
-    def telemetry(self):
+    def name(self) -> str:
+        return self._label
+
+    @property
+    def telemetry(self) -> dict:
         return {
-            "Hardware": "TP-Link Tapo IP Camera",
-            "Endpoint": "192.168.1.165:554",
-            "Protocol": "RFC 2326 RTSP (Wire-Speed Sub-Stream)",
-            "Account": "ebony_cam",
-            "Compliance": "DFARS 252.227-7018"
+            "Hardware": self._model_tag,
+            "Bus Type": "TCP/UDP Sovereign LAN RTSP",
+            "Endpoint": "Configured / Masked Secure URI",
+            "Resolution": "1080p Sub-Stream Dynamic",
+            "Transport": "RealTimeRTSPStreamer (Thread-Isolated)",
+            "Compliance": "OK Title 61 / Statutory WORM Compliant"
         }
 
     def _get_url(self):
+        if self._endpoint_url:
+            return self._endpoint_url
+        try:
+            if os.path.exists(TAPO_CONFIG_PATH):
+                with open(TAPO_CONFIG_PATH, "r", encoding="utf-8") as f:
+                    cfg = json.load(f)
+                import urllib.parse
+                user = urllib.parse.quote(cfg.get("rtsp_user", ""))
+                pwd = urllib.parse.quote(cfg.get("rtsp_pass", ""))
+                ip = cfg.get("ip", "192.168.1.165")
+                port = cfg.get("port", 554)
+                path = cfg.get("stream_path", "/stream2")
+                return f"rtsp://{user}:{pwd}@{ip}:{port}{path}"
+        except Exception:
+            pass
         return "rtsp://ebony_cam:Mina%402014@192.168.1.165:554/stream2"
 
     def capture_frame(self):
@@ -225,23 +256,42 @@ class TapoRTSPProvider(BaseOpticalProvider):
         finally:
             pass
 
-class MobileClientOpticalProvider(BaseOpticalProvider):
-    name = "📱 Sensor 3: Mobile / Tablet Ingest"
+class UniversalEdgeUplink(BaseOpticalProvider):
+    def __init__(self, label="📱 Universal Mobile / Client Ingest", model_tag="CLIENT-EDGE-CAMERA"):
+        self._label = label
+        self._model_tag = model_tag
+
+    @property
+    def name(self) -> str:
+        return self._label
 
     @property
     def telemetry(self):
         return {
-            "Hardware": "Client Tablet / Phone Camera",
+            "Hardware": self._model_tag,
             "Bus Type": "Browser WebMedia / Native Streamlit",
             "Transport": "Direct In-Process Socket",
-            "Compliance": "DFARS 252.227-7018"
+            "Compliance": "DFARS 252.227-7018 / Sovereign Edge"
         }
 
     def capture_frame(self):
         return True, None, ""
 
     def stream_live(self, placeholder):
-        placeholder.info("Mobile capture operates via browser client camera trigger below.")
+        placeholder.info("Edge capture operates via browser client camera trigger below.")
+
+# Backward Compatibility Aliases
+class ArducamUSBProvider(UniversalUSBUplink):
+    def __init__(self):
+        super().__init__(device_index=1, label="🖥️ Sensor 1: Desktop Arducam", model_tag="ARDUCAM-1080P-HDR")
+
+class TapoRTSPProvider(UniversalRTSPUplink):
+    def __init__(self):
+        super().__init__(label="📹 Sensor 2: TP-Link Tapo (192.168.1.165)", model_tag="TAPO-C110-RTSP")
+
+class MobileClientOpticalProvider(UniversalEdgeUplink):
+    def __init__(self):
+        super().__init__(label="📱 Sensor 3: Mobile / Tablet Ingest", model_tag="GALAXY-TAB-ACTIVE5-EDGE")
 
 class SovereignCommsEngine:
     OPTICAL_PROVIDERS = {

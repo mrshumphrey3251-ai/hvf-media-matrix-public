@@ -73,7 +73,7 @@ def render_comms_gate(key_suffix="sovereign_deck_main"):
 
             btn_col1, btn_col2, btn_col3 = st.columns([2, 4, 2])
             with btn_col2:
-                if st.button("VERIFY CREDENTIALS & ENTER SOVEREIGN COMMS", use_container_width=True, key=f"gate_btn_{key_suffix}"):
+                if st.button("VERIFY CREDENTIALS & ENTER SOVEREIGN COMMS", width="stretch", key=f"gate_btn_{key_suffix}"):
                     if not in_email or not in_pass:
                         st.error("ACCESS DENIED: Both Email Address and Password are required.")
                     else:
@@ -100,7 +100,7 @@ def render_comms_gate(key_suffix="sovereign_deck_main"):
             </div>
             """, unsafe_allow_html=True)
         with col_sb2:
-            if st.button("🚪 SIGN OUT / SWITCH", key=f"btn_header_signout_{key_suffix}", use_container_width=True):
+            if st.button("🚪 SIGN OUT / SWITCH", key=f"btn_header_signout_{key_suffix}", width="stretch"):
                 st.session_state.comms_deck_authenticated = False
                 st.session_state.comms_force_signout = True
                 st.rerun()
@@ -162,7 +162,7 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     # 2. Executive Autopilot Command Bar
     c1, c2, c3 = st.columns([1.5, 1.2, 1.3])
     with c1:
-        if st.button("🚀 ENGAGE TRAVEL AUTOPILOT (AUTO-REPLY ALL)", key=f"btn_autopilot_send_{key_suffix}", use_container_width=True):
+        if st.button("🚀 ENGAGE TRAVEL AUTOPILOT (AUTO-REPLY ALL)", key=f"btn_autopilot_send_{key_suffix}", width="stretch"):
             try:
                 from ebony_travel_autopilot import run_travel_cycle
                 res = run_travel_cycle(auto_send=True)
@@ -172,7 +172,7 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
                 st.error(f"Autopilot execution failure: {_e}")
 
     with c2:
-        if st.button("📥 RECON INBOX (READ ONLY)", key=f"btn_recon_draft_{key_suffix}", use_container_width=True):
+        if st.button("📥 RECON INBOX (READ ONLY)", key=f"btn_recon_draft_{key_suffix}", width="stretch"):
             try:
                 from ebony_travel_autopilot import run_travel_cycle
                 res = run_travel_cycle(auto_send=False)
@@ -182,7 +182,7 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
                 st.error(f"Recon failure: {_e}")
 
     with c3:
-        if st.button("📱 EMAIL DEBRIEF TO MY PHONE", key=f"btn_email_debrief_{key_suffix}", use_container_width=True):
+        if st.button("📱 EMAIL DEBRIEF TO MY PHONE", key=f"btn_email_debrief_{key_suffix}", width="stretch"):
             try:
                 from ebony_travel_autopilot import run_travel_cycle
                 run_travel_cycle(auto_send=False, email_summary_to="humphreyvirtualfarm@gmail.com")
@@ -233,7 +233,7 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
 
             c_act1, c_act2 = st.columns([1.5, 1])
             with c_act1:
-                if st.button("🚀 TRANSMIT RESPONSE VIA SMTP", key=f"btn_send_p_{item['id']}_{key_suffix}", use_container_width=True):
+                if st.button("🚀 TRANSMIT RESPONSE VIA SMTP", key=f"btn_send_p_{item['id']}_{key_suffix}", width="stretch"):
                     try:
                         import smtplib
                         import ssl
@@ -271,7 +271,7 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
                         st.error(f"Transmission failed: {_err}")
 
             with c_act2:
-                if st.button("✅ MARK AS RESOLVED", key=f"btn_resolve_p_{item['id']}_{key_suffix}", use_container_width=True):
+                if st.button("✅ MARK AS RESOLVED", key=f"btn_resolve_p_{item['id']}_{key_suffix}", width="stretch"):
                     try:
                         conn = sqlite3.connect(str(db_p))
                         cur = conn.cursor()
@@ -322,6 +322,6 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
         if records:
             df_display = pd.DataFrame(records)[["timestamp", "sender", "subject", "classification", "status", "drafted_response"]]
             df_display.columns = ["Timestamp (UTC)", "Sender", "Subject", "Category", "Status", "Dispatched Response"]
-            st.dataframe(df_display, use_container_width=True, hide_index=True)
+            st.dataframe(df_display, width="stretch", hide_index=True)
         else:
             st.info("No recorded communications in ledger. Queue is clear.")

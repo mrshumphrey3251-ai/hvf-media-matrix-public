@@ -396,9 +396,10 @@ def dispatch_outbound_transmission(dispatch_id: int, final_body_override: str = 
         cur.execute("""
             UPDATE staged_email_dispatches 
             SET veto_status = 'DISPATCHED_SUCCESS',
-                draft_response = ?
+                draft_response = ?,
+                dispatched_at = ?
             WHERE id = ?
-        """, (body_to_send, dispatch_id))
+        """, (body_to_send, now_ts, dispatch_id))
         conn.close()
         
         return True, f"Outbound transmission #{dispatch_id} successfully delivered to {clean_recipient}."

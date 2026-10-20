@@ -164,7 +164,7 @@ def build_quad_chart_html():
                 <li><span class="highlight">Authority:</span> HVF Omni-Industrial Matrix | CAGE: 1AHA8 | Active SAM.gov UEI.</li>
                 <li><span class="highlight">Socioeconomic Status:</span> EDWOSB / WOSB / Small Business Defense Innovator.</li>
                 <li><span class="highlight">Fast-Track Procurement:</span> Tradewinds Solutions Marketplace, DIU Commercial Solutions Opening (CSO), SBIR Phase III direct award.</li>
-                <li><span class="highlight">Leadership POC:</span> Mrs. Humphrey, Chief Executive Officer (humphreyvirtualfarm@gmail.com).</li>
+                <li><span class="highlight">Leadership POC:</span> Mrs. Humphrey, Chief Executive Officer ([LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]).</li>
             </ul>
         </div>
     </div>

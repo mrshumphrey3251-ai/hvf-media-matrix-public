@@ -25,7 +25,7 @@ INTAKE_PAYLOAD = {
         "CAGE: 1AHA8 | UEI: S1M4ENLHTDH5\n"
         "Contracting Status: Nontraditional Defense Contractor (10 U.S.C. § 4022(d))\n"
         "Point of Contact: Jeffery Humphrey, Founder & CEO (Apex Architect)\n"
-        "Email: humphreyvirtualfarm@gmail.com\n"
+        "Email: [LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]\n"
         "Location: Oklahoma, USA"
     ),
     "PORTFOLIO_ALIGNMENT": "Autonomy & Energy / Cyber (Contested Logistics & Edge Autonomy Resiliency)",

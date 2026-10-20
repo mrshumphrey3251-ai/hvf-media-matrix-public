@@ -32,7 +32,7 @@ As Founder, CEO, and Apex Architect, I am asserting clear legal and technical pa
 Our published article covers the formal corporate disclosure in full detail.
 
 For acquisition program managers, prime integrators, and mission partners seeking air-gapped cyber-physical resilience:
-Inquiries: humphreyvirtualfarm@gmail.com
+Inquiries: [LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]
 
 Jeffery Humphrey
 Founder & Chief Executive Officer | Apex Architect

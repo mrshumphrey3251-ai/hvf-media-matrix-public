@@ -9,7 +9,7 @@ import email_triage_core
 # ==============================================================================
 # HVF Omni-Industrial Matrix | ENDPOINT CONSOLIDATION & LIVE INGESTION
 # Authority: Jeffery Humphrey, Founder & CEO (CAGE: 1AHA8, UEI: S1M4ENLHTDH5)
-# Target: humphreyvirtualfarm@gmail.com -> HVF_PRIMARY_EXECUTIVE
+# Target: [LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive] -> HVF_PRIMARY_EXECUTIVE
 # ==============================================================================
 
 BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
@@ -58,9 +58,9 @@ WHERE (encrypted_password IS NULL OR encrypted_password = '')
 cur.execute("""
 INSERT INTO email_accounts 
 (account_alias, email_address, imap_server, imap_port, smtp_server, smtp_port, env_password_key, encrypted_password, is_active, auth_type)
-VALUES ('HVF_PRIMARY_EXECUTIVE', 'humphreyvirtualfarm@gmail.com', 'imap.gmail.com', 993, 'smtp.gmail.com', 465, 'DYNAMIC_VAULT_ENCRYPTED', ?, 1, 'APP_PASSWORD')
+VALUES ('HVF_PRIMARY_EXECUTIVE', '[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]', 'imap.gmail.com', 993, 'smtp.gmail.com', 465, 'DYNAMIC_VAULT_ENCRYPTED', ?, 1, 'APP_PASSWORD')
 ON CONFLICT(account_alias) DO UPDATE SET
-    email_address = 'humphreyvirtualfarm@gmail.com',
+    email_address = '[LOCAL_ARCHIVE_ONLY: C:\HVF_Repos\Archive]',
     env_password_key = 'DYNAMIC_VAULT_ENCRYPTED',
     encrypted_password = excluded.encrypted_password,
     is_active = 1,
