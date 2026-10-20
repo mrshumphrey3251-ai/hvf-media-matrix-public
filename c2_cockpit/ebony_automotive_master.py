@@ -84,6 +84,22 @@ MASTER_DTC_AND_REPAIR_LIBRARY = {
         ],
         "ecu_adjustment": "Execute Crankshaft Tooth-Error Adaptive Learn (CASE Learn) in PCM EEPROM and optimize dwell time table for high-output ignition coils."
     },
+        "P0420": {
+        "category": "Emissions & Catalyst Oxygen Storage Capacity (SAE J1979 Mode $06)",
+        "title": "P0420: Catalyst System Efficiency Below Threshold (Bank 1) — O2 Switching Ratio Fault",
+        "telemetry_trigger": "Downstream Rear O2 Sensor (B1S2) cross-count switching frequency approaches Upstream Front O2/AFR Sensor (B1S1) (> 0.75 switch ratio); CeO2 oxygen storage depleted",
+        "root_causes": [
+            "1. Thermal sintering or noble-metal (Pt/Pd/Rh) washcoat depletion inside three-way catalytic converter caused by upstream rich misfires or oil/coolant contamination.",
+            "2. Exhaust flange or flex-pipe pinhole leak upstream of B1S2 drawing false ambient oxygen pulses.",
+            "3. Lazy downstream zirconia O2 sensor heater circuit (normal heater resistance: 4.0 to 12.0 Ohms at 68 deg F)."
+        ],
+        "repair_sop": [
+            "Step 1 (NVIDIA Brain-1 Dual-O2 Waveform Gate): Graph B1S1 (Upstream) vs B1S2 (Downstream) at 2,000 RPM steady cruise (catalyst temp > 1,100 deg F). Healthy catalyst holds B1S2 steady at 0.65-0.75V; failed catalyst mirrors B1S1 0.1V-0.9V oscillation.",
+            "Step 2 (Infrared Thermal Delta Gate): Measure catalyst inlet vs outlet temperature. Healthy exothermic oxidation produces Outlet Temp >= Inlet Temp + 75 deg F.",
+            "Step 3 (Repair & Mode $06 Catalyst Monitor Reset): Eliminate any upstream misfire/fuel-trim fault first, replace degraded catalyst/O2 sensor (O2 sensor torque: 30-37 lb-ft with anti-seize), and run UDS 0x31 Catalyst Monitor Readiness Reset."
+        ],
+        "ecu_adjustment": "Clear OBD-II Mode $06 EWMA Catalyst Monitor counters and verify post-cat O2 heater PWM duty cycle."
+    },
     "P0700": {
         "category": "Transmission Control Module (TCM) & Hydraulic Shift Adaptive Control",
         "title": "P0700 / P0730: Transmission Control System Malfunction / Incorrect Gear Ratio Slippage",
@@ -244,15 +260,55 @@ def evaluate_vehicle_canbus_and_ecu(
     }
 
 
+FLEET_VEHICLE_PRESETS = {
+    "F150_50_V8_OBD2": {
+        "label": "Light-Duty Fleet: HVF F-150 5.0L V8 (ISO 15765-4 OBD-II 500 kbps)",
+        "vin": "1FTFW1E50NFA00001", "desc": "HVF Fleet Command Unit #01 (5.0L Coyote V8 / 10R80)",
+        "proto": "ISO_15765_4_CAN_11BIT_500K", "dtc": "P0171", "rpm": 2800.0, "tq": 365.0, "maf": 115.0, "disp": 5.0, "stft": 8.5, "ltft": 18.2
+    },
+    "DURAMAX_66_J1939": {
+        "label": "Heavy-Duty Diesel: HVF 6.6L Turbo-Diesel (SAE J1939 9-Pin Deutsch)",
+        "vin": "1GC4YSEY0NF200002", "desc": "HVF Heavy Logistics Unit #02 (6.6L V8 Turbo-Diesel)",
+        "proto": "SAE_J1939_29BIT_250K", "dtc": "U0100", "rpm": 1800.0, "tq": 910.0, "maf": 166.5, "disp": 6.6, "stft": 0.0, "ltft": 1.5
+    },
+    "ECOBOOST_35_CANFD": {
+        "label": "Twin-Turbo Intercept: HVF 3.5L EcoBoost V6 (ISO 11898 CAN-FD 2.0 Mbps)",
+        "vin": "1FTFW1E80NFA00003", "desc": "HVF Rapid Response Unit #03 (3.5L Twin-Turbo V6)",
+        "proto": "ISO_11898_CAN_FD_2M", "dtc": "P0300", "rpm": 3200.0, "tq": 500.0, "maf": 158.0, "disp": 3.5, "stft": 4.2, "ltft": 6.8
+    }
+}
+
+
 def answer_automotive_ai_query(query_text: str) -> str:
-    res = evaluate_vehicle_canbus_and_ecu()
+    q_up = str(query_text).upper()
+    matched_dtc = "P0171"
+    for code_key in MASTER_DTC_AND_REPAIR_LIBRARY:
+        if code_key in q_up:
+            matched_dtc = code_key
+            break
+    if "MISFIRE" in q_up:
+        matched_dtc = "P0300"
+    elif "CATALYST" in q_up or "O2" in q_up:
+        matched_dtc = "P0420"
+    elif "TRANSMISSION" in q_up or "SHIFT" in q_up:
+        matched_dtc = "P0700"
+    elif "CAN" in q_up or "NO COMM" in q_up or "COMPUTER" in q_up:
+        matched_dtc = "U0100"
+
+    res = evaluate_vehicle_canbus_and_ecu(dtc_code=matched_dtc)
     lines = [
         "=== E.B.O.N.Y. SOVEREIGN AUTOMOTIVE & PORTABLE NVIDIA THREE-BRAIN CAN-BUS DIRECTIVE ===",
-        "* **Architecture:** Hot-Swappable NVIDIA Three-Brain Enclave (Brain 1: Opto-Isolated ISO 11898 / SAE J2534 CAN-Bus Transceiver | Brain 2: E.B.O.N.Y. GPU Diagnostic & ECU Calibration Solver | Brain 3: WORM EEPROM Snapshot & Safe-Disconnect Interlock).",
-        f"* **Physical Interface:** {res['can_protocol']} ({res['can_pins']} | Bus Termination: {res['termination_ohms']} Ohms).",
-        f"* **Active Diagnostic & Telemetry Verification:** Calculated Output = `{res['calculated_hp']} HP`, Volumetric Efficiency = `{res['volumetric_efficiency_pct']}%`, Total Fuel Trim = `{res['total_fuel_trim_pct']}%`.",
-        f"* **ECU Computer Calibration & Recovery:** {res['ecu_adjustment']}",
-        f"* **Hot-Swap Multi-Vehicle Interlock:** `{res['hot_swap_status']}` (Baseline EEPROM SHA-256: `{res['baseline_eeprom_sha256'][:16]}...` | Post-Calibration WORM Seal: `{res['post_cal_record_sha256'][:16]}...`)."
+        "* **Three-Brain Portable Architecture:**",
+        "  - **Brain 1 (Edge CAN-Bus Transceiver):** Opto-isolated ISO 11898 / SAE J1979 (16-Pin OBD-II Pins 6 & 14) & SAE J1939 (9-Pin Deutsch Pins C & D) with 60.0-Ohm bus termination verification.",
+        "  - **Brain 2 (NVIDIA GPU Diagnostic & Calibration Core):** Real-time Fuel Trim (STFT+LTFT), Volumetric Efficiency (VE%), Mode $06 Misfire/Catalyst analysis, and UDS 0x2E/0x31 bidirectional ECU calibration.",
+        "  - **Brain 3 (WORM EEPROM Snapshot & Hot-Swap Interlock):** Captures pre-flash SHA-256 EEPROM backup by VIN and locks UDS Session 0x01 Default before safe physical unplugging to move to the next vehicle.",
+        f"* **Active Diagnostic Focus (`{res['dtc_title']}`):**",
+        f"  - **Root Causes:** {' | '.join(res['root_causes'])}",
+        f"  - **Master Repair SOP:** {' -> '.join(res['repair_sop'])}",
+        f"  - **NVIDIA Brain-2 ECU Computer Adjustment:** {res['ecu_adjustment']}",
+        f"* **Live Telemetry & Performance Verification:** Output = `{res['calculated_hp']} HP`, Volumetric Efficiency = `{res['volumetric_efficiency_pct']}%`, Total Fuel Trim = `{res['total_fuel_trim_pct']}%`.",
+        "* **Preventative Maintenance & Performance Coverage:** Full 5,000 to 100,000+ mile fluid/tribology/torque schedules and Stages 1-3 NA/Forced-Induction/Chassis tuning active in `🏎️ Sovereign Auto & CAN-Bus C2`.",
+        f"* **Hot-Swap Multi-Vehicle Status:** `{res['hot_swap_status']}` (Baseline EEPROM SHA-256: `{res['baseline_eeprom_sha256'][:16]}...` | WORM Seal: `{res['post_cal_record_sha256'][:16]}...`)."
     ]
     return "\n".join(lines)
 
@@ -340,7 +396,7 @@ def render_automotive_master_deck():
 
 if __name__ == "__main__":
     r1 = evaluate_vehicle_canbus_and_ecu(vin="1FTFW1E50NFA00001", vehicle_desc="Vehicle 1: HVF F-150 5.0L V8", dtc_code="P0171")
-    r2 = evaluate_vehicle_canbus_and_ecu(vin="1GC4YSEY0NF200002", vehicle_desc="Vehicle 2: HVF Heavy Diesel 6.6L Duramax", can_protocol="SAE_J1939_29BIT_250K", dtc_code="U0100")
+    r2 = evaluate_vehicle_canbus_and_ecu(vin="1GC4YSEY0NF200002", vehicle_desc="Vehicle 2: HVF Heavy Diesel 6.6L Duramax", can_protocol="SAE_J1939_29BIT_250K", dtc_code="U0100", rpm=1800.0, torque_lb_ft=910.0, maf_g_s=166.5, disp_liters=6.6, stft_pct=0.0, ltft_pct=1.5, perf_stage="STAGE_2_FORCED_INDUCTION_AND_THERMAL_MANAGEMENT")
     print("=" * 92)
     print("   E.B.O.N.Y. PORTABLE NVIDIA THREE-BRAIN CAN-BUS MULTI-VEHICLE HOT-SWAP AUDIT   ")
     print("=" * 92)
