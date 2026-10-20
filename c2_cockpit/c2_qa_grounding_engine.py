@@ -46,6 +46,11 @@ class C2QAGroundingEngine:
         telem = self.get_real_telemetry()
         op_telem = telem.get("operational_telemetry", {})
 
+        # 0. Automotive Repair, Maintenance, Performance & Portable NVIDIA Three-Brain CAN-Bus Queries
+        if any(k in q for k in ["auto", "car", "truck", "vehicle", "can bus", "can-bus", "canbus", "obd", "ecu", "pcm", "engine", "repair", "maintenance", "torque", "fuel trim"]):
+            import ebony_automotive_master as _eam
+            return _eam.answer_automotive_ai_query(user_query)
+
         # 1. Tradewinds Status / Awardability
         if any(k in q for k in ["awardable", "tradewinds", "chances", "status of tradewinds"]):
             lines = [

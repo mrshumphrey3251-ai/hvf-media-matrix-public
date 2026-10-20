@@ -1127,6 +1127,7 @@ with st.sidebar:
         "📡 LinkedIn Engine",
         "🚨 NOAA Radar",
         "🌾 Drone Diagnostics",
+        "🏎️ Sovereign Auto & CAN-Bus C2",
         "📖 System Overview",
         "📡 Sovereign Comms Deck",
         "📨 Sovereign Dispatch Deck",
@@ -1467,6 +1468,11 @@ elif active_module == "📡 LinkedIn Engine":
 elif active_module == "🚨 NOAA Radar":
     st.subheader("🚨 NOAA Emergency Weather & Live Radar Sentinel")
     st.components.v1.iframe("https://radar.weather.gov/", height=450, scrolling=True)
+
+elif active_module == "🏎️ Sovereign Auto & CAN-Bus C2":
+    import importlib, ebony_automotive_master as _eam_mod
+    importlib.reload(_eam_mod)
+    _eam_mod.render_automotive_master_deck()
 
 elif active_module == "🌾 Drone Diagnostics":
     st.markdown("### 🚁 /// OPTICAL PAYLOAD FEED (LIVE & GLI ACTIVE)")
