@@ -639,6 +639,30 @@ def render_academy_deck():
                 use_container_width=True,
                 key=f"dl_official_state_cert_{selected_code}"
             )
+            try:
+                import generate_academy_master_binder as _gmb
+                _b_res = _gmb.generate_master_executive_binder(student_id=student_id, student_name=student_name)
+                _b_col1, _b_col2 = st.columns(2)
+                with _b_col1:
+                    st.download_button(
+                        label="📘 Download Master 120-Hr Executive Compliance Binder (.MD)",
+                        data=Path(_b_res["markdown_binder"]).read_text(encoding="utf-8"),
+                        file_name=Path(_b_res["markdown_binder"]).name,
+                        mime="text/markdown",
+                        use_container_width=True,
+                        key=f"dl_master_exec_binder_md_{selected_code}"
+                    )
+                with _b_col2:
+                    st.download_button(
+                        label="📊 Download Master 120-Hr WORM SQLite Transcript (.CSV)",
+                        data=Path(_b_res["csv_transcript"]).read_text(encoding="utf-8"),
+                        file_name=Path(_b_res["csv_transcript"]).name,
+                        mime="text/csv",
+                        use_container_width=True,
+                        key=f"dl_master_exec_binder_csv_{selected_code}"
+                    )
+            except Exception:
+                pass
         st.subheader(f"Chapter 5: Official {selected_code} 3-Tier State Certification Exam Gauntlet (155 Questions Total)")
         if not EXAM_ENGINE_ONLINE:
             st.error(f"Exam Engine Offline: {EXAM_ENGINE_ERR}")
