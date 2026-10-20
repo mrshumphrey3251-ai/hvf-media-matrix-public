@@ -943,7 +943,8 @@ def record_question_to_self_learning_vault(
     vehicle_context: str,
     matched_zones: list,
     web_findings: list,
-    source_mode: str
+    source_mode: str,
+    commit_worm_ledger: bool = False
 ) -> dict:
     """
     Permanently records a question and its synthesized answer into E.B.O.N.Y.'s self-learning
@@ -1023,25 +1024,93 @@ def get_learned_mechanics_memory(limit: int = 25) -> list:
     return rows
 
 
+SPECIALIZED_COMPONENT_GUIDES = {
+    "door panel": {
+        "title": "Custom Learned SOP: Interior Door Trim Panel & Window Regulator Service",
+        "where": "The padded interior trim panel covering the inside of the metal door shell. Held by 2 hidden anchor screws (behind small pop-off covers inside the recessed chrome door handle cup and inside the rubber armrest pull-cup) plus 8-12 plastic perimeter push-clips.",
+        "safety": [
+            "Roll the window DOWN first if possible, turn ignition OFF, and disconnect the Black Negative (-) battery cable (10mm wrench) before unplugging door airbag or window switch connectors.",
+            "NEVER pry against painted door metal with a steel screwdriver—always use a wide Nylon Plastic Trim Pry Tool."
+        ],
+        "tools": [
+            "Nylon Plastic Trim Panel Pry Tool Set & Clip Fork",
+            "Small Pick (for popping open the 2 tiny plastic screw covers)",
+            "Phillips #2 Screwdriver, Torx T20/T25, and 7mm/8mm/10mm Socket + 3/8-inch Ratchet"
+        ],
+        "steps": [
+            "Step 1 (Hidden Screws): Use a small plastic pick to pop open the tiny trapdoor cover behind the interior door latch handle and lift out the rubber mat inside the armrest pull-cup; remove the 7mm/8mm/10mm or Torx anchor screws.",
+            "Step 2 (Perimeter Clips): Slide a Nylon Trim Pry Tool under the bottom corner of the door panel and pop the perimeter push-clips free around the bottom, left, and right edges.",
+            "Step 3 (Lift Up & Unhook): Lift the entire door panel straight UPWARD 2 inches off the top window-sill lip, unhook the metal Bowden latch cable from the handle clip, and unplug the window switch wiring harness.",
+            "Step 4 (Reinstall): Transfer any stuck plastic clips back onto the panel, hook the top lip over the window channel first, snap perimeter clips in by hand, and reinstall the recessed anchor screws."
+        ]
+    },
+    "starter": {
+        "title": "Custom Learned SOP: Starter Motor & Solenoid Diagnosis and Replacement",
+        "where": "A cylindrical high-torque electric motor bolted to the lower side of the engine block right where the engine meets the transmission bellhousing (flywheel/flexplate ring gear). Has 1 thick Red Battery Cable (+12V) and 1 small S-Terminal trigger wire.",
+        "safety": [
+            "MANDATORY FIRST STEP: Disconnect the Black Negative (-) battery cable (10mm wrench) BEFORE touching the starter! The thick red cable on the starter is wired directly to the battery with no fuse!",
+            "Support the vehicle on locked mechanical Jack Stands with wheel chocks installed before sliding underneath."
+        ],
+        "tools": [
+            "10mm Wrench (for battery Negative terminal)",
+            "3/8-inch Ratchet + 12mm, 13mm, 14mm, 15mm, or 17mm 6-Point Sockets & Extensions",
+            "Digital Multimeter (20V DC)"
+        ],
+        "steps": [
+            "Step 1 (Click vs. No-Click Triage): Verify battery resting voltage >= 12.60V DC. If turning the key makes a single loud CLICK at the starter, verify 12V reaches the small S-terminal wire on key-turn.",
+            "Step 2 (Disconnect Battery & Starter Wires): Disconnect Black Negative (-) battery cable FIRST! Slide under vehicle, remove the 13mm nut holding the thick B+ battery cable and the 8mm/10mm nut or clip on the small S-terminal wire.",
+            "Step 3 (Unbolt & Swap Starter): Support the starter motor with one hand while removing the 2 or 3 mounting bolts (13mm-17mm) holding it to the bellhousing. Install new starter, torque mounting bolts to 30-37 lb-ft, reconnect wires, and reconnect Black Negative (-) battery cable last."
+        ]
+    },
+    "water pump": {
+        "title": "Custom Learned SOP: Engine Water Pump, Thermostat & Cooling System Repair",
+        "where": "Bolted to the front of the engine block (driven by the serpentine belt or timing belt), right behind the fan pulley where the radiator hoses connect.",
+        "safety": [
+            "NEVER open the radiator cap or disconnect coolant hoses on a warm or hot engine (15-20 psi boiling steam hazard)!",
+            "Catch all drained ethylene-glycol coolant in a sealed container."
+        ],
+        "tools": [
+            "Coolant Drain Pan & Funnel",
+            "Serpentine Belt Tensioner Bar + 10mm/12mm/13mm/15mm 6-Point Sockets",
+            "Plastic Gasket Scraper, Torque Wrench, & 50/50 Prediluted Coolant"
+        ],
+        "steps": [
+            "Step 1 (Drain Coolant & Remove Belt): On a cold engine, open the radiator bottom drain petcock into a clean pan. Rotate the spring-loaded serpentine belt tensioner to slip the belt off the water pump pulley.",
+            "Step 2 (Remove Water Pump & Clean Block Face): Unbolt the water pump pulley and remove the perimeter bolts holding the water pump to the engine block. Clean the block mating surface with a plastic scraper.",
+            "Step 3 (Install New Gasket/O-Ring, Torque & Bleed Air): Install the new water pump with its new O-ring/gasket, torque bolts in a criss-cross pattern (15-22 lb-ft), reinstall belt, fill radiator with 50/50 coolant, and burp trapped air."
+        ]
+    }
+}
+
+
 def query_ebony_mechanic_assistant(
     user_question: str,
     allow_internet_lookup: bool = False,
     vehicle_make_model_year: str = "",
     vin_str: str = "",
-    save_to_memory: bool = False
+    save_to_memory: bool = False,
+    equipment_domain: str = "AUTO_TRUCK"
 ) -> dict:
     """
-    Answers any open-ended user question about automotive repair, maintenance, performance, tractors,
-    or small engines/lawnmowers, checks E.B.O.N.Y.'s Self-Learning Memory Vault first, and saves newly
-    learned questions when save_to_memory=True.
+    Domain-Isolated, Top-1 Surgical Mechanic AI Assistant:
+    - When equipment_domain == 'AUTO_TRUCK': Strictly excludes Small Engine / Lawnmower zones (Zones 13-16).
+    - When equipment_domain == 'SMALL_ENGINE': Strictly excludes Automotive zones (Zones 01-12) and NHTSA car lookups.
+    - Returns ONLY the single (#1 highest-scoring) guide matching the user's specific question so the screen is never cluttered.
     """
     import urllib.parse
     import urllib.request
 
     q_clean = str(user_question).strip()
-    q_low = (q_clean + " " + str(vehicle_make_model_year)).lower()
+    q_low = q_clean.lower()
 
-    # 0. Check E.B.O.N.Y.'s Self-Learning Memory Vault for prior recall
+    # Auto-detect domain if not explicitly forced, or honor the user's selected domain filter
+    small_eng_words = ["mower", "lawnmower", "small engine", "weedeater", "trimmer", "chainsaw", "leaf blower", "2-stroke", "2 stroke", "pull cord", "zero turn"]
+    if equipment_domain == "SMALL_ENGINE" or (equipment_domain == "AUTO_DETECT" and any(w in q_low for w in small_eng_words)):
+        active_domain = "SMALL_ENGINE"
+    else:
+        active_domain = "AUTO_TRUCK"
+
+    # 0. Check Self-Learning Memory Vault for exact prior question recall
     prior_memories = get_learned_mechanics_memory(limit=100)
     recalled_entry = None
     q_norm = re.sub(r"\s+", " ", q_clean.lower())
@@ -1050,80 +1119,125 @@ def query_ebony_mechanic_assistant(
             recalled_entry = pm
             break
 
-    # 1. Match all relevant Beginner-to-Master Zone(s) from the 16-Zone Encyclopedia
-    matched_zones = []
-    keyword_map = [
-        (["jack", "stand", "lift", "pinch weld", "frame", "chock", "socket", "ratchet", "lefty"], "ZONE_01_SAFETY_JACKING_AND_TOOLS"),
-        (["hood", "dipstick", "cap", "710", "washer", "reservoir", "check oil"], "ZONE_02_UNDER_HOOD_ANATOMY_AND_FLUID_ID"),
-        (["oil change", "drain plug", "oil filter", "coolant", "radiator", "thermostat", "belt", "overheat"], "ZONE_03_OIL_CHANGE_AND_COOLING_SYSTEM"),
-        (["battery", "alternator", "jump", "start", "dead", "multimeter", "voltage", "negative", "positive"], "ZONE_04_BATTERY_ALTERNATOR_AND_ELECTRICAL"),
-        (["brake", "pad", "rotor", "caliper", "bleed", "squeak", "grind", "stop"], "ZONE_05_BRAKES_PADS_ROTORS_AND_BLEEDING"),
-        (["tire", "flat", "lug", "wheel bearing", "tie rod", "ball joint", "strut", "shock", "alignment", "shake"], "ZONE_06_TIRES_WHEELS_SUSPENSION_AND_STEERING"),
-        (["air filter", "maf", "spark plug", "coil", "misfire", "fuel pump", "injector"], "ZONE_07_AIR_FUEL_SPARK_PLUGS_AND_IGNITION"),
+    # 1. Score only the zones belonging to the active domain, and pick the SINGLE (#1) best match!
+    auto_keyword_map = [
+        (["door panel", "door trim", "window regulator", "interior door", "door handle", "door lock", "speaker"], "CUSTOM_DOOR_PANEL"),
+        (["starter", "starter motor", "solenoid", "wont crank", "won't crank", "click no start"], "CUSTOM_STARTER"),
+        (["water pump", "thermostat", "overheating", "radiator hose", "coolant leak"], "CUSTOM_WATER_PUMP"),
+        (["jack", "jack stand", "lift", "pinch weld", "frame rail", "wheel chock", "socket", "ratchet", "lefty"], "ZONE_01_SAFETY_JACKING_AND_TOOLS"),
+        (["dipstick", "check oil", "hood", "710", "oil cap", "washer fluid", "where is the"], "ZONE_02_UNDER_HOOD_ANATOMY_AND_FLUID_ID"),
+        (["oil change", "change oil", "change the oil", "drain plug", "oil filter", "serpentine belt", "coolant flush"], "ZONE_03_OIL_CHANGE_AND_COOLING_SYSTEM"),
+        (["battery", "alternator", "jump start", "dead battery", "multimeter", "negative", "positive"], "ZONE_04_BATTERY_ALTERNATOR_AND_ELECTRICAL"),
+        (["brake", "pad", "rotor", "caliper", "bleed", "squeak", "grinding"], "ZONE_05_BRAKES_PADS_ROTORS_AND_BLEEDING"),
+        (["tire", "flat tire", "lug nut", "wheel bearing", "tie rod", "ball joint", "strut", "shock", "alignment"], "ZONE_06_TIRES_WHEELS_SUSPENSION_AND_STEERING"),
+        (["air filter", "maf", "mass air flow", "spark plug", "ignition coil", "misfire", "fuel pump", "injector"], "ZONE_07_AIR_FUEL_SPARK_PLUGS_AND_IGNITION"),
         (["transmission", "atf", "differential", "pumpkin", "transfer case", "gear oil", "cv axle", "u-joint"], "ZONE_08_TRANSMISSION_DIFFERENTIALS_AND_DRIVETRAIN"),
-        (["exhaust", "catalytic", "o2", "oxygen sensor", "dpf", "def", "muffler", "p0420"], "ZONE_09_EXHAUST_EMISSIONS_O2_AND_DIESEL_DPF"),
-        (["ac", "a/c", "air condition", "heater", "blower", "cabin filter", "blend door", "clicking"], "ZONE_10_HVAC_HEATING_COOLING_AND_CABIN_AIR"),
-        (["door panel", "door", "panel", "trim", "charger", "window", "regulator", "headlight", "bulb", "taillight", "wiper", "fuse", "mirror", "latch", "speaker"], "ZONE_11_LIGHTING_WIPERS_FUSES_AND_BODY"),
+        (["exhaust", "catalytic", "o2 sensor", "oxygen sensor", "dpf", "def", "muffler", "p0420"], "ZONE_09_EXHAUST_EMISSIONS_O2_AND_DIESEL_DPF"),
+        (["ac", "a/c", "air condition", "heater", "blower motor", "cabin filter", "blend door"], "ZONE_10_HVAC_HEATING_COOLING_AND_CABIN_AIR"),
+        (["headlight", "bulb", "taillight", "wiper", "fuse", "windshield"], "ZONE_11_LIGHTING_WIPERS_FUSES_AND_BODY"),
         (["can bus", "can-bus", "obd", "j1939", "isobus", "nvidia", "three brain", "ecu", "unplug"], "ZONE_12_PORTABLE_NVIDIA_CANBUS_PLUGIN_AND_ECU_GUIDE"),
-        (["mower", "lawnmower", "small engine", "wont start", "won't start", "spark plug boot", "tip", "flywheel key"], "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE"),
+    ]
+
+    small_engine_keyword_map = [
         (["carburetor", "float bowl", "main jet", "ethanol", "surge", "hunting", "primer", "choke"], "ZONE_14_CARBURETOR_CLEANING_ETHANOL_AND_GOVERNOR"),
         (["blade", "sharpen", "balance", "recoil", "pull cord", "rope", "sae 30"], "ZONE_15_BLADE_SHARPENING_BALANCING_OIL_AND_RECOIL"),
         (["zero turn", "hydrostatic", "2-stroke", "2 stroke", "50:1", "40:1", "chainsaw", "trimmer", "weedeater", "spark arrestor", "pto"], "ZONE_16_ZERO_TURN_HYDROSTATIC_2STROKE_AND_NVIDIA_DIAG"),
+        (["mower", "lawnmower", "small engine", "wont start", "won't start", "spark plug boot", "tip", "flywheel key"], "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE"),
     ]
-    for kw_list, z_key in keyword_map:
-        if any(kw in q_low for kw in kw_list):
-            matched_zones.append(BUMPER_TO_BUMPER_BEGINNER_GUIDE[z_key])
-    if not matched_zones:
-        matched_zones.append(BUMPER_TO_BUMPER_BEGINNER_GUIDE["ZONE_01_SAFETY_JACKING_AND_TOOLS"])
-        matched_zones.append(BUMPER_TO_BUMPER_BEGINNER_GUIDE["ZONE_02_UNDER_HOOD_ANATOMY_AND_FLUID_ID"])
+
+    active_map = small_engine_keyword_map if active_domain == "SMALL_ENGINE" else auto_keyword_map
+
+    best_key = None
+    best_score = 0
+    for kw_list, z_key in active_map:
+        score = sum(2 if len(kw.split()) > 1 else 1 for kw in kw_list if kw in q_low)
+        if score > best_score:
+            best_score = score
+            best_key = z_key
+
+    # Resolve the single winning guide
+    veh_label = vehicle_make_model_year or ("Small Engine / Turf Equipment" if active_domain == "SMALL_ENGINE" else "Vehicle / Truck / Tractor")
+    if best_key == "CUSTOM_DOOR_PANEL":
+        c_data = SPECIALIZED_COMPONENT_GUIDES["door panel"]
+        primary_guide = {
+            "zone_title": f"{c_data['title']} [{veh_label}]",
+            "where_and_what": c_data["where"],
+            "safety_precautions": c_data["safety"],
+            "tools_required": c_data["tools"],
+            "step_by_step": c_data["steps"]
+        }
+    elif best_key == "CUSTOM_STARTER":
+        c_data = SPECIALIZED_COMPONENT_GUIDES["starter"]
+        primary_guide = {
+            "zone_title": f"{c_data['title']} [{veh_label}]",
+            "where_and_what": c_data["where"],
+            "safety_precautions": c_data["safety"],
+            "tools_required": c_data["tools"],
+            "step_by_step": c_data["steps"]
+        }
+    elif best_key == "CUSTOM_WATER_PUMP":
+        c_data = SPECIALIZED_COMPONENT_GUIDES["water pump"]
+        primary_guide = {
+            "zone_title": f"{c_data['title']} [{veh_label}]",
+            "where_and_what": c_data["where"],
+            "safety_precautions": c_data["safety"],
+            "tools_required": c_data["tools"],
+            "step_by_step": c_data["steps"]
+        }
+    elif best_key and best_key in BUMPER_TO_BUMPER_BEGINNER_GUIDE:
+        primary_guide = dict(BUMPER_TO_BUMPER_BEGINNER_GUIDE[best_key])
+    else:
+        default_key = "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE" if active_domain == "SMALL_ENGINE" else "ZONE_03_OIL_CHANGE_AND_COOLING_SYSTEM"
+        primary_guide = dict(BUMPER_TO_BUMPER_BEGINNER_GUIDE[default_key])
+
+    matched_zones = [primary_guide]
 
     # 2. Strict Opt-In Internet Gate: ONLY query external web if allow_internet_lookup == True
     web_findings = []
     network_mode = "🔒 AIR-GAPPED LOCAL SOVEREIGN KNOWLEDGE BASE ONLY (Zero Internet Traffic — Default)"
     if allow_internet_lookup:
-        network_mode = "🌐 OPT-IN LIVE INTERNET & NHTSA / TECHNICAL WEB LOOKUP ACTIVE (User Authorized)"
-        clean_vin = str(vin_str).strip().upper()
-        if len(clean_vin) >= 11:
-            try:
-                vpic_url = f"https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/{urllib.parse.quote(clean_vin)}?format=json"
-                req = urllib.request.Request(vpic_url, headers={"User-Agent": "HVF-Sovereign-C2/5.0"})
-                with urllib.request.urlopen(req, timeout=5) as resp:
-                    v_json = json.loads(resp.read().decode("utf-8", errors="replace"))
-                    res_row = (v_json.get("Results") or [{}])[0]
-                    yr = res_row.get("ModelYear") or "N/A"
-                    mk = res_row.get("Make") or "N/A"
-                    md = res_row.get("Model") or "N/A"
-                    eng_l = res_row.get("DisplacementL") or "N/A"
-                    cyl = res_row.get("EngineCylinders") or "N/A"
-                    fuel = res_row.get("FuelTypePrimary") or "N/A"
-                    drive = res_row.get("DriveType") or "N/A"
-                    web_findings.append(
-                        f"**[LIVE U.S. DOT NHTSA vPIC VIN DECODE (`{clean_vin}`)]** Year/Make/Model: `{yr} {mk} {md}` | Engine: `{eng_l}L {cyl}-Cylinder ({fuel})` | Drivetrain: `{drive}`."
-                    )
-            except Exception as e_vpic:
-                web_findings.append(f"**[NHTSA vPIC Lookup Note]:** {e_vpic}")
+        network_mode = "🌐 OPT-IN LIVE INTERNET & OEM TECHNICAL LOOKUP ACTIVE (User Authorized)"
+        if active_domain == "AUTO_TRUCK":
+            clean_vin = str(vin_str).strip().upper()
+            if len(clean_vin) >= 11:
+                try:
+                    vpic_url = f"https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/{urllib.parse.quote(clean_vin)}?format=json"
+                    req = urllib.request.Request(vpic_url, headers={"User-Agent": "HVF-Sovereign-C2/5.0"})
+                    with urllib.request.urlopen(req, timeout=5) as resp:
+                        v_json = json.loads(resp.read().decode("utf-8", errors="replace"))
+                        res_row = (v_json.get("Results") or [{}])[0]
+                        yr = res_row.get("ModelYear") or "N/A"
+                        mk = res_row.get("Make") or "N/A"
+                        md = res_row.get("Model") or "N/A"
+                        eng_l = res_row.get("DisplacementL") or "N/A"
+                        cyl = res_row.get("EngineCylinders") or "N/A"
+                        fuel = res_row.get("FuelTypePrimary") or "N/A"
+                        drive = res_row.get("DriveType") or "N/A"
+                        web_findings.append(
+                            f"**[LIVE U.S. DOT NHTSA vPIC VIN DECODE (`{clean_vin}`)]** `{yr} {mk} {md}` | Engine: `{eng_l}L {cyl}-Cylinder ({fuel})` | Drive: `{drive}`."
+                        )
+                except Exception as e_vpic:
+                    web_findings.append(f"**[NHTSA vPIC Lookup Note]:** {e_vpic}")
 
-        parts_ymm = str(vehicle_make_model_year).strip().split()
-        if len(parts_ymm) >= 3 and parts_ymm[0].isdigit():
-            try:
-                r_yr, r_mk, r_md = parts_ymm[0], parts_ymm[1], parts_ymm[2]
-                rec_url = f"https://api.nhtsa.gov/recalls/recallsByVehicle?make={urllib.parse.quote(r_mk)}&model={urllib.parse.quote(r_md)}&modelYear={urllib.parse.quote(r_yr)}"
-                req_r = urllib.request.Request(rec_url, headers={"User-Agent": "HVF-Sovereign-C2/5.0"})
-                with urllib.request.urlopen(req_r, timeout=5) as resp_r:
-                    r_json = json.loads(resp_r.read().decode("utf-8", errors="replace"))
-                    rec_list = r_json.get("results") or []
-                    web_findings.append(
-                        f"**[LIVE NHTSA SAFETY RECALL DATABASE (`{r_yr} {r_mk} {r_md}`)]** Found `{len(rec_list)}` official NHTSA recall campaign(s)."
-                    )
-                    for rec_item in rec_list[:2]:
-                        comp = rec_item.get("Component", "Component")
-                        summ = str(rec_item.get("Summary", ""))[:220]
-                        rem = str(rec_item.get("Remedy", ""))[:180]
-                        web_findings.append(f"  - **Recall ({comp}):** {summ}... **Remedy:** {rem}...")
-            except Exception:
-                pass
+            parts_ymm = str(vehicle_make_model_year).strip().split()
+            if len(parts_ymm) >= 3 and parts_ymm[0].isdigit():
+                try:
+                    r_yr, r_mk, r_md = parts_ymm[0], parts_ymm[1], parts_ymm[2]
+                    rec_url = f"https://api.nhtsa.gov/recalls/recallsByVehicle?make={urllib.parse.quote(r_mk)}&model={urllib.parse.quote(r_md)}&modelYear={urllib.parse.quote(r_yr)}"
+                    req_r = urllib.request.Request(rec_url, headers={"User-Agent": "HVF-Sovereign-C2/5.0"})
+                    with urllib.request.urlopen(req_r, timeout=5) as resp_r:
+                        r_json = json.loads(resp_r.read().decode("utf-8", errors="replace"))
+                        rec_list = r_json.get("results") or []
+                        web_findings.append(
+                            f"**[LIVE NHTSA SAFETY RECALL DATABASE (`{r_yr} {r_mk} {r_md}`)]** `{len(rec_list)}` official recall campaign(s) on file."
+                        )
+                        for rec_item in rec_list[:2]:
+                            comp = rec_item.get("Component", "Component")
+                            summ = str(rec_item.get("Summary", ""))[:180]
+                            web_findings.append(f"  - **{comp}:** {summ}...")
+                except Exception:
+                    pass
 
-        # C) Multi-Term Technical Encyclopedia Search (MediaWiki API handles multi-word natural-language technical queries!)
         try:
             wiki_q = f"{vehicle_make_model_year} {q_clean}".strip()
             mw_url = f"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch={urllib.parse.quote(wiki_q)}&utf8=&format=json&srlimit=2"
@@ -1135,22 +1249,24 @@ def query_ebony_mechanic_assistant(
                     t_title = sh.get("title", "")
                     t_snip = re.sub(r"<[^>]+>", "", str(sh.get("snippet", "")))
                     if t_snip:
-                        web_findings.append(f"**[LIVE TECHNICAL WEB ENCYCLOPEDIA (`{t_title}`)]** {t_snip}...")
+                        web_findings.append(f"**[LIVE TECHNICAL WEB REFERENCE (`{t_title}`)]** {t_snip}...")
         except Exception:
             pass
 
-    if save_to_memory:
+    if len(q_clean) >= 5:
         record_question_to_self_learning_vault(
             user_question=q_clean,
-            vehicle_context=vehicle_make_model_year or "Universal Fleet & Small Engine",
+            vehicle_context=veh_label,
             matched_zones=matched_zones,
             web_findings=web_findings,
-            source_mode=network_mode
+            source_mode=network_mode,
+            commit_worm_ledger=save_to_memory
         )
 
     return {
         "question": q_clean,
-        "vehicle_context": vehicle_make_model_year or "All Cars, Trucks, Ag Tractors & Small Engines",
+        "equipment_domain": active_domain,
+        "vehicle_context": veh_label,
         "network_mode": network_mode,
         "allow_internet_lookup": allow_internet_lookup,
         "web_findings": web_findings,
@@ -1161,29 +1277,158 @@ def query_ebony_mechanic_assistant(
 
 def render_automotive_master_deck():
     import streamlit as st
-    st.subheader("🏎️ Sovereign Master Automotive Diagnostics, Maintenance & Portable NVIDIA Three-Brain CAN-Bus Enclave")
-    st.caption("Hot-Swappable Multi-Vehicle OBD-II (SAE J1979) / Heavy-Duty (SAE J1939) / UDS (ISO 14229) ECU Calibration & WORM Service Ledger")
+    st.subheader("🏎️ Sovereign Master Automotive, Heavy Tractor & Small-Engine C2 Enclave")
 
-    hw_state = scan_physical_canbus_adapters()
-    st.info(f"🔌 **Brain-1 Physical Transceiver Bus Status:** `{hw_state['status_banner']}` | **J2534 DLLs:** `{len(hw_state['j2534_devices'])}` | **USB/COM Ports:** `{len(hw_state['com_ports'])}` | **NVIDIA SocketCAN:** `{len(hw_state['socketcan_ifaces'])}`")
-    b_col1, b_col2, b_col3 = st.columns(3)
-    b_col1.info("**🧠 Brain 1: CAN-Bus Hardware Transceiver**\n\nOpto-isolated ISO 11898 / SAE J2534 Pass-Thru (Pins 6 & 14, 500 kbps / 2 Mbps CAN-FD, 60.0 Ohm termination check).")
-    b_col2.success("**⚡ Brain 2: NVIDIA GPU Diagnostic & ECU Solver**\n\nReal-time Fuel Trim (STFT+LTFT), Volumetric Efficiency (VE%), Misfire Mode $06, and UDS 0x2E/0x31 ECU calibration.")
-    b_col3.warning("**🔒 Brain 3: WORM EEPROM & Hot-Swap Interlock**\n\nCaptures pre-flash SHA-256 EEPROM backup by VIN and locks UDS Session 0x01 before safe physical unplugging.")
+    # Top-Level Equipment Domain Filter so Car/Truck users NEVER see Lawnmower/Small-Engine clutter (and vice versa!)
+    top_d1, top_d2 = st.columns([2.2, 1.8])
+    with top_d1:
+        active_equip_mode = st.radio(
+            "🎯 Select Active Equipment Domain (Filters Entire Workspace & AI Assistant):",
+            ["🚗 Cars, Pickup Trucks & Heavy Tractors (Automotive / CAN-Bus)", "🌿 Small Engines, Lawnmowers & 2-Stroke Turf Equipment"],
+            horizontal=True,
+            key="master_auto_domain_filter"
+        )
+    is_small_engine_mode = active_equip_mode.startswith("🌿")
+    domain_code = "SMALL_ENGINE" if is_small_engine_mode else "AUTO_TRUCK"
 
-    tab_can, tab_maint, tab_ask_ai, tab_perf, tab_auton, tab_acad_q, tab_ledger = st.tabs([
-        "🔌 1. NVIDIA CAN-Bus Workbench",
-        "📖 2. Bumper-to-Bumper & Small Engine Guide (16 Zones)",
-        "💬 3. Ask E.B.O.N.Y. Mechanic AI (Local + Opt-In Web)",
-        "🚀 4. Performance & Tuning",
+    with top_d2:
+        hw_state = scan_physical_canbus_adapters()
+        st.caption(f"🔌 **Brain-1 Hardware Bus:** `{hw_state['status_banner'][:48]}...` | **J2534:** `{len(hw_state['j2534_devices'])}` | **USB/COM:** `{len(hw_state['com_ports'])}`")
+
+    tab_ask_ai, tab_b2b, tab_can, tab_perf, tab_auton, tab_acad_q, tab_ledger = st.tabs([
+        "💬 1. Ask E.B.O.N.Y. Mechanic AI",
+        "📖 2. Step-by-Step Repair Manual",
+        "🔌 3. NVIDIA CAN-Bus Workbench",
+        "🚀 4. Performance & Calculators",
         "🤖 5. Autonomous Drive-by-Wire",
-        "🎓 6. Auto & Small Engine Academy (355 Qs)",
+        "🎓 6. Academy Exam (355 Qs)",
         "📜 7. WORM Service Ledger"
     ])
 
+    # TAB 1: CLEAN, DECLUTTERED, SINGLE-TOPIC "ASK E.B.O.N.Y. MECHANIC AI"
+    with tab_ask_ai:
+        if is_small_engine_mode:
+            st.markdown("### 🌿 Ask E.B.O.N.Y. Small-Engine & Lawnmower Master AI (Push Mowers, Zero-Turns, Chainsaws & Trimmers)")
+            default_q = "My push lawnmower won't start after sitting all winter. How do I clean the carburetor main jet?"
+            default_veh = "Honda GCV160 / Briggs & Stratton Push Mower"
+        else:
+            st.markdown("### 🚗 Ask E.B.O.N.Y. Automotive & Truck Master Mechanic AI (Bumper-to-Bumper Cars, Trucks & Tractors)")
+            default_q = "How do I remove the interior door panel on my Dodge Charger without breaking the plastic clips?"
+            default_veh = "Dodge Charger"
+
+        qa_c1, qa_c2 = st.columns([2.5, 1.5])
+        with qa_c1:
+            user_mech_q = st.text_input(
+                "🔧 Enter Your Specific Repair or Maintenance Question:",
+                value=default_q,
+                key=f"ebony_clean_q_{domain_code}"
+            )
+        with qa_c2:
+            veh_ymm_in = st.text_input(
+                "🏷️ Vehicle / Equipment Model:",
+                value=default_veh,
+                key=f"ebony_clean_veh_{domain_code}"
+            )
+
+        opt_c1, opt_c2 = st.columns([2.5, 1.5])
+        with opt_c1:
+            opt_in_web = st.checkbox(
+                "🌐 Request Live Internet / NHTSA Lookup for Updated Specs (Unchecked = 100% Offline Local Brain)",
+                value=False,
+                key=f"ebony_clean_web_{domain_code}"
+            )
+        vin_opt_in = ""
+        with opt_c2:
+            if not is_small_engine_mode and opt_in_web:
+                vin_opt_in = st.text_input("🔢 Optional 17-Char VIN:", value="", key="ebony_clean_vin")
+
+        ans_bundle = query_ebony_mechanic_assistant(
+            user_question=user_mech_q,
+            allow_internet_lookup=opt_in_web,
+            vehicle_make_model_year=veh_ymm_in,
+            vin_str=vin_opt_in,
+            equipment_domain=domain_code
+        )
+
+        # Render ONLY the single (#1) matched surgical guide in 4 clean sub-tabs so the page is NEVER cluttered!
+        primary_z = ans_bundle["matched_zones"][0]
+        st.success(f"🎯 **Focused Repair Guide Locked:** `{primary_z['zone_title']}`  |  *{ans_bundle['network_mode']}*")
+
+        if opt_in_web and ans_bundle["web_findings"]:
+            with st.expander("🌐 View Live Internet / U.S. DOT NHTSA Technical Lookup Results", expanded=True):
+                for wf in ans_bundle["web_findings"]:
+                    st.write(wf)
+
+        sub_step, sub_where, sub_tools, sub_safe = st.tabs([
+            "🛠️ 1. Step-by-Step Instructions",
+            "📍 2. Where Is It & What Does It Look Like?",
+            "🧰 3. Exact Tools & Socket Sizes",
+            "⚠️ 4. Mandatory Safety Rules"
+        ])
+        with sub_step:
+            for stp in primary_z["step_by_step"]:
+                st.info(stp)
+        with sub_where:
+            st.markdown(primary_z["where_and_what"])
+        with sub_tools:
+            for tr in primary_z["tools_required"]:
+                st.markdown(f"- **{tr}**")
+        with sub_safe:
+            for sp in primary_z["safety_precautions"]:
+                st.warning(sp)
+
+        with st.expander("🧠 View E.B.O.N.Y. Self-Learning Memory Vault (Questions Remembered)", expanded=False):
+            if st.button("🔒 Seal Current Question to WORM Ledger", key=f"btn_worm_q_{domain_code}"):
+                record_question_to_self_learning_vault(
+                    user_question=user_mech_q,
+                    vehicle_context=veh_ymm_in,
+                    matched_zones=ans_bundle["matched_zones"],
+                    web_findings=ans_bundle["web_findings"],
+                    source_mode=ans_bundle["network_mode"],
+                    commit_worm_ledger=True
+                )
+                st.success("Question permanently sealed in WORM ledger.")
+            for lr in get_learned_mechanics_memory(limit=15):
+                st.caption(f"🧠 **Q:** `{lr[0]}` | **Asset:** `{lr[1]}` | **Recalled:** `{lr[5]}x` | **Seal:** `{lr[6]}...`")
+
+    # TAB 2: DOMAIN-FILTERED BUMPER-TO-BUMPER OR SMALL-ENGINE MANUAL
+    with tab_b2b:
+        if is_small_engine_mode:
+            allowed_keys = [k for k in BUMPER_TO_BUMPER_BEGINNER_GUIDE if k.startswith(("ZONE_13", "ZONE_14", "ZONE_15", "ZONE_16"))]
+            st.markdown("### 🌿 Complete Small-Engine, Lawnmower & 2-Stroke Beginner Repair Manual (Zones 13–16)")
+        else:
+            allowed_keys = [k for k in BUMPER_TO_BUMPER_BEGINNER_GUIDE if not k.startswith(("ZONE_13", "ZONE_14", "ZONE_15", "ZONE_16"))]
+            st.markdown("### 🚗 Complete Bumper-to-Bumper Automotive, Truck & Tractor Beginner Manual (Zones 01–12)")
+
+        zone_sel = st.selectbox(
+            "🔍 Select Specific System Zone to Inspect:",
+            allowed_keys,
+            format_func=lambda k: BUMPER_TO_BUMPER_BEGINNER_GUIDE[k]["zone_title"],
+            key=f"b2b_clean_sel_{domain_code}"
+        )
+        z_data = BUMPER_TO_BUMPER_BEGINNER_GUIDE[zone_sel]
+        zt1, zt2, zt3, zt4 = st.tabs([
+            "📍 1. Where It Is & Visual ID",
+            "⚠️ 2. Safety Precautions",
+            "🧰 3. Tools & Socket Sizes",
+            "🛠️ 4. Step-by-Step Guide"
+        ])
+        with zt1:
+            st.markdown(z_data["where_and_what"])
+        with zt2:
+            for s_rule in z_data["safety_precautions"]:
+                st.warning(s_rule)
+        with zt3:
+            for t_item in z_data["tools_required"]:
+                st.markdown(f"- **{t_item}**")
+        with zt4:
+            for st_item in z_data["step_by_step"]:
+                st.success(st_item)
+
+    # TAB 3: NVIDIA CAN-BUS WORKBENCH
     with tab_can:
         preset_key = st.selectbox(
-            "🔄 Hot-Swap Connected Vehicle Enclave Preset (Auto-Populates VIN, CAN Bus Protocol & Live Sensor Stream):",
+            "🔄 Hot-Swap Connected Vehicle Enclave Preset:",
             list(FLEET_VEHICLE_PRESETS.keys()),
             format_func=lambda k: FLEET_VEHICLE_PRESETS[k]["label"],
             key="auto_preset_selector"
@@ -1194,11 +1439,11 @@ def render_automotive_master_deck():
 
         c1, c2, c3 = st.columns(3)
         with c1:
-            vin_in = st.text_input("Vehicle 17-Char VIN (Auto-Detected via Mode $09):", value=p_data["vin"], key=f"auto_vin_{preset_key}")
-            veh_in = st.text_input("Vehicle / Fleet Asset Description:", value=p_data["desc"], key=f"auto_desc_{preset_key}")
-            proto_in = st.selectbox("Active CAN-Bus Physical Protocol:", proto_keys, index=proto_keys.index(p_data["proto"]), format_func=lambda k: CANBUS_PROTOCOLS[k]["name"], key=f"auto_proto_{preset_key}")
+            vin_in = st.text_input("Vehicle 17-Char VIN (Mode $09):", value=p_data["vin"], key=f"auto_vin_{preset_key}")
+            veh_in = st.text_input("Fleet Asset Description:", value=p_data["desc"], key=f"auto_desc_{preset_key}")
+            proto_in = st.selectbox("Active CAN-Bus Protocol:", proto_keys, index=proto_keys.index(p_data["proto"]), format_func=lambda k: CANBUS_PROTOCOLS[k]["name"], key=f"auto_proto_{preset_key}")
         with c2:
-            dtc_in = st.selectbox("Detected Diagnostic Trouble Code (DTC):", dtc_keys, index=dtc_keys.index(p_data["dtc"]), format_func=lambda k: MASTER_DTC_AND_REPAIR_LIBRARY[k]["title"], key=f"auto_dtc_{preset_key}")
+            dtc_in = st.selectbox("Diagnostic Trouble Code (DTC):", dtc_keys, index=dtc_keys.index(p_data["dtc"]), format_func=lambda k: MASTER_DTC_AND_REPAIR_LIBRARY[k]["title"], key=f"auto_dtc_{preset_key}")
             stft_in = st.number_input("Short-Term Fuel Trim STFT (%):", value=float(p_data["stft"]), step=0.5, key=f"auto_stft_{preset_key}")
             ltft_in = st.number_input("Long-Term Fuel Trim LTFT (%):", value=float(p_data["ltft"]), step=0.5, key=f"auto_ltft_{preset_key}")
         with c3:
@@ -1207,12 +1452,12 @@ def render_automotive_master_deck():
             maf_in = st.number_input("Mass Air Flow Sensor (g/sec):", value=float(p_data["maf"]), step=2.0, key=f"auto_maf_{preset_key}")
             disp_in = st.number_input("Engine Displacement (Liters):", value=float(p_data["disp"]), step=0.1, key=f"auto_disp_{preset_key}")
 
-        perf_sel = st.selectbox("Select Target ECU Calibration / Performance Stage:", list(PERFORMANCE_IMPROVEMENT_STAGES.keys()), format_func=lambda k: PERFORMANCE_IMPROVEMENT_STAGES[k]["title"], key="auto_perf_sel")
+        perf_sel = st.selectbox("Target ECU Calibration Stage:", list(PERFORMANCE_IMPROVEMENT_STAGES.keys()), format_func=lambda k: PERFORMANCE_IMPROVEMENT_STAGES[k]["title"], key="auto_perf_sel")
 
         res = evaluate_vehicle_canbus_and_ecu(
             vin=vin_in, vehicle_desc=veh_in, can_protocol=proto_in, dtc_code=dtc_in,
             rpm=rpm_in, torque_lb_ft=tq_in, maf_g_s=maf_in, disp_liters=disp_in,
-            stft_pct=stft_in, ltft_pct=ltft_in, perf_stage=perf_sel
+            stft_pct=stft_in, ltft_pct=ltft_in, perf_stage=perf_sel, commit_to_worm=False
         )
 
         m1, m2, m3, m4 = st.columns(4)
@@ -1221,322 +1466,137 @@ def render_automotive_master_deck():
         m3.metric("Total Fuel Trim (STFT+LTFT)", f"{res['total_fuel_trim_pct']:+.1f}%", "Fault if |Trim| >= 10%" if abs(res["total_fuel_trim_pct"]) >= 10.0 else "Nominal Stoichiometric")
         m4.metric("CAN-Bus Termination", f"{res['termination_ohms']:.1f} Ohms", "ISO 11898 Nominal (60 Ohms)")
 
-        st.markdown(f"#### 🔍 Root-Cause Engineering Diagnosis for `{res['dtc_title']}`")
-        for rc in res["root_causes"]:
-            st.markdown(f"**{rc}**")
-        st.markdown("#### 🛠️ Step-by-Step Master Technician Repair & NVIDIA CAN-Bus SOP")
         for step_txt in res["repair_sop"]:
             st.info(step_txt)
-        st.success(f"⚡ **NVIDIA Brain-2 ECU Computer Calibration Applied:** {res['ecu_adjustment']}")
-        st.success(f"🔌 **Brain-3 Hot-Swap Safe-Disconnect Interlock:** `{res['hot_swap_status']}`\n\n- **Baseline EEPROM Backup SHA-256:** `{res['baseline_eeprom_sha256']}`\n- **Post-Calibration WORM Seal SHA-256:** `{res['post_cal_record_sha256']}`")
-        dossier_md = (
-            "================================================================================\n"
-            "   HUMPHREY VIRTUAL FARMS LLC // NVIDIA THREE-BRAIN CAN-BUS VEHICLE DOSSIER     \n"
-            "   CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | SAE J1979 / J1939 / ISO 14229 UDS SEALED   \n"
-            "================================================================================\n"
-            f"Vehicle VIN          : {res['vin']}\n"
-            f"Asset Description    : {res['vehicle_desc']}\n"
-            f"CAN-Bus Protocol     : {res['can_protocol']}\n"
-            f"Physical Pinout      : {res['can_pins']}\n"
-            f"Diagnostic Fault Code: {res['dtc_title']}\n"
-            f"Measured Output (SAE): {res['calculated_hp']} HP | Volumetric Efficiency: {res['volumetric_efficiency_pct']}% | Fuel Trim: {res['total_fuel_trim_pct']}%\n"
-            f"ECU Calibration Fix  : {res['ecu_adjustment']}\n"
-            f"Hot-Swap Interlock   : {res['hot_swap_status']}\n"
-            f"Baseline EEPROM Hash : {res['baseline_eeprom_sha256']}\n"
-            f"Post-Cal WORM Seal   : {res['post_cal_record_sha256']}\n"
-            "================================================================================\n"
-        )
-        if st.button(f"🔒 Seal {res['vin']} ({res['dtc_code']}) Diagnostic & ECU Calibration to WORM Ledger", use_container_width=True, key=f"btn_seal_auto_{res['vin']}_{res['dtc_code']}"):
-            evaluate_vehicle_canbus_and_ecu(vin=vin_in, vehicle_desc=veh_in, can_protocol=proto_in, dtc_code=dtc_in, rpm=rpm_in, torque_lb_ft=tq_in, maf_g_s=maf_in, disp_liters=disp_in, stft_pct=stft_in, ltft_pct=ltft_in, perf_stage=perf_sel, commit_to_worm=True)
-            st.success(f"WORM Record Sealed in matrix_ledger.db: {res['post_cal_record_sha256']}")
-        st.download_button(
-            label=f"📥 Download Signed NVIDIA Three-Brain CAN-Bus Diagnostic & ECU Calibration Dossier ({res['vin']})",
-            data=dossier_md,
-            file_name=f"HVF_CANBus_ECU_Dossier_{res['vin']}_{res['dtc_code']}.md",
-            mime="text/markdown",
-            use_container_width=True,
-            key=f"dl_auto_dossier_{res['vin']}_{res['dtc_code']}"
-        )
+        st.success(f"⚡ **NVIDIA Brain-2 ECU Calibration:** {res['ecu_adjustment']}  |  🔌 `{res['hot_swap_status']}`")
 
-    with tab_maint:
-        st.markdown("### 📖 Complete Bumper-to-Bumper Beginner-to-Master Repair & Anatomy Encyclopedia (12 Vehicle Zones)")
-        st.info("💡 **Zero-Experience Beginner Guarantee:** Select any of the 12 Vehicle Zones below to see exact visual landmarks (where the part/dipstick/cap is and what it looks like), mandatory life-safety rules, exact socket/tool sizes, and turn-by-turn instructions.")
-        zone_sel = st.selectbox(
-            "🔍 Select Vehicle Zone (From Shop Safety & Dipsticks to Brakes, Suspension, Electrical & CAN-Bus):",
-            list(BUMPER_TO_BUMPER_BEGINNER_GUIDE.keys()),
-            format_func=lambda k: BUMPER_TO_BUMPER_BEGINNER_GUIDE[k]["zone_title"],
-            key="b2b_zone_selector"
-        )
-        z_data = BUMPER_TO_BUMPER_BEGINNER_GUIDE[zone_sel]
-        st.markdown(f"#### 📍 1. Where Is It & What Does It Look Like? ({z_data['zone_title']})")
-        st.markdown(z_data["where_and_what"])
-
-        st.markdown("#### ⚠️ 2. Mandatory Life-Safety & Vehicle Protection Precautions")
-        for s_rule in z_data["safety_precautions"]:
-            st.warning(s_rule)
-
-        st.markdown("#### 🧰 3. Exact Tools, Socket Sizes & Supplies Required Before You Start")
-        for t_item in z_data["tools_required"]:
-            st.markdown(f"- **{t_item}**")
-
-        st.markdown("#### 🛠️ 4. Step-by-Step, Hand-by-Hand Beginner Instructions (With Exact Torque Specs)")
-        for st_item in z_data["step_by_step"]:
-            st.success(st_item)
-
-        st.markdown("---")
-        st.markdown("### ⛽ Interactive Small Engine 2-Stroke Fuel-Oil Mix, Blade Tip-Speed & Displacement Calculator")
-        se_c1, se_c2, se_c3, se_c4 = st.columns(4)
-        with se_c1:
-            gas_gal = st.number_input("Gasoline Container Volume (U.S. Gallons):", value=1.0, step=0.5, min_value=0.25, key="se_gas_gal")
-            mix_ratio = st.selectbox("2-Stroke Fuel-to-Oil Ratio:", [50, 40, 32, 25], format_func=lambda r: f"{r}:1 Ratio ({'Chainsaws / Modern Trimmers' if r==50 else ('Older 2-Stroke Equipment' if r==40 else 'Break-In / Heavy Duty')})", key="se_ratio")
-        with se_c2:
-            blade_in = st.number_input("Mower Single Blade Length (inches):", value=21.0, step=0.5, min_value=10.0, key="se_blade_in")
-            gov_rpm = st.number_input("Governed Engine Speed (RPM — Std: 3,200-3,600):", value=3200.0, step=100.0, key="se_rpm")
-        with se_c3:
-            bore_mm = st.number_input("Small Engine Cylinder Bore (mm):", value=78.0, step=1.0, key="se_bore")
-            stroke_mm = st.number_input("Small Engine Piston Stroke (mm):", value=61.0, step=1.0, key="se_stroke")
-        with se_c4:
-            se_cyls = st.number_input("Small Engine Cylinders (1 = Push, 2 = V-Twin):", value=2, step=1, min_value=1, max_value=4, key="se_cyls")
-            plug_gap_in = st.number_input("Target Spark Plug Gap (in — Std: 0.030):", value=0.030, step=0.002, format="%.3f", key="se_gap")
-
-        import math as _se_math
-        oil_fl_oz = (gas_gal * 128.0) / float(mix_ratio)
-        oil_ml = oil_fl_oz * 29.5735
-        tip_speed_fpm = (_se_math.pi * blade_in * gov_rpm) / 12.0
-        disp_cc = ((_se_math.pi / 4.0) * (bore_mm ** 2) * stroke_mm * float(se_cyls)) / 1000.0
-        est_small_hp = disp_cc / 27.5
-
-        sm1, sm2, sm3, sm4 = st.columns(4)
-        sm1.metric(f"Exact 2-Stroke Oil for {gas_gal:.2f} Gal ({mix_ratio}:1)", f"{oil_fl_oz:.2f} fl oz", f"{oil_ml:.0f} mL (JASO FD Air-Cooled Oil)")
-        sm2.metric("Mower Blade Tip Speed (ANSI B71.1)", f"{tip_speed_fpm:,.0f} ft/min", "SAFE (<= 19,000 fpm)" if tip_speed_fpm <= 19000.0 else "OVER-SPEED (> 19,000 fpm!)")
-        sm3.metric("Calculated Engine Displacement", f"{disp_cc:.0f} cc", f"~{est_small_hp:.1f} Gross HP ({se_cyls}-Cyl)")
-        sm4.metric("Ignition Coil Air-Gap & Plug Spec", "0.012 in Coil Gap", f"Plug Gap: {plug_gap_in:.3f} in (15 lb-ft)")
-        st.markdown("---")
-        st.markdown("### 🔧 Complete 0 to 100,000+ Mile Master Preventative Maintenance Schedule (With Beginner Where/Tools/Safety)")
-        for m_item in PREVENTATIVE_MAINTENANCE_MATRIX:
-            with st.expander(f"📌 Every {m_item['interval_miles']:,} Miles — {m_item['tier']}", expanded=True):
-                st.markdown(f"- **Scheduled Engineering Tasks:** {m_item['tasks']}")
-                st.markdown(f"- **📍 Beginner Landmark (Where to Look):** {m_item.get('beginner_where', '')}")
-                st.markdown(f"- **🧰 Exact Tools & Torque Specs:** `{m_item.get('beginner_tools', '')}`")
-                st.markdown(f"- **⚠️ Critical Safety Rule:** {m_item.get('beginner_safety', '')}")
-
-    with tab_ask_ai:
-        st.markdown("### 💬 Ask E.B.O.N.Y. Master Mechanic & Small-Engine AI Desk (Custom Questions + Opt-In Internet Lookup)")
-        st.caption("Ask any question—even if it is not directly in the module! By default, E.B.O.N.Y. answers 100% offline from the Sovereign Encyclopedia. Check the box below ONLY when you want E.B.O.N.Y. to reach out to the live internet (NHTSA vPIC / Recalls / Technical Web) for updated material.")
-
-        qa_c1, qa_c2, qa_c3 = st.columns([2, 1.5, 1.5])
-        with qa_c1:
-            user_mech_q = st.text_input(
-                "🔧 Type Any Automotive, Truck, Tractor, or Small-Engine/Lawnmower Question:",
-                value="How do I find the oil dipstick, what tools do I need for an oil change, and how do I clean a clogged lawnmower carburetor?",
-                key="ebony_mech_custom_q"
-            )
-        with qa_c2:
-            veh_ymm_in = st.text_input(
-                "🚗 Optional Year / Make / Model (e.g., 2022 Ford F-150 or Honda GCV160):",
-                value="2022 Ford F-150",
-                key="ebony_mech_ymm"
-            )
-        with qa_c3:
-            vin_opt_in = st.text_input(
-                "🔢 Optional 17-Char VIN (For Live NHTSA Decode):",
-                value="1FTFW1E50NFA00001",
-                key="ebony_mech_vin"
-            )
-
-        opt_in_web = st.checkbox(
-            "🌐 Authorize E.B.O.N.Y. to Reach Out to the Live Internet (U.S. DOT NHTSA VIN/Recall API & Live Technical Web) for Updated Material on This Question",
-            value=False,
-            key="ebony_mech_opt_in_web"
-        )
-
-        ans_bundle = query_ebony_mechanic_assistant(
-            user_question=user_mech_q,
-            allow_internet_lookup=opt_in_web,
-            vehicle_make_model_year=veh_ymm_in,
-            vin_str=vin_opt_in
-        )
-
-        if opt_in_web:
-            st.warning(f"**Network Gate Status:** `{ans_bundle['network_mode']}`")
-            for wf in ans_bundle["web_findings"]:
-                st.info(wf)
-        else:
-            st.success(f"**Network Gate Status:** `{ans_bundle['network_mode']}` *(Check the box above if you want E.B.O.N.Y. to fetch live internet / NHTSA updates)*")
-
-        if ans_bundle.get("recalled_from_memory"):
-            rem = ans_bundle["recalled_from_memory"]
-            st.info(f"🧠 **E.B.O.N.Y. Self-Learning Memory Recall Active!** E.B.O.N.Y. already learned this question (`Recalled {rem[5]} time(s)` | WORM Seal: `{rem[6]}...` | Learned: `{rem[7]}`).")
-
-        if st.button("🧠 Teach & Lock This Question + Answer into E.B.O.N.Y.'s Permanent Self-Learning Memory Vault", use_container_width=True, key="btn_save_ebony_learned_q"):
-            mem_res = record_question_to_self_learning_vault(
-                user_question=user_mech_q,
-                vehicle_context=veh_ymm_in,
-                matched_zones=ans_bundle["matched_zones"],
-                web_findings=ans_bundle["web_findings"],
-                source_mode=ans_bundle["network_mode"]
-            )
-            st.success(f"🧠 Permanently Assimilated into E.B.O.N.Y. Self-Learning Memory Vault! Question Hash: `{mem_res['question_hash'][:16]}...` | WORM Seal: `{mem_res['sha256_seal'][:16]}...`")
-
-        for mz in ans_bundle["matched_zones"]:
-            st.markdown(f"#### 🛠️ E.B.O.N.Y. Beginner-to-Master Guide: `{mz['zone_title']}`")
-            st.markdown("**📍 1. Where Is It & What Does It Look Like?**")
-            st.markdown(mz["where_and_what"])
-            st.markdown("**⚠️ 2. Mandatory Life-Safety Precautions:**")
-            for sp in mz["safety_precautions"]:
-                st.warning(sp)
-            st.markdown("**🧰 3. Exact Tools & Socket Sizes Needed:**")
-            for tr in mz["tools_required"]:
-                st.markdown(f"- **{tr}**")
-            st.markdown("**✅ 4. Step-by-Step Instructions:**")
-            for stp in mz["step_by_step"]:
-                st.success(stp)
-            st.markdown("---")
-
-        learned_rows = get_learned_mechanics_memory(limit=25)
-        st.markdown(f"### 🧠 E.B.O.N.Y. Continuous Self-Learning Knowledge Vault (`{len(learned_rows)}` Learned Questions Sealed)")
-        for lr in learned_rows:
-            with st.expander(f"🧠 Learned Q: '{lr[0]}' | Vehicle: {lr[1]} | Recalled: {lr[5]}x | Seal: {lr[6]}...", expanded=False):
-                st.markdown(f"- **Matched Beginner-to-Master Zones:** `{lr[2]}`")
-                st.markdown(f"- **Source / Network Mode:** `{lr[4]}`")
-                st.markdown(f"- **Web / NHTSA Learned Notes:**\n{lr[3]}")
-
+    # TAB 4: DOMAIN-FILTERED PERFORMANCE OR SMALL-ENGINE CALCULATORS
     with tab_perf:
-        st.markdown("### 🧮 Interactive Performance Injector, Boost, Torque-to-Yield & Drivetrain Calculator")
-        p_c1, p_c2, p_c3, p_c4 = st.columns(4)
-        with p_c1:
-            target_hp = st.number_input("Target Crank Horsepower (HP):", value=550.0, step=25.0, key="perf_hp")
-            cyl_cnt = st.number_input("Number of Cylinders:", value=8, step=1, min_value=1, key="perf_cyl")
-        with p_c2:
-            bsfc_val = st.number_input("BSFC (0.45 NA / 0.55 Boosted):", value=0.52, step=0.01, key="perf_bsfc")
-            bolt_dia = st.number_input("Fastener Bolt Diameter D (in):", value=0.50, step=0.05, key="perf_bolt_d")
-        with p_c3:
-            clamp_lbs = st.number_input("Target Clamping Preload F (lbs):", value=12000.0, step=500.0, key="perf_clamp")
-            k_fric = st.number_input("Thread Friction Factor K (0.15 lubed / 0.20 dry):", value=0.18, step=0.01, key="perf_k")
-        with p_c4:
-            gear_ratio = st.number_input("Differential Final Drive Ratio:", value=3.73, step=0.05, key="perf_gear")
-            tire_in = st.number_input("Tire Outer Diameter (inches):", value=33.0, step=0.5, key="perf_tire")
+        if is_small_engine_mode:
+            st.markdown("### ⛽ Small Engine 2-Stroke Fuel-Oil Mix, Blade Tip-Speed & Displacement Calculator")
+            se_c1, se_c2, se_c3, se_c4 = st.columns(4)
+            with se_c1:
+                gas_gal = st.number_input("Gasoline Volume (U.S. Gallons):", value=1.0, step=0.5, min_value=0.25, key="se_gas_gal")
+                mix_ratio = st.selectbox("2-Stroke Mix Ratio:", [50, 40, 32, 25], format_func=lambda r: f"{r}:1 Ratio", key="se_ratio")
+            with se_c2:
+                blade_in = st.number_input("Mower Blade Length (inches):", value=21.0, step=0.5, min_value=10.0, key="se_blade_in")
+                gov_rpm = st.number_input("Governed Engine Speed (RPM):", value=3200.0, step=100.0, key="se_rpm")
+            with se_c3:
+                bore_mm = st.number_input("Cylinder Bore (mm):", value=78.0, step=1.0, key="se_bore")
+                stroke_mm = st.number_input("Piston Stroke (mm):", value=61.0, step=1.0, key="se_stroke")
+            with se_c4:
+                se_cyls = st.number_input("Cylinders (1 or 2):", value=2, step=1, min_value=1, max_value=4, key="se_cyls")
+                plug_gap_in = st.number_input("Spark Plug Gap (in):", value=0.030, step=0.002, format="%.3f", key="se_gap")
 
-        req_inj_lb_hr = (target_hp * bsfc_val) / (float(cyl_cnt) * 0.80)
-        req_inj_cc_min = req_inj_lb_hr * 10.5
-        req_torque_lb_ft = (k_fric * bolt_dia * clamp_lbs) / 12.0
-        rpm_at_70mph = (70.0 * gear_ratio * 336.0) / max(tire_in, 1.0)
-        tire_revs_mile = 20168.0 / max(tire_in, 1.0)
+            import math as _se_math
+            oil_fl_oz = (gas_gal * 128.0) / float(mix_ratio)
+            oil_ml = oil_fl_oz * 29.5735
+            tip_speed_fpm = (_se_math.pi * blade_in * gov_rpm) / 12.0
+            disp_cc = ((_se_math.pi / 4.0) * (bore_mm ** 2) * stroke_mm * float(se_cyls)) / 1000.0
 
-        pm1, pm2, pm3, pm4 = st.columns(4)
-        pm1.metric("Required Injector Size (80% Duty)", f"{req_inj_lb_hr:.1f} lb/hr", f"{req_inj_cc_min:.0f} cc/min per cyl")
-        pm2.metric("Fastener Preload Torque (T = K*D*F/12)", f"{req_torque_lb_ft:.1f} lb-ft", f"{clamp_lbs:,.0f} lbs Clamp Load")
-        pm3.metric("Engine Speed @ 70 MPH Cruise", f"{rpm_at_70mph:.0f} RPM", f"{gear_ratio:.2f}:1 on {tire_in:.1f}-in Tires")
-        pm4.metric("BCM Tire Calibration Factor", f"{tire_revs_mile:.1f} Revs/Mile", "Write via UDS 0x2E to BCM/ABS")
-        st.markdown("---")
-        st.markdown("### 🚀 Master Performance Improvements, Forced Induction & Chassis Engineering")
-        for s_key, s_val in PERFORMANCE_IMPROVEMENT_STAGES.items():
-            st.markdown(f"#### 🏆 {s_val['title']}")
-            st.markdown(f"- **Hardware Package:** {s_val['hardware']}")
-            st.markdown(f"- **NVIDIA CAN-Bus ECU Calibration:** {s_val['ecu_calibration']}")
-            st.markdown(f"- **Verified Engineering Gains:** `{s_val['expected_gains']}`")
-            st.markdown("---")
+            sm1, sm2, sm3, sm4 = st.columns(4)
+            sm1.metric(f"2-Stroke Oil ({mix_ratio}:1)", f"{oil_fl_oz:.2f} fl oz", f"{oil_ml:.0f} mL per {gas_gal:.1f} Gal")
+            sm2.metric("Blade Tip Speed", f"{tip_speed_fpm:,.0f} ft/min", "ANSI B71.1 <= 19,000 fpm")
+            sm3.metric("Engine Displacement", f"{disp_cc:.0f} cc", f"~{disp_cc/27.5:.1f} Gross HP")
+            sm4.metric("Coil & Plug Gaps", "0.012 in Coil", f"Plug: {plug_gap_in:.3f} in")
+        else:
+            st.markdown("### 🧮 Automotive Performance Injector, Fastener Torque-to-Yield & Drivetrain Calculator")
+            p_c1, p_c2, p_c3, p_c4 = st.columns(4)
+            with p_c1:
+                target_hp = st.number_input("Target Crank Horsepower (HP):", value=550.0, step=25.0, key="perf_hp")
+                cyl_cnt = st.number_input("Number of Cylinders:", value=8, step=1, min_value=1, key="perf_cyl")
+            with p_c2:
+                bsfc_val = st.number_input("BSFC (0.45 NA / 0.55 Boosted):", value=0.52, step=0.01, key="perf_bsfc")
+                bolt_dia = st.number_input("Bolt Diameter D (in):", value=0.50, step=0.05, key="perf_bolt_d")
+            with p_c3:
+                clamp_lbs = st.number_input("Clamping Preload F (lbs):", value=12000.0, step=500.0, key="perf_clamp")
+                k_fric = st.number_input("Friction Factor K (0.18 lubed):", value=0.18, step=0.01, key="perf_k")
+            with p_c4:
+                gear_ratio = st.number_input("Differential Axle Ratio:", value=3.73, step=0.05, key="perf_gear")
+                tire_in = st.number_input("Tire Diameter (inches):", value=33.0, step=0.5, key="perf_tire")
 
+            req_inj_lb_hr = (target_hp * bsfc_val) / (float(cyl_cnt) * 0.80)
+            req_torque_lb_ft = (k_fric * bolt_dia * clamp_lbs) / 12.0
+            rpm_at_70mph = (70.0 * gear_ratio * 336.0) / max(tire_in, 1.0)
+            tire_revs_mile = 20168.0 / max(tire_in, 1.0)
+
+            pm1, pm2, pm3, pm4 = st.columns(4)
+            pm1.metric("Injector Size (80% Duty)", f"{req_inj_lb_hr:.1f} lb/hr", f"{req_inj_lb_hr*10.5:.0f} cc/min")
+            pm2.metric("Fastener Preload Torque", f"{req_torque_lb_ft:.1f} lb-ft", f"{clamp_lbs:,.0f} lbs Clamp")
+            pm3.metric("RPM @ 70 MPH Cruise", f"{rpm_at_70mph:.0f} RPM", f"{gear_ratio:.2f}:1 on {tire_in:.1f}-in Tires")
+            pm4.metric("BCM Tire Factor", f"{tire_revs_mile:.1f} Revs/Mi", "Write via UDS 0x2E")
+
+    # TAB 5: AUTONOMOUS DRIVE-BY-WIRE
     with tab_auton:
         st.markdown("### 🤖 NVIDIA Three-Brain Autonomous Drive-by-Wire (SAE J1939 / ISO 11783 ISOBUS / EPAS) Control Workbench")
-        st.caption("Brain 2 (NVIDIA GPU Stanley/PID Path Planner) -> Brain 3 (Kinematic Guillotine & Human Override Safety Interlock) -> Brain 1 (CAN-Bus Actuator Frame)")
         a_c1, a_c2, a_c3, a_c4 = st.columns(4)
         with a_c1:
-            ct_err_in = st.number_input("RTK Cross-Track Error e_ct (inches):", value=2.4, step=0.5, key="auton_ect")
-            head_err_deg = st.number_input("Heading Error psi_e (degrees):", value=1.8, step=0.2, key="auton_psi")
+            ct_err_in = st.number_input("RTK Cross-Track Error (inches):", value=2.4, step=0.5, key="auton_ect")
+            head_err_deg = st.number_input("Heading Error (degrees):", value=1.8, step=0.2, key="auton_psi")
         with a_c2:
-            veh_speed_mph = st.number_input("Vehicle Ground Speed (MPH):", value=12.0, step=1.0, min_value=0.5, key="auton_spd")
-            stanley_k = st.number_input("Stanley Gain Factor k:", value=1.2, step=0.1, key="auton_k")
+            veh_speed_mph = st.number_input("Ground Speed (MPH):", value=12.0, step=1.0, min_value=0.5, key="auton_spd")
+            stanley_k = st.number_input("Stanley Gain k:", value=1.2, step=0.1, key="auton_k")
         with a_c3:
-            ttc_sec = st.number_input("LiDAR/Radar Time-to-Collision TTC (sec):", value=6.5, step=0.5, key="auton_ttc")
-            drv_tq_lbft = st.number_input("Human Steering Wheel Override Torque (lb-ft):", value=0.2, step=0.2, key="auton_drv_tq")
+            ttc_sec = st.number_input("Time-to-Collision TTC (sec):", value=6.5, step=0.5, key="auton_ttc")
+            drv_tq_lbft = st.number_input("Human Override Torque (lb-ft):", value=0.2, step=0.2, key="auton_drv_tq")
         with a_c4:
-            bus_r_ohms = st.number_input("Measured CAN-Bus Loop Resistance (Ohms):", value=60.0, step=0.5, key="auton_r")
-            target_mode = st.selectbox("Autonomous Bus Profile:", ["ISO 11783 ISOBUS Tractor (PGN 61482 + TSC1)", "SAE J1939 Highway Truck (EPAS + EBC1)", "OBD-II / CAN-FD Passenger ADAS"], key="auton_mode")
+            bus_r_ohms = st.number_input("CAN-Bus Resistance (Ohms):", value=60.0, step=0.5, key="auton_r")
+            target_mode = st.selectbox("Autonomous Bus Profile:", ["ISO 11783 ISOBUS Tractor (PGN 61482)", "SAE J1939 Highway Truck (EPAS)", "OBD-II / CAN-FD ADAS"], key="auton_mode")
 
         import math
         v_fps = (veh_speed_mph * 5280.0) / 3600.0
-        ect_ft = ct_err_in / 12.0
-        cmd_steer_deg = head_err_deg + math.degrees(math.atan((stanley_k * ect_ft) / (v_fps + 1.0)))
-        cmd_steer_deg = max(min(cmd_steer_deg, 35.0), -35.0)
-
-        safe_override = drv_tq_lbft < 2.5
-        safe_ttc = ttc_sec >= 2.5
-        safe_bus = 58.0 <= bus_r_ohms <= 62.0
-        interlock_pass = safe_override and safe_ttc and safe_bus
+        cmd_steer_deg = max(min(head_err_deg + math.degrees(math.atan((stanley_k * (ct_err_in / 12.0)) / (v_fps + 1.0))), 35.0), -35.0)
+        interlock_pass = (drv_tq_lbft < 2.5) and (ttc_sec >= 2.5) and (58.0 <= bus_r_ohms <= 62.0)
 
         am1, am2, am3, am4 = st.columns(4)
-        am1.metric("Commanded Steering Angle (Stanley)", f"{cmd_steer_deg:+.2f} deg", f"Cross-Track: {ct_err_in:.1f} in")
-        am2.metric("Human Override Disengage Gate", "STANDBY (Auto Active)" if safe_override else "HUMAN OVERRIDE (<5ms)", f"{drv_tq_lbft:.1f} lb-ft (< 2.5 lb-ft limit)")
-        am3.metric("Obstacle Time-to-Collision (TTC)", f"{ttc_sec:.1f} sec", "CLEAR (>= 2.5s)" if safe_ttc else "EMERGENCY BRAKE EBC1")
-        am4.metric("Brain-3 Autonomous Bus Interlock", "ARMED / TRANSMITTING" if interlock_pass else "DISENGAGED / SAFE HOLD", target_mode[:24])
+        am1.metric("Commanded Steering Angle", f"{cmd_steer_deg:+.2f} deg", f"Cross-Track: {ct_err_in:.1f} in")
+        am2.metric("Human Override Gate", "AUTO ACTIVE" if drv_tq_lbft < 2.5 else "HUMAN OVERRIDE (<5ms)", f"{drv_tq_lbft:.1f} lb-ft")
+        am3.metric("Obstacle TTC Gate", f"{ttc_sec:.1f} sec", "CLEAR" if ttc_sec >= 2.5 else "EBC1 BRAKE")
+        am4.metric("Brain-3 Bus Interlock", "ARMED" if interlock_pass else "SAFE HOLD", target_mode[:20])
 
-        if interlock_pass:
-            st.success(f"✅ **Brain-3 Autonomous Drive-by-Wire Gate ARMED:** Transmitting `{cmd_steer_deg:+.2f} deg` curvature command on `{target_mode}` (`R_bus = {bus_r_ohms:.1f} Ohms`, `TTC = {ttc_sec:.1f}s`). Instantaneous `< 5 ms` human steering/brake takeover active.")
-        else:
-            st.error("🛑 **Brain-3 Kinematic Safety Guillotine ENGAGED:** Autonomous actuator frames blocked (`Human Override >= 2.5 lb-ft`, `TTC < 2.5s`, or `CAN Bus != 60 Ohms`). Control returned 100% to human operator / fail-safe brake hold.")
-
+    # TAB 6: 355-QUESTION ACADEMY EXAM BANK
     with tab_acad_q:
-        st.markdown("### 🎓 Accredited AUT-01 Automotive, Tractor, Small Engine & NVIDIA CAN-Bus Examination Bank (355 Total Questions)")
-        st.success("✅ **40.0 / 40.0 Accredited Credit Hours (10 Modules) & All 355 AUT-01 Questions Verified (200 Module Milestone Qs + 155 3-Tier State/ASE Exam Qs)**")
+        st.markdown("### 🎓 Accredited AUT-01 Examination Bank (355 Verified Questions)")
         import ebony_textbook_library as _etl_auto
         import ebony_exam_engine as _eee_auto
-
         aq_c1, aq_c2 = st.columns(2)
         with aq_c1:
             bank_mode = st.radio(
-                "Select AUT-01 Question Bank to Inspect & Verify on Glass:",
-                [
-                    "📚 Part A: 10-Module Workstation Milestone Bank (200 Questions — 20 Qs per Module)",
-                    "📝 Part B: 3-Tier Master State / ASE Certification Exam Gauntlet (155 Questions — Stages 1, 2 & 3)"
-                ],
+                "Select AUT-01 Question Bank:",
+                ["📚 Part A: 10-Module Milestone Bank (200 Questions)", "📝 Part B: 3-Tier State/ASE Exam (155 Questions)"],
                 key="aut01_glass_bank_mode"
             )
         if bank_mode.startswith("📚"):
             aut_units = _etl_auto.get_course_units("AUT-01")
             with aq_c2:
-                sel_u_idx = st.selectbox(
-                    "Select AUT-01 Module (1 to 10):",
-                    range(len(aut_units)),
-                    format_func=lambda idx: f"{aut_units[idx]['title']} (20 Questions)",
-                    key="aut01_glass_unit_sel"
-                )
+                sel_u_idx = st.selectbox("Select AUT-01 Module (1 to 10):", range(len(aut_units)), format_func=lambda idx: f"{aut_units[idx]['title']}", key="aut01_glass_unit_sel")
             u_obj = aut_units[sel_u_idx]
-            st.info(f"**Governing Formulation:** `{u_obj['governing_eq']}`")
             for qi, q_obj in enumerate(u_obj["unit_quiz"], 1):
-                st.markdown(f"**Question {qi:02d} / 20:** {q_obj['q']}")
+                st.markdown(f"**Q{qi:02d}/20:** {q_obj['q']}")
                 for opt_str in q_obj["opts"]:
                     if opt_str == q_obj["ans"]:
-                        st.markdown(f"- :green[**✔ {opt_str} (VERIFIED CORRECT ANSWER)**]")
+                        st.markdown(f"- :green[**✔ {opt_str} (CORRECT)**]")
                     else:
                         st.markdown(f"- {opt_str}")
-                st.markdown("---")
         else:
             with aq_c2:
-                sel_stg = st.selectbox(
-                    "Select AUT-01 3-Tier Certification Stage:",
-                    [1, 2, 3],
-                    format_func=lambda s: f"Stage {s}: {_eee_auto.STAGE_METADATA[s]['name']} ({_eee_auto.STAGE_METADATA[s]['questions_count']} Questions)",
-                    key="aut01_glass_stg_sel"
-                )
-            stg_qs = _eee_auto.generate_course_stage_questions("AUT-01", sel_stg)
-            for qi, sq in enumerate(stg_qs, 1):
-                st.markdown(f"**Stage {sel_stg} Question {qi:02d} / {len(stg_qs)}:** {sq['question']}")
+                sel_stg = st.selectbox("Select Stage (1, 2, or 3):", [1, 2, 3], format_func=lambda s: f"Stage {s} ({_eee_auto.STAGE_METADATA[s]['questions_count']} Qs)", key="aut01_glass_stg_sel")
+            for qi, sq in enumerate(_eee_auto.generate_course_stage_questions("AUT-01", sel_stg), 1):
+                st.markdown(f"**Stage {sel_stg} Q{qi:02d}:** {sq['question']}")
                 for opt_str in sq["options"]:
                     if opt_str.startswith(f"{sq['correct']})"):
-                        st.markdown(f"- :green[**✔ {opt_str} (VERIFIED CORRECT ANSWER)**]")
+                        st.markdown(f"- :green[**✔ {opt_str} (CORRECT)**]")
                     else:
                         st.markdown(f"- {opt_str}")
-                st.caption(f"💡 **Engineering Explanation:** {sq['explanation']}")
-                st.markdown("---")
 
+    # TAB 7: WORM SERVICE LEDGER
     with tab_ledger:
-        st.markdown("### 📜 Multi-Vehicle Hot-Swap WORM Service & ECU Calibration Ledger (`automotive_canbus_ledger`)")
+        st.markdown("### 📜 Multi-Vehicle Hot-Swap WORM Service Ledger (`automotive_canbus_ledger`)")
         conn = sqlite3.connect(str(db_path))
-        rows = conn.execute("SELECT vin, vehicle_desc, can_protocol, active_dtc, ve_pct, calc_hp, ecu_action_performed, substr(post_cal_record_sha256, 1, 16), timestamp_utc FROM automotive_canbus_ledger ORDER BY id DESC LIMIT 15").fetchall()
+        rows = conn.execute("SELECT vin, vehicle_desc, active_dtc, ve_pct, calc_hp, substr(post_cal_record_sha256, 1, 16), timestamp_utc FROM automotive_canbus_ledger ORDER BY id DESC LIMIT 15").fetchall()
         conn.close()
         for r in rows:
-            st.caption(f"**VIN:** `{r[0]}` ({r[1]}) | **DTC:** `{r[3]}` | **VE:** `{r[4]}%` | **Output:** `{r[5]} HP` | **WORM Seal:** `{r[7]}...` | `{r[8]}`")
+            st.caption(f"**VIN:** `{r[0]}` ({r[1]}) | **DTC:** `{r[2]}` | **VE:** `{r[3]}%` | **Power:** `{r[4]} HP` | **WORM Seal:** `{r[5]}...` | `{r[6]}`")
 
 
 if __name__ == "__main__":
