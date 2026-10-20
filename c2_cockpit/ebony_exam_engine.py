@@ -648,51 +648,56 @@ def _get_stage1_pool(course_code: str):
 def generate_course_stage_questions(course_code: str, stage_num: int):
     base_pool = _get_stage1_pool(course_code)
     if stage_num == 1:
-        return base_pool
+        out_s1 = []
+        for q in base_pool:
+            qc = dict(q)
+            qc["answer"] = next((o for o in qc["options"] if o.startswith(f"{qc['correct']})")), qc["options"][0])
+            qc["raw_stem"] = qc["question"]
+            out_s1.append(qc)
+        return out_s1
 
     meta = STAGE_METADATA[stage_num]
     total_q = meta["questions_count"]
 
-    # Pull the 200 unique curriculum-specific unit_quiz questions from ebony_textbook_library
-    # so Stage 2 (45 Qs) and Stage 3 (90 Qs) have 100% unique, non-repeating question stems!
-    lib_questions = []
-    try:
-        if str(cockpit_dir) not in sys.path:
-            sys.path.insert(0, str(cockpit_dir))
-        import ebony_textbook_library as etl
-        mapped_code = "ENV-01" if course_code == "STR-02" else ("PAV-01" if course_code == "STR-03" else course_code)
-        units = etl.get_course_units(mapped_code)
-        for u in units:
-            u_title = u.get("title", f"Unit {u.get('unit', 1):02d}")
-            for uq in u.get("unit_quiz", []):
-                lib_questions.append({
-                    "domain": u_title,
-                    "question": uq["q"],
-                    "options": uq["opts"],
-                    "correct": str(uq["ans"]).strip()[0].upper(),
-                    "explanation": f"Verified under {mapped_code} ({u_title}) statutory calculation and inspection protocol."
-                })
-    except Exception:
-        lib_questions = []
+    if str(cockpit_dir) not in sys.path:
+        sys.path.insert(0, str(cockpit_dir))
+    import ebony_textbook_library as etl
 
-    # Offset Stage 2 (indices 0..44) and Stage 3 (indices 45..134) so Stage 1, 2, and 3 share ZERO questions
+    units = etl.get_course_units(course_code)
+    lib_questions = []
+    for u in units:
+        u_num = u.get("unit", 1)
+        u_title = u.get("title", f"Module {u_num:02d}")
+        for q_idx, uq in enumerate(u.get("unit_quiz", []), 1):
+            opts = list(uq.get("opts", []))
+            ans_str = str(uq.get("ans", "")).strip()
+            matched_opt = ans_str if ans_str in opts else opts[0]
+            letter = matched_opt.strip()[0].upper() if matched_opt else "A"
+            raw_q = str(uq.get("q", "")).strip()
+            lib_questions.append({
+                "domain": f"M{u_num:02d}: {u_title}",
+                "raw_stem": raw_q,
+                "options": opts,
+                "correct": letter,
+                "answer": matched_opt,
+                "explanation": f"Verified under {course_code} Module {u_num:02d} ({u_title}) engineering formulation and statutory standard."
+            })
+
+    # Stage 2 pulls questions 0..44 (45 unique questions across Modules 1-3)
+    # Stage 3 pulls questions 45..134 (90 unique questions across Modules 3-7)
     offset = 0 if stage_num == 2 else 45
     questions = []
     for i in range(1, total_q + 1):
+        ref_q = lib_questions[offset + i - 1]
         q_id = f"{course_code.replace('-', '')}_S{stage_num}_Q{i:02d}"
-        if len(lib_questions) >= offset + total_q:
-            ref_q = lib_questions[offset + i - 1]
-            q_stem = f"[{course_code} Stage {stage_num} // Q{i:02d} of {total_q}] {ref_q['question']}"
-        else:
-            ref_q = base_pool[(i - 1) % len(base_pool)]
-            q_stem = f"[{course_code} Stage {stage_num} // {ref_q['domain']}] Evaluation {i:02d} of {total_q}: {ref_q['question']}"
         questions.append({
             "id": q_id,
             "domain": ref_q["domain"],
-            "question": q_stem,
-            "options": list(ref_q["options"]),
+            "raw_stem": ref_q["raw_stem"],
+            "question": f"[{course_code} // {ref_q['domain']}] {ref_q['raw_stem']}",
+            "options": ref_q["options"],
             "correct": ref_q["correct"],
-            "answer": next((o for o in ref_q["options"] if o.startswith(f"{ref_q['correct']})")), ref_q["options"][0]),
+            "answer": ref_q["answer"],
             "explanation": ref_q["explanation"]
         })
     return questions

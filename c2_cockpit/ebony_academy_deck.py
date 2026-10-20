@@ -668,7 +668,7 @@ def render_academy_deck():
         stage_meta = STAGE_METADATA[active_s_num]
         st.markdown(f"**Target Discipline:** `{selected_code}` | **Questions:** `{stage_meta['questions_count']}` | **Passing Standard:** `>= {stage_meta['passing_pct']}%`")
 
-        stage_questions = generate_course_stage_questions(selected_code, active_s_num)
+        import importlib, ebony_exam_engine as _eee_live; importlib.reload(_eee_live); stage_questions = _eee_live.generate_course_stage_questions(selected_code, active_s_num)
 
         with st.form(key=f"unified_exam_form_{selected_code}_{active_s_num}"):
             submitted_answers = {}
