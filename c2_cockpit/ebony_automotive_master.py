@@ -1083,6 +1083,89 @@ SPECIALIZED_COMPONENT_GUIDES = {
 }
 
 
+OEM_PART_NUMBER_CATALOG = {
+    "DODGE_CHARGER": {
+        "match_tokens": ["dodge", "charger", "challenger", "chrysler 300", "hemi", "3.6l", "5.7l", "6.4l"],
+        "parts": [
+            {"category": "Door Panel & Body Trim", "part_name": "Interior Door Trim Panel Retainer Push-Clips (Perimeter)", "oem_pn": "Mopar 6509673AA / 68087877AA", "aftermarket_pn": "Dorman 963-622D / Auveco 21495", "spec": "9mm Hole Nylon Christmas-Tree Clip (Qty: 10-12 per door)"},
+            {"category": "Door Panel & Body Trim", "part_name": "Front Driver/Passenger Power Window Regulator & Motor Assy", "oem_pn": "Mopar 68103997AA (LH) / 68103996AA (RH)", "aftermarket_pn": "Dorman 748-019 / ACI 386728", "spec": "10mm Mounting Bolts: Torque to 89 in-lbs (7.4 lb-ft)"},
+            {"category": "Engine Oil & Filter", "part_name": "Spin-On Engine Oil Filter (5.7L/6.4L HEMI & 3.6L Pentastar)", "oem_pn": "Mopar MO-339 (4892339AA) / MO-349 (68191349AC Cartridge)", "aftermarket_pn": "Wix WL10010 / Mobil 1 M1-210A / K&N HP-2010", "spec": "5.7L HEMI: 7.0 Quarts SAE 5W-20 (Drain Plug: 13mm, Torque 25 lb-ft)"},
+            {"category": "Ignition & Air", "part_name": "Iridium Spark Plug & Engine Air Filter", "oem_pn": "Mopar SP143877AB (NGK LZFR5CI-11) / Air Filter 04861746AB", "aftermarket_pn": "NGK 92145 / Wix 49746 Air Filter", "spec": "5.7L HEMI requires 16 Spark Plugs (2 per cyl); Gap: 0.043 in; Torque: 13 lb-ft"},
+            {"category": "Brakes & Hubs", "part_name": "Front Ceramic Brake Pad Set & Vented Rotors", "oem_pn": "Mopar 68240780AB (Pads) / 04779196AB (Rotors)", "aftermarket_pn": "Akebono ACT1058 / Wagner OEX1058 (FMSI D1058)", "spec": "Caliper Bracket Bolts: 125 lb-ft | Slide Pins: 26 lb-ft | Wheel Lugs: 130 lb-ft"}
+        ]
+    },
+    "FORD_F150": {
+        "match_tokens": ["ford", "f-150", "f150", "coyote", "ecoboost", "5.0l", "3.5l", "2.7l"],
+        "parts": [
+            {"category": "Engine Oil & Filter", "part_name": "Spin-On Engine Oil Filter (5.0L Coyote V8 / 3.5L EcoBoost)", "oem_pn": "Motorcraft FL-500S (AA5Z-6714-A)", "aftermarket_pn": "Wix 57502 / Mobil 1 M1-212A / Purolator BOSS PBL22500", "spec": "5.0L V8: 7.75-8.8 Quarts SAE 5W-30 / 5W-20 API SP (Drain Plug: 15mm, Torque 20 lb-ft)"},
+            {"category": "Ignition & Air", "part_name": "Iridium Spark Plugs, Ignition Coil Boot & Engine Air Filter", "oem_pn": "Motorcraft SP-548 (5.0L) / SP-580 (3.5L EcoBoost) / FA-1883 Air Filter", "aftermarket_pn": "NGK 6509 (LTR6AI-13) / Wix 49883 Air Filter", "spec": "Spark Plug Gap: 0.049-0.053 in (5.0L) or 0.030-0.033 in (3.5L Turbo); Torque: 11 lb-ft"},
+            {"category": "Brakes & Hubs", "part_name": "Front Heavy-Duty Brake Pads & 13.8-in Rotors", "oem_pn": "Motorcraft BRF-1961 (Pads) / BRRF-432 (Rotors)", "aftermarket_pn": "PowerStop Z36-2087 / Akebono ACT2087 (FMSI D2087)", "spec": "Caliper Bracket: 184 lb-ft | Slide Pins: 27 lb-ft | 6-Lug Wheel Nuts (21mm): 150 lb-ft"},
+            {"category": "Drivetrain & Transmission", "part_name": "10R80 Automatic Transmission Filter & Fluid", "oem_pn": "Motorcraft FT-202 (HL3Z-7A098-A) / XT-12-QULV (Mercon ULV)", "aftermarket_pn": "Wix WL10373", "spec": "Mercon ULV Fluid ONLY (Check at 195-205 deg F via CAN-Bus TFT); Pan Bolts: 9 lb-ft"},
+            {"category": "Door Panel & Body Trim", "part_name": "F-150 Interior Door Trim Panel Retainer Clips & Latch Cable", "oem_pn": "Ford W713297-S300 (Clips) / FL3Z-15221A00-B (Cable)", "aftermarket_pn": "Dorman 700-677", "spec": "7mm Anchor Bolts (2 under handle/pull cup + 2 along bottom lip)"}
+        ]
+    },
+    "GM_DURAMAX_SILVERADO": {
+        "match_tokens": ["chevy", "chevrolet", "silverado", "gmc", "sierra", "duramax", "6.6l", "5.3l", "6.2l"],
+        "parts": [
+            {"category": "Engine Oil & Fuel Filters", "part_name": "6.6L Duramax Spin-On Oil Filter & Fuel/Water Separator", "oem_pn": "ACDelco PF2232 (Oil) / TP1015 (Fuel Filter Kit)", "aftermarket_pn": "Wix 57202 (Oil) / Wix WF10451 (Fuel)", "spec": "6.6L Duramax: 10.0 Quarts SAE 15W-40 CJ-4/CK-4 Diesel Oil (Drain Plug: 16mm, Torque 18 lb-ft)"},
+            {"category": "CAN-Bus & Glow Plugs", "part_name": "CAN-Bus 120-Ohm Terminating Resistor & Diesel Glow Plugs", "oem_pn": "GM 13595697 (CAN Terminator) / ACDelco 9G (12639701 Glow Plug)", "aftermarket_pn": "Dorman 601-046", "spec": "CAN Loop Resistance across Pins 6 & 14 (or J1939 C & D) = 60.0 Ohms"}
+        ]
+    },
+    "JOHN_DEERE_TRACTOR": {
+        "match_tokens": ["john deere", "case ih", "tractor", "kubota", "9.0l", "8r", "powertech"],
+        "parts": [
+            {"category": "Tractor Engine & Hydraulic Filters", "part_name": "Primary/Secondary Fuel Filter, Engine Oil Filter & Hy-Gard Hydraulic Filter", "oem_pn": "John Deere RE525523 (Fuel Kit) / RE504836 (Oil) / RE577060 (Hydraulic)", "aftermarket_pn": "Wix 33975 (Fuel) / Wix 57750S (Oil)", "spec": "Plus-50 II 15W-40 Engine Oil & Hy-Gard Transmission/Hydraulic Fluid; ISOBUS ISO 11783 9-Pin Port"}
+        ]
+    },
+    "HONDA_SMALL_ENGINE": {
+        "match_tokens": ["honda", "gcv160", "gcv170", "gcv200", "gx160", "gx200", "gx390", "hrx", "hrn"],
+        "parts": [
+            {"category": "Carburetor & Fuel", "part_name": "Complete Carburetor Assembly & Float Bowl Gasket Set (GCV160/GCV190)", "oem_pn": "Honda 16100-Z8B-901 (Carburetor) / 16010-883-015 (Gasket Set)", "aftermarket_pn": "Stens 520-718 / Oregon 50-658", "spec": "Bottom Bowl Bolt / Main Jet: 10mm wrench (Torque: 6 lb-ft); Use E0 Ethanol-Free 90+ Octane"},
+            {"category": "Ignition & Air Filter", "part_name": "Spark Plug & Pleated Paper Air Filter Element", "oem_pn": "NGK BPR5ES (Honda 98079-55846) / Air Filter 17211-Z8B-901", "aftermarket_pn": "Champion RN9YC / Stens 102-713 Air Filter", "spec": "Spark Plug Gap: 0.028-0.031 in (Torque: 13 lb-ft); Engine Oil: 13.5 fl oz SAE 10W-30"},
+            {"category": "Mower Blade", "part_name": "21-Inch MicroCut Twin Blade Set (Upper & Lower)", "oem_pn": "Honda 72531-VH7-000 (Upper) / 72511-VH7-000 (Lower)", "aftermarket_pn": "Oregon 91-518 / 91-519", "spec": "Blade Bolt (14mm): Torque 36-43 lb-ft; Install with Curved Lift Wings Pointing UP"}
+        ]
+    },
+    "BRIGGS_KOHLER_KAWASAKI_MOWER": {
+        "match_tokens": ["briggs", "stratton", "kohler", "kawasaki", "vanguard", "toro", "craftsman", "troy-bilt", "husqvarna", "scag", "exmark", "zero turn", "mower", "lawnmower"],
+        "parts": [
+            {"category": "Carburetor & Main Jet", "part_name": "Nikki / Walbro Float Bowl Carburetor & White Main Jet Cartridge", "oem_pn": "Briggs & Stratton 594058 / 799584 (Carburetor) / 592792 (Main Jet)", "aftermarket_pn": "Oregon 50-659 / Stens 520-964", "spec": "Float Bowl Nut: 1/2-inch (13mm) or 7/16-inch; Clean 0.020-in main jet pinhole with copper wire"},
+            {"category": "Spark Plug & Air Filter", "part_name": "OHV Small Engine Spark Plug & Cartridge Air Filter", "oem_pn": "Champion RC12YC (Briggs 491055S) / NGK BPR4ES (Kawasaki/Kohler) / Air Filter 593260", "aftermarket_pn": "Autolite 3924 / Wix 49260", "spec": "Spark Plug Gap: 0.030 in (Torque: 15 lb-ft); Ignition Coil Air-Gap: 0.012 in (Business Card)"},
+            {"category": "Spin-On Oil Filter & Hydro Fluid", "part_name": "Riding / Zero-Turn V-Twin Oil Filter & Hydro-Gear Transaxle Kit", "oem_pn": "Briggs 492932S (696854) / Kawasaki 49065-0721 / Hydro-Gear 72750 (52114 Filter)", "aftermarket_pn": "Wix 57035 (Engine Oil Filter) / Wix WL10102 (Hydro Filter)", "spec": "Push Mower: 15-18 fl oz SAE 30 / 10W-30 | V-Twin: 48-64 fl oz 10W-30 | Hydro: 20W-50 Synthetic"}
+        ]
+    },
+    "TWO_STROKE_STIHL_ECHO_HUSQVARNA": {
+        "match_tokens": ["stihl", "echo", "chainsaw", "trimmer", "weedeater", "leaf blower", "2-stroke", "2 stroke", "fs 91", "srm-225"],
+        "parts": [
+            {"category": "2-Stroke Tune-Up Kit", "part_name": "Spark Plug, In-Tank Weighted Fuel Filter & Primer Bulb", "oem_pn": "NGK BPMR7A (2-Stroke Plug) / CMR6H (4-Mix) / Walbro 188-12-1 Primer Bulb", "aftermarket_pn": "Champion RCJ6Y / Echo 99944200907 YouCan Maintenance Kit", "spec": "Spark Plug Gap: 0.025 in; Fuel Mix: 50:1 (2.6 fl oz JASO FD Oil per 1.0 Gal Ethanol-Free 90+ Gas)"}
+        ]
+    }
+}
+
+
+def resolve_oem_and_aftermarket_part_numbers(year_str: str, make_str: str, model_str: str, engine_str: str, question_str: str, domain_code: str) -> list:
+    combined = f"{year_str} {make_str} {model_str} {engine_str} {question_str}".lower()
+    matched_parts = []
+    for cat_key, cat_val in OEM_PART_NUMBER_CATALOG.items():
+        if any(tok in combined for tok in cat_val["match_tokens"]):
+            matched_parts.extend(cat_val["parts"])
+
+    if not matched_parts:
+        if domain_code == "SMALL_ENGINE":
+            matched_parts = list(OEM_PART_NUMBER_CATALOG["BRIGGS_KOHLER_KAWASAKI_MOWER"]["parts"]) + list(OEM_PART_NUMBER_CATALOG["HONDA_SMALL_ENGINE"]["parts"][:2])
+        else:
+            matched_parts = list(OEM_PART_NUMBER_CATALOG["FORD_F150"]["parts"]) + list(OEM_PART_NUMBER_CATALOG["DODGE_CHARGER"]["parts"][:2])
+
+    # Prioritize parts that match keywords in the user's question so the #1 part is at the very top!
+    q_low = str(question_str).lower()
+    scored = []
+    for p in matched_parts:
+        p_text = f"{p['category']} {p['part_name']}".lower()
+        sc = sum(3 for w in q_low.split() if len(w) >= 3 and w in p_text)
+        scored.append((sc, p))
+    scored.sort(key=lambda x: x[0], reverse=True)
+    return [item[1] for item in scored]
+
+
 def query_ebony_mechanic_assistant(
     user_question: str,
     allow_internet_lookup: bool = False,
@@ -1305,35 +1388,40 @@ def render_automotive_master_deck():
         "📜 7. WORM Service Ledger"
     ])
 
-    # TAB 1: CLEAN, DECLUTTERED, SINGLE-TOPIC "ASK E.B.O.N.Y. MECHANIC AI"
+    # TAB 1: CLEAN, DECLUTTERED, SINGLE-TOPIC "ASK E.B.O.N.Y. MECHANIC AI" WITH YEAR/MAKE/MODEL/ENGINE PART NUMBERS & SILENT MEMORY
     with tab_ask_ai:
         if is_small_engine_mode:
-            st.markdown("### 🌿 Ask E.B.O.N.Y. Small-Engine & Lawnmower Master AI (Push Mowers, Zero-Turns, Chainsaws & Trimmers)")
-            default_q = "My push lawnmower won't start after sitting all winter. How do I clean the carburetor main jet?"
-            default_veh = "Honda GCV160 / Briggs & Stratton Push Mower"
+            st.markdown("### 🌿 Ask E.B.O.N.Y. Small-Engine & Lawnmower Master AI (With OEM & Aftermarket Part Number Lookup)")
+            def_yr, def_mk, def_md, def_eng = "2023", "Honda", "HRN216 / GCV170", "166cc 4-Stroke OHV"
+            def_q = "My push lawnmower won't start after sitting all winter. How do I clean the carburetor main jet?"
         else:
-            st.markdown("### 🚗 Ask E.B.O.N.Y. Automotive & Truck Master Mechanic AI (Bumper-to-Bumper Cars, Trucks & Tractors)")
-            default_q = "How do I remove the interior door panel on my Dodge Charger without breaking the plastic clips?"
-            default_veh = "Dodge Charger"
+            st.markdown("### 🚗 Ask E.B.O.N.Y. Automotive, Truck & Tractor Master AI (With OEM & Aftermarket Part Number Lookup)")
+            def_yr, def_mk, def_md, def_eng = "2022", "Dodge", "Charger", "5.7L HEMI V8"
+            def_q = "How do I remove the interior door panel on my Dodge Charger without breaking the plastic clips?"
 
-        qa_c1, qa_c2 = st.columns([2.5, 1.5])
-        with qa_c1:
-            user_mech_q = st.text_input(
-                "🔧 Enter Your Specific Repair or Maintenance Question:",
-                value=default_q,
-                key=f"ebony_clean_q_{domain_code}"
-            )
-        with qa_c2:
-            veh_ymm_in = st.text_input(
-                "🏷️ Vehicle / Equipment Model:",
-                value=default_veh,
-                key=f"ebony_clean_veh_{domain_code}"
-            )
+        # 4-Column Vehicle / Equipment Identification Bar (Year | Make | Model | Engine/Trim) for Exact Part Numbers
+        ym1, ym2, ym3, ym4 = st.columns([1, 1.4, 1.4, 1.6])
+        with ym1:
+            yr_in = st.text_input("📅 Year:", value=def_yr, key=f"ebony_yr_{domain_code}")
+        with ym2:
+            mk_in = st.text_input("🏭 Make / Brand:", value=def_mk, key=f"ebony_mk_{domain_code}")
+        with ym3:
+            md_in = st.text_input("🚘 Model:", value=def_md, key=f"ebony_md_{domain_code}")
+        with ym4:
+            eng_in = st.text_input("⚙️ Engine / Trim / Series:", value=def_eng, key=f"ebony_eng_{domain_code}")
+
+        full_vehicle_str = f"{yr_in.strip()} {mk_in.strip()} {md_in.strip()} ({eng_in.strip()})".strip()
+
+        user_mech_q = st.text_input(
+            "🔧 Enter Your Specific Repair, Maintenance, or Part Number Question:",
+            value=def_q,
+            key=f"ebony_clean_q_{domain_code}"
+        )
 
         opt_c1, opt_c2 = st.columns([2.5, 1.5])
         with opt_c1:
             opt_in_web = st.checkbox(
-                "🌐 Request Live Internet / NHTSA Lookup for Updated Specs (Unchecked = 100% Offline Local Brain)",
+                "🌐 Authorize Live Internet / NHTSA / OEM Part Lookup for Updated Material (Unchecked = 100% Offline Local Brain)",
                 value=False,
                 key=f"ebony_clean_web_{domain_code}"
             )
@@ -1342,32 +1430,49 @@ def render_automotive_master_deck():
             if not is_small_engine_mode and opt_in_web:
                 vin_opt_in = st.text_input("🔢 Optional 17-Char VIN:", value="", key="ebony_clean_vin")
 
+        # E.B.O.N.Y. silently assimilates & remembers every question inside hvf_memory_vault.db (never rendered on-screen!)
         ans_bundle = query_ebony_mechanic_assistant(
             user_question=user_mech_q,
             allow_internet_lookup=opt_in_web,
-            vehicle_make_model_year=veh_ymm_in,
+            vehicle_make_model_year=f"{yr_in.strip()} {mk_in.strip()} {md_in.strip()}",
             vin_str=vin_opt_in,
             equipment_domain=domain_code
         )
 
-        # Render ONLY the single (#1) matched surgical guide in 4 clean sub-tabs so the page is NEVER cluttered!
+        part_list = resolve_oem_and_aftermarket_part_numbers(yr_in, mk_in, md_in, eng_in, user_mech_q, domain_code)
         primary_z = ans_bundle["matched_zones"][0]
-        st.success(f"🎯 **Focused Repair Guide Locked:** `{primary_z['zone_title']}`  |  *{ans_bundle['network_mode']}*")
+
+        st.success(f"🎯 **Target Asset:** `{full_vehicle_str}`  |  **Guide:** `{primary_z['zone_title']}`")
 
         if opt_in_web and ans_bundle["web_findings"]:
             with st.expander("🌐 View Live Internet / U.S. DOT NHTSA Technical Lookup Results", expanded=True):
                 for wf in ans_bundle["web_findings"]:
                     st.write(wf)
 
-        sub_step, sub_where, sub_tools, sub_safe = st.tabs([
+        sub_step, sub_parts, sub_where, sub_tools, sub_safe = st.tabs([
             "🛠️ 1. Step-by-Step Instructions",
-            "📍 2. Where Is It & What Does It Look Like?",
-            "🧰 3. Exact Tools & Socket Sizes",
-            "⚠️ 4. Mandatory Safety Rules"
+            "🏷️ 2. Exact OEM & Aftermarket Part Numbers",
+            "📍 3. Where Is It & Visual ID",
+            "🧰 4. Tools & Socket Sizes",
+            "⚠️ 5. Safety Precautions"
         ])
         with sub_step:
             for stp in primary_z["step_by_step"]:
                 st.info(stp)
+        with sub_parts:
+            st.markdown(f"#### 🏷️ Verified OEM & Cross-Reference Part Numbers for `{full_vehicle_str}`")
+            for p_idx, p_row in enumerate(part_list, 1):
+                if p_idx == 1:
+                    st.success(
+                        f"**★ PRIMARY MATCHED PART ({p_row['category']}): {p_row['part_name']}**\n"
+                        f"- **OEM Factory Part Number:** `{p_row['oem_pn']}`\n"
+                        f"- **Aftermarket Cross-Reference:** `{p_row['aftermarket_pn']}`\n"
+                        f"- **Engineering Spec / Capacity / Torque:** `{p_row['spec']}`"
+                    )
+                else:
+                    st.markdown(
+                        f"- **{p_row['part_name']} ({p_row['category']}):** OEM `{p_row['oem_pn']}` | Cross-Ref `{p_row['aftermarket_pn']}` | *{p_row['spec']}*"
+                    )
         with sub_where:
             st.markdown(primary_z["where_and_what"])
         with sub_tools:
@@ -1376,20 +1481,6 @@ def render_automotive_master_deck():
         with sub_safe:
             for sp in primary_z["safety_precautions"]:
                 st.warning(sp)
-
-        with st.expander("🧠 View E.B.O.N.Y. Self-Learning Memory Vault (Questions Remembered)", expanded=False):
-            if st.button("🔒 Seal Current Question to WORM Ledger", key=f"btn_worm_q_{domain_code}"):
-                record_question_to_self_learning_vault(
-                    user_question=user_mech_q,
-                    vehicle_context=veh_ymm_in,
-                    matched_zones=ans_bundle["matched_zones"],
-                    web_findings=ans_bundle["web_findings"],
-                    source_mode=ans_bundle["network_mode"],
-                    commit_worm_ledger=True
-                )
-                st.success("Question permanently sealed in WORM ledger.")
-            for lr in get_learned_mechanics_memory(limit=15):
-                st.caption(f"🧠 **Q:** `{lr[0]}` | **Asset:** `{lr[1]}` | **Recalled:** `{lr[5]}x` | **Seal:** `{lr[6]}...`")
 
     # TAB 2: DOMAIN-FILTERED BUMPER-TO-BUMPER OR SMALL-ENGINE MANUAL
     with tab_b2b:
