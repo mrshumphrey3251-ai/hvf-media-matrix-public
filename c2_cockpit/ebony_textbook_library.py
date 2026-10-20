@@ -1362,6 +1362,59 @@ _COURSE_DOMAIN_PROFILES = {
         "q14_d2": "Thermal priority tiers depend only on the time of day rather than measured Delta_T",
         "q14_d3": "Priority 4 anomalies can be ignored for up to 36 months without repair",
     },
+    "AUT-01": {
+        "agency_statute": "SAE J1979 (OBD-II) / SAE J1939, ISO 14229 (UDS), ASE Master Technician & Oklahoma Title 61 Fleet Standards",
+        "q1_stem": "Under SAE J1979 / J1939 and ISO 14229 (UDS) governance in {u_title}, how must pre-calibration ECU EEPROM snapshots and live CAN-Bus telemetry frames be archived?",
+        "q1_ans": "Sealed immediately in a Write-Once-Read-Many (WORM) SQLite service ledger with a FIPS 180-4 SHA-256 hash keyed to the 17-character VIN before any UDS 0x2E/0x31 write",
+        "q1_d1": "Overwritten directly to PCM flash memory without capturing a baseline EEPROM checksum or verifying battery voltage",
+        "q1_d2": "Stored as unverified text notes with no VIN correlation, freeze-frame data, or CAN-Bus termination check",
+        "q1_d3": "Cleared immediately with a generic code reader without diagnosing the root mechanical or sensor fault",
+        "q2_stem": "When an NVIDIA Three-Brain CAN-Bus diagnostic scan in {u_title} detects a critical powertrain or network fault (|STFT + LTFT| >= 25% or CAN bus resistance != 60 Ohms), what is the mandatory protocol?",
+        "q2_ans": "Isolate the physical mechanical/electrical root cause via oscilloscope and pressure/resistance gates, execute the repair SOP, perform UDS 0x31 adaptive relearn, and verify UDS 0x01 Default Session before unplugging",
+        "q2_d1": "Hot-unplug the transceiver in the middle of an active UDS 0x2E EEPROM flash write while battery voltage is below 10.5V",
+        "q2_d2": "Mask the Diagnostic Trouble Code (DTC) in the ECU table without fixing the vacuum leak, fuel pressure drop, or bus short",
+        "q2_d3": "Bypass the 60-Ohm CAN-Bus termination resistors by jumpering Pin 6 (CAN_H) directly to Pin 16 (+12V Battery)",
+        "q3_stem": "Why must SAE J1349 net horsepower, Volumetric Efficiency (VE_%), Fuel Trim (STFT+LTFT), and fastener preload torque (T = K*D*F/12) be verified in {u_title}?",
+        "q3_ans": "To mathematically separate mechanical air/fuel/compression defects from ECU adaptive calibration drift and guarantee safe clamping loads without fastener yield",
+        "q3_d1": "Engine control modules do not use airflow, fuel trim, or crank angular velocity to control combustion",
+        "q3_d2": "All automotive bolts should be tightened with an uncalibrated impact wrench until threads strip",
+        "q3_d3": "Volumetric efficiency is unrelated to Mass Air Flow (MAF g/s), engine displacement, or intake boost pressure",
+        "q8_stem": "Before executing a bidirectional UDS 0x2E EEPROM configuration write or 0x31 adaptive learn in {u_title}, why must battery bus voltage be stabilized at 13.2V to 13.8V DC?",
+        "q8_ans": "Voltage sag below 11.5V during flash/EEPROM programming corrupts memory blocks (triggering B1000/P0601 checksum errors) and destabilizes injector dead-time characterization",
+        "q8_d1": "Alternator ripple exceeding 2.5V AC improves CAN-Bus differential signal integrity on Pins 6 and 14",
+        "q8_d2": "ECUs flash faster when the vehicle battery is discharged below 8.0V DC",
+        "q8_d3": "Battery voltage has zero effect on fuel pump output pressure or solenoid actuation force",
+        "q9_stem": "When probing the ISO 11898 high-speed CAN-Bus on OBD-II Pin 6 (CAN_H) and Pin 14 (CAN_L) in {u_title}, what electrical parameters confirm physical layer integrity?",
+        "q9_ans": "De-energized total loop resistance of 60.0 +/- 2.0 Ohms (two 120-Ohm parallel terminators) and energized dominant differential voltage V_diff = 2.0V (CAN_H = 3.5V, CAN_L = 1.5V)",
+        "q9_d1": "Open-circuit infinite resistance (OL) between Pin 6 and Pin 14 with 120V AC household current on the bus",
+        "q9_d2": "Zero ohms dead short between CAN_H and chassis ground Pin 4",
+        "q9_d3": "Single-wire 0V static signal with no differential twisted-pair noise rejection",
+        "q10_stem": "When diagnosing fuel metering and air-charge efficiency in {u_title}, what combined Fuel Trim (STFT + LTFT) and Volumetric Efficiency (VE_%) thresholds indicate a healthy naturally aspirated engine?",
+        "q10_ans": "Combined |STFT + LTFT| within +/- 5.0% (fault threshold >= +/- 10.0% to 25.0%) and peak-torque Volumetric Efficiency between 80.0% and 95.0%",
+        "q10_d1": "Long-Term Fuel Trim pinned at +35.0% with Volumetric Efficiency below 25.0% at Wide-Open Throttle",
+        "q10_d2": "Air-Fuel Equivalence Ratio Lambda fixed at 3.50 under full-load acceleration",
+        "q10_d3": "Mass Air Flow sensor reporting 0.0 g/sec at 4,500 RPM",
+        "q11_stem": "When operating the Hot-Swappable NVIDIA Three-Brain Enclave across multiple fleet vehicles in {u_title}, what three conditions satisfy the Brain-3 Safe-Disconnect Interlock?",
+        "q11_ans": "1) UDS Diagnostic Session returned to 0x01 Default, 2) Zero active EEPROM/Flash write routines in progress, and 3) Pre/Post SHA-256 WORM docket sealed in matrix_ledger.db",
+        "q11_d1": "Unplugging the J1962/J1939 connector while UDS Service 0x36 TransferData is actively writing flash blocks",
+        "q11_d2": "Leaving the ABS module locked in factory calibration mode with wheel speed sensors disabled",
+        "q11_d3": "Skipping the VIN Mode $09 verification so calibration files from a 9.0L diesel tractor overwrite a 5.0L V8 gas truck",
+        "q12_stem": "In precision engine machining, bearing oil clearance, cylinder bore taper, and valve stem-to-guide tolerance measurements in {u_title}, what does 1 mil (0.001 in) represent?",
+        "q12_ans": "One thousandth of an inch (0.001 in); e.g., main crankshaft journal oil clearance is typically 1.5 to 2.5 mils (0.0015 to 0.0025 inches)",
+        "q12_d1": "One millimeter (0.0394 inches) of crankshaft end-play",
+        "q12_d2": "One gallon of 5W-30 synthetic motor oil per cylinder",
+        "q12_d3": "One thousand foot-pounds of spark plug installation torque",
+        "q13_stem": "Under SAE J1349 dynamometer and drivetrain physics applied to {u_title}, why do Horsepower (HP) and Torque (lb-ft) always cross at exactly 5,252 RPM?",
+        "q13_ans": "Because 1 Horsepower = 33,000 ft-lbs/min divided by 2*pi radians per revolution (33,000 / 6.283185 = 5,252.11), yielding HP = (Torque * RPM) / 5252",
+        "q13_d1": "Because all internal combustion engines hit their rev limiter at 5,252 RPM",
+        "q13_d2": "Because OBD-II CAN-Bus baud rate is 5,252 bits per second",
+        "q13_d3": "Because tire circumference is always 52.52 inches regardless of wheel diameter",
+        "q14_stem": "When sizing high-flow fuel injectors and calculating fastener clamping preload in {u_title}, how are required injector flow (lb/hr) and bolt torque (lb-ft) determined?",
+        "q14_ans": "Injector Flow = (Target_HP * BSFC) / (Cylinders * Max_Duty_Cycle_0.80), and Bolt Torque T = (K_friction * Diameter_in * Preload_lbs) / 12",
+        "q14_d1": "Injector flow is independent of Brake Specific Fuel Consumption (BSFC) or injector duty cycle",
+        "q14_d2": "Bolt torque equals bolt length multiplied by vehicle curb weight",
+        "q14_d3": "Operating fuel injectors at 120% static duty cycle prevents lean detonation",
+    },
     "PAV-01": {
         "agency_statute": "AASHTO R 86 / PP 67, ASTM D6433 Pavement Condition Index (PCI), and ODOT / Oklahoma Title 61 Highway Pavement Management Standards",
         "q1_stem": "Under AASHTO R 86, ASTM D6433, and Oklahoma Title 61 highway asset governance, how must 3D laser/photogrammetric pavement distress and longitudinal profile telemetry from {u_title} be preserved?",
@@ -1420,9 +1473,17 @@ _COURSE_DOMAIN_PROFILES = {
 _prev_get_course_units_fn = get_course_units
 
 def get_course_units(course_code: str):
-    base_code = "STR-02" if course_code in ("STR-02", "ENV-01") else ("STR-03" if course_code in ("STR-03", "PAV-01") else "STR-01")
-    prof_code = "ENV-01" if course_code in ("STR-02", "ENV-01") else ("PAV-01" if course_code in ("STR-03", "PAV-01") else "STR-01")
-    units = _prev_get_course_units_fn(base_code)
+    base_code = "STR-02" if course_code in ("STR-02", "ENV-01") else ("STR-03" if course_code in ("STR-03", "PAV-01", "AUT-01") else "STR-01")
+    prof_code = "AUT-01" if course_code == "AUT-01" else ("ENV-01" if course_code in ("STR-02", "ENV-01") else ("PAV-01" if course_code in ("STR-03", "PAV-01") else "STR-01"))
+    import copy
+    units = copy.deepcopy(_prev_get_course_units_fn(base_code))
+    if course_code == "AUT-01":
+        _aut_Specs = [('Unit 01: SAE J1979 OBD-II, ISO 11898 CAN-Bus Differential Physics (60-Ohm) & Portable NVIDIA Three-Brain Enclave', 'R_bus = (120 * 120) / (120 + 120) = 60.0 Ohms | V_diff = V_CANH - V_CANL = 2.0V'), ('Unit 02: Stoichiometric Combustion (Lambda = 1.00), MAF Volumetric Efficiency (VE_%) & Fuel Trim Diagnostics (P0171)', 'VE_% = (MAF_actual / MAF_theoretical) * 100 | Total_Trim_% = STFT_% + LTFT_%'), ('Unit 03: Ignition Secondary KV Waveforms, Crankshaft Angular Acceleration & Mode $06 Misfire Diagnostics (P0300)', 'alpha_crank = d(omega)/dt | Spark Plug Gap = 0.032-0.044 in (Torque: 15-18 lb-ft)'), ('Unit 04: High-Pressure Common-Rail & Direct-Injection Fuel Systems (P0087), Piezo Injectors & Lift-Pump Hydraulics', 'Inj_Flow_lb_hr = (HP * BSFC) / (N_cyl * 0.80) | Rail_Delta = FRP_cmd - FRP_act'), ('Unit 05: Forced Induction Thermodynamics, Turbocharger VGT / Wastegate PID Control (P0299) & Intercooler Efficiency', 'PR = (14.7 + P_boost_psig) / 14.7 | eta_IC = (T_in - T_out) / (T_in - T_amb)'), ('Unit 06: Automatic Transmission Hydraulics (P0700), Torque Converter Slip & TCM Clutch Volume Index (CVI) Fast-Learn', 'Slip_RPM = Engine_RPM - Turbine_RPM | Ratio = ISS_RPM / OSS_RPM'), ('Unit 07: Three-Way Catalytic Converter Chemistry (P0420), Dual-O2 Switching Ratios & Exhaust Backpressure', 'Switch_Ratio = Count(B1S2) / Count(B1S1) < 0.35 | Delta_T_cat = T_out - T_in >= 75 F'), ('Unit 08: ABS / ESC Chassis Dynamics (C0035), Steering Angle Sensor (SAS) Zero-Point Calibration & Braking Physics', 'd_stop_ft = V_mph^2 / (29.92 * mu_tire) | Revs_Per_Mile = 20168 / D_tire_in'), ('Unit 09: Master Preventative Maintenance (0-100k+ Mi), API SP / GL-5 Tribology & Fastener Torque-to-Yield Mechanics', 'T_lb_ft = (K * D_in * F_preload_lbs) / 12 | Brake Fluid Moisture < 1.5%'), ('Unit 10: UDS ISO 14229 (0x10/0x22/0x27/0x2E/0x31), SAE J2534 EEPROM Checksums (B1000) & Brain-3 Hot-Swap WORM Seal', 'G_unplug = I(Session == 0x01) * I(EEPROM_Write == 0) * I(WORM_SHA256 == 1)')]
+        for _idx, _u in enumerate(units):
+            if _idx < len(_aut_Specs):
+                _u["title"] = _aut_Specs[_idx][0]
+                _u["governing_eq"] = _aut_Specs[_idx][1]
+                _u["equations"] = _aut_Specs[_idx][1]
     prof = _COURSE_DOMAIN_PROFILES.get(prof_code, _COURSE_DOMAIN_PROFILES["STR-01"])
     for u in units:
         u_num = u.get("unit", 1)
@@ -1484,6 +1545,16 @@ def get_course_units(course_code: str):
     return units
 
 COURSE_CATALOG = {
+    "AUT-01": {
+        "code": "AUT-01",
+        "title": "Master Automotive CAN-Bus Diagnostics, Preventative Maintenance & ECU Calibration",
+        "name": "Master Automotive CAN-Bus Diagnostics, Preventative Maintenance & ECU Calibration",
+        "credential": "ASE Master Tech & SAE J1979/J1939/UDS NVIDIA CAN-Bus Calibration Engineer",
+        "statutory": "SAE J1979 (OBD-II), SAE J1939, ISO 14229 (UDS), SAE J2534 & OAC 245:15-11 (40.0 PELS PDHs)",
+        "hours": 40.0,
+        "ceus": 4.0,
+        "tuition": 2500.00
+    },
     "STR-01": {
         "code": "STR-01",
         "title": "Bridge Deck, Pier & Fracture-Critical Member Inspection",

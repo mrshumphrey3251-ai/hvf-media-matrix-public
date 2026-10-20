@@ -80,17 +80,17 @@ def generate_master_executive_binder(student_id: str = "HVF-TECH-001", student_n
         "# HUMPHREY VIRTUAL FARMS LLC // MASTER EXECUTIVE ACADEMY & WORM COMPLIANCE BINDER",
         f"**Prime Contractor:** Humphrey Virtual Farms LLC | **CAGE:** `1AHA8` | **UEI:** `S1M4ENLHTDH5`  ",
         f"**Certified Engineer / CEO:** `{student_name} ({student_id})`  ",
-        f"**Statutory Standing:** `OAC 245:15-11 (120.0 OK PELS PDHs / 12.0 CEUs) | 23 CFR § 650 | 40 CFR 60 OOOOb | ASTM D6433`  ",
+        f"**Statutory Standing:** `OAC 245:15-11 (160.0 OK PELS PDHs / 16.0 CEUs) | 23 CFR § 650 | 40 CFR 60 OOOOb | ASTM D6433`  ",
         f"**Generated Timestamp (UTC):** `{now_utc}`",
         "",
         "---",
         "",
-        "## 1. Accredited Curriculum Summary (120.0 Core Contact Hours / 1,065 Unique Questions)",
+        "## 1. Accredited Curriculum Summary (160.0 Core Contact Hours / 1,420 Unique Questions)",
         "| Curriculum Code | Official Program Title | Accredited Credit Hours | Chapter 1 Milestone Qs | Chapter 5 State Exam Qs | WORM Status |",
         "| :--- | :--- | :--- | :--- | :--- | :--- |",
     ]
 
-    for c_code in ["STR-01", "ENV-01", "PAV-01", "STR-02", "STR-03"]:
+    for c_code in ["STR-01", "ENV-01", "PAV-01", "AUT-01", "STR-02", "STR-03"]:
         meta = etl.COURSE_CATALOG[c_code]
         md_lines.append(
             f"| **`{c_code}`** | {meta['title']} | `40.0 Hrs (4.0 CEUs / 40.0 PDHs)` | `200 / 200 Verified` | `155 / 155 Verified` | `10/10 Modules Sealed` |"

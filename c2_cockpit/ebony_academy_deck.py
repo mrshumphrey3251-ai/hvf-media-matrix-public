@@ -115,6 +115,14 @@ def render_academy_deck():
         "statutory": "ASTM D6433 PCI, AASHTO R 86, ODOT Pavement Management & OAC 245:15-11 (40.0 PELS PDHs)"
     }
 
+    courses["AUT-01"] = {
+        "title": "AUT-01: Master Automotive CAN-Bus Diagnostics, Preventative Maintenance & ECU Calibration",
+        "credential": "ASE Master Tech & SAE J1979/J1939/UDS NVIDIA CAN-Bus Calibration Engineer",
+        "diagram": courses["STR-01"]["diagram"],
+        "video_demo": courses["STR-01"]["video_demo"],
+        "statutory": "SAE J1979 (OBD-II), SAE J1939, ISO 14229 (UDS), SAE J2534 & OAC 245:15-11 (40.0 PELS PDHs)"
+    }
+
     top_c1, top_c2, top_c3 = st.columns([3, 1.2, 1.2])
     with top_c1:
         selected_code = st.selectbox(

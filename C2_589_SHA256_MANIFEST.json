@@ -2,7 +2,7 @@
   "cage_code": "1AHA8",
   "classification": "LEVEL-5 SOVEREIGN INDUSTRIAL C2 & ACCREDITED ENGINEERING INSTITUTE",
   "entity": "Humphrey Virtual Farms LLC",
-  "master_c2_merkle_root_sha256": "9d2f6bf48a646cd7475f45a6a3094d9908cdf0bde3a87b4ebb99dc806ad72d2f",
+  "master_c2_merkle_root_sha256": "285a00d75e35e75fa7cfaf2c5e83ec38b5da36d51b8a9477a57bf71ed0cd9d64",
   "module_sha256_digests": {
     "__init__.py": "795f10286e60c8fbe6ff725e033631a06873b70207c12b47bc9c7c596c489773",
     "access_control.py": "3709685f597329fd7b3042b46096d80b9769a877135920a90b97d98ab8d22c6c",
@@ -131,7 +131,7 @@
     "drone_rgb_adapter.py": "97128e2488b79c428a64f406fd7096e94640c6bd154a0f6a40f947f0a67c5e73",
     "ebony.py": "75e05054d50ba040ddad3476c56da4a342d624762801511644e57654e11d4d18",
     "ebony_academy_curriculum.py": "2984a79d3c93971f3100e18c9527667c903cae886e3eef0aec5a272e22e72a69",
-    "ebony_academy_deck.py": "89044a198d3b0f54f5a48c8e7aa6bf2497eccc340e2b13fb431970dea96860e0",
+    "ebony_academy_deck.py": "c6a0cb314b68dedf17c7e0ab2a9d087e3e94f8e60458eae92a9c61bd2cf2fcc0",
     "ebony_agent_swarm.py": "242d87b3d0f9bde3db1743c9d29d61574af4bb39b89aeb2c0914764b7b96e5e3",
     "ebony_airgap_core.py": "d1a000aced1221919a11c2d0ea0fc1235756d9fa7aee4254249572f0f8c75c05",
     "ebony_automotive_master.py": "cea58877188016045f882ff61a9932dd5dd11601fbfd9e2d56b80276bdb6f540",
@@ -148,7 +148,7 @@
     "ebony_crypto_enclave.py": "b4cf8efeb27fd02ea548d0fc0b7790d83f7689a0af1e7510c0cca87ba2efd46b",
     "ebony_email_dispatcher.py": "5f574379af9d779a5199108932b8480638ad50b3e7e145bcc2d9c8a7aed9777f",
     "ebony_energy_demo.py": "87bb16a176004bf4d34599c17d6efc51852615b4a38e3d905e525a9f8981c358",
-    "ebony_exam_engine.py": "296b7cfc99f7027c436cf93ede0f14b7111089cbc307e0a82d5647bc86855d30",
+    "ebony_exam_engine.py": "a630ba490b6e61b18f4619940867809ed5060132deb90b1018ae48a721be1bfc",
     "ebony_executive_demo.py": "4b804dfc5bcfa8ee810481cc6b2a03ad289c41474e81c7633cc2eb204a57b7d3",
     "ebony_expansion_audit.py": "c9cba25a0d396be1e823278a5486f228dbf7873d34cc2b9ccdeab291279e7c39",
     "ebony_global_audit.py": "9b06bf730955d03945213ca03fdfa711000a857700c178d8840ff05b3232d376",
@@ -165,7 +165,7 @@
     "ebony_stripe_billing.py": "3292c339334b0e62976a13a8dc54dda8efcc70903172af1c275359c2851d9f7f",
     "ebony_structural_mission.py": "be3fa1d5df4d15d970ebfa6ac92de3d8820e009f88550c9b0e45062219fee7bc",
     "ebony_system_audit.py": "22ab99324a4132598e36e408cf41e5119898540fec86e0f808771b33738f76fc",
-    "ebony_textbook_library.py": "d9f687dec02ac6665ffcd71767945890d07d55d37fafdc319bb17c8e650ee3e5",
+    "ebony_textbook_library.py": "2f004b5c453109e26e0d3c98c3350513419e663202e95dcf4fc57d5844218c60",
     "ebony_tier_manager.py": "48b16423cd78019b7ee9ff33784b1816675a8f394bf4460cbd41a870cfcf648c",
     "ebony_travel_autopilot.py": "ec205f569f5db620b6229530b8c86cfd13a396fd2f0a1f9f2dea3f6349348a5a",
     "ebony_travel_ui.py": "a87f437d9cf554697741a36beee96b1cd97ac3a35aa0f857dd9c72ad1ae2dda4",
@@ -209,7 +209,7 @@
     "gateway_daemon.py": "24e59532bfdd2dba849d55b64c967386640e51f39aa12a32e3e076b7795c25eb",
     "gen_pilot_keys.py": "45053de6b84544c97c64c44dd8a082c513541c47b36cf1eea05ee209388ba6fa",
     "gen_test_frame.py": "c7fd6806be393c08367b9ba8b57d2195b44b8895364f846945aa12c81ffad9de",
-    "generate_academy_master_binder.py": "758b4118a38aedb60664a936bd7333100c59bd3d4ba7ab4e49a07b1342452aa5",
+    "generate_academy_master_binder.py": "21e0ad9a8738d40bf6436254c4a019febdc3c57c5fd1c1e20964fc6949490c5b",
     "generate_batch_dispatches.py": "8cd6448ba7a1ac537a8c00fbc3b34dceff320f494eec35bbeae3a884cf1d289f",
     "generate_disk_inventory.py": "ad32f5b85617329c574111832aa0465862c549505f16b967a5a9ff49e68d82c9",
     "generate_diu_whitepaper.py": "c584fd3e2e86386c31e8ec674eb60e976d8ecb8dae708f70d3628cd463544bb5",
@@ -584,7 +584,7 @@
     "verify_env.py": "65a8b4b17fb450a2b237697dbfd09e32c3fd4d10ad2f647ce988563d3ba59986",
     "verify_memory_persistence.py": "cab88f0a3627196eb9b8849c56fcea98ce872b45c95280a1442c9bd8b6180415",
     "verify_payment.py": "d02d9db5e26ccbe4addbe6b54e89c59b42d78a9aae9ae79c132c64d489a4a226",
-    "verify_sovereign_seal.py": "30916ed71ff34c581251bb68ef25ec437574d55cab2b135ec0ad1cc6a3556029",
+    "verify_sovereign_seal.py": "df04e8221c608ec178542b7ecb6137aab3f339c72eacc2cb9da14ecc27c633ad",
     "verify_tapo_stream.py": "ea965294a8c2767c696ad69d76f81025a2317163e44bffeb460c9fa7a31d2971",
     "verify_three_brain_proposal.py": "074661b8b61042d78d27e2f667a05ee33628439bbb9946eea105c534143f365b",
     "verify_tier15_release.py": "a7c0b850acc1bd64f747132954c87b5976362fbdcdc8d24eb8ad11cf9cbb74c4",
@@ -599,18 +599,19 @@
   },
   "sovereign_academy_metrics": {
     "accredited_hours_per_track": 40.0,
-    "chapter_1_unique_questions": 600,
-    "chapter_5_unique_questions": 465,
+    "chapter_1_unique_questions": 800,
+    "chapter_5_unique_questions": 620,
     "curricula_codes": [
       "STR-01",
       "STR-02",
       "STR-03",
       "ENV-01",
-      "PAV-01"
+      "PAV-01",
+      "AUT-01"
     ],
     "duplicate_questions": 0,
-    "total_accredited_hours": 120.0,
-    "total_unique_verified_questions": 1065
+    "total_accredited_hours": 160.0,
+    "total_unique_verified_questions": 1420
   },
   "total_compiled_c2_modules": 592,
   "uei": "S1M4ENLHTDH5"
