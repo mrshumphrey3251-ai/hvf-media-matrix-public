@@ -19,6 +19,18 @@ import ebony_textbook_library as etl
 import ebony_exam_engine as eee
 
 
+def _clean_text(val: str) -> str:
+    return (
+        str(val)
+        .replace("\u2014", "--")
+        .replace("\u2013", "-")
+        .replace("\u00a7", "Sec.")
+        .replace("—", "--")
+        .replace("–", "-")
+        .replace("§", "Sec.")
+    )
+
+
 def generate_master_executive_binder(student_id: str = "HVF-TECH-001", student_name: str = "Jeffery Humphrey") -> dict:
     reports_dir = Path(r"C:\hvf_c2\reports\executive_binder")
     reports_dir.mkdir(parents=True, exist_ok=True)
@@ -46,7 +58,7 @@ def generate_master_executive_binder(student_id: str = "HVF-TECH-001", student_n
             "Credit_Hours", "Calc_Input", "Expected_Ans", "Quiz_Score_Pct", "SHA256_WORM_Seal", "Timestamp_UTC"
         ])
         for r in mod_rows:
-            writer.writerow(r)
+            writer.writerow([_clean_text(c) if isinstance(c, str) else c for c in r])
 
     # Query Stage 1-3 Certificates from student_course_records
     cur.execute("""
@@ -108,7 +120,7 @@ def generate_master_executive_binder(student_id: str = "HVF-TECH-001", student_n
         seen_stages.add(cr[0])
         md_lines.append(f"| `{cr[0]}` | {cr[1]} | `{float(cr[3]):.1f}%` | `{cr[4]}` | `{str(cr[6])[:16]}...` |")
 
-    binder_md_text = "\n".join(md_lines) + "\n"
+    binder_md_text = _clean_text("\n".join(md_lines) + "\n")
     binder_hash = hashlib.sha256(binder_md_text.encode("utf-8")).hexdigest()
     binder_md_text += f"\n---\n**Master Executive Binder FIPS 180-4 SHA-256 Seal:** `{binder_hash}`\n"
 

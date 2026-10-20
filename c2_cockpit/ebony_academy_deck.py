@@ -100,6 +100,21 @@ def render_academy_deck():
         }
     }
 
+    courses["ENV-01"] = {
+        "title": "ENV-01: Radiometric Thermography, EPA Subpart OOOOb OGI & Environmental Forensics",
+        "credential": "EPA OOOOb OGI & ASNT Level-II Radiometric Thermographer",
+        "diagram": courses["STR-02"]["diagram"],
+        "video_demo": courses["STR-02"]["video_demo"],
+        "statutory": "40 CFR Part 60 Subpart OOOOb, ASTM C1153/E1934 & OAC 245:15-11 (40.0 PELS PDHs)"
+    }
+    courses["PAV-01"] = {
+        "title": "PAV-01: Highway Pavement Distress, Subgrade Mechanics & ASTM D6433 PCI Photogrammetry",
+        "credential": "ASTM D6433 & AASHTO R 86 Certified Pavement Engineer",
+        "diagram": courses["STR-03"]["diagram"],
+        "video_demo": courses["STR-03"]["video_demo"],
+        "statutory": "ASTM D6433 PCI, AASHTO R 86, ODOT Pavement Management & OAC 245:15-11 (40.0 PELS PDHs)"
+    }
+
     top_c1, top_c2, top_c3 = st.columns([3, 1.2, 1.2])
     with top_c1:
         selected_code = st.selectbox(
