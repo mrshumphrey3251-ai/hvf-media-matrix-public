@@ -39,6 +39,10 @@ def generate_master_executive_binder(student_id: str = "HVF-TECH-001", student_n
 
     conn = sqlite3.connect(str(db_path))
     cur = conn.cursor()
+    cur.execute("SELECT MAX(timestamp_utc) FROM academy_module_completions WHERE student_id = ?", (student_id,))
+    row_ts = cur.fetchone()
+    if row_ts and row_ts[0]:
+        now_utc = str(row_ts[0])
 
     # Export 120-Hour / 5-Code WORM Module Completions to CSV
     csv_path = reports_dir / f"HVF_Master_120Hr_WORM_Transcript_{student_id}.csv"

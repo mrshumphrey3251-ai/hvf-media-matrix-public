@@ -2,7 +2,7 @@
   "cage_code": "1AHA8",
   "classification": "LEVEL-5 SOVEREIGN INDUSTRIAL C2 & ACCREDITED ENGINEERING INSTITUTE",
   "entity": "Humphrey Virtual Farms LLC",
-  "master_c2_merkle_root_sha256": "c95729638743f9c1225291f54727fa7ba295c4e327a744c198fa6f0cd09b9c99",
+  "master_c2_merkle_root_sha256": "72e7a0b555c055be20d51e3165bdb519ef9cc6ef95b6f9eafe62fea50fb9dcd3",
   "module_sha256_digests": {
     "__init__.py": "795f10286e60c8fbe6ff725e033631a06873b70207c12b47bc9c7c596c489773",
     "access_control.py": "69c70606470de210949767543d3d34b8c7c95b581f9ca1fb247852b907f17208",
@@ -208,7 +208,7 @@
     "gateway_daemon.py": "192242c3f9468d984f62b039a2a3695353f12cb15f87b169c4ee3dcd8c1d9eeb",
     "gen_pilot_keys.py": "b5f18d3e9f065d4e2b4025ed8a04757cc7566f9a57d72a789ae43cac91d88942",
     "gen_test_frame.py": "7ab19d3bc8f576b5875924888e8bd7d379b53f79248c3224eec8ab3dd5453b10",
-    "generate_academy_master_binder.py": "42da6de3c09104075144e327774c3115c351d1bfa7d6d25bfc781863afb44a9f",
+    "generate_academy_master_binder.py": "758b4118a38aedb60664a936bd7333100c59bd3d4ba7ab4e49a07b1342452aa5",
     "generate_batch_dispatches.py": "e4095c65cd8250b150a09a2c60429c74755799e13163f49af4a202a7eaebb68a",
     "generate_disk_inventory.py": "ad32f5b85617329c574111832aa0465862c549505f16b967a5a9ff49e68d82c9",
     "generate_diu_whitepaper.py": "9027a9e4c4657a1eb7bf25e41e35328358c84313cac057081a3b81a0c0db3026",
