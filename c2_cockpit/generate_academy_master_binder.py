@@ -45,7 +45,8 @@ def generate_master_executive_binder(student_id: str = "HVF-TECH-001", student_n
         now_utc = str(row_ts[0])
 
     # Export 120-Hour / 5-Code WORM Module Completions to CSV
-    csv_path = reports_dir / f"HVF_Master_120Hr_WORM_Transcript_{student_id}.csv"
+    csv_path = reports_dir / f"HVF_Master_160Hr_WORM_Transcript_{student_id}.csv"
+    legacy_csv_path = reports_dir / f"HVF_Master_120Hr_WORM_Transcript_{student_id}.csv"
     cur.execute("""
         SELECT student_id, student_name, course_code, unit_num, unit_title,
                credit_hours, calc_input, expected_ans, quiz_score_pct, sha256_seal, timestamp_utc
@@ -63,6 +64,8 @@ def generate_master_executive_binder(student_id: str = "HVF-TECH-001", student_n
         ])
         for r in mod_rows:
             writer.writerow([_clean_text(c) if isinstance(c, str) else c for c in r])
+    import shutil as _sh
+    _sh.copy2(csv_path, legacy_csv_path)
 
     # Query Stage 1-3 Certificates from student_course_records
     cur.execute("""
