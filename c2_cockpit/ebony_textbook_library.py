@@ -1502,6 +1502,61 @@ def get_course_units(course_code: str):
                     f"3. **Phase 3 (Mechanical Service & Precision Torquing):** Execute component replacement/service, verify gasket/O-ring seating, and torque all fasteners to exact SAE/OEM lb-ft specification.\n"
                     f"4. **Phase 4 (NVIDIA Three-Brain CAN-Bus Verification & Safe Unplug):** Plug enclave into 16-Pin OBD-II or 9-Pin J1939/ISOBUS port, verify 60.0-Ohm bus & live telemetry, execute UDS 0x2E/0x31 relearn, seal WORM SHA-256 docket, and unplug safely."
                 )
+                _aut_q_bank = [
+                    ("When preparing to lift a vehicle or tractor for under-chassis service in {u_title}, what is the mandatory life-safety rule regarding hydraulic jacks?",
+                     "A hydraulic jack is for lifting ONLY; the vehicle MUST be lowered onto mechanical locking Jack Stands positioned under factory frame rails or pinch welds with wheel chocks installed and Shake-Tested",
+                     ["A hydraulic floor jack alone is safe to crawl under without jack stands", "Place the jack directly under the plastic engine oil pan or floorboard sheet metal", "Lift the vehicle on sloped gravel with the parking brake off"]),
+                    ("When opening the hood to check engine oil level in {u_title}, how do you locate and accurately read the Engine Oil Dipstick?",
+                     "Park on level ground with engine off for 5 minutes, pull the Yellow/Orange Dipstick loop, wipe it dry with a clean towel, re-insert fully, pull again, and verify oil is between MIN and MAX (1.0 quart span)",
+                     ["Read the dipstick while the engine is revving at 4,000 RPM", "Pour windshield washer fluid into the yellow dipstick tube until it overflows", "Never wipe the dipstick before reading the splashed oil film"]),
+                    ("When disconnecting a 12V/24V vehicle battery with a 10mm wrench during {u_title}, which terminal cable MUST be disconnected FIRST and reconnected LAST?",
+                     "Always disconnect the Black Negative (-) ground cable FIRST and reconnect it LAST so a wrench touching the Red Positive (+) terminal and metal fender cannot cause a dead-short arc explosion",
+                     ["Always disconnect Red Positive (+) first while leaving Black Negative (-) grounded to the chassis", "Short both terminals together with a screwdriver to test battery charge", "Pry the lead posts off with a hammer"]),
+                    ("During an engine oil and spin-on filter change in {u_title}, why must you inspect the top rim of the old oil filter and pre-lube the new filter's rubber O-ring?",
+                     "To verify the old rubber O-ring gasket did not stick to the engine block ('Double-Gasketing', which causes a total oil blowout on startup) and allow the new O-ring to seal smoothly when tightened 3/4 turn by hand",
+                     ["Leaving two stacked rubber gaskets doubles the oil pressure", "Tighten the thin sheet-metal oil filter with a 3-foot breaker bar until crushed", "Install the new oil filter bone-dry without draining the old oil"]),
+                    ("After replacing brake pads and rotors in {u_title}, what mandatory action MUST the technician perform before shifting the vehicle out of PARK?",
+                     "Pump the brake pedal slowly 5 to 8 times with your foot until the pedal feels rock-solid, seating the compressed caliper pistons against the new brake pads before moving",
+                     ["Shift immediately into Drive at 50 MPH without touching the brake pedal", "Coat the friction surfaces of the brake rotor and pads with heavy axle grease", "Let the heavy brake caliper hang by its rubber hydraulic hose"]),
+                    ("When servicing a front/rear differential ('pumpkin') or 4WD transfer case in {u_title}, why must you ALWAYS remove the TOP Fill Plug BEFORE removing the BOTTOM Drain Plug?",
+                     "Because if you drain all the gear oil out of the bottom plug first and then discover the top fill plug is rusted seized or stripped, the vehicle is stranded with an empty dry axle",
+                     ["Removing the bottom plug first creates a vacuum that welds the top plug shut", "Differentials do not use gear oil", "Fill the differential through the rubber brake bleeder screw"]),
+                    ("Before reaching under a push lawnmower or zero-turn deck to remove or sharpen a blade in {u_title}, what two safety rules are mandatory?",
+                     "1) Pull the thick black rubber Spark Plug Wire Boot completely off the spark plug so the blade cannot accidentally fire, and 2) Tip the mower with the Spark Plug and Air Filter pointing UP toward the sky",
+                     ["Leave the spark plug wire connected and tip the mower carburetor-side down so oil floods the air filter", "Sharpen the blade while the engine is idling", "Sharpen the curved back air-lift wings razor-thin and skip balancing"]),
+                    ("When a lawnmower, generator, or small engine in {u_title} will not start after sitting with E10 ethanol fuel, how does the 60-second Carburetor Float-Bowl Main Jet fix work?",
+                     "Drop the bottom float bowl cup using a 1/2-inch (13mm) or 10mm wrench, poke a thin copper wire through the clogged pinhole in the brass Main Jet bolt, and spray Carburetor Cleaner through all passages",
+                     ["Pour water into the gas tank to dissolve ethanol varnish", "Hit the aluminum carburetor with a sledgehammer", "Remove the engine flywheel and piston rings"]),
+                    ("How do 4-stroke lawnmower engines and 2-stroke handheld engines (chainsaws, string trimmers, leaf blowers) differ in lubrication during {u_title}?",
+                     "4-stroke engines have a separate oil sump and dipstick (SAE 30 / 10W-30), whereas 2-stroke engines have NO oil pan and require JASO FD 2-cycle oil mixed directly into the gasoline (50:1 = 2.6 fl oz oil per 1.0 Gal gas; 40:1 = 3.2 fl oz/Gal)",
+                     ["Both 2-stroke and 4-stroke engines run on pure unmixed gasoline with no oil anywhere", "Fill a 4-stroke lawnmower gas tank with 100% motor oil", "2-stroke chainsaws use 75W-140 differential gear oil in the fuel tank"]),
+                    ("When using a Digital Multimeter set to 20V DC to test a vehicle's battery and alternator in {u_title}, what voltage readings confirm a healthy system?",
+                     "12.60V to 12.80V DC with the engine OFF (100% charged battery), rising to 13.80V to 14.50V DC with the engine RUNNING (confirming the alternator and voltage regulator are charging)",
+                     ["5.0V DC with engine off and 5.0V DC with engine running", "120V AC household voltage across the battery posts", "0.0V DC while cranking"])
+                ]
+                _unreplaced_indices = [3, 4, 5, 6, 14, 15, 16, 17, 18, 19]
+                for _k_pos, _q_slot in enumerate(_unreplaced_indices):
+                    if _q_slot < len(_u.get("unit_quiz", [])):
+                        _st, _an, _ds = _aut_q_bank[_k_pos]
+                        _raw_o = [_an] + _ds
+                        _shf = (_idx + _k_pos) % 4
+                        _ord_o = _raw_o[_shf:] + _raw_o[:_shf]
+                        _lbl_o = []
+                        _m_full = ""
+                        _m_let = "A"
+                        for _li, _ot in enumerate(_ord_o):
+                            _let = chr(65 + _li)
+                            _lb = f"{_let}) {_ot}"
+                            _lbl_o.append(_lb)
+                            if _ot == _an:
+                                _m_let = _let
+                                _m_full = _lb
+                        _u["unit_quiz"][_q_slot] = {
+                            "q": f"[AUT-01 Unit {_idx+1:02d} Milestone Q{_q_slot+1:02d}] " + _st.format(u_title=_aut_Specs[_idx][0]),
+                            "opts": _lbl_o,
+                            "ans": _m_full,
+                            "correct_letter": _m_let
+                        }
     prof = _COURSE_DOMAIN_PROFILES.get(prof_code, _COURSE_DOMAIN_PROFILES["STR-01"])
     for u in units:
         u_num = u.get("unit", 1)
@@ -1543,7 +1598,7 @@ def get_course_units(course_code: str):
                 }
         gov_eq = str(u.get("governing_eq", "governing formulation")).splitlines()[0][:80]
         for extra_idx in range(len(uquiz)):
-            if extra_idx not in replacements:
+            if extra_idx not in replacements and course_code != "AUT-01":
                 old_q = str(uquiz[extra_idx].get("q", "")).strip()
                 clean_body = re.sub(r"^(?:\[[^\]]+\]\s*)+", "", old_q)
                 if u_title not in clean_body:

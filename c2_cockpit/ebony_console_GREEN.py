@@ -2436,10 +2436,10 @@ elif active_module == "📘 Omni-Industry Matrix":
                     st.write(
                         "Humphrey Virtual Farms LLC pairs every state infrastructure contract with a formal **Registered Apprenticeship Program**. "
                         "We train local Oklahoma technicians, rural youth, and military veterans through a debt-free, progressive wage model "
-                        "($24.50/hr to $42.50/hr) combining 120 hours of Related Technical Instruction (RTI) with 2,000 hours of mentored on-the-job training."
+                        "($24.50/hr to $42.50/hr) combining 160 hours of Related Technical Instruction (RTI) with 2,000 hours of mentored on-the-job training."
                     )
                     ap_col1, ap_col2, ap_col3 = st.columns(3)
-                    ap_col1.metric("Accredited RTI Training", "120 Hours", "STR-01 / 02 / 03")
+                    ap_col1.metric("Accredited RTI Training", "160 Hours", "STR-01 / ENV-01 / PAV-01 / AUT-01")
                     ap_col2.metric("OJT Field Apprenticeship", "2,000 Hours", "USDOL Registered Standards")
                     ap_col3.metric("Journeyman Wage Peak", "$42.50 / hr", "Oklahoma Technical Equity")
                     
@@ -2451,7 +2451,7 @@ elif active_module == "📘 Omni-Industry Matrix":
                             st.download_button(
                                 label="\U0001F4E5 Download Certified Oklahoma Apprenticeship Syllabus & Workforce Dossier",
                                 data=dossier_path.read_text(encoding="utf-8"),
-                                file_name="OK_APPRENTICESHIP_CIVIL_NDT_120HR.md",
+                                file_name="OK_APPRENTICESHIP_SOVEREIGN_160HR.md",
                                 mime="text/markdown",
                                 key="btn_dl_app_syllabus_clean",
                                 use_container_width=True

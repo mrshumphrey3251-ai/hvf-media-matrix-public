@@ -330,7 +330,7 @@ def render_academy_deck():
                     )
                 _reopen_gate = st.checkbox(
                     f"🔍 CEO / Instructor Review Mode: Display Calculation Gate & 20-Question Milestone Exam for Sealed Module {selected_unit_num:02d}",
-                    value=False,
+                    value=True,
                     key=f"reopen_sealed_{selected_code}_u{selected_unit_num}"
                 )
             if (not (is_done)) or _reopen_gate:

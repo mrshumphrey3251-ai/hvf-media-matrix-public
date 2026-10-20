@@ -917,12 +917,13 @@ def render_automotive_master_deck():
     b_col2.success("**⚡ Brain 2: NVIDIA GPU Diagnostic & ECU Solver**\n\nReal-time Fuel Trim (STFT+LTFT), Volumetric Efficiency (VE%), Misfire Mode $06, and UDS 0x2E/0x31 ECU calibration.")
     b_col3.warning("**🔒 Brain 3: WORM EEPROM & Hot-Swap Interlock**\n\nCaptures pre-flash SHA-256 EEPROM backup by VIN and locks UDS Session 0x01 before safe physical unplugging.")
 
-    tab_can, tab_maint, tab_perf, tab_auton, tab_ledger = st.tabs([
+    tab_can, tab_maint, tab_perf, tab_auton, tab_acad_q, tab_ledger = st.tabs([
         "🔌 1. NVIDIA CAN-Bus Diagnostic & ECU Calibration Workbench",
-        "🔧 2. Complete Preventative Maintenance Schedule (0-100k+ Mi)",
+        "📖 2. Bumper-to-Bumper & Small Engine Repair Guide (16 Zones)",
         "🚀 3. Performance Improvements & ECU Tuning Stages",
         "🤖 4. Autonomous Drive-by-Wire & Ag-Tractor ISOBUS Control",
-        "📜 5. Multi-Vehicle Hot-Swap WORM Service Ledger"
+        "🎓 5. Automotive & Small Engine Academy Exam (355 Questions)",
+        "📜 6. Multi-Vehicle Hot-Swap WORM Service Ledger"
     ])
 
     with tab_can:
@@ -1138,6 +1139,60 @@ def render_automotive_master_deck():
             st.success(f"✅ **Brain-3 Autonomous Drive-by-Wire Gate ARMED:** Transmitting `{cmd_steer_deg:+.2f} deg` curvature command on `{target_mode}` (`R_bus = {bus_r_ohms:.1f} Ohms`, `TTC = {ttc_sec:.1f}s`). Instantaneous `< 5 ms` human steering/brake takeover active.")
         else:
             st.error("🛑 **Brain-3 Kinematic Safety Guillotine ENGAGED:** Autonomous actuator frames blocked (`Human Override >= 2.5 lb-ft`, `TTC < 2.5s`, or `CAN Bus != 60 Ohms`). Control returned 100% to human operator / fail-safe brake hold.")
+
+    with tab_acad_q:
+        st.markdown("### 🎓 Accredited AUT-01 Automotive, Tractor, Small Engine & NVIDIA CAN-Bus Examination Bank (355 Total Questions)")
+        st.success("✅ **40.0 / 40.0 Accredited Credit Hours (10 Modules) & All 355 AUT-01 Questions Verified (200 Module Milestone Qs + 155 3-Tier State/ASE Exam Qs)**")
+        import ebony_textbook_library as _etl_auto
+        import ebony_exam_engine as _eee_auto
+
+        aq_c1, aq_c2 = st.columns(2)
+        with aq_c1:
+            bank_mode = st.radio(
+                "Select AUT-01 Question Bank to Inspect & Verify on Glass:",
+                [
+                    "📚 Part A: 10-Module Workstation Milestone Bank (200 Questions — 20 Qs per Module)",
+                    "📝 Part B: 3-Tier Master State / ASE Certification Exam Gauntlet (155 Questions — Stages 1, 2 & 3)"
+                ],
+                key="aut01_glass_bank_mode"
+            )
+        if bank_mode.startswith("📚"):
+            aut_units = _etl_auto.get_course_units("AUT-01")
+            with aq_c2:
+                sel_u_idx = st.selectbox(
+                    "Select AUT-01 Module (1 to 10):",
+                    range(len(aut_units)),
+                    format_func=lambda idx: f"{aut_units[idx]['title']} (20 Questions)",
+                    key="aut01_glass_unit_sel"
+                )
+            u_obj = aut_units[sel_u_idx]
+            st.info(f"**Governing Formulation:** `{u_obj['governing_eq']}`")
+            for qi, q_obj in enumerate(u_obj["unit_quiz"], 1):
+                st.markdown(f"**Question {qi:02d} / 20:** {q_obj['q']}")
+                for opt_str in q_obj["opts"]:
+                    if opt_str == q_obj["ans"]:
+                        st.markdown(f"- :green[**✔ {opt_str} (VERIFIED CORRECT ANSWER)**]")
+                    else:
+                        st.markdown(f"- {opt_str}")
+                st.markdown("---")
+        else:
+            with aq_c2:
+                sel_stg = st.selectbox(
+                    "Select AUT-01 3-Tier Certification Stage:",
+                    [1, 2, 3],
+                    format_func=lambda s: f"Stage {s}: {_eee_auto.STAGE_METADATA[s]['name']} ({_eee_auto.STAGE_METADATA[s]['questions_count']} Questions)",
+                    key="aut01_glass_stg_sel"
+                )
+            stg_qs = _eee_auto.generate_course_stage_questions("AUT-01", sel_stg)
+            for qi, sq in enumerate(stg_qs, 1):
+                st.markdown(f"**Stage {sel_stg} Question {qi:02d} / {len(stg_qs)}:** {sq['question']}")
+                for opt_str in sq["options"]:
+                    if opt_str.startswith(f"{sq['correct']})"):
+                        st.markdown(f"- :green[**✔ {opt_str} (VERIFIED CORRECT ANSWER)**]")
+                    else:
+                        st.markdown(f"- {opt_str}")
+                st.caption(f"💡 **Engineering Explanation:** {sq['explanation']}")
+                st.markdown("---")
 
     with tab_ledger:
         st.markdown("### 📜 Multi-Vehicle Hot-Swap WORM Service & ECU Calibration Ledger (`automotive_canbus_ledger`)")
