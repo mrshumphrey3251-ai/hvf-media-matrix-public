@@ -1498,3 +1498,65 @@ def get_course_units(course_code: str):
             q["correct_letter"] = str(q["ans"]).strip()[0].upper() if q.get("ans") else "A"
     return units
 
+
+COURSE_CATALOG = {
+    "STR-01": {
+        "code": "STR-01",
+        "title": "Bridge Deck, Pier & Fracture-Critical Member Inspection",
+        "name": "Bridge Deck, Pier & Fracture-Critical Member Inspection",
+        "credential": "AASHTO / ODOT Level-5 Bridge Inspector",
+        "statutory": "23 CFR § 650 (NBIS), AASHTO MBEI, Oklahoma Title 61 & OAC 245:15-11 (40.0 PELS PDHs)",
+        "hours": 40.0,
+        "ceus": 4.0,
+        "tuition": 2500.00
+    },
+    "STR-02": {
+        "code": "STR-02",
+        "title": "Commercial Building Envelope, Roof Membrane Moisture & Facade NDT",
+        "name": "Commercial Building Envelope, Roof Membrane Moisture & Facade NDT",
+        "credential": "ASTM C1153 / E1934 & EPA OOOOb Certified Thermographer",
+        "statutory": "40 CFR Part 60 Subpart OOOOb, ASTM C1153/E1934, Oklahoma Title 61 & OAC 245:15-11 (40.0 PELS PDHs)",
+        "hours": 40.0,
+        "ceus": 4.0,
+        "tuition": 2500.00
+    },
+    "STR-03": {
+        "code": "STR-03",
+        "title": "Roadway Pavement Distress, Rutting & ASTM D6433 PCI Survey",
+        "name": "Roadway Pavement Distress, Rutting & ASTM D6433 PCI Survey",
+        "credential": "ASTM D6433 Certified Roadway & Drainage Inspector",
+        "statutory": "ASTM D6433 PCI, AASHTO R 86, Oklahoma Title 61 & OAC 245:15-11 (40.0 PELS PDHs)",
+        "hours": 40.0,
+        "ceus": 4.0,
+        "tuition": 2500.00
+    },
+    "ENV-01": {
+        "code": "ENV-01",
+        "title": "Radiometric Thermography, EPA Subpart OOOOb OGI & Environmental Forensics",
+        "name": "Radiometric Thermography, EPA Subpart OOOOb OGI & Environmental Forensics",
+        "credential": "EPA OOOOb OGI & ASNT Level-II Radiometric Thermographer",
+        "statutory": "40 CFR Part 60 Subpart OOOOb, ASTM C1153/E1934, ASNT SNT-TC-1A & OAC 245:15-11 (40.0 PELS PDHs)",
+        "hours": 40.0,
+        "ceus": 4.0,
+        "tuition": 2500.00
+    },
+    "PAV-01": {
+        "code": "PAV-01",
+        "title": "Highway Pavement Distress, Subgrade Mechanics & ASTM D6433 PCI Photogrammetry",
+        "name": "Highway Pavement Distress, Subgrade Mechanics & ASTM D6433 PCI Photogrammetry",
+        "credential": "ASTM D6433 & AASHTO R 86 Certified Pavement Engineer",
+        "statutory": "ASTM D6433 PCI, AASHTO R 86, ODOT Pavement Management & OAC 245:15-11 (40.0 PELS PDHs)",
+        "hours": 40.0,
+        "ceus": 4.0,
+        "tuition": 2500.00
+    }
+}
+
+_ORIG_EXPORT_TEXTBOOK = export_full_course_textbook_markdown
+def export_full_course_textbook_markdown(course_code: str, course_meta: dict = None) -> str:
+    meta = course_meta or COURSE_CATALOG.get(course_code, COURSE_CATALOG["STR-01"])
+    try:
+        return _ORIG_EXPORT_TEXTBOOK(course_code, meta)
+    except TypeError:
+        return _ORIG_EXPORT_TEXTBOOK(course_code)
+
