@@ -210,6 +210,69 @@ PERFORMANCE_IMPROVEMENT_STAGES = {
 }
 
 
+def scan_physical_canbus_adapters() -> dict:
+    """
+    Probes Windows SAE J2534 Pass-Thru Registry, USB/Serial COM ports, and Linux/NVIDIA Jetson SocketCAN
+    interfaces so the Portable NVIDIA Three-Brain Enclave automatically detects live vehicle connections.
+    """
+    j2534_devices = []
+    com_ports = []
+    socketcan_ifaces = []
+
+    # 1. Probe Windows SAE J2534-1 / J2534-2 Pass-Thru Registry Keys
+    try:
+        import winreg
+        for reg_path in [r"SOFTWARE\PassThruSupport.04.04", r"SOFTWARE\WOW6432Node\PassThruSupport.04.04"]:
+            try:
+                with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, reg_path) as base_key:
+                    idx = 0
+                    while True:
+                        try:
+                            sub_name = winreg.EnumKey(base_key, idx)
+                            with winreg.OpenKey(base_key, sub_name) as dev_key:
+                                dll_val, _ = winreg.QueryValueEx(dev_key, "FunctionLibrary")
+                                j2534_devices.append(f"{sub_name} ({dll_val})")
+                            idx += 1
+                        except OSError:
+                            break
+            except OSError:
+                pass
+    except ImportError:
+        pass
+
+    # 2. Probe USB / UART Serial COM Ports (ELM327 / STN1170 / OBDLink / SLCAN)
+    try:
+        import serial.tools.list_ports as lp
+        for p in lp.comports():
+            com_ports.append(f"{p.device}: {p.description}")
+    except Exception:
+        pass
+
+    # 3. Probe Linux / NVIDIA Jetson Orin/Thor Native SocketCAN (can0, can1, vcan0)
+    try:
+        net_dir = Path("/sys/class/net")
+        if net_dir.exists():
+            for iface in sorted(net_dir.iterdir()):
+                if iface.name.startswith(("can", "vcan", "slcan")):
+                    socketcan_ifaces.append(iface.name)
+    except Exception:
+        pass
+
+    live_count = len(j2534_devices) + len(com_ports) + len(socketcan_ifaces)
+    mode_label = (
+        f"LIVE HARDWARE TRANSCEIVER ARMED ({live_count} Interface(s) Detected)"
+        if live_count > 0
+        else "STANDBY / DETERMINISTIC TELEMETRY TWIN READY (Plug USB J2534 / OBD-II / J1939 Cable to Auto-Lock)"
+    )
+    return {
+        "j2534_devices": j2534_devices,
+        "com_ports": com_ports,
+        "socketcan_ifaces": socketcan_ifaces,
+        "live_count": live_count,
+        "status_banner": mode_label
+    }
+
+
 def init_automotive_ledger():
     conn = sqlite3.connect(str(db_path))
     cur = conn.cursor()
@@ -372,6 +435,8 @@ def render_automotive_master_deck():
     st.subheader("🏎️ Sovereign Master Automotive Diagnostics, Maintenance & Portable NVIDIA Three-Brain CAN-Bus Enclave")
     st.caption("Hot-Swappable Multi-Vehicle OBD-II (SAE J1979) / Heavy-Duty (SAE J1939) / UDS (ISO 14229) ECU Calibration & WORM Service Ledger")
 
+    hw_state = scan_physical_canbus_adapters()
+    st.info(f"🔌 **Brain-1 Physical Transceiver Bus Status:** `{hw_state['status_banner']}` | **J2534 DLLs:** `{len(hw_state['j2534_devices'])}` | **USB/COM Ports:** `{len(hw_state['com_ports'])}` | **NVIDIA SocketCAN:** `{len(hw_state['socketcan_ifaces'])}`")
     b_col1, b_col2, b_col3 = st.columns(3)
     b_col1.info("**🧠 Brain 1: CAN-Bus Hardware Transceiver**\n\nOpto-isolated ISO 11898 / SAE J2534 Pass-Thru (Pins 6 & 14, 500 kbps / 2 Mbps CAN-FD, 60.0 Ohm termination check).")
     b_col2.success("**⚡ Brain 2: NVIDIA GPU Diagnostic & ECU Solver**\n\nReal-time Fuel Trim (STFT+LTFT), Volumetric Efficiency (VE%), Misfire Mode $06, and UDS 0x2E/0x31 ECU calibration.")

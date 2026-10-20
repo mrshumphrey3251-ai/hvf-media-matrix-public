@@ -132,7 +132,7 @@ def generate_master_executive_binder(student_id: str = "HVF-TECH-001", student_n
     md_path.write_bytes(binder_md_text.encode("utf-8"))
 
     print("=" * 92)
-    print("   MASTER EXECUTIVE ACADEMY BINDER & 120-HOUR WORM TRANSCRIPT GENERATED   ")
+    print("   MASTER EXECUTIVE ACADEMY BINDER & 160-HOUR WORM TRANSCRIPT GENERATED   ")
     print("=" * 92)
     print(f"Markdown Executive Binder : {md_path} ({len(binder_md_text):,} bytes)")
     print(f"CSV WORM Transcript       : {csv_path} ({len(mod_rows)} sealed module rows)")
