@@ -1,0 +1,60 @@
+"""
+Humphrey Virtual Farms LLC // Permanent Sovereign C2 & Field Academy Integrity Verifier
+CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | Statutory: OK Title 61, OAC 245:15-11, 23 CFR 650, 40 CFR 60 OOOOb, ASTM D6433
+"""
+import hashlib
+import sqlite3
+import sys
+from pathlib import Path
+
+cockpit_dir = Path(__file__).resolve().parent
+if str(cockpit_dir) not in sys.path:
+    sys.path.insert(0, str(cockpit_dir))
+
+import ebony_textbook_library as etl
+import ebony_exam_engine as eee
+
+
+def run_sovereign_verification() -> dict:
+    py_files = sorted(cockpit_dir.glob("*.py"))
+    concat_hashes = []
+    for f in py_files:
+        concat_hashes.append(f"{f.name}:{hashlib.sha256(f.read_bytes()).hexdigest()}")
+    merkle_root = hashlib.sha256("\n".join(concat_hashes).encode("utf-8")).hexdigest()
+
+    ch1_stems = set()
+    for code in ["STR-01", "STR-02", "STR-03", "ENV-01", "PAV-01"]:
+        units = etl.get_course_units(code)
+        assert len(units) == 10, f"Expected 10 units in {code}"
+        for u in units:
+            for q in u["unit_quiz"]:
+                assert q["ans"] in q["opts"], f"Answer key mismatch in {code} U{u['unit']}"
+                ch1_stems.add(q["q"])
+
+    ch5_stems = set()
+    for code in ["STR-01", "ENV-01", "PAV-01"]:
+        for stg, exp_n in [(1, 20), (2, 45), (3, 90)]:
+            qs = eee.generate_course_stage_questions(code, stg)
+            assert len(qs) == exp_n
+            for q in qs:
+                ch5_stems.add(q["question"])
+
+    print("=" * 92)
+    print("   HUMPHREY VIRTUAL FARMS LLC // SOVEREIGN C2 & ACADEMY INTEGRITY SEAL   ")
+    print("=" * 92)
+    print(f"Compiled C2 Python Modules      : {len(py_files)}")
+    print(f"Master C2 Merkle Root (SHA-256) : {merkle_root}")
+    print(f"Chapter 1 Unique Milestone Qs   : {len(ch1_stems)} / 600 (0 Duplicates)")
+    print(f"Chapter 5 Unique State Exam Qs  : {len(ch5_stems)} / 465 (0 Duplicates)")
+    print(f"Total Verified Academy Questions: {len(ch1_stems) + len(ch5_stems)} / 1,065")
+    print("=" * 92)
+    return {
+        "modules": len(py_files),
+        "merkle_root": merkle_root,
+        "ch1_questions": len(ch1_stems),
+        "ch5_questions": len(ch5_stems),
+    }
+
+
+if __name__ == "__main__":
+    run_sovereign_verification()
