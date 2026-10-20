@@ -36,6 +36,53 @@ CANBUS_PROTOCOLS = {
 }
 
 MASTER_DTC_AND_REPAIR_LIBRARY = {
+        "P0087": {
+        "category": "High-Pressure Direct-Injection / Common-Rail Fuel System (SAE J1979 / J1939)",
+        "title": "P0087: Fuel Rail / System Pressure — Too Low (Commanded vs. Actual Rail Delta > 1,500 psi)",
+        "telemetry_trigger": "Actual Fuel Rail Pressure (FRP) drops > 20% below ECU commanded target pressure under load",
+        "root_causes": [
+            "1. Restricted primary/secondary fuel filter or collapsed low-pressure lift pump supply line (< 50 psi supply).",
+            "2. High-Pressure Fuel Pump (HPFP / CP4) cam-lobe wear or metering quantity control valve (FCA/MPROP) sticking.",
+            "3. Leaking fuel rail pressure relief valve or stuck-open piezo/solenoid injector returning excessive fuel to tank."
+        ],
+        "repair_sop": [
+            "Step 1 (Low-Side vs. High-Side Pressure Gate): Log Commanded FRP vs. Actual FRP (psi) via NVIDIA Brain-1 during 1,500-3,000 RPM sweep.",
+            "Step 2 (Injector Return Bottle & Volume Test): Execute UDS 0x31 High-Pressure Leak Test and measure individual injector return volume (must be < 15 mL/min cranking).",
+            "Step 3 (Filter/Pump Replacement & Rail Calibration): Replace filters/HPFP, bleed air via UDS 0x31 Fuel Lift Pump Prime routine, and reset Fuel Metering Valve adaptive learning."
+        ],
+        "ecu_adjustment": "Execute UDS 0x31 Fuel Rail Pressure Relief Valve & Metering Unit Zero-Offset Calibration and Injector IQA/IMA Trim Code registration."
+    },
+    "P0299": {
+        "category": "Forced-Induction Turbocharger / VGT Boost Control (SAE J1979 / J1939)",
+        "title": "P0299: Turbocharger / Supercharger 'A' Underboost Condition (MAP < Target Boost by >= 4.0 psi)",
+        "telemetry_trigger": "Manifold Absolute Pressure (MAP) remains >= 4.0 psi below Commanded Boost Target for > 5.0 seconds under WOT",
+        "root_causes": [
+            "1. Charge-Air Cooler (Intercooler) boot tear or boost pressure leak between turbo compressor outlet and intake throttle body.",
+            "2. Sticking Variable Geometry Turbocharger (VGT) unison ring vanes or failed electronic wastegate actuator / boost solenoid.",
+            "3. Exhaust drive-pressure leak upstream of turbine housing (cracked manifold or blown up-pipe bellows gasket)."
+        ],
+        "repair_sop": [
+            "Step 1 (Smoke & Pressure Decay Gate): Pressurize intake charge tract to 20.0 psi with shop air regulator; verify pressure decay is < 1.0 psi over 30 seconds.",
+            "Step 2 (NVIDIA Brain-1 VGT/Wastegate Sweep): Command UDS 0x31 VGT Actuator / Wastegate Solenoid 0% to 100% duty-cycle sweep while observing position feedback.",
+            "Step 3 (Repair & VGT End-Stop Calibration): Seal charge-pipe leaks or clean VGT vanes, then execute UDS 0x31 Turbocharger VGT Actuator End-Stop Learn."
+        ],
+        "ecu_adjustment": "Calibrate VGT / Electronic Wastegate closed-loop PID span limits and reset Barometric / MAP sensor key-on correlation."
+    },
+    "B1000": {
+        "category": "Body Control Module (BCM) / ECU Internal EEPROM & Immobilizer Security",
+        "title": "B1000 / P0601: Internal Control Module Memory Checksum / EEPROM Configuration Error",
+        "telemetry_trigger": "ECU internal flash/EEPROM CRC-32 checksum mismatch or incomplete module As-Built configuration block",
+        "root_causes": [
+            "1. Battery voltage drop below 9.6V during module wake-up or interrupted aftermarket programmer write.",
+            "2. Corrupted As-Built configuration blocks (tire size, axle ratio, DRL, trailer brake controller flags) in BCM EEPROM."
+        ],
+        "repair_sop": [
+            "Step 1 (13.5V Power Supply Gate): Connect clean 50-Amp regulated power supply (13.50V DC) to vehicle battery terminals before any EEPROM operation.",
+            "Step 2 (NVIDIA Brain-3 Baseline Restore): Compare current module blocks against WORM-sealed As-Built hexadecimal image in matrix_ledger.db.",
+            "Step 3 (UDS 0x2E As-Built Write & Checksum Seal): Re-write verified As-Built blocks via UDS 0x2E, recalculate CRC-32 checksum, and execute UDS 0x11 ECU Hard Reset."
+        ],
+        "ecu_adjustment": "Restore verified As-Built hexadecimal configuration blocks via UDS 0x2E and seal new EEPROM CRC-32 checksum in WORM ledger."
+    },
     "U0100": {
         "category": "CAN-Bus / ECU Computer Network (ISO 11898)",
         "title": "U0100: Lost Communication With Engine Control Module (ECM/PCM 'A')",
@@ -261,6 +308,11 @@ def evaluate_vehicle_canbus_and_ecu(
 
 
 FLEET_VEHICLE_PRESETS = {
+        "TRACTOR_90_J1939": {
+        "label": "Ag / Heavy Equipment: HVF 9.0L Tier-4 Final Tractor (SAE J1939 250 kbps)",
+        "vin": "1RW8370R0NP040004", "desc": "HVF Sovereign Ag Tractor #04 (9.0L Turbo-Diesel PowerTech)",
+        "proto": "SAE_J1939_29BIT_250K", "dtc": "P0087", "rpm": 1900.0, "tq": 1050.0, "maf": 235.0, "disp": 9.0, "stft": 0.0, "ltft": 0.8
+    },
     "F150_50_V8_OBD2": {
         "label": "Light-Duty Fleet: HVF F-150 5.0L V8 (ISO 15765-4 OBD-II 500 kbps)",
         "vin": "1FTFW1E50NFA00001", "desc": "HVF Fleet Command Unit #01 (5.0L Coyote V8 / 10R80)",
@@ -372,12 +424,37 @@ def render_automotive_master_deck():
 
         st.markdown(f"#### 🔍 Root-Cause Engineering Diagnosis for `{res['dtc_title']}`")
         for rc in res["root_causes"]:
-            st.write(f"- {rc}")
+            st.markdown(f"**{rc}**")
         st.markdown("#### 🛠️ Step-by-Step Master Technician Repair & NVIDIA CAN-Bus SOP")
         for step_txt in res["repair_sop"]:
             st.info(step_txt)
         st.success(f"⚡ **NVIDIA Brain-2 ECU Computer Calibration Applied:** {res['ecu_adjustment']}")
         st.success(f"🔌 **Brain-3 Hot-Swap Safe-Disconnect Interlock:** `{res['hot_swap_status']}`\n\n- **Baseline EEPROM Backup SHA-256:** `{res['baseline_eeprom_sha256']}`\n- **Post-Calibration WORM Seal SHA-256:** `{res['post_cal_record_sha256']}`")
+        dossier_md = (
+            "================================================================================\n"
+            "   HUMPHREY VIRTUAL FARMS LLC // NVIDIA THREE-BRAIN CAN-BUS VEHICLE DOSSIER     \n"
+            "   CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | SAE J1979 / J1939 / ISO 14229 UDS SEALED   \n"
+            "================================================================================\n"
+            f"Vehicle VIN          : {res['vin']}\n"
+            f"Asset Description    : {res['vehicle_desc']}\n"
+            f"CAN-Bus Protocol     : {res['can_protocol']}\n"
+            f"Physical Pinout      : {res['can_pins']}\n"
+            f"Diagnostic Fault Code: {res['dtc_title']}\n"
+            f"Measured Output (SAE): {res['calculated_hp']} HP | Volumetric Efficiency: {res['volumetric_efficiency_pct']}% | Fuel Trim: {res['total_fuel_trim_pct']}%\n"
+            f"ECU Calibration Fix  : {res['ecu_adjustment']}\n"
+            f"Hot-Swap Interlock   : {res['hot_swap_status']}\n"
+            f"Baseline EEPROM Hash : {res['baseline_eeprom_sha256']}\n"
+            f"Post-Cal WORM Seal   : {res['post_cal_record_sha256']}\n"
+            "================================================================================\n"
+        )
+        st.download_button(
+            label=f"📥 Download Signed NVIDIA Three-Brain CAN-Bus Diagnostic & ECU Calibration Dossier ({res['vin']})",
+            data=dossier_md,
+            file_name=f"HVF_CANBus_ECU_Dossier_{res['vin']}_{res['dtc_code']}.md",
+            mime="text/markdown",
+            use_container_width=True,
+            key=f"dl_auto_dossier_{res['vin']}_{res['dtc_code']}"
+        )
 
     with tab_maint:
         st.markdown("### 🔧 Complete 0 to 100,000+ Mile Master Preventative Maintenance & Torque Guide")
@@ -387,6 +464,33 @@ def render_automotive_master_deck():
             st.markdown("---")
 
     with tab_perf:
+        st.markdown("### 🧮 Interactive Performance Injector, Boost, Torque-to-Yield & Drivetrain Calculator")
+        p_c1, p_c2, p_c3, p_c4 = st.columns(4)
+        with p_c1:
+            target_hp = st.number_input("Target Crank Horsepower (HP):", value=550.0, step=25.0, key="perf_hp")
+            cyl_cnt = st.number_input("Number of Cylinders:", value=8, step=1, min_value=1, key="perf_cyl")
+        with p_c2:
+            bsfc_val = st.number_input("BSFC (0.45 NA / 0.55 Boosted):", value=0.52, step=0.01, key="perf_bsfc")
+            bolt_dia = st.number_input("Fastener Bolt Diameter D (in):", value=0.50, step=0.05, key="perf_bolt_d")
+        with p_c3:
+            clamp_lbs = st.number_input("Target Clamping Preload F (lbs):", value=12000.0, step=500.0, key="perf_clamp")
+            k_fric = st.number_input("Thread Friction Factor K (0.15 lubed / 0.20 dry):", value=0.18, step=0.01, key="perf_k")
+        with p_c4:
+            gear_ratio = st.number_input("Differential Final Drive Ratio:", value=3.73, step=0.05, key="perf_gear")
+            tire_in = st.number_input("Tire Outer Diameter (inches):", value=33.0, step=0.5, key="perf_tire")
+
+        req_inj_lb_hr = (target_hp * bsfc_val) / (float(cyl_cnt) * 0.80)
+        req_inj_cc_min = req_inj_lb_hr * 10.5
+        req_torque_lb_ft = (k_fric * bolt_dia * clamp_lbs) / 12.0
+        rpm_at_70mph = (70.0 * gear_ratio * 336.0) / max(tire_in, 1.0)
+        tire_revs_mile = 20168.0 / max(tire_in, 1.0)
+
+        pm1, pm2, pm3, pm4 = st.columns(4)
+        pm1.metric("Required Injector Size (80% Duty)", f"{req_inj_lb_hr:.1f} lb/hr", f"{req_inj_cc_min:.0f} cc/min per cyl")
+        pm2.metric("Fastener Preload Torque (T = K*D*F/12)", f"{req_torque_lb_ft:.1f} lb-ft", f"{clamp_lbs:,.0f} lbs Clamp Load")
+        pm3.metric("Engine Speed @ 70 MPH Cruise", f"{rpm_at_70mph:.0f} RPM", f"{gear_ratio:.2f}:1 on {tire_in:.1f}-in Tires")
+        pm4.metric("BCM Tire Calibration Factor", f"{tire_revs_mile:.1f} Revs/Mile", "Write via UDS 0x2E to BCM/ABS")
+        st.markdown("---")
         st.markdown("### 🚀 Master Performance Improvements, Forced Induction & Chassis Engineering")
         for s_key, s_val in PERFORMANCE_IMPROVEMENT_STAGES.items():
             st.markdown(f"#### 🏆 {s_val['title']}")
