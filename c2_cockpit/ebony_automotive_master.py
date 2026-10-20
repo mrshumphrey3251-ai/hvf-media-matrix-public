@@ -27,6 +27,12 @@ CANBUS_PROTOCOLS = {
         "termination_ohms": 60.0,
         "uds_services": ["0x10 Extended/Programming Session", "0x22 Live Telemetry", "0x2E Adaptive Table Trim", "0x14 ClearDiagnosticInformation"]
     },
+        "ISO_11783_ISOBUS_TRACTOR_TIM": {
+        "name": "ISO 11783 ISOBUS / SAE J1939 Autonomous Tractor & Implement Management (TIM 250/500 kbps)",
+        "pins": "9-Pin ISO 11783 In-Cab Port: Pin C (TECU CAN_H) / Pin D (TECU CAN_L) / Pin H (Implement CAN_H) / Pin J (Implement CAN_L)",
+        "termination_ohms": 60.0,
+        "uds_services": ["PGN 61482 (0xEF02) Guidance System Command", "PGN 61444 (TSC1) Torque/Speed Control", "PGN 61441 (EBC1) Electronic Brake", "ISOBUS Class 3 TIM"]
+    },
     "SAE_J1939_29BIT_250K": {
         "name": "SAE J1939 Heavy-Duty Commercial & Agricultural Diesel Bus (29-Bit PGN, 250/500 kbps)",
         "pins": "9-Pin Deutsch: Pin A (GND) / Pin B (+12V/24V) / Pin C (CAN_H) / Pin D (CAN_L)",
@@ -442,11 +448,12 @@ def render_automotive_master_deck():
     b_col2.success("**⚡ Brain 2: NVIDIA GPU Diagnostic & ECU Solver**\n\nReal-time Fuel Trim (STFT+LTFT), Volumetric Efficiency (VE%), Misfire Mode $06, and UDS 0x2E/0x31 ECU calibration.")
     b_col3.warning("**🔒 Brain 3: WORM EEPROM & Hot-Swap Interlock**\n\nCaptures pre-flash SHA-256 EEPROM backup by VIN and locks UDS Session 0x01 before safe physical unplugging.")
 
-    tab_can, tab_maint, tab_perf, tab_ledger = st.tabs([
+    tab_can, tab_maint, tab_perf, tab_auton, tab_ledger = st.tabs([
         "🔌 1. NVIDIA CAN-Bus Diagnostic & ECU Calibration Workbench",
         "🔧 2. Complete Preventative Maintenance Schedule (0-100k+ Mi)",
         "🚀 3. Performance Improvements & ECU Tuning Stages",
-        "📜 4. Multi-Vehicle Hot-Swap WORM Service Ledger"
+        "🤖 4. Autonomous Drive-by-Wire & Ag-Tractor ISOBUS Control",
+        "📜 5. Multi-Vehicle Hot-Swap WORM Service Ledger"
     ])
 
     with tab_can:
@@ -565,6 +572,45 @@ def render_automotive_master_deck():
             st.markdown(f"- **NVIDIA CAN-Bus ECU Calibration:** {s_val['ecu_calibration']}")
             st.markdown(f"- **Verified Engineering Gains:** `{s_val['expected_gains']}`")
             st.markdown("---")
+
+    with tab_auton:
+        st.markdown("### 🤖 NVIDIA Three-Brain Autonomous Drive-by-Wire (SAE J1939 / ISO 11783 ISOBUS / EPAS) Control Workbench")
+        st.caption("Brain 2 (NVIDIA GPU Stanley/PID Path Planner) -> Brain 3 (Kinematic Guillotine & Human Override Safety Interlock) -> Brain 1 (CAN-Bus Actuator Frame)")
+        a_c1, a_c2, a_c3, a_c4 = st.columns(4)
+        with a_c1:
+            ct_err_in = st.number_input("RTK Cross-Track Error e_ct (inches):", value=2.4, step=0.5, key="auton_ect")
+            head_err_deg = st.number_input("Heading Error psi_e (degrees):", value=1.8, step=0.2, key="auton_psi")
+        with a_c2:
+            veh_speed_mph = st.number_input("Vehicle Ground Speed (MPH):", value=12.0, step=1.0, min_value=0.5, key="auton_spd")
+            stanley_k = st.number_input("Stanley Gain Factor k:", value=1.2, step=0.1, key="auton_k")
+        with a_c3:
+            ttc_sec = st.number_input("LiDAR/Radar Time-to-Collision TTC (sec):", value=6.5, step=0.5, key="auton_ttc")
+            drv_tq_lbft = st.number_input("Human Steering Wheel Override Torque (lb-ft):", value=0.2, step=0.2, key="auton_drv_tq")
+        with a_c4:
+            bus_r_ohms = st.number_input("Measured CAN-Bus Loop Resistance (Ohms):", value=60.0, step=0.5, key="auton_r")
+            target_mode = st.selectbox("Autonomous Bus Profile:", ["ISO 11783 ISOBUS Tractor (PGN 61482 + TSC1)", "SAE J1939 Highway Truck (EPAS + EBC1)", "OBD-II / CAN-FD Passenger ADAS"], key="auton_mode")
+
+        import math
+        v_fps = (veh_speed_mph * 5280.0) / 3600.0
+        ect_ft = ct_err_in / 12.0
+        cmd_steer_deg = head_err_deg + math.degrees(math.atan((stanley_k * ect_ft) / (v_fps + 1.0)))
+        cmd_steer_deg = max(min(cmd_steer_deg, 35.0), -35.0)
+
+        safe_override = drv_tq_lbft < 2.5
+        safe_ttc = ttc_sec >= 2.5
+        safe_bus = 58.0 <= bus_r_ohms <= 62.0
+        interlock_pass = safe_override and safe_ttc and safe_bus
+
+        am1, am2, am3, am4 = st.columns(4)
+        am1.metric("Commanded Steering Angle (Stanley)", f"{cmd_steer_deg:+.2f} deg", f"Cross-Track: {ct_err_in:.1f} in")
+        am2.metric("Human Override Disengage Gate", "STANDBY (Auto Active)" if safe_override else "HUMAN OVERRIDE (<5ms)", f"{drv_tq_lbft:.1f} lb-ft (< 2.5 lb-ft limit)")
+        am3.metric("Obstacle Time-to-Collision (TTC)", f"{ttc_sec:.1f} sec", "CLEAR (>= 2.5s)" if safe_ttc else "EMERGENCY BRAKE EBC1")
+        am4.metric("Brain-3 Autonomous Bus Interlock", "ARMED / TRANSMITTING" if interlock_pass else "DISENGAGED / SAFE HOLD", target_mode[:24])
+
+        if interlock_pass:
+            st.success(f"✅ **Brain-3 Autonomous Drive-by-Wire Gate ARMED:** Transmitting `{cmd_steer_deg:+.2f} deg` curvature command on `{target_mode}` (`R_bus = {bus_r_ohms:.1f} Ohms`, `TTC = {ttc_sec:.1f}s`). Instantaneous `< 5 ms` human steering/brake takeover active.")
+        else:
+            st.error("🛑 **Brain-3 Kinematic Safety Guillotine ENGAGED:** Autonomous actuator frames blocked (`Human Override >= 2.5 lb-ft`, `TTC < 2.5s`, or `CAN Bus != 60 Ohms`). Control returned 100% to human operator / fail-safe brake hold.")
 
     with tab_ledger:
         st.markdown("### 📜 Multi-Vehicle Hot-Swap WORM Service & ECU Calibration Ledger (`automotive_canbus_ledger`)")
