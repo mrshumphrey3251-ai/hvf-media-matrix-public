@@ -1249,3 +1249,221 @@ def get_course_units(course_code: str):
                 _u_item[_k_field] = _s_txt
         _u_item["unit_quiz"] = _build_20_question_milestone_exam(_u_item, course_code)
     return units
+
+# ==============================================================================
+# CURRICULUM-SPECIFIC QUESTION DIFFERENTIATION ENGINE (STR-01 vs ENV-01 vs PAV-01)
+# Guarantees zero identical opening questions across the three accredited exams
+# ==============================================================================
+import re
+_COURSE_DOMAIN_PROFILES = {
+    "STR-01": {
+        "agency_statute": "23 CFR § 650 (NBIS), AASHTO MBEI, and Oklahoma Title 61 Bridge Safety Mandates",
+        "q1_stem": "Under 23 CFR § 650 (National Bridge Inspection Standards) and AASHTO MBEI protocol, how must fracture-critical and element-level bridge telemetry from {u_title} be preserved for the official ODOT structural docket?",
+        "q1_ans": "Sealed immediately in a Write-Once-Read-Many (WORM) SQLite structural ledger with a FIPS 180-4 SHA-256 cryptographic digest linked to the NBI Structure Number",
+        "q1_d1": "Overwritten inside an unverified local spreadsheet without NBI structure indexing",
+        "q1_d2": "Discarded after the 24-month visual windshield pass is completed",
+        "q1_d3": "Converted into uncalibrated consumer video clips with no bridge element ID",
+        "q2_stem": "When a structural bridge evaluation in {u_title} identifies a Condition State 4 (CS-4 Severe) defect or critical load-capacity reduction below legal operating rating (RF < 1.0), what is the mandatory statutory action?",
+        "q2_ans": "Trigger an immediate Structural Critical Finding Docket under 23 CFR § 650.313(h) and Oklahoma Title 61 for emergency load posting, shoring, or lane closure",
+        "q2_d1": "Defer structural load rating until the next 48-month underwater inspection cycle",
+        "q2_d2": "Apply non-structural epoxy coating over the active fatigue crack without engineering review",
+        "q2_d3": "Reclassify the fracture-critical member as non-redundant cosmetic trim",
+        "q3_stem": "Why must calibrated AASHTO / FHWA structural mechanics formulations and non-destructive testing (NDT) boundary conditions be verified before signing the NBI bridge docket for {u_title}?",
+        "q3_ans": "To satisfy 23 CFR § 650, 18 U.S.C. § 1001, and Oklahoma Title 61 evidentiary admissibility and prevent catastrophic superstructure or substructure collapse",
+        "q3_d1": "AASHTO equations are optional guidelines that do not apply to state highway bridges",
+        "q3_d2": "Binocular viewing from the roadway shoulder replaces quantitative section-loss math",
+        "q3_d3": "Bridge load ratings only require calibration once every 25 years",
+        "q8_stem": "During an under-deck or superstructure sUAS bridge inspection sortie for {u_title}, what aerodynamic and structural proximity boundary must be maintained under ODOT / FAA Part 107 standards?",
+        "q8_ans": "Sustained wind speed < 15.0 mph outside girder wake-turbulence zones with optical collision-avoidance and EKF visual-inertial odometry active in GPS-denied under-deck spans",
+        "q8_d1": "Flight in 55.0 mph crosswinds between steel floorbeams using barometric altitude only",
+        "q8_d2": "Direct physical contact with live high-voltage utility conduits attached to the bridge fascia",
+        "q8_d3": "Disabling IMU attitude stabilization while hovering inside concrete box girders",
+        "q9_stem": "To resolve hairline fatigue cracks or concrete spalling in {u_title} per AASHTO MBEI CS-2/CS-3 thresholds, what optical Ground Sample Distance (GSD) and surface lighting are required?",
+        "q9_ans": "Optical GSD <= 0.004 in/px (4 mils, resolving 0.004-inch hairline cracks) with shadow-free under-deck illumination >= 1.4 foot-candles",
+        "q9_d1": "Coarse 1.50 in/px aerial overview imagery captured in complete under-deck darkness (0.0 fc)",
+        "q9_d2": "Digital zoom from 400 ft AGL with uncalibrated motion blur across gusset plate rivets",
+        "q9_d3": "3.00 in/px satellite imagery taken during heavy fog",
+        "q10_stem": "When performing ASTM D4788 infrared bridge-deck delamination mapping in {u_title}, what solar loading and minimum surface thermal differential (Delta_T) are required?",
+        "q10_ans": "Minimum 3.0 hours of direct solar irradiance producing a verified thermal anomaly Delta_T >= +3.6 °F (+2.0 °C) over sound reinforced concrete deck areas",
+        "q10_d1": "Midnight isothermal bridge deck conditions (Delta_T = 0.0 °F) during active freezing rain",
+        "q10_d2": "Standing water > 0.5 inches deep covering the concrete bridge riding surface",
+        "q10_d3": "Uncalibrated thermal imaging without concrete emissivity (epsilon = 0.92-0.95) correction",
+        "q11_stem": "When georeferencing bridge pier scour contours, bearing offsets, or deck spall polygons in {u_title}, what RTK/PPK geodetic accuracy must be locked?",
+        "q11_ans": "Horizontal error <= 0.60 inches and Vertical elevation error <= 0.18 inches referenced to the state bridge datum (NAVD88 / NAD83 U.S. Survey Feet)",
+        "q11_d1": "Standalone consumer GPS with +/- 35.0 feet of horizontal drift beneath the steel deck",
+        "q11_d2": "Dead-reckoning estimation from the nearest highway milepost sign",
+        "q11_d3": "Uncorrected barometric pressure altitude drifting +/- 80.0 inches over the river channel",
+        "q12_stem": "In AASHTO bridge coating, steel gusset plate corrosion, and concrete crack width inspections for {u_title}, how is 1 mil defined in U.S. Customary units?",
+        "q12_ans": "1 mil = 0.001 inches (one thousandth of an inch; e.g., a 12-mil epoxy bridge coating = 0.012 in, and 1,000 mils = 1.0 inch)",
+        "q12_d1": "1 mil = 1.0 millimeter of structural steel flange thickness",
+        "q12_d2": "1 mil = 1,000 pounds of AASHTO HL-93 design tandem axle load",
+        "q12_d3": "1 mil = 1.0 statute mile of interstate bridge corridor",
+        "q13_stem": "Under 23 CFR § 650.305 and Oklahoma Title 61, what minimum clear opening length along the roadway centerline classifies a highway structure or multiple-barrel culvert in {u_title} as an NBI Bridge?",
+        "q13_ans": "More than 20.0 feet (L_total > 20.0 ft) measured along the centerline of the roadway between extreme ends of the opening",
+        "q13_d1": "Only suspension bridges exceeding 1,000.0 feet of main span length",
+        "q13_d2": "Any drainage pipe with an interior diameter of 12.0 inches or less",
+        "q13_d3": "Span length has no statutory relevance under federal NBIS regulations",
+        "q14_stem": "In the AASHTO Manual for Bridge Element Inspection (MBEI) applied to {u_title}, how does Condition State 1 (CS-1: Good) differ from Condition State 4 (CS-4: Severe)?",
+        "q14_ans": "CS-1 indicates bridge element preservation with no structural distress, whereas CS-4 indicates severe section loss or distress warranting immediate structural review or load rating",
+        "q14_d1": "CS-1 requires immediate bridge closure, whereas CS-4 indicates new construction",
+        "q14_d2": "CS-1 and CS-4 are arbitrary aesthetic ratings for bridge paint color",
+        "q14_d3": "CS-4 allows the bridge owner to extend inspection intervals to 120 months",
+    },
+    "ENV-01": {
+        "agency_statute": "40 CFR Part 60 (EPA OOOOa/OOOOb), ASTM C1153 / E1934 Radiometric Thermography, and Oklahoma DEQ / Title 61 Environmental Forensics",
+        "q1_stem": "Under 40 CFR Part 60 (EPA Subpart OOOOb), ODEQ rules, and Oklahoma Title 61 forensic standards, how must radiometric thermal and Optical Gas Imaging (OGI) plume telemetry from {u_title} be preserved?",
+        "q1_ans": "Sealed immediately in a Write-Once-Read-Many (WORM) SQLite environmental ledger with a FIPS 180-4 SHA-256 hash binding the 16-bit radiometric RJPEG/OGI frames and GPS coordinates",
+        "q1_d1": "Converted into 8-bit lossy social-media screenshots with radiometric temperature arrays stripped",
+        "q1_d2": "Deleted after logging a subjective odor observation on a paper clipboard",
+        "q1_d3": "Averaged across uncalibrated visual webcams lacking spectral LWIR/MWIR response",
+        "q2_stem": "When an environmental or radiometric thermal inspection in {u_title} detects an unpermitted fugitive hydrocarbon leak, hazardous containment breach, or critical electrical hot-spot exceeding ASTM E1934 Class-A thresholds, what is required?",
+        "q2_ans": "Trigger an immediate Statutory Environmental / Thermal Critical Action Docket under 40 CFR Part 60 and Oklahoma Title 61 for emergency isolation, LDAR repair within statutory deadlines, or de-energization",
+        "q2_d1": "Vent the fugitive methane or hazardous plume continuously until the next 5-year permit renewal",
+        "q2_d2": "Lower the infrared camera emissivity setting to 0.10 to artificially mask the thermal spike",
+        "q2_d3": "Spray cold water on the energized transformer bushing while recording baseline temperatures",
+        "q3_stem": "Why must Planck radiation physics, surface emissivity (epsilon), reflected apparent temperature (T_refl), and atmospheric transmittance be calibrated before certifying telemetry in {u_title}?",
+        "q3_ans": "To guarantee quantitative radiometric accuracy and evidentiary admissibility under EPA 40 CFR Part 60, ASTM C1153, and 18 U.S.C. § 1001 without false-negative leak or hot-spot omissions",
+        "q3_d1": "All industrial metals, gases, and soils have an identical blackbody emissivity of 1.00",
+        "q3_d2": "Color palette selection (Rainbow vs. Ironbow) replaces radiometric temperature calibration",
+        "q3_d3": "Infrared sensors never require NUC (Non-Uniformity Correction) or atmospheric compensation",
+        "q8_stem": "During an EPA Method 21 / OOOOb Optical Gas Imaging (OGI) or ASTM C1153 thermal containment survey for {u_title}, why must sustained ambient wind speed remain below 15.0 mph?",
+        "q8_ans": "High winds (> 15.0 mph) cause rapid convective cooling (forced convection stripping surface Delta_T) and turbulent plume dilution below the sensor Noise Equivalent Concentration Length (NECL)",
+        "q8_d1": "Gale-force winds (50.0 mph) concentrate fugitive methane plumes into stationary columns",
+        "q8_d2": "Wind speed has zero thermodynamic effect on convective heat transfer or gas dispersion",
+        "q8_d3": "Thermal surveys are only valid when conducted inside active thunderstorms",
+        "q9_stem": "To achieve quantitative radiometric temperature measurement (spot-size ratio) and plume localization in {u_title}, what thermal IFOV/GSD and spectral sensitivity (NETD) are required?",
+        "q9_ans": "Cooled MWIR (3.2-3.4 um for hydrocarbon absorption) or calibrated LWIR (8-14 um) sensor with NETD <= 36 mF (20 mK) and at least 3x3 pixels squarely on the target emitter",
+        "q9_d1": "Standard RGB visible-light camera with an infrared blocking filter installed",
+        "q9_d2": "Single-pixel sub-resolution measurement from 2,500 ft AGL with NETD > 5.0 °F",
+        "q9_d3": "Uncalibrated consumer thermometer held outside the aircraft cabin window",
+        "q10_stem": "Under ASTM C1153 (insulated roofing/containment moisture) and ASTM E1934 (industrial thermography) applied to {u_title}, what minimum thermal differential (Delta_T) confirms a subsurface anomaly?",
+        "q10_ans": "A verified radiometric thermal differential Delta_T >= +3.6 °F (+2.0 °C) relative to dry/sound reference insulation or adjacent phase conductors under equivalent load",
+        "q10_d1": "Zero temperature difference (Delta_T = 0.0 °F) during heavy rainfall saturation",
+        "q10_d2": "Specular solar glint reflecting off unpainted polished aluminum cladding",
+        "q10_d3": "Measuring ambient air barometric pressure in psi instead of surface radiance in °F",
+        "q11_stem": "When mapping environmental plume sources, pipeline ROW leaks, or subsurface moisture polygons in {u_title}, what RTK/PPK geodetic accuracy must be locked?",
+        "q11_ans": "Horizontal error <= 0.60 inches and Vertical error <= 0.18 inches so leak valves, buried lines, and containment defects align precisely with facility GIS/CAD as-builts",
+        "q11_d1": "Approximate county-level zip-code geolocation with +/- 500 feet of positional error",
+        "q11_d2": "Visual dead-reckoning without GNSS metadata embedding in the RJPEG header",
+        "q11_d3": "Magnetic compass heading alone without latitude, longitude, or orthometric height",
+        "q12_stem": "In environmental liner thickness, protective pipe coating, and particulate/optical precision measurements for {u_title}, how is 1 mil defined in U.S. Customary units?",
+        "q12_ans": "1 mil = 0.001 inches (one thousandth of an inch; e.g., a 60-mil HDPE environmental containment geomembrane = 0.060 inches thick)",
+        "q12_d1": "1 mil = 1.0 milliliter of liquid hazardous waste",
+        "q12_d2": "1 mil = 1.0 parts per million (ppm) of fugitive methane concentration",
+        "q12_d3": "1 mil = 1.0 millimeter of steel pipeline wall thickness",
+        "q13_stem": "Under EPA 40 CFR Part 60 Subpart OOOOb and ODEQ fugitive emissions compliance in {u_title}, what minimum Optical Gas Imaging (OGI) detection capability must the inspection protocol demonstrate?",
+        "q13_ans": "Verified detection of hydrocarbon mass emission rates <= 60.0 grams/hour (approx. 2.12 oz/hr) of methane/VOCs at the regulated standoff distance and dwell time",
+        "q13_d1": "Only catastrophic pipeline explosions exceeding 10,000 lbs/hour require reporting",
+        "q13_d2": "Visual inspection with the naked eye from 1.0 mile away satisfies OOOOb OGI mandates",
+        "q13_d3": "Fugitive gas leaks are exempt from repair if detected by an infrared camera",
+        "q14_stem": "When classifying radiometric thermal anomalies under ASTM E1934 / NETA MTS in {u_title}, how does a Priority 1 (Minor/Baseline) condition differ from a Priority 4 (Critical/Emergency) condition?",
+        "q14_ans": "Priority 1 indicates normal thermal equilibrium or minor Delta_T (< 7.2 °F) for monitoring, whereas Priority 4 (Delta_T > 63.0 °F over reference or active leak) requires immediate emergency remediation",
+        "q14_d1": "Priority 1 requires immediate plant shutdown, whereas Priority 4 indicates normal operation",
+        "q14_d2": "Thermal priority tiers depend only on the time of day rather than measured Delta_T",
+        "q14_d3": "Priority 4 anomalies can be ignored for up to 36 months without repair",
+    },
+    "PAV-01": {
+        "agency_statute": "AASHTO R 86 / PP 67, ASTM D6433 Pavement Condition Index (PCI), and ODOT / Oklahoma Title 61 Highway Pavement Management Standards",
+        "q1_stem": "Under AASHTO R 86, ASTM D6433, and Oklahoma Title 61 highway asset governance, how must 3D laser/photogrammetric pavement distress and longitudinal profile telemetry from {u_title} be preserved?",
+        "q1_ans": "Sealed immediately in a Write-Once-Read-Many (WORM) SQLite pavement management ledger with a FIPS 180-4 SHA-256 digest indexed by Linear Referencing System (LRS) control-section milepost",
+        "q1_d1": "Recorded as uncalibrated windshield opinions without LRS milepost or PCI deduct values",
+        "q1_d2": "Overwritten each week in a temporary scratch file without cryptographic audit trails",
+        "q1_d3": "Stored as low-resolution video clips with no rut-depth or crack-width calibration",
+        "q2_stem": "When a highway pavement or subgrade evaluation in {u_title} reveals a critical Pavement Condition Index collapse (PCI <= 25 Very Poor/Failed), severe hydroplaning rutting (> 0.75 in), or base punchout failure, what is required?",
+        "q2_ans": "Trigger an immediate Statutory Pavement / Subgrade Remediation Docket under ODOT and Oklahoma Title 61 for structural mill-and-overlay, full-depth reclamation, or safety speed/load restriction",
+        "q2_d1": "Apply cosmetic fog seal over failed alligator fatigue cracking (PCI < 20) and defer for 10 years",
+        "q2_d2": "Smooth the IRI profile data mathematically to hide deep wheel-path ruts from the docket",
+        "q2_d3": "Increase heavy 18-kip ESAL truck traffic limits over the saturated pumping subgrade",
+        "q3_stem": "Why must AASHTO 1993/MEPDG structural layer coefficients, ASTM D6433 deduct curves, and Falling Weight Deflectometer (FWD) backcalculation bounds be verified before signing the {u_title} docket?",
+        "q3_ans": "To ensure accurate Structural Number (SN), resilient modulus (M_R), and remaining service life calculations under Oklahoma Title 61 and 18 U.S.C. § 1001 without premature roadway failure",
+        "q3_d1": "All asphalt and concrete pavements have infinite fatigue life regardless of axle loads",
+        "q3_d2": "Surface color alone determines the subgrade California Bearing Ratio (CBR) and Structural Number",
+        "q3_d3": "Pavement thickness design never accounts for 18-kip Equivalent Single Axle Loads (ESALs)",
+        "q8_stem": "During a photogrammetric LiDAR/optical corridor mapping sortie for highway pavement distress in {u_title}, why must sustained wind speed (< 15.0 mph) and motion blur limits be strictly enforced?",
+        "q8_ans": "Airframe pitch/roll oscillation in high winds degrades vertical Z-axis point-cloud precision below the 0.04-inch threshold required by AASHTO R 86 to quantify wheel-path rutting and faulting",
+        "q8_d1": "60.0 mph crosswinds improve sub-millimeter transverse rut-depth laser profiling",
+        "q8_d2": "Motion blur of 4.0 inches per frame is acceptable for measuring 0.01-inch fatigue cracks",
+        "q8_d3": "Flight stability has no impact on photogrammetric orthomosaic bundle adjustment",
+        "q9_stem": "To classify longitudinal, transverse, and alligator fatigue cracking by severity level (Low < 0.25 in, Medium 0.25-0.75 in, High > 0.75 in) under ASTM D6433 in {u_title}, what optical GSD is required?",
+        "q9_ans": "Optical GSD <= 0.004 in/px (4 mils) to <= 0.04 in/px under uniform diffuse illumination (>= 1.4 foot-candles) without tire-track shadow occlusion",
+        "q9_d1": "Coarse 6.00 in/px satellite imagery unable to resolve cracks narrower than half a foot",
+        "q9_d2": "Nighttime flight with all illumination disabled (0.0 foot-candles)",
+        "q9_d3": "Oblique horizon photos taken from 5.0 miles away",
+        "q10_stem": "When using infrared thermography (ASTM D4788 / AASHTO T 389) in {u_title} to detect asphalt mat thermal segregation during paving or subsurface stripping/debonding, what thermal threshold applies?",
+        "q10_ans": "A verified radiometric thermal differential Delta_T >= +3.6 °F (+2.0 °C) for subsurface debonding/moisture entrapment, or >= 25.0 °F temperature differential across the freshly placed HMA paving mat",
+        "q10_d1": "Isothermal pavement conditions (Delta_T = 0.0 °F) under ponded rainwater",
+        "q10_d2": "Measuring asphalt mat temperature in kips per square foot instead of degrees Fahrenheit (°F)",
+        "q10_d3": "Disabling emissivity calibration (epsilon = 0.95 for asphalt) during thermal capture",
+        "q11_stem": "When establishing Survey Control Points and RTK/PPK trajectories for highway cross-slope, joint faulting, and IRI elevation profiles in {u_title}, what geodetic accuracy is mandatory?",
+        "q11_ans": "Horizontal error <= 0.60 inches and Vertical elevation error <= 0.18 inches locked to ODOT CORS / local base-station benchmarks",
+        "q11_d1": "Recreational phone GPS with +/- 40.0 feet of vertical elevation bounce",
+        "q11_d2": "Uncorrected barometric altimeter readings drifting with passing weather fronts",
+        "q11_d3": "Estimating pavement cross-slope percentage by eye without survey control",
+        "q12_stem": "In pavement micro-texture, diamond-grinding depth, geotextile thickness, and crack-width telemetry for {u_title}, how is 1 mil defined in U.S. Customary units?",
+        "q12_ans": "1 mil = 0.001 inches (one thousandth of an inch; e.g., 40 mils = 0.040 inches of pavement thermoplastic marking or micro-crack width)",
+        "q12_d1": "1 mil = 1.0 mile of four-lane divided interstate highway",
+        "q12_d2": "1 mil = 1.0 million 18-kip Equivalent Single Axle Loads (ESALs)",
+        "q12_d3": "1 mil = 1.0 millimeter of aggregate base course thickness",
+        "q13_stem": "Under ASTM D6433 and ODOT Pavement Management standards applied to {u_title}, what is the numerical scale of the Pavement Condition Index (PCI) and what score defines a newly constructed/failed pavement?",
+        "q13_ans": "PCI ranges from 0 to 100, where 100 represents a defect-free pavement (Good: 85-100) and values <= 25 represent Very Poor / Failed pavement requiring structural reconstruction",
+        "q13_d1": "PCI ranges from -500 to +500 based on posted highway speed limit",
+        "q13_d2": "A PCI score of 0.0 indicates brand-new faultless concrete pavement",
+        "q13_d3": "PCI is measured in pounds per cubic foot of subgrade soil density",
+        "q14_stem": "In highway ride-quality and longitudinal profile engineering for {u_title}, what does the International Roughness Index (IRI, expressed in U.S. Customary inches/mile) quantify under FHWA / ODOT standards?",
+        "q14_ans": "Accumulated vertical suspension motion (in inches) of a standard quarter-car model per mile of roadway traveled (where IRI < 95 in/mi is Good and IRI > 170 in/mi is Unacceptable/Rough)",
+        "q14_d1": "The transverse width of the highway shoulder measured in feet",
+        "q14_d2": "The compressive strength of Portland Cement Concrete cores in psi",
+        "q14_d3": "The posted truck weight limit on interstate bridges in tons",
+    }
+}
+
+_prev_get_course_units_fn = get_course_units
+
+def get_course_units(course_code: str):
+    units = _prev_get_course_units_fn(course_code)
+    prof = _COURSE_DOMAIN_PROFILES.get(course_code, _COURSE_DOMAIN_PROFILES["STR-01"])
+    for u in units:
+        u_num = u.get("unit", 1)
+        u_title = u.get("title", f"{course_code} Unit {u_num:02d}")
+        uquiz = u.get("unit_quiz", [])
+        replacements = {
+            0: (prof["q1_stem"].format(u_title=u_title), prof["q1_ans"], [prof["q1_d1"], prof["q1_d2"], prof["q1_d3"]]),
+            1: (prof["q2_stem"].format(u_title=u_title), prof["q2_ans"], [prof["q2_d1"], prof["q2_d2"], prof["q2_d3"]]),
+            2: (prof["q3_stem"].format(u_title=u_title), prof["q3_ans"], [prof["q3_d1"], prof["q3_d2"], prof["q3_d3"]]),
+            7: (prof["q8_stem"].format(u_title=u_title), prof["q8_ans"], [prof["q8_d1"], prof["q8_d2"], prof["q8_d3"]]),
+            8: (prof["q9_stem"].format(u_title=u_title), prof["q9_ans"], [prof["q9_d1"], prof["q9_d2"], prof["q9_d3"]]),
+            9: (prof["q10_stem"].format(u_title=u_title), prof["q10_ans"], [prof["q10_d1"], prof["q10_d2"], prof["q10_d3"]]),
+            10: (prof["q11_stem"].format(u_title=u_title), prof["q11_ans"], [prof["q11_d1"], prof["q11_d2"], prof["q11_d3"]]),
+            11: (prof["q12_stem"].format(u_title=u_title), prof["q12_ans"], [prof["q12_d1"], prof["q12_d2"], prof["q12_d3"]]),
+            12: (prof["q13_stem"].format(u_title=u_title), prof["q13_ans"], [prof["q13_d1"], prof["q13_d2"], prof["q13_d3"]]),
+            13: (prof["q14_stem"].format(u_title=u_title), prof["q14_ans"], [prof["q14_d1"], prof["q14_d2"], prof["q14_d3"]]),
+        }
+        for q_idx, (stem, ans_txt, distractors) in replacements.items():
+            if q_idx < len(uquiz):
+                raw_opts = [ans_txt] + distractors
+                shift = (sum(ord(ch) for ch in course_code) + u_num * 3 + q_idx) % 4
+                ordered_opts = raw_opts[shift:] + raw_opts[:shift]
+                labeled_opts = []
+                ans_letter = "A"
+                for li, opt_txt in enumerate(ordered_opts):
+                    clean_txt = re.sub(r"^[A-D]\)\s*", "", str(opt_txt))
+                    letter = chr(65 + li)
+                    lbl = f"{letter}) {clean_txt}"
+                    labeled_opts.append(lbl)
+                    if opt_txt == ans_txt:
+                        ans_letter = letter
+                uquiz[q_idx] = {
+                    "q": f"[{course_code} Unit {u_num:02d} Milestone Q{q_idx+1:02d}] {stem}",
+                    "opts": labeled_opts,
+                    "ans": ans_letter,
+                }
+        for extra_idx in [6, 14, 15, 16, 17, 19]:
+            if extra_idx < len(uquiz):
+                old_q = uquiz[extra_idx].get("q", "")
+                if prof["agency_statute"] not in old_q:
+                    uquiz[extra_idx]["q"] = old_q.replace(
+                        f"[{course_code} Unit {u_num:02d} Milestone Q{extra_idx+1:02d}] ",
+                        f"[{course_code} Unit {u_num:02d} Milestone Q{extra_idx+1:02d} — {prof['agency_statute']}] "
+                    )
+    return units
+
