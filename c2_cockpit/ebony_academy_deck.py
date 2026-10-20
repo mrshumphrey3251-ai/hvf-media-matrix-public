@@ -610,7 +610,7 @@ def render_academy_deck():
                 f"🏅 **OFFICIAL OKLAHOMA TITLE 61 & 23 CFR § 650 STATE CERTIFICATION CREDENTIAL ISSUED ({selected_code})**\n\n"
                 f"- **Certified Engineer / Inspector:** `{student_name} ({student_id})`\n"
                 f"- **Accredited Program & Credential:** `{_c_title} — {_c_cred}`\n"
-                f"- **3-Tier State Examination Score:** `155 / 155 Questions Verified (100.0% Mastery — Tier 1: 50/50 | Tier 2: 50/50 | Tier 3: 55/55)`\n"
+                f"- **3-Tier State Examination Score:** `155 / 155 Questions Verified (100.0% Mastery — Stage 1: 20/20 | Stage 2: 45/45 | Stage 3: 90/90)`\n"
                 f"- **Prerequisite Seat-Time Verification:** `40.0 / 40.0 Accredited Credit Hours (4.0 CEUs) Sealed in WORM SQLite Ledger`\n"
                 f"- **Issuing Sovereign Institute:** `Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)`"
             )

@@ -1477,3 +1477,24 @@ def get_course_units(course_code: str):
     units = _ORIG_GET_COURSE_UNITS(target_code)
     return units
 
+
+# Canonical Answer-Key Normalization & Bidirectional Course Code Alias Wrapper
+_RAW_GET_COURSE_UNITS = get_course_units
+def get_course_units(course_code: str):
+    alias_map = {"STR-02": "ENV-01", "STR-03": "PAV-01"}
+    target_code = alias_map.get(course_code, course_code)
+    units = _RAW_GET_COURSE_UNITS(target_code)
+    for u in units:
+        for q in u.get("unit_quiz", []):
+            opts = q.get("opts", [])
+            raw_ans = str(q.get("ans", "")).strip()
+            if raw_ans not in opts and opts:
+                # Match by letter prefix (e.g. "B" -> "B) ...") or substring match
+                letter = raw_ans[0].upper() if raw_ans else "A"
+                matched = next((o for o in opts if o.strip().upper().startswith(f"{letter})") or o.strip().upper().startswith(f"{letter}.")), None)
+                if not matched:
+                    matched = next((o for o in opts if raw_ans.lower() in o.lower() or o.lower() in raw_ans.lower()), opts[0])
+                q["ans"] = matched
+            q["correct_letter"] = str(q["ans"]).strip()[0].upper() if q.get("ans") else "A"
+    return units
+
