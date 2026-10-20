@@ -315,9 +315,9 @@ def evaluate_vehicle_canbus_and_ecu(
     disp_liters: float = 5.0,
     stft_pct: float = 8.5,
     ltft_pct: float = 18.2,
-    perf_stage: str = "STAGE_1_EFFICIENCY_AND_ECU_OPTIMIZATION"
+    perf_stage: str = "STAGE_1_EFFICIENCY_AND_ECU_OPTIMIZATION",
+    commit_to_worm: bool = False
 ) -> dict:
-    init_automotive_ledger()
     now_utc = datetime.now(timezone.utc).isoformat()
 
     # 1. Compute SAE Net Horsepower: HP = (Torque * RPM) / 5252
@@ -340,22 +340,24 @@ def evaluate_vehicle_canbus_and_ecu(
     post_payload = f"{vin}|{vehicle_desc}|{can_protocol}|{dtc_code}|{total_trim_pct:.2f}|{ve_pct:.2f}|{calc_hp:.2f}|{ecu_action}|{baseline_eeprom_sha256}"
     post_cal_sha256 = hashlib.sha256(post_payload.encode("utf-8")).hexdigest()
 
-    conn = sqlite3.connect(str(db_path))
-    cur = conn.cursor()
-    existing_cnt = cur.execute("SELECT COUNT(*) FROM automotive_canbus_ledger WHERE post_cal_record_sha256 = ?", (post_cal_sha256,)).fetchone()[0]
-    if existing_cnt == 0:
-        cur.execute("""
-            INSERT INTO automotive_canbus_ledger (
-                vin, vehicle_desc, can_protocol, active_dtc, stft_pct, ltft_pct,
-                ve_pct, calc_hp, ecu_action_performed, hot_swap_safe_unplug,
-                baseline_eeprom_sha256, post_cal_record_sha256, timestamp_utc
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
-        """, (
-            vin, vehicle_desc, can_protocol, dtc_code, float(stft_pct), float(ltft_pct),
-            round(ve_pct, 2), round(calc_hp, 2), ecu_action, baseline_eeprom_sha256, post_cal_sha256, now_utc
-        ))
-        conn.commit()
-    conn.close()
+    if commit_to_worm:
+        init_automotive_ledger()
+        conn = sqlite3.connect(str(db_path))
+        cur = conn.cursor()
+        existing_cnt = cur.execute("SELECT COUNT(*) FROM automotive_canbus_ledger WHERE post_cal_record_sha256 = ?", (post_cal_sha256,)).fetchone()[0]
+        if existing_cnt == 0:
+            cur.execute("""
+                INSERT INTO automotive_canbus_ledger (
+                    vin, vehicle_desc, can_protocol, active_dtc, stft_pct, ltft_pct,
+                    ve_pct, calc_hp, ecu_action_performed, hot_swap_safe_unplug,
+                    baseline_eeprom_sha256, post_cal_record_sha256, timestamp_utc
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
+            """, (
+                vin, vehicle_desc, can_protocol, dtc_code, float(stft_pct), float(ltft_pct),
+                round(ve_pct, 2), round(calc_hp, 2), ecu_action, baseline_eeprom_sha256, post_cal_sha256, now_utc
+            ))
+            conn.commit()
+        conn.close()
 
     return {
         "vin": vin,
@@ -521,6 +523,9 @@ def render_automotive_master_deck():
             f"Post-Cal WORM Seal   : {res['post_cal_record_sha256']}\n"
             "================================================================================\n"
         )
+        if st.button(f"🔒 Seal {res['vin']} ({res['dtc_code']}) Diagnostic & ECU Calibration to WORM Ledger", use_container_width=True, key=f"btn_seal_auto_{res['vin']}_{res['dtc_code']}"):
+            evaluate_vehicle_canbus_and_ecu(vin=vin_in, vehicle_desc=veh_in, can_protocol=proto_in, dtc_code=dtc_in, rpm=rpm_in, torque_lb_ft=tq_in, maf_g_s=maf_in, disp_liters=disp_in, stft_pct=stft_in, ltft_pct=ltft_in, perf_stage=perf_sel, commit_to_worm=True)
+            st.success(f"WORM Record Sealed in matrix_ledger.db: {res['post_cal_record_sha256']}")
         st.download_button(
             label=f"📥 Download Signed NVIDIA Three-Brain CAN-Bus Diagnostic & ECU Calibration Dossier ({res['vin']})",
             data=dossier_md,
