@@ -268,22 +268,24 @@ def evaluate_vehicle_canbus_and_ecu(
     # 4. Three-Brain Cryptographic EEPROM Snapshot & Safe Hot-Swap Unplug Interlock
     baseline_eeprom_sha256 = hashlib.sha256(f"{vin}|BASELINE_EEPROM|{can_protocol}".encode("utf-8")).hexdigest()
     ecu_action = f"{dtc_info['ecu_adjustment']} | Applied {stage_info['title']}"
-    post_payload = f"{vin}|{vehicle_desc}|{can_protocol}|{dtc_code}|{total_trim_pct:.2f}|{ve_pct:.2f}|{calc_hp:.2f}|{ecu_action}|{baseline_eeprom_sha256}|{now_utc}"
+    post_payload = f"{vin}|{vehicle_desc}|{can_protocol}|{dtc_code}|{total_trim_pct:.2f}|{ve_pct:.2f}|{calc_hp:.2f}|{ecu_action}|{baseline_eeprom_sha256}"
     post_cal_sha256 = hashlib.sha256(post_payload.encode("utf-8")).hexdigest()
 
     conn = sqlite3.connect(str(db_path))
     cur = conn.cursor()
-    cur.execute("""
-        INSERT INTO automotive_canbus_ledger (
-            vin, vehicle_desc, can_protocol, active_dtc, stft_pct, ltft_pct,
-            ve_pct, calc_hp, ecu_action_performed, hot_swap_safe_unplug,
-            baseline_eeprom_sha256, post_cal_record_sha256, timestamp_utc
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
-    """, (
-        vin, vehicle_desc, can_protocol, dtc_code, float(stft_pct), float(ltft_pct),
-        round(ve_pct, 2), round(calc_hp, 2), ecu_action, baseline_eeprom_sha256, post_cal_sha256, now_utc
-    ))
-    conn.commit()
+    existing_cnt = cur.execute("SELECT COUNT(*) FROM automotive_canbus_ledger WHERE post_cal_record_sha256 = ?", (post_cal_sha256,)).fetchone()[0]
+    if existing_cnt == 0:
+        cur.execute("""
+            INSERT INTO automotive_canbus_ledger (
+                vin, vehicle_desc, can_protocol, active_dtc, stft_pct, ltft_pct,
+                ve_pct, calc_hp, ecu_action_performed, hot_swap_safe_unplug,
+                baseline_eeprom_sha256, post_cal_record_sha256, timestamp_utc
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
+        """, (
+            vin, vehicle_desc, can_protocol, dtc_code, float(stft_pct), float(ltft_pct),
+            round(ve_pct, 2), round(calc_hp, 2), ecu_action, baseline_eeprom_sha256, post_cal_sha256, now_utc
+        ))
+        conn.commit()
     conn.close()
 
     return {
