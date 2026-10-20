@@ -300,6 +300,108 @@ BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
             "Step 3 (Testing & Replacing a Blown Fuse): Read the fuse map inside the fuse box cover to find the circuit (e.g., `12V Power Outlet / Cigar Lighter = 20A Yellow`). Use the plastic fuse puller to pull the fuse straight out and hold it up to the light: if the internal metal bridge is broken in two, push in a new fuse of the **exact same amperage number and color**."
         ]
     },
+    "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE": {
+        "zone_title": "Zone 13: Small Engine & Lawnmower Life-Safety, Correct Tipping Rule & 3-Step 'Won't Start' Triage",
+        "where_and_what": (
+            "How a beginner identifies every part on a Push Lawnmower, Riding Mower, Generator, Pressure Washer, or Tillers (Briggs & Stratton, Honda GX/GCV, Kohler, Kawasaki, Predator):\n"
+            "1. **Spark Plug & Thick Black Rubber Boot (Front or Side of Engine):** Sticking out of the metal cylinder head at the front of the mower is a white ceramic plug covered by a thick black rubber cap (**Spark Plug Boot**).\n"
+            "2. **Engine Oil Dipstick / Fill Tube (Yellow Cap on Top of Deck):** A tall yellow or black twist-cap on top of the engine base.\n"
+            "3. **Fuel Tank Cap vs. Oil Cap:** The Fuel Cap is larger (`1.5 to 2 inches` wide), sits on the plastic gas tank, and has a fuel-pump icon. NEVER pour gasoline into the yellow oil dipstick tube!\n"
+            "4. **Air Filter Box & Carburetor (Side of Engine):** A plastic rectangular or round cover on the side of the engine. Behind the foam/paper air filter sits the silver aluminum **Carburetor** (with a red/black rubber **Primer Bulb** or **Choke Lever** and a round cup underneath called the **Float Bowl**).\n"
+            "5. **Operator Presence Bail Bar (Deadman Handlebar Lever):** The thin metal bar you hold against the top handle while mowing. When you let go of this bar, a cable pulls a metal brake pad against the engine flywheel and grounds out the ignition spark to stop the blade in `< 3 seconds`."
+        ),
+        "safety_precautions": [
+            "CRITICAL RULE #1 (PULL THE SPARK PLUG WIRE BOOT OFF FIRST!): Before you EVER reach under a lawnmower deck to clear wet grass, inspect a blade, or loosen a bolt, **grab the thick black rubber Spark Plug Boot and pull it completely off the spark plug** (and tuck it away from the plug tip)! Why? Because on a small engine, turning the blade by hand spins the magnet on the flywheel past the ignition coil—if the plug wire is still connected, the engine can fire a single stroke and spin the steel blade at 3,000 RPM while your hands are holding it!",
+            "CRITICAL RULE #2 (THE GOLDEN MOWER TIPPING RULE — SPARK PLUG UP / AIR FILTER UP!): When tilting a push mower to work underneath the deck, **NEVER tip it toward the Air Filter / Carburetor side or nose-down!** If you tip it Carburetor-side down, liquid engine oil from the crankcase pours straight out the breather tube, saturates the paper air filter, and fills the cylinder (`Hydro-Locking` the engine or blowing clouds of white smoke!). Always tip a mower backward (by pushing the handlebar to the ground) OR tip it onto its side with the **Spark Plug and Air Filter pointing UP toward the sky**!",
+            "CRITICAL RULE #3 (SHEARED FLYWHEEL KEY KICKBACK WARNING): If your mower hit a rock, stump, or pipe and suddenly stopped, and now pulling the starter cord yanks the handle violently backward out of your fingers, the soft aluminum **Flywheel Key** under the top nut has sheared (shifting ignition timing too early)."
+        ],
+        "tools_required": [
+            "Heavy Leather Work Gloves (for holding mower blades) & ANSI Z87.1 Safety Glasses",
+            "5/8-inch (16mm) or 13/16-inch (21mm) Spark Plug Socket + 3/8-inch Ratchet",
+            "Can of Starting Fluid or Carburetor Cleaner Spray (for the 2-Second Fuel vs. Spark Triage Test)",
+            "Wire Brush & Feeler Gauge (Spark plug gap = 0.030 inches; Ignition coil air-gap = 0.010 to 0.014 inches / business card thickness)"
+        ],
+        "step_by_step": [
+            "Step 1 (The 60-Second '2-Spray Carb Cleaner Test' for Any Small Engine That Won't Start): Every engine needs only 3 things to run: **1) Compression**, **2) Spark**, and **3) Fuel**. Remove the air filter cover and take out the air filter. Spray a **2-second burst of Carburetor Cleaner or Starting Fluid** directly into the round throat of the carburetor, hold the handlebar safety bail bar down, and pull the starter rope. **VERDICT A:** If the engine fires up and runs for 2–3 seconds and then dies, your **Spark and Compression are 100% GOOD**—your carburetor jet is simply clogged with old fuel (go to Zone 14!). **VERDICT B:** If it does NOT pop or fire at all on starting fluid, you have a **No-Spark or No-Compression** issue!",
+            "Step 2 (How to Test for Spark): Pull the rubber boot off the spark plug, unscrew the spark plug with a `5/8-inch` or `13/16-inch` socket, push the spark plug back into the rubber boot, and lay the **metal hex threads of the spark plug firmly against bare unpainted metal on the engine block** (keep away from the open spark plug hole!). Hold the handlebar bail bar down and pull the starter cord: you should see a crisp **Blue-White Spark** jump across the tip. If no spark: replace the `$4` spark plug (`gap = 0.030 in`), check that the bail-bar kill switch wire isn't pinched, or clean rust off the flywheel magnet and set the **Ignition Armature Coil Air-Gap** using a standard business card (`0.012 in`).",
+            "Step 3 (Checking Compression & Valve Lash): Pull the starter cord slowly by hand until you feel strong resistance ('the compression stroke bounce-back'). If the cord pulls with zero resistance like a broken toy, either a valve is stuck open or overhead valve lash (`OHV`) needs adjustment (`Intake = 0.004 in`, `Exhaust = 0.006 in` at Top Dead Center)."
+        ]
+    },
+    "ZONE_14_CARBURETOR_CLEANING_ETHANOL_AND_GOVERNOR": {
+        "zone_title": "Zone 14: Cleaning a Clogged Lawnmower Carburetor (No-Start / Surging Fix) & Ethanol Fuel Care",
+        "where_and_what": (
+            "90% of all small engine and lawnmower failures happen in one single part: the **Carburetor Float Bowl & Main Jet**!\n"
+            "1. **Why Lawnmowers Won't Start in the Spring (E10 Ethanol Phase Separation):** Regular pump gasoline contains `10% Ethanol` alcohol, which absorbs moisture from the air and turns into sticky green/white varnish crystals inside the carburetor after sitting for just 30 to 60 days.\n"
+            "2. **The Float Bowl & Bottom Bowl Bolt (Main Jet):** Look at the bottom of the carburetor (behind the air filter box). There is a small round metal cup (**Float Bowl**) held on by a single bolt right in the very bottom center (`1/2-inch`, `13mm`, or `10mm`). On most Briggs & Stratton, Honda, and Kohler engines, **that bottom bolt IS the Main Fuel Jet** (or the brass jet sits directly inside the center post above that bolt)!"
+        ),
+        "safety_precautions": [
+            "Work outdoors or in a well-ventilated open shop with zero open flames, pilot lights, or sparks when draining gasoline.",
+            "Pinch off the rubber fuel line from the gas tank using a pair of hose-pinch pliers (or a golf tee / bolt after sliding the spring clamp back) so the gas tank doesn't drain onto your hands.",
+            "Wear safety glasses when spraying aerosol Carburetor Cleaner through tiny brass jet holes—spray can bounce back out of a clogged passage directly toward your face!"
+        ],
+        "tools_required": [
+            "8mm, 10mm, and 1/2-inch (13mm) Sockets or Wrenches",
+            "Small Fuel Line Clamp / Pliers + Small Glass Jar (to catch old fuel from the bowl)",
+            "1 Can of Aerosol Carburetor & Choke Cleaner (with red straw attachment)",
+            "Thin Copper Wire (stripped from a paper bread twist-tie or high-E guitar string) / Carburetor Jet Cleaning Wire Set"
+        ],
+        "step_by_step": [
+            "Step 1 (Remove Air Filter Housing & Pinch Fuel Line): Disconnect the spark plug wire boot! Remove the air filter cover, filter, and the 2 or 3 bolts (`8mm` or `10mm`) holding the plastic air filter backing plate to the front of the carburetor. Clamp off the rubber fuel hose coming from the gas tank.",
+            "Step 2 (Drop the Float Bowl): Place a small cup under the carburetor and use a `1/2-inch (13mm)` or `10mm` wrench to unscrew the bolt on the very bottom center of the carburetor float bowl (`Counter-Clockwise`). Pull the metal cup down gently (being careful not to tear the rubber bowl O-ring). Look inside the cup: wipe out any water droplets, rust flakes, or green ethanol jelly.",
+            "Step 3 (Unclog the Tiny Pinhole in the Main Jet): Look closely at the bottom bolt you just removed (or the brass screw up inside the center post of the carburetor). You will see 1 or 2 tiny pinhole tunnels drilled through the sides and center of the bolt (`0.020 inch` wide). Poke your **thin bread-tie wire** all the way through those tiny holes to push out the hard white ethanol crust, then spray Carburetor Cleaner through the red straw until a strong, straight stream shoots cleanly out every hole!",
+            "Step 4 (Check the Float & Needle Valve, Reassemble & Use Ethanol-Free Fuel): Gently lift the plastic/brass doughnut float up and down—make sure it hinges freely and isn't full of liquid. Reinstall the float bowl and bottom jet bolt (`snug, 6–8 lb-ft`), unclamp the fuel line, press the primer bulb 3 times, reattach the spark plug boot, and pull the rope. **PRO PREVENTION TIP:** Always use **Ethanol-Free (E0 / Rec-90) Gasoline** or add **STA-BIL Fuel Stabilizer** to your gas can, and run the mower dry at the end of fall!"
+        ]
+    },
+    "ZONE_15_BLADE_SHARPENING_BALANCING_OIL_AND_RECOIL": {
+        "zone_title": "Zone 15: Lawnmower Blade Removal, 30-Degree Sharpening, Nail Balancing, Oil Change & Pull-Cord Fix",
+        "where_and_what": (
+            "1. **Cutting Edge vs. Sail/Lift Wing of a Mower Blade:** Only the outer 3 to 4 inches at each end of a lawnmower blade actually cut the grass! The curved upward-bent fin on the back edge is the **Air-Lift Sail** (which creates vacuum to stand the grass up and blow clippings into the bag—never sharpen the curved back sail!).\n"
+            "2. **Which Way Does a Mower Blade Go Back On? ('Grass Side Down' / 'Wings Point Up'):** Beginners often install a mower blade upside-down after sharpening! Remember: the flat bottom side of the blade is usually stamped **`GRASS SIDE` or `BOTTOM`**, and the curved **Air-Lift Wings on the back of the blade must ALWAYS point UP toward the underside of the metal mower deck** (so the sharpened bevel faces the sky)!"
+        ),
+        "safety_precautions": [
+            "ALWAYS disconnect the Spark Plug Wire Boot before tipping the mower or touching the blade!",
+            "ALWAYS tip the mower with the **Spark Plug / Air Filter pointing UP** (never carburetor-side down!).",
+            "ALWAYS balance a sharpened mower blade before bolting it back on! An unbalanced blade (where one end is heavier than the other by even 2 grams) vibrates violently at 3,200 RPM (`19,000 ft/min` tip speed) and destroys the engine crankshaft seal and spindle bearings!"
+        ],
+        "tools_required": [
+            "2-Foot Piece of 2x4 Wood Block (to wedge between the blade tip and mower deck wall so the blade cannot spin)",
+            "1/2-inch Breaker Bar + 9/16-inch, 5/8-inch, or 15mm/16mm 6-Point Socket + Torque Wrench (Blade bolt torque: 35 to 60 lb-ft)",
+            "10-inch Flat Mill Bastard Hand File (or Bench Grinder / Flap Disc) + Blade Balancing Cone (or a nail tapped into a wall stud)",
+            "SAE 30 or SAE 10W-30 Small Engine 4-Stroke Oil (15 to 20 fl oz for push mowers; 48 to 64 fl oz for riding/zero-turn twins)"
+        ],
+        "step_by_step": [
+            "Step 1 (Disconnect Spark Plug, Tip Mower Correctly & Wedge 2x4 Block): Pull the spark plug boot off! Tip the mower onto its side with the **Air Filter & Spark Plug pointing UP**. Wedge a solid `2x4` block of wood between the end of the steel blade and the inside lip of the mower deck housing.",
+            "Step 2 (Remove the Center Blade Bolt): Place your 6-point socket (`9/16-inch`, `5/8-inch`, or `16mm`) and breaker bar on the center blade bolt and turn **Counter-Clockwise (Left-y Loose-y)** to remove the bolt, lock washer, and blade.",
+            "Step 3 (Sharpen at a 30-Degree Bevel to 'Butter-Knife' Sharpness): Clamp the blade in a vise. Push your 10-inch flat metal file across the top bevel of the cutting edge at the factory **`30-degree` angle** (pushing away from you in smooth strokes). **DO NOT sharpen it razor-thin like a shaving blade**—a razor-thin edge folds over and chips the first time it hits a twig! Sharpen to the thickness of a **butter knife (`1/64 inch`)**, taking the exact same number of strokes (`e.g., 15 strokes`) off both ends.",
+            "Step 4 (The Wall-Nail Balance Test): Hang the center hole of the blade horizontally on a nail or screwdriver shaft. If one end dips downward, that end is heavier—file 3 or 4 more strokes off the heavy end until the blade hangs **100% level and horizontal**!",
+            "Step 5 (Reinstall Blade 'Wings Up' & Torque to 45–55 lb-ft): Place the blade onto the spindle hub with the **curved air-lift wings pointing UP toward the deck** (`GRASS SIDE` facing the ground). Thread the center bolt in by hand, wedge your `2x4` block on the opposite side, and torque to **`45–55 lb-ft`**."
+        ]
+    },
+    "ZONE_16_ZERO_TURN_HYDROSTATIC_2STROKE_AND_NVIDIA_DIAG": {
+        "zone_title": "Zone 16: Zero-Turn Mowers (Hydrostatic & PTO), 2-Stroke Handheld Mix (50:1 / 40:1) & Commercial EFI CAN-Bus",
+        "where_and_what": (
+            "1. **2-Stroke vs. 4-Stroke Small Engines:**\n"
+            "   - **4-Stroke Engines (Push Mowers, Zero-Turns, Generators, Pressure Washers):** Have a separate **Engine Oil Dipstick & Sump** (you put pure unleaded gas in the gas tank, and motor oil in the crankcase).\n"
+            "   - **2-Stroke Handheld Engines (Chainsaws, String Trimmers / Weedeaters, Leaf Blowers):** Do **NOT** have an oil pan or dipstick! Instead, you MUST mix **2-Cycle Air-Cooled Engine Oil (JASO FD / ISO-L-EGD)** directly into the gasoline before pouring it into the tank (`50:1 = 2.6 fl oz oil per 1.0 Gallon of gas`, or `40:1 = 3.2 fl oz oil per 1.0 Gallon`). Pouring straight unmixed gas into a 2-stroke chainsaw or trimmer seizes the piston in `< 60 seconds`!\n"
+            "2. **Zero-Turn Mower (ZTR) Electric PTO Clutch & Hydrostatic Transaxles:** Under the rear of a Zero-Turn mower (`Scag`, `Exmark`, `Bad Boy`, `John Deere ZTrak`, `Hustler`, `Gravely`) sit two independent hydraulic wheel-drive units (**Hydrostatic Transaxles** made by `Hydro-Gear` or `Tuff Torq`) and an electromagnetic **PTO Clutch** under the engine crankshaft that engages the mower deck belts when you pull the yellow PTO knob.\n"
+            "3. **Commercial EFI Small Engines (CAN-Bus / J1939 / OBD Port):** Modern commercial zero-turns, turf tractors, and large generators (`Kohler Command PRO EFI`, `Kawasaki FX/FT EFI`, `Briggs Vanguard BIG BLOCK EFI`, `Honda iGX`) use an **Electronic Control Unit (ECU)**, oxygen sensor, fuel pump, and a **6-Pin / 9-Pin / 16-Pin Diagnostic Port** that connects directly to your **Portable NVIDIA Three-Brain Enclave**!"
+        ),
+        "safety_precautions": [
+            "NEVER push or tow a Zero-Turn or Hydrostatic Riding Mower without first pulling out the two metal **Hydrostatic Bypass / Free-Wheel Dump Valve Levers** at the back of the mower! Towing a hydrostatic mower with the bypass valves closed destroys the internal brass hydraulic swashplate pistons!",
+            "Before blaming a 'dead' Zero-Turn starter motor when the key makes zero sound on turn, check the **3 Safety Interlock Switches**: 1) Yellow **PTO Blade Switch must be pushed DOWN (OFF)**, 2) Left & Right **Lap Steering Bars must be swung OUTWARD** (into the neutral-park lock slots), and 3) Operator must be sitting on the **Seat Switch**!"
+        ],
+        "tools_required": [
+            "2-Cycle Oil Measuring Bottle (marked in 50:1, 40:1, and 32:1 ratios for 1.0 and 2.5 Gallons) + Ethanol-Free 90+ Octane Fuel",
+            "5/8-inch Deep Socket (for 2-stroke spark arrestor screen & spark plug)",
+            "20W-50 Full-Synthetic Hydrostatic Transmission Oil (for Hydro-Gear ZT-2800/3100/3400/5400 service)",
+            "Portable NVIDIA Three-Brain CAN-Bus Enclave (for Kohler / Kawasaki / Vanguard EFI diagnostics)"
+        ],
+        "step_by_step": [
+            "Step 1 (Fixing a 2-Stroke Trimmer or Chainsaw That Boggs Down at Full Throttle — The Clogged Spark Arrestor Screen!): If your 2-stroke trimmer or blower starts and idles fine, but boggs down and makes a muffled *BWAHHH* sound when you squeeze the trigger, **95% of the time the tiny wire-mesh Spark Arrestor Screen inside the muffler outlet is plugged solid with black carbon!** Remove the 1 screw holding the small metal screen in the muffler exhaust port, hold the screen with pliers, heat it cherry-red for 15 seconds with a propane torch (or scrub it with a wire brush and carb cleaner) until you can see right through the mesh, and reinstall!",
+            "Step 2 (How to Purge Air Out of Zero-Turn Hydrostatic Transaxles After Fluid Change): Jack the rear wheels of the Zero-Turn safely off the ground on jack stands. Pull BOTH **Hydrostatic Bypass Levers** out (into free-wheel mode), start the engine at half-throttle, and slowly push the left and right steering lap bars full forward and full reverse 6 times (this purges trapped air bubbles into the expansion tank). Push the bypass levers back in (engaged), cycle the lap bars forward/reverse 6 more times with wheels spinning in the air, lower to the ground, and top off `20W-50` synthetic hydro fluid to the cold line.",
+            "Step 3 (Plugging the NVIDIA Three-Brain Enclave into Commercial EFI Turf & Small Engines): Locate the capped diagnostic connector on the wiring harness of your `Kohler EFI`, `Kawasaki EFI`, or `Vanguard EFI` engine. Plug in the NVIDIA Three-Brain Enclave, select the **`KOHLER_KAWASAKI_EFI_ZTR` Fleet Preset** in Tab 1, read live Engine Hours, Cylinder Head Temp (`CHT`), TPS voltage (`0.50V closed / 4.50V WOT`), O2 Fuel Trim, and execute the **UDS / EFI Closed-Loop TPS & Idle Air Control Relearn**!"
+        ]
+    },
     "ZONE_12_PORTABLE_NVIDIA_CANBUS_PLUGIN_AND_ECU_GUIDE": {
         "zone_title": "Zone 12: Beginner's Click-by-Click Guide to Plugging In & Unplugging the Portable NVIDIA Three-Brain CAN-Bus Enclave",
         "where_and_what": (
@@ -504,7 +606,7 @@ PREVENTATIVE_MAINTENANCE_MATRIX = [
         "tier": "Tier 1: Engine Oil & Filter Change, Tire Rotation, Lug Torque & 12V Battery Check",
         "tasks": "Full-Synthetic Engine Oil (API SP / ILSAC GF-6, 5W-30 or 0W-20) & Spin-On/Cartridge Filter; 4-Tire Cross-Rotation; Inspect Brake Pad Thickness (>= 4.0 mm) & 12V Battery Resting Voltage (>= 12.60V DC).",
         "beginner_where": "Yellow/Orange loop on engine side = Dipstick; Top cap marked 'OIL' = Filler; Bottom engine pan bolt (13mm-17mm) = Drain Plug.",
-        "beginner_tools": "3/8" Ratchet, 13-17mm 6-Point Socket, Oil Filter Wrench, 10-Qt Drain Pan, Funnel, 1/2" Torque Wrench (100-140 lb-ft for lugs, 20-25 lb-ft for drain plug), Jack + 2 Locked Jack Stands + Wheel Chocks.",
+        "beginner_tools": "3/8-inch Ratchet, 13-17mm 6-Point Socket, Oil Filter Wrench, 10-Qt Drain Pan, Funnel, 1/2-inch Torque Wrench (100-140 lb-ft for lugs, 20-25 lb-ft for drain plug), Jack + 2 Locked Jack Stands + Wheel Chocks.",
         "beginner_safety": "Park on flat concrete, chock rear wheels, support on locked Jack Stands (NEVER trust a hydraulic jack alone!), verify old rubber filter O-ring came off with old filter, and pre-lube new filter O-ring."
     },
     {
@@ -520,7 +622,7 @@ PREVENTATIVE_MAINTENANCE_MATRIX = [
         "tier": "Tier 3: Hydraulic Brake Fluid Flush, Front/Rear Differential Gear Oil & Transfer Case",
         "tasks": "Flush Hygroscopic DOT 3 / DOT 4 Brake Fluid (moisture < 1.5%, boiling point > 400 deg F); Drain & Refill Front/Rear Differential (`75W-90` / `75W-140` GL-5) and 4WD Transfer Case; Clean Direct-Injection Intake Valves.",
         "beginner_where": "Brake Reservoir = translucent box on driver's firewall; Differential ('Pumpkin') = round iron housing in center of axle between wheels (has a Top Fill Plug and Bottom Drain Plug).",
-        "beginner_tools": "3/8" & 1/2" Drive Ratchets, Fluid Hand Transfer Pump, 10mm/11mm Flare-Nut Wrench (for brake bleeder screws), Clear Bleeder Hose, Torque Wrench (25-35 lb-ft).",
+        "beginner_tools": "3/8-inch & 1/2-inch Drive Ratchets, Fluid Hand Transfer Pump, 10mm/11mm Flare-Nut Wrench (for brake bleeder screws), Clear Bleeder Hose, Torque Wrench (25-35 lb-ft).",
         "beginner_safety": "GOLDEN RULE: Always loosen and remove the TOP FILL PLUG on a differential or transfer case BEFORE removing the BOTTOM DRAIN PLUG! When bleeding brakes (RR -> LR -> FR -> FL), never let the master cylinder reservoir run dry."
     },
     {
@@ -528,7 +630,7 @@ PREVENTATIVE_MAINTENANCE_MATRIX = [
         "tier": "Tier 4: Automatic Transmission Fluid (ATF) & Filter, Iridium Spark Plugs & Coolant Flush",
         "tasks": "Service Automatic Transmission Fluid (ATF) & Filter + Execute NVIDIA Brain-2 UDS 0x31 TCM CVI Fast-Learn; Replace Iridium Spark Plugs (gap 0.032-0.044 in, torque 15-18 lb-ft); Flush 50/50 Coolant (-34 deg F protection).",
         "beginner_where": "Spark Plugs = under the row of Ignition Coils on top of cylinder head (8mm/10mm bolt); Transmission Pan = rectangular pan under vehicle behind engine oil pan; Radiator Drain Petcock = bottom corner of front radiator.",
-        "beginner_tools": "5/8" (16mm) Magnetic Spark Plug Socket, 6" Extension, Compressed Air, Dielectric Grease, 3/8" Torque Wrench (15 lb-ft for plugs, 8-10 lb-ft for trans pan bolts), NVIDIA CAN-Bus Enclave.",
+        "beginner_tools": "5/8-inch (16mm) Magnetic Spark Plug Socket, 6-inch Extension, Compressed Air, Dielectric Grease, 3/8-inch Torque Wrench (15 lb-ft for plugs, 8-10 lb-ft for trans pan bolts), NVIDIA CAN-Bus Enclave.",
         "beginner_safety": "NEVER open a hot radiator cap or remove spark plugs from a hot aluminum cylinder head! Blow compressed air into spark plug wells before unscrewing plugs so dirt cannot fall into the cylinders; start new spark plugs 5 full turns by hand."
     },
     {
@@ -728,7 +830,12 @@ def evaluate_vehicle_canbus_and_ecu(
 
 
 FLEET_VEHICLE_PRESETS = {
-        "TRACTOR_90_J1939": {
+            "KOHLER_KAWASAKI_EFI_ZTR": {
+        "label": "Small Engine / Turf EFI: HVF Zero-Turn 824cc V-Twin EFI (SAE J1939 / CAN 250 kbps)",
+        "vin": "1HVFZTR824EFI0005", "desc": "HVF Commercial Zero-Turn Turf Unit #05 (824cc V-Twin EFI / Hydro-Gear ZT-5400)",
+        "proto": "SAE_J1939_29BIT_250K", "dtc": "P0171", "rpm": 3600.0, "tq": 43.5, "maf": 22.8, "disp": 0.824, "stft": 6.5, "ltft": 14.0
+    },
+    "TRACTOR_90_J1939": {
         "label": "Ag / Heavy Equipment: HVF 9.0L Tier-4 Final Tractor (SAE J1939 250 kbps)",
         "vin": "1RW8370R0NP040004", "desc": "HVF Sovereign Ag Tractor #04 (9.0L Turbo-Diesel PowerTech)",
         "proto": "SAE_J1939_29BIT_250K", "dtc": "P0087", "rpm": 1900.0, "tq": 1050.0, "maf": 235.0, "disp": 9.0, "stft": 0.0, "ltft": 0.8
@@ -758,6 +865,19 @@ def answer_automotive_ai_query(query_text: str) -> str:
         if code_key in q_up:
             matched_dtc = code_key
             break
+    if any(w in q_up for w in ["MOWER", "LAWNMOWER", "SMALL ENGINE", "CARBURETOR", "WEEDEATER", "TRIMMER", "CHAINSAW", "BLOWER", "2-STROKE", "2 STROKE", "PULL CORD", "BLADE", "ZERO TURN"]):
+        z13 = BUMPER_TO_BUMPER_BEGINNER_GUIDE["ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE"]
+        z14 = BUMPER_TO_BUMPER_BEGINNER_GUIDE["ZONE_14_CARBURETOR_CLEANING_ETHANOL_AND_GOVERNOR"]
+        z15 = BUMPER_TO_BUMPER_BEGINNER_GUIDE["ZONE_15_BLADE_SHARPENING_BALANCING_OIL_AND_RECOIL"]
+        z16 = BUMPER_TO_BUMPER_BEGINNER_GUIDE["ZONE_16_ZERO_TURN_HYDROSTATIC_2STROKE_AND_NVIDIA_DIAG"]
+        return "\n".join([
+            "=== E.B.O.N.Y. SOVEREIGN SMALL ENGINE, LAWNMOWER, 2-STROKE & COMMERCIAL EFI MASTER GUIDE ===",
+            f"* **1. Mandatory Beginner Safety & Tipping Rules:** {z13['safety_precautions'][0]} | {z13['safety_precautions'][1]}",
+            f"* **2. 60-Second 'Won't Start' Triage (Spark + Fuel + Compression):** {z13['step_by_step'][0]}",
+            f"* **3. Clogged Carburetor Float Bowl & Main Jet Fix (Ethanol Varnish):** {z14['step_by_step'][1]} -> {z14['step_by_step'][2]}",
+            f"* **4. Mower Blade Removal, 30-Deg Butter-Knife Sharpening & Nail Balancing:** {z15['step_by_step'][2]} -> {z15['step_by_step'][3]} -> {z15['step_by_step'][4]}",
+            f"* **5. 2-Stroke Fuel-Oil Mix & Zero-Turn EFI CAN-Bus Diagnostics:** 50:1 Mix = `2.6 fl oz (76 mL)` 2-cycle oil per 1.0 Gallon gas; 40:1 Mix = `3.2 fl oz (95 mL)` per Gallon. {z16['step_by_step'][0]} | {z16['step_by_step'][2]}"
+        ])
     if "MISFIRE" in q_up:
         matched_dtc = "P0300"
     elif "CATALYST" in q_up or "O2" in q_up:
@@ -907,6 +1027,34 @@ def render_automotive_master_deck():
         for st_item in z_data["step_by_step"]:
             st.success(st_item)
 
+        st.markdown("---")
+        st.markdown("### ⛽ Interactive Small Engine 2-Stroke Fuel-Oil Mix, Blade Tip-Speed & Displacement Calculator")
+        se_c1, se_c2, se_c3, se_c4 = st.columns(4)
+        with se_c1:
+            gas_gal = st.number_input("Gasoline Container Volume (U.S. Gallons):", value=1.0, step=0.5, min_value=0.25, key="se_gas_gal")
+            mix_ratio = st.selectbox("2-Stroke Fuel-to-Oil Ratio:", [50, 40, 32, 25], format_func=lambda r: f"{r}:1 Ratio ({'Chainsaws / Modern Trimmers' if r==50 else ('Older 2-Stroke Equipment' if r==40 else 'Break-In / Heavy Duty')})", key="se_ratio")
+        with se_c2:
+            blade_in = st.number_input("Mower Single Blade Length (inches):", value=21.0, step=0.5, min_value=10.0, key="se_blade_in")
+            gov_rpm = st.number_input("Governed Engine Speed (RPM — Std: 3,200-3,600):", value=3200.0, step=100.0, key="se_rpm")
+        with se_c3:
+            bore_mm = st.number_input("Small Engine Cylinder Bore (mm):", value=78.0, step=1.0, key="se_bore")
+            stroke_mm = st.number_input("Small Engine Piston Stroke (mm):", value=61.0, step=1.0, key="se_stroke")
+        with se_c4:
+            se_cyls = st.number_input("Small Engine Cylinders (1 = Push, 2 = V-Twin):", value=2, step=1, min_value=1, max_value=4, key="se_cyls")
+            plug_gap_in = st.number_input("Target Spark Plug Gap (in — Std: 0.030):", value=0.030, step=0.002, format="%.3f", key="se_gap")
+
+        import math as _se_math
+        oil_fl_oz = (gas_gal * 128.0) / float(mix_ratio)
+        oil_ml = oil_fl_oz * 29.5735
+        tip_speed_fpm = (_se_math.pi * blade_in * gov_rpm) / 12.0
+        disp_cc = ((_se_math.pi / 4.0) * (bore_mm ** 2) * stroke_mm * float(se_cyls)) / 1000.0
+        est_small_hp = disp_cc / 27.5
+
+        sm1, sm2, sm3, sm4 = st.columns(4)
+        sm1.metric(f"Exact 2-Stroke Oil for {gas_gal:.2f} Gal ({mix_ratio}:1)", f"{oil_fl_oz:.2f} fl oz", f"{oil_ml:.0f} mL (JASO FD Air-Cooled Oil)")
+        sm2.metric("Mower Blade Tip Speed (ANSI B71.1)", f"{tip_speed_fpm:,.0f} ft/min", "SAFE (<= 19,000 fpm)" if tip_speed_fpm <= 19000.0 else "OVER-SPEED (> 19,000 fpm!)")
+        sm3.metric("Calculated Engine Displacement", f"{disp_cc:.0f} cc", f"~{est_small_hp:.1f} Gross HP ({se_cyls}-Cyl)")
+        sm4.metric("Ignition Coil Air-Gap & Plug Spec", "0.012 in Coil Gap", f"Plug Gap: {plug_gap_in:.3f} in (15 lb-ft)")
         st.markdown("---")
         st.markdown("### 🔧 Complete 0 to 100,000+ Mile Master Preventative Maintenance Schedule (With Beginner Where/Tools/Safety)")
         for m_item in PREVENTATIVE_MAINTENANCE_MATRIX:

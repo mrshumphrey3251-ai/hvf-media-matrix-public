@@ -47,7 +47,7 @@ class C2QAGroundingEngine:
         op_telem = telem.get("operational_telemetry", {})
 
         # 0. Automotive Repair, Maintenance, Performance & Portable NVIDIA Three-Brain CAN-Bus Queries
-        if any(k in q for k in ["auto", "car", "truck", "vehicle", "can bus", "can-bus", "canbus", "obd", "ecu", "pcm", "engine", "repair", "maintenance", "torque", "fuel trim"]):
+        if any(k in q for k in ["auto", "car", "truck", "vehicle", "can bus", "can-bus", "canbus", "obd", "ecu", "pcm", "engine", "repair", "maintenance", "torque", "fuel trim", "mower", "lawnmower", "small engine", "carburetor", "chainsaw", "trimmer", "weedeater", "2-stroke", "zero turn", "blade"]):
             import ebony_automotive_master as _eam
             return _eam.answer_automotive_ai_query(user_query)
 
