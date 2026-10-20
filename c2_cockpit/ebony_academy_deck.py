@@ -628,6 +628,7 @@ def render_academy_deck():
                 f"3-Tier Exam Mastery  : 155 / 155 Questions Correct (100.0% Verified)\n"
                 f"Tuition Voucher Tier : $2,500.00 Commercial / State Title 61 Compliant\n"
                 f"WORM Ledger Authority: matrix_ledger.db (FIPS 180-4 SHA-256 Non-Repudiation)\n"
+                    f"Statutory Standing   : OAC 245:15-11 (40.0 PELS PDHs) | 23 CFR 650 | 40 CFR 60 OOOOb | ASTM D6433\n"
                 "================================================================================\n"
             )
             st.download_button(
@@ -673,7 +674,9 @@ def render_academy_deck():
             submitted_answers = {}
             for q_idx, q in enumerate(stage_questions):
                 st.markdown(f"**Question {q_idx + 1:02d} / {stage_meta['questions_count']}:** {q['question']}")
-                if _ch5_ceo_audit and q.get("answer") in q.get("options", []): st.session_state[f"unified_q_{selected_code}_s{active_s_num}_{q['id']}"] = q["answer"]
+                if _ch5_ceo_audit:
+                        _ans_opt = next((o for o in q.get("options", []) if o.startswith(f"{q.get('correct', '')})")), q.get("answer"))
+                        if _ans_opt in q.get("options", []): st.session_state[f"unified_q_{selected_code}_s{active_s_num}_{q['id']}"] = _ans_opt
                 chosen = st.radio(
                     f"Answer for {q['id']}:",
                     q["options"],
