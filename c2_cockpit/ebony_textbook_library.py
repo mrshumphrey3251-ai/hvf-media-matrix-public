@@ -1484,6 +1484,24 @@ def get_course_units(course_code: str):
                 _u["title"] = _aut_Specs[_idx][0]
                 _u["governing_eq"] = _aut_Specs[_idx][1]
                 _u["equations"] = _aut_Specs[_idx][1]
+                _u["theory"] = (
+                    f"### Bumper-to-Bumper Beginner & Master Engineering Theory // {_aut_Specs[_idx][0]}\n\n"
+                    f"**1. Visual Component Landmark (Where It Is & What It Looks Like):** Every technician—from a first-time beginner opening the hood to a Level-5 Master Engineer—must first physically identify the system on the vehicle before touching a tool. In `{_aut_Specs[_idx][0]}`, locate the primary service points (Yellow/Orange Engine Oil Dipstick loop, translucent Brake/Coolant reservoirs, 16-Pin OBD-II port under the driver's steering column, or 9-Pin Deutsch/ISOBUS port on heavy trucks and tractors).\n\n"
+                    f"**2. Mandatory Life-Safety & Vehicle Protection:** Park on level concrete, engage the parking brake, place solid wheel chocks in front of and behind ground wheels, lift only at reinforced factory frame rails or pinch welds, lower onto locked mechanical Jack Stands, and pass the Push-Shove Stability Shake Test. Always disconnect the **Black Negative (-)** battery cable first (`10mm` wrench) before electrical/component service, and wear ANSI Z87.1 safety glasses and nitrile gloves.\n\n"
+                    f"**3. Governing SAE / ISO Mathematical Formulation:** `{_aut_Specs[_idx][1]}`. By combining proper 6-point metric socket selection (`8mm`–`22mm`), calibrated torque-wrench preload (`T = K * D * F / 12`), and the Portable NVIDIA Three-Brain CAN-Bus Enclave (`Brain 1` 60-Ohm transceiver -> `Brain 2` GPU solver -> `Brain 3` WORM EEPROM safety interlock), any operator can execute bumper-to-bumper mechanical repair and computer calibration with 100% precision."
+                )
+                _u["worked_example"] = (
+                    f"Worked Shop & CAN-Bus Derivation ({_aut_Specs[_idx][0]}):\n"
+                    f"* Governing Equation: {_aut_Specs[_idx][1]}\n"
+                    f"* Beginner Tool & Safety Gate: Verify vehicle is secured on locked mechanical Jack Stands with wheel chocks installed, battery bus stabilized at 12.6V-13.5V DC, and CAN-Bus loop resistance verified at 60.0 Ohms across Pins 6 & 14.\n"
+                    f"* Step-by-Step Execution: Apply 6-point socket Counter-Clockwise to loosen, inspect sealing surfaces/O-rings, torque fasteners Clockwise with calibrated click-type torque wrench, execute UDS 0x2E/0x31 adaptive learn, and confirm Green Brain-3 Safe-Disconnect Interlock before unplugging."
+                )
+                _u["lab_protocol"] = (
+                    f"1. **Phase 1 (Shop Safety, Chocks & Jack Stands):** Park on level concrete, lock parking brake, chock wheels, lift on frame rail/pinch weld, lower onto pinned Jack Stands, and perform Push-Shove Shake Test.\n"
+                    f"2. **Phase 2 (Visual Landmark & Tool Staging):** Identify component location, stage 6-point sockets, torque wrench, and fluids/parts, and disconnect Black Negative (-) battery terminal if servicing electrical/actuators.\n"
+                    f"3. **Phase 3 (Mechanical Service & Precision Torquing):** Execute component replacement/service, verify gasket/O-ring seating, and torque all fasteners to exact SAE/OEM lb-ft specification.\n"
+                    f"4. **Phase 4 (NVIDIA Three-Brain CAN-Bus Verification & Safe Unplug):** Plug enclave into 16-Pin OBD-II or 9-Pin J1939/ISOBUS port, verify 60.0-Ohm bus & live telemetry, execute UDS 0x2E/0x31 relearn, seal WORM SHA-256 docket, and unplug safely."
+                )
     prof = _COURSE_DOMAIN_PROFILES.get(prof_code, _COURSE_DOMAIN_PROFILES["STR-01"])
     for u in units:
         u_num = u.get("unit", 1)

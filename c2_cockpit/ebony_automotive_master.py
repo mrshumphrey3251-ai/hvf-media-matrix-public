@@ -14,6 +14,318 @@ cockpit_dir = Path(__file__).resolve().parent
 db_path = cockpit_dir / "matrix_ledger.db"
 
 # Modular Registry: New vehicles, DTCs, maintenance schedules, and ECU maps can be appended at runtime without rewriting code
+
+BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
+    "ZONE_01_SAFETY_JACKING_AND_TOOLS": {
+        "zone_title": "Zone 1: Mandatory Life-Safety, Safe Vehicle Lifting (Jack & Jack Stands) & Beginner Tool Guide",
+        "where_and_what": (
+            "Before you ever touch a wrench, you must know how to keep a 4,000-to-8,000 lb vehicle from moving or falling, and how hand tools work:\n"
+            "1. **Pinch Welds & Frame Rails (Underneath Side Doors):** Look under the bottom edge of your car just behind the front wheel and just in front of the rear wheel. On unibody cars/SUVs, you will see a reinforced vertical metal lip with two small notches cut into it—that is the **Factory Pinch Weld Jacking Point**. On pickup trucks and tractors, you will see thick rectangular steel beams running front-to-back—those are the **Structural Frame Rails**. NEVER place a jack under flat floorboard sheet metal, plastic panels, or the engine oil pan!\n"
+            "2. **Right-y Tight-y vs. Left-y Loose-y:** Almost every bolt, nut, oil drain plug, and oil filter on a vehicle has standard right-hand threads. Looking straight at the bolt head: turning **Counter-Clockwise (to the LEFT, toward 9 o'clock)** loosens it; turning **Clockwise (to the RIGHT, toward 3 o'clock)** tightens it.\n"
+            "3. **6-Point vs. 12-point Sockets & Ratchet Switch:** Always use **6-point sockets** (six flat interior walls) on tight or rusty bolts because they grip the flat sides of the bolt instead of the fragile corners. The small lever on the back of your ratchet handle flips the direction (test it in your hand before putting it on the bolt)."
+        ),
+        "safety_precautions": [
+            "CRITICAL RULE #1 (NEVER TRUST A HYDRAULIC JACK ALONE): A hydraulic floor jack or bottle jack uses rubber O-rings that can blow out without warning. NEVER put any part of your head, chest, arms, or legs under a vehicle supported only by a jack! You MUST lower the vehicle onto rated mechanical locking **Jack Stands** (3-Ton for cars/SUVs, 6-Ton to 12-Ton for trucks/tractors).",
+            "CRITICAL RULE #2 (LEVEL CONCRETE & WHEEL CHOCKS): Only lift a vehicle on flat, solid concrete (never on dirt, gravel, grass, or a sloped driveway where the jack can sink or tip). Engage the **Parking Brake** firmly and wedge solid rubber/steel **Wheel Chocks** tightly in front of AND behind the tires that remain on the ground.",
+            "CRITICAL RULE #3 (THE PUSH-SHOVE SHAKE TEST): Once the vehicle is lowered onto the jack stands, walk to the fender and push the vehicle firmly with your hands while standing safely to the side. If it rocks or shifts at all, lower it and reposition the stands before going underneath.",
+            "CRITICAL RULE #4 (EYE, SKIN & THERMAL PROTECTION): Wear ANSI Z87.1 safety glasses (rust and dirt fall straight into your eyes when looking up under a chassis) and nitrile gloves (used motor oil contains heavy metals and carcinogens). Remove rings, watches, and loose drawstrings before working near batteries or spinning belts."
+        ],
+        "tools_required": [
+            "ANSI Z87.1 Safety Glasses & Heavy-Duty Nitrile Gloves",
+            "2 Solid Rubber or Steel Wheel Chocks",
+            "3-Ton (6,000 lb) or 6-Ton (12,000 lb) Hydraulic Floor Jack + Pair of Ratcheting Mechanical Jack Stands with Safety Locking Pins",
+            "3/8-inch Drive Ratchet + Metric 6-Point Socket Set (8mm, 10mm, 12mm, 13mm, 14mm, 15mm, 17mm, 19mm, 21mm)",
+            "1/2-inch Drive Click-Type Torque Wrench (20 to 150 lb-ft) & Breaker Bar",
+            "Digital Multimeter (for testing 12.6V DC battery & 60-Ohm CAN-Bus resistance)"
+        ],
+        "step_by_step": [
+            "Step 1 (Park & Lock): Park on flat level concrete, shift into PARK (or 1st Gear / Neutral with parking brake locked on manual/tractors), shut off the engine, and remove the key / keep key fob 20 feet away.",
+            "Step 2 (Chock the Ground Wheels): If lifting the front of the vehicle, wedge wheel chocks tightly against the front and back of BOTH rear tires.",
+            "Step 3 (Break Lug Nuts Loose ON THE GROUND, If Removing Wheels): If your job requires taking a wheel off, use a breaker bar and deep socket (usually 19mm or 21mm) to turn each lug nut Counter-Clockwise just 1/2 turn while the tire's weight is still on the ground (otherwise the wheel will just spin in the air!).",
+            "Step 4 (Position Floor Jack & Lift): Roll the floor jack under the factory front center crossmember or reinforced frame rail. Turn the jack handle Clockwise (tight) to close the hydraulic valve, then pump the handle until the tires are 2 to 3 inches off the ground.",
+            "Step 5 (Place & Pin Jack Stands): Slide your two mechanical jack stands under the left and right factory frame rails or pinch welds. Raise the ratcheting post to match the height, and insert the steel safety locking pin through the stand.",
+            "Step 6 (Lower onto Stands & Shake Test): Slowly turn the floor jack handle Counter-Clockwise (1/8th turn!) to gently rest the vehicle's weight onto the two jack stands. Keep the floor jack lightly touching the frame as a backup, then perform the Push-Shove Stability Shake Test before working."
+        ]
+    },
+    "ZONE_02_UNDER_HOOD_ANATOMY_AND_FLUID_ID": {
+        "zone_title": "Zone 2: Opening the Hood, Finding the Dipstick & Identifying Every Fluid Cap (Beginner Visual Tour)",
+        "where_and_what": (
+            "When you stand in front of a vehicle, here is how to open the hood and recognize every single component without guessing:\n"
+            "1. **Primary Interior Hood Release Lever:** Sit in the driver's seat and look down by your left shin/foot (under the dashboard or on the left kick panel). Pull the lever marked with a picture of a car with an open hood until you hear a loud *POP*.\n"
+            "2. **Secondary Under-Hood Safety Catch:** Walk to the front bumper. Reach two fingers into the 1-inch gap under the center of the hood edge (usually right above the manufacturer emblem) and slide the metal lever sideways (left) or push it up while lifting the hood. If the hood does not stay up on its own via gas struts, lift the metal **Hood Prop Rod** and click its tip into the slot marked with an arrow on the underside of the hood.\n"
+            "3. **Engine Oil Dipstick (Yellow or Orange Ring/Loop):** Look along the side of the metal engine block. You will see a bright **Yellow** (or Orange) circular ring or T-handle sticking out of a thin metal tube. That is the **Engine Oil Dipstick** used to check oil level.\n"
+            "4. **Engine Oil Filler Cap ('OIL' or Oil Can Symbol):** On top of the engine valve cover is a round screw-off cap (1.5 to 2 inches wide) printed with an oil-can icon and viscosity grade (like `SAE 5W-30` or `0W-20`). NOTE: If you read `OIL` upside down, it looks like `710`—that is where new engine oil is poured in!\n"
+            "5. **Engine Coolant Surge Tank / Radiator Cap (Pressurized Thermometer Symbol):** A translucent plastic tank filled with pink, orange, green, or yellow liquid. The cap has a warning hand/thermometer icon—NEVER open it when hot!\n"
+            "6. **Brake Fluid Reservoir (Back Driver-Side Corner / Firewall):** A small translucent white plastic box bolted in front of the driver's steering wheel area with a yellow/black octagon symbol. Filled with clear-to-amber DOT 3 or DOT 4 brake fluid.\n"
+            "7. **Windshield Washer Fluid Cap (Blue Flip-Cap with Dotted Fountain Symbol):** A plastic flip-top cap near the front fender with a windshield-wiper spray icon. NEVER pour washer fluid into the oil or brake reservoir!"
+        ),
+        "safety_precautions": [
+            "NEVER open the Engine Coolant Reservoir or metal Radiator Cap when the engine is warm or hot! Cooling systems operate under 15 to 20 psi of pressure at 200+ deg F; opening a hot cap causes instant boiling steam explosions.",
+            "Always check Engine Oil with the engine OFF and parked on level ground for at least 5 to 10 minutes so oil drains back into the bottom pan.",
+            "Before removing the Brake Fluid cap, wipe away all dust around the cap with a clean cloth—even a single drop of dirt or petroleum oil ruins rubber brake seals."
+        ],
+        "tools_required": [
+            "Clean Lint-Free Shop Towels or White Paper Towels",
+            "Flashlight / LED Work Light",
+            "Clean Funnel (Dedicated to Engine Oil Only)",
+            "Owner's Manual or Under-Hood Emissions/Fluid Specification Sticker"
+        ],
+        "step_by_step": [
+            "Step 1 (How to Read the Engine Oil Dipstick): With the engine off and cool/warm on level ground, pull the Yellow Engine Oil Dipstick ring straight out. Wipe the metal blade completely dry with a paper towel (you cannot read the first pull because oil splashes while driving!).",
+            "Step 2 (Re-Insert & Inspect Level + Color): Push the dipstick all the way back down into its tube until it seats fully, wait 2 seconds, and pull it straight out again. Look at the very tip (bottom 2 inches): you will see two pinholes or a cross-hatched area marked `L / MIN / ADD` (bottom) and `H / MAX / FULL` (top).",
+            "Step 3 (Calculate How Much Oil to Add): The distance from the bottom `MIN` line to the top `MAX` line equals **exactly 1.0 U.S. Quart (32 oz)**. If the oil film is halfway between MIN and MAX, your engine is completely safe (or you can add 0.5 quart). If it is at or below MIN, unscrew the Oil Filler Cap on top of the engine and pour in 0.5 quart at a time using a clean funnel, waiting 2 minutes before re-checking the dipstick. NEVER overfill past MAX!",
+            "Step 4 (Inspect Oil Health): Healthy motor oil is golden honey to dark amber/brown and translucent. If the oil on the dipstick looks like **milky tan coffee milkshake**, stop immediately—coolant is leaking into the oil (blown head gasket). If it smells strongly of raw gasoline or has shiny metallic glitter, log a diagnostic fault immediately.",
+            "Step 5 (Visual Check of Coolant & Brake Fluid Without Opening Caps): Shine your flashlight through the side of the translucent Coolant Tank and Brake Fluid Reservoir. Both have `MIN/COLD` and `MAX/FULL` lines molded right into the side of the plastic!"
+        ]
+    },
+    "ZONE_03_OIL_CHANGE_AND_COOLING_SYSTEM": {
+        "zone_title": "Zone 3: Complete Beginner Oil & Filter Change, Coolant Flush, Thermostat & Serpentine Belt Guide",
+        "where_and_what": (
+            "1. **Engine Oil Pan & Drain Plug:** Located at the very bottom front/center of the engine underneath the car. It is a metal (or composite) basin with a single hex bolt (`13mm`, `14mm`, `15mm`, or `17mm`) pointing sideways or downward at the lowest point. (Warning: Do not confuse the front Engine Oil Pan with the Transmission Pan further back between the front seats!).\n"
+            "2. **Spin-On Oil Filter / Cartridge Housing:** A cylindrical metal can (about the size of a soup can) screwed onto the side/bottom of the engine block, OR a black hex-topped plastic cap on top of the engine housing a paper pleats cartridge.\n"
+            "3. **Serpentine Drive Belt & Tensioner Pulley:** The ribbed rubber belt snaking around the front pulleys of the engine (Crankshaft, Alternator, Water Pump, A/C Compressor). Held tight by a spring-loaded **Belt Tensioner Pulley**."
+        ),
+        "safety_precautions": [
+            "Wait until the engine oil has cooled below 120 deg F (warm to touch, NOT scalding hot) before removing the drain plug so hot oil does not burn your hand.",
+            "Support the vehicle on locked mechanical Jack Stands and chock the rear wheels before sliding underneath.",
+            "Always verify that the **old black rubber O-ring gasket** came off with the old oil filter! If the old rubber gasket sticks to the engine block and you screw the new filter on top of it ('Double-Gasketing'), the gasket will blow out on startup and pump all 5-8 quarts of oil onto the ground in 10 seconds!"
+        ],
+        "tools_required": [
+            "10-Quart Oil Drain Pan + Cardboard/Tarp to protect concrete",
+            "3/8-inch Ratchet + 6-Point Socket matching Drain Plug (typically 13mm, 14mm, 15mm, or 17mm)",
+            "Torque Wrench (Drain plug torque is typically 18 to 30 lb-ft — never over-tighten!)",
+            "Oil Filter Wrench (Pliers/Strap style or 64mm/74mm Filter Cup Socket)",
+            "New OEM/Premium Oil Filter + New Drain Plug Crush Washer + 5 to 8 Quarts of API SP Full-Synthetic Oil (matching cap viscosity, e.g., 5W-30 or 0W-20)"
+        ],
+        "step_by_step": [
+            "Step 1 (Unscrew Top Oil Filler Cap First): Open the hood and unscrew the top Engine Oil Filler Cap. This breaks the internal vacuum so the old oil drains out smoothly without glugging.",
+            "Step 2 (Position Drain Pan & Loosen Drain Plug): Slide under the vehicle (on jack stands!). Place your 10-quart drain pan directly under the engine oil pan drain bolt, offset 3 inches in the direction the bolt points (oil shoots out in an arc at first!). Place your 6-point socket on the drain plug and turn Counter-Clockwise (Left-y Loose-y) to break it loose. Unscrew the last 3 threads by hand while pushing inward slightly, then pull the plug away quickly.",
+            "Step 3 (Inspect Old Plug, Install New Crush Washer & Torque): Let oil drain for 10 full minutes until it slows to a drip. Wipe the drain plug clean, slide on a new copper/aluminum crush washer, thread it in **by hand first** (Clockwise) so it never cross-threads, and tighten with your torque wrench to **20–25 lb-ft**.",
+            "Step 4 (Remove Old Oil Filter & Verify Rubber Gasket): Move the drain pan under the oil filter. Turn the oil filter Counter-Clockwise using your filter wrench. Once off, look at the top rim of the old filter and **confirm the black rubber O-ring is still attached to the old filter**. Wipe the metal mounting base on the engine block clean with a shop towel.",
+            "Step 5 (Pre-Lube New Filter O-Ring & Hand-Tighten): Dip your gloved fingertip into a drop of fresh motor oil and rub a thin film of oil all around the rubber O-ring of the new oil filter (this lets it seal smoothly and prevents it from sticking next time). Thread the new spin-on filter Clockwise by hand until the rubber gasket touches the engine block, then turn it **3/4 of a turn more by hand only** (or 18 lb-ft for cartridge caps).",
+            "Step 6 (Fill New Oil, Start Engine & Check for Leaks): Lower the vehicle level onto the ground. Using a clean funnel, pour in 1/2 quart less than full capacity (e.g., 4.5 quarts on a 5.0-quart engine), install the oil cap, and start the engine. Watch the dashboard **Red Oil Pressure Light**—it must go out within 3 seconds! Look underneath to verify zero drips from the plug or filter, shut off the engine, wait 5 minutes, and top off to the Dipstick `MAX` line."
+        ]
+    },
+    "ZONE_04_BATTERY_ALTERNATOR_AND_ELECTRICAL": {
+        "zone_title": "Zone 4: 12V/24V Battery Replacement, Safe Jump-Starting, Alternator Testing & Fuse Box Guide",
+        "where_and_what": (
+            "1. **12V Automotive Battery:** A rectangular plastic box (usually in the front corner of the engine bay, or under the trunk floor/rear seat on some sedans) with two thick lead posts on top:\n"
+            "   - **POSITIVE (+) Post:** Marked with a `+` sign, a **RED** plastic cover/cable, and is slightly thicker in diameter.\n"
+            "   - **NEGATIVE (-) Post:** Marked with a `-` sign and a **BLACK** cable bolted to the vehicle's metal body/frame ground.\n"
+            "2. **Alternator:** A cylindrical aluminum generator with cooling vents driven by the serpentine belt on the front of the engine; it charges the battery at `13.8V to 14.5V DC` while the engine runs.\n"
+            "3. **Fuse & Relay Boxes:** One black plastic box is in the engine bay near the battery (`Power Distribution Box`), and a second fuse panel is inside the cabin (behind a small pull-off cover by the driver's left knee or passenger glovebox). Inside the lid is a printed map showing which fuse protects which circuit."
+        ),
+        "safety_precautions": [
+            "THE GOLDEN BATTERY WRENCH RULE (BLACK NEGATIVE OFF FIRST, BLACK NEGATIVE ON LAST!): When disconnecting a battery, ALWAYS loosen and remove the **Black Negative (-) cable FIRST** and wrap it in a cloth/glove. Why? Because the entire metal body of the car is connected to Negative (-). If you put a metal wrench on the Red Positive (+) terminal while the Black Negative (-) is still connected and your wrench accidentally touches any metal fender or bracket, it creates a 600-Amp dead short that welds the wrench red-hot and can explode battery hydrogen gas! When installing a new battery, connect **Red Positive (+) FIRST**, and **Black Negative (-) LAST**.",
+            "NEVER connect jumper cables backwards (Reverse Polarity): Red goes to Positive (+), Black goes to Negative (-)/Ground. Reverse polarity instantly destroys the engine computer (ECM) and blows the main 150A mega-fuse!"
+        ],
+        "tools_required": [
+            "10mm Wrench / 10mm Socket (almost all modern battery terminal clamps are 10mm) + 13mm Socket with Long Extension (for the bottom battery hold-down bracket)",
+            "Wire Battery Terminal Cleaning Brush + Baking Soda/Water (neutralizes white/blue acid corrosion) + Dielectric Grease",
+            "Digital Multimeter (set to 20V DC)"
+        ],
+        "step_by_step": [
+            "Step 1 (Test Battery & Alternator with a Multimeter): Set your multimeter dial to `V=` (DC Volts, 20V range). Touch the Red probe to Battery Positive (+) and Black probe to Battery Negative (-) with the engine OFF: `12.60V to 12.80V` = 100% Charged; `12.20V` = 50% Discharged; `< 11.90V` = Dead/Sulfated. Now start the engine and measure again: it MUST read **`13.80V to 14.50V DC`**. If it still reads 12.2V with the engine running, your **Alternator** has failed!",
+            "Step 2 (Safe Battery Removal): Turn ignition OFF. Using a `10mm` wrench, loosen the nut on the **Black Negative (-) clamp FIRST**, wiggle it off the post, and tuck it aside so it cannot spring back. Second, open the red plastic cover and loosen/remove the **Red Positive (+) clamp**. Third, use a `13mm` socket on a 10-inch extension to remove the bottom battery hold-down wedge bolt and lift the battery straight up using its carry strap.",
+            "Step 3 (Clean Terminals & Install New Battery): Lower the new battery into the tray and tighten the bottom hold-down bracket (`10–12 lb-ft`) so the battery cannot slide around. Connect the **Red Positive (+) clamp FIRST** and tighten the 10mm nut snugly (`5–7 lb-ft`). Connect the **Black Negative (-) clamp LAST** and tighten snugly.",
+            "Step 4 (Safe 4-Step Jump-Start Order): 1) Clamp **Red (+)** to Dead Battery Positive (+). 2) Clamp other **Red (+)** to Good Booster Battery Positive (+). 3) Clamp **Black (-)** to Good Booster Battery Negative (-). 4) Clamp final **Black (-)** to an unpainted metal engine bracket/ground bolt on the Dead Car (away from the battery). Start the good car for 2 minutes, then start the dead car, and remove cables in exact reverse order (4, 3, 2, 1)."
+        ]
+    },
+    "ZONE_05_BRAKES_PADS_ROTORS_AND_BLEEDING": {
+        "zone_title": "Zone 5: Complete Brake Job (Pads, Rotors, Caliper Slide Pins) & Brake Fluid Bleeding Guide",
+        "where_and_what": (
+            "Behind each wheel is a **Disc Brake Assembly** consisting of three parts:\n"
+            "1. **Brake Rotor (Disc):** The shiny round cast-iron metal disc that spins with the wheel.\n"
+            "2. **Brake Caliper:** The C-shaped hydraulic clamp that straddles the outer edge of the rotor. When you step on the brake pedal, brake fluid pushes a round piston inside the caliper outward.\n"
+            "3. **Brake Pads & Caliper Bracket:** Two steel-backed friction pads (inner and outer) held inside a stationary **Caliper Mounting Bracket** that squeeze both faces of the spinning rotor to stop the vehicle. When pads wear down to `2mm–3mm`, a small metal tab ('squealer') rubs the rotor to make a high-pitched warning chirp."
+        ),
+        "safety_precautions": [
+            "NEVER let the heavy Brake Caliper hang by its rubber brake hose! Support it with a metal S-hook or bungee cord hooked to the suspension coil spring.",
+            "Before pushing the caliper piston back in to make room for thick new brake pads, take the cap off the under-hood Brake Fluid Reservoir and watch the fluid level so it doesn't overflow.",
+            "CRITICAL BEFORE DRIVING AFTER A BRAKE JOB: Before shifting out of PARK, you MUST **pump the brake pedal 5 to 8 times slowly with your foot** until the pedal feels rock-solid! Why? Because pushing the caliper pistons back leaves a gap between the new pads and the rotor—if you don't pump the pedal first, the pedal will go straight to the floor on your first stop!"
+        ],
+        "tools_required": [
+            "Floor Jack, Jack Stands, Wheel Chocks & 19mm/21mm Lug Nut Socket + Breaker Bar",
+            "13mm/14mm Socket (for small Caliper Slide-Pin Bolts) & 18mm/19mm/21mm Socket (for heavy Caliper Bracket Bolts)",
+            "C-Clamp or Brake Caliper Piston Compression Tool + Metal S-Hook / Bungee Cord",
+            "Wire Brush, 2 Cans of Non-Chlorinated Brake Parts Cleaner Spray, High-Temp Silicone Ceramic Brake Grease, & Blue Threadlocker",
+            "Torque Wrench (20–150 lb-ft)"
+        ],
+        "step_by_step": [
+            "Step 1 (Lift, Secure & Remove Wheel): Chock wheels, break lug nuts loose 1/2 turn on the ground, lift and lower onto locked Jack Stands, and remove the lug nuts and wheel. Turn the steering wheel slightly toward the side you are working on to give your hands wide-open access to the back of the caliper.",
+            "Step 2 (Remove Caliper & Hang Safely): Locate the two smaller **Caliper Slide-Pin Bolts** (`13mm` or `14mm`) on the back of the caliper. Remove them, slide the caliper off the rotor, and hang it from the suspension spring with an S-hook so zero tension is on the rubber brake hose.",
+            "Step 3 (Remove Old Pads, Bracket & Rotor): Pull the old inner and outer brake pads out of the bracket. Use your breaker bar and `18mm–21mm` socket to remove the two large **Caliper Mounting Bracket Bolts** on the back of the knuckle, lift off the bracket, and pull the old rotor off the wheel studs (if stuck by rust, tap around the center hat between the studs with a rubber mallet).",
+            "Step 4 (Clean New Rotor & Service Slide Pins): Spray BOTH faces of the brand-new brake rotor thoroughly with **Brake Parts Cleaner** and wipe dry with a clean paper towel (new rotors come coated in anti-rust shipping oil that will ruin new pads if not washed off!). Slide the new rotor onto the hub. Pull the two smooth metal **Slide Pins** out of the caliper bracket, wipe off old dried grease, coat them with fresh **Silicone Brake Grease**, and slide them back into their rubber boots (they must glide in and out like butter!).",
+            "Step 5 (Install Bracket, Hardware Clips, New Pads & Compress Piston): Bolt the caliper bracket back onto the steering knuckle with a drop of Blue Threadlocker and torque to spec (`75 to 125 lb-ft`). Snap the new stainless-steel pad clips into the bracket, apply a thin smear of brake grease on the pad ears (NEVER on the friction surface!), and slide the new pads in. Place an old brake pad across the face of the caliper piston and slowly tighten a **C-Clamp** to push the piston flush into the caliper bore.",
+            "Step 6 (Reinstall Caliper, Torque Wheel & Pump Pedal!): Slide the caliper over the new pads, thread in the two slide-pin bolts, and torque to **`25 to 35 lb-ft`**. Reinstall the wheel, lower to the ground, torque lug nuts in a **5-point or 6-point Star Pattern** to **`100–140 lb-ft`**, and **pump the brake pedal 5–8 times until firm** before moving the vehicle!"
+        ]
+    },
+    "ZONE_06_TIRES_WHEELS_SUSPENSION_AND_STEERING": {
+        "zone_title": "Zone 6: Flat Tire Changing, Star-Pattern Lug Torquing, Wheel Bearings, Tie Rods & Shocks/Struts",
+        "where_and_what": (
+            "1. **Tire Sidewall Code & Tread Depth:** Printed on the side of your tire is a code like `275/65R18` (`275` = width in mm, `65` = sidewall height as % of width, `R18` = 18-inch rim). Correct tire air pressure (`PSI`, e.g., `35 PSI` or `65 PSI` for heavy trucks) is printed on the **Yellow & White Tire Sticker inside the Driver's Door Jamb** (do NOT inflate to the 'Max Press' number molded on the tire sidewall unless hauling maximum cargo!).\n"
+            "2. **Wheel Bearing Hub Assembly:** Bolted behind the brake rotor; allows the wheel to spin friction-free. A bad wheel bearing makes a low growling/humming roaring noise that gets louder above 40 MPH and changes pitch when you swerve gently left vs. right.\n"
+            "3. **Outer/Inner Tie Rod Ends & Ball Joints:** Pivot joints connecting the steering rack and control arms to the steering knuckle. Loose tie rods cause steering wheel play and feathered tire edge wear.\n"
+            "4. **Struts & Shock Absorbers:** Hydraulic dampers inside or beside the coil springs that stop the vehicle from bouncing up and down after hitting a bump."
+        ),
+        "safety_precautions": [
+            "NEVER remove the center top piston nut on a MacPherson coil-over strut assembly without locking the coil spring in a rated mechanical **Coil Spring Compressor**! A compressed suspension spring stores thousands of pounds of potential energy. (For beginners, always buy a **Pre-Assembled 'Quick-Strut'** that comes with the new spring and top mount already safely assembled at the factory!).",
+            "Always tighten wheel lug nuts in a **Criss-Cross Star Pattern** (1 -> 3 -> 5 -> 2 -> 4 on a 5-lug wheel) using a calibrated Torque Wrench (`100 lb-ft` for cars, `140–150 lb-ft` for F-150/Silverado/Ram trucks). Tightening in a circle warps the brake rotor and causes steering wheel vibration!"
+        ],
+        "tools_required": [
+            "Digital Tire Pressure Gauge & Tread Depth Gauge (or a U.S. Quarter / Lincoln Penny)",
+            "1/2-inch Breaker Bar + Deep 6-Point Lug Nut Socket (19mm, 21mm, or 22mm) + 1/2-inch Torque Wrench",
+            "Floor Jack, Jack Stands & Wheel Chocks",
+            "Pry Bar (for checking ball joint vertical play)"
+        ],
+        "step_by_step": [
+            "Step 1 (The Penny / Quarter Tread Depth Test): Insert a Lincoln Penny upside-down into your tire's tread grooves across the outer edge, center, and inner edge. If you can see the very top of Abraham Lincoln's head, your tread depth is **`<= 2/32 inch`** (the legal wear-bar minimum—replace the tire immediately!). With a Washington Quarter, top of the head = `4/32 inch` (wet/snow replacement threshold).",
+            "Step 2 (The 12-and-6 vs. 3-and-9 Wheel Bearing & Tie Rod Shake Test): With the tire safely lifted 2 inches off the ground on a jack stand, grab the tire at **12 o'clock (top) and 6 o'clock (bottom)** and rock it firmly in and out. Any clunking or looseness here indicates a worn **Wheel Bearing** or **Ball Joint**. Next, grab the tire at **3 o'clock (left) and 9 o'clock (right)** and rock it left-to-right. Looseness here indicates a worn **Inner or Outer Tie Rod End**!",
+            "Step 3 (Replacing an Outer Tie Rod End Without Losing Alignment): Break the jamb nut behind the outer tie rod loose with an open-end wrench (`21mm`/`22mm`) just 1/8th turn. Remove the cotter pin and castle nut on the steering knuckle, tap the knuckle boss with a hammer to pop the tapered stud free, and **count the exact number of full turns** (e.g., `18 turns`) as you unscrew the old tie rod off the inner shaft. Screw the new outer tie rod on the exact same number of turns, torque the castle nut (`45–65 lb-ft`) + new cotter pin, tighten the jamb nut, and execute a 4-wheel alignment + **NVIDIA Brain-2 Steering Angle Sensor (SAS) Zero-Point Calibration**!"
+        ]
+    },
+    "ZONE_07_AIR_FUEL_SPARK_PLUGS_AND_IGNITION": {
+        "zone_title": "Zone 7: Engine Air Filter, MAF Sensor Cleaning, Spark Plugs, Ignition Coils & Fuel Delivery",
+        "where_and_what": (
+            "1. **Engine Air Filter Box & Mass Air Flow (MAF) Sensor:** Follow the wide black plastic accordion tube from the top of the engine outward to a square black plastic box near the front fender. Inside that box is the pleated paper **Engine Air Filter**. Screwed into the plastic tube just outside the box is a small rectangular plug with 4-6 wires—that is the **Mass Air Flow (MAF) Sensor** that measures how many grams/second of air enter the engine.\n"
+            "2. **Ignition Coils (Coil-on-Plug) & Spark Plugs:** On top of the engine cylinder head (one per cylinder: 4, 6, or 8), you will see a row of rubber/plastic boots with electrical connectors bolted down with a single `8mm` or `10mm` bolt. Those are the **Ignition Coils**. Underneath each coil, screwed deep into the cylinder head, is the **Spark Plug**."
+        ),
+        "safety_precautions": [
+            "NEVER touch the tiny platinum sensing wire inside a Mass Air Flow (MAF) sensor with your fingers, a Q-tip, or Carburetor/Brake Cleaner! Only spray it with dedicated **CRC Mass Air Flow Sensor Cleaner** (which evaporates residue-free without melting sensitive electronics).",
+            "NEVER replace spark plugs on a hot aluminum cylinder head! Hot aluminum expands and softens; unscrewing spark plugs from a hot aluminum head can strip the cylinder head threads right out! Always wait until the engine is completely cold to the touch."
+        ],
+        "tools_required": [
+            "8mm & 10mm Sockets, 3/8-inch Ratchet, 6-inch & 10-inch Socket Extensions",
+            "5/8-inch (16mm) or 9/16-inch (14mm) Magnetic / Rubber-Insert Spark Plug Socket",
+            "Wire-Loop Spark Plug Gap Gauge (e.g., 0.032 to 0.044 in), Dielectric Grease & Anti-Seize (if non-plated threads)",
+            "Torque Wrench (Spark plug torque is delicate: 13 to 18 lb-ft!) & Can of Compressed Air",
+            "Dedicated Mass Air Flow (MAF) Sensor Cleaner Spray"
+        ],
+        "step_by_step": [
+            "Step 1 (5-Minute Engine Air Filter & MAF Cleaning): Unclip the metal spring clips (or loosen the 8mm screws) on the corners of the plastic Air Filter Box, lift the lid, and pull out the old pleated filter. Hold it up to a light: if light cannot pass through the pleats, drop in a new filter (making sure the rubber perimeter seal sits flat in the groove). Unplug the MAF sensor connector, remove its two small screws, spray the internal hot-wire 10 bursts with **MAF Cleaner Spray**, let it air-dry for 10 minutes, and reinstall.",
+            "Step 2 (Removing Ignition Coils & Blowing Out Spark Plug Wells): On a cold engine, press the release tab on the Ignition Coil wiring connector and unplug it. Remove the `8mm`/`10mm` hold-down bolt and pull the rubber ignition coil straight up with a gentle twist. **CRITICAL STEP:** Before unscrewing the spark plug, blow compressed air down into the deep spark plug tube so any sand or grit around the base does not fall inside the engine cylinder!",
+            "Step 3 (Unscrewing Old Spark Plug & Installing New Iridium Plug): Lower your `5/8-inch` magnetic spark plug socket on a 6-inch extension down into the well and turn Counter-Clockwise to remove the old plug. Check the gap on the new Iridium spark plug carefully (do not pry against the needle-thin center iridium tip!). Lower the new plug into the socket and **turn the extension by hand only (no ratchet!) for the first 5 full turns** so it threads smoothly.",
+            "Step 4 (Precision Torque & Dielectric Boot Seal): Attach your torque wrench and tighten the spark plug to **`15 lb-ft`** (snug—never crank hard!). Put a pea-sized dab of **Dielectric Silicone Grease** inside the bottom rubber tip of the ignition coil boot (this prevents high-voltage arcing and keeps the boot from sticking), push the coil down until it pops onto the plug, tighten the 10mm bolt, and click the wiring harness until it locks."
+        ]
+    },
+    "ZONE_08_TRANSMISSION_DIFFERENTIALS_AND_DRIVETRAIN": {
+        "zone_title": "Zone 8: Automatic Transmission Fluid (ATF), Differentials, Transfer Case, Driveshaft U-Joints & CV Axles",
+        "where_and_what": (
+            "1. **Transmission:** Bolted directly to the back of the engine; multiplies torque and shifts gears. Rear-wheel/4WD trucks have a rectangular pan underneath between the front doors.\n"
+            "2. **Transfer Case (4WD / AWD Trucks & SUVs):** Bolted to the back of the transmission; splits power between the front and rear driveshafts.\n"
+            "3. **Front & Rear Differentials ('The Pumpkin'):** The round cast-iron globe in the center of the rear (and front 4WD) axle between the wheels. Filled with thick `75W-90` or `75W-140` hypoid gear oil.\n"
+            "4. **CV Axles (Front-Wheel Drive & 4WD Front Wheels):** Shafts with accordion-pleated black rubber boots (**CV Boots**) behind the front wheels. If a rubber CV boot tears and flings dark grease inside the wheel rim, dirt enters the joint and causes a loud *CLICK-CLICK-CLICK* noise when turning sharply in a parking lot."
+        ),
+        "safety_precautions": [
+            "THE GOLDEN DIFFERENTIAL & TRANSFER CASE RULE: **ALWAYS remove the TOP FILL PLUG FIRST before you remove the BOTTOM DRAIN PLUG!** Why? Imagine draining all the gear oil out of the bottom plug, and then discovering the top fill plug is rusted frozen or you don't have the right socket—your truck would be stranded with an empty differential! Always loosen and remove the top Fill Plug first!",
+            "Use the exact OEM Automatic Transmission Fluid specification (e.g., `Mercon ULV`, `Dexron VI`, `ATF+4`, or `CVT Fluid`). Mixing CVT fluid and conventional ATF destroys transmission clutches!"
+        ],
+        "tools_required": [
+            "3/8-inch & 1/2-inch Drive Ratchets (many differential fill/drain plugs take the square 3/8-inch or 1/2-inch ratchet drive directly with no socket!)",
+            "Fluid Transfer Hand Pump (for pumping gear oil or ATF upward into fill holes)",
+            "10-Quart Drain Pan, Torque Wrench & NVIDIA Three-Brain CAN-Bus Enclave (for reading live TFT Transmission Fluid Temp & CVI reset)"
+        ],
+        "step_by_step": [
+            "Step 1 (Differential & Transfer Case Service): With the vehicle level on 4 jack stands, clean dirt around both plugs on the differential housing. Remove the **TOP FILL PLUG FIRST** (`3/8-inch` square drive or `14mm–24mm` socket). Next, place your drain pan underneath and remove the **BOTTOM DRAIN PLUG**. Wipe any fine grey metallic paste off the magnetic drain plug tip.",
+            "Step 2 (Refill & Torque): Reinstall and torque the bottom drain plug (`25–35 lb-ft`). Using your hand fluid pump, pump fresh `75W-90` or `75W-140` synthetic gear oil into the top fill hole until a thin trickle of clean oil begins to seep back out the bottom edge of the fill hole (that is the exact full mark!). Reinstall and torque the top fill plug.",
+            "Step 3 (Temperature-Gated ATF Level Check & NVIDIA CVI Reset): Modern automatic transmissions expand fluid volume rapidly with heat and must be leveled with the engine idling in PARK while reading live **Transmission Fluid Temperature (`TFT = 175 to 195 deg F`)** on your NVIDIA CAN-Bus HUD. After any ATF/filter change, execute the **UDS 0x31 TCM Clutch Volume Index (CVI) Adaptive Fast-Learn** in `🏎️ Sovereign Auto & CAN-Bus C2`!"
+        ]
+    },
+    "ZONE_09_EXHAUST_EMISSIONS_O2_AND_DIESEL_DPF": {
+        "zone_title": "Zone 9: Exhaust Leaks, Oxygen (O2) Sensors, Catalytic Converters & Diesel DPF / DEF Systems",
+        "where_and_what": (
+            "1. **Upstream O2 / Air-Fuel Ratio Sensor (Bank 1 Sensor 1 / B1S1):** Screwed into the exhaust pipe *before* (in front of) the catalytic converter. It measures the raw exhaust leaving the engine to control fuel trim.\n"
+            "2. **Catalytic Converter:** A stainless-steel honeycomb chamber under the vehicle floor coated in Platinum, Palladium, and Rhodium that converts toxic CO, HC, and NOx into harmless CO2, N2, and H2O.\n"
+            "3. **Downstream O2 Sensor (Bank 1 Sensor 2 / B1S2):** Screwed into the exhaust pipe *after* (behind) the catalytic converter; its only job is to monitor whether the catalytic converter is still storing oxygen (`P0420`).\n"
+            "4. **Diesel Particulate Filter (DPF) & Diesel Exhaust Fluid (DEF — Blue Cap):** On modern diesel trucks and tractors (`SAE J1939`), the DPF traps soot and periodically burns it off at `1,100 deg F` ('Regeneration'), while pure `32.5% Urea / 67.5% Deionized Water` DEF (poured into the **Blue DEF Cap**) neutralizes NOx."
+        ),
+        "safety_precautions": [
+            "NEVER work on exhaust pipes, O2 sensors, or catalytic converters right after driving—catalytic converters reach **1,200 to 1,600 deg F** and cause instant 3rd-degree burns!",
+            "NEVER run an engine inside a closed garage (even with a small window cracked). Carbon Monoxide (CO) is odorless, colorless, and lethal within minutes.",
+            "NEVER pour Diesel Exhaust Fluid (DEF) into the diesel fuel tank! DEF is water-based urea; even a cup of DEF in the diesel fuel tank crystallizes inside the $8,000 high-pressure CP4 pump and injectors!"
+        ],
+        "tools_required": [
+            "7/8-inch (22mm) Slotted Oxygen Sensor Socket (has a cutout slot down the side so the sensor's wiring pigtail passes through without cutting the wires!)",
+            "Penetrating Oil Spray (PB Blaster / Kroil) & Nickel/Copper High-Temp Anti-Seize",
+            "3/8-inch Breaker Bar & Torque Wrench (O2 sensor torque: 30 to 37 lb-ft)"
+        ],
+        "step_by_step": [
+            "Step 1 (Soak Threads & Unplug Connector): On a cool exhaust, trace the O2 sensor wire up to its plastic electrical connector, press the tab, and unplug it. Spray penetrating oil onto the sensor's base threads where it screws into the exhaust bung and let it soak for 15 minutes.",
+            "Step 2 (Remove with 22mm Slotted O2 Socket): Slide the `22mm (7/8-inch)` slotted O2 sensor socket over the sensor body (routing the wire neatly through the side slot) and turn Counter-Clockwise with a breaker bar.",
+            "Step 3 (Thread New Sensor & Reset Mode $06): Verify a light coat of high-temp anti-seize is on the new sensor's threads only (NEVER get anti-seize on the vented tip slots!). Thread in by hand, torque to **`30–37 lb-ft`**, plug in the electrical harness away from hot exhaust pipes, and clear fuel-trim/catalyst monitors via NVIDIA Brain-2."
+        ]
+    },
+    "ZONE_10_HVAC_HEATING_COOLING_AND_CABIN_AIR": {
+        "zone_title": "Zone 10: Cabin Air Filter, HVAC Blower Motor, Blend Door Clicking & A/C Refrigerant Safety",
+        "where_and_what": (
+            "1. **Cabin Air Filter (Behind the Passenger Glovebox):** Filters dust, pollen, and diesel soot out of the air blowing through your dashboard A/C and heater vents.\n"
+            "2. **HVAC Blower Motor (Under Passenger Footwell):** The electric squirrel-cage fan that blows air through the dash. Held in by 3 small `8mm` screws.\n"
+            "3. **Blend Door Actuator:** A small plastic electric motor behind the center dash that flips the door between Cold A/C and Hot Heat. When its internal plastic gear strips, it makes a loud, rhythmic *TAK-TAK-TAK-TAK* clicking sound behind the dashboard when you change the temperature!"
+        ),
+        "safety_precautions": [
+            "NEVER vent R-134a or R-1234yf air conditioning refrigerant into the atmosphere or disconnect high-pressure A/C lines without a recovery manifold—liquid refrigerant boils at `-15 deg F` and causes instant frostbite blindness if sprayed into eyes!",
+            "If using a low-side A/C recharge gauge, ONLY connect to the **Larger-Diameter Low-Pressure Service Port (`L` cap, 25–45 PSI)**—never attempt to force a can onto the High-Pressure Port (`H` cap, 150–300+ PSI)!"
+        ],
+        "tools_required": [
+            "New HEPA / Activated-Carbon Cabin Air Filter",
+            "8mm Socket / Phillips Screwdriver (most cabin filters require zero tools!)",
+            "Flashlight"
+        ],
+        "step_by_step": [
+            "Step 1 (5-Minute Tool-Free Cabin Air Filter Replacement): Sit in the front passenger seat and open the empty glovebox. Look at the right outside edge of the glovebox: unhook the small plastic damper arm. Next, squeeze the left and right walls of the plastic glovebox inward toward each other so the two rubber stopper tabs clear the dash opening, and let the glovebox swing down.",
+            "Step 2 (Check the Airflow Arrow!): Behind the glovebox you will see a horizontal rectangular black plastic door (`8 inches wide x 1.5 inches tall`). Pinch the clips on both ends to pop the cover off, and slide the old dusty Cabin Air Filter straight out.",
+            "Step 3 (Install New Filter Matching `AIR FLOW` Arrow): Look at the side edge of the new filter for the printed **`AIR FLOW`** arrow (usually pointing **DOWN** toward the floor, because the blower motor sits below the filter and sucks air downward). Slide the new filter in, snap the cover closed, and push the glovebox back up until the side stops click!"
+        ]
+    },
+    "ZONE_11_LIGHTING_WIPERS_FUSES_AND_BODY": {
+        "zone_title": "Zone 11: Headlight & Taillight Bulbs, Wiper Blades, Window Regulators & Fuse Replacement",
+        "where_and_what": (
+            "1. **Headlight Bulbs (Behind Front Headlamp Housing):** Accessed from inside the engine bay by reaching behind the back of the headlight assembly, twisting the bulb socket `1/4 turn Counter-Clockwise`, and pulling it out.\n"
+            "2. **Wiper Blades (J-Hook / Push-Button Arm):** Attached to the metal wiper arm with a small plastic release tab under the pivot joint.\n"
+            "3. **Blade Fuses (5A Tan, 10A Red, 15A Blue, 20A Yellow, 25A Clear, 30A Green):** Translucent U-shaped plastic fuses inside the engine-bay and cabin fuse boxes. A blown fuse has a visibly broken/melted metal U-wire inside the clear window."
+        ),
+        "safety_precautions": [
+            "THE HALOGEN/HID BULB FINGERPRINT RULE: **NEVER touch the glass of a new headlight bulb with your bare fingers!** Human skin leaves microscopic natural oil on the quartz glass; when the bulb heats up to 1,000 deg F, that oil spot creates a thermal hot-spot that blisters and shatters the new bulb within days! Always wear clean nitrile gloves (or wipe the glass with 91% rubbing alcohol if accidentally touched).",
+            "THE WINDSHIELD TOWEL RULE: When changing wiper blades, ALWAYS lay a folded bath towel across the bottom of the glass windshield! If the bare metal wiper arm slips out of your hand while the blade is off, the strong spring will snap the metal hook down and crack the $600 windshield!",
+            "NEVER replace a blown fuse with a higher amperage rating (e.g., never put a 30A green fuse into a 10A red slot)—doing so turns the vehicle's wiring harness into the fuse and causes electrical fires!"
+        ],
+        "tools_required": [
+            "Clean Nitrile Gloves & 91% Isopropyl Alcohol Wipe",
+            "Folded Bath Towel (to protect windshield glass during wiper change)",
+            "Plastic Fuse Puller Clip (stored inside the fuse box lid) + Matching Amperage Spare Fuses"
+        ],
+        "step_by_step": [
+            "Step 1 (Changing Wiper Blades Safely): Lift the wiper arm up and lay a folded towel on the windshield underneath it. Press the small plastic release tab inside the hook of the wiper blade and slide the old blade downward (toward the hood) off the J-hook. Hook the new blade onto the arm and pull upward until you hear a loud *CLICK*, then gently rest it on the glass.",
+            "Step 2 (Changing a Headlight Bulb): Put on clean nitrile gloves. Open the hood, reach behind the headlight housing, unplug the wiring connector, twist the bulb base `1/4 turn Counter-Clockwise`, and pull it straight out without touching the glass. Insert the new bulb tabs into the keyways, twist `1/4 turn Clockwise` until locked, and plug the connector back in.",
+            "Step 3 (Testing & Replacing a Blown Fuse): Read the fuse map inside the fuse box cover to find the circuit (e.g., `12V Power Outlet / Cigar Lighter = 20A Yellow`). Use the plastic fuse puller to pull the fuse straight out and hold it up to the light: if the internal metal bridge is broken in two, push in a new fuse of the **exact same amperage number and color**."
+        ]
+    },
+    "ZONE_12_PORTABLE_NVIDIA_CANBUS_PLUGIN_AND_ECU_GUIDE": {
+        "zone_title": "Zone 12: Beginner's Click-by-Click Guide to Plugging In & Unplugging the Portable NVIDIA Three-Brain CAN-Bus Enclave",
+        "where_and_what": (
+            "How any beginner or fleet operator connects the **Portable NVIDIA Three-Brain Enclave** to diagnose and adjust computer issues on any car, truck, or tractor, and safely removes it to use on the next vehicle:\n"
+            "1. **Where to Find the 16-Pin OBD-II Port on Any Car or Pickup Truck:** Sit in the driver's seat and look underneath the dashboard, directly below the steering wheel column (within 12 inches of your knees, above the brake/gas pedals). You will see a trapezoid-shaped **16-Pin Female Connector** (usually black or white) facing downward or outward. No tools are needed to plug into it!\n"
+            "2. **Where to Find the 9-Pin J1939 / ISOBUS Port on Heavy Trucks & Tractors:** On semi-trucks and heavy pickups, look on the lower left kick panel by the driver's left foot for a **Round 9-Pin Black or Green Deutsch Connector** with a twist-lock ring. On agricultural tractors (`John Deere`, `Case IH`, `Kubota`), look on the right-hand cab pillar or behind the seat console for the **9-Pin ISO 11783 ISOBUS Diagnostic Port**."
+        ),
+        "safety_precautions": [
+            "Always plug the connector in with the vehicle parked in PARK (or Neutral with Parking Brake locked) so the cable never tangles around your feet or the brake pedal.",
+            "During any ECU calibration write (`UDS 0x2E`) or adaptive reset (`UDS 0x31`), keep the vehicle ignition in **KEY ON, ENGINE OFF (`KOEO` — dashboard lights on, engine not cranking)** with headlights and A/C blower turned OFF (or a 13.5V battery maintainer connected) so battery voltage stays above `12.4V DC`.",
+            "Wait for the green **Brain-3 Safe-Disconnect Banner (`SAFE TO UNPLUG NVIDIA THREE-BRAIN ENCLAVE`)** before pulling the plug out!"
+        ],
+        "tools_required": [
+            "Portable NVIDIA Three-Brain Enclave (or HVFNexus Laptop/Tablet running `🏎️ Sovereign Auto & CAN-Bus C2`)",
+            "Galvanically Isolated USB-to-CAN / SAE J2534 Transceiver Cable",
+            "Adapter Pigtail: Cable A (16-Pin OBD-II for Cars/Pickups), Cable B (9-Pin Deutsch J1939 for Heavy Diesel), or Cable C (9-Pin ISOBUS for Ag Tractors)"
+        ],
+        "step_by_step": [
+            "Step 1 (Locate Port & Plug In Cable): With the vehicle parked and ignition OFF, match the trapezoid shape of the 16-Pin OBD-II plug (or align the keyway notch on the round 9-Pin J1939/ISOBUS plug and twist the locking collar `1/4 turn Clockwise`). Push straight in until firm—Pin 16 (OBD-II) or Pin B (J1939) immediately powers Brain 1's isolated transceiver LED.",
+            "Step 2 (Turn Key to ON / Run Mode $09 VIN Auto-Lock): Turn the vehicle ignition key to the **ON / RUN** position (or press Start button without pressing the brake pedal so dashboard lights illuminate). In `🏎️ Sovereign Auto & CAN-Bus C2`, Brain 1 automatically verifies the `60.0 Ohm` CAN-Bus loop, reads the 17-character VIN via `Mode $09`, and captures a **Baseline EEPROM SHA-256 Backup** in `matrix_ledger.db`.",
+            "Step 3 (Read Live Telemetry, Follow Beginner SOP & Apply ECU Adjustment): Review the live Fuel Trim (`STFT + LTFT`), Volumetric Efficiency (`VE_%`), and active Diagnostic Trouble Code (`DTC`). Follow the step-by-step physical check (if mechanical) and apply the **NVIDIA Brain-2 ECU Computer Adjustment** (`UDS 0x2E` parameter write or `UDS 0x31` adaptive relearn).",
+            "Step 4 (Verify Green Brain-3 Safe-Disconnect Interlock & Unplug for Next Vehicle): Confirm the green status banner reads **`SAFE TO UNPLUG NVIDIA THREE-BRAIN ENCLAVE (UDS Session 0x01 Default Restored | EEPROM Verified | WORM Sealed)`**. Turn the vehicle ignition OFF, grasp the body of the OBD-II/J1939 plug (never pull by the wire!), unplug it, and carry the NVIDIA enclave to your next vehicle or tractor!"
+        ]
+    }
+}
+
 CANBUS_PROTOCOLS = {
     "ISO_15765_4_CAN_11BIT_500K": {
         "name": "ISO 15765-4 / SAE J1979 Standard OBD-II CAN (11-Bit ID, 500 kbps)",
@@ -187,11 +499,46 @@ MASTER_DTC_AND_REPAIR_LIBRARY = {
 }
 
 PREVENTATIVE_MAINTENANCE_MATRIX = [
-    {"interval_miles": 5000, "tier": "Tier 1: Tribology & Fluid Baseline", "tasks": "Full-Synthetic Engine Oil (API SP / ILSAC GF-6, 5W-30 / 0W-20) & Filter; Tire Rotation (Torque lug nuts: 100-140 lb-ft star pattern); Inspect brake pad thickness (>= 4.0 mm) & battery State-of-Health ( resting >= 12.60V )."},
-    {"interval_miles": 15000, "tier": "Tier 2: Airflow & Cabin Filtration", "tasks": "Replace Engine Air Filter (verify MAF g/s baseline via NVIDIA CAN node); Replace Cabin HEPA Filter; Inspect wiper blades, serpentine belt tension, and cooling system freeze point (-34 deg F, 50/50OAT coolant)."},
-    {"interval_miles": 30000, "tier": "Tier 3: Hydraulic Brake, Fuel & Drivetrain Service", "tasks": "Flush DOT 3 / DOT 4 Brake Fluid (verify moisture content < 1.5% / boiling point > 400 deg F); Service Transfer Case & Front/Rear Differential Gear Oil (75W-90 / 75W-140 GL-5); Direct-Injection Intake Valve & Fuel System Cleaning."},
-    {"interval_miles": 60000, "tier": "Tier 4: Transmission, Ignition & Cooling Overhaul", "tasks": "Automatic Transmission Fluid (ATF) & Filter Service + NVIDIA TCM CVI Fast-Learn Reset; Replace Iridium Spark Plugs (gap 0.032-0.044 in, torque 15-18 lb-ft); Flush Engine Coolant & Thermostat inspection."},
-    {"interval_miles": 100000, "tier": "Tier 5: Major Timing, Suspension & Chassis Rebuild", "tasks": "Inspect/Replace Timing Belt or Chain Tensioners & Water Pump; Replace Struts/Shocks & Control Arm Bushings; 4-Wheel Laser Alignment + NVIDIA ABS Steering Angle Sensor (SAS) Zero-Point Calibration."}
+    {
+        "interval_miles": 5000,
+        "tier": "Tier 1: Engine Oil & Filter Change, Tire Rotation, Lug Torque & 12V Battery Check",
+        "tasks": "Full-Synthetic Engine Oil (API SP / ILSAC GF-6, 5W-30 or 0W-20) & Spin-On/Cartridge Filter; 4-Tire Cross-Rotation; Inspect Brake Pad Thickness (>= 4.0 mm) & 12V Battery Resting Voltage (>= 12.60V DC).",
+        "beginner_where": "Yellow/Orange loop on engine side = Dipstick; Top cap marked 'OIL' = Filler; Bottom engine pan bolt (13mm-17mm) = Drain Plug.",
+        "beginner_tools": "3/8" Ratchet, 13-17mm 6-Point Socket, Oil Filter Wrench, 10-Qt Drain Pan, Funnel, 1/2" Torque Wrench (100-140 lb-ft for lugs, 20-25 lb-ft for drain plug), Jack + 2 Locked Jack Stands + Wheel Chocks.",
+        "beginner_safety": "Park on flat concrete, chock rear wheels, support on locked Jack Stands (NEVER trust a hydraulic jack alone!), verify old rubber filter O-ring came off with old filter, and pre-lube new filter O-ring."
+    },
+    {
+        "interval_miles": 15000,
+        "tier": "Tier 2: Engine Air Filter, Cabin HEPA Filter, MAF Sensor Clean & Wiper Blades",
+        "tasks": "Replace Engine Air Filter & Clean Mass Air Flow (MAF) Sensor; Replace Cabin Air Filter behind Passenger Glovebox; Replace Wiper Blades & Inspect Serpentine Belt for cracks.",
+        "beginner_where": "Engine Air Box = black square box connected to intake tube near front fender; Cabin Filter = behind passenger glovebox; MAF Sensor = 4-to-6 wire plug on intake tube.",
+        "beginner_tools": "8mm Socket / Screwdriver, Can of Dedicated CRC MAF Sensor Cleaner (NEVER use brake/carb cleaner!), Folded Bath Towel (to protect windshield glass when changing wipers).",
+        "beginner_safety": "Never touch the tiny sensing wire inside the MAF sensor with fingers or Q-tips; match the 'AIR FLOW' arrow on the cabin filter; lay a towel on the windshield so the metal wiper arm cannot snap down and crack the glass."
+    },
+    {
+        "interval_miles": 30000,
+        "tier": "Tier 3: Hydraulic Brake Fluid Flush, Front/Rear Differential Gear Oil & Transfer Case",
+        "tasks": "Flush Hygroscopic DOT 3 / DOT 4 Brake Fluid (moisture < 1.5%, boiling point > 400 deg F); Drain & Refill Front/Rear Differential (`75W-90` / `75W-140` GL-5) and 4WD Transfer Case; Clean Direct-Injection Intake Valves.",
+        "beginner_where": "Brake Reservoir = translucent box on driver's firewall; Differential ('Pumpkin') = round iron housing in center of axle between wheels (has a Top Fill Plug and Bottom Drain Plug).",
+        "beginner_tools": "3/8" & 1/2" Drive Ratchets, Fluid Hand Transfer Pump, 10mm/11mm Flare-Nut Wrench (for brake bleeder screws), Clear Bleeder Hose, Torque Wrench (25-35 lb-ft).",
+        "beginner_safety": "GOLDEN RULE: Always loosen and remove the TOP FILL PLUG on a differential or transfer case BEFORE removing the BOTTOM DRAIN PLUG! When bleeding brakes (RR -> LR -> FR -> FL), never let the master cylinder reservoir run dry."
+    },
+    {
+        "interval_miles": 60000,
+        "tier": "Tier 4: Automatic Transmission Fluid (ATF) & Filter, Iridium Spark Plugs & Coolant Flush",
+        "tasks": "Service Automatic Transmission Fluid (ATF) & Filter + Execute NVIDIA Brain-2 UDS 0x31 TCM CVI Fast-Learn; Replace Iridium Spark Plugs (gap 0.032-0.044 in, torque 15-18 lb-ft); Flush 50/50 Coolant (-34 deg F protection).",
+        "beginner_where": "Spark Plugs = under the row of Ignition Coils on top of cylinder head (8mm/10mm bolt); Transmission Pan = rectangular pan under vehicle behind engine oil pan; Radiator Drain Petcock = bottom corner of front radiator.",
+        "beginner_tools": "5/8" (16mm) Magnetic Spark Plug Socket, 6" Extension, Compressed Air, Dielectric Grease, 3/8" Torque Wrench (15 lb-ft for plugs, 8-10 lb-ft for trans pan bolts), NVIDIA CAN-Bus Enclave.",
+        "beginner_safety": "NEVER open a hot radiator cap or remove spark plugs from a hot aluminum cylinder head! Blow compressed air into spark plug wells before unscrewing plugs so dirt cannot fall into the cylinders; start new spark plugs 5 full turns by hand."
+    },
+    {
+        "interval_miles": 100000,
+        "tier": "Tier 5: Timing Belt/Chain & Water Pump, Pre-Assembled Quick-Struts, Tie Rods & SAS Calibration",
+        "tasks": "Replace Timing Belt / Inspect Timing Chain Tensioners & Water Pump; Replace Front Quick-Strut Assemblies, Rear Shocks, Ball Joints & Tie Rod Ends; 4-Wheel Laser Alignment + NVIDIA ABS Steering Angle Sensor (SAS) Zero-Point Calibration.",
+        "beginner_where": "Struts = coil spring & damper assembly behind front wheels; Tie Rods = steering linkage rods connecting steering rack to wheel knuckle (test with 3-and-9 o'clock tire shake).",
+        "beginner_tools": "Pre-Assembled Quick-Struts (so you never have to compress a live coil spring!), 18mm-24mm Socket Set, Breaker Bar, Pry Bar, Torque Wrench, NVIDIA Three-Brain CAN-Bus Enclave.",
+        "beginner_safety": "NEVER remove the center top nut of a coil-over strut without a rated cage spring compressor—always install pre-assembled Quick-Struts! Count exact threads when unscrewing outer tie rods and run UDS 0x31 SAS Zero-Point Calibration after alignment."
+    }
 ]
 
 PERFORMANCE_IMPROVEMENT_STAGES = {
@@ -536,11 +883,38 @@ def render_automotive_master_deck():
         )
 
     with tab_maint:
-        st.markdown("### 🔧 Complete 0 to 100,000+ Mile Master Preventative Maintenance & Torque Guide")
+        st.markdown("### 📖 Complete Bumper-to-Bumper Beginner-to-Master Repair & Anatomy Encyclopedia (12 Vehicle Zones)")
+        st.info("💡 **Zero-Experience Beginner Guarantee:** Select any of the 12 Vehicle Zones below to see exact visual landmarks (where the part/dipstick/cap is and what it looks like), mandatory life-safety rules, exact socket/tool sizes, and turn-by-turn instructions.")
+        zone_sel = st.selectbox(
+            "🔍 Select Vehicle Zone (From Shop Safety & Dipsticks to Brakes, Suspension, Electrical & CAN-Bus):",
+            list(BUMPER_TO_BUMPER_BEGINNER_GUIDE.keys()),
+            format_func=lambda k: BUMPER_TO_BUMPER_BEGINNER_GUIDE[k]["zone_title"],
+            key="b2b_zone_selector"
+        )
+        z_data = BUMPER_TO_BUMPER_BEGINNER_GUIDE[zone_sel]
+        st.markdown(f"#### 📍 1. Where Is It & What Does It Look Like? ({z_data['zone_title']})")
+        st.markdown(z_data["where_and_what"])
+
+        st.markdown("#### ⚠️ 2. Mandatory Life-Safety & Vehicle Protection Precautions")
+        for s_rule in z_data["safety_precautions"]:
+            st.warning(s_rule)
+
+        st.markdown("#### 🧰 3. Exact Tools, Socket Sizes & Supplies Required Before You Start")
+        for t_item in z_data["tools_required"]:
+            st.markdown(f"- **{t_item}**")
+
+        st.markdown("#### 🛠️ 4. Step-by-Step, Hand-by-Hand Beginner Instructions (With Exact Torque Specs)")
+        for st_item in z_data["step_by_step"]:
+            st.success(st_item)
+
+        st.markdown("---")
+        st.markdown("### 🔧 Complete 0 to 100,000+ Mile Master Preventative Maintenance Schedule (With Beginner Where/Tools/Safety)")
         for m_item in PREVENTATIVE_MAINTENANCE_MATRIX:
-            st.markdown(f"#### 📌 Every `{m_item['interval_miles']:,} Miles` — {m_item['tier']}")
-            st.write(m_item["tasks"])
-            st.markdown("---")
+            with st.expander(f"📌 Every {m_item['interval_miles']:,} Miles — {m_item['tier']}", expanded=True):
+                st.markdown(f"- **Scheduled Engineering Tasks:** {m_item['tasks']}")
+                st.markdown(f"- **📍 Beginner Landmark (Where to Look):** {m_item.get('beginner_where', '')}")
+                st.markdown(f"- **🧰 Exact Tools & Torque Specs:** `{m_item.get('beginner_tools', '')}`")
+                st.markdown(f"- **⚠️ Critical Safety Rule:** {m_item.get('beginner_safety', '')}")
 
     with tab_perf:
         st.markdown("### 🧮 Interactive Performance Injector, Boost, Torque-to-Yield & Drivetrain Calculator")
