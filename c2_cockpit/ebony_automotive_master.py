@@ -5,6 +5,7 @@ Standards: SAE J1979 (OBD-II), SAE J1939 (Heavy Duty), ISO 14229 (UDS), SAE J253
 Architecture: Modular, additive multi-vehicle hot-swappable NVIDIA Three-Brain diagnostic, repair, maintenance & ECU calibration suite.
 """
 import hashlib
+import difflib
 import json
 import re
 import sqlite3
@@ -1104,6 +1105,17 @@ OEM_PART_NUMBER_CATALOG = {
             {"category": "Door Panel & Body Trim", "part_name": "F-150 Interior Door Trim Panel Retainer Clips & Latch Cable", "oem_pn": "Ford W713297-S300 (Clips) / FL3Z-15221A00-B (Cable)", "aftermarket_pn": "Dorman 700-677", "spec": "7mm Anchor Bolts (2 under handle/pull cup + 2 along bottom lip)"}
         ]
     },
+    "GM_CHEVROLET_TAHOE_SUBURBAN_SILVERADO": {
+        "match_tokens": ["chevrolet", "chevy", "tahoe", "taho", "suburban", "silverado", "gmc", "yukon", "sierra", "escalade", "5.3l", "6.2l", "6.6l", "4.8l", "6.0l", "duramax", "vortec", "ecotec3"],
+        "parts": [
+            {"category": "Door Panel & Body Trim", "part_name": "Interior Door Trim Panel Retainer Clips & Lock Rod Guide (Tahoe / Suburban / Silverado / Sierra)", "oem_pn": "GM 11519031 / 15960325 (White/Grey Nylon Door Clips) | Door Handle Bezel: GM 22855642", "aftermarket_pn": "Dorman 963-609D / Dorman 700-053 / Auveco 19213", "spec": "2x 10mm Bolts behind Armrest Pull-Cup cover + 1x 7mm/10mm Bolt behind Inside Door Handle cover + 10 Perimeter Push-Clips"},
+            {"category": "Door Panel & Body Trim", "part_name": "Front Driver/Passenger Power Window Regulator & Motor Assembly (Tahoe / Silverado)", "oem_pn": "GM Genuine 22894896 (LH Driver) / 22894897 (RH Passenger) / ACDelco 11A609", "aftermarket_pn": "Dorman 741-442 (LH) / Dorman 741-443 (RH)", "spec": "10mm Regulator Bolts: Torque to 89 in-lbs (7.4 lb-ft); Re-initialize Auto-Up by holding switch UP 3 sec at top"},
+            {"category": "Engine Oil & Filter", "part_name": "Engine Oil Filter (5.3L / 6.2L V8 & 6.6L Duramax Diesel)", "oem_pn": "ACDelco PF63E (12707246 for 2014+ 5.3L/6.2L) | ACDelco PF48E (2007-2013 5.3L) | ACDelco PF2232 (6.6L Duramax)", "aftermarket_pn": "Wix WL10255 (PF63E) / Wix 57060 (PF48E) / Mobil 1 M1-113A", "spec": "2014+ 5.3L/6.2L V8: 8.0 Quarts SAE 0W-20 Dexos1 | 2007-2013 5.3L: 6.0 Quarts SAE 5W-30 (Drain Plug: 15mm, Torque 18 lb-ft)"},
+            {"category": "Ignition & Air", "part_name": "ACDelco Iridium Spark Plugs (Qty 8), Plug Wire Set & Engine Air Filter", "oem_pn": "ACDelco 41-114 (12622441 for 2014+ 5.3L L83) | ACDelco 41-110 (2007-2013 5.3L LC9) | Air Filter A3181C (22845992)", "aftermarket_pn": "NGK 91418 (ILTR5E11) / NGK 4344 (TR5IX) / Wix 42487 Air Filter", "spec": "Spark Plug Gap: 0.040 in; Torque: 11 lb-ft; Coil Bracket Bolts: 10mm"},
+            {"category": "Brakes & Hubs", "part_name": "Front Heavy-Duty Ceramic Brake Pads, Rotors & 6-Lug Wheel Hub Bearing", "oem_pn": "ACDelco 171-1189 / GM 84732488 (Pads) | GM 20971870 (Hub Bearing Assy)", "aftermarket_pn": "Akebono ACT1363 / PowerStop Z36-1363 (FMSI D1363) | Timken HA590491 (Hub)", "spec": "Caliper Bracket: 148 lb-ft (18mm) | Slide Pins: 31 lb-ft | 6-Lug Wheel Nuts (22mm): 140 lb-ft"},
+            {"category": "Starter & Charging", "part_name": "High-Torque Starter Motor & 150A/170A Alternator (5.3L / 6.2L V8)", "oem_pn": "ACDelco 337-1197 / GM 12655055 (Starter) | ACDelco 13592811 (Alternator)", "aftermarket_pn": "Remy 96220 / Denso 280-5440", "spec": "Disconnect 10mm Black Negative (-) Battery Terminal FIRST! Starter Mounting Bolts (13mm): Torque 37 lb-ft"}
+        ]
+    },
     "GM_DURAMAX_SILVERADO": {
         "match_tokens": ["chevy", "chevrolet", "silverado", "gmc", "sierra", "duramax", "6.6l", "5.3l", "6.2l"],
         "parts": [
@@ -1142,12 +1154,165 @@ OEM_PART_NUMBER_CATALOG = {
 }
 
 
+CASCADING_VEHICLE_CATALOG = {
+    "AUTO_TRUCK": {
+        "Chevrolet": {
+            "Tahoe": ["5.3L EcoTec3 / Vortec V8", "6.2L EcoTec3 V8", "3.0L Duramax Turbo-Diesel I6", "4.8L / 6.0L Vortec V8"],
+            "Suburban": ["5.3L EcoTec3 / Vortec V8", "6.2L EcoTec3 V8", "3.0L Duramax Turbo-Diesel I6", "6.0L Vortec V8"],
+            "Silverado 1500": ["5.3L EcoTec3 V8", "6.2L EcoTec3 V8", "3.0L Duramax Turbo-Diesel I6", "2.7L TurboMax I4", "4.3L EcoTec3 V6"],
+            "Silverado 2500HD / 3500HD": ["6.6L Duramax Turbo-Diesel V8 (L5P / LML / LBZ)", "6.6L L8T Gas V8", "6.0L Vortec Gas V8"],
+            "Camaro": ["6.2L LT1 / LS3 V8", "6.2L LT4 Supercharged V8", "3.6L V6", "2.0L Turbo I4"],
+            "Corvette": ["6.2L LT2 / LT1 / LS3 V8", "5.5L LT6 Flat-Plane V8", "6.2L LT4 Supercharged V8"],
+            "Equinox / Traverse": ["1.5L / 2.0L Turbo I4", "3.6L DOHC V6", "2.4L EcoTec I4"],
+            "Colorado / Malibu": ["2.7L Turbo I4", "3.6L V6", "2.8L Duramax Diesel I4", "1.5L Turbo I4"]
+        },
+        "Ford": {
+            "F-150": ["5.0L Coyote V8", "3.5L EcoBoost Twin-Turbo V6", "2.7L EcoBoost Twin-Turbo V6", "3.5L PowerBoost Hybrid V6", "5.4L 3V Triton V8"],
+            "F-250 / F-350 Super Duty": ["6.7L PowerStroke Turbo-Diesel V8", "7.3L Godzilla Gas V8", "6.2L Boss Gas V8"],
+            "Expedition / Explorer": ["3.5L EcoBoost Twin-Turbo V6", "2.3L EcoBoost I4", "5.4L Triton V8"],
+            "Mustang": ["5.0L Coyote DOHC V8", "2.3L EcoBoost Turbo I4", "5.2L Predator Supercharged V8"],
+            "Ranger / Bronco": ["2.3L EcoBoost Turbo I4", "2.7L EcoBoost Twin-Turbo V6", "3.0L EcoBoost Raptor V6"]
+        },
+        "Dodge": {
+            "Charger": ["5.7L HEMI V8", "6.4L Scat Pack 392 HEMI V8", "6.2L Hellcat Supercharged HEMI V8", "3.6L Pentastar V6"],
+            "Challenger": ["5.7L HEMI V8", "6.4L 392 HEMI V8", "6.2L Hellcat Supercharged V8", "3.6L Pentastar V6"],
+            "Durango": ["5.7L HEMI V8", "6.4L SRT 392 HEMI V8", "3.6L Pentastar V6"]
+        },
+        "Ram": {
+            "1500": ["5.7L HEMI V8 (eTorque / Standard)", "3.0L Hurricane Twin-Turbo I6", "3.6L Pentastar V6", "3.0L EcoDiesel V6"],
+            "2500 / 3500 Heavy Duty": ["6.7L Cummins High-Output Turbo-Diesel I6", "6.4L Heavy-Duty HEMI Gas V8", "5.9L Cummins 24V Turbo-Diesel I6"]
+        },
+        "GMC": {
+            "Yukon / Yukon XL": ["5.3L EcoTec3 V8", "6.2L EcoTec3 V8", "3.0L Duramax Turbo-Diesel I6"],
+            "Sierra 1500": ["5.3L EcoTec3 V8", "6.2L EcoTec3 V8", "3.0L Duramax Turbo-Diesel I6"],
+            "Sierra 2500HD / 3500HD": ["6.6L Duramax Turbo-Diesel V8", "6.6L L8T Gas V8"]
+        },
+        "Toyota": {
+            "Tacoma": ["3.5L V6 (2GR-FKS)", "2.4L i-FORCE Turbo I4", "4.0L V6 (1GR-FE)"],
+            "Tundra / Sequoia": ["5.7L i-FORCE V8 (3UR-FE)", "3.4L i-FORCE Twin-Turbo V6"],
+            "Camry / RAV4 / Corolla": ["2.5L Dynamic Force I4 (A25A)", "3.5L V6 (2GR-FKS)", "1.8L / 2.0L I4"]
+        },
+        "Honda": {
+            "Civic / Accord": ["1.5L VTEC Turbo I4", "2.0L K20 / i-VTEC I4", "2.4L K24 i-VTEC I4"],
+            "CR-V / Pilot / Ridgeline": ["3.5L J35 i-VTEC V6", "1.5L VTEC Turbo I4", "2.4L i-VTEC I4"]
+        },
+        "Jeep": {
+            "Wrangler / Gladiator": ["3.6L Pentastar V6", "2.0L Turbo I4", "6.4L Rubicon 392 HEMI V8", "3.0L EcoDiesel V6"],
+            "Grand Cherokee": ["3.6L Pentastar V6", "5.7L HEMI V8", "2.0L 4xe Hybrid"]
+        },
+        "John Deere": {
+            "8R / 7R / 6R Row-Crop Tractor": ["9.0L PowerTech PSS Tier-4 Final Diesel", "6.8L PowerTech PVS Diesel"],
+            "5E / 4M / 3E Utility Tractor": ["4.5L PowerTech 4-Cyl Turbo-Diesel", "2.9L / 1.6L Yanmar 3-Cyl Diesel"],
+            "1025R / 2025R Sub-Compact Tractor": ["24.2 HP 3TNV80F 3-Cyl Yanmar Diesel"]
+        },
+        "Case IH / Kubota": {
+            "Magnum / Steiger / Maxxum Tractor": ["8.7L / 6.7L FPT Cursor Turbo-Diesel (ISOBUS Class 3)"],
+            "Kubota M7 / M6 / L-Series / BX": ["6.1L V6108 / 3.8L V3800 / D902 Kubota Diesel"]
+        }
+    },
+    "SMALL_ENGINE": {
+        "Honda Small Engine": {
+            "HRN216 / HRX217 Push Mower": ["GCV160 (160cc 4-Stroke OHC)", "GCV170 (166cc 4-Stroke OHC)", "GCV200 (201cc 4-Stroke OHC)"],
+            "GX200 / GX390 Pressure Washer & Generator": ["GX160 / GX200 (196cc Commercial OHV)", "GX390 (389cc Commercial OHV)", "iGX800 V-Twin EFI"]
+        },
+        "Briggs & Stratton": {
+            "EXi / Quantum Push Mower": ["140cc 550EX / 163cc 675EXi / 190cc Quantum 4-Stroke"],
+            "Intek / Vanguard Riding & Zero-Turn": ["19.5 HP 540cc Single OHV", "24 HP 724cc V-Twin OHV", "37 HP 993cc Vanguard BIG BLOCK EFI"]
+        },
+        "Kohler": {
+            "Courage / 7000 Series Riding & Zero-Turn": ["KT725 / KT745 (725cc-747cc 22-26 HP V-Twin)", "SV590 / SV600 Courage Single"],
+            "Command PRO EFI Commercial Zero-Turn": ["ECV740 / ECV749 (747cc 26.5-29 HP Closed-Loop EFI)", "ECH980 (999cc 38 HP EFI)"]
+        },
+        "Kawasaki": {
+            "FR / FS / FX Series Zero-Turn Mower": ["FR691V / FR730V (726cc 23-24 HP V-Twin Carbureted)", "FX850V / FT730V EFI (852cc / 726cc V-Twin)"]
+        },
+        "Stihl / Echo / Husqvarna (2-Stroke)": {
+            "String Trimmer / Weedeater (FS 91 / SRM-225)": ["21.2cc - 28.4cc 2-Stroke / 4-Mix (50:1 Fuel-Oil Mix)"],
+            "Chainsaw (MS 250 / MS 271 / CS-590 / 450 Rancher)": ["45.4cc - 59.8cc 2-Stroke Air-Cooled (50:1 Fuel-Oil Mix)"],
+            "Backpack / Handheld Leaf Blower (BR 600 / PB-580T)": ["27.2cc - 64.8cc 2-Stroke / 4-Mix (50:1 Fuel-Oil Mix)"]
+        },
+        "Predator / Generac / Toro": {
+            "Predator 212cc / 420cc / 670cc Utility Engine": ["212cc (6.5 HP OHV Horizontal)", "420cc (13 HP OHV)", "670cc (22 HP V-Twin)"],
+            "Generac GP / Guardian Generator": ["389cc / 420cc Portable OHV", "999cc G-Force V-Twin Natural Gas / LP"]
+        }
+    }
+}
+
+MAKE_SPELLING_ALIASES = {
+    "chevy": "Chevrolet", "chev": "Chevrolet", "cheverolet": "Chevrolet", "chevorlet": "Chevrolet",
+    "frod": "Ford", "doge": "Dodge", "dodg": "Dodge", "chrysler": "Dodge",
+    "gmc": "GMC", "gm": "Chevrolet", "ram": "Ram", "toyta": "Toyota", "toyoto": "Toyota",
+    "hnda": "Honda", "jep": "Jeep", "jd": "John Deere", "deere": "John Deere", "johndeere": "John Deere",
+    "case": "Case IH / Kubota", "kubota": "Case IH / Kubota", "briggs": "Briggs & Stratton",
+    "b&s": "Briggs & Stratton", "kholer": "Kohler", "kawa": "Kawasaki",
+    "sthil": "Stihl / Echo / Husqvarna (2-Stroke)", "stihl": "Stihl / Echo / Husqvarna (2-Stroke)",
+    "echo": "Stihl / Echo / Husqvarna (2-Stroke)", "husq": "Stihl / Echo / Husqvarna (2-Stroke)",
+    "predator": "Predator / Generac / Toro", "generac": "Predator / Generac / Toro", "toro": "Predator / Generac / Toro"
+}
+
+MODEL_SPELLING_ALIASES = {
+    "taho": "Tahoe", "tahoe": "Tahoe", "taheo": "Tahoe",
+    "suburbn": "Suburban", "suburban": "Suburban", "burb": "Suburban",
+    "silvrado": "Silverado 1500", "silverado": "Silverado 1500", "silverado 2500": "Silverado 2500HD / 3500HD",
+    "camero": "Camaro", "camaro": "Camaro", "corvet": "Corvette", "vette": "Corvette",
+    "f150": "F-150", "f-150": "F-150", "f 150": "F-150",
+    "f250": "F-250 / F-350 Super Duty", "f350": "F-250 / F-350 Super Duty", "superduty": "F-250 / F-350 Super Duty",
+    "chargere": "Charger", "charger": "Charger", "chgr": "Charger",
+    "chalenger": "Challenger", "challenger": "Challenger", "durango": "Durango",
+    "1500": "1500", "2500": "2500 / 3500 Heavy Duty", "3500": "2500 / 3500 Heavy Duty", "cummins": "2500 / 3500 Heavy Duty", "cumins": "2500 / 3500 Heavy Duty",
+    "yukon": "Yukon / Yukon XL", "sierra": "Sierra 1500",
+    "tacoma": "Tacoma", "tundra": "Tundra / Sequoia", "camry": "Camry / RAV4 / Corolla",
+    "civic": "Civic / Accord", "accord": "Civic / Accord", "crv": "CR-V / Pilot / Ridgeline"
+}
+
+
+def auto_correct_vehicle_spelling(make_in: str, model_in: str, domain_code: str = "AUTO_TRUCK") -> tuple:
+    cat = CASCADING_VEHICLE_CATALOG.get(domain_code, CASCADING_VEHICLE_CATALOG["AUTO_TRUCK"])
+    valid_makes = list(cat.keys())
+
+    mk_raw = str(make_in).strip()
+    mk_low = mk_raw.lower()
+    corrected_make = MAKE_SPELLING_ALIASES.get(mk_low)
+    if not corrected_make:
+        for vm in valid_makes:
+            if mk_low == vm.lower() or mk_low in vm.lower():
+                corrected_make = vm
+                break
+    if not corrected_make:
+        matches = difflib.get_close_matches(mk_raw, valid_makes, n=1, cutoff=0.55)
+        corrected_make = matches[0] if matches else (mk_raw.title() or valid_makes[0])
+
+    valid_models = list(cat.get(corrected_make, {}).keys())
+    md_raw = str(model_in).strip()
+    md_low = md_raw.lower()
+    corrected_model = MODEL_SPELLING_ALIASES.get(md_low)
+    if corrected_model and valid_models and corrected_model not in valid_models:
+        # Check if substring matches a valid model for this make
+        sub_m = [vm for vm in valid_models if corrected_model.lower() in vm.lower()]
+        if sub_m:
+            corrected_model = sub_m[0]
+    if not corrected_model and valid_models:
+        for vm in valid_models:
+            if md_low == vm.lower() or (len(md_low) >= 3 and md_low in vm.lower()):
+                corrected_model = vm
+                break
+        if not corrected_model:
+            m_matches = difflib.get_close_matches(md_raw, valid_models, n=1, cutoff=0.55)
+            corrected_model = m_matches[0] if m_matches else (md_raw.title() or valid_models[0])
+    elif not corrected_model:
+        corrected_model = md_raw.title()
+
+    was_corrected = (corrected_make.lower() != mk_low) or (corrected_model.lower() != md_low)
+    return corrected_make, corrected_model, was_corrected
+
+
 def _extract_question_topic(question_str: str) -> str:
     q_clean = re.sub(r"^(how do i|how to|what is|where is|can you|tell me how to|i need to|help me)\s+", "", str(question_str).strip(), flags=re.I)
     return q_clean.rstrip("?.! ") or str(question_str).strip()
 
 
 def _get_year_generation_note(year_str: str, make_str: str, model_str: str, domain_code: str) -> dict:
+    make_str, model_str, _ = auto_correct_vehicle_spelling(make_str, model_str, domain_code)
     try:
         yr = int(re.sub(r"[^0-9]", "", str(year_str))[:4])
     except Exception:
@@ -1158,11 +1323,29 @@ def _get_year_generation_note(year_str: str, make_str: str, model_str: str, doma
 
     if domain_code == "SMALL_ENGINE":
         return {
-            "gen_name": f"{yr} Model-Year Small Engine / Turf Equipment ({make_str} {model_str})",
+            "gen_name": f"{yr} {make_str} {model_str} (EPA Phase-3 Small Engine / Turf Architecture)",
             "oil_spec": "SAE 10W-30 / SAE 30 4-Stroke (or 50:1 JASO FD 2-Stroke Mix)",
             "fastener_std": "Metric (8mm, 10mm, 12mm, 14mm) & Fractional (3/8-in, 1/2-in, 5/8-in)",
-            "gen_note": f"For {yr} {make_str} {model_str}: EPA Phase-3 evaporative fuel system and ethanol-sensitive float/diaphragm metering."
+            "gen_note": f"For {yr} {make_str} {model_str}: EPA Phase-3 fuel system and precision valve/ignition clearances."
         }
+
+    if any(k in mk_low or k in md_low for k in ["chevrolet", "chevy", "gmc", "tahoe", "suburban", "silverado", "yukon", "sierra"]):
+        if yr <= 2006:
+            gen = f"{yr} GMT800 Platform {make_str} {model_str} (Gen-III Vortec 4.8L/5.3L/6.0L LS V8 / 4L60E-4L80E)"
+            oil_f = "ACDelco PF46E (19210283) / Wix 51042 (6.0 Quarts SAE 5W-30)"
+        elif yr <= 2013:
+            gen = f"{yr} GMT900 Platform {make_str} {model_str} (Gen-IV Vortec 5.3L LC9 / 6.2L L9H V8 / 6L80 6-Speed)"
+            oil_f = "ACDelco PF48E (19303975) / Wix 57060 (6.0 Quarts SAE 5W-30 Dexos1)"
+        elif yr == 2014 and ("tahoe" in md_low or "suburban" in md_low or "yukon" in md_low):
+            gen = f"{yr} GMT900 Final-Year {make_str} {model_str} (5.3L Vortec LC9 V8 / 6L80 6-Speed / ISO 15765-4 GMLAN)"
+            oil_f = "ACDelco PF48E (19303975) / Wix 57060 (6.0 Quarts SAE 5W-30) or PF63E on 2014 Silverado K2XX"
+        elif yr <= 2020:
+            gen = f"{yr} K2XX Platform {make_str} {model_str} (Gen-V EcoTec3 5.3L L83 / 6.2L L86 Direct-Injection V8)"
+            oil_f = "ACDelco PF63E (12707246) / Wix WL10255 (8.0 Quarts SAE 0W-20 Dexos1)"
+        else:
+            gen = f"{yr} T1XX Platform {make_str} {model_str} (Gen-V Dynamic Fuel Mgmt 5.3L L84 / 6.2L L87 / 10L80 10-Speed / Global B CAN-FD)"
+            oil_f = "ACDelco PF63E (12707246) / Wix WL10255 (8.0 Quarts SAE 0W-20 Dexos1)"
+        return {"gen_name": gen, "oil_spec": oil_f, "fastener_std": "Metric 7mm, 10mm, 13mm, 15mm, 18mm, 21mm, 22mm + Torx T20/T30", "gen_note": f"Model Year {yr} {make_str} {model_str} verified GM platform generation."}
 
     if "dodge" in mk_low or "charger" in md_low or "challenger" in md_low:
         if yr <= 2010:
@@ -1201,8 +1384,7 @@ def _get_year_generation_note(year_str: str, make_str: str, model_str: str, doma
 
 def resolve_oem_and_aftermarket_part_numbers(year_str: str, make_str: str, model_str: str, engine_str: str, question_str: str, domain_code: str) -> list:
     yr_clean = str(year_str).strip() or "2022"
-    mk_clean = str(make_str).strip() or "OEM"
-    md_clean = str(model_str).strip() or "Vehicle"
+    mk_clean, md_clean, _ = auto_correct_vehicle_spelling(make_str, model_str, domain_code)
     eng_clean = str(engine_str).strip() or "Standard Engine"
     q_topic = _extract_question_topic(question_str)
     gen_info = _get_year_generation_note(yr_clean, mk_clean, md_clean, domain_code)
@@ -1270,8 +1452,7 @@ def query_ebony_mechanic_assistant(
         active_domain = "AUTO_TRUCK"
 
     yr_c = str(year_str).strip() or "2022"
-    mk_c = str(make_str).strip() or ("Honda" if active_domain == "SMALL_ENGINE" else "Dodge")
-    md_c = str(model_str).strip() or ("GCV170" if active_domain == "SMALL_ENGINE" else "Charger")
+    mk_c, md_c, was_spell_corrected = auto_correct_vehicle_spelling(make_str, model_str, active_domain)
     eng_c = str(engine_str).strip() or ("166cc OHV" if active_domain == "SMALL_ENGINE" else "5.7L V8")
     veh_label = f"{yr_c} {mk_c} {md_c} ({eng_c})"
     gen_info = _get_year_generation_note(yr_c, mk_c, md_c, active_domain)
@@ -1476,15 +1657,34 @@ def render_automotive_master_deck():
             def_yr, def_mk, def_md, def_eng = "2022", "Dodge", "Charger", "5.7L HEMI V8"
             def_q = "How do I remove the interior door panel on my Dodge Charger without breaking the plastic clips?"
 
-        ym1, ym2, ym3, ym4 = st.columns([1, 1.4, 1.4, 1.6])
+        cat_domain = CASCADING_VEHICLE_CATALOG.get(domain_code, CASCADING_VEHICLE_CATALOG["AUTO_TRUCK"])
+        year_options = [str(y) for y in range(2026, 1979, -1)]
+        make_options = list(cat_domain.keys()) + ["➕ Type Custom Make / Model (Auto-Spellcheck)..."]
+
+        ym1, ym2, ym3, ym4 = st.columns([1, 1.4, 1.5, 1.7])
         with ym1:
-            yr_in = st.text_input("📅 Year:", value=def_yr, key=f"ebony_yr_{domain_code}")
+            yr_in = st.selectbox("📅 Year:", year_options, index=year_options.index("2014") if not is_small_engine_mode else year_options.index("2023"), key=f"ebony_yr_dd_{domain_code}")
         with ym2:
-            mk_in = st.text_input("🏭 Make / Brand:", value=def_mk, key=f"ebony_mk_{domain_code}")
-        with ym3:
-            md_in = st.text_input("🚘 Model:", value=def_md, key=f"ebony_md_{domain_code}")
-        with ym4:
-            eng_in = st.text_input("⚙️ Engine / Trim / Series:", value=def_eng, key=f"ebony_eng_{domain_code}")
+            sel_mk = st.selectbox("🏭 Make / Brand:", make_options, index=0, key=f"ebony_mk_dd_{domain_code}")
+
+        if sel_mk.startswith("➕"):
+            with ym3:
+                raw_custom_mk = st.text_input("✏️ Type Make (Spellchecked):", value="chevy", key=f"ebony_cust_mk_{domain_code}")
+                raw_custom_md = st.text_input("✏️ Type Model (Spellchecked):", value="taho", key=f"ebony_cust_md_{domain_code}")
+            mk_in, md_in, did_fix = auto_correct_vehicle_spelling(raw_custom_mk, raw_custom_md, domain_code)
+            eng_opts = cat_domain.get(mk_in, {}).get(md_in, ["5.3L / 5.7L / 6.2L V8", "3.5L / 3.6L V6", "2.0L / 2.5L I4", "6.6L / 6.7L Turbo-Diesel"])
+            with ym4:
+                eng_in = st.selectbox("⚙️ Engine / Trim / Series:", eng_opts, key=f"ebony_cust_eng_{domain_code}")
+                if did_fix:
+                    st.caption(f"✨ **Auto-Corrected Spelling:** `{raw_custom_mk} {raw_custom_md}` -> **`{mk_in} {md_in}`**")
+        else:
+            mk_in = sel_mk
+            model_options = list(cat_domain[mk_in].keys())
+            with ym3:
+                md_in = st.selectbox("🚘 Model:", model_options, index=0, key=f"ebony_md_dd_{domain_code}_{mk_in}")
+            eng_options = cat_domain[mk_in][md_in]
+            with ym4:
+                eng_in = st.selectbox("⚙️ Engine / Trim / Series:", eng_options, index=0, key=f"ebony_eng_dd_{domain_code}_{mk_in}_{md_in}")
 
         q_col1, q_col2 = st.columns([3.8, 1.2])
         with q_col1:
