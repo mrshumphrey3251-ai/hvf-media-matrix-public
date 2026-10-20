@@ -1306,6 +1306,149 @@ def auto_correct_vehicle_spelling(make_in: str, model_in: str, domain_code: str 
     return corrected_make, corrected_model, was_corrected
 
 
+
+UNABRIDGED_ZONE_HAZARD_ADDENDUM = {
+    "ZONE_01_SAFETY_JACKING_AND_TOOLS": [
+        "HAZARD 5 (PINCH-WELD & SUBFRAME CRUSH / SLIPPAGE): Never stack wood blocks or bricks on top of a floor jack saddle or under jack stands; bricks shatter under point loads without warning.",
+        "HAZARD 6 (CHROME SOCKET SHATTERING ON IMPACT WRENCHES): Never use shiny silver chrome hand-sockets on an air or electric impact gun—chrome sockets are brittle and shatter into high-velocity steel shrapnel! Only use thick black-oxide Cr-Mo (Chromium-Molybdenum) 6-point impact sockets with power tools.",
+        "HAZARD 7 (PULL vs. PUSH WRENCHING KNUCKLE FRACTURE): Always pull a ratchet or wrench toward you with a controlled stance rather than pushing away with an open palm—if a bolt breaks free or a socket slips while pushing, your hand will slam directly into sharp metal brackets.",
+        "HAZARD 8 (CARBON MONOXIDE & FIRE EXTINGUISHER STAGING): Never run an engine in an enclosed garage even with the door partially open; stage a 10-lb ABC Dry-Chemical Fire Extinguisher and First-Aid Eye-Wash Kit within 10 feet of the work bay."
+    ],
+    "ZONE_02_UNDER_HOOD_ANATOMY_AND_FLUID_ID": [
+        "HAZARD 4 (AUTOMATIC ELECTRIC COOLING FAN AMPUTATION): Modern vehicles have electric radiator fans controlled by computer relays that can turn on at 2,500 RPM WITHOUT WARNING even when the engine is OFF and the key is in your pocket! Keep hands, ties, hair, and rags clear of the fan shroud unless the Black Negative (-) battery cable is disconnected.",
+        "HAZARD 5 (ROTATING SERPENTINE BELT & PULLEY PINCH POINTS): Never reach into the engine bay with the engine running while wearing loose sleeves, hoodies with drawstrings, watches, rings, or necklaces—a spinning alternator or crankshaft pulley pulls fabric in at 40 feet per second.",
+        "HAZARD 6 (EXHAUST MANIFOLD & TURBOCHARGER 1,200 DEG F BURNS): The cast-iron exhaust manifold and turbocharger housing on the side of the engine remain above 600-1,200 deg F for up to 45 minutes after shutdown; never lean bare forearms across the engine bay.",
+        "HAZARD 7 (BATTERY ACID & EXPLOSIVE HYDROGEN GAS): Lead-acid batteries vent invisible, explosive Hydrogen (H2) gas through the top vent caps; never smoke, use an open flame, or create sparks near the battery.",
+        "HAZARD 8 (TOXIC FLUID CROSS-CONTAMINATION & INGESTION): Ethylene-glycol coolant is sweet-tasting and lethal to children and pets in quantities as small as 2 tablespoons; brake fluid strips paint on contact and causes blindness if rubbed into eyes."
+    ],
+    "ZONE_03_OIL_CHANGE_AND_COOLING_SYSTEM": [
+        "HAZARD 4 (220 DEG F SCALDING OIL & PRESSURIZED STEAM): Engine oil after highway driving exceeds 210-230 deg F and causes immediate second-degree skin burns; let the engine cool for 30-45 minutes until the oil pan is comfortably warm (100-110 deg F) before pulling the drain plug.",
+        "HAZARD 5 (CARCINOGENIC POLYCYCLIC AROMATIC HYDROCARBONS IN USED OIL): Used crankcase motor oil contains benzene, lead, magnesium, and carcinogenic combustion byproducts absorbed through skin; wear heavy nitrile gloves and wash skin immediately with soap if contacted.",
+        "HAZARD 6 (UNSUPPORTED VEHICLE CRUSH HAZARD): Never reach under the front bumper to unscrew an oil drain plug or filter while the car is held only by a hydraulic floor jack—always lock two mechanical Jack Stands under the frame rails and chock the rear tires.",
+        "HAZARD 7 (SERPENTINE BELT TENSIONER SPRING SNAP-BACK): Spring-loaded belt tensioners exert 60-90 lb-ft of return force; ensure your 3/8-inch or 1/2-inch breaker bar square drive is seated 100% flush in the tensioner boss so it cannot slip and crush your fingers against the alternator.",
+        "HAZARD 8 (SLIP-AND-FALL & ENVIRONMENTAL SPILL HAZARD): Spilled motor oil or slick ethylene-glycol coolant on smooth garage concrete causes violent slip-and-fall head injuries; keep oil-absorbent clay/kitty-litter on hand and transfer used oil into sealed recycling jugs."
+    ],
+    "ZONE_04_BATTERY_ALTERNATOR_AND_ELECTRICAL": [
+        "HAZARD 3 (EXPLOSIVE HYDROGEN GAS BATTERY DETONATION): Charging or jump-starting a frozen or sulfated battery generates an explosive mixture of Hydrogen (H2) and Oxygen (O2) gas inside the case. Always make the final Black Negative (-) booster clamp connection on an unpainted engine block ground 18+ inches AWAY from the battery so the connection spark cannot ignite battery vents!",
+        "HAZARD 4 (SULFURIC ACID CHEMICAL BURNS & BLINDNESS): Battery electrolyte is 35% Sulfuric Acid (H2SO4). White/blue crusty powder on terminals is dehydrated acid—never blow it off with your mouth or compressed air! Wear ANSI Z87.1 splash goggles and neutralize corrosion with a paste of baking soda and water.",
+        "HAZARD 5 (RING & WATCH 600-AMP THERMAL AMPUTATION): Remove all metal rings, wedding bands, bracelets, and metal watchbands before working near a battery, starter, or alternator! A gold or steel ring bridging a 12V positive stud to ground glows 1,500 deg F red-hot in 0.5 seconds, causing instant circumferential third-degree finger burns.",
+        "HAZARD 6 (SRS AIRBAG ACCIDENTAL DEPLOYMENT): Never probe yellow-wrapped wiring harnesses or yellow connectors with a standard multimeter or test light! The multimeter's internal battery can trigger the pyrotechnic airbag igniter squib. Wait at least 3 to 5 minutes after disconnecting the Black Negative (-) battery cable for airbag backup capacitors to discharge.",
+        "HAZARD 7 (HIGH-VOLTAGE HYBRID / EV ORANGE CONDUIT LETHALITY): On Hybrid or Electric vehicles (48V mild-hybrid to 400V/800V traction systems), NEVER touch, cut, or unbolt any bright ORANGE wiring harness or high-voltage service plug without Class-0 1,000V insulated lineman gloves!",
+        "HAZARD 8 (50-LB BATTERY LIFTING & CRUSH HAZARD): Automotive Group 65/H7/H8 AGM batteries weigh 45 to 68 lbs; lift with your legs keeping the battery close to your chest, and never drop a battery onto its corners (which cracks the internal lead plates and leaks acid)."
+    ],
+    "ZONE_05_BRAKES_PADS_ROTORS_AND_BLEEDING": [
+        "HAZARD 4 (AIRBORNE BRAKE DUST / ASBESTOS / SILICA INHALATION): NEVER blow brake dust off calipers, rotors, or drums with dry compressed air or a leaf blower! Brake dust contains microscopic metallic, ceramic, silica, and legacy asbestos fibers that cause permanent lung scarring. Always wet-wash brake assemblies over a drip pan using liquid Non-Chlorinated Brake Parts Cleaner!",
+        "HAZARD 5 (CHLORINATED SOLVENT -> LETHAL PHOSGENE GAS): Never use Chlorinated Brake Cleaner anywhere near welding, soldering, torches, or hot exhaust components—tetrachloroethylene vapor decomposes on hot metal into deadly Phosgene gas (World War I chemical weapon)!",
+        "HAZARD 6 (CALIPER PISTON FINGER CRUSH HAZARD): Keep fingers completely outside the C-clamp and caliper housing when compressing single or multi-piston brake calipers; never step on the brake pedal while a caliper is unbolted from the rotor (which blows the piston right out of the bore!).",
+        "HAZARD 7 (DOT 3 / DOT 4 / DOT 5.1 CHEMICAL EYE & PAINT DAMAGE): Glycol-ether brake fluid causes immediate corneal eye irritation and dissolves automotive clearcoat/paint within minutes; wear chemical splash goggles and flush any spill on painted fenders immediately with water.",
+        "HAZARD 8 (GRAVITY & SUSPENSION DROP ON UNCHOCKED AXLES): When jacking up one end of a vehicle to service brakes, releasing the parking brake (to remove rear rotors/drums) allows the car to roll off the stands unless the opposite wheels are heavily chocked on both sides!"
+    ],
+    "ZONE_06_TIRES_WHEELS_SUSPENSION_AND_STEERING": [
+        "HAZARD 3 (3,000-LB COIL SPRING LETHAL STORED ENERGY): A compressed suspension coil spring holds enough kinetic energy to launch a steel rod through a concrete block wall. Never unbolt the center top strut-shaft nut unless the coil spring is captured in a commercial clamshell compressor—always install factory pre-assembled Quick-Struts!",
+        "HAZARD 4 (SUSPENSION CONTROL ARM PRELOAD & BALL-JOINT POP): When separating a lower ball joint or tie rod with a pickle fork or puller, support the lower control arm with a floor jack so the suspension cannot violently snap downward when the tapered stud breaks free.",
+        "HAZARD 5 (TIRE BEAD OVER-INFLATION EXPLOSION): Never inflate a passenger or truck tire above the maximum bead-seating or sidewall pressure rating; a tire sidewall zipper-rupture at 60+ PSI releases concussive blast force capable of causing permanent hearing loss and fractures.",
+        "HAZARD 6 (LOOSE WHEEL RUNAWAY FROM UNCLEANED HUB FACES): Before mounting a wheel or brake rotor, wire-brush all rust scale off the flat metal wheel-hub mounting face! Rust scale trapped behind a rotor or wheel crushes down while driving, causing lug nuts to go loose at highway speed.",
+        "HAZARD 7 (TORQUE WRENCH CALIBRATION & RE-TORQUE AT 50 MILES): Never use a torque wrench to loosen bolts, and always reset your click-type torque wrench back to its lowest scale setting after use so the internal calibration spring does not take a permanent set; re-verify wheel lug nut torque after the first 50 miles of driving.",
+        "HAZARD 8 (HEAVY 80-LB TRUCK/TRACTOR TIRE BACK INJURY): Off-road truck and tractor tires weigh 75 to 300+ lbs; keep the tire only 1 inch off the ground when removing/installing and use a pry bar under the tread to lift it onto the wheel studs rather than lifting with your lower back."
+    ],
+    "ZONE_07_AIR_FUEL_SPARK_PLUGS_AND_IGNITION": [
+        "HAZARD 3 (3,000 TO 30,000 PSI HIGH-PRESSURE FUEL INJECTION SKIN PENETRATION): Modern Gasoline Direct Injection (GDI) and Diesel Common-Rail fuel lines operate at 2,500 to 30,000 PSI! Never loosen a high-pressure steel fuel line until the fuel pump fuse/relay is pulled, the engine is run until it stalls, and rail pressure is verified at 0 PSI on the CAN-Bus scanner. Never search for fuel leaks with your hands!",
+        "HAZARD 4 (GASOLINE VAPOR FLASH FIRE & STATIC DISCHARGE): Raw gasoline vapor is heavier than air and travels along the garage floor to ignition sources; keep a Class B fire extinguisher at arm's reach and wrap a thick shop towel around any fuel line quick-disconnect before pressing the release clip to catch residual spray.",
+        "HAZARD 5 (40,000-VOLT IGNITION COIL SECONDARY SHOCK): Never unplug or grab ignition coils or spark plug wires while the engine is running—coil-on-plug systems generate 30,000 to 45,000 Volts capable of inducing cardiac arrhythmia.",
+        "HAZARD 6 (COMPRESSED AIR EYE BLOWBACK FROM SPARK PLUG WELLS): When blowing dirt out of deep spark plug tubes with compressed air, wrap a shop rag around the blow-gun nozzle and wear sealed Z87.1 goggles so sand and rust particles do not shoot straight back into your eyes at 100 PSI.",
+        "HAZARD 7 (ELECTRONIC THROTTLE BODY FINGER GUILLOTINE): Never stick your fingers inside an Electronic Throttle Body butterfly valve with the ignition key on or battery connected! The motorized throttle plate snaps shut with enough gear-reduced torque to amputate a fingertip!",
+        "HAZARD 8 (ALUMINUM CYLINDER HEAD THREAD STRIPPING & PORCELAIN CRACKING): Unscrewing spark plugs from a hot aluminum head tears the soft aluminum threads out with the steel plug; always wait until the engine is cold (< 90 deg F)."
+    ],
+    "ZONE_08_TRANSMISSION_DIFFERENTIALS_AND_DRIVETRAIN": [
+        "HAZARD 3 (SPINNING DRIVESHAFT, U-JOINT & AXLE ENTANGLEMENT): Never crawl under a vehicle while the engine is running in gear on jack stands! A spinning driveshaft at 1,500 RPM will instantly catch clothing and cause fatal entanglement.",
+        "HAZARD 4 (VEHICLE ROLL-OFF WHEN REMOVING DRIVESHAFT!): Putting a truck in PARK locks the transmission output shaft—which only holds the wheels if the driveshaft is connected!The moment you unbolt a rear driveshaft to change U-joints, the vehicle is free to roll even if the shifter is in PARK! Chock all 4 tires and lock the mechanical parking brake before unbolting any driveshaft!",
+        "HAZARD 5 (200 DEG F HOT TRANSMISSION FLUID SCALDING): Automatic Transmission Fluid (ATF) reaches 190-220 deg F during driving; let the transmission pan cool before dropping the pan bolts.",
+        "HAZARD 6 (150-LB TRANSMISSION / TRANSFER CASE CRUSH HAZARD): Never attempt to bench-press a transmission or 4WD transfer case by hand on your back—always use a wide-base hydraulic transmission jack with safety chains.",
+        "HAZARD 7 (CAUSTIC SULFUR-PHOSPHORUS GEAR OIL EXPOSURE): GL-5 hypoid differential gear oil (`75W-90`/`75W-140`) contains extreme-pressure sulfur-phosphorus additives that cause skin dermatitis and nausea if inhaled in enclosed spaces; wear heavy nitrile gloves.",
+        "HAZARD 8 (PINCH HAZARD ON CV AXLE & BALL-JOINT SEPARATION): Keep hands clear of the steering knuckle and brake rotor when prying a CV axle stub shaft out of the transaxle differential."
+    ],
+    "ZONE_09_EXHAUST_EMISSIONS_O2_AND_DIESEL_DPF": [
+        "HAZARD 4 (LETHAL CARBON MONOXIDE [CO] ASPHYXIATION IN < 3 MINUTES): Exhaust gas contains up to 7% odorless, colorless Carbon Monoxide (CO), which binds to blood hemoglobin 200x faster than oxygen. Never run any vehicle, tractor, or generator inside a garage—even with the garage door open, wind currents push exhaust back inside! Always move the vehicle completely outdoors.",
+        "HAZARD 5 (1,200 DEG F DIESEL PARTICULATE FILTER [DPF] ACTIVE REGENERATION): During stationary or active DPF regeneration on a diesel truck or tractor, exhaust tailpipe gas exceeds 1,100-1,200 deg F! Never park over dry grass, leaves, wood chips, or spilled oil, and keep personnel 10 feet clear of the exhaust outlet.",
+        "HAZARD 6 (RUST FLAKES & PENETRATING OIL EYE HAZARD UNDER EXHAUST): Working overhead under a rusty exhaust system showers your face with sharp iron-oxide flakes soaked in penetrating oil; wear full-seal ANSI Z87.1 goggles (not just regular eyeglasses).",
+        "HAZARD 7 (HEAVY CATALYTIC CONVERTER & MUFFLER DROP): Support heavy exhaust mid-pipes and mufflers with jack stands before unbolting rusted flange bolts or prying rubber exhaust hangers free.",
+        "HAZARD 8 (TOXIC PLATINUM-GROUP / CERAMIC MONOLITH DUST & DEF AMMONIA): Never break apart the internal ceramic honeycomb of a damaged catalytic converter or DPF (the refractory ceramic fibers are an inhalation hazard), and wear gloves when handling Diesel Exhaust Fluid (DEF) urea crystals."
+    ],
+    "ZONE_10_HVAC_HEATING_COOLING_AND_CABIN_AIR": [
+        "HAZARD 3 (HIGH-PRESSURE A/C CAN & MANIFOLD EXPLOSION — 300+ PSI): The High-Pressure side (`H` port, thinner tubing between compressor discharge and condenser) operates at 175 to 350+ PSI! If you ever connect a small 12-oz recharge can to the High-Pressure side while the compressor is running, the 300 PSI pressure back-feeds into the thin tin can and explodes it like a fragmentation grenade! Only connect recharge gauges to the Larger-Diameter Low-Pressure (`L`) suction port!",
+        "HAZARD 4 (-15 DEG F LIQUID REFRIGERANT INSTANT CRYOGENIC BLINDNESS): Liquid R-134a and R-1234yf boil at -14.9 deg F (-26 deg C) at atmospheric pressure. A single 1-second spray of liquid refrigerant onto skin or corneas freezes tissue solid instantly! Mandatory PPE: Full-seal chemical splash goggles and insulated leather/nitrile gloves.",
+        "HAZARD 5 (LETHAL PHOSGENE & HYDROGEN FLUORIDE GAS NEAR FLAMES): Never smoke, weld, braze, or use a propane torch near R-134a or R-1234yf refrigerant! When refrigerant vapor contacts an open flame or glowing heating element, it chemically decomposes into lethal Phosgene (COCl2) and Hydrogen Fluoride (HF) acid gas!",
+        "HAZARD 6 (R-1234yf FLAMMABILITY & PAG/POE OIL TOXICITY): Late-model vehicles (2016-2026+) use R-1234yf refrigerant, which is classified as mildly flammable (A2L); synthetic PAG and POE compressor oils are toxic and conductive if spilled onto electrical connectors.",
+        "HAZARD 7 (200 DEG F SCALDING HEATER CORE COOLANT IN FOOTWELL): The dashboard Heater Core behind the center console is filled with 200 deg F pressurized engine coolant; never disconnect heater core hoses at the firewall or under the dash until the engine is cold and radiator cap pressure is relieved.",
+        "HAZARD 8 (MOLD, HANTAVIRUS & BIOHAZARD IN CABIN AIR FILTERS): Old cabin air filters behind the glovebox frequently harbor toxic black mold spores, mouse droppings (Hantavirus vector), and fiberglass dust; wear an N95 dust mask and nitrile gloves when pulling out an old cabin filter, and never shake it indoors!"
+    ],
+    "ZONE_11_LIGHTING_WIPERS_FUSES_AND_BODY": [
+        "HAZARD 4 (PYROTECHNIC DOOR & SIDE-CURTAIN AIRBAG [SRS] DETONATION): Modern doors (including Dodge Charger, F-150, Tahoe, Silverado) contain Side-Impact Pressure/Acceleration Sensors or Door-Mounted Airbag Modules wired with bright YELLOW connectors! NEVER unplug a yellow connector or tap on a door impact sensor unless the Black Negative (-) battery cable has been disconnected for at least 5 minutes!",
+        "HAZARD 5 (POWER WINDOW SCISSOR-REGULATOR FINGER AMPUTATION): The stamped-steel scissor arms and steel cables inside a door's Power Window Regulator have sharp edges and enough electric motor torque (or counter-balance spring tension) to sever a finger if the window switch is pressed or if unsupported window glass drops suddenly! Always tape the window glass securely to the top door frame with 3 strips of heavy painter's/duct tape before unbolting a window regulator!",
+        "HAZARD 6 (35,000-VOLT HID XENON BALLAST LETHAL SHOCK): If your vehicle has High-Intensity Discharge (HID / Xenon D1S/D3S) headlights, the metal ballast box mounted to the headlight steps 12V up to 25,000–35,000 Volts on startup! Always turn headlights OFF and disconnect the negative battery terminal before touching HID igniters.",
+        "HAZARD 7 (HALOGEN QUARTZ BULB PRESSURIZED SHATTERING): Halogen bulbs operate under high internal gas pressure at 1,000 deg F; touching the glass with bare oily fingers causes uneven thermal expansion that can explode the quartz capsule into sharp glass shards.",
+        "HAZARD 8 (RAZOR-SHARP STAMPED SHEET-METAL INSIDE DOOR SHELLS): The unpainted inner steel access holes inside a vehicle door panel have raw, razor-sharp stamped edges; wear cut-resistant mechanics gloves whenever reaching inside a door cavity to unhook latch cables or window bolts."
+    ],
+    "ZONE_12_PORTABLE_NVIDIA_CANBUS_PLUGIN_AND_ECU_GUIDE": [
+        "HAZARD 4 (PEDAL ENTANGLEMENT & UNINTENDED VEHICLE MOVEMENT): Never route an OBD-II or J1939 diagnostic cable across the brake pedal, accelerator pedal, or steering shaft during a road test; secure excess cable away from the driver's footwell.",
+        "HAZARD 5 (ACTIVE ACTUATOR & COOLING FAN SURPRISE ENGAGEMENT): Executing bidirectional UDS 0x2F / 0x31 actuator tests (such as commanding radiator fans, fuel pumps, EGR valves, or transmission solenoids ON) will physically move engine components immediately—ensure all hands and tools are clear of the engine bay before clicking any UDS command!",
+        "HAZARD 6 (LOW-VOLTAGE ECU FLASH BRICKING & STEERING LOCKOUT): If battery voltage drops below 11.5V during an EEPROM write (`UDS 0x2E`/`0x34`), the ECM, BCM, or Electronic Power Steering (EPAS) module can lock in boot-loader mode; always connect a clean 13.5V regulated power supply during calibration writes.",
+        "HAZARD 7 (24-VOLT HEAVY TRUCK / TRACTOR JUMP-START OVERVOLTAGE): Heavy commercial trucks and tractors often use two 12V batteries in series (24V DC) on the starter circuit; verifyPin B voltage on 9-Pin Deutsch J1939 ports before connecting non-isolated accessories.",
+        "HAZARD 8 (CARBON MONOXIDE DURING KOER [KEY-ON ENGINE-RUNNING] TELEMETRY): When logging live STFT/LTFT fuel trims or MAF volumetric efficiency at 2,500 RPM, the vehicle MUST be parked outdoors in open air with wheels chocked and parking brake locked."
+    ],
+    "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE": [
+        "HAZARD 4 (200-MPH ROTARY MOWER BLADE PROJECTILE & FOOT AMPUTATION): A rotary lawnmower blade tip travels at 19,000 feet per minute (215 MPH). Never bypass or tie down the Operator Presence Bail Bar with zip-ties or wire, never mow with the side discharge chute guard propped up, and never pull a push mower backward toward your feet!",
+        "HAZARD 5 (REFUELING A HOT MUFFLER — INSTANT GASOLINE FLASH FIRE): On a small engine, the gas tank sits just 3 inches away from the 900 deg F exhaust muffler! NEVER open the gas cap or pour gasoline into a mower, trimmer, or generator that has just been running—if a splash of gas hits the hot muffler, it ignites instantly! Let the engine cool for 15 full minutes before refueling.",
+        "HAZARD 6 (PLASTIC GAS CAN STATIC SPARK IGNITION): Never fill a plastic gas can while it is sitting inside a truck bed with a plastic bedliner or on a carpeted trunk floor—always place the gas can flat on the ground so static electricity discharges safely into the earth.",
+        "HAZARD 7 (FLYWHEEL FIN & RECOIL SPRING EYE/HAND INJURY): Never attempt to spin an engine with an electric drill chucked onto the top flywheel nut (if the engine fires, the spinning drill will break your wrist!), and wear eye protection when servicing wound steel recoil starter springs.",
+        "HAZARD 8 (LETHAL CARBON MONOXIDE FROM PORTABLE GENERATORS): A single small 5,000-Watt portable generator produces as much Carbon Monoxide (CO) as 100 modern cars! Never run a generator inside a garage, basement, shed, or within 20 feet of any window or door."
+    ],
+    "ZONE_14_CARBURETOR_CLEANING_ETHANOL_AND_GOVERNOR": [
+        "HAZARD 4 (AEROSOL CARBURETOR CLEANER BLOWBACK BLINDNESS): Aerosol Carburetor Cleaner contains toluene, acetone, and methanol under pressure. When you spray into a tiny brass jet hole, the liquid often shoots backward out of an adjacent air-bleed passage straight toward your eyes! Mandatory PPE: Tight-fitting ANSI Z87.1 chemical splash goggles.",
+        "HAZARD 5 (GOVERNOR OVER-SPEED FLYWHEEL SHATTERING EXPLOSION): NEVER bend the governor linkage rod or tie the governor spring to make a small engine run faster than 3,600 RPM! Cast-aluminum and cast-iron small-engine flywheels are rated for 3,600 RPM; above 4,500 RPM, centrifugal force shatters the flywheel like a cast-iron grenade!",
+        "HAZARD 6 (STATIC & IGNITION SPARK NEAR DRAINED FLOAT-BOWL GASOLINE): Pull the spark plug boot off and move it away from the cylinder before draining the carburetor float bowl so an accidental pull of the rope cannot spark over open gasoline.",
+        "HAZARD 7 (NITRILE GLOVE DEGRADATION & SKIN ABSORPTION): Toluene and methanol in carburetor cleaner penetrate skin into the bloodstream; wear heavy-duty chemical-resistant nitrile gloves and wash hands after assembly.",
+        "HAZARD 8 (FLOAT NEEDLE FLOODING & CRANKCASE GASOLINE DILUTION): If the carburetor float needle is installed upside-down or sticks open, raw gasoline drains through the cylinder into the engine oil sump—turning the oil into an explosive, non-lubricating solvent! Always smell the oil dipstick after carburetor work; if the oil smells like gas and is way above FULL, change the oil before starting!"
+    ],
+    "ZONE_15_BLADE_SHARPENING_BALANCING_OIL_AND_RECOIL": [
+        "HAZARD 4 (BENCH GRINDER WHEEL SHATTERING & 2,000 DEG F SPARKS): When sharpening a mower blade with an angle grinder or bench grinder, wear both ANSI Z87.1 safety glasses AND a full-face polycarbonate shield, plus leather gloves (never wear frayed cloth gloves near a spinning grinding wheel!).",
+        "HAZARD 5 (CRACKED OR BENT BLADE FATAL SHRAPNEL): Before sharpening any mower blade, wire-brush it clean and inspect the center bolt hole and the bend of the air-lift wings. If a blade is bent, cracked, or worn thin (< 1/8 inch), THROW IT AWAY and install a new OEM blade! Never attempt to hammer a bent mower blade straight or weld a cracked blade—it will snap in half at 3,200 RPM and shoot through the steel deck!",
+        "HAZARD 6 (SLIPPING WRENCH ON RAZOR-SHARP BLADE EDGE): Always wedge a solid 2x4 wood block between the blade and deck skirt AND wrap a folded heavy leather glove or shop towel around the blade edge before pulling on the breaker bar.",
+        "HAZARD 7 (UNCOILING CLOCK-SPRING LACERATION IN RECOIL STARTERS): Inside a pull-cord recoil starter housing sits a 10-foot coiled tempered-steel ribbon spring. If you pry the center pulley out carelessly, the steel ribbon uncoils explosively like a razor whip—always wear heavy leather gloves and safety glasses when servicing a recoil starter.",
+        "HAZARD 8 (LOOSE BLADE BOLT LAUNCH ON STARTUP): Never reuse a flattened or cracked Belleville cup lock-washer under a mower blade bolt, and always torque the center blade bolt to 45–55 lb-ft with a torque wrench."
+    ],
+    "ZONE_16_ZERO_TURN_HYDROSTATIC_2STROKE_AND_NVIDIA_DIAG": [
+        "HAZARD 3 (3,000 PSI HYDROSTATIC TRANSAXLE PIN-HOLE FLUID INJECTION): Zero-Turn hydrostatic charge pumps and wheel motors operate under high hydraulic pressure; never use your fingers to feel for leaking hydraulic oil hoses.",
+        "HAZARD 4 (CHAINSAW KICKBACK & CHAIN BRAKE MANDATE): Never operate or test-run a 2-stroke chainsaw without verifying that the front hand-guard Inertia Chain Brake snaps forward and locks the chain instantly; never cut with the upper quadrant of the guide-bar nose ('Kickback Zone'), and wear Kevlar chainsaw chaps, eye/ear protection, and steel-toe boots.",
+        "HAZARD 5 (900 DEG F SPARK ARRESTOR SCREEN & TORCH FIRE HAZARD): When cleaning a clogged 2-stroke muffler spark arrestor screen with a propane torch, hold the screen with long pliers on concrete at least 15 feet away from the trimmer/chainsaw and gas cans.",
+        "HAZARD 6 (ZERO-TURN SLOPE ROLLOVER & ROPS SEATBELT RULE): Zero-Turn mowers have heavy rear engines and caster front wheels that can lose traction and jackknife on wet slopes > 15 degrees! Always keep the Roll-Over Protection Structure (ROPS) roll-bar locked UP and wear the seatbelt (if ROPS is folded down, DO NOT wear the seatbelt).",
+        "HAZARD 7 (ROTATING PTO CLUTCH & DECK SPINDLE BELT PINCH POINTS): Never remove the metal belt-spindle covers on top of a Zero-Turn mower deck while the engine is running—the v-belt pulleys spin at 4,000 RPM and amputate fingers instantly on contact.",
+        "HAZARD 8 (2-STROKE STRAIGHT-GAS PISTON SEIZURE & WRIST SNAP): Running unmixed 4-stroke gas in a 2-stroke engine causes sudden aluminum piston-to-cylinder seizure at 10,000 RPM, which can violently jerk a chainsaw or trimmer in your hands; clearly label all `50:1 Mixed 2-Cycle Fuel` cans!"
+    ]
+}
+
+for _z_key, _extra_hazards in UNABRIDGED_ZONE_HAZARD_ADDENDUM.items():
+    if _z_key in BUMPER_TO_BUMPER_BEGINNER_GUIDE:
+        _curr_list = BUMPER_TO_BUMPER_BEGINNER_GUIDE[_z_key]["safety_precautions"]
+        for _eh in _extra_hazards:
+            if _eh not in _curr_list:
+                _curr_list.append(_eh)
+
+for _comp_k, _comp_v in SPECIALIZED_COMPONENT_GUIDES.items():
+    _c_safe = _comp_v["safety"]
+    _comp_add = [
+        "HAZARD 3 (PYROTECHNIC SRS AIRBAG & YELLOW CONNECTOR LOCKOUT): Wait a minimum of 5 minutes after disconnecting the 10mm Black Negative (-) battery cable before unplugging any door, seat, or dash wiring harness so SRS airbag reserve capacitors fully discharge.",
+        "HAZARD 4 (RAZOR-SHARP STAMPED SHEET-METAL & GLASS DROP): Wear ANSI Cut-Level A4 mechanics gloves when reaching inside metal cavities, and tape window glass to the upper door frame before unbolting regulators.",
+        "HAZARD 5 (RING/WATCH 600-AMP ARC WELD & EYE PROTECTION): Remove all metal rings, watches, and jewelry before working near 12V/24V wiring or starter B+ studs, and wear ANSI Z87.1 safety glasses.",
+        "HAZARD 6 (THERMAL BURN & PRESSURIZED FLUID RELEASE): Verify engine, exhaust manifold, and cooling system are cold (< 100 deg F) and at 0 PSI before loosening any component.",
+        "HAZARD 7 (CRUSH & ROLLAWAY LOCKOUT/TAGOUT): Engage parking brake, install wheel chocks front and rear, and support lifted vehicles on pinned mechanical Jack Stands (never a hydraulic jack alone).",
+        "HAZARD 8 (CHEMICAL, SOLVENT & CARBON MONOXIDE VENTILATION): Work in a well-ventilated open area with nitrile gloves and a 10-lb ABC fire extinguisher staged within 10 feet."
+    ]
+    for _ca in _comp_add:
+        if _ca not in _c_safe:
+            _c_safe.append(_ca)
+
+
 def _extract_question_topic(question_str: str) -> str:
     q_clean = re.sub(r"^(how do i|how to|what is|where is|can you|tell me how to|i need to|help me)\s+", "", str(question_str).strip(), flags=re.I)
     return q_clean.rstrip("?.! ") or str(question_str).strip()
@@ -1738,12 +1881,12 @@ def render_automotive_master_deck():
                 for wf in ans_bundle["web_findings"]:
                     st.write(wf)
 
-        sub_step, sub_parts, sub_where, sub_tools, sub_safe = st.tabs([
-            "🛠️ 1. Step-by-Step Instructions",
+        sub_safe, sub_parts, sub_tools, sub_where, sub_step = st.tabs([
+            "⚠️ 1. Mandatory Life-Safety & All Task Hazards (READ FIRST)",
             "🏷️ 2. Exact OEM & Aftermarket Part Numbers",
-            "📍 3. Where Is It & Visual ID",
-            "🧰 4. Tools & Socket Sizes",
-            "⚠️ 5. Safety Precautions"
+            "🧰 3. Tools & Socket Sizes",
+            "📍 4. Where It Is & Visual ID",
+            "🛠️ 5. Step-by-Step Instructions"
         ])
         with sub_step:
             for stp in primary_z["step_by_step"]:
@@ -1787,17 +1930,17 @@ def render_automotive_master_deck():
             key=f"b2b_clean_sel_{domain_code}"
         )
         z_data = BUMPER_TO_BUMPER_BEGINNER_GUIDE[zone_sel]
-        zt1, zt2, zt3, zt4 = st.tabs([
-            "📍 1. Where It Is & Visual ID",
-            "⚠️ 2. Safety Precautions",
+        zt_safe, zt1, zt3, zt4 = st.tabs([
+            "⚠️ 1. Mandatory Life-Safety & All Task Hazards (READ FIRST)",
+            "📍 2. Where It Is & Visual ID",
             "🧰 3. Tools & Socket Sizes",
             "🛠️ 4. Step-by-Step Guide"
         ])
-        with zt1:
-            st.markdown(z_data["where_and_what"])
-        with zt2:
+        with zt_safe:
             for s_rule in z_data["safety_precautions"]:
                 st.warning(s_rule)
+        with zt1:
+            st.markdown(z_data["where_and_what"])
         with zt3:
             for t_item in z_data["tools_required"]:
                 st.markdown(f"- **{t_item}**")
