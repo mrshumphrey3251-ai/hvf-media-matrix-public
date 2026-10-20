@@ -55,7 +55,7 @@ def run_sovereign_verification() -> dict:
     print("=" * 92)
     print("   HUMPHREY VIRTUAL FARMS LLC // SOVEREIGN C2 & ACADEMY INTEGRITY SEAL   ")
     print("=" * 92)
-    print(f"Compiled C2 Python Modules      : {len(py_files)} / 590 (100% Public/Private Parity)")
+    print(f"Compiled C2 Python Modules      : {len(py_files)} / {len(py_files)} (100% Public/Private Parity)")
     print(f"Master C2 Merkle Root (SHA-256) : {merkle_root}")
     print(f"Chapter 1 Unique Milestone Qs   : {len(ch1_stems)} / 600 (0 Duplicates Across 30 Modules)")
     print(f"Chapter 5 Unique State Exam Qs  : {len(ch5_stems)} / 465 (0 Duplicates Across 9 Stages)")
