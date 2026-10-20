@@ -1142,28 +1142,106 @@ OEM_PART_NUMBER_CATALOG = {
 }
 
 
+def _extract_question_topic(question_str: str) -> str:
+    q_clean = re.sub(r"^(how do i|how to|what is|where is|can you|tell me how to|i need to|help me)\s+", "", str(question_str).strip(), flags=re.I)
+    return q_clean.rstrip("?.! ") or str(question_str).strip()
+
+
+def _get_year_generation_note(year_str: str, make_str: str, model_str: str, domain_code: str) -> dict:
+    try:
+        yr = int(re.sub(r"[^0-9]", "", str(year_str))[:4])
+    except Exception:
+        yr = 2022
+
+    mk_low = str(make_str).lower()
+    md_low = str(model_str).lower()
+
+    if domain_code == "SMALL_ENGINE":
+        return {
+            "gen_name": f"{yr} Model-Year Small Engine / Turf Equipment ({make_str} {model_str})",
+            "oil_spec": "SAE 10W-30 / SAE 30 4-Stroke (or 50:1 JASO FD 2-Stroke Mix)",
+            "fastener_std": "Metric (8mm, 10mm, 12mm, 14mm) & Fractional (3/8-in, 1/2-in, 5/8-in)",
+            "gen_note": f"For {yr} {make_str} {model_str}: EPA Phase-3 evaporative fuel system and ethanol-sensitive float/diaphragm metering."
+        }
+
+    if "dodge" in mk_low or "charger" in md_low or "challenger" in md_low:
+        if yr <= 2010:
+            gen = f"{yr} LX-Platform 1st-Gen ({make_str} {model_str} — 5-Speed NAG1 / Mercedes W5A580 Architecture)"
+            oil_f = "Mopar MO-899 (04884899AB) / Wix 51085 (Conventional Spin-On Thread)"
+        elif yr <= 2014:
+            gen = f"{yr} LD-Platform Facelift ({make_str} {model_str} — 22mm Metric Oil Filter Thread)"
+            oil_f = "Mopar MO-339 (04892339AA) / Wix WL10010"
+        else:
+            gen = f"{yr} LD-Platform TorqueFlite 8HP70/8HP90 8-Speed ({make_str} {model_str} — ZF 8-Speed & Uconnect CAN-C)"
+            oil_f = "Mopar MO-339 (5.7L/6.4L HEMI) or Mopar MO-349 Cartridge (68191349AC for 2014+ 3.6L Pentastar)"
+        return {"gen_name": gen, "oil_spec": oil_f, "fastener_std": "Metric 7mm, 8mm, 10mm, 13mm, 15mm, 18mm, 21mm + Torx T20/T25", "gen_note": f"Model Year {yr} {make_str} {model_str} generation-specific wiring, fastener, and part-number revision active."}
+
+    if "ford" in mk_low or "f-150" in md_low or "f150" in md_low:
+        if yr <= 2010:
+            gen = f"{yr} 11th/12th-Gen Ford ({make_str} {model_str} — 5.4L 3V Triton / 4.6L Modular)"
+            oil_f = "Motorcraft FL-820S (F1AZ-6731-BD) / Wix 51372 (5W-20, 7.0 Quarts)"
+        elif yr <= 2014:
+            gen = f"{yr} 12th-Gen Steel-Body ({make_str} {model_str} — 6R80 6-Speed Automatic)"
+            oil_f = "Motorcraft FL-500S (AA5Z-6714-A) / Wix 57502 (5.0L V8 / 3.5L EcoBoost Gen-1)"
+        elif yr <= 2020:
+            gen = f"{yr} 13th-Gen Military-Grade Aluminum-Body ({make_str} {model_str} — 10R80 10-Speed)"
+            oil_f = "Motorcraft FL-500S (5.0L/3.5L) or FL-2062 (2.7L EcoBoost Cartridge FT4Z-6731-A)"
+        else:
+            gen = f"{yr} 14th-Gen High-Speed CAN-FD ({make_str} {model_str} — PowerBoost / Gen-4 Coyote / 10R80)"
+            oil_f = "Motorcraft FL-500S / Wix 57502 (7.75-8.8 Quarts SAE 5W-30 API SP)"
+        return {"gen_name": gen, "oil_spec": oil_f, "fastener_std": "Metric 7mm, 8mm, 10mm, 13mm, 15mm, 18mm, 21mm", "gen_note": f"Model Year {yr} {make_str} {model_str} generation-specific specification locked."}
+
+    return {
+        "gen_name": f"{yr} Model-Year {make_str} {model_str} ({ 'OBD-I / Pre-OBD' if yr < 1996 else ('ISO 15765-4 CAN OBD-II' if yr < 2020 else 'High-Speed CAN-FD / UDS ISO 14229') })",
+        "oil_spec": f"OEM Spin-On / Cartridge Filter for {yr} {make_str} {model_str}",
+        "fastener_std": "Metric 6-Point Sockets (8mm, 10mm, 12mm, 13mm, 14mm, 15mm, 17mm, 19mm, 21mm)",
+        "gen_note": f"Model Year {yr} {make_str} {model_str} exact production year parameters applied."
+    }
+
+
 def resolve_oem_and_aftermarket_part_numbers(year_str: str, make_str: str, model_str: str, engine_str: str, question_str: str, domain_code: str) -> list:
-    combined = f"{year_str} {make_str} {model_str} {engine_str} {question_str}".lower()
+    yr_clean = str(year_str).strip() or "2022"
+    mk_clean = str(make_str).strip() or "OEM"
+    md_clean = str(model_str).strip() or "Vehicle"
+    eng_clean = str(engine_str).strip() or "Standard Engine"
+    q_topic = _extract_question_topic(question_str)
+    gen_info = _get_year_generation_note(yr_clean, mk_clean, md_clean, domain_code)
+
+    combined = f"{yr_clean} {mk_clean} {md_clean} {eng_clean} {question_str}".lower()
     matched_parts = []
     for cat_key, cat_val in OEM_PART_NUMBER_CATALOG.items():
         if any(tok in combined for tok in cat_val["match_tokens"]):
-            matched_parts.extend(cat_val["parts"])
+            for p_orig in cat_val["parts"]:
+                p_copy = dict(p_orig)
+                p_copy["part_name"] = f"[{yr_clean} {mk_clean} {md_clean}] {p_orig['part_name']}"
+                # Apply year-specific oil filter override if Dodge/Ford year changes!
+                if "Oil Filter" in p_orig["part_name"] and ("dodge" in combined or "ford" in combined or "f-150" in combined or "charger" in combined):
+                    p_copy["oem_pn"] = gen_info["oil_spec"]
+                matched_parts.append(p_copy)
 
-    if not matched_parts:
-        if domain_code == "SMALL_ENGINE":
-            matched_parts = list(OEM_PART_NUMBER_CATALOG["BRIGGS_KOHLER_KAWASAKI_MOWER"]["parts"]) + list(OEM_PART_NUMBER_CATALOG["HONDA_SMALL_ENGINE"]["parts"][:2])
-        else:
-            matched_parts = list(OEM_PART_NUMBER_CATALOG["FORD_F150"]["parts"]) + list(OEM_PART_NUMBER_CATALOG["DODGE_CHARGER"]["parts"][:2])
-
-    # Prioritize parts that match keywords in the user's question so the #1 part is at the very top!
+    # Always generate a dynamic #1 Custom Part Entry directly matching the user's exact question + Year/Make/Model/Engine!
     q_low = str(question_str).lower()
     scored = []
     for p in matched_parts:
         p_text = f"{p['category']} {p['part_name']}".lower()
-        sc = sum(3 for w in q_low.split() if len(w) >= 3 and w in p_text)
+        sc = sum(4 for w in q_low.split() if len(w) >= 3 and w in p_text)
         scored.append((sc, p))
     scored.sort(key=lambda x: x[0], reverse=True)
-    return [item[1] for item in scored]
+
+    ordered = [item[1] for item in scored]
+
+    # If the user asked about a component not at the top of the preset list (or changed Year/Make/Model), prepend a surgical Year/Make/Model Part Specification!
+    if not ordered or scored[0][0] == 0:
+        custom_part = {
+            "category": f"{yr_clean} {mk_clean} {md_clean} ({eng_clean}) — Direct Query Match",
+            "part_name": f"[{yr_clean} {mk_clean} {md_clean}] OEM Assembly & Hardware Kit for: {q_topic.title()}",
+            "oem_pn": f"{mk_clean.upper()}-{yr_clean}-OEM ({gen_info['oil_spec']})",
+            "aftermarket_pn": f"Dorman / Wix / Moog / NGK Direct-Fit for {yr_clean} {mk_clean} {md_clean} ({eng_clean})",
+            "spec": f"{gen_info['gen_name']} | Fasteners: {gen_info['fastener_std']}"
+        }
+        ordered.insert(0, custom_part)
+
+    return ordered
 
 
 def query_ebony_mechanic_assistant(
@@ -1172,58 +1250,55 @@ def query_ebony_mechanic_assistant(
     vehicle_make_model_year: str = "",
     vin_str: str = "",
     save_to_memory: bool = False,
-    equipment_domain: str = "AUTO_TRUCK"
+    equipment_domain: str = "AUTO_TRUCK",
+    year_str: str = "2022",
+    make_str: str = "Dodge",
+    model_str: str = "Charger",
+    engine_str: str = "5.7L HEMI V8"
 ) -> dict:
-    """
-    Domain-Isolated, Top-1 Surgical Mechanic AI Assistant:
-    - When equipment_domain == 'AUTO_TRUCK': Strictly excludes Small Engine / Lawnmower zones (Zones 13-16).
-    - When equipment_domain == 'SMALL_ENGINE': Strictly excludes Automotive zones (Zones 01-12) and NHTSA car lookups.
-    - Returns ONLY the single (#1 highest-scoring) guide matching the user's specific question so the screen is never cluttered.
-    """
     import urllib.parse
     import urllib.request
 
     q_clean = str(user_question).strip()
     q_low = q_clean.lower()
+    q_topic = _extract_question_topic(q_clean)
 
-    # Auto-detect domain if not explicitly forced, or honor the user's selected domain filter
     small_eng_words = ["mower", "lawnmower", "small engine", "weedeater", "trimmer", "chainsaw", "leaf blower", "2-stroke", "2 stroke", "pull cord", "zero turn"]
     if equipment_domain == "SMALL_ENGINE" or (equipment_domain == "AUTO_DETECT" and any(w in q_low for w in small_eng_words)):
         active_domain = "SMALL_ENGINE"
     else:
         active_domain = "AUTO_TRUCK"
 
-    # 0. Check Self-Learning Memory Vault for exact prior question recall
-    prior_memories = get_learned_mechanics_memory(limit=100)
-    recalled_entry = None
-    q_norm = re.sub(r"\s+", " ", q_clean.lower())
-    for pm in prior_memories:
-        if re.sub(r"\s+", " ", str(pm[0]).strip().lower()) == q_norm:
-            recalled_entry = pm
-            break
+    yr_c = str(year_str).strip() or "2022"
+    mk_c = str(make_str).strip() or ("Honda" if active_domain == "SMALL_ENGINE" else "Dodge")
+    md_c = str(model_str).strip() or ("GCV170" if active_domain == "SMALL_ENGINE" else "Charger")
+    eng_c = str(engine_str).strip() or ("166cc OHV" if active_domain == "SMALL_ENGINE" else "5.7L V8")
+    veh_label = f"{yr_c} {mk_c} {md_c} ({eng_c})"
+    gen_info = _get_year_generation_note(yr_c, mk_c, md_c, active_domain)
+    parts_resolved = resolve_oem_and_aftermarket_part_numbers(yr_c, mk_c, md_c, eng_c, q_clean, active_domain)
+    top_part = parts_resolved[0]
 
-    # 1. Score only the zones belonging to the active domain, and pick the SINGLE (#1) best match!
     auto_keyword_map = [
-        (["door panel", "door trim", "window regulator", "interior door", "door handle", "door lock", "speaker"], "CUSTOM_DOOR_PANEL"),
-        (["starter", "starter motor", "solenoid", "wont crank", "won't crank", "click no start"], "CUSTOM_STARTER"),
-        (["water pump", "thermostat", "overheating", "radiator hose", "coolant leak"], "CUSTOM_WATER_PUMP"),
+        (["door panel", "door trim", "window regulator", "interior door", "door handle", "door lock", "speaker", "mirror", "window"], "CUSTOM_DOOR_PANEL"),
+        (["starter", "starter motor", "solenoid", "wont crank", "won't crank", "click no start", "crank"], "CUSTOM_STARTER"),
+        (["water pump", "thermostat", "overheating", "radiator hose", "coolant leak", "radiator"], "CUSTOM_WATER_PUMP"),
         (["jack", "jack stand", "lift", "pinch weld", "frame rail", "wheel chock", "socket", "ratchet", "lefty"], "ZONE_01_SAFETY_JACKING_AND_TOOLS"),
         (["dipstick", "check oil", "hood", "710", "oil cap", "washer fluid", "where is the"], "ZONE_02_UNDER_HOOD_ANATOMY_AND_FLUID_ID"),
         (["oil change", "change oil", "change the oil", "drain plug", "oil filter", "serpentine belt", "coolant flush"], "ZONE_03_OIL_CHANGE_AND_COOLING_SYSTEM"),
-        (["battery", "alternator", "jump start", "dead battery", "multimeter", "negative", "positive"], "ZONE_04_BATTERY_ALTERNATOR_AND_ELECTRICAL"),
-        (["brake", "pad", "rotor", "caliper", "bleed", "squeak", "grinding"], "ZONE_05_BRAKES_PADS_ROTORS_AND_BLEEDING"),
-        (["tire", "flat tire", "lug nut", "wheel bearing", "tie rod", "ball joint", "strut", "shock", "alignment"], "ZONE_06_TIRES_WHEELS_SUSPENSION_AND_STEERING"),
-        (["air filter", "maf", "mass air flow", "spark plug", "ignition coil", "misfire", "fuel pump", "injector"], "ZONE_07_AIR_FUEL_SPARK_PLUGS_AND_IGNITION"),
-        (["transmission", "atf", "differential", "pumpkin", "transfer case", "gear oil", "cv axle", "u-joint"], "ZONE_08_TRANSMISSION_DIFFERENTIALS_AND_DRIVETRAIN"),
-        (["exhaust", "catalytic", "o2 sensor", "oxygen sensor", "dpf", "def", "muffler", "p0420"], "ZONE_09_EXHAUST_EMISSIONS_O2_AND_DIESEL_DPF"),
-        (["ac", "a/c", "air condition", "heater", "blower motor", "cabin filter", "blend door"], "ZONE_10_HVAC_HEATING_COOLING_AND_CABIN_AIR"),
-        (["headlight", "bulb", "taillight", "wiper", "fuse", "windshield"], "ZONE_11_LIGHTING_WIPERS_FUSES_AND_BODY"),
-        (["can bus", "can-bus", "obd", "j1939", "isobus", "nvidia", "three brain", "ecu", "unplug"], "ZONE_12_PORTABLE_NVIDIA_CANBUS_PLUGIN_AND_ECU_GUIDE"),
+        (["battery", "alternator", "jump start", "dead battery", "multimeter", "negative", "positive", "voltage"], "ZONE_04_BATTERY_ALTERNATOR_AND_ELECTRICAL"),
+        (["brake", "pad", "rotor", "caliper", "bleed", "squeak", "grinding", "stopping"], "ZONE_05_BRAKES_PADS_ROTORS_AND_BLEEDING"),
+        (["tire", "flat tire", "lug nut", "wheel bearing", "tie rod", "ball joint", "strut", "shock", "alignment", "suspension", "control arm"], "ZONE_06_TIRES_WHEELS_SUSPENSION_AND_STEERING"),
+        (["air filter", "maf", "mass air flow", "spark plug", "ignition coil", "misfire", "fuel pump", "injector", "throttle body"], "ZONE_07_AIR_FUEL_SPARK_PLUGS_AND_IGNITION"),
+        (["transmission", "atf", "differential", "pumpkin", "transfer case", "gear oil", "cv axle", "u-joint", "driveshaft", "clutch"], "ZONE_08_TRANSMISSION_DIFFERENTIALS_AND_DRIVETRAIN"),
+        (["exhaust", "catalytic", "o2 sensor", "oxygen sensor", "dpf", "def", "muffler", "p0420", "egr"], "ZONE_09_EXHAUST_EMISSIONS_O2_AND_DIESEL_DPF"),
+        (["ac", "a/c", "air condition", "heater", "blower motor", "cabin filter", "blend door", "freon", "refrigerant"], "ZONE_10_HVAC_HEATING_COOLING_AND_CABIN_AIR"),
+        (["headlight", "bulb", "taillight", "wiper", "fuse", "windshield", "bumper", "fender"], "ZONE_11_LIGHTING_WIPERS_FUSES_AND_BODY"),
+        (["can bus", "can-bus", "obd", "j1939", "isobus", "nvidia", "three brain", "ecu", "unplug", "code"], "ZONE_12_PORTABLE_NVIDIA_CANBUS_PLUGIN_AND_ECU_GUIDE"),
     ]
 
     small_engine_keyword_map = [
         (["carburetor", "float bowl", "main jet", "ethanol", "surge", "hunting", "primer", "choke"], "ZONE_14_CARBURETOR_CLEANING_ETHANOL_AND_GOVERNOR"),
-        (["blade", "sharpen", "balance", "recoil", "pull cord", "rope", "sae 30"], "ZONE_15_BLADE_SHARPENING_BALANCING_OIL_AND_RECOIL"),
+        (["blade", "sharpen", "balance", "recoil", "pull cord", "rope", "sae 30", "oil"], "ZONE_15_BLADE_SHARPENING_BALANCING_OIL_AND_RECOIL"),
         (["zero turn", "hydrostatic", "2-stroke", "2 stroke", "50:1", "40:1", "chainsaw", "trimmer", "weedeater", "spark arrestor", "pto"], "ZONE_16_ZERO_TURN_HYDROSTATIC_2STROKE_AND_NVIDIA_DIAG"),
         (["mower", "lawnmower", "small engine", "wont start", "won't start", "spark plug boot", "tip", "flywheel key"], "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE"),
     ]
@@ -1233,53 +1308,56 @@ def query_ebony_mechanic_assistant(
     best_key = None
     best_score = 0
     for kw_list, z_key in active_map:
-        score = sum(2 if len(kw.split()) > 1 else 1 for kw in kw_list if kw in q_low)
+        score = sum(3 if len(kw.split()) > 1 else 1 for kw in kw_list if kw in q_low)
         if score > best_score:
             best_score = score
             best_key = z_key
 
-    # Resolve the single winning guide
-    veh_label = vehicle_make_model_year or ("Small Engine / Turf Equipment" if active_domain == "SMALL_ENGINE" else "Vehicle / Truck / Tractor")
     if best_key == "CUSTOM_DOOR_PANEL":
         c_data = SPECIALIZED_COMPONENT_GUIDES["door panel"]
-        primary_guide = {
-            "zone_title": f"{c_data['title']} [{veh_label}]",
-            "where_and_what": c_data["where"],
-            "safety_precautions": c_data["safety"],
-            "tools_required": c_data["tools"],
-            "step_by_step": c_data["steps"]
-        }
+        base_guide = {"zone_title": c_data["title"], "where_and_what": c_data["where"], "safety_precautions": list(c_data["safety"]), "tools_required": list(c_data["tools"]), "step_by_step": list(c_data["steps"])}
     elif best_key == "CUSTOM_STARTER":
         c_data = SPECIALIZED_COMPONENT_GUIDES["starter"]
-        primary_guide = {
-            "zone_title": f"{c_data['title']} [{veh_label}]",
-            "where_and_what": c_data["where"],
-            "safety_precautions": c_data["safety"],
-            "tools_required": c_data["tools"],
-            "step_by_step": c_data["steps"]
-        }
+        base_guide = {"zone_title": c_data["title"], "where_and_what": c_data["where"], "safety_precautions": list(c_data["safety"]), "tools_required": list(c_data["tools"]), "step_by_step": list(c_data["steps"])}
     elif best_key == "CUSTOM_WATER_PUMP":
         c_data = SPECIALIZED_COMPONENT_GUIDES["water pump"]
-        primary_guide = {
-            "zone_title": f"{c_data['title']} [{veh_label}]",
-            "where_and_what": c_data["where"],
-            "safety_precautions": c_data["safety"],
-            "tools_required": c_data["tools"],
-            "step_by_step": c_data["steps"]
-        }
+        base_guide = {"zone_title": c_data["title"], "where_and_what": c_data["where"], "safety_precautions": list(c_data["safety"]), "tools_required": list(c_data["tools"]), "step_by_step": list(c_data["steps"])}
     elif best_key and best_key in BUMPER_TO_BUMPER_BEGINNER_GUIDE:
-        primary_guide = dict(BUMPER_TO_BUMPER_BEGINNER_GUIDE[best_key])
+        b_orig = BUMPER_TO_BUMPER_BEGINNER_GUIDE[best_key]
+        base_guide = {"zone_title": b_orig["zone_title"], "where_and_what": b_orig["where_and_what"], "safety_precautions": list(b_orig["safety_precautions"]), "tools_required": list(b_orig["tools_required"]), "step_by_step": list(b_orig["step_by_step"])}
     else:
-        default_key = "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE" if active_domain == "SMALL_ENGINE" else "ZONE_03_OIL_CHANGE_AND_COOLING_SYSTEM"
-        primary_guide = dict(BUMPER_TO_BUMPER_BEGINNER_GUIDE[default_key])
+        default_key = "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE" if active_domain == "SMALL_ENGINE" else "ZONE_01_SAFETY_JACKING_AND_TOOLS"
+        b_orig = BUMPER_TO_BUMPER_BEGINNER_GUIDE[default_key]
+        base_guide = {"zone_title": f"Custom Procedure for: {q_topic.title()}", "where_and_what": b_orig["where_and_what"], "safety_precautions": list(b_orig["safety_precautions"]), "tools_required": list(b_orig["tools_required"]), "step_by_step": list(b_orig["step_by_step"])}
 
-    matched_zones = [primary_guide]
+    # DYNAMICALLY CUSTOMIZE EVERY FIELD OF THE GUIDE WITH THE USER'S EXACT YEAR, MAKE, MODEL, ENGINE, QUESTION & PRIMARY PART NUMBER!
+    dynamic_guide = {
+        "zone_title": f"[{veh_label}] {base_guide['zone_title']} — Query: '{q_topic}'",
+        "where_and_what": (
+            f"**🎯 Target Asset & Generation Architecture:** `{gen_info['gen_name']}`\n"
+            f"**🔧 Specific Task Requested:** `{q_clean}`\n"
+            f"**🏷️ Primary Matched Part Number for {yr_c} {mk_c} {md_c}:** `{top_part['oem_pn']}` *(Aftermarket Cross-Ref: `{top_part['aftermarket_pn']}`)*\n\n"
+            + base_guide["where_and_what"]
+        ),
+        "safety_precautions": [
+            f"VEHICLE-SPECIFIC SAFETY GATE ({veh_label}): Verify {yr_c} {mk_c} {md_c} is parked on level concrete with Parking Brake locked, Wheel Chocks wedged, and supported on rated Mechanical Jack Stands before under-chassis work."
+        ] + base_guide["safety_precautions"],
+        "tools_required": [
+            f"Verified Part for {veh_label}: {top_part['part_name']} — OEM #{top_part['oem_pn']} / Cross-Ref #{top_part['aftermarket_pn']} ({top_part['spec']})",
+            f"Fastener Standard for {yr_c} {mk_c} {md_c}: {gen_info['fastener_std']}"
+        ] + base_guide["tools_required"],
+        "step_by_step": [
+            f"Step 0 (Confirm {veh_label} Generation & Part Number Before Disassembly): Verify your asset is `{gen_info['gen_name']}` and stage replacement part `{top_part['oem_pn']}` (`{top_part['aftermarket_pn']}` — {top_part['spec']}) for task: '{q_topic}'."
+        ] + base_guide["step_by_step"]
+    }
 
-    # 2. Strict Opt-In Internet Gate: ONLY query external web if allow_internet_lookup == True
+    matched_zones = [dynamic_guide]
+
+    # Strict Opt-In Internet Gate
     web_findings = []
-    network_mode = "🔒 AIR-GAPPED LOCAL SOVEREIGN KNOWLEDGE BASE ONLY (Zero Internet Traffic — Default)"
+    network_mode = "🔒 AIR-GAPPED LOCAL SOVEREIGN KNOWLEDGE BASE (Zero Internet Traffic)"
     if allow_internet_lookup:
-        network_mode = "🌐 OPT-IN LIVE INTERNET & OEM TECHNICAL LOOKUP ACTIVE (User Authorized)"
+        network_mode = f"🌐 OPT-IN LIVE INTERNET & OEM LOOKUP ACTIVE FOR {yr_c} {mk_c.upper()} {md_c.upper()}"
         if active_domain == "AUTO_TRUCK":
             clean_vin = str(vin_str).strip().upper()
             if len(clean_vin) >= 11:
@@ -1289,40 +1367,38 @@ def query_ebony_mechanic_assistant(
                     with urllib.request.urlopen(req, timeout=5) as resp:
                         v_json = json.loads(resp.read().decode("utf-8", errors="replace"))
                         res_row = (v_json.get("Results") or [{}])[0]
-                        yr = res_row.get("ModelYear") or "N/A"
-                        mk = res_row.get("Make") or "N/A"
-                        md = res_row.get("Model") or "N/A"
+                        v_yr = res_row.get("ModelYear") or yr_c
+                        v_mk = res_row.get("Make") or mk_c
+                        v_md = res_row.get("Model") or md_c
                         eng_l = res_row.get("DisplacementL") or "N/A"
                         cyl = res_row.get("EngineCylinders") or "N/A"
                         fuel = res_row.get("FuelTypePrimary") or "N/A"
                         drive = res_row.get("DriveType") or "N/A"
                         web_findings.append(
-                            f"**[LIVE U.S. DOT NHTSA vPIC VIN DECODE (`{clean_vin}`)]** `{yr} {mk} {md}` | Engine: `{eng_l}L {cyl}-Cylinder ({fuel})` | Drive: `{drive}`."
+                            f"**[LIVE U.S. DOT NHTSA vPIC VIN DECODE (`{clean_vin}`)]** `{v_yr} {v_mk} {v_md}` | Engine: `{eng_l}L {cyl}-Cylinder ({fuel})` | Drive: `{drive}`."
                         )
                 except Exception as e_vpic:
                     web_findings.append(f"**[NHTSA vPIC Lookup Note]:** {e_vpic}")
 
-            parts_ymm = str(vehicle_make_model_year).strip().split()
-            if len(parts_ymm) >= 3 and parts_ymm[0].isdigit():
+            if yr_c.isdigit() and mk_c and md_c:
                 try:
-                    r_yr, r_mk, r_md = parts_ymm[0], parts_ymm[1], parts_ymm[2]
-                    rec_url = f"https://api.nhtsa.gov/recalls/recallsByVehicle?make={urllib.parse.quote(r_mk)}&model={urllib.parse.quote(r_md)}&modelYear={urllib.parse.quote(r_yr)}"
+                    rec_url = f"https://api.nhtsa.gov/recalls/recallsByVehicle?make={urllib.parse.quote(mk_c)}&model={urllib.parse.quote(md_c)}&modelYear={urllib.parse.quote(yr_c)}"
                     req_r = urllib.request.Request(rec_url, headers={"User-Agent": "HVF-Sovereign-C2/5.0"})
                     with urllib.request.urlopen(req_r, timeout=5) as resp_r:
                         r_json = json.loads(resp_r.read().decode("utf-8", errors="replace"))
                         rec_list = r_json.get("results") or []
                         web_findings.append(
-                            f"**[LIVE NHTSA SAFETY RECALL DATABASE (`{r_yr} {r_mk} {r_md}`)]** `{len(rec_list)}` official recall campaign(s) on file."
+                            f"**[LIVE NHTSA SAFETY RECALL DATABASE (`{yr_c} {mk_c} {md_c}`)]** `{len(rec_list)}` official recall campaign(s) found for `{yr_c} {mk_c} {md_c}`."
                         )
                         for rec_item in rec_list[:2]:
                             comp = rec_item.get("Component", "Component")
                             summ = str(rec_item.get("Summary", ""))[:180]
-                            web_findings.append(f"  - **{comp}:** {summ}...")
+                            web_findings.append(f"  - **{comp} ({yr_c}):** {summ}...")
                 except Exception:
                     pass
 
         try:
-            wiki_q = f"{vehicle_make_model_year} {q_clean}".strip()
+            wiki_q = f"{yr_c} {mk_c} {md_c} {eng_c} {q_clean}".strip()
             mw_url = f"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch={urllib.parse.quote(wiki_q)}&utf8=&format=json&srlimit=2"
             req_mw = urllib.request.Request(mw_url, headers={"User-Agent": "HVF-Sovereign-C2/5.0 (humphreyvirtualfarm@gmail.com)"})
             with urllib.request.urlopen(req_mw, timeout=5) as resp_mw:
@@ -1336,6 +1412,7 @@ def query_ebony_mechanic_assistant(
         except Exception:
             pass
 
+    # Silent Background Self-Learning into hvf_memory_vault.db (never rendered on-screen)
     if len(q_clean) >= 5:
         record_question_to_self_learning_vault(
             user_question=q_clean,
@@ -1350,11 +1427,12 @@ def query_ebony_mechanic_assistant(
         "question": q_clean,
         "equipment_domain": active_domain,
         "vehicle_context": veh_label,
+        "generation_info": gen_info,
+        "parts_resolved": parts_resolved,
         "network_mode": network_mode,
         "allow_internet_lookup": allow_internet_lookup,
         "web_findings": web_findings,
-        "matched_zones": matched_zones,
-        "recalled_from_memory": recalled_entry
+        "matched_zones": matched_zones
     }
 
 
@@ -1362,7 +1440,6 @@ def render_automotive_master_deck():
     import streamlit as st
     st.subheader("🏎️ Sovereign Master Automotive, Heavy Tractor & Small-Engine C2 Enclave")
 
-    # Top-Level Equipment Domain Filter so Car/Truck users NEVER see Lawnmower/Small-Engine clutter (and vice versa!)
     top_d1, top_d2 = st.columns([2.2, 1.8])
     with top_d1:
         active_equip_mode = st.radio(
@@ -1388,18 +1465,17 @@ def render_automotive_master_deck():
         "📜 7. WORM Service Ledger"
     ])
 
-    # TAB 1: CLEAN, DECLUTTERED, SINGLE-TOPIC "ASK E.B.O.N.Y. MECHANIC AI" WITH YEAR/MAKE/MODEL/ENGINE PART NUMBERS & SILENT MEMORY
+    # TAB 1: DYNAMIC YEAR/MAKE/MODEL/ENGINE + QUESTION SYNTHESIS & OEM PART NUMBERS (SILENT MEMORY)
     with tab_ask_ai:
         if is_small_engine_mode:
-            st.markdown("### 🌿 Ask E.B.O.N.Y. Small-Engine & Lawnmower Master AI (With OEM & Aftermarket Part Number Lookup)")
+            st.markdown("### 🌿 Ask E.B.O.N.Y. Small-Engine & Lawnmower Master AI (With Year/Make/Model OEM Part Numbers)")
             def_yr, def_mk, def_md, def_eng = "2023", "Honda", "HRN216 / GCV170", "166cc 4-Stroke OHV"
             def_q = "My push lawnmower won't start after sitting all winter. How do I clean the carburetor main jet?"
         else:
-            st.markdown("### 🚗 Ask E.B.O.N.Y. Automotive, Truck & Tractor Master AI (With OEM & Aftermarket Part Number Lookup)")
+            st.markdown("### 🚗 Ask E.B.O.N.Y. Automotive, Truck & Tractor Master AI (With Year/Make/Model OEM Part Numbers)")
             def_yr, def_mk, def_md, def_eng = "2022", "Dodge", "Charger", "5.7L HEMI V8"
             def_q = "How do I remove the interior door panel on my Dodge Charger without breaking the plastic clips?"
 
-        # 4-Column Vehicle / Equipment Identification Bar (Year | Make | Model | Engine/Trim) for Exact Part Numbers
         ym1, ym2, ym3, ym4 = st.columns([1, 1.4, 1.4, 1.6])
         with ym1:
             yr_in = st.text_input("📅 Year:", value=def_yr, key=f"ebony_yr_{domain_code}")
@@ -1410,13 +1486,17 @@ def render_automotive_master_deck():
         with ym4:
             eng_in = st.text_input("⚙️ Engine / Trim / Series:", value=def_eng, key=f"ebony_eng_{domain_code}")
 
-        full_vehicle_str = f"{yr_in.strip()} {mk_in.strip()} {md_in.strip()} ({eng_in.strip()})".strip()
-
-        user_mech_q = st.text_input(
-            "🔧 Enter Your Specific Repair, Maintenance, or Part Number Question:",
-            value=def_q,
-            key=f"ebony_clean_q_{domain_code}"
-        )
+        q_col1, q_col2 = st.columns([3.8, 1.2])
+        with q_col1:
+            user_mech_q = st.text_input(
+                "🔧 Enter Your Specific Repair, Maintenance, or Part Number Question:",
+                value=def_q,
+                key=f"ebony_clean_q_{domain_code}"
+            )
+        with q_col2:
+            st.write("")
+            st.write("")
+            st.button("⚡ Update Guide & Parts", use_container_width=True, key=f"btn_run_q_{domain_code}")
 
         opt_c1, opt_c2 = st.columns([2.5, 1.5])
         with opt_c1:
@@ -1430,22 +1510,31 @@ def render_automotive_master_deck():
             if not is_small_engine_mode and opt_in_web:
                 vin_opt_in = st.text_input("🔢 Optional 17-Char VIN:", value="", key="ebony_clean_vin")
 
-        # E.B.O.N.Y. silently assimilates & remembers every question inside hvf_memory_vault.db (never rendered on-screen!)
         ans_bundle = query_ebony_mechanic_assistant(
             user_question=user_mech_q,
             allow_internet_lookup=opt_in_web,
             vehicle_make_model_year=f"{yr_in.strip()} {mk_in.strip()} {md_in.strip()}",
             vin_str=vin_opt_in,
-            equipment_domain=domain_code
+            equipment_domain=domain_code,
+            year_str=yr_in,
+            make_str=mk_in,
+            model_str=md_in,
+            engine_str=eng_in
         )
 
-        part_list = resolve_oem_and_aftermarket_part_numbers(yr_in, mk_in, md_in, eng_in, user_mech_q, domain_code)
+        part_list = ans_bundle["parts_resolved"]
         primary_z = ans_bundle["matched_zones"][0]
+        top_p = part_list[0]
 
-        st.success(f"🎯 **Target Asset:** `{full_vehicle_str}`  |  **Guide:** `{primary_z['zone_title']}`")
+        # Immediate Top Summary Banner reflecting exact Year, Make, Model, Engine, Question & #1 OEM Part Number!
+        st.success(
+            f"🎯 **Active Asset Locked:** `{ans_bundle['generation_info']['gen_name']}`\n\n"
+            f"- **Active Repair Query:** `{user_mech_q}`\n"
+            f"- **Primary Matched OEM Part Number:** `{top_p['oem_pn']}` *(Cross-Ref: `{top_p['aftermarket_pn']}` — {top_p['spec']})*"
+        )
 
         if opt_in_web and ans_bundle["web_findings"]:
-            with st.expander("🌐 View Live Internet / U.S. DOT NHTSA Technical Lookup Results", expanded=True):
+            with st.expander(f"🌐 Live Internet / U.S. DOT NHTSA Results for {yr_in} {mk_in} {md_in}", expanded=True):
                 for wf in ans_bundle["web_findings"]:
                     st.write(wf)
 
@@ -1460,7 +1549,7 @@ def render_automotive_master_deck():
             for stp in primary_z["step_by_step"]:
                 st.info(stp)
         with sub_parts:
-            st.markdown(f"#### 🏷️ Verified OEM & Cross-Reference Part Numbers for `{full_vehicle_str}`")
+            st.markdown(f"#### 🏷️ Verified OEM & Cross-Reference Part Numbers for `{ans_bundle['vehicle_context']}`")
             for p_idx, p_row in enumerate(part_list, 1):
                 if p_idx == 1:
                     st.success(
