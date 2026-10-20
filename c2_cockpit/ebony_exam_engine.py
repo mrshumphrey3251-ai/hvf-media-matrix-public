@@ -1,3 +1,4 @@
+import re
 """
 E.B.O.N.Y. Sovereign Field Academy // Non-Repeating Industrial Examination Engine
 True Non-Repeating Technical Examination Banks (20 Unique Questions per Discipline)
@@ -673,7 +674,7 @@ def generate_course_stage_questions(course_code: str, stage_num: int):
             ans_str = str(uq.get("ans", "")).strip()
             matched_opt = ans_str if ans_str in opts else opts[0]
             letter = matched_opt.strip()[0].upper() if matched_opt else "A"
-            raw_q = str(uq.get("q", "")).strip()
+            raw_q = re.sub(r"^(?:\[[^\]]+\]\s*)+", "", str(uq.get("q", "")).strip())
             lib_questions.append({
                 "domain": f"M{u_num:02d}: {u_title}",
                 "raw_stem": raw_q,
