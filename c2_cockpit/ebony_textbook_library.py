@@ -1478,6 +1478,49 @@ def get_course_units(course_code: str):
     import copy
     units = copy.deepcopy(_prev_get_course_units_fn(base_code))
     if course_code == "AUT-01":
+        import ebony_automotive_master as _eam_lib
+        for _idx, _u in enumerate(units):
+            if _idx < len(AUT01_STANDALONE_ACADEMIC_MODULES):
+                _m_spec = AUT01_STANDALONE_ACADEMIC_MODULES[_idx]
+                _z_obj = _eam_lib.BUMPER_TO_BUMPER_BEGINNER_GUIDE.get(_m_spec["zone_ref"], {})
+                _u["unit"] = _m_spec["unit"]
+                _u["title"] = _m_spec["title"]
+                _u["governing_eq"] = _m_spec["governing_eq"]
+                _u["equations"] = _m_spec["governing_eq"]
+                _u["equation_legend"] = _m_spec["equation_legend"]
+                _u["calc_unit"] = _m_spec["calc_unit"]
+                _u["resolved_us_unit"] = _m_spec["resolved_us_unit"]
+                _u["calc_prompt"] = _m_spec["calc_prompt"]
+                _u["calc_gate"] = {
+                    "prompt": _m_spec["calc_prompt"],
+                    "expected_ans": _m_spec["expected_ans"],
+                    "tolerance": _m_spec["tol"],
+                    "unit": _m_spec["calc_unit"]
+                }
+                _haz_md = "\n".join(f"- ⚠️ **{h}**" for h in _z_obj.get("safety_precautions", []))
+                _tools_md = "\n".join(f"- 🧰 **{t}**" for t in _z_obj.get("tools_required", []))
+                _steps_md = "\n".join(f"- ✅ {s}" for s in _z_obj.get("step_by_step", []))
+                _u["theory"] = (
+                    f"### 🎓 Accredited 4.0-Hour Engineering Lecture // {_m_spec['title']}\n\n"
+                    f"#### ⚠️ 1. Mandatory Life-Safety & All Task Hazards (READ FIRST — Zero-Shortcut Doctrine)\n{_haz_md}\n\n"
+                    f"#### 📍 2. Visual Component Landmark (Where Is It & What Does It Look Like?)\n{_z_obj.get('where_and_what', '')}\n\n"
+                    f"#### 🧰 3. Exact Tools, Socket Sizes & OEM Parts Required\n{_tools_md}\n\n"
+                    f"#### 🛠️ 4. Step-by-Step Beginner-to-Master Procedure\n{_steps_md}\n\n"
+                    f"#### 📐 5. Governing SAE / ISO / ANSI Engineering Formulation\n`{_m_spec['governing_eq']}`\n*{_m_spec['equation_legend']}*"
+                )
+                _u["worked_example"] = (
+                    f"Worked Quantitative Shop & CAN-Bus Derivation ({_m_spec['title']}):\n"
+                    f"* Governing Equation: {_m_spec['governing_eq']}\n"
+                    f"* Variable Definitions: {_m_spec['equation_legend']}\n"
+                    f"* Quantitative Gate Problem: {_m_spec['calc_prompt']}\n"
+                    f"* Verified Step-by-Step Solution: Target Value = {_m_spec['expected_ans']} {_m_spec['calc_unit']} (Tolerance: +/- {_m_spec['tol']})"
+                )
+                _u["lab_protocol"] = (
+                    f"1. **Phase 1 (Mandatory 8-Point Life-Safety & LOTO Gate):** Review all {len(_z_obj.get('safety_precautions', []))} task-specific hazards above; chock wheels, lock mechanical Jack Stands (or pull mower Spark Plug Boot), disconnect 10mm Black Negative (-) battery terminal, and don ANSI Z87.1 goggles & nitrile/cut-resistant gloves.\n"
+                    f"2. **Phase 2 (Visual Landmark Identification & Tool/Part Staging):** Physically locate components on vehicle/tractor/mower and stage all required 6-point sockets, torque wrenches, and OEM replacement parts.\n"
+                    f"3. **Phase 3 (Beginner-to-Master Mechanical & Electrical Execution):** Execute all {len(_z_obj.get('step_by_step', []))} step-by-step procedures and torque fasteners to exact lb-ft specification.\n"
+                    f"4. **Phase 4 (Quantitative Calculation Gate & NVIDIA Three-Brain WORM Seal):** Solve `{_m_spec['governing_eq']}` (`{_m_spec['expected_ans']} {_m_spec['calc_unit']}`), verify live CAN-Bus / engine telemetry, and seal 4.0 Accredited Credit Hours in `matrix_ledger.db`."
+                )
         _aut_Specs = [('Unit 01: SAE J1979 OBD-II, ISO 11898 CAN-Bus Differential Physics (60-Ohm) & Portable NVIDIA Three-Brain Enclave', 'R_bus = (120 * 120) / (120 + 120) = 60.0 Ohms | V_diff = V_CANH - V_CANL = 2.0V'), ('Unit 02: Stoichiometric Combustion (Lambda = 1.00), MAF Volumetric Efficiency (VE_%) & Fuel Trim Diagnostics (P0171)', 'VE_% = (MAF_actual / MAF_theoretical) * 100 | Total_Trim_% = STFT_% + LTFT_%'), ('Unit 03: Ignition Secondary KV Waveforms, Crankshaft Angular Acceleration & Mode $06 Misfire Diagnostics (P0300)', 'alpha_crank = d(omega)/dt | Spark Plug Gap = 0.032-0.044 in (Torque: 15-18 lb-ft)'), ('Unit 04: High-Pressure Common-Rail & Direct-Injection Fuel Systems (P0087), Piezo Injectors & Lift-Pump Hydraulics', 'Inj_Flow_lb_hr = (HP * BSFC) / (N_cyl * 0.80) | Rail_Delta = FRP_cmd - FRP_act'), ('Unit 05: Forced Induction Thermodynamics, Turbocharger VGT / Wastegate PID Control (P0299) & Intercooler Efficiency', 'PR = (14.7 + P_boost_psig) / 14.7 | eta_IC = (T_in - T_out) / (T_in - T_amb)'), ('Unit 06: Automatic Transmission Hydraulics (P0700), Torque Converter Slip & TCM Clutch Volume Index (CVI) Fast-Learn', 'Slip_RPM = Engine_RPM - Turbine_RPM | Ratio = ISS_RPM / OSS_RPM'), ('Unit 07: Three-Way Catalytic Converter Chemistry (P0420), Dual-O2 Switching Ratios & Exhaust Backpressure', 'Switch_Ratio = Count(B1S2) / Count(B1S1) < 0.35 | Delta_T_cat = T_out - T_in >= 75 F'), ('Unit 08: ABS / ESC Chassis Dynamics (C0035), Steering Angle Sensor (SAS) Zero-Point Calibration & Braking Physics', 'd_stop_ft = V_mph^2 / (29.92 * mu_tire) | Revs_Per_Mile = 20168 / D_tire_in'), ('Unit 09: Master Preventative Maintenance (0-100k+ Mi), API SP / GL-5 Tribology & Fastener Torque-to-Yield Mechanics', 'T_lb_ft = (K * D_in * F_preload_lbs) / 12 | Brake Fluid Moisture < 1.5%'), ('Unit 10: UDS ISO 14229 (0x10/0x22/0x27/0x2E/0x31), SAE J2534 EEPROM Checksums (B1000) & Brain-3 Hot-Swap WORM Seal', 'G_unplug = I(Session == 0x01) * I(EEPROM_Write == 0) * I(WORM_SHA256 == 1)')]
         for _idx, _u in enumerate(units):
             if _idx < len(_aut_Specs):
@@ -1743,3 +1786,150 @@ def export_full_course_textbook_markdown(course_code: str, course_meta: dict = N
         return _ORIG_EXPORT_TEXTBOOK(course_code, meta)
     except TypeError:
         return _ORIG_EXPORT_TEXTBOOK(course_code)
+
+
+
+AUT01_STANDALONE_ACADEMIC_MODULES = [
+    {
+        "unit": 1,
+        "title": "Unit 01: Shop Life-Safety, Jack Stands, Under-Hood Dipstick/Fluid ID & ISO 11898 CAN-Bus Physics (60-Ohm)",
+        "governing_eq": "R_eq = (R_1 * R_2) / (R_1 + R_2) = (120 * 120) / (120 + 120) = 60.0 Ohms | V_diff = V_CANH - V_CANL = 2.0V",
+        "calc_unit": "Ohms (Electrical Resistance)",
+        "resolved_us_unit": "Ohms (Electrical Bus Loop Resistance)",
+        "equation_legend": "R_eq = Total Parallel CAN-Bus Loop Resistance (Ohms) | R_1 = ECM Termination Resistor (120.0 Ohms) | R_2 = BCM/Gateway Termination Resistor (120.0 Ohms) | V_CANH = Dominant High Voltage (3.5V) | V_CANL = Dominant Low Voltage (1.5V)",
+        "calc_prompt": "Part A Quantitative Calculation Gate (Unit 01): An ISO 11898 high-speed automotive CAN-Bus network contains two 120.0-Ohm termination resistors wired in parallel at opposite ends of the twisted pair (Pin 6 CAN_H and Pin 14 CAN_L on the 16-pin OBD-II port). Using R_eq = (R_1 * R_2) / (R_1 + R_2), calculate the exact total loop resistance (in Ohms) measured with a digital multimeter when the battery is disconnected.",
+        "expected_ans": 60.0,
+        "tol": 0.5,
+        "zone_ref": "ZONE_01_SAFETY_JACKING_AND_TOOLS"
+    },
+    {
+        "unit": 2,
+        "title": "Unit 02: Engine Oil & Filter Change Mastery, Double-Gasket Prevention & Stoichiometric Fuel Trim (P0171)",
+        "governing_eq": "Total_Fuel_Trim_% = STFT_% + LTFT_% | Dipstick_Span (MIN to MAX) = 1.0 U.S. Quart (32 fl oz)",
+        "calc_unit": "% (Total Fuel Trim Deviation)",
+        "resolved_us_unit": "Percent (% Stoichiometric Fuel Trim Correction)",
+        "equation_legend": "Total_Fuel_Trim_% = Combined ECU Fuel Delivery Correction (%) | STFT_% = Short-Term Fuel Trim (%) | LTFT_% = Long-Term Fuel Trim (%) | Fault Threshold: |Total_Fuel_Trim_%| >= 25.0% triggers DTC P0171/P0172",
+        "calc_prompt": "Part A Quantitative Calculation Gate (Unit 02): During an OBD-II live telemetry scan at 750 RPM idle, Bank 1 Short-Term Fuel Trim (STFT1) reads +8.5% and Long-Term Fuel Trim (LTFT1) reads +18.2% due to an unmetered intake manifold vacuum leak downstream of the MAF sensor. Calculate the combined Total Fuel Trim percentage (STFT1 + LTFT1).",
+        "expected_ans": 26.7,
+        "tol": 0.2,
+        "zone_ref": "ZONE_03_OIL_CHANGE_AND_COOLING_SYSTEM"
+    },
+    {
+        "unit": 3,
+        "title": "Unit 03: SAE J1349 Dynamometer Power, Ignition Coils, Spark Plugs & Mode $06 Misfire Diagnostics (P0300)",
+        "governing_eq": "HP_SAE = (Torque_lb_ft * RPM) / 5252 | Spark_Plug_Gap = 0.032 to 0.044 in (Torque: 15.0 lb-ft)",
+        "calc_unit": "HP (SAE Net Horsepower)",
+        "resolved_us_unit": "Horsepower (HP — SAE J1349 Net Mechanical Power)",
+        "equation_legend": "HP_SAE = Net Brake Horsepower (HP) | Torque_lb_ft = Measured Engine Rotational Torque (lb-ft) | RPM = Crankshaft Rotational Speed (Revolutions Per Minute) | 5252 = 33,000 ft-lbs/min divided by 2*pi radians/rev",
+        "calc_prompt": "Part A Quantitative Calculation Gate (Unit 03): Using the SAE J1349 dynamometer power equation HP = (Torque_lb_ft * RPM) / 5252, calculate the exact net horsepower produced by a 5.0L V8 engine generating 365.0 lb-ft of torque at 2,800 RPM (round to 2 decimal places).",
+        "expected_ans": 194.59,
+        "tol": 0.5,
+        "zone_ref": "ZONE_07_AIR_FUEL_SPARK_PLUGS_AND_IGNITION"
+    },
+    {
+        "unit": 4,
+        "title": "Unit 04: 12V/24V Battery, Alternator & Starter Motor Diagnostics, High-Pressure Fuel (P0087) & Injector Sizing",
+        "governing_eq": "Inj_Flow_lb_hr = (Target_HP * BSFC) / (N_cyl * Duty_Cycle_0.80) | V_alt_charging = 13.80V to 14.50V DC",
+        "calc_unit": "lb/hr (Injector Fuel Flow Rate)",
+        "resolved_us_unit": "Pounds per Hour (lb/hr Fuel Injector Mass Flow)",
+        "equation_legend": "Inj_Flow_lb_hr = Minimum Required Single Injector Flow Rate (lb/hr) | Target_HP = Crankshaft Horsepower (HP) | BSFC = Brake Specific Fuel Consumption (lb/HP-hr) | N_cyl = Number of Cylinders | 0.80 = Safe Maximum 80% Injector Duty Cycle",
+        "calc_prompt": "Part A Quantitative Calculation Gate (Unit 04): Using Inj_Flow = (Target_HP * BSFC) / (N_cyl * 0.80), calculate the required fuel injector flow rate (in lb/hr) for a 550.0 HP 8-cylinder engine operating at a Brake Specific Fuel Consumption (BSFC) of 0.52 lb/HP-hr and a maximum safe duty cycle of 0.80 (round to 2 decimal places).",
+        "expected_ans": 44.69,
+        "tol": 0.5,
+        "zone_ref": "ZONE_04_BATTERY_ALTERNATOR_AND_ELECTRICAL"
+    },
+    {
+        "unit": 5,
+        "title": "Unit 05: Forced Induction Turbo/Supercharger Boost Physics (P0299), Cooling Systems, Water Pumps & Thermostats",
+        "governing_eq": "PR = (14.7 + P_boost_psig) / 14.7 | VE_boosted = VE_NA * PR | Coolant_Boiling_Point (16 psi) = 252 deg F",
+        "calc_unit": "PR (Absolute Boost Pressure Ratio)",
+        "resolved_us_unit": "Dimensionless Pressure Ratio (PR — Absolute Manifold to Atmospheric Ratio)",
+        "equation_legend": "PR = Absolute Compressor Pressure Ratio | 14.7 = Standard Sea-Level Atmospheric Pressure (psia) | P_boost_psig = Gauge Manifold Boost Pressure above Atmospheric (psig)",
+        "calc_prompt": "Part A Quantitative Calculation Gate (Unit 05): A twin-turbocharged engine operates at a gauge boost pressure P_boost = 14.7 psig at sea level (where atmospheric pressure P_atm = 14.7 psia). Using PR = (14.7 + P_boost_psig) / 14.7, calculate the exact absolute Boost Pressure Ratio (PR).",
+        "expected_ans": 2.0,
+        "tol": 0.1,
+        "zone_ref": "ZONE_02_UNDER_HOOD_ANATOMY_AND_FLUID_ID"
+    },
+    {
+        "unit": 6,
+        "title": "Unit 06: Automatic Transmission Hydraulics (P0700), Differentials ('Top Plug First' Rule), Transfer Cases & CV Axles",
+        "governing_eq": "Slip_RPM = Engine_RPM - Turbine_ISS_RPM | Gear_Ratio = ISS_RPM / OSS_RPM | TFT_Check = 175-195 deg F",
+        "calc_unit": "RPM (Torque Converter Slip Speed)",
+        "resolved_us_unit": "Revolutions Per Minute (RPM — Torque Converter Clutch Slip)",
+        "equation_legend": "Slip_RPM = Torque Converter Rotational Slip (RPM) | Engine_RPM = Crankshaft Speed (RPM) | Turbine_ISS_RPM = Transmission Input Shaft Speed (RPM)",
+        "calc_prompt": "Part A Quantitative Calculation Gate (Unit 06): During a highway transmission diagnostic sweep, engine crankshaft speed is 2,100.0 RPM while the transmission Input Shaft Speed (ISS) turbine sensor reads 1,980.0 RPM prior to full TCC lockup. Calculate the Torque Converter Slip Speed (Slip_RPM = Engine_RPM - ISS_RPM) in RPM.",
+        "expected_ans": 120.0,
+        "tol": 1.0,
+        "zone_ref": "ZONE_08_TRANSMISSION_DIFFERENTIALS_AND_DRIVETRAIN"
+    },
+    {
+        "unit": 7,
+        "title": "Unit 07: Exhaust, Catalytic Converter Oxygen Storage (P0420), O2 Sensors, Diesel DPF/DEF & HVAC Refrigerant Safety",
+        "governing_eq": "Delta_T_cat = T_outlet_F - T_inlet_F >= 75.0 deg F | Switch_Ratio = B1S2_CrossCounts / B1S1_CrossCounts < 0.35",
+        "calc_unit": "deg F (Catalytic Converter Exothermic Delta-T)",
+        "resolved_us_unit": "Degrees Fahrenheit (deg F — Exothermic Oxidation Temperature Rise)",
+        "equation_legend": "Delta_T_cat = Catalytic Converter Exothermic Temperature Rise (deg F) | T_outlet_F = Post-Catalyst Outlet Temperature (deg F) | T_inlet_F = Pre-Catalyst Inlet Temperature (deg F)",
+        "calc_prompt": "Part A Quantitative Calculation Gate (Unit 07): During an infrared pyrometer check of a warm three-way catalytic converter, the front inlet weld measures T_inlet = 1,160.0 deg F and the rear outlet weld measures T_outlet = 1,285.0 deg F due to exothermic oxidation of hydrocarbons and CO. Calculate the catalytic temperature differential Delta_T_cat = T_outlet - T_inlet (in deg F).",
+        "expected_ans": 125.0,
+        "tol": 1.0,
+        "zone_ref": "ZONE_09_EXHAUST_EMISSIONS_O2_AND_DIESEL_DPF"
+    },
+    {
+        "unit": 8,
+        "title": "Unit 08: Forensic Brake & Steering Reconstruction — Pads, Rotors, Slide Pins, Tie Rods, Wheel Bearings & Tire BCM Sync",
+        "governing_eq": "Revs_Per_Mile = 20168.0 / D_tire_in | d_stop_ft = V_mph^2 / (29.92 * mu_tire) | Pump Pedal 5-8x Before Drive!",
+        "calc_unit": "Revs/Mile (BCM Tire Calibration Factor)",
+        "resolved_us_unit": "Revolutions Per Mile (Revs/Mile — ABS/BCM Wheel Speed Calibration)",
+        "equation_legend": "Revs_Per_Mile = Tire Revolutions per Statute Mile (written via UDS 0x2E to BCM/ABS) | 20168 = 63,360 inches/mile divided by pi | D_tire_in = Outer Tire Diameter (inches)",
+        "calc_prompt": "Part A Quantitative Calculation Gate (Unit 08): A fleet pickup truck is fitted with 33.0-inch outer-diameter all-terrain tires. Using the BCM/ABS calibration formula Revs_Per_Mile = 20168.0 / D_tire_in, calculate the exact revolutions per mile that must be written to the Body Control Module via UDS Service 0x2E (round to 2 decimal places).",
+        "expected_ans": 611.15,
+        "tol": 1.0,
+        "zone_ref": "ZONE_05_BRAKES_PADS_ROTORS_AND_BLEEDING"
+    },
+    {
+        "unit": 9,
+        "title": "Unit 09: Forensic Fastener & Body/Door-Panel Reconstruction — Torque-to-Yield Mechanics, Window Regulators & Fuses",
+        "governing_eq": "T_lb_ft = (K_friction * D_bolt_in * F_preload_lbs) / 12.0 | Star-Pattern Lug Torque = 100 to 150 lb-ft",
+        "calc_unit": "lb-ft (Fastener Installation Torque)",
+        "resolved_us_unit": "Pound-Feet (lb-ft — Calibrated Fastener Preload Torque)",
+        "equation_legend": "T_lb_ft = Required Wrench Installation Torque (lb-ft) | K_friction = Nut/Thread Friction Factor (0.18 lubricated) | D_bolt_in = Nominal Bolt Diameter (inches) | F_preload_lbs = Target Axial Clamping Preload Force (lbs)",
+        "calc_prompt": "Part A Quantitative Calculation Gate (Unit 09): Using the fastener preload equation T = (K * D_in * F_preload) / 12, calculate the exact installation torque (in lb-ft) required for a D = 0.50-inch suspension bolt with friction factor K = 0.18 to achieve an axial clamping preload F = 12,000.0 lbs.",
+        "expected_ans": 90.0,
+        "tol": 0.5,
+        "zone_ref": "ZONE_11_LIGHTING_WIPERS_FUSES_AND_BODY"
+    },
+    {
+        "unit": 10,
+        "title": "Unit 10: Master Small Engine, Lawnmower, Carburetor Main Jet, Blade Tip-Speed & 2-Stroke (50:1) / Zero-Turn EFI Course",
+        "governing_eq": "V_oil_fl_oz = (V_gas_gal * 128.0) / Ratio_50 | V_tip_fpm = (pi * D_blade_in * RPM) / 12 <= 19,000 ft/min",
+        "calc_unit": "fl oz (2-Stroke Oil Volume for 2.5 Gal @ 50:1)",
+        "resolved_us_unit": "Fluid Ounces (fl oz — JASO FD 2-Cycle Oil Mix Volume)",
+        "equation_legend": "V_oil_fl_oz = Required 2-Cycle Engine Oil Volume (U.S. Fluid Ounces) | V_gas_gal = Gasoline Container Volume (U.S. Gallons) | 128.0 = Fluid Ounces per U.S. Gallon | Ratio_50 = 50:1 Fuel-to-Oil Mix Ratio",
+        "calc_prompt": "Part A Quantitative Calculation Gate (Unit 10): You are filling a 2.5-gallon fuel can with Ethanol-Free 90-octane gasoline for a commercial 2-stroke string trimmer and chainsaw requiring a 50:1 fuel-to-oil ratio. Using V_oil_fl_oz = (V_gas_gal * 128.0) / 50.0, calculate the exact volume of JASO FD 2-cycle oil (in fluid ounces) required.",
+        "expected_ans": 6.4,
+        "tol": 0.1,
+        "zone_ref": "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE"
+    }
+]
+
+
+
+
+_ORIG_GET_GLOSSARY = get_master_glossary_and_references
+def get_master_glossary_and_references(course_code: str = "STR-01") -> dict:
+    g = _ORIG_GET_GLOSSARY(course_code)
+    auto_terms = [
+        {"term": "Engine Oil Dipstick (Yellow/Orange Loop)", "cat": "AUT-01 Beginner Anatomy", "def": "A thin metal measuring rod with a bright yellow or orange pull-ring on the side of the engine block. Pull out, wipe clean with a towel, re-insert fully, and pull out again: the span between MIN/ADD and MAX/FULL equals exactly 1.0 U.S. Quart (32 fl oz)."},
+        {"term": "Double-Gasketing (Oil Filter Blowout Hazard)", "cat": "AUT-01 Life-Safety", "def": "When removing an old spin-on oil filter, if the old black rubber O-ring sticks to the engine block and you screw the new filter on top of it, the stacked gaskets will blow out under 60 PSI oil pressure and dump all engine oil in seconds. Always verify the old O-ring came off with the old filter!"},
+        {"term": "Black Negative (-) Battery Cable First Rule", "cat": "AUT-01 Electrical Safety", "def": "Always disconnect the Black Negative (-) ground cable FIRST (10mm wrench) and reconnect it LAST. Because the entire metal car body is connected to Negative (-), touching a wrench from Red Positive (+) to the fender while Negative is still attached creates a 600-Amp dead short."},
+        {"term": "ISO 11898 CAN-Bus (60.0-Ohm Differential Loop)", "cat": "AUT-01 NVIDIA Three-Brain", "def": "Controller Area Network twisted-pair data bus on OBD-II Pin 6 (CAN_H = 3.5V) and Pin 14 (CAN_L = 1.5V), or J1939 9-Pin Deutsch Pins C & D. Two 120-Ohm parallel termination resistors inside the ECM and BCM produce a 60.0-Ohm total loop resistance."},
+        {"term": "Short-Term & Long-Term Fuel Trim (STFT + LTFT)", "cat": "AUT-01 Engine Diagnostics", "def": "The percentage of fuel the ECU adds (+) or subtracts (-) to maintain stoichiometric Lambda = 1.00 (14.7:1 air-fuel ratio). Combined |STFT + LTFT| >= 25% triggers P0171 (System Too Lean) or P0172 (System Too Rich)."},
+        {"term": "Lawnmower Tipping Rule (Spark Plug & Air Filter UP)", "cat": "AUT-01 Small Engine Safety", "def": "Before reaching under a mower deck, ALWAYS pull the thick black rubber Spark Plug Wire Boot off the spark plug, and tip the mower with the Spark Plug and Air Filter pointing UP toward the sky so crankcase oil cannot flood the air filter or cylinder."},
+        {"term": "2-Stroke Fuel-Oil Mix (50:1 = 2.6 fl oz / Gal)", "cat": "AUT-01 Small Engine", "def": "2-stroke handheld engines (chainsaws, string trimmers, leaf blowers) have no oil pan and require JASO FD air-cooled 2-cycle oil mixed directly into the gasoline: 50:1 = 2.56 fl oz oil per 1.0 Gallon of gas (6.40 fl oz per 2.5 Gallons)."}
+    ]
+    existing_t = {item["term"] for item in g.get("terms", [])}
+    for at in auto_terms:
+        if at["term"] not in existing_t:
+            g["terms"].insert(0, at)
+    return g
+
