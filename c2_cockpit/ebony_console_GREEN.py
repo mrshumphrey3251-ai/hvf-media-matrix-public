@@ -1475,108 +1475,154 @@ elif active_module == "🏎️ Sovereign Auto & CAN-Bus C2":
     _eam_mod.render_automotive_master_deck()
 
 elif active_module == "🌾 Drone Diagnostics":
-    st.markdown("### 🚁 /// OPTICAL PAYLOAD FEED (LIVE & GLI ACTIVE)")
-    run_camera = st.checkbox("[ ARM OPTICAL LINK WITH GLI ]", key="master_cam_toggle")
-    FRAME_WINDOW = st.image([])
+    st.subheader("🌾 Sovereign sUAS Drone Diagnostics, Optical GLI & Beginner-to-Master Flight Safety Enclave")
+    d_tab_safe, d_tab_maint, d_tab_opt = st.tabs([
+        "⚠️ 1. Mandatory sUAS Life-Safety & All Flight Hazards (READ FIRST)",
+        "🛠️ 2. Beginner-to-Master Drone Pre-Flight, Repair & OEM Parts Guide",
+        "🚁 3. Live Optical GLI Payload & RTMP Telemetry Stream"
+    ])
+    with d_tab_safe:
+        st.markdown("#### ⚠️ Unabridged 8-Point sUAS Heavy-Lift & Ag/Inspection Drone Hazard Matrix (FAA Part 107 / OSHA)")
+        for _dh in [
+            "HAZARD 1 (SPINNING CARBON-FIBER PROPELLER AMPUTATION HAZARD): Industrial sUAS carbon-fiber propellers spin at 6,000 to 12,000 RPM with razor-sharp trailing edges capable of severing fingers to the bone! NEVER install or remove propellers, adjust gimbal cables, or pick up an aircraft while the flight battery is plugged into the XT90/AS150 power distribution harness!",
+            "HAZARD 2 (LITHIUM-POLYMER [LiPo] THERMAL RUNAWAY & 2,000 DEG F HYDROGEN FLUORIDE FIRE): Never charge, fly, or store a LiPo/LiHV battery that is puffed/swollen, dented, or has a cell voltage below 3.20V DC or cell-to-cell imbalance > 0.05V! A punctured or overcharged LiPo pack erupts into a self-oxidizing 2,000 deg F chemical flare releasing toxic Hydrogen Fluoride (HF) gas. Always charge inside a fireproof LiPo safe bag on concrete with a Class D / sand bucket staged within 10 feet.",
+            "HAZARD 3 (GPS-DENIED UNDER-DECK & MAGNETIC STEEL COMPASS TOILET-BOWLING): Flying beneath steel/concrete bridges or inside metal grain silos blocks L-band GPS satellites (Faraday cage) and distorts magnetic compasses. NEVER trigger automated Return-to-Launch (RTL) underneath an overhead bridge deck or inside a barn/hangar—RTL commands an automatic vertical climb straight into the overhead steel girders!",
+            "HAZARD 4 (HIGH-VOLTAGE POWER LINE ARC & EMI LOCKOUT): Maintain a minimum 50-foot lateral and vertical standoff from high-voltage transmission lines and substation transformers; intense 60-Hz electromagnetic fields induce compass/IMU drift and corona arc-flash.",
+            "HAZARD 5 (PROPELLER CLOCKWISE [CW] VS. COUNTER-CLOCKWISE [CCW] FLIP-ON-TAKEOFF): Installing a CW propeller onto a CCW motor (or leaving a prop-adapter screw un-torqued without Blue Loctite 242) causes the aircraft to violently flip upside-down toward the pilot at full throttle on liftoff!",
+            "HAZARD 6 (915 MHz / 2.4 GHz / 5.8 GHz FRESNEL ZONE RF LINK SEVERANCE): Never stand behind a metal truck cab, concrete abutment, or dense tree line while flying; keep at least 60% of the first Fresnel zone unobstructed between your controller antennas and the aircraft.",
+            "HAZARD 7 (AGRICULTURAL CHEMICAL / PESTICIDE DRIFT & PPE MANDATE): When servicing agricultural spray drones (tanks, nozzles, peristaltic pumps), wear chemical-resistant nitrile gloves, full-seal Z87.1 goggles, and an NIOSH organic-vapor respirator; triple-rinse spray lines with clean water before disassembly.",
+            "HAZARD 8 (ROTOR DOWNWASH DEBRIS & EYE PROTECTION): Heavy-lift octocopters and quadcopters generate 60+ MPH downward prop-wash that blasts gravel, sand, and metal shavings into eyes on takeoff and landing; always wear ANSI Z87.1 safety glasses and maintain a 25-foot landing pad perimeter."
+        ]:
+            st.warning(_dh)
+    with d_tab_maint:
+        st.markdown("#### 🛠️ Beginner-to-Master sUAS Drone Anatomy, Pre-Flight Inspection, Field Repair & OEM Parts")
+        st.info(
+            "**📍 1. Where Every Drone Component Is & What It Looks Like:**\n"
+            "- **CW vs. CCW Motors & Propellers:** Look at the top of each propeller blade: motors spinning **Clockwise (CW)** and **Counter-Clockwise (CCW)** alternate around the frame (`Front-Right = CCW`, `Front-Left = CW`) so torque cancels out. The **higher/rounded leading edge** of the propeller blade must ALWAYS point in the direction the motor spins!\n"
+            "- **XT60 / XT90 / AS150 Anti-Spark Battery Connector:** The yellow/black high-current plug connecting the LiPo battery to the drone's Power Distribution Board (PDB).\n"
+            "- **Downward Optical Flow Camera & LiDAR Rangefinder:** Located on the bottom belly of the drone; tracks ground texture and height when GPS is blocked under bridges.\n"
+            "- **IMU & Compass Module:** Inside the top center dome; measures pitch, roll, yaw, and magnetic heading."
+        )
+        st.markdown("#### 🧰 Exact Drone Field Toolkit & OEM Replacement Part Numbers")
+        st.markdown(
+            "- **Tools Needed:** `1.5mm, 2.0mm, 2.5mm, 3.0mm Precision Hex Driver Set (MIP/Wiha)`, `Digital LiPo Cell Voltage & Internal Resistance Checker`, `Loctite 242 Blue Threadlocker (for metal-to-metal motor screws ONLY—never let Loctite touch plastic prop hubs, as it melts polycarbonate!)`, `Isopropyl Alcohol (99%) & Lens Microfiber Cloth`.\n"
+            "- **Verified OEM & Fleet Part Numbers:**\n"
+            "  - **Propellers (Folding Carbon/Nylon):** `DJI Matrice 300/350 RTK 2110s Propellers (OEM #CP.EN.00000270.01)` | `T-Motor P18x6.1 Carbon Fiber CW/CCW Pair` (Torque M3/M4 prop-adapter screws to `1.2 N-m / 10.6 in-lbs`).\n"
+            "  - **Flight Batteries:** `TB60 / TB65 12S Intelligent Flight Battery (5,935 mAh / 44.76V Nominal)` | `Tattu Plus 12S 22,000 mAh Smart LiPo (AS150U)`.\n"
+            "  - **Avionics & Optical Flow:** `Cube Orange+ ADS-B Flight Controller (HX4-06150)` | `HereFlow Optical Flow + LiDAR CAN Node (HX4-06064)` | `Here3+ RTK GNSS CAN Receiver`."
+        )
+        st.success(
+            "**✅ 5-Step Beginner Pre-Flight & Post-Repair Verification Checklist:**\n"
+            "1. **Battery Cell Gate (Drone UNPLUGGED):** Plug LiPo pack into your handheld cell checker. Verify all cells read `4.15V to 4.20V` (100% charged) and cell-to-cell difference is `<= 0.02V`. Inspect pack for zero puffing.\n"
+            "2. **Frame & Prop-Screw Twist Check (Drone UNPLUGGED):** Gently flex each carbon-fiber arm listening for cracks, spin each motor bell by hand to feel for smooth bearing movement (zero gritty magnets), and verify all CW/CCW propellers are locked with zero chipped edges.\n"
+            "3. **Optical & Gimbal Lens Clean:** Wipe the downward optical-flow camera, LiDAR window, and main RGB/Thermal gimbal lens with a clean microfiber cloth and remove the gimbal transport lock clamp!\n"
+            "4. **Power-On & EKF/IMU Warm-Up:** Turn on the **Handheld Remote Controller FIRST**, then plug in the aircraft battery on flat level ground (at least 15 feet away from steel trucks or rebar) and do not touch the aircraft for 10 seconds while the gyroscopes initialize.\n"
+            "5. **10-Foot Hover & Control-Surface Check:** Announce `'Clear Prop!'`, arm motors, climb to a 10-foot hover, and gently test Pitch (Forward/Back), Roll (Left/Right), and Yaw (Rotate) before beginning your mission sortie."
+        )
+    with d_tab_opt:
 
-    if run_camera:
-        import cv2
-        import numpy as np
-        try:
-            camera = cv2.VideoCapture(1, cv2.CAP_DSHOW)
-            if not camera.isOpened():
-                camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-            while run_camera:
-                ret, frame = camera.read()
-                if not ret: break
+        st.markdown("### 🚁 /// OPTICAL PAYLOAD FEED (LIVE & GLI ACTIVE)")
+        run_camera = st.checkbox("[ ARM OPTICAL LINK WITH GLI ]", key="master_cam_toggle")
+        FRAME_WINDOW = st.image([])
 
-                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                r_img, g_img, b_img = cv2.split(frame_rgb.astype(np.float32))
+        if run_camera:
+            import cv2
+            import numpy as np
+            try:
+                camera = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+                if not camera.isOpened():
+                    camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+                while run_camera:
+                    ret, frame = camera.read()
+                    if not ret: break
 
-                denominator = (2 * g_img + r_img + b_img)
-                denominator[denominator == 0] = 1
-                gli_matrix = (2 * g_img - r_img - b_img) / denominator
-                avg_gli = np.mean(gli_matrix)
+                    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                    r_img, g_img, b_img = cv2.split(frame_rgb.astype(np.float32))
 
-                # Silently log the live score into the platform's short-term memory
-                st.session_state["last_gli"] = float(avg_gli)
+                    denominator = (2 * g_img + r_img + b_img)
+                    denominator[denominator == 0] = 1
+                    gli_matrix = (2 * g_img - r_img - b_img) / denominator
+                    avg_gli = np.mean(gli_matrix)
 
-                cv2.putText(frame_rgb, "EBONY OPTICAL: ACTIVE", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
-                gli_color = (0, 255, 0) if avg_gli > 0.1 else (255, 0, 0)
-                cv2.putText(frame_rgb, f"LIVE GLI SCORE: {avg_gli:.3f}", (10, 65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, gli_color, 2)
+                    # Silently log the live score into the platform's short-term memory
+                    st.session_state["last_gli"] = float(avg_gli)
 
-                FRAME_WINDOW.image(frame_rgb)
-            camera.release()
-        except Exception as e:
-            st.error(f"HARDWARE INTERLOCK FAILURE: {e}")
-    else:
-        st.info("[!] OPTICAL PAYLOAD OFFLINE. AWAITING CEO OVERRIDE.")
+                    cv2.putText(frame_rgb, "EBONY OPTICAL: ACTIVE", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+                    gli_color = (0, 255, 0) if avg_gli > 0.1 else (255, 0, 0)
+                    cv2.putText(frame_rgb, f"LIVE GLI SCORE: {avg_gli:.3f}", (10, 65), cv2.FONT_HERSHEY_SIMPLEX, 0.8, gli_color, 2)
 
-    # /// THE NEURAL BRIDGE ///
-    if "last_gli" in st.session_state:
-        st.markdown("---")
-        st.markdown("### 🧠 /// NEURAL BRIDGE: AI INGESTION")
-        if st.button("[ TRANSMIT TELEMETRY TO AI CORE ]"):
-            gli_val = st.session_state["last_gli"]
-            prompt = f"SYSTEM INGEST: The optical payload just captured a live Green Leaf Index (GLI) score of {gli_val:.3f}. Based on standard omni-industrial baselines (where >0.1 indicates healthy vegetative vigor and lower values indicate stress, soil, or non-crop matter), analyze this telemetry and provide a deterministic field assessment for the CEO."
-
-            with st.spinner("EBONY AI IS ANALYZING SENSOR DATA..."):
-                try:
-                    client = Groq(api_key=GROQ_KEY)
-                    chat_history = [{"role": "system", "content": "You are Ebony, the Level 5 Sovereign Apex Intelligence for HVF Omni-Industrial Matrix. Be concise, authoritative, and deterministic."}] + [{"role": "user", "content": prompt}]
-
-                    response = client.chat.completions.create(
-                        model="openai/gpt-oss-120b",
-                        messages=chat_history,
-                        temperature=0.0
-                    )
-                    ai_reply = enforce_bare_metal_invariants(response.choices[0].message.content)
-
-                    st.success("✅ OPTICAL TELEMETRY ANALYZED.")
-                    st.markdown("#### 🌾 EBONY omni-industrial ASSESSMENT:")
-                    st.info(ai_reply)
-
-                    try:
-                        st.session_state.messages.append({"role": "user", "content": prompt})
-                        st.session_state.messages.append({"role": "assistant", "content": ai_reply})
-                        save_encrypted_message(current_user, "user", prompt, current_cipher)
-                        save_encrypted_message(current_user, "assistant", ai_reply, current_cipher)
-                    except: pass
-
-                except Exception as e:
-                    st.error(f"NEURAL CORE OFFLINE OR API REJECTED. Error: {e}")
-    st.subheader(f"🌾 {EMPIRE['FARM_NAME']} | Aerial Ingest")
-
-    drone_linked = st.toggle("📡 Arm Drone Feed (Simulate Active RTMP Handshake)", value=False)
-
-    if drone_linked:
-        st.components.v1.html(f'<iframe src="{WEBRTC_STREAM_URL}" width="100%" height="450" frameborder="0" allowfullscreen></iframe>', height=470)
-        st.success("🟢 LIVE: Universal Drone Ingest Active")
-    else:
-        st.markdown("### 🔴 No Active Craft Detected")
-        st.info("System is waiting for an incoming RTMP stream. While offline, review the Universal Ingest Setup Guide below.")
-
-        c_vid, c_inst = st.columns([1.5, 1])
-        with c_vid:
-            local_vid_path = os.path.join(REPO_DIR, "drone_training.mp4")
-        if os.path.exists(local_vid_path):
-            st.video(local_vid_path, loop=True, autoplay=True, muted=True)
+                    FRAME_WINDOW.image(frame_rgb)
+                camera.release()
+            except Exception as e:
+                st.error(f"HARDWARE INTERLOCK FAILURE: {e}")
         else:
-            # Fallback to a raw, open-source MP4 video stream (Zero YouTube)
-            st.video("https://raw.githubusercontent.com/intel-iot-devkit/sample-videos/master/person-bicycle-car-detection.mp4", loop=True, autoplay=True, muted=True)
-            st.caption("⚙️ **Sovereign Mode:** Playing raw native MP4 (YouTube Engine Severed).")
-            st.info("💡 Drop an MP4 file named 'drone_training.mp4' into your master folder to replace this video.")
-            st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
+            st.info("[!] OPTICAL PAYLOAD OFFLINE. AWAITING CEO OVERRIDE.")
 
-        with c_inst:
-            st.markdown("#### 📖 Universal RTMP Setup")
-            st.markdown("""1. Power on your craft (DJI, Autel, Skydio).
-2. Connect controller to Wi-Fi/Hotspot.
-3. Open flight app and select **Live Streaming**.
-4. Select **RTMP** and input the secure ingest URL:""")
-            st.code(mask_secret(RTMP_INGEST_URL, "IP"), language="bash")
-            st.markdown("""5. Set bitrate to **2 Mbps** and resolution to **720p/1080p**.
-6. Tap **Start Streaming**.""")
+        # /// THE NEURAL BRIDGE ///
+        if "last_gli" in st.session_state:
+            st.markdown("---")
+            st.markdown("### 🧠 /// NEURAL BRIDGE: AI INGESTION")
+            if st.button("[ TRANSMIT TELEMETRY TO AI CORE ]"):
+                gli_val = st.session_state["last_gli"]
+                prompt = f"SYSTEM INGEST: The optical payload just captured a live Green Leaf Index (GLI) score of {gli_val:.3f}. Based on standard omni-industrial baselines (where >0.1 indicates healthy vegetative vigor and lower values indicate stress, soil, or non-crop matter), analyze this telemetry and provide a deterministic field assessment for the CEO."
+
+                with st.spinner("EBONY AI IS ANALYZING SENSOR DATA..."):
+                    try:
+                        client = Groq(api_key=GROQ_KEY)
+                        chat_history = [{"role": "system", "content": "You are Ebony, the Level 5 Sovereign Apex Intelligence for HVF Omni-Industrial Matrix. Be concise, authoritative, and deterministic."}] + [{"role": "user", "content": prompt}]
+
+                        response = client.chat.completions.create(
+                            model="openai/gpt-oss-120b",
+                            messages=chat_history,
+                            temperature=0.0
+                        )
+                        ai_reply = enforce_bare_metal_invariants(response.choices[0].message.content)
+
+                        st.success("✅ OPTICAL TELEMETRY ANALYZED.")
+                        st.markdown("#### 🌾 EBONY omni-industrial ASSESSMENT:")
+                        st.info(ai_reply)
+
+                        try:
+                            st.session_state.messages.append({"role": "user", "content": prompt})
+                            st.session_state.messages.append({"role": "assistant", "content": ai_reply})
+                            save_encrypted_message(current_user, "user", prompt, current_cipher)
+                            save_encrypted_message(current_user, "assistant", ai_reply, current_cipher)
+                        except: pass
+
+                    except Exception as e:
+                        st.error(f"NEURAL CORE OFFLINE OR API REJECTED. Error: {e}")
+        st.subheader(f"🌾 {EMPIRE['FARM_NAME']} | Aerial Ingest")
+
+        drone_linked = st.toggle("📡 Arm Drone Feed (Simulate Active RTMP Handshake)", value=False)
+
+        if drone_linked:
+            st.components.v1.html(f'<iframe src="{WEBRTC_STREAM_URL}" width="100%" height="450" frameborder="0" allowfullscreen></iframe>', height=470)
+            st.success("🟢 LIVE: Universal Drone Ingest Active")
+        else:
+            st.markdown("### 🔴 No Active Craft Detected")
+            st.info("System is waiting for an incoming RTMP stream. While offline, review the Universal Ingest Setup Guide below.")
+
+            c_vid, c_inst = st.columns([1.5, 1])
+            with c_vid:
+                local_vid_path = os.path.join(REPO_DIR, "drone_training.mp4")
+            if os.path.exists(local_vid_path):
+                st.video(local_vid_path, loop=True, autoplay=True, muted=True)
+            else:
+                # Fallback to a raw, open-source MP4 video stream (Zero YouTube)
+                st.video("https://raw.githubusercontent.com/intel-iot-devkit/sample-videos/master/person-bicycle-car-detection.mp4", loop=True, autoplay=True, muted=True)
+                st.caption("⚙️ **Sovereign Mode:** Playing raw native MP4 (YouTube Engine Severed).")
+                st.info("💡 Drop an MP4 file named 'drone_training.mp4' into your master folder to replace this video.")
+                st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
+
+            with c_inst:
+                st.markdown("#### 📖 Universal RTMP Setup")
+                st.markdown("""1. Power on your craft (DJI, Autel, Skydio).
+    2. Connect controller to Wi-Fi/Hotspot.
+    3. Open flight app and select **Live Streaming**.
+    4. Select **RTMP** and input the secure ingest URL:""")
+                st.code(mask_secret(RTMP_INGEST_URL, "IP"), language="bash")
+                st.markdown("""5. Set bitrate to **2 Mbps** and resolution to **720p/1080p**.
+    6. Tap **Start Streaming**.""")
 
 elif active_module == "📖 System Overview":
     st.markdown("### 💳 Commercial Subscriptions & Features")

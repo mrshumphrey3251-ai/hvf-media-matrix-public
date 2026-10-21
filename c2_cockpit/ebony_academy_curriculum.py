@@ -17,7 +17,7 @@ reports_dir.mkdir(parents=True, exist_ok=True)
 CURRICULUM_SPECIFICATION = {
     "program_title": "Sovereign Civil Infrastructure UAS & NDT Inspection Specialist",
     "occupational_code_onet": "17-3022.00 (Civil Engineering Technologists & Technicians)",
-    "apprenticeship_structure": "Hybrid (120 Hours Related Technical Instruction + 2,000 Hours On-the-Job Training)",
+    "apprenticeship_structure": "Hybrid (160 Hours Related Technical Instruction + 2,000 Hours On-the-Job Training)",
     "certifying_entity": "Humphrey Virtual Farms LLC // Level-5 Sovereign Academy",
     "governing_statutes": [
         "Oklahoma Title 61 Public Buildings and Public Works",
