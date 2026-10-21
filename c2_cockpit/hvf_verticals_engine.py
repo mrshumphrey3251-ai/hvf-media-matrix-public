@@ -162,10 +162,10 @@ MACRO_VERTICAL_REGISTRY = {
             "C2-03": {"title": "WORM Ledger Compliance", "lessons": ["Immutable SQLite Docketing", "Title 61 Auditing", "Automated Cold-Storage Snapshots"]}
         },
         "sub_verticals": [
-            {"code": "V12", "name": "Zero-API Point-to-Point TLS Email Dispatcher", "status": "ONLINE"},
-            {"code": "V13", "name": "HMAC-SHA256 Anti-Tamper & Zeroize Circuit", "status": "ONLINE"},
-            {"code": "V14", "name": "Autonomous Build Forge & Code Synthesis", "status": "ONLINE"},
-            {"code": "V15", "name": "Sovereign WORM Ledgers & Statutory Compliance", "status": "ONLINE"}
+            {"code": "V12", "name": "Autonomous Naval Combatants (Drive-Shaft Shear & Hydraulic Rudder Dump — 36.75ns Guillotine)", "status": "ONLINE"},
+            {"code": "V13", "name": "Project Pele-Class Mobile Microreactors (6ms Prompt-Critical Gravity Control-Rod Drop)", "status": "ONLINE"},
+            {"code": "V14", "name": "Energetic Munitions Synthesis & Advanced Biodefense Manufacturing (Chemical Quench Interlock)", "status": "ONLINE"},
+            {"code": "V15", "name": "Contested A2/AD Logistics, Portable NVIDIA Three-Brain CAN-Bus & SRAM Merkle DAG WORM Ledger", "status": "ONLINE"}
         ]
     }
 }

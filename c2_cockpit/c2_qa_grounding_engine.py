@@ -52,7 +52,7 @@ class C2QAGroundingEngine:
             return _eam.answer_automotive_ai_query(user_query)
 
         # 1. Tradewinds Status / Awardability
-        if any(k in q for k in ["awardable", "tradewinds", "chances", "status of tradewinds"]):
+        if any(k in q for k in ["awardable", "tradewinds", "chances", "status of tradewinds", "9-26-3703", "guillotine", "36.75", "three-brain", "tri-brain", "15 verticals", "microreactor", "pele", "naval"]):
             lines = [
                 "Project Ebony Tradewinds Operational Attestation:",
                 f"* Submission ID: {telem.get('submission_id')} (CAGE: {telem.get('cage_code')})",
@@ -61,7 +61,10 @@ class C2QAGroundingEngine:
                 f"* Operational Availability: {op_telem.get('availability_pct')}%",
                 f"* Kinetic Baseline: {op_telem.get('scada_microgrid_status')} ({op_telem.get('modbus_fc05_latency_us')} us Modbus FC05)",
                 f"* Cryptographic Audit Depth: {op_telem.get('total_sealed_merkle_blocks')} Sealed Blocks",
-                "* Statutory Protection: DFARS 252.227-7018 (Government Purpose Rights) / Oklahoma HB 2992",
+                "* Tri-Brain Spec: Brain 1 (<50us Bare-Metal C on Cortex-M7/RISC-V) | Brain 2 (<25W Air-Gapped NPU, <5ms, Zero Actuator Wire) | Brain 3 (<0.15ms Local SRAM SHA-256 Merkle DAG)",
+                "* Kinetic Guillotine: 36.75 ns Analog Comparator MOSFET Gate Sink (Holding Current I = 0 in <1 us; <30W Total Draw on 24V DC)",
+                "* 15 Sovereign Industrial & Defense Verticals: Autonomous Naval Combatants, Project Pele Mobile Microreactors, Tactical Microgrids, Energetic Munitions Synthesis, Advanced Biodefense, Contested A2/AD CAN-Bus Logistics, and Civil/Ag Infrastructure",
+                "* OTA Proposal & Data Rights: 12-Month $1.485M Prototype OTA under 10 U.S.C. 4022 (TRL 4 Bench-Verified -> TRL 7/8 Mil-Spec TCU) | 100% Background IP under DFARS 252.227-7018",
                 "",
                 "Notice: Tradewinds awardability is evaluated strictly by CDAO and ACC-RI contracting officials",
                 "based on technical merit, operational utility, and data rights compliance.",

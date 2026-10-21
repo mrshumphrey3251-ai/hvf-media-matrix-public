@@ -32,7 +32,7 @@ def _clean_text(val: str) -> str:
 
 
 def generate_master_executive_binder(student_id: str = "HVF-TECH-001", student_name: str = "Jeffery Humphrey") -> dict:
-    reports_dir = Path(r"C:\hvf_c2\reports\executive_binder")
+    reports_dir = Path(r"C:\hvf_c2\reports\executive_binder") if __import__("os").name == "nt" else (Path(__file__).resolve().parent.parent / "reports" / "executive_binder")
     reports_dir.mkdir(parents=True, exist_ok=True)
     db_path = cockpit_dir / "matrix_ledger.db"
     now_utc = datetime.now(timezone.utc).isoformat()

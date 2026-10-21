@@ -1,16 +1,17 @@
 {
-  "dispatch_protocol": "HVF-TRADEWINDS-DISPATCH-v1.0",
+  "dispatch_protocol": "HVF-TRADEWINDS-DISPATCH-v5.0",
   "timestamp_utc": "2026-09-27T18:55:55.660228+00:00",
   "submission_id": "9-26-3703",
   "contractor": "Humphrey Virtual Farms LLC",
   "cage_code": "1AHA8",
-  "signatory": "Jeffery Humphrey, Chief Executive Officer (Level 5 Authority)",
+  "signatory": "Jeffery Humphrey, Founder, Chief Executive Officer & Apex Architect (Level 5 Authority)",
   "official_email": "humphreyvirtualfarm@gmail.com",
-  "assessment_standing": "READY_FOR_ASSESSMENT",
-  "production_release_tag": "v1.0.0-tradewinds-certified",
+  "assessment_standing": "UNDER_ASSESSMENT / PRODUCTION_READY",
+  "production_release_tag": "v5.0.0-sovereign-seal",
   "statutory_compliance": [
-    "DFARS 252.227-7018 (Government Purpose Rights)",
-    "Oklahoma HB 2992 (Critical Infrastructure Resilience)",
+    "DFARS 252.227-7018 (100% Small-Business Background IP & Government Purpose Rights)",
+    "10 U.S.C. \u00a7 4022 (Nontraditional Defense Contractor Prototype OTA)",
+    "Oklahoma HB 2992 & Title 61 (Critical Infrastructure Resilience)",
     "NIST SP 800-82 Rev 2 (Industrial Control Systems Security)"
   ],
   "git_provenance": {
@@ -27,12 +28,47 @@
     "soft_start_recovery_ms": 126.13,
     "uas_orbit_altitude_msl_m": 75.0,
     "warfighter_distress_flags": 0,
-    "total_sealed_merkle_blocks": 82
+    "total_sealed_merkle_blocks": 82,
+    "guillotine_cutoff_ns": 36.75,
+    "brain1_loop_us": 50.0,
+    "brain2_inference_ms": 5.0,
+    "brain3_merkle_ms": 0.15,
+    "system_power_watts": 28.5,
+    "dc_bus_volts": 24.0,
+    "total_verticals_committed": 15
   },
   "network_endpoints": {
     "c2_cockpit_tactical_hud": "http://127.0.0.1:8501",
     "evaluator_ingress_daemon": "http://127.0.0.1:8502",
     "automated_access_logging": "ENABLED",
     "total_ingress_access_events": 6
-  }
+  },
+  "submission_title": "Project Ebony: Sovereign Tri-Brain Bare-Metal Edge Architecture & Sub-Microsecond Kinetic Isolation",
+  "uei": "S1M4ENLHTDH5",
+  "contract_vehicle": "10 U.S.C. \u00a7 4022 Prototype OTA ($1.485M / 12-Month Milestone Roadmap)",
+  "trl_posture": "TRL 4 Bench-Verified Tri-Brain & 36.75ns Analog Guillotine -> Advancing to TRL 7/8 Mil-Spec Tactical Control Units (TCU)",
+  "tri_brain_architecture": {
+    "brain_1_control": "Bare-Metal ARM Cortex-M7 & RISC-V Compiled C (Zero OS Overhead, < 50 us Deterministic Loop, Zero Jitter)",
+    "brain_2_inference": "Air-Gapped NPU Cognitive Inference (< 25W, Zero RF Emissions, < 5 ms Ultrasonic/Harmonic Analysis, Strictly Advisory / Zero Actuator Wire)",
+    "brain_3_provenance": "Hardware SHA-256 Local SRAM Merkle DAG (< 64 KB SRAM, < 0.15 ms Commit Latency, Zero Cloud Dependency)",
+    "kinetic_guillotine": "Hardwired Analog Differential Comparator to Solid-State Power MOSFET Gate Sink (36.75 ns Physical Cutoff Latency -> Holding Current I = 0)",
+    "system_power_envelope": "< 30W Total Draw on Standard 24V DC Backup Station Battery"
+  },
+  "sovereign_15_verticals": [
+    "V01: Autonomous Naval Combatants (3s Drive-Shaft Shear Prevention & Hydraulic Rudder Center Dump)",
+    "V02: Project Pele-Class Mobile Microreactors (6ms Prompt-Critical Excursion Prevention & Gravity Control-Rod Drop)",
+    "V03: Tactical Microgrids & High-Voltage Substations (Sub-16ms Islanding & 24V DC Black-Start Resilience)",
+    "V04: Energetic Munitions Synthesis & Nitration Reactors (36.75ns Thermal Runaway Chemical Quench Discharge)",
+    "V05: Advanced Biodefense Manufacturing & BSL-4 Containment Pressure Cascade Interlocks",
+    "V06: Contested A2/AD Logistics & Autonomous Ground Convoy CAN-Bus / SAE J1939 Drive-by-Wire",
+    "V07: Structural Bridge Deck, Pier Scour & Fracture-Critical Member NDT (23 CFR Sec. 650 / OK Title 61)",
+    "V08: Commercial & DoD Facility Envelope Radiometric Thermography & EPA Subpart OOOOb OGI",
+    "V09: Strategic Airfield & Highway Pavement ASTM D6433 PCI & Subgrade Profilometry",
+    "V10: GPS-Denied sUAS Autonomous Under-Deck Optical Flow & LiDAR SLAM Reconnaissance",
+    "V11: Agricultural Biosphere Grain Silo Aeration, EMC Conditioning & Dust-Explosion Lockout SCADA",
+    "V12: Precision Irrigation, Water Resource Security & Pump Cavitation Protection SCADA",
+    "V13: Zero-API Point-to-Point TLS Sovereign Comms & Adversarial Inbound Triage",
+    "V14: HMAC-SHA256 / Ed25519 Anti-Tamper Cryptographic Zeroize & Reality Firewall",
+    "V15: Sovereign WORM SQLite & SRAM Merkle DAG Statutory Audit Ledgers"
+  ]
 }

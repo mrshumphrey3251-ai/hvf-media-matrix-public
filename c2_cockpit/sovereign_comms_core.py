@@ -14,7 +14,7 @@ import streamlit as st
 import cv2
 from cryptography.fernet import Fernet
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit" if os.name == "nt" else os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 KEY_PATH = os.path.join(BASE_DIR, "memory_core", "vault.key")
 TAPO_CONFIG_PATH = os.path.join(BASE_DIR, "tapo_credentials.json")
