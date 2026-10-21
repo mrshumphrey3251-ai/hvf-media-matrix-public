@@ -1,82 +1,62 @@
 """
-HVFNexus Sovereign Industrial C2 — Rob Teele Executive Briefing Packet Generator
-Extracts real-time statutory metrics, cryptographic ledger proofs, and active pursuits.
+Humphrey Virtual Farms LLC // Rob Teele (HVF-NODE-TEELE-001) Turnkey Partner Enclave & Briefing Packet Generator
+Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | Docket: 9-26-3703
+Statutory: Oklahoma Title 61, HB 2992, 10 U.S.C. 4022, DFARS 252.227-7018
 """
+import hashlib
+import os
 import sqlite3
-import json
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
-cockpit_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
-manifest_path = cockpit_dir / "compliance_manifest.json"
-pipeline_path = cockpit_dir / "solicitation_pipeline.json"
-db_path = cockpit_dir / "matrix_ledger.db"
+cockpit_dir = Path(__file__).resolve().parent
 
-print("=== [HVFNexus C2] COMPILING EXECUTIVE BRIEFING DOSSIER FOR ROB TEELE ===")
 
-manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-pipeline = json.loads(pipeline_path.read_text(encoding="utf-8"))
+def generate_teele_turnkey_packet() -> dict:
+    reports_dir = (
+        Path(r"C:\hvf_c2\reports\partner_enclaves")
+        if os.name == "nt"
+        else (cockpit_dir.parent / "reports" / "partner_enclaves")
+    )
+    reports_dir.mkdir(parents=True, exist_ok=True)
 
-# Query live ledger
-conn = sqlite3.connect(str(db_path))
-cursor = conn.cursor()
-cursor.execute("SELECT count(*) FROM executive_authorizations")
-event_count = cursor.fetchone()[0]
+    packet_lines = [
+        "# HUMPHREY VIRTUAL FARMS LLC // TURNKEY PARTNER ENCLAVE ONBOARDING PACKET",
+        "**Partner Node ID:** `HVF-NODE-TEELE-001` | **Collaborator:** `Rob Teele (Tier-1 Sovereign Partner Seat)`  ",
+        "**Prime Authority:** `Jeffery Humphrey, Founder & CEO — Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)`  ",
+        "**Release Seal:** `v5.0.0-sovereign-seal (593 Compiled C2 Modules | 160.0 Accredited Hours | 1,420 Verified Questions)`  ",
+        "**DoD Tradewinds Docket:** `9-26-3703 (Project Ebony Tri-Brain & 36.75ns Kinetic Guillotine — Under Assessment)`",
+        "",
+        "---",
+        "",
+        "## 1. Executive Correspondence & Seat Activation Ledger",
+        "- **2026-10-14 (Outbound CEO Directive):** Tier-1 E.B.O.N.Y. operational seat reserved and enclaved; Oklahoma Title 61 contractor standing and 4 non-dilutive grant vectors (Oklahoma SEP Microgrid, USDA REAP, OCAST UAS, USDA NIFA/SBIR Phase I) established.",
+        "- **2026-10-20 (Inbound Partner Confirmation — Rob Teele):** *'Jeff, I am working on getting all this setup for use this week. Thanks for your patience.'*",
+        "- **2026-10-21 (Turnkey Delivery Handshake Staged):** `v5.0.0-sovereign-seal` (`593 / 593` modules) certified for immediate deployment upon workstation readiness.",
+        "",
+        "---",
+        "",
+        "## 2. Click-by-Click Turnkey Node Initialization Protocol (`HVF-NODE-TEELE-001`)",
+        "1. **Step 1 (Repository Sync):** Clone or pull `https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public.git` at tag `v5.0.0-sovereign-seal`.",
+        "2. **Step 2 (Cryptographic Self-Test):** Execute `python c2_cockpit/verify_sovereign_seal.py` to verify all `593 / 593` C2 modules and `1,420 / 1,420` Academy questions.",
+        "3. **Step 3 (Live Console Launch & Hardware Enclave Lock):** Execute `python -m streamlit run c2_cockpit/ebony_console_GREEN.py` to open `http://localhost:8501` and lock Motherboard UUID / MAC anti-piracy credentials.",
+    ]
 
-cursor.execute("""
-    SELECT timestamp, proof_hash FROM executive_authorizations 
-    WHERE artifact_hash = 'SB00165728' LIMIT 1
-""")
-sprs_record = cursor.fetchone()
-conn.close()
+    packet_md = "\n".join(packet_lines) + "\n"
+    packet_hash = hashlib.sha256(packet_md.encode("utf-8")).hexdigest()
+    packet_md += f"\n---\n**Turnkey Packet FIPS 180-4 SHA-256 Seal:** `{packet_hash}`\n"
 
-org = manifest["organization"]
-sprs = manifest["defense_portals"]["sprs"]
+    out_file = reports_dir / "HVF_TEELE_TURNKEY_ONBOARDING_PACKET_v5.md"
+    out_file.write_bytes(packet_md.encode("utf-8"))
 
-packet_text = f"""================================================================================
-  HUMPHREY VIRTUAL FARMS LLC — EXECUTIVE DEFENSE CAPABILITY DOSSIER
-================================================================================
-MEETING: Rob Teele Briefing
-EXECUTIVE: Jeffery Humphrey, Chief Executive Officer & SME
-GENERATED: {datetime.utcnow().isoformat()} UTC
+    print("=" * 92)
+    print("   ROB TEELE (HVF-NODE-TEELE-001) TURNKEY ONBOARDING PACKET GENERATED   ")
+    print("=" * 92)
+    print(f"Packet Path        : {out_file} ({len(packet_md):,} bytes)")
+    print(f"Packet SHA-256 Seal: {packet_hash}")
+    print("=" * 92)
+    return {"packet_file": str(out_file), "sha256_seal": packet_hash}
 
-[1] CORPORATE & FEDERAL REGISTRATION IDENTIFIERS
-    - Legal Entity:           {org['legal_business_name']}
-    - CAGE Code:              {org['cage_code']}
-    - Unique Entity ID (UEI): {org['uei']}
-    - SAM.gov Status:         ACTIVE (Small Business)
-    - PIEE Administrative CAM: ACTIVE (Jeffery Humphrey)
 
-[2] STATUTORY CYBERSECURITY CLEARANCE (SPRS)
-    - Assessment Standard:    NIST SP 800-171 Rev 2
-    - Confidence Level:       BASIC (Self-Assessment)
-    - DoD Verified Score:     {sprs['score']} / {sprs['max_score']} (MAXIMUM ATTAINABLE)
-    - DoD Unique ID (UID):    {sprs['dod_unique_identifier']}
-    - Open POA&M Deficiencies: {sprs['poam_deficiencies']} (Zero Open Items)
-    - Regulatory Compliance:  DFARS 252.204-7012, 7019, 7020 COMPLETE
-
-[3] SOVEREIGN INDUSTRIAL C2 ARCHITECTURE (HVFNexus)
-    - Architecture Type:      Bare-Metal Sovereign Command & Control (C2)
-    - Verification Engine:    Append-Only WORM SQLite Ledger (matrix_ledger.db)
-    - Cryptographic Events:   {event_count} Immutable Ledger Events Sealed
-    - SPRS Proof Hash:        {sprs_record[1] if sprs_record else 'N/A'}
-    - Third-Party Cloud Risk: ZERO (Sovereign Local Enclave Isolation)
-
-[4] TARGET DEFENSE OPPORTUNITIES
-"""
-
-for sol in pipeline.get("active_solicitations", []):
-    packet_text += f"    * [{sol['solicitation_id']}] {sol['title']} (Suitability: {sol['suitability_score']}%)\n"
-
-packet_text += f"""
-[5] OFFICIAL REPOSITORY & ATTESTATION RECORDS
-    - Public Capability Dossier: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public
-    - Executive Contact:         {org['executive_email']} | (580) 677-1055
-================================================================================
-"""
-
-output_path = cockpit_dir / "ROB_TEELE_ONE_SHEET.txt"
-output_path.write_text(packet_text, encoding="utf-8")
-
-print(f"[+] Briefing sheet compiled successfully: {output_path}")
-print(packet_text)
+if __name__ == "__main__":
+    generate_teele_turnkey_packet()

@@ -2,7 +2,7 @@
   "cage_code": "1AHA8",
   "classification": "LEVEL-5 SOVEREIGN INDUSTRIAL C2 & ACCREDITED ENGINEERING INSTITUTE",
   "entity": "Humphrey Virtual Farms LLC",
-  "master_c2_merkle_root_sha256": "8a1fb9815eac620ee3165c5bdbccd53641376be767577eb1216d1cf161d3579b",
+  "master_c2_merkle_root_sha256": "b5b771e8247250e278557d2d077d1c960b938ef7891b70c5320d4ea6f387c758",
   "module_sha256_digests": {
     "__init__.py": "795f10286e60c8fbe6ff725e033631a06873b70207c12b47bc9c7c596c489773",
     "access_control.py": "3709685f597329fd7b3042b46096d80b9769a877135920a90b97d98ab8d22c6c",
@@ -220,7 +220,7 @@
     "generate_printable_packet.py": "9bbb25aaff3010d55bbfc24b4bd551ae9ef099c076aeef952ca2412df4e91955",
     "generate_proposal_brief.py": "a5c40cb0eade8220afd2404dff1c88e8f631aa84ca55abd8bc67a4105034786b",
     "generate_stripe_links.py": "2eeda67e88600b8a26b17393486d292ed71327fa1a836ea386600210ba31e77b",
-    "generate_teele_briefing_packet.py": "47abf4524853f8d155dbe5699e27e824131e7e97c7b8fd4fb7e9d6c6c5bbaeb9",
+    "generate_teele_briefing_packet.py": "0465e82c37373c17dac80091f6a0d8da77d3802593ab8845114b1956c5767e9f",
     "gli_calc.py": "da9f3c6b506abcf45ec4d7acd54eb517104e29c631296723c734554d810ee87f",
     "grant_solicitation_radar.py": "c651be525a069ad20f1ff440bce296a550f05e2b39db397f9d2acec157a19a55",
     "green_baseline.py": "fab5f6945eb443d39571cd8d0ea71b72c1962ea16b99c586abc105edae3cc825",
