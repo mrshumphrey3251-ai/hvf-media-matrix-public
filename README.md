@@ -67,7 +67,7 @@
 ## Sovereign C2 & Field Academy Cryptographic Integrity Seal (`v5.0.0-sovereign-seal`)
 - **Prime Entity:** Humphrey Virtual Farms LLC | **CAGE:** `1AHA8` | **UEI:** `S1M4ENLHTDH5`
 - **Compiled C2 Python Modules:** `593 / 593` (100% Public/Private Byte-Level SHA-256 Parity)
-- **Master C2 Merkle Root (SHA-256):** `4ec8e11a6bcbe779f102f108043836159e667f2fbf0177969b45a90c82d077d0`
+- **Master C2 Merkle Root (SHA-256):** `55426af3f06d7e0a19727be1836abc7cd9a0cc5852f60185ef2d7ea4de4cd75f`
 - **Chapter 1 Milestone Bank:** `800 / 800` Unique Questions Across 40 Modules (`STR-01`, `ENV-01`/`STR-02`, `PAV-01`/`STR-03`)
 - **Chapter 5 3-Tier State Exam Bank:** `620 / 620` Strictly Unique Questions Across 12 Stages (`20 + 45 + 90 = 155` per track)
 - **Total Verified Academy Questions:** `1,420 / 1,420` (`0` Duplicates)
