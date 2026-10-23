@@ -2488,3 +2488,36 @@ def render_str01_chapter01_treatise():
             st.markdown(s["body_markdown"])
 
 sync_and_verify_textbook_vault()
+
+def render_university_treatise_from_db(course_code="STR-01"):
+    import sqlite3 as _sq
+    import streamlit as st
+    conn = _sq.connect(str(TEXTBOOK_DB_PATH))
+    cur = conn.cursor()
+    chapters = cur.execute(
+        "SELECT DISTINCT chapter_number, chapter_title FROM sovereign_academic_textbooks WHERE course_code=? ORDER BY chapter_number",
+        (course_code,)
+    ).fetchall()
+    if not chapters:
+        conn.close()
+        return
+    st.markdown("### ??? Sovereign University NDE Reference Treatise (Un-Abbreviated Graduate Engineering Edition)")
+    ch_map = {c[0]: c[1] for c in chapters}
+    sel_ch = st.selectbox(
+        "?? Select Verified Textbook Chapter:",
+        list(ch_map.keys()),
+        format_func=lambda k: f"{ch_map[k]}",
+        key=f"uni_treatise_ch_{course_code}"
+    )
+    secs = cur.execute(
+        "SELECT section_number, section_title, standards, body_markdown, char_count, sha256_seal FROM sovereign_academic_textbooks WHERE course_code=? AND chapter_number=? ORDER BY section_number",
+        (course_code, sel_ch)
+    ).fetchall()
+    conn.close()
+    total_c = sum(x[4] for x in secs)
+    st.caption(f"**Verified Chapter Volume:** `{len(secs)} Sub-Sections` | `{total_c:,} Characters` | **Vault:** `hvf_textbooks.db` (WORM SHA-256 Sealed)")
+    for idx, (s_num, s_title, stds, body_md, c_cnt, s_seal) in enumerate(secs):
+        with st.expander(f"?? {s_title} ({c_cnt:,} chars | SHA-256: {s_seal[:10]}...)", expanded=(idx == 0)):
+            st.info(f"**Governing Standards & Citations:** `{stds}`")
+            st.markdown(body_md)
+    st.markdown("---")
