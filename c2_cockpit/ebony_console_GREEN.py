@@ -2384,14 +2384,14 @@ elif active_module == "📘 Omni-Industry Matrix":
         v_meta = verticals[i]
         with tab:
             _cid_map = {
-                    "VERTICAL_AGTECH": "01",
-                    "VERTICAL_STRUCTURAL_CIVIL": "02",
-                    "VERTICAL_STRUCTURAL_BRIDGE": "02",
-                    "VERTICAL_MICROGRID": "03",
-                    "01": "01", "02": "02", "03": "03"
-                }
-                _mapped_id = _cid_map.get(str(v_meta.get("id", "")), str(v_meta.get("id", "")))
-                course_fname = f"vertical_{_mapped_id}_course.json"
+                "VERTICAL_AGTECH": "01",
+                "VERTICAL_STRUCTURAL_CIVIL": "02",
+                "VERTICAL_STRUCTURAL_BRIDGE": "02",
+                "VERTICAL_MICROGRID": "03",
+                "01": "01", "02": "02", "03": "03"
+            }
+            _mapped_id = _cid_map.get(str(v_meta.get("id", "")), str(v_meta.get("id", "")))
+            course_fname = f"vertical_{_mapped_id}_course.json"
             cockpit_dir = Path(__file__).parent.resolve()
             candidate_paths = [
                 cockpit_dir / course_fname,
