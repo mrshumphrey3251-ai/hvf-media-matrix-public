@@ -2,30 +2,27 @@
 - **Course Code:** `AUT-01` | **Sovereign Air-Gap Vault:** `c2_cockpit/offline_textbooks/AUT-01_Offline_Auto_Robotics_Manual.md`
 - **Governing Authority:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | OK Title 61)
 
-## Covered Syllabus & Governing Standards
-Ch 1: SAE J1979/ISO 11898 CAN-Bus (60-Ohm) | Ch 2: 4-Stroke Otto/Diesel Compression & Leakdown | Ch 3: Wideband Lambda & Fuel Trim | Ch 4: Charging/Starting Voltage Drop | Ch 5-10: Hydraulics, 2-Stroke/Small-Engine, Brakes, HVAC & Three-Brain Interlock
-
 ## Module-by-Module Reading & Exam Focus Directives (Units 01 - 10)
 - **Unit 01 — Assigned Reading:** `ISO 11898-2 High-Speed CAN Spec & SAE J1979 / J1939 Physical Layer Manual`  
-  *What to Focus On for the Exam Gate:* Focus on parallel 120-Ohm termination resistance (R_bus = 60.0 Ohms), dominant differential voltage V_diff = V_CANH - V_CANL = 2.0V, and OSHA 1910.147 LOTO chassis stabilization.
-- **Unit 02 — Assigned Reading:** `ASE A1/A2 Engine Repair Manual & Heywood Internal Combustion Engine Fundamentals Ch. 2`  
-  *What to Focus On for the Exam Gate:* Focus on Swept Displacement V_d = (pi/4)*B^2*S*N, Static Compression Ratio CR = (V_d + V_c)/V_c, and cylinder differential leakdown limits (<= 10-12%).
-- **Unit 03 — Assigned Reading:** `SAE J1979 OBD-II Mode $01/$06 Fuel System Spec & Bosch Automotive Handbook (Fuel Management)`  
-  *What to Focus On for the Exam Gate:* Focus on Stoichiometric Air-Fuel Ratio (14.7:1 gasoline / 14.5:1 diesel), Lambda equivalence ratio, and combined Short-Term + Long-Term Fuel Trim (STFT + LTFT) fault thresholds.
-- **Unit 04 — Assigned Reading:** `SAE J537 Storage Battery Standards & Heavy-Duty Starting/Charging Diagnostics Manual`  
-  *What to Focus On for the Exam Gate:* Focus on Ohm's Law parasitic draw (< 50 mA), starter-circuit maximum allowable voltage drop (<= 0.50V total cable drop under cranking load), and alternator ripple (< 50 mV AC).
-- **Unit 05 — Assigned Reading:** `ISO 4413 Hydraulic Fluid Power & Mobile Agricultural Tractor Hydraulics Manual`  
-  *What to Focus On for the Exam Gate:* Focus on Pascal's Law actuator force F = P * A, hydraulic pump volumetric efficiency, and high-pressure pinhole fluid-injection life-safety lockout.
-- **Unit 06 — Assigned Reading:** `ANSI/OPEI B71.1 Commercial Turf/Small-Engine Safety Standard & 2-Stroke/4-Stroke Service Manual`  
-  *What to Focus On for the Exam Gate:* Focus on magneto ignition air-gap (0.010-0.014 in), 2-stroke fuel-to-oil mixing ratios (50:1 = 2.6 fl oz oil per gallon), and blade tip speed safety limits (<= 19,000 ft/min).
-- **Unit 07 — Assigned Reading:** `FMVSS 105 / 121 Hydraulic & Air Brake Systems Manual`  
-  *What to Focus On for the Exam Gate:* Focus on rotor minimum machine-to/discard thickness tolerances, lateral runout (<= 0.002 in), and dual-circuit master cylinder hydraulic pressure ratios.
-- **Unit 08 — Assigned Reading:** `SAE J639 Mobile Air Conditioning Standards & EPA Section 609 Refrigerant Recovery Manual`  
-  *What to Focus On for the Exam Gate:* Focus on R-134a / R-1234yf pressure-temperature saturation relationships, superheat/subcooling diagnostics, and manifold gauge high/low-side fault isolation.
-- **Unit 09 — Assigned Reading:** `SAE J429 / ISO 898-1 Fastener Metallurgy & Torque-Tension Engineering Manual`  
-  *What to Focus On for the Exam Gate:* Focus on the Torque-Preload equation T = K * D * F / 12, dry vs. lubricated K-factor reductions, and extracting sheared bolts without damaging parent threads.
-- **Unit 10 — Assigned Reading:** `EBONY-RTOS Hardware Guillotine Spec & ISO 26262 ASIL-D Functional Safety Manual`  
-  *What to Focus On for the Exam Gate:* Focus on the 36.75 ns hardware safety interlock, CAN-Bus command authentication, and WORM cryptographic shop sign-off.
+  *What to Focus On for the Exam Gate:* Focus on parallel 120-Ohm termination resistance (R_bus = 60.0 Ohms), dominant differential voltage V_diff = V_CANH - V_CANL = 2.0V, and Portable NVIDIA Three-Brain Enclave signal isolation.
+- **Unit 02 — Assigned Reading:** `SAE J1979 Mode 0x01 Fuel System Spec & Heywood ICE Fundamentals (Stoichiometry & VE)`  
+  *What to Focus On for the Exam Gate:* Focus on Stoichiometric Combustion (Lambda = 1.00, AFR = 14.7:1), MAF Volumetric Efficiency (VE_%), and Combined Short-Term + Long-Term Fuel Trim (STFT + LTFT) P0171 lean fault thresholds.
+- **Unit 03 — Assigned Reading:** `SAE J1979 Mode 0x06 Misfire Monitor Spec & Secondary Ignition Waveform Diagnostics Manual`  
+  *What to Focus On for the Exam Gate:* Focus on Ignition Secondary KV firing/spark-line waveforms, Crankshaft Position (CKP) angular acceleration drop, and Mode 0x06 EWMA misfire counters (P0300).
+- **Unit 04 — Assigned Reading:** `SAE J1939 High-Pressure Common-Rail (HPCR) & Piezo/Solenoid Direct-Injection Service Manual`  
+  *What to Focus On for the Exam Gate:* Focus on rail pressure control loop dynamics (P0087 low rail pressure), injector return-flow volume limits, and low-pressure lift-pump hydraulic supply verification.
+- **Unit 05 — Assigned Reading:** `Turbocharger Thermodynamics & Variable Geometry (VGT) / Wastegate PID Control Manual`  
+  *What to Focus On for the Exam Gate:* Focus on compressor pressure ratio (PR = P_out / P_in), VGT vane duty-cycle hysteresis (P0299 underboost), and charge-air cooler (intercooler) thermal effectiveness.
+- **Unit 06 — Assigned Reading:** `SAE J1939 / ISO 14229 Automatic Transmission Hydraulics & TCM Calibration Manual`  
+  *What to Focus On for the Exam Gate:* Focus on line-pressure solenoid hydraulics (P0700), Torque Converter Clutch (TCC) slip RPM limits, and TCM Clutch Volume Index (CVI) adaptive fast-learn volumes.
+- **Unit 07 — Assigned Reading:** `EPA Tier 4 / OBD-II Catalyst Monitor Spec & Three-Way Catalytic (TWC) Chemistry Manual`  
+  *What to Focus On for the Exam Gate:* Focus on Oxygen Storage Capacity (OSC), upstream wideband vs. downstream switching O2 frequency ratio (P0420), and exhaust backpressure limits (<= 1.25 psi at idle).
+- **Unit 08 — Assigned Reading:** `FMVSS 126 Electronic Stability Control (ESC) & ABS Chassis Dynamics Manual`  
+  *What to Focus On for the Exam Gate:* Focus on wheel-speed sensor reluctance/active air-gap faults (C0035), Steering Angle Sensor (SAS) 0.0-deg zero-point calibration, and yaw-rate lateral deceleration physics.
+- **Unit 09 — Assigned Reading:** `API SP / SAE J300 Tribology & SAE J429 / ISO 898-1 Fastener Torque-to-Yield Manual`  
+  *What to Focus On for the Exam Gate:* Focus on 0-100k+ mile fluid shear stability, Torque-Preload mechanics (T = K * D * F / 12), and Torque-to-Yield (TTY) plastic-region angular clamping.
+- **Unit 10 — Assigned Reading:** `ISO 14229 Unified Diagnostic Services (UDS) & SAE J2534 Pass-Thru / Brain-3 WORM Spec`  
+  *What to Focus On for the Exam Gate:* Focus on UDS services (0x10 Session, 0x22 ReadData, 0x27 SecurityAccess, 0x2E WriteData, 0x31 RoutineControl), EEPROM CRC-32 checksums (B1000), and 36.75ns Brain-3 WORM sealing.
 
 ## Offline Field Reference Notes
 This local file is stored permanently on your NVMe/SSD inside `c2_cockpit/offline_textbooks/` so it remains 100% accessible when operating in **Offline (Sovereign Fortress Air-Gap)** mode without internet connectivity.

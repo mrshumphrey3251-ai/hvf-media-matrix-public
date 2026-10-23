@@ -35,8 +35,16 @@ COURSE_TEXTBOOKS = {
         "secondary_url": "https://omes.ok.gov/services/construction-and-properties",
         "offline_file": "ENV-01_Offline_Envelope_Manual.md",
         "directives": {
-            i: (f"ASTM C1153 / ASHRAE 90.1 Section {i:02d}", f"Focus on the quantitative radiometric, psychrometric, and U.S. Customary heat-transfer tolerances for Module {i:02d}.")
-            for i in range(1, 11)
+            1: ("Oklahoma Title 61 / HB 2992 & OMES CAP Building Envelope Audit Manual Ch. 1", "Focus on statutory public-building audit mandates, Life-Cycle Cost Analysis (LCCA), and NIST-traceable radiometric calibration rules."),
+            2: ("ASTM E1933 / E1862 Infrared Thermography & Planck Blackbody Radiation Treatise", "Focus on Stefan-Boltzmann radiative heat flux q = epsilon * sigma * (T_s^4 - T_surr^4), surface emissivity compensation, and reflected apparent temperature."),
+            3: ("ASTM C1153 / D7954 Low-Slope Roof Moisture Thermography & Core Verification Manual", "Focus on diurnal solar heat-sink capacitance of water-saturated insulation, minimum thermal Delta_T >= +3.6 deg F, and electrical capacitance/nuclear gauge core verification."),
+            4: ("ASHRAE Standard 90.1 Envelope Performance & ISO 9869 In-Situ U-Factor Manual", "Focus on serial thermal resistance R_total = sum(L_i / k_i), overall heat transfer coefficient U = 1 / R_total (BTU/hr-ft^2-deg F), and thermal bridging linear transmittance."),
+            5: ("ASHRAE Fundamentals (Psychrometrics) & Interior Dew-Point Condensation Manual", "Focus on Magnus-Tetens saturation vapor pressure, indoor dew-point temperature T_dp calculation, and preventing interstitial mold/condensation on cold thermal bridges."),
+            6: ("ASTM E779 / E1827 Whole-Building Pressurization (Blower Door) & Air Leakage Manual", "Focus on the orifice power-law flow equation Q = C * (Delta_P)^n at 50 Pa / 75 Pa, normalized air leakage rate (CFM75 / ft^2), and infrared air-exfiltration tracking."),
+            7: ("ASTM C876 / D4580 Masonry Facade, Curtain-Wall Spalling & Tie-Back NDE Manual", "Focus on corroding steel lintel/shelf-angle expansion, acoustic sounding of delaminated terra-cotta/precast panels, and close-range photogrammetric crack mapping."),
+            8: ("ASHRAE Standard 62.1 / 111 HVAC Rooftop Unit (RTU) & Economizer Diagnostics Manual", "Focus on sensible heat transfer q_s = 1.08 * CFM * Delta_T, enthalpy wheel recovery efficiency, and seized outdoor-air damper fault detection."),
+            9: ("ASPRS Photogrammetric Mapping & 3D Thermal-LiDAR Point-Cloud Fusion Manual", "Focus on co-registering 640x512 RJPEG radiometric orthomosaics onto 3D LiDAR roof meshes, polygon area quantification (sq ft), and RTK positional tolerances."),
+            10: ("OMES CAP Title 61 Capital Rehabilitation Docket & Cryptographic WORM Evidence Spec", "Focus on Savings-to-Investment Ratio (SIR), simple payback period (years), and sealing the PE/Inspector thermal audit docket in matrix_ledger.db.")
         }
     },
     "PAV-01": {
@@ -45,8 +53,16 @@ COURSE_TEXTBOOKS = {
         "secondary_url": "https://oklahoma.gov/odot.html",
         "offline_file": "PAV-01_Offline_Pavement_Manual.md",
         "directives": {
-            i: (f"ASTM D6433 / ODOT TAMP Section {i:02d}", f"Focus on PCI distress deduct curves, IRI quarter-car profilometry, and structural number calculations for Module {i:02d}.")
-            for i in range(1, 11)
+            1: ("23 CFR Part 515 (ODOT TAMP) & ASTM D6433 Highway Asset Governance Manual Ch. 1", "Focus on National Highway System (NHS) performance metrics, Oklahoma Title 61 corridor auditing, and sample unit sizing (2,500 +/- 1,000 sq ft asphalt)."),
+            2: ("ASTM D6433 Standard Practice for Roads and Parking Lots Pavement Condition Index (PCI)", "Focus on distress density percentage, Deduct Value (DV) curves, Corrected Deduct Value (CDV), and computing PCI = 100 - max(CDV) across 0-100 rating tiers."),
+            3: ("ASTM E950 / AASHTO R 56 Longitudinal Profilometry & International Roughness Index (IRI)", "Focus on quarter-car golden-car simulation at 50 mph (80 km/h), calculating IRI (in/mile), and federal FHWA good/fair/poor smoothness thresholds (< 95 / > 170 in/mi)."),
+            4: ("AASHTO R 87 Transverse Rutting Profilometry & Hydroplaning Physics Manual", "Focus on 5-point/laser transverse rut depth measurement (inches), Horne hydroplaning speed V_p = 10.35 * sqrt(P_tire), and ponding water film thickness."),
+            5: ("ASTM D4694 / D4695 Falling Weight Deflectometer (FWD) & Backcalculation Manual", "Focus on impulse load plate pressure, deflection basin sensors (D_0 through D_60), and backcalculating subgrade resilient modulus M_R (psi)."),
+            6: ("AASHTO 1993 Guide for Design of Pavement Structures (ESALs & Structural Number)", "Focus on the 4th-Power Load Equivalency Factor LEF = (W_axle / 18,000)^4, cumulative 18-kip ESALs, and Structural Number SN = a_1*D_1 + a_2*D_2*m_2 + a_3*D_3*m_3."),
+            7: ("FHWA HDS-5 Hydraulic Design of Highway Culverts & Right-of-Way Drainage Manual", "Focus on Manning open-channel flow Q = (1.486/n) * A * R_h^(2/3) * S^(1/2), inlet vs. outlet control headwater depth (HW/D), and LiDAR silt-blockage profiling."),
+            8: ("FHWA MUTCD (23 CFR Part 655) Retroreflectivity & Guardrail Safety Audit Manual", "Focus on ASTM E1710 retroreflectometer geometry (30-meter), minimum mcd/m^2/lx pavement marking thresholds, and MASH W-beam guardrail splice height (31.0 in)."),
+            9: ("U.S. Access Board PROWAG / ADA Title II Pedestrian Right-of-Way Compliance Manual", "Focus on curb-ramp running slope (<= 8.33% / 1:12), cross slope (<= 2.00% / 1:48), and smart-level / LiDAR digital inclinometer verification."),
+            10: ("ODOT 8-Year Construction Work Plan (CWP) & Title 61 WORM Corridor Ledger Spec", "Focus on remaining service life (RSL), preservation vs. reconstruction trigger gates, and sealing corridor GIS/PCI telemetry into matrix_ledger.db.")
         }
     },
     "AUT-01": {
