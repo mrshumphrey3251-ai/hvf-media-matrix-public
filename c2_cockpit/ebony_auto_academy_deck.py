@@ -91,7 +91,11 @@ def render_auto_academy_deck():
             "✅ Sub-Tab 4: Calculation Gate & 20-Question Milestone Exam"
         ])
         with st1:
+            if active_unit.get("beginner_primer"):
+                st.markdown(active_unit["beginner_primer"])
             st.markdown(active_unit["theory"])
+            if active_unit.get("deep_supplement"):
+                st.markdown(active_unit["deep_supplement"])
         with st2:
             st.code(active_unit["equations"], language="text")
             st.caption(f"**Variable Definitions:** {active_unit.get('equation_legend', '')}")
