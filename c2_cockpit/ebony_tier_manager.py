@@ -358,17 +358,21 @@ def render_tier_switcher_sidebar():
         st.success(st.session_state["tier_upgrade_success_banner"])
         del st.session_state["tier_upgrade_success_banner"]
     
-    # 7-Day Pilot Telemetry HUD
-    try:
-        is_valid, lic_status, days_left = check_license_validity()
-        lic_data = init_or_read_license()
-        if lic_data.get("license_type") == "7_DAY_SOVEREIGN_PILOT":
-            if is_valid and days_left > 0:
-                st.warning(f"⏱️ 7-Day Sovereign Pilot (Tier 1 & 1.5): **{days_left} Days Remaining**")
-            elif not is_valid or lic_status == "EXPIRED":
-                st.error("🛑 7-Day Pilot Expired: Subscription Required")
-    except Exception:
-        pass
+    # 7-Day Pilot Telemetry HUD (Bypassed for Level-5 CEO Clearance)
+    _active_t = get_current_tier()
+    if _active_t == TIER_0_CEO:
+        st.success("👑 Level-5 Sovereign Root: Unlimited Nodes Active")
+    else:
+        try:
+            is_valid, lic_status, days_left = check_license_validity()
+            lic_data = init_or_read_license()
+            if lic_data.get("license_type") == "7_DAY_SOVEREIGN_PILOT":
+                if is_valid and days_left > 0:
+                    st.warning(f"⏱️ 7-Day Sovereign Pilot (Tier 1 & 1.5): **{days_left} Days Remaining**")
+                elif not is_valid or lic_status == "EXPIRED":
+                    st.error("🛑 7-Day Pilot Expired: Subscription Required")
+        except Exception:
+            pass
 
     tier_opts = [
         TIER_0_CEO,

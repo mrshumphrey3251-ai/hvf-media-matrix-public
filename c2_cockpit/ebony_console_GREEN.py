@@ -34,6 +34,8 @@ from pathlib import Path
 _cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
 if str(_cdir) not in sys.path:
     sys.path.insert(0, str(_cdir))
+import ebony_tier_manager as _etm_mod
+importlib.reload(_etm_mod)
 from ebony_tier_manager import (
     check_module_access,
     render_tier_restriction_screen,
@@ -222,6 +224,8 @@ def dispatch_sovereign_vocal_directive(prompt: str) -> str:
     return reply
 
 try:
+    import hvf_course_runner as _hcr_mod
+    importlib.reload(_hcr_mod)
     from hvf_course_runner import render_interactive_course
 except Exception:
     def render_interactive_course(*args, **kwargs):
@@ -230,6 +234,8 @@ except Exception:
         st.caption("Level-5 Sovereign Curriculum & Technical Integration")
         st.info("Interactive course telemetry active. Modules staged for operator review.")
 try:
+    import hvf_verticals_engine as _hve_mod
+    importlib.reload(_hve_mod)
     from hvf_verticals_engine import HVFVerticalsEngine, MACRO_VERTICAL_REGISTRY
 except ImportError:
     # Explicit fallback to active file directory
@@ -2377,7 +2383,15 @@ elif active_module == "📘 Omni-Industry Matrix":
     for i, tab in enumerate(tabs):
         v_meta = verticals[i]
         with tab:
-            course_fname = f"vertical_{v_meta['id']}_course.json"
+            _cid_map = {
+                    "VERTICAL_AGTECH": "01",
+                    "VERTICAL_STRUCTURAL_CIVIL": "02",
+                    "VERTICAL_STRUCTURAL_BRIDGE": "02",
+                    "VERTICAL_MICROGRID": "03",
+                    "01": "01", "02": "02", "03": "03"
+                }
+                _mapped_id = _cid_map.get(str(v_meta.get("id", "")), str(v_meta.get("id", "")))
+                course_fname = f"vertical_{_mapped_id}_course.json"
             cockpit_dir = Path(__file__).parent.resolve()
             candidate_paths = [
                 cockpit_dir / course_fname,
@@ -2456,7 +2470,7 @@ elif active_module == "📘 Omni-Industry Matrix":
                     conn_civ.close()
                     st.dataframe(df_civ, use_container_width=True)
                     
-                    with st.expander("🔍 View Detailed Sensor Payloads & Flight Profiles", expanded=False):
+                    with st.expander("🔍 View Detailed Sensor Payloads & Flight Profiles", expanded=True):
                         conn_civ = sqlite3.connect(str(_active_db))
                         cur_civ = conn_civ.cursor()
                         cur_civ.execute("SELECT docket_number, asset_name, sensor_payloads, inspection_focus FROM civil_inspection_dockets ORDER BY id DESC")

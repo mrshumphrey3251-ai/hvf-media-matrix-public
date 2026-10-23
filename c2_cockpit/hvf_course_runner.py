@@ -76,8 +76,7 @@ def render_interactive_course(course_file: str):
         col_anat_l, col_anat_r = st.columns([1, 1])
         with col_anat_l:
             st.markdown("#### 📐 Structural Cross-Section")
-            st.code("""
-===================================================
+            st.code(r"""===================================================
                [ GRAVITY RELIEF VENTS ]
                      /          \
                     /  [TOP CAP] \  <-- Condensation Zone
@@ -91,8 +90,7 @@ def render_interactive_course(course_file: str):
                   [ PLENUM CHAMBER ] <-- Static Air Chamber
                    ^      ^      ^
              [480V AXIAL / CENTRIFUGAL BLOWER]
-===================================================
-            """, language="text")
+===================================================""", language="text")
             st.caption("Figure 1.1: Physical Cross-Section of Commercial Aeration Cell")
 
         with col_anat_r:
@@ -109,6 +107,8 @@ def render_interactive_course(course_file: str):
             
             st.markdown("##### 🔬 Governing Physical Laws")
             st.info(selected_mod.get("physics"))
+            if "Ergun" in str(selected_mod.get("physics", "")):
+                st.latex(r"\frac{\Delta P}{L} = \frac{150 \mu (1 - \epsilon)^2}{D_p^2 \epsilon^3} v_s + \frac{1.75 \rho (1 - \epsilon)}{D_p \epsilon^3} v_s^2")
 
             st.markdown("##### 📏 Operational Engineering Tolerances")
             tol = selected_mod.get("tolerances", {})
