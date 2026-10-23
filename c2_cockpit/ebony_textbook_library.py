@@ -2208,3 +2208,283 @@ def get_course_units(course_code: str):
     raw_units = _base_get_course_units_before_6part(course_code)
     return [_apply_six_part_old_school_textbook(u, prof_code) for u in raw_units]
 
+
+# ==============================================================================
+# HVF SOVEREIGN UNIVERSITY TEXTBOOK VAULT ENGINE (EXTENSIBLE CHAPTER ARCHITECTURE)
+# Course: STR-01 (Bridge, Building & Roadway Structural Inspection)
+# Chapter 1: Testing Steel Corrosion in Reinforced Concrete (Sections 1.1 - 1.5)
+# ==============================================================================
+import hashlib as _tb_hashlib
+import sqlite3 as _tb_sqlite3
+from pathlib import Path as _tb_Path
+
+TEXTBOOK_DB_PATH = _tb_Path(__file__).resolve().parent / "hvf_textbooks.db"
+
+STR01_CHAPTER_01_SECTIONS = [
+    {
+        "course_code": "STR-01",
+        "chapter_number": 1,
+        "chapter_title": "Chapter 1: Testing Steel Corrosion in Reinforced Concrete",
+        "section_number": "1.1",
+        "section_title": "1.1 Introduction: Thermodynamics of Passivation, Pourbaix Equilibria & Depassivation Kinetics",
+        "standards": "ASTM C876-22 | ACI 222R-19 (Protection of Metals in Concrete Against Corrosion) | EN 1504",
+        "body_markdown": """### 1.1.1 The Alkaline Concrete Pore Solution and the Passive Gamma-Ferric Oxide Film
+Reinforced concrete is a composite structural material whose durability depends on the chemical synergy between hydrated Portland cement paste and embedded carbon-steel reinforcement (ASTM A615 / A706). During the hydration of tricalcium silicate ($3\\text{CaO}\\cdot\\text{SiO}_2$, alite) and dicalcium silicate ($2\\text{CaO}\\cdot\\text{SiO}_2$, belite), crystalline calcium hydroxide ($\\text{Ca(OH)}_2$, portlandite) precipitates throughout the capillary pore network alongside dissolved sodium hydroxide ($\\text{NaOH}$) and potassium hydroxide ($\\text{KOH}$) derived from clinker alkalis. This buffers the internal aqueous pore electrolyte to a highly alkaline pH between **12.5 and 13.8**.
+
+As governed by the **Pourbaix ($E\\text{?pH}$) Thermodynamic Equilibrium Diagram for the $\\text{Fe?H}_2\\text{O}$ System at $25^\\circ\\text{C}$**, carbon steel exposed to an oxygenated aqueous environment at $\\text{pH} > 11.5$ does not corrode actively. Instead, it spontaneously forms a dense, sub-nanometer ($1\\text{ nm}$ to $5\\text{ nm}$ thick), tightly adherent semiconducting **passive oxide film** composed of an inner magnetite layer ($\\text{Fe}_3\\text{O}_4$) and an outer maghemite / gamma-ferric oxyhydroxide layer ($\\gamma\\text{-Fe}_2\\text{O}_3$ / $\\gamma\\text{-FeOOH}$):
+
+* **Anodic Passivation Half-Reaction:** $2\\text{Fe} + 3\\text{H}_2\\text{O} \\rightarrow \\gamma\\text{-Fe}_2\\text{O}_3 + 6\\text{H}^+ + 6e^-$
+* **Passive Corrosion Current Density ($i_{\\text{pass}}$):** Maintained below $0.05\\text{ to }0.10\\text{ }\\mu\\text{A/cm}^2$, corresponding to an negligible section loss rate of $< 1.16\\text{ }\\mu\\text{m/year}$ ($< 0.1\\text{ mm}$ per century).
+
+---
+
+### 1.1.2 Mechanisms of Passivity Breakdown: Chloride Pitting vs. Carbonation General Corrosion
+The passive $\\gamma\\text{-Fe}_2\\text{O}_3$ film is destroyed in service by two distinct physico-chemical degradation pathways:
+
+1. **Localized Chloride-Induced Depassivation (Pitting Corrosion):**
+   Free chloride ions ($\\text{Cl}^-$) from marine salt spray or highway de-icing salts ($\\text{NaCl}$, $\\text{CaCl}_2$, $\\text{MgCl}_2$) migrate through concrete capillary pores. When the local **free chloride-to-hydroxyl molar concentration ratio** at the steel surface exceeds the **Hausmann Threshold**:
+   $$\\frac{[\\text{Cl}^-]}{[\\text{OH}^-]} \\ge 0.60 \\quad \\text{(or Acid-Soluble } \\text{Cl}^- \\ge 0.40\\% \\text{ by weight of cement} \\approx 1.2\\text{--}2.0\\text{ lb/yd}^3 \\text{ concrete)}$$
+   chloride ions catalytically displace $\\text{O}^{2-}$ ions in the $\\gamma\\text{-Fe}_2\\text{O}_3$ lattice, forming soluble iron-chloride complexes ($\\text{FeCl}_2 / \\text{FeCl}_4^{2-}$) that hydrolyze (`FeCl2 + 2H2O -> Fe(OH)2 + 2HCl`), dropping local pit pH below **4.0 to 5.0**. A **macrocell galvanic couple** forms between the small, actively dissolving anodic pit ($E_{\\text{corr}} < -450\\text{ mV}_{\\text{CSE}}$) and the surrounding large passive rebar mat acting as an oxygen-reduction cathode.
+2. **Carbonation-Induced Generalized Depassivation:**
+   Atmospheric carbon dioxide ($\\text{CO}_2$, ~0.042% by volume outdoors, up to 0.3% in highway tunnels) diffuses through unsaturated concrete pores and neutralizes calcium hydroxide and C-S-H gel:
+   $$\\text{Ca(OH)}_2 + \\text{CO}_2 \\xrightarrow{\\text{H}_2\\text{O}} \\text{CaCO}_3 + \\text{H}_2\\text{O}$$
+   Once the portlandite buffer is exhausted, pore-water pH drops abruptly from **13.0 to below 9.0** (thermodynamic instability threshold of $\\gamma\\text{-Fe}_2\\text{O}_3$ is $\\text{pH} \\approx 11.5$, and complete depassivation occurs at $\\text{pH} \\le 9.5$). Unlike chloride pitting, carbonation causes homogeneous, uniform corrosion across the entire outer rebar circumference.
+
+---
+
+### 1.1.3 Volumetric Rust Expansion Mechanics & Cover Delamination
+Depending on oxygen availability and moisture state, ferrous hydroxide ($\\text{Fe(OH)}_2$) oxidizes into higher-volume corrosion products that exert internal radial bursting pressure ($P_{\\text{rust}} = 4.0\\text{ to }15.0\\text{ MPa}$) against the surrounding concrete cover, exceeding concrete tensile strength ($f'_t \\approx 3.0\\text{ MPa}$) and generating longitudinal cover cracks and horizontal bridge deck delaminations:
+
+| Corrosion Product Species | Chemical Formula | Color / Morphology | Molar Volume Ratio ($V_{\\text{oxide}} / V_{\\text{Fe}}$) |
+| :--- | :--- | :--- | :--- |
+| **Metallic Iron (Base Rebar)** | $\\text{Fe}$ | Metallic Gray | $1.00\\times$ ($7.1\\text{ cm}^3/\\text{mol}$) |
+| **W?stite / Ferrous Oxide** | $\\text{FeO}$ | Black | $1.70\\times$ |
+| **Magnetite (Low-$\\text{O}_2$ Black Rust)** | $\\text{Fe}_3\\text{O}_4$ | Black / Magnetic | $2.10\\times$ |
+| **Hematite / Maghemite** | $\\alpha,\\gamma\\text{-Fe}_2\\text{O}_3$ | Reddish-Brown | $2.14\\times$ |
+| **Goethite / Lepidocrocite** | $\\alpha,\\gamma\\text{-FeOOH}$ | Orange-Red | $2.91\\times\\text{ to }3.05\\times$ |
+| **Ferrous Hydroxide** | $\\text{Fe(OH)}_2$ | White-Green | $3.75\\times$ |
+| **Ferric Hydroxide** | $\\text{Fe(OH)}_3$ | Red-Brown | $4.20\\times$ |
+| **Hydrated Ferric Oxide (Red Rust)** | $\\text{Fe(OH)}_3\\cdot 3\\text{H}_2\\text{O}$ | Reddish-Brown Flaky | **$6.15\\times$ to $6.40\\times$** |"""
+    },
+    {
+        "course_code": "STR-01",
+        "chapter_number": 1,
+        "chapter_title": "Chapter 1: Testing Steel Corrosion in Reinforced Concrete",
+        "section_number": "1.2",
+        "section_title": "1.2 Electrochemical Techniques: Half-Cell Potential, Wenner Resistivity, Guard-Ring LPR, EIS & Galvanostatic Pulse",
+        "standards": "ASTM C876-22 | ASTM G59 | ASTM G102 | RILEM TC 154-EMC | AASHTO T 358",
+        "body_markdown": """### 1.2.1 Copper?Copper Sulfate Half-Cell Potential Mapping (ASTM C876)
+The **Half-Cell Potential Method (ASTM C876)** measures the open-circuit electrostatic potential difference ($E_{\\text{corr}}$) between the embedded reinforcing steel and a portable standard reference electrode placed on the concrete surface through a wet sponge electrolytic bridge.
+
+1. **Reference Electrode Thermodynamics (Nernst Equilibrium):**
+   The standard field electrode is the **Copper?Saturated Copper Sulfate Electrode ($\\text{Cu/CuSO}_4$, CSE)** consisting of a pure electrolytic copper rod immersed in a saturated aqueous solution of $\\text{CuSO}_4\\cdot 5\\text{H}_2\\text{O}$ with undissolved crystals on a porous wooden or ceramic plug ($E_{\\text{CSE}} = +0.318\\text{ V}$ vs. Standard Hydrogen Electrode, SHE, at $25^\\circ\\text{C}$; temperature coefficient $= +0.9\\text{ mV/}^\\circ\\text{C}$). Alternative electrodes include Saturated Calomel ($\\text{Hg/Hg}_2\\text{Cl}_2$, SCE $= +0.241\\text{ V}_{\\text{SHE}}$, offset $+77\\text{ mV}$ vs. CSE) and Silver?Silver Chloride ($\\text{Ag/AgCl/3.5M KCl} = +0.205\\text{ V}_{\\text{SHE}}$, offset $+113\\text{ mV}$ vs. CSE).
+2. **High-Impedance Voltmeter Requirement:**
+   Because concrete cover resistance can exceed $10\\text{ k}\\Omega\\text{ to }1\\text{ M}\\Omega$, ASTM C876 mandates a digital voltmeter with an **input impedance $\\ge 10\\text{ M}\\Omega$** (and preferably $100\\text{ M}\\Omega$ to $1\\text{ G}\\Omega$) so voltage drop ($I \\cdot R_{\\text{concrete}}$) across the concrete cover does not falsify the reading.
+3. **ASTM C876 Quantitative Diagnostic Interpretation Table:**
+
+| Measured Potential vs. $\\text{Cu/CuSO}_4$ (CSE) | Equivalent vs. $\\text{Ag/AgCl}$ (3.5M KCl) | Equivalent vs. Saturated Calomel (SCE) | Thermodynamic Corrosion State & ASTM C876 Interpretation |
+| :--- | :--- | :--- | :--- |
+| **$E_{\\text{corr}} > -200\\text{ mV}$** | $> -87\\text{ mV}$ | $> -123\\text{ mV}$ | **$> 90\\%$ probability that NO reinforcing steel corrosion is occurring** at the time of measurement (Passive State). |
+| **$-200\\text{ mV} \\ge E_{\\text{corr}} \\ge -350\\text{ mV}$** | $-87\\text{ to }-237\\text{ mV}$ | $-123\\text{ to }-273\\text{ mV}$ | **Uncertain Corrosion Activity** (Transition depassivation zone; evaluate spatial potential gradients $\\nabla E > 150\\text{ mV/m}$). |
+| **$E_{\\text{corr}} < -350\\text{ mV}$** | $< -237\\text{ mV}$ | $< -273\\text{ mV}$ | **$> 90\\%$ probability of ACTIVE reinforcing steel corrosion** in that region. |
+| **$E_{\\text{corr}} < -500\\text{ mV}$** | $< -387\\text{ mV}$ | $< -423\\text{ mV}$ | **Severe Pitting Corrosion** OR **Anaerobic Water-Saturated $\\text{O}_2$ Starvation** (verify with LPR $i_{\\text{corr}}$!). |
+
+---
+
+### 1.2.2 Four-Probe Wenner Electrical Resistivity ($\rho_{\\text{Wenner}}$ ? AASHTO T 358)
+While half-cell potential indicates the *thermodynamic probability* of corrosion initiation, **Electrical Resistivity ($\rho$)** governs the *ionic current flow capacity* of the concrete pore network between anodic and cathodic sites. Four equally spaced spring-loaded electrodes (spacing $a = 38\\text{ mm}$ or $50\\text{ mm}$) contact the wetted concrete surface: an AC low-frequency current $I$ ($13\\text{ Hz to }100\\text{ Hz}$ to eliminate DC electrode polarization) is injected through the outer two probes, and the potential drop $\\Delta V$ is measured across the inner two probes:
+$$\\rho_a = 2 \\pi a \\frac{\\Delta V}{I} \\quad (\\text{k}\\Omega\\cdot\\text{cm})$$
+* **Finite Slab Geometric & Rebar Correction:** Keep probe spacing $a \\le h/4$ (where $h$ is slab thickness) and orient the 4-pin array **diagonally ($45^\\circ$)** between rebar grid lines so underlying steel bars do not short-circuit the electric field.
+* **Quantitative Thresholds (Langford & Broomfield / RILEM TC 154):**
+  * $\\rho \\ge 20\\text{ k}\\Omega\\cdot\\text{cm}$: **Low / Negligible** ionic corrosion rate.
+  * $10\\text{ to }20\\text{ k}\\Omega\\cdot\\text{cm}$: **Low-to-Moderate** corrosion rate.
+  * $5\\text{ to }10\\text{ k}\\Omega\\cdot\\text{cm}$: **High** corrosion rate.
+  * $\\rho < 5\\text{ k}\\Omega\\cdot\\text{cm}$: **Very High** corrosion rate (saturated, chloride-contaminated concrete).
+
+---
+
+### 1.2.3 Linear Polarization Resistance (LPR) with Guard-Ring Confinement & Stern-Geary Kinetics
+Half-cell potential cannot tell you *how fast* the rebar is dissolving today. **Linear Polarization Resistance (LPR, ASTM G59 / RILEM TC 154-EMC)** directly measures the instantaneous kinetic corrosion current density ($i_{\\text{corr}}$ in $\\mu\\text{A/cm}^2$).
+
+1. **Stern-Geary Derivation:**
+   Within $\\pm 10\\text{ mV to }\\pm 20\\text{ mV}$ of the open-circuit corrosion potential $E_{\\text{corr}}$, the exponential Butler-Volmer kinetic equation linearizes. The **Polarization Resistance ($R_p$, in $\\Omega\\cdot\\text{cm}^2$)** is the slope of potential shift $\\Delta E$ divided by applied current density $\\Delta i_{\\text{app}}$ after subtracting concrete ohmic drop $I R_\\Omega$:
+   $$R_p = \\left(\\frac{\\Delta E}{\\Delta i_{\\text{app}}}\\right)_{\\Delta E \\to 0}, \\qquad i_{\\text{corr}} = \\frac{B}{R_p} = \\frac{\\beta_a \\beta_c}{2.303(\\beta_a + \\beta_c) R_p}$$
+   where $\\beta_a$ and $\\beta_c$ are the anodic and cathodic Tafel slopes, yielding the **Stern-Geary Constant $B$**:
+   * **$B = 26\\text{ mV}$** ($0.026\\text{ V}$) for **actively corroding** steel in concrete.
+   * **$B = 52\\text{ mV}$** ($0.052\\text{ V}$) for **passive** steel in concrete.
+2. **Why the Guard-Ring Counter Electrode Is Mandatory on Concrete Structures:**
+   On a bridge deck, the rebar mat is continuous over hundreds of square meters. If you use a simple unguarded counter electrode on the surface, the polarizing current spreads laterally over an unknown rebar length ($30\\text{ to }80\\text{ cm}$), overestimating $i_{\\text{corr}}$ by $300\\%$ to $1,000\\%$. A **Modulated Confinement Guard-Ring Sensor (GECOR / GalvaPulse)** surrounds the central counter electrode with an outer concentric guard ring regulated by two auxiliary reference electrodes to force electric field lines perpendicular into a strictly defined rebar surface area $A_{\\text{st}} = \\pi d_{\\text{bar}} L_{\\text{confined}}$.
+3. **Faraday's Law Conversion & RILEM TC 154-EMC Severity Criteria:**
+   For divalent iron dissolution ($\\text{Fe} \\to \\text{Fe}^{2+} + 2e^-$, atomic mass $M = 55.845\\text{ g/mol}$, $z = 2$, $F = 96,485\\text{ C/mol}$, $\\rho_{\\text{Fe}} = 7.87\\text{ g/cm}^3$), $1.0\\text{ }\\mu\\text{A/cm}^2 = 11.6\\text{ }\\mu\\text{m/year}$ uniform radial loss (note: for localized chloride pitting, multiply by a **Pitting Factor $\\alpha_{\\text{pit}} = 4\\text{ to }8$**, yielding up to $92.8\\text{ }\\mu\\text{m/year}$ local pit penetration!):
+
+| Guard-Ring LPR $i_{\\text{corr}}$ ($\\mu\\text{A/cm}^2$) | Uniform Penetration Rate $r_p$ ($\\mu\\text{m/yr}$) | Max Localized Pit Rate ($\\alpha_{\\text{pit}} = 6$) | RILEM TC 154-EMC / Rodriguez Corrosion Classification |
+| :--- | :--- | :--- | :--- |
+| **$< 0.1\\text{ }\\mu\\text{A/cm}^2$** | $< 1.16\\text{ }\\mu\\text{m/yr}$ | $< 7.0\\text{ }\\mu\\text{m/yr}$ | **Passive / Negligible Corrosion** (No intervention required). |
+| **$0.1\\text{ to }0.5\\text{ }\\mu\\text{A/cm}^2$** | $1.16\\text{ to }5.80\\text{ }\\mu\\text{m/yr}$ | $7.0\\text{ to }34.8\\text{ }\\mu\\text{m/yr}$ | **Low-to-Moderate Corrosion** (Cracking in $10\\text{--}15\\text{ years}$). |
+| **$0.5\\text{ to }1.0\\text{ }\\mu\\text{A/cm}^2$** | $5.80\\text{ to }11.6\\text{ }\\mu\\text{m/yr}$ | $34.8\\text{ to }69.6\\text{ }\\mu\\text{m/yr}$ | **Moderate-to-High Corrosion** (Cover cracking in $3\\text{--}10\\text{ years}$). |
+| **$> 1.0\\text{ }\\mu\\text{A/cm}^2$** | $> 11.6\\text{ }\\mu\\text{m/yr}$ | $> 69.6\\text{ }\\mu\\text{m/yr}$ | **High / Severe Corrosion** (Immediate rehabilitation or Cathodic Protection). |
+
+---
+
+### 1.2.4 Electrochemical Impedance Spectroscopy (EIS) & Galvanostatic Pulse Technique (GPT)
+* **Electrochemical Impedance Spectroscopy (EIS):** Applies a small-signal sinusoidal AC voltage perturbation ($\\Delta E = 10\\text{ mV}$) across $1\\text{ mHz to }100\\text{ kHz}$ to model the steel-concrete interface as a **Modified Randles Equivalent Circuit** with Warburg diffusion impedance $Z_W = \\sigma_W \\omega^{-1/2}(1 - j)$. High-frequency intercept yields pure concrete ohmic resistance $R_\\Omega$, mid-frequency semicircle diameter yields true charge-transfer resistance $R_{\\text{ct}}$, and double-layer capacitance $C_{\\text{dl}}$ ($20\\text{--}60\\text{ }\\mu\\text{F/cm}^2$ passive vs. $>150\\text{ }\\mu\\text{F/cm}^2$ active rust film) separates film capacitance from interfacial dissolution.
+* **Galvanostatic Pulse Technique (GPT):** Injects a short-duration constant anodic current pulse ($I_{\\text{app}} = 50\\text{ to }200\\text{ }\\mu\\text{A}$ for $t = 5\\text{ to }10\\text{ seconds}$):
+  $$E(t) = I_{\\text{app}} R_\\Omega + I_{\\text{app}} R_p \\left[1 - \\exp\\!\\left(-\\frac{t}{R_p C_{\\text{dl}}}\\right)\\right]$$
+  allowing rapid field extraction of $R_\\Omega$, $R_p$, and $C_{\\text{dl}}$ in under 10 seconds per grid node."""
+    },
+    {
+        "course_code": "STR-01",
+        "chapter_number": 1,
+        "chapter_title": "Chapter 1: Testing Steel Corrosion in Reinforced Concrete",
+        "section_number": "1.3",
+        "section_title": "1.3 Physico-Chemical Techniques: Carbonation Indicators, Fickian Chloride Diffusion Profiling & Core Petrography",
+        "standards": "AASHTO T 260 | ASTM C1152 (Acid-Soluble Chloride) | ASTM C1218 (Water-Soluble Chloride) | EN 14630",
+        "body_markdown": """### 1.3.1 Carbonation Front Determination & Diffusion Kinetics ($d_c = K_{\\text{carb}}\\sqrt{t}$)
+To determine the depth of carbonation $d_c$, a concrete core is dry-split or a fresh fracture surface is blown free of drill dust (never test wet-cut sawed surfaces where lime water has smeared across the face) and sprayed with a **1% Phenolphthalein indicator solution** ($1\\text{ g}$ phenolphthalein dissolved in $70\\text{ mL}$ ethyl alcohol + $30\\text{ mL}$ distilled water):
+* **Magenta / Pink Zone ($\\text{pH} > 9.5$):** Uncarbonated alkaline concrete (portlandite reserve intact; rebar remains passive unless chlorides are present).
+* **Colorless Zone ($\\text{pH} < 9.0$):** Fully carbonated concrete (depassivation front).
+* **Parabolic Carbonation Rate Law:** Because $\\text{CO}_2$ gas must diffuse through the already-carbonated outer zone of thickness $d_c$, carbonation depth obeys Fick's First Law integrated over time:
+  $$d_c(t) = K_{\\text{carb}} \\cdot \\sqrt{t}$$
+  where $K_{\\text{carb}}$ is the carbonation rate coefficient ($\\text{mm}/\\text{year}^{0.5}$), typically $1.0\\text{--}3.0\\text{ mm}/\\text{yr}^{0.5}$ for dense high-strength highway bridge concrete ($w/c \\le 0.40$) and $5.0\\text{--}10.0\\text{ mm}/\\text{yr}^{0.5}$ for porous building facades ($w/c > 0.55$) exposed to sheltered rain-free microclimates (maximum carbonation rate occurs at $50\\%\\text{--}70\\%$ ambient relative humidity).
+
+---
+
+### 1.3.2 Chloride Ion Depth Profiling & Non-Steady-State Fickian Diffusion Modeling (AASHTO T 260 / ASTM C1152)
+To quantify remaining service life before chloride depassivation reaches the reinforcing steel at cover depth $x = c$, concrete powder samples (minimum $15\\text{--}25\\text{ g}$ per horizon) are extracted using a rotary impact hammer in **$0.5\\text{-inch}$ ($12.5\\text{ mm}$) depth increments** (`0.0-0.5 in`, `0.5-1.0 in`, `1.0-1.5 in`, `1.5-2.0 in`, `2.0-2.5 in`, and background at `4.0 in`).
+1. **Acid-Soluble vs. Water-Soluble Chloride Titration:**
+   * **Acid-Soluble (Total) Chloride (ASTM C1152 / AASHTO T 260):** Digested in boiling nitric acid ($\\text{HNO}_3$) to release both free pore-water chlorides and chemically bound Friedel's salt ($3\\text{CaO}\\cdot\\text{Al}_2\\text{O}_3\\cdot\\text{CaCl}_2\\cdot 10\\text{H}_2\\text{O}$), then titrated potentiometrically with $0.05\\text{ N}$ Silver Nitrate ($\\text{AgNO}_3$) using an $\\text{Ag/AgCl}$ ion-selective electrode.
+   * **Water-Soluble (Free) Chloride (ASTM C1218):** Extracted in boiling distilled water for 5 minutes and steeped 24 hours (typically $70\\%\\text{--}85\\%$ of total acid-soluble chloride; ACI 318 limits water-soluble $\\text{Cl}^-$ to $\\le 0.15\\%$ by weight of cement in reinforced concrete and $\\le 0.06\\%$ in prestressed concrete).
+2. **Crank's Error-Function Solution to Fick's Second Law:**
+   Non-steady-state one-dimensional diffusion of chloride ions into semi-infinite concrete is governed by Fick's Second Law ($\\frac{\\partial C}{\\partial t} = D_{\\text{app}} \\frac{\\partial^2 C}{\\partial x^2}$). Fitting the measured incremental depth profile $C(x,t)$ via nonlinear least-squares regression yields the **Surface Chloride Concentration ($C_s$)** and the **Apparent Chloride Diffusion Coefficient ($D_{\\text{app}}$, typically $10^{-12}$ to $10^{-11}\\text{ m}^2/\\text{s}$)**:
+   $$C(x, t) = C_0 + (C_s - C_0)\\left[1 - \\text{erf}\\!\\left(\\frac{x}{2\\sqrt{D_{\\text{app}} \\cdot t}}\\right)\\right]$$
+   Solving for the **Time to Corrosion Initiation ($t_{\\text{init}}$)** when $C(c, t_{\\text{init}}) = C_{\\text{crit}}$ at rebar cover depth $x = c$:
+   $$t_{\\text{init}} = \\frac{c^2}{4 \\, D_{\\text{app}} \\, \\left[\\text{erf}^{-1}\\!\\left(\\frac{C_s - C_{\\text{crit}}}{C_s - C_0}\\right)\\right]^2}$$
+
+---
+
+### 1.3.3 Magnetic / Eddy-Current Rebar Covermeters & Ground Penetrating Radar (BS 1881 Part 204 / ASTM D6087)
+Because initiation time $t_{\\text{init}}$ scales with the **square of the concrete cover thickness ($c^2$)**, a $25\\%$ deficiency in rebar cover reduces corrosion initiation life by $44\\%$. Pulse-induction eddy-current covermeters map exact cover depth $c$ ($\\pm 1.0\\text{ mm}$ accuracy down to $100\\text{ mm}$) and bar diameter prior to coring or half-cell tie-in."""
+    },
+    {
+        "course_code": "STR-01",
+        "chapter_number": 1,
+        "chapter_title": "Chapter 1: Testing Steel Corrosion in Reinforced Concrete",
+        "section_number": "1.4",
+        "section_title": "1.4 Conclusions: Multi-Parameter Diagnostic Triangulation & Field Pitfalls",
+        "standards": "ASTM C876 | RILEM TC 154-EMC | NCHRP Report 558",
+        "body_markdown": """### 1.4.1 Why Single-Parameter Corrosion Surveys Fail in the Field
+A master structural engineer never orders bridge deck removal or cathodic protection from Half-Cell Potential ($E_{\\text{corr}}$) alone. Three classic field anomalies trap novice inspectors:
+1. **Water-Saturated / Oxygen-Starved Substructures (False-Positive Negative Potentials):**
+   In submerged bridge piers or poorly drained box-girder soffits, dissolved oxygen is depleted at the steel surface. Cathodic depolarization shifts $E_{\\text{corr}}$ to **$-450\\text{ to }-600\\text{ mV}_{\\text{CSE}}$**, yet Guard-Ring LPR reveals $i_{\\text{corr}} < 0.05\\text{ }\\mu\\text{A/cm}^2$ because without oxygen to drive the cathodic half-reaction ($\\frac{1}{2}\\text{O}_2 + \\text{H}_2\\text{O} + 2e^- \\to 2\\text{OH}^-$), active metal dissolution cannot proceed!
+2. **Dry Carbonated Concrete Cover (False-Negative Positive Potentials & Junction Potentials):**
+   When carbonated concrete dries out ($\\rho > 50\\text{ k}\\Omega\\cdot\\text{cm}$), liquid junction potentials across the dry cover shift surface half-cell readings positive ($>-200\\text{ mV}_{\\text{CSE}}$), masking depassivated steel until the next rainstorm wets the facade.
+3. **Epoxy-Coated Rebar (ECR) & Discontinuous Steel Electrical Continuity:**
+   ASTM C876 requires electrical continuity across the rebar mat (verified by measuring DC resistance $< 1.0\\text{ }\\Omega$ between two distant bar connections). On Epoxy-Coated Rebar (ASTM A775) decks, standard ground-lead half-cell surveys fail unless a **Wheel-to-Wheel Potential Gradient (Double-Electrode Surface Technique)** is used.
+
+---
+
+### 1.4.2 Sovereign Multi-Parameter Field Decision Matrix (HVF Title 61 Protocol)
+
+| Half-Cell $E_{\\text{corr}}$ ($\\text{mV}_{\\text{CSE}}$) | Wenner Resistivity $\\rho$ ($\\text{k}\\Omega\\cdot\\text{cm}$) | Guard-Ring LPR $i_{\\text{corr}}$ ($\\mu\\text{A/cm}^2$) | Chloride at Rebar $C(c)$ ($\\%$ wt. cement) | Definitive Structural Diagnosis & Mandatory Engineering Action |
+| :--- | :--- | :--- | :--- | :--- |
+| $> -200\\text{ mV}$ | $> 20\\text{ k}\\Omega\\cdot\\text{cm}$ | $< 0.1\\text{ }\\mu\\text{A/cm}^2$ | $< 0.20\\%$ | **State 1 ? Passive & Intact:** Apply penetrating silane sealer every $5\\text{--}7\\text{ yrs}$; routine 24-month NBIS cycle. |
+| $-200\\text{ to }-350\\text{ mV}$ | $10\\text{--}20\\text{ k}\\Omega\\cdot\\text{cm}$ | $0.1\\text{--}0.5\\text{ }\\mu\\text{A/cm}^2$ | $0.20\\%\\text{--}0.40\\%$ | **State 2 ? Threshold Initiation:** Seal surface cracks; install embedded corrosion rate probes; re-audit in 12 months. |
+| $< -350\\text{ mV}$ | $< 10\\text{ k}\\Omega\\cdot\\text{cm}$ | $0.5\\text{--}1.0\\text{ }\\mu\\text{A/cm}^2$ | $> 0.40\\%$ | **State 3 ? Active Propagation:** Perform ASTM D4580 / C1383 acoustic delamination survey; schedule electrochemical chloride extraction (ECE) or sacrificial zinc anodes. |
+| $< -350\\text{ mV}$ | $< 5\\text{ k}\\Omega\\cdot\\text{cm}$ | $> 1.0\\text{ }\\mu\\text{A/cm}^2$ | $> 0.60\\%$ | **State 4 ? Severe Section Loss & Delamination:** Hydro-demolish contaminated concrete below rebar mat, blast steel to SSPC-SP10, install Impressed Current Cathodic Protection (ICCP) or silica-fume overlay. |
+| $< -450\\text{ mV}$ | $< 5\\text{ k}\\Omega\\cdot\\text{cm}$ | **$< 0.1\\text{ }\\mu\\text{A/cm}^2$** | Any | **State 5 ? Anaerobic $\\text{O}_2$ Starvation (Submerged Pier):** Thermodynamic shift without kinetic mass loss; do NOT demolish unless LPR $i_{\\text{corr}}$ rises upon aeration. |"""
+    },
+    {
+        "course_code": "STR-01",
+        "chapter_number": 1,
+        "chapter_title": "Chapter 1: Testing Steel Corrosion in Reinforced Concrete",
+        "section_number": "1.5",
+        "section_title": "1.5 Complete Worked Engineering Derivations & Bibliographical References",
+        "standards": "ASTM C876 | ASTM G102 | Crank (1975) Mathematics of Diffusion | Broomfield (2007)",
+        "body_markdown": """### 1.5.1 Complete Multi-Step Worked Engineering Derivation (Electrochemical + Fickian Diffusion)
+**Field Inspection Scenario:** You are conducting a Title 61 forensic evaluation of a 25-year-old reinforced concrete highway bridge deck ($t = 25\\text{ years}$, #5 top-mat rebar $d_b = 15.875\\text{ mm}$ at clear cover $c = 50.0\\text{ mm} = 5.0\\text{ cm}$).
+* **Electrochemical Measurements:** Cu/CuSO4 Half-Cell Potential $E_{\\text{corr}} = -418\\text{ mV}_{\\text{CSE}}$; Wenner 4-probe spacing $a = 5.0\\text{ cm}$ reads $\\Delta V / I = 0.235\\text{ k}\\Omega$; Guard-Ring LPR (confined length $L = 10.5\\text{ cm}$, bar diameter $d_b = 1.5875\\text{ cm}$, area $A_{\\text{st}} = \\pi \\cdot 1.5875 \\cdot 10.5 = 52.37\\text{ cm}^2$) records an ohmic-corrected polarization slope $\\Delta E / \\Delta I = 165.5\\text{ }\\Omega$ ($B = 26\\text{ mV}$).
+* **Chloride Profile Measurements (AASHTO T 260):** Background chloride $C_0 = 0.04\\%$ wt. cement; surface chloride $C_s = 1.64\\%$ wt. cement; apparent diffusion coefficient $D_{\\text{app}} = 1.25 \\times 10^{-12}\\text{ m}^2/\\text{s} = 39.42\\text{ mm}^2/\\text{yr}$; critical depassivation threshold $C_{\\text{crit}} = 0.40\\%$ wt. cement.
+
+---
+
+#### Step 1: Compute True Wenner Concrete Resistivity ($\\rho_a$)
+$$\\rho_a = 2 \\pi a \\left(\\frac{\\Delta V}{I}\\right) = 2 \\pi (5.0\\text{ cm})(0.235\\text{ k}\\Omega) = 31.416 \\times 0.235 = 7.38\\text{ k}\\Omega\\cdot\\text{cm}$$
+* **Verdict:** Because $5.0 < \\rho_a = 7.38\\text{ k}\\Omega\\cdot\\text{cm} < 10.0\\text{ k}\\Omega\\cdot\\text{cm}$, the concrete cover exhibits **High Ionic Conductivity** supporting rapid macrocell corrosion currents.
+
+#### Step 2: Compute Area-Normalized Polarization Resistance ($R_p$) & Stern-Geary $i_{\\text{corr}}$
+$$R_p = \\left(\\frac{\\Delta E}{\\Delta I}\\right) \\cdot A_{\\text{st}} = 165.5\\text{ }\\Omega \\times 52.37\\text{ cm}^2 = 8,667\\text{ }\\Omega\\cdot\\text{cm}^2 = 8.667\\text{ k}\\Omega\\cdot\\text{cm}^2$$
+$$i_{\\text{corr}} = \\frac{B}{R_p} = \\frac{26,000\\text{ }\\mu\\text{V}}{8,667\\text{ }\\Omega\\cdot\\text{cm}^2} = 3.00\\text{ }\\mu\\text{A/cm}^2$$
+* **Verdict:** $i_{\\text{corr}} = 3.00\\text{ }\\mu\\text{A/cm}^2 > 1.0\\text{ }\\mu\\text{A/cm}^2$ confirms **Severe Active Corrosion**.
+* **Uniform Radial Loss Rate ($r_p$):** $r_p = 11.6 \\times 3.00 = 34.8\\text{ }\\mu\\text{m/year}$ ($0.0348\\text{ mm/yr}$).
+* **Localized Pitting Penetration Rate ($\\alpha_{\\text{pit}} = 6$):** $r_{\\text{pit}} = 6 \\times 34.8 = 208.8\\text{ }\\mu\\text{m/year}$ ($0.209\\text{ mm/yr}$).
+
+#### Step 3: Compute Chloride Concentration at Rebar Depth $c = 50\\text{ mm}$ at $t = 25\\text{ Years}$
+1. Compute the dimensionless diffusion argument $z$:
+   $$z = \\frac{c}{2\\sqrt{D_{\\text{app}} \\cdot t}} = \\frac{50.0\\text{ mm}}{2\\sqrt{39.42\\text{ mm}^2/\\text{yr} \\times 25\\text{ yr}}} = \\frac{50.0}{2\\sqrt{985.5}} = \\frac{50.0}{62.785} = 0.7964$$
+2. Evaluate the Gauss Error Function $\\text{erf}(0.7964) = 0.7400$:
+   $$C(50\\text{ mm}, 25\\text{ yr}) = 0.04\\% + (1.64\\% - 0.04\\%)\\left[1 - 0.7400\\right] = 0.04\\% + 1.60\\%(0.2600) = 0.456\\%\\text{ wt. cement}$$
+* **Verdict:** $C(50\\text{ mm}, 25\\text{ yr}) = 0.456\\% > C_{\\text{crit}} (0.40\\%)$, mathematically proving why depassivation has already occurred at the $50\\text{ mm}$ rebar horizon!
+
+---
+
+### 1.5.2 Authoritative Bibliographical References (Chapter 1)
+1. **ASTM C876-22:** *Standard Test Method for Corrosion Potentials of Uncoated Reinforcing Steel in Concrete*, ASTM International, West Conshohocken, PA.
+2. **ASTM G59 / G102:** *Standard Practice for Calculation of Corrosion Rates and Related Information from Electrochemical Measurements*, ASTM International.
+3. **RILEM TC 154-EMC (Andrade, C., Alonso, C., et al., 2004):** *"Test methods for on-site corrosion rate measurement of steel reinforcement in concrete by means of the polarization resistance method,"* Materials and Structures, Vol. 37, pp. 623?643.
+4. **Broomfield, J.P. (2007):** *Corrosion of Steel in Concrete: Understanding, Investigation and Repair*, 2nd Edition, Taylor & Francis, London.
+5. **Stern, M., & Geary, A.L. (1957):** *"Electrochemical Polarization I: A Theoretical Analysis of the Shape of Polarization Curves,"* Journal of the Electrochemical Society, Vol. 104(1), pp. 56?63.
+6. **Pourbaix, M. (1974):** *Atlas of Electrochemical Equilibria in Aqueous Solutions*, 2nd Edition, NACE International, Houston, TX.
+7. **Hausmann, D.A. (1967):** *"Steel Corrosion in Concrete: How Does It Occur?"* Materials Protection, Vol. 6(11), pp. 19?23.
+8. **Crank, J. (1975):** *The Mathematics of Diffusion*, 2nd Edition, Oxford University Press, Oxford."""
+    }
+]
+
+def sync_and_verify_textbook_vault():
+    conn = _tb_sqlite3.connect(str(TEXTBOOK_DB_PATH))
+    cur = conn.cursor()
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS sovereign_academic_textbooks (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            course_code TEXT NOT NULL,
+            chapter_number INTEGER NOT NULL,
+            chapter_title TEXT NOT NULL,
+            section_number TEXT NOT NULL,
+            section_title TEXT NOT NULL,
+            standards TEXT NOT NULL,
+            body_markdown TEXT NOT NULL,
+            char_count INTEGER NOT NULL,
+            sha256_seal TEXT NOT NULL,
+            UNIQUE(course_code, chapter_number, section_number)
+        )
+    """)
+    for s in STR01_CHAPTER_01_SECTIONS:
+        body = s["body_markdown"].strip()
+        seal = _tb_hashlib.sha256(f"{s['course_code']}|{s['chapter_number']}|{s['section_number']}|{body}".encode("utf-8")).hexdigest()
+        cur.execute("""
+            INSERT INTO sovereign_academic_textbooks
+            (course_code, chapter_number, chapter_title, section_number, section_title, standards, body_markdown, char_count, sha256_seal)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(course_code, chapter_number, section_number) DO UPDATE SET
+                chapter_title=excluded.chapter_title,
+                section_title=excluded.section_title,
+                standards=excluded.standards,
+                body_markdown=excluded.body_markdown,
+                char_count=excluded.char_count,
+                sha256_seal=excluded.sha256_seal
+        """, (s["course_code"], s["chapter_number"], s["chapter_title"], s["section_number"], s["section_title"], s["standards"], body, len(body), seal))
+    conn.commit()
+    rows = cur.execute("SELECT section_number, section_title, char_count, sha256_seal FROM sovereign_academic_textbooks WHERE course_code='STR-01' AND chapter_number=1 ORDER BY section_number").fetchall()
+    conn.close()
+    return rows
+
+def render_str01_chapter01_treatise():
+    import streamlit as st
+    rows = sync_and_verify_textbook_vault()
+    st.markdown("### ?? Master University Textbook ? Course `STR-01` // Chapter 1: Testing Steel Corrosion in Reinforced Concrete")
+    st.caption("Complete Un-Abbreviated Academic Treatise (Sections 1.1 through 1.5) | Stored in `hvf_textbooks.db` | CAGE: 1AHA8")
+    for s in STR01_CHAPTER_01_SECTIONS:
+        with st.expander(f"?? {s['section_title']} ({len(s['body_markdown']):,} chars)", expanded=(s["section_number"] == "1.1")):
+            st.info(f"**Governing Standards:** `{s['standards']}`")
+            st.markdown(s["body_markdown"])
+
+sync_and_verify_textbook_vault()
