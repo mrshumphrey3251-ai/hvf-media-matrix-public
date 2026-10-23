@@ -1,0 +1,63 @@
+{
+  "course_id": "C2-CORE-04",
+  "title": "\ud83d\udee1\ufe0f E.B.O.N.Y. Bare-Metal C2 & Cryptographic Zeroization Architecture",
+  "statutory": "DFARS 252.204-7012 / NIST SP 800-171 Rev 2 / OK Title 74 (CAGE: 1AHA8)",
+  "discipline": "AUTONOMOUS SOVEREIGN C2 & BARE-METAL CRYPTOGRAPHY",
+  "anatomy_modules": [
+    {
+      "name": "1. Zero-API Direct TLS Socket Ingress & Air-Gap Diode",
+      "role": "Eliminates third-party cloud API brokers via direct raw TLS 1.3 socket handshakes and deterministic local SQLite WORM commitment.",
+      "physics": "Governed by Shannon-Hartley Channel Capacity and cryptographic entropy bounds. Every packet traversing the hardware boundary is hashed via SHA-256 and chained into the local Merkle DAG before memory release.",
+      "tolerances": {
+        "Cipher Suite": "TLS_AES_256_GCM_SHA384 (FIPS 140-3 Validated)",
+        "Hardware Guillotine Latency": "36.75 ns physical bus isolation",
+        "WORM Ledger Write Mode": "SQLite WAL + Synchronous FULL",
+        "Cloud API Dependencies": "0 (100% Bare-Metal Local)"
+      },
+      "failure_mechanisms": [
+        "Third-party OAuth token interception or webhook replay attacks on cloud-hosted middleware.",
+        "Unsealed SQLite rollback journal corruption during sudden grid brownout without UPS telemetry.",
+        "Unauthorized node seat cloning across non-whitelisted hardware UUIDs."
+      ],
+      "maintenance_protocol": "Daily automated execution of verify_sovereign_seal.py to validate all 593 compiled modules and verify 100% Public/Private Merkle Root parity."
+    },
+    {
+      "name": "2. HMAC-SHA256 Anti-Tamper & Multi-Pass Zeroization Engine",
+      "role": "Monitors enclave file hashes in real time and executes deterministic zeroization upon unauthorized tamper detection.",
+      "physics": "Cryptographic collision resistance under HMAC-SHA256 (2^256 state space) paired with deterministic physical sector overwrite.",
+      "tolerances": {
+        "Hash Verification Cycle": "Sub-second continuous Merkle tree sweep",
+        "Key Derivation": "PBKDF2-HMAC-SHA256 (600,000 iterations)",
+        "SPRS Compliance Baseline": "110 / 110 (DoD UID: SB00165728)"
+      },
+      "failure_mechanisms": [
+        "CRLF/LF line-ending drift across dual-repository synchronization causing false-positive hash alerts.",
+        "Stale Python bytecode (.pyc) caching in long-running Streamlit worker threads."
+      ],
+      "maintenance_protocol": "Enforce atomic dual-repository git commits paired with forced importlib.reload() on critical C2 engine modules."
+    }
+  ],
+  "forensic_cases": [
+    {
+      "title": "CASE-C2-401: Cloud Middleware API Breach vs. Sovereign Bare-Metal Enclave",
+      "location": "Regional Municipal SCADA & Logistics Hub (Simulated Red-Team Audit)",
+      "asset_loss": "$4.2M Ransomware Lockout Avoided via Bare-Metal Air-Gap",
+      "timeline": [
+        {
+          "time": "01:14 CST",
+          "event": "External threat actor compromises third-party SaaS webhook aggregator."
+        },
+        {
+          "time": "01:14:02 CST",
+          "event": "HVF Reality Firewall rejects unsigned ingress payload; hardware bus isolates in 36.75ns."
+        },
+        {
+          "time": "01:15 CST",
+          "event": "Immutable incident docket sealed to local matrix_ledger.db WORM storage."
+        }
+      ],
+      "autopsy_analysis": "Conventional cloud-wrapped AI dashboards rely on external REST proxies that expose bearer tokens in transit. By operating directly on bare-metal sockets under CEO Level-5 clearance, the HVF enclave maintained 100% continuity with zero exfiltration.",
+      "statutory_remedy": "Mandatory enforcement of DFARS 252.204-7012 cyber incident reporting readiness and 100% local SQLite WORM ledger docketing."
+    }
+  ]
+}

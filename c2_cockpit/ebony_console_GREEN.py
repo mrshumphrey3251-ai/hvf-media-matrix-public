@@ -1118,9 +1118,22 @@ with st.sidebar:
     _ext_dir = Path(__file__).resolve().parent.parent / "level5_extensions"
     DYNAMIC_MODULES = {}
     if _ext_dir.exists():
+        _hidden_ext_helpers = {
+            "access_control.py", "alert_protocol.py", "api_gateway.py", "app.py",
+            "apply_account_manager_ui.py", "apply_dispatch_deck.py",
+            "autonomous_healing_test.py", "hardware_bridge.py", "migrate_users_table.py",
+            "ada_voice_module.py"
+        }
+        _clean_ext_labels = {
+            "grain_silo_aeration_and_f": "⚡ Grain Silo Aeration & Conditioning",
+            "sovereign_weather_scada": "⚡ Sovereign Weather SCADA",
+            "chronos_companion_engine": "⚡ Chronos Companion Engine",
+            "linkedin_lead_scheduler": "⚡ LinkedIn Lead Scheduler",
+            "action_desk": "⚡ Executive Action Desk"
+        }
         for _f in sorted(_ext_dir.glob("*.py")):
-            if not _f.name.startswith("__"):
-                _disp = f"⚡ {_f.stem.replace('_', ' ').title()}"
+            if not _f.name.startswith("__") and _f.name not in _hidden_ext_helpers:
+                _disp = _clean_ext_labels.get(_f.stem, f"⚡ {_f.stem.replace('_', ' ').title()}")
                 DYNAMIC_MODULES[_disp] = _f.name
 
 
@@ -2388,7 +2401,8 @@ elif active_module == "📘 Omni-Industry Matrix":
                 "VERTICAL_STRUCTURAL_CIVIL": "02",
                 "VERTICAL_STRUCTURAL_BRIDGE": "02",
                 "VERTICAL_MICROGRID": "03",
-                "01": "01", "02": "02", "03": "03"
+                "VERTICAL_SOVEREIGN_C2": "04",
+                "01": "01", "02": "02", "03": "03", "04": "04"
             }
             _mapped_id = _cid_map.get(str(v_meta.get("id", "")), str(v_meta.get("id", "")))
             course_fname = f"vertical_{_mapped_id}_course.json"
@@ -2469,6 +2483,11 @@ elif active_module == "📘 Omni-Industry Matrix":
                     )
                     conn_civ.close()
                     st.dataframe(df_civ, use_container_width=True)
+                    if not df_civ.empty:
+                        _md_rows = ["| Docket # | Asset Target | Sector | Governing Agency | County | Status | SHA-256 Seal |", "|---|---|---|---|---|---|---|"]
+                        for _, _r in df_civ.iterrows():
+                            _md_rows.append(f"| **{_r['Docket #']}** | {_r['Asset Target']} | {_r['Sector']} | {_r['Governing Agency']} | {_r['County']} | `{_r['Status']}` | `{str(_r['SHA-256 Seal'])[:16]}...` |")
+                        st.markdown("\n".join(_md_rows))
                     
                     with st.expander("🔍 View Detailed Sensor Payloads & Flight Profiles", expanded=True):
                         conn_civ = sqlite3.connect(str(_active_db))
