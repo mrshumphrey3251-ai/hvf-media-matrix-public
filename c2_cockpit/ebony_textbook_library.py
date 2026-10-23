@@ -2214,7 +2214,7 @@ def _hvf_scrub_str(s: str) -> str:
 
     # 3. Clean table boundary before 1.3 / 1.4 / 1.5 headers and renumber 1.5 -> 1.4
     s = _hv_re.sub(r"(\|)\s*(#+\s*1\.[345]\s+)", r"\1\n\n\2", s)
-    s = s.replace("1.5 Inspector Field Audit Checklist", "1.4 Inspector Field Audit Checklist")
+    s = _hv_re.sub(r"(?:#+\s*)?1\.[45]\s+Inspector Field Audit Checklist", chr(10)*2 + "#### 1.4 Inspector Field Audit Checklist", s)
     return s.strip()
 
 def _hvf_scrub_obj(obj, _seen=None):
