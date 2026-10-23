@@ -119,6 +119,15 @@ def render_interactive_course(course_file: str):
                 st.markdown("##### 🛠️ Mandatory Maintenance Protocol")
                 st.success(selected_mod.get("maintenance_protocol", "Routine inspection required."))
 
+            if selected_mod.get("study_briefing") or selected_mod.get("worked_problem"):
+                st.markdown("---")
+                with st.expander(f"📖 Complete Classroom Study Manual, Pre-Flight Briefing & Worked Math: {selected_mod.get('name')}", expanded=True):
+                    if selected_mod.get("study_briefing"):
+                        st.markdown(selected_mod.get("study_briefing"))
+                    if selected_mod.get("worked_problem"):
+                        st.markdown("##### 🧮 Worked Engineering Verification & Field Calculation")
+                        st.code(selected_mod.get("worked_problem"), language="text")
+
     # 2. FORENSIC TEARDOWNS
     with academy_tabs[1]:
         st.markdown("### 🔬 Forensic Crash Investigation Chamber")
