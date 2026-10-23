@@ -2107,7 +2107,7 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
             raw_theory = raw_theory.split(cut_marker)[0].strip()
 
     eq_str = str(u_dict.get("equations") or u_dict.get("governing_eq") or "").strip()
-    eq_leg = str(u_dict.get("equation_legend") or "").strip()
+    eq_leg = str(u_dict.get("equation_legend") or "").strip().replace("Measured in `U.S. Customary Units`", f"Measured in `{u_dict.get('resolved_us_unit', u_dict.get('calc_unit', 'U.S. Customary Units'))}`")
     we_str = str(u_dict.get("worked_example") or u_dict.get("derivation") or "").strip()
     lab_str = str(u_dict.get("lab_protocol") or "").strip()
 
@@ -2163,7 +2163,7 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
         "",
         "**B. What Every Symbol Means in Plain English:**",
         f"* **Final Answer Unit Required in Sub-Tab 4:** **`{calc_unit}`**",
-        f"* **Symbol & Variable Guide:** {eq_leg if eq_leg else 'Each variable represents a direct physical measurement in U.S. Customary units (feet, inches, pounds, psi, °F, or RPM).'}",
+        f"{eq_leg if eq_leg else '* **Symbol & Variable Guide:** Each variable represents a direct physical measurement in U.S. Customary units (feet, inches, pounds, psi, °F, or RPM).'}",
         "",
         "**C. Why This Formula Works (Physical Common Sense):**",
         "* Every engineering equation is simply a balance scale comparing **Demand (how hard nature, traffic, heat, or electrical load is pushing on the system)** against **Capacity (how much strength, flow, or resistance the component was built to handle)**.",
