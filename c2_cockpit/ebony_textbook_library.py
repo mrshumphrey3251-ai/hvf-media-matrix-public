@@ -975,12 +975,9 @@ def _attach_beginner_aids(u_dict: dict, u_num: int):
         f"### {u_num}.0 Beginner's Plain-English Orientation: What You Will Learn & Key Terms Decoded",
         f"> **Welcome to Module {u_num:02d} ({u_dict['title']})!** You do **not** need prior engineering experience to master this module. Every technical term, government code, and math symbol used in this lesson is translated into plain English right here:",
         "",
-        "* **Why This Module Matters in the Real World:** In state infrastructure inspection under **Oklahoma Title 61**, we never guess whether a bridge, building roof, or highway is safe. We use drone cameras, lasers (**LiDAR**), heat sensors (**Infrared**), and sound waves (**Sonar/Impact-Echo**) to measure defects in **U.S. Customary Units** (**inches, feet, degrees Fahrenheit °F, pounds per square inch psi, and BTU/hr**), plug those measurements into a proven step-by-step formula, and lock the result into a tamper-proof database (**WORM Ledger**).",
-        "* **Key Acronyms Decoded for Beginners:**",
         "  * **NBI / NBIS:** *National Bridge Inventory / Inspection Standards* — The federal safety list and law covering every public bridge longer than **20.0 feet**.",
         "  * **ODOT & OMES CAP:** *Oklahoma Dept. of Transportation* (bridges/roads) & *Office of Management and Enterprise Services* (state buildings/roofs).",
         "  * **AASHTO & ASTM:** The national engineering boards that write the official U.S. inspection rulebooks.",
-        "  * **CS-1, CS-2, CS-3, CS-4 (Condition States):** The 1-to-4 health grade for bridge parts (**CS-1 = Good**, **CS-2 = Fair**, **CS-3 = Poor/Repair Needed**, **CS-4 = Severe/Emergency Closure**).",
         "  * **NDT (Non-Destructive Testing):** Finding hidden cracks, rust, or trapped water inside concrete/roofs using sensors *without* cutting or breaking the structure.",
         "  * **WORM & SHA-256:** *Write-Once-Read-Many* database sealed with a 64-character digital fingerprint (**SHA-256**) so inspection data cannot be faked or altered.",
         "---",
@@ -2200,6 +2197,63 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
         ])
 
     return u_dict
+
+# ==============================================================================
+# HVF EXECUTIVE TREATISE SANITIZER (DETERMINISTIC INDEX SLICER AT SECTION 1.1)
+# ==============================================================================
+import re as _hv_re
+
+def _hvf_scrub_str(s: str) -> str:
+    if not isinstance(s, str):
+        return s
+    # 1. Deterministic slice: if "1.0 Beginner" or "Key Acronyms Decoded" or "You do not need prior" is present,
+    # find the exact position of "1.1 " and slice from the beginning of that line!
+    if ("1.0 Beginner" in s or "Key Acronyms Decoded" in s or "You do not need prior" in s) and ("1.1 " in s):
+        idx_11 = s.find("1.1 ")
+        line_start = s.rfind("\n", 0, idx_11)
+        s = s[line_start + 1:] if line_start != -1 else s[idx_11:]
+
+    # 2. Strip "1.4 How the Engineering Math Works in Plain English" up to "1.5 Inspector Field Audit Checklist"
+    if "How the Engineering Math Works in Plain English" in s:
+        s = _hv_re.sub(
+            r"(?:#+|\*\*)*\s*1\.4\s+How the Engineering Math Works in Plain English.*?(?=(?:#+|\*\*)*\s*1\.[45]\s+Inspector Field Audit Checklist|\Z)",
+            "",
+            s,
+            flags=_hv_re.DOTALL
+        )
+
+    # 3. Clean table boundary before 1.3 / 1.4 / 1.5 headers and renumber 1.5 -> 1.4
+    s = _hv_re.sub(r"(\|)\s*(#+\s*1\.[345]\s+)", r"\1\n\n\2", s)
+    s = s.replace("1.5 Inspector Field Audit Checklist", "1.4 Inspector Field Audit Checklist")
+    return s.strip()
+
+def _hvf_scrub_obj(obj, _seen=None):
+    if _seen is None:
+        _seen = set()
+    oid = id(obj)
+    if oid in _seen:
+        return obj
+    if isinstance(obj, str):
+        return _hvf_scrub_str(obj)
+    if isinstance(obj, dict):
+        _seen.add(oid)
+        for k in list(obj.keys()):
+            obj[k] = _hvf_scrub_obj(obj[k], _seen)
+        return obj
+    if isinstance(obj, list):
+        _seen.add(oid)
+        for idx in range(len(obj)):
+            obj[idx] = _hvf_scrub_obj(obj[idx], _seen)
+        return obj
+    return obj
+
+for _gname, _gval in list(globals().items()):
+    if not _gname.startswith("__") and isinstance(_gval, (dict, list)):
+        _hvf_scrub_obj(_gval)
+
+_raw_get_course_units_exec = get_course_units
+def get_course_units(course_code: str):
+    return _hvf_scrub_obj(_raw_get_course_units_exec(course_code))
 
 # ==============================================================================
 # HVF SOVEREIGN EXTERNAL & OFFLINE AIR-GAPPED TEXTBOOK VAULT PORTAL

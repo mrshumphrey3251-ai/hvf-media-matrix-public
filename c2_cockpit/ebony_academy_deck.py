@@ -196,14 +196,6 @@ def render_academy_deck():
 
         with sub_t1:
             st.markdown(active_unit.get("beginner_primer", ""))
-            with st.expander("📖 Need to Look Up a Term, Acronym, U.S. Unit, or Math Symbol? (Click to Open Beginner's Quick-Reference Glossary)", expanded=False):
-                g_data = get_master_glossary_and_references(selected_code)
-                st.markdown("#### 1. Common U.S. Customary Engineering Units Used in This Course")
-                for u_item in g_data["units_guide"]:
-                    st.markdown(f"* **`{u_item['unit']}`** — {u_item['what']}. *(Real-World Benchmark: {u_item['benchmark']})*")
-                st.markdown("#### 2. Key Engineering & Statutory Terms Decoded")
-                for t_item in g_data["terms"]:
-                    st.markdown(f"* **{t_item['term']}** *({t_item['cat']})*: {t_item['def']}")
             st.markdown(active_unit["theory"])
             st.markdown(str(active_unit.get("deep_supplement", "")).replace(chr(10) + f"### {selected_unit_num}.4", chr(10) + chr(10) + f"### {selected_unit_num}.4").replace(f"|### {selected_unit_num}.4", "|" + chr(10) + chr(10) + f"### {selected_unit_num}.4"))
             st.info("👉 Proceed to **Sub-Tab 2 (🧮 1.0-Hr Mathematical Derivations & Worked Case)** after mastering the statutory and physical treatise above.")
