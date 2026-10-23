@@ -2408,17 +2408,39 @@ elif active_module == "📘 Omni-Industry Matrix":
             
             c_col1, c_col2 = st.columns([3, 2])
             with c_col1:
-                st.markdown("##### 📚 Accredited Technical Modules")
+                st.markdown("##### 📚 Accredited Technical Modules & Complete Study Manuals")
+                from hvf_verticals_engine import STUDY_MANUALS_12
                 for mod in curr_list:
-                    with st.expander(f"📌 {mod.get('module')}: {mod.get('title')} ({mod.get('hours', 40)} Hrs)", expanded=True):
-                        st.write(f"**Competency Standard:** {mod.get('competency', 'Mastery')}")
-                        st.write(f"**Certification Status:** :green[{mod.get('status', 'Certified')}]")
-                        mod_tracks = tracks_dict.get(mod.get('module'), {})
+                    _m_code = mod.get("module", "MOD")
+                    with st.expander(f"📌 {_m_code}: {mod.get('title')} ({mod.get('hours')} Hrs — Full Study & Briefing Manual)", expanded=True):
+                        st.write(f"**Competency Standard:** {mod.get('competency', 'Level-5 Mastery')} | **Certification Status:** :green[{mod.get('status', 'Certified')}]")
+                        mod_tracks = tracks_dict.get(_m_code, {})
                         if mod_tracks and "lessons" in mod_tracks:
-                            st.caption("Core Practicum Lessons:")
-                            for les in mod_tracks["lessons"]:
-                                st.write(f"  • {les}")
-                                
+                            st.caption("Core Practicum Syllabus: " + " • ".join(mod_tracks["lessons"]))
+                        _s_man = STUDY_MANUALS_12.get(_m_code) or mod.get("study_manual")
+                        if _s_man:
+                            _mt1, _mt2, _mt3 = st.tabs([
+                                "📖 1. Classroom Study Briefing",
+                                "🧮 2. Formula & Worked Field Math",
+                                "🛰️ 3. Step-by-Step Field SOP"
+                            ])
+                            with _mt1:
+                                st.markdown(_s_man["briefing"])
+                            with _mt2:
+                                st.code(_s_man["worked_math"], language="text")
+                            with _mt3:
+                                for _step_str in _s_man["field_sop"]:
+                                    st.markdown(f"- {_step_str}")
+                            _dl_md = f"# {_m_code}: {mod.get('title')} (40-Hour Study & Briefing Manual)\n\n{_s_man['briefing']}\n\n## Formula & Worked Field Math\n```text\n{_s_man['worked_math']}\n```\n\n## Step-by-Step Field SOP\n" + "\n".join([f"- {s}" for s in _s_man["field_sop"]])
+                            st.download_button(
+                                label=f"📥 Download {_m_code} Complete Study & Briefing Manual (.md)",
+                                data=_dl_md,
+                                file_name=f"{_m_code}_MASTER_STUDY_AND_BRIEFING_MANUAL.md",
+                                mime="text/markdown",
+                                key=f"dl_study_{_m_code}_{v_key}",
+                                use_container_width=True
+                            )
+
             with c_col2:
                 st.markdown("##### ⚡ Active Operational Sub-Verticals")
                 for sv in sub_verts:
