@@ -72,9 +72,9 @@ COURSE_TEXTBOOKS = {
     "AUT-01": {
         "title": "NHTSA / EPA OBD-II & CAN-Bus Technical Manual + OSHA 29 CFR 1910.147 Shop Safety Standard",
         "primary_url": "https://www.allcarmanuals.com",
-        "primary_label": "Open Free OEM Automotive & Truck Factory Service Manuals (1982-2026 Coverage ? 100% Free)",
+        "primary_label": "Open Free OEM Automotive & Truck Factory Service Manuals (1982-2026 Coverage \u2014 100% Free)",
         "secondary_url": "https://www.briggsandstratton.com/na/en_us/support/manuals.html",
-        "secondary_label": "Open Free Small-Engine & Lawnmower Manuals (Briggs / Honda / Kohler ? 100% Free)",
+        "secondary_label": "Open Free Small-Engine & Lawnmower Manuals (Briggs / Honda / Kohler \u2014 100% Free)",
         "offline_file": "AUT-01_Offline_Auto_Robotics_Manual.md",
         "directives": {
             1: ("Federal OBD-II / ISO 11898-2 High-Speed CAN Spec & OSHA 1910.147 LOTO Manual", "60.0 Ohms | V_diff | 1910.147", "Focus on parallel 120-Ohm termination resistance (R_bus = 60.0 Ohms), dominant differential voltage V_diff = V_CANH - V_CANL = 2.0V, and Portable NVIDIA Three-Brain Enclave signal isolation."),
@@ -154,7 +154,7 @@ FREE_OEM_MANUAL_DIRECTORY = [
     ("StartMyCar 1990-2026 Interactive OEM Fuse Box Diagrams, Wiring & Repair Portal (100% Free)", "https://www.startmycar.com", "Select any 1990-2026 Make, Model, and Year to interact directly with OEM fuse box diagrams, relay locations, wiring schematics, and repair guides (Zero Login / Zero Paywall)."),
     ("AllCarManuals 1982-2026 Free PDF Automotive Factory Service & Workshop Manuals", "https://www.allcarmanuals.com", "Select Vehicle Make and Model (including 2014-2026 late-model platforms) to download free PDF factory workshop manuals and service guides."),
     ("ProCarManuals Free Automotive Wiring Diagrams, Transmission & Engine Overhaul Manuals", "https://procarmanuals.com", "Browse and download free PDF factory engine overhaul manuals, automatic transmission hydraulic schematics, and OBD-II fault code charts."),
-    ("Gale ChiltonLibrary (1940-2026 Full OEM Factory Service Manuals, TSBs & Labor Times ? Free State Library Access)", "https://www.gale.com/c/chilton-library", "Provides complete 1940-2026 OEM service procedures, wiring diagrams, and ADAS/torque specs for free through any public library card."),
+    ("Gale ChiltonLibrary (1940-2026 Full OEM Factory Service Manuals, TSBs & Labor Times \u2014 Free State Library Access)", "https://www.gale.com/c/chilton-library", "Provides complete 1940-2026 OEM service procedures, wiring diagrams, and ADAS/torque specs for free through any public library card."),
     ("Briggs & Stratton Official Free PDF Engine & Lawnmower Manual Lookup (All Years through 2026)", "https://www.briggsandstratton.com/na/en_us/support/manuals.html", "Enter your engine Model-Type-Code stamped on the valve cover or blower housing to download free illustrated parts lists and repair manuals."),
     ("Kohler Engines Official Free Service & Overhaul Manual Portal (Carbureted & 2014-2026 EFI)", "https://kohlerpower.com/en/engines/manuals", "Select Engine Series (Command PRO, Courage, Confidant EFI, KT7000) to open the free PDF Service & Overhaul Manual with full torque and electrical specs.")
 ]
@@ -163,7 +163,7 @@ BUILTIN_REPAIR_PROCEDURES = {
     "2014-2026 Late-Model Auto/Truck: GDI High-Pressure Fuel System (P0087), Security Gateway (SGW) & EPB Service": (
         "1. **2018-2026 Security Gateway (SGW) Diagnostic Access:** On `2018-2026` FCA/Ram, Ford, GM (Global B / VIP), and Toyota platforms, the SGW module blocks bidirectional active tests (`0x2E`/`0x31`) and code clearing at the 16-pin OBD-II port unless you either connect a **12+8 SGW Bypass Adapter** directly at the SGW harness or authenticate via **SAE J2534 / AutoAuth**.\n"
         "2. **2014-2026 GDI High-Pressure Fuel Rail Depressurization (`580 - 5,075 psi`):** NEVER crack open a GDI stainless fuel rail line immediately after shutdown! Pull the Low-Pressure Fuel Pump (LPFP) relay/fuse and run the engine until it stalls (or let cool for 1 hour), wear ANSI Z87.1 eye protection, wrap the flare nut with a shop towel to absorb residual pressure, and **always install a new single-use stainless steel high-pressure line** torqued to `22 - 28 ft-lbs`.\n"
-        "3. **2014-2026 Electronic Parking Brake (EPB) Rear Pad Replacement:** NEVER force or C-clamp a rear caliper piston with an electric EPB actuator motor! Command **'Enter Brake Pad Maintenance / Retract Mode'** via scan tool (`UDS Routine 0x31`)?listen for the stepper motor to fully unwind for 8 seconds?then push the piston straight in (do not twist), install pads, pump brake pedal firm, and command **'Exit EPB Maintenance Mode'**."
+        "3. **2014-2026 Electronic Parking Brake (EPB) Rear Pad Replacement:** NEVER force or C-clamp a rear caliper piston with an electric EPB actuator motor! Command **'Enter Brake Pad Maintenance / Retract Mode'** via scan tool (`UDS Routine 0x31`) \u2014 listen for the stepper motor to fully unwind for 8 seconds \u2014 then push the piston straight in (do not twist), install pads, pump brake pedal firm, and command **'Exit EPB Maintenance Mode'**."
     ),
     "Small-Engine / Lawnmower (1990-2026): No-Spark & Magneto Ignition Coil / EFI Diagnosis (Briggs / Honda / Kohler)": (
         "1. **Safety Lockout:** Disconnect spark plug high-tension lead and ground it away from the plug; remove blower housing/recoil starter (`8mm` or `10mm` bolts).\n"

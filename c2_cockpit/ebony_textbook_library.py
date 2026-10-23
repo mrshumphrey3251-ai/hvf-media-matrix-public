@@ -2222,9 +2222,9 @@ def _hvf_scrub_str(s: str, is_auto: bool = False) -> str:
     s = s.replace("Bumper-to-Bumper Beginner & Master Engineering Theory //", "Sovereign SAE / ISO Master Engineering Specification //")
     s = s.replace("Every technician—from a first-time beginner opening the hood to a Level-5 Master Engineer—must first physically identify the system on the vehicle before touching a tool.", "Before initiating diagnostic instrumentation or mechanical disassembly, verify the physical architecture and service test points of the subsystem.")
     s = s.replace("Every technician?from a first-time beginner opening the hood to a Level-5 Master Engineer?must first physically identify the system on the vehicle before touching a tool.", "Before initiating diagnostic instrumentation or mechanical disassembly, verify the physical architecture and service test points of the subsystem.")
-    s = s.replace("1. Visual Component Landmark (Where It Is & What It Looks Like):", "#### 1.1 Subsystem Physical Architecture & Service Test-Point Topology")
-    s = s.replace("2. Mandatory Life-Safety & Vehicle Protection:", "#### 1.2 Mandatory OSHA 1910.147 Life-Safety & Chassis Stabilization Protocol")
-    s = s.replace("3. Governing SAE / ISO Mathematical Formulation:", "#### 1.2.1 Governing SAE / ISO Mathematical Formulation & Three-Brain Interlock")
+    s = s.replace("1. Visual Component Landmark (Where It Is & What It Looks Like):", chr(10) + chr(10) + "#### 1.1 Subsystem Physical Architecture & Service Test-Point Topology" + chr(10))
+    s = s.replace("2. Mandatory Life-Safety & Vehicle Protection:", chr(10) + chr(10) + "#### 1.2 Mandatory OSHA 1910.147 Life-Safety & Chassis Stabilization Protocol" + chr(10))
+    s = s.replace("3. Governing SAE / ISO Mathematical Formulation:", chr(10) + chr(10) + "#### 1.2.1 Governing SAE / ISO Mathematical Formulation & Three-Brain Interlock" + chr(10))
     if is_auto and ("STR-03 // Module" in s or "200 kHz Bathymetric Sonar" in s):
         idx_13 = s.find("1.3 Comprehensive Engineering Reference Matrix")
         if idx_13 != -1:
