@@ -155,7 +155,6 @@ def render_academy_deck():
 
     # CHAPTER 1: 10-MODULE INTERACTIVE ENGINEERING WORKSTATION
     with tab_ch1:
-        import importlib, ebony_textbook_library as _etl; importlib.reload(_etl); _etl.render_textbook_link_portal(curr_code if "curr_code" in locals() else "STR-01")
         st.markdown("### 🏛️ 10-Module Accredited Engineering Curriculum Navigator (4.0 Credit Hours per Module)")
         u_col1, u_col2 = st.columns([3, 1])
         with u_col1:

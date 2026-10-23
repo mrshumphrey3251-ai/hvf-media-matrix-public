@@ -60,7 +60,7 @@ def render_auto_academy_deck():
         "💥 Ch 3: Forensic Shop & Engine Failure Reconstructions",
         "🎬 Ch 4: 4-Phase Shop SOPs & 16-Zone Repair Manual",
         "📝 Ch 5: 3-Tier ASE / State Certification Exam (155 Qs)",
-        "📖 Ch 6: Beginner's Tool, Symbol & Automotive Glossary"
+        "📖 Ch 6: SAE/ISO Nomenclature, Shop Tooling & Standards Registry"
     ])
 
     with ch1:
@@ -209,7 +209,7 @@ def render_auto_academy_deck():
                 st.success(f"🏅 Official Master Credential Issued: `{c_info['credential_title']}` (WORM SHA-256: `{c_info['sha256_seal'][:16]}...`)")
 
     with ch6:
-        st.markdown("### 📖 Chapter 6: Beginner's Automotive, Tractor, Small-Engine & CAN-Bus Glossary")
+        st.markdown("### 📖 Chapter 6: Master Engineering Automotive, Tractor, Small-Engine & CAN-Bus Glossary")
         g_all = etl.get_master_glossary_and_references("AUT-01")
         sq = st.text_input("🔍 Search Any Automotive, Small-Engine, Tool, or CAN-Bus Term:", key="aa_ch6_search")
         for item in g_all["terms"]:

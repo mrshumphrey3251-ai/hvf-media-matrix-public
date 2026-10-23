@@ -2189,17 +2189,58 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
     return u_dict
 
 # ==============================================================================
-# HVF EXECUTIVE TREATISE SANITIZER (UNCONDITIONAL TABLE & HEADER NORMALIZER)
+# HVF EXECUTIVE TREATISE SANITIZER (UNCONDITIONAL TABLE & DOMAIN NORMALIZER)
 # ==============================================================================
 import re as _hv_re
 
-def _hvf_scrub_str(s: str) -> str:
+AUT01_ENGINEERING_MATRIX = """#### 1.3 Comprehensive SAE / ISO Diagnostic Reference Matrix & Shop Tolerance Standards (AUT-01)
+
+To satisfy the **4.0 Accredited Credit Hours (0.4 CEUs / 4.0 PELS PDHs)** statutory and shop certification requirement under **SAE J1979, SAE J1939, ISO 11898, ANSI/OPEI B71.1, and OSHA 29 CFR 1910.147**, the certified Master Technician and Diagnostic Engineer must enforce the quantitative electrical, mechanical, and thermodynamic tolerances below:
+
+| Diagnostic Parameter / Audit Gate | Governing Standard | Allowable Shop Tolerance | Mandatory Rejection / Fault Trigger | Statutory Recordation Format |
+| :--- | :--- | :--- | :--- | :--- |
+| **High-Speed CAN-Bus Termination** | ISO 11898-2 / SAE J1939-11 | `60.0 Ohms +/- 2.0 Ohms` (Key-Off) | `< 50 Ohms` (Short/3rd Terminator) or `~120 Ohms` (Open Terminator) | DMM Resistance Log + Oscilloscope Differential Capture |
+| **CAN Differential Signal Integrity** | ISO 11898-2 (500 kbps / 250 kbps) | `V_CANH = 3.5V`, `V_CANL = 1.5V` (`V_diff = 2.0V`) | Dominant `V_diff < 1.5V` or Recessive bias drift `> +/- 0.35V` | Portable NVIDIA Three-Brain Frame Audit Ledger |
+| **Threaded Fastener Torque Preload** | SAE J429 / ISO 898-1 / ASME B107.300 | `+/- 1.5%` Digital Torque Angle Wrench | Uncalibrated wrench (`> 12 mos`), lubricated threads on dry spec, or yield stretch | WORM Shop Torque Sign-Off Packet (`T = K * D * F / 12`) |
+| **Combustion Stoichiometry & Fuel Trim** | SAE J1979 (OBD-II Mode $01/$06) | `STFT + LTFT` within `+/- 8.0%` (`Lambda = 1.00 +/- 0.02`) | Total Fuel Trim `> +/- 15.0%` or Crankcase/Cylinder leakdown `> 12.0%` | Wideband AFR / Mode $06 freeze-frame telemetry |
+| **Hazardous Energy Lockout/Tagout** | OSHA 29 CFR 1910.147 / NFPA 70E | `0.0V` Verified Dead-Bus + Physical Hasps | Unchocked wheels, hydraulic jack without locked stands, or live 12V/48V/HV bus | Cryptographic SHA-256 WORM Safety Interlock (`matrix_ledger.db`) |
+
+#### 1.4 Master Technician Shop Audit Checklist & QA/QC Sign-Off Protocol
+
+Before advancing to **Sub-Tab 4 (Calculation Gate & 20-Question Milestone Exam)**, execute and verify each of the following 6 shop QA/QC steps:
+* **[STEP 01 — OSHA 1910.147 LOTO & Mechanical Stabilization]:** Engage parking brake, chock wheels fore-and-aft, support chassis on rated mechanical jack stands, and disconnect the negative (`-`) battery terminal or apply high-voltage LOTO padlock before component disassembly.
+* **[STEP 02 — Instrument Zeroing & Lead Verification]:** Zero digital multimeter (DMM) lead resistance (`< 0.1 Ohms`), verify oscilloscope probe attenuation (`1x / 10x`), and verify NIST calibration date on digital torque transducers.
+* **[STEP 03 — Baseline Bus & Sensor Telemetry Capture]:** Record key-off CAN-Bus termination resistance (`R_bus = 60.0 Ohms`), key-on battery bus voltage (`>= 12.4V` static), and full SAE J1979/J1939 DTC + freeze-frame parameters prior to clearing codes.
+* **[STEP 04 — First-Principles Diagnostic Isolation]:** Execute voltage-drop testing under load (`<= 100 mV` per connection), differential waveform inspection, compression/leakdown testing, or hydraulic pressure-flow auditing to isolate the root physical fault.
+* **[STEP 05 — Quantitative Engineering Calculation]:** Solve the governing mechanical, electrical, or thermodynamic formulation for the active unit using measured shop values in U.S. Customary / SAE units (`Ohms`, `Volts`, `Amps`, `ft-lbs`, `psi`, `HP`, `CFM`).
+* **[STEP 06 — WORM Cryptographic Sealing]:** Commit post-repair verification waveforms, torque preload logs, and calculated diagnostic parameters to `matrix_ledger.db` under **CAGE 1AHA8 / UEI S1M4ENLHTDH5**."""
+
+def _hvf_scrub_str(s: str, is_auto: bool = False) -> str:
     if not isinstance(s, str):
         return s
+    # 1. Strip any "Bumper-to-Bumper Beginner & Master Engineering Theory //" or "from a first-time beginner opening the hood"
+    s = s.replace("Bumper-to-Bumper Beginner & Master Engineering Theory //", "Sovereign SAE / ISO Master Engineering Specification //")
+    s = s.replace("Every technician—from a first-time beginner opening the hood to a Level-5 Master Engineer—must first physically identify the system on the vehicle before touching a tool.", "Before initiating diagnostic instrumentation or mechanical disassembly, verify the physical architecture and service test points of the subsystem.")
+    s = s.replace("Every technician?from a first-time beginner opening the hood to a Level-5 Master Engineer?must first physically identify the system on the vehicle before touching a tool.", "Before initiating diagnostic instrumentation or mechanical disassembly, verify the physical architecture and service test points of the subsystem.")
+    s = s.replace("1. Visual Component Landmark (Where It Is & What It Looks Like):", "#### 1.1 Subsystem Physical Architecture & Service Test-Point Topology")
+    s = s.replace("2. Mandatory Life-Safety & Vehicle Protection:", "#### 1.2 Mandatory OSHA 1910.147 Life-Safety & Chassis Stabilization Protocol")
+    s = s.replace("3. Governing SAE / ISO Mathematical Formulation:", "#### 1.2.1 Governing SAE / ISO Mathematical Formulation & Three-Brain Interlock")
+
+    # 2. If this is an AUT-01 string that accidentally received the STR-03 Highway/Drone 1.3 & 1.4 matrix, replace it with AUT01_ENGINEERING_MATRIX!
+    if ("STR-03 // Module" in s or "200 kHz Bathymetric Sonar" in s) and ("SAE J1979" in s or "CAN-Bus" in s or "Jack Stands" in s or "60-Ohm" in s or is_auto):
+        idx_13 = s.find("1.3 Comprehensive Engineering Reference Matrix")
+        if idx_13 != -1:
+            line_s = s.rfind(chr(10), 0, idx_13)
+            cut_at = line_s if line_s != -1 else idx_13
+            s = s[:cut_at].rstrip() + chr(10) + chr(10) + AUT01_ENGINEERING_MATRIX
+
+    # 3. Strip any 1.0 Beginner prefix
     if "1.1 " in s and ("1.0 " in s or "Welcome to Module" in s or "Key Acronyms" in s):
         idx_11 = s.find("1.1 ")
         line_start = s.rfind(chr(10), 0, idx_11)
         s = s[line_start + 1:] if line_start != -1 else s[idx_11:]
+
+    # 4. Strip 1.4 Plain-English Math
     if "How the Engineering Math Works" in s or "4-Step Field Logic" in s:
         s = _hv_re.sub(
             r"(?:#+|\*\*)*\s*1\.4\s+How the Engineering Math.*?(?=(?:#+|\*\*)*\s*1\.[45]\s+Inspector Field Audit Checklist|\Z)",
@@ -2207,42 +2248,45 @@ def _hvf_scrub_str(s: str) -> str:
             s,
             flags=_hv_re.DOTALL
         )
+
+    # 5. Unconditionally guarantee two newlines before #### 1.4 Inspector Field Audit Checklist
     s = s.replace("1.5 Inspector Field Audit Checklist", "1.4 Inspector Field Audit Checklist")
-    # Unconditionally guarantee two newlines before #### 1.4 Inspector Field Audit Checklist so it never glues to the 1.3 table!
     s = _hv_re.sub(
-        r"\|\s*(?:#+\s*)?1\.4\s+Inspector Field Audit Checklist",
-        "|" + chr(10) + chr(10) + "#### 1.4 Inspector Field Audit Checklist",
+        r"(\|\s*)(?:#+\s*)?(1\.4\s+Inspector Field Audit Checklist)",
+        "|" + chr(10) + chr(10) + r"#### ",
         s
     )
     return s.strip()
 
-def _hvf_scrub_obj(obj, _seen=None):
+def _hvf_scrub_obj(obj, _seen=None, is_auto=False):
     if _seen is None:
         _seen = set()
     oid = id(obj)
     if oid in _seen:
         return obj
     if isinstance(obj, str):
-        return _hvf_scrub_str(obj)
+        return _hvf_scrub_str(obj, is_auto=is_auto)
     if isinstance(obj, dict):
         _seen.add(oid)
+        auto_flag = is_auto or ("AUT-01" in str(obj.get("code", "")) or "SAE" in str(obj.get("title", "")))
         for k in list(obj.keys()):
-            obj[k] = _hvf_scrub_obj(obj[k], _seen)
+            obj[k] = _hvf_scrub_obj(obj[k], _seen, is_auto=auto_flag)
         return obj
     if isinstance(obj, list):
         _seen.add(oid)
         for idx in range(len(obj)):
-            obj[idx] = _hvf_scrub_obj(obj[idx], _seen)
+            obj[idx] = _hvf_scrub_obj(obj[idx], _seen, is_auto=is_auto)
         return obj
     return obj
 
 for _gname, _gval in list(globals().items()):
     if not _gname.startswith("__") and isinstance(_gval, (dict, list)):
-        _hvf_scrub_obj(_gval)
+        _hvf_scrub_obj(_gval, is_auto=("AUT" in _gname.upper() or "AUTO" in _gname.upper()))
 
 _raw_get_course_units_exec = get_course_units
 def get_course_units(course_code: str):
-    return _hvf_scrub_obj(_raw_get_course_units_exec(course_code))
+    is_a = "AUT" in str(course_code).upper()
+    return _hvf_scrub_obj(_raw_get_course_units_exec(course_code), is_auto=is_a)
 
 # ==============================================================================
 # HVF SOVEREIGN EXTERNAL & OFFLINE AIR-GAPPED TEXTBOOK VAULT PORTAL
@@ -2256,49 +2300,80 @@ OFFLINE_VAULT_DIR.mkdir(parents=True, exist_ok=True)
 
 DEFAULT_TEXTBOOK_LINKS = {
     "STR-01": {
-        "title": "Non-Destructive Evaluation of Reinforced Concrete and Timber Structures & FHWA/NHI Bridge Inspection Reference Manual (BIRM)",
+        "title": "Non-Destructive Evaluation of Reinforced Concrete and Timber Structures & FHWA/NHI Bridge Inspection Reference Manual (BIRM, FHWA-NHI-12-049)",
         "primary_url": "https://www.fhwa.dot.gov/bridge/nbis.cfm",
         "secondary_url": "https://www.astm.org/products-services/standards-and-publications.html",
         "offline_file": "STR-01_Offline_NDE_Master_Manual.md",
-        "syllabus_chapters": "Ch 1: RC Steel Corrosion (ASTM C876) | Ch 2: Alkali-Silica Reaction (ASR) | Ch 3: Acoustic Deck Testing (ASTM D4580/C1383) | Ch 4-8: Timber NDE & Radioscopy | Ch 9: NBIS Visual Inspection | Ch 10: Acoustic Emission | Ch 11: VR & Photogrammetry"
+        "syllabus_chapters": "Ch 1: RC Steel Corrosion (ASTM C876) | Ch 2: Alkali-Silica Reaction (ASR) | Ch 3: Acoustic Deck Testing (ASTM D4580/C1383) | Ch 4-8: Timber NDE & Radioscopy | Ch 9: NBIS Visual Inspection | Ch 10: Acoustic Emission | Ch 11: VR & Photogrammetry",
+        "unit_directives": {
+            1: ("FHWA BIRM Ch. 1?2 & 23 CFR Part 650 Subpart C", "Memorize the 20.0-ft NBI bridge span definition, 24-month Routine vs. FCM inspection intervals, Sufficiency Rating (S1+S2+S3-S4) weights, and 18 U.S.C. 1001 criminal attestation rules."),
+            2: ("NDE Treatise Ch. 9 & AASHTO MBEI Section 3 (Element-Level Condition States)", "Focus on optical Ground Sampling Distance (GSD <= 0.004 in/px for FCMs), lens focal-length standoff equations, and distinguishing Condition States CS-1 through CS-4."),
+            3: ("NDE Treatise Ch. 1 (Sections 1.1?1.4: Half-Cell, LPR & Resistivity) & Ch. 3 (Impact-Echo)", "Focus on ASTM C876 Cu/CuSO4 thresholds (-200 mV / -350 mV CSE), Stern-Geary icorr, and P-wave delamination depth D = (C_p * delta_t) / 2."),
+            4: ("FHWA BIRM Ch. 7 (Steel Superstructures) & AASHTO LRFD Bridge Design Sec. 6", "Focus on Mode I Stress Intensity Factor K_I = Y * sigma * sqrt(pi * a), fracture toughness K_Ic limits, and ultrasonic thickness gauging of pack-rust gusset plates."),
+            5: ("FHWA HEC-18 (Evaluating Scour at Bridges, 5th Ed.) Ch. 5?7", "Focus on the CSU Pier Scour Equation (y_s / y_1 = 2.0 * K1 * K2 * K3 * (a/y_1)^0.65 * Fr_1^0.43), Froude number calculation, and 200 kHz bathymetric sonar draft compensation."),
+            6: ("FHWA BIRM Ch. 6 (Reinforced & Prestressed Concrete) & ACI 318", "Focus on concrete modulus of rupture f_r = 7.5 * sqrt(f'_c), shear-crack inclination angles, and prestressed strand corrosion/hydrogen embrittlement limits."),
+            7: ("FHWA BIRM Ch. 10 (Bearings & Substructures) & AASHTO LRFD Sec. 14", "Focus on elastomeric bearing pad shear strain gamma = Delta_T / h_rt (<= 0.50 limit), thermal deck expansion Delta_L = alpha * L * Delta_T, and anchor-bolt shear."),
+            8: ("ASPRS Positional Accuracy Standards & NDE Treatise Ch. 11 (3D Photogrammetry & LiDAR)", "Focus on GPS-denied 3D LiDAR SLAM drift bounds, EKF3 covariance limits, and point-cloud vertical deflection measurement (L/800 AASHTO serviceability limit)."),
+            9: ("NDE Treatise Ch. 2 (Alkali-Silica Reaction) & ASTM C1153 (Infrared Deck Thermography)", "Focus on diurnal solar loading windows, minimum thermal contrast Delta_T >= +3.6 deg F (+2.0 deg C), and convective wind-stripping abort thresholds (< 15 mph)."),
+            10: ("Oklahoma Title 61 / HB 2992 & FIPS 180-4 Cryptographic Evidence Standards", "Focus on compiling the PE-stamped Emergency Closure Docket, Benefit-Cost Ratio (BCR), and verifying the 64-character SHA-256 WORM ledger seal.")
+        }
     },
     "ENV-01": {
-        "title": "ASTM C1153 / D7954 Building Envelope Thermography & OMES Title 61 Facility Audit Manual",
+        "title": "ASTM C1153 / D7954 Building Envelope Thermography, ASHRAE 90.1 & OMES Title 61 Facility Audit Manual",
         "primary_url": "https://www.astm.org",
         "secondary_url": "https://omes.ok.gov/services/construction-and-properties",
         "offline_file": "ENV-01_Offline_Envelope_Manual.md",
-        "syllabus_chapters": "Radiometric LWIR Roof Moisture Mapping | Facade Spalling & Masonry Tie-Back NDE | ASHRAE 90.1 Thermal Envelope Auditing"
+        "syllabus_chapters": "Ch 1: OMES CAP Title 61 Governance | Ch 2: Planck's Law & Emissivity | Ch 3: ASTM C1153 Roof Moisture | Ch 4: ASHRAE 90.1 U-Factor | Ch 5-10: Psychrometrics, Air Leakage (ASTM E779), Facade NDE & WORM Docket"
     },
     "PAV-01": {
-        "title": "ASTM D6433 Pavement Condition Index (PCI) & ODOT TAMP Corridor Profilometry Manual",
+        "title": "ASTM D6433 Pavement Condition Index (PCI), AASHTO R 86 & ODOT TAMP Corridor Profilometry Manual",
         "primary_url": "https://www.fhwa.dot.gov/pavement/",
         "secondary_url": "https://oklahoma.gov/odot.html",
         "offline_file": "PAV-01_Offline_Pavement_Manual.md",
-        "syllabus_chapters": "Alligator Fatigue vs. Transverse Cracking | Wheel-Path Rutting Hydroplaning | Right-of-Way Culvert LiDAR Profiling"
+        "syllabus_chapters": "Ch 1: 23 CFR 515 TAMP & ASTM D6433 | Ch 2: PCI Deduct Value Curves | Ch 3: IRI Quarter-Car Profilometry | Ch 4: Rut Depth Hydroplaning | Ch 5-10: FWD Backcalculation, ESALs, Drainage & ADA PROWAG"
     },
     "AUT-01": {
-        "title": "SAE J1939 / OBD-II CAN-Bus Diagnostics, Small-Engine & EBONY-RTOS Robotic Actuator Service Manual",
+        "title": "SAE J1979 / J1939 CAN-Bus Diagnostics, ASE Master Technician Series & ANSI B71.1 Small-Engine Service Manual",
         "primary_url": "https://www.sae.org/standards",
         "secondary_url": "https://www.osha.gov/control-hazardous-energy",
         "offline_file": "AUT-01_Offline_Auto_Robotics_Manual.md",
-        "syllabus_chapters": "OSHA 1910.147 LOTO Life-Safety | 4-Stroke Compression, Ignition & Fuel Stoichiometry | SAE J1939 CAN-Bus & 36.75ns Robotic Guillotine"
+        "syllabus_chapters": "Ch 1: SAE J1979/ISO 11898 CAN-Bus (60-Ohm) | Ch 2: 4-Stroke Otto/Diesel Compression & Leakdown | Ch 3: Wideband Lambda & Fuel Trim | Ch 4: Charging/Starting Voltage Drop | Ch 5-10: Hydraulics, 2-Stroke/Small-Engine, Brakes, HVAC & Three-Brain Interlock",
+        "unit_directives": {
+            1: ("ISO 11898-2 High-Speed CAN Spec & SAE J1979 / J1939 Physical Layer Manual", "Focus on parallel 120-Ohm termination resistance (R_bus = 60.0 Ohms), dominant differential voltage V_diff = V_CANH - V_CANL = 2.0V, and OSHA 1910.147 LOTO chassis stabilization."),
+            2: ("ASE A1/A2 Engine Repair Manual & Heywood Internal Combustion Engine Fundamentals Ch. 2", "Focus on Swept Displacement V_d = (pi/4)*B^2*S*N, Static Compression Ratio CR = (V_d + V_c)/V_c, and cylinder differential leakdown limits (<= 10-12%)."),
+            3: ("SAE J1979 OBD-II Mode $01/$06 Fuel System Spec & Bosch Automotive Handbook (Fuel Management)", "Focus on Stoichiometric Air-Fuel Ratio (14.7:1 gasoline / 14.5:1 diesel), Lambda equivalence ratio, and combined Short-Term + Long-Term Fuel Trim (STFT + LTFT) fault thresholds."),
+            4: ("SAE J537 Storage Battery Standards & Heavy-Duty Starting/Charging Diagnostics Manual", "Focus on Ohm's Law parasitic draw (< 50 mA), starter-circuit maximum allowable voltage drop (<= 0.50V total cable drop under cranking load), and alternator ripple (< 50 mV AC)."),
+            5: ("ISO 4413 Hydraulic Fluid Power & Mobile Agricultural Tractor Hydraulics Manual", "Focus on Pascal's Law actuator force F = P * A, hydraulic pump volumetric efficiency, and high-pressure pinhole fluid-injection life-safety lockout."),
+            6: ("ANSI/OPEI B71.1 Commercial Turf/Small-Engine Safety Standard & 2-Stroke/4-Stroke Service Manual", "Focus on magneto ignition air-gap (0.010-0.014 in), 2-stroke fuel-to-oil mixing ratios (50:1 = 2.6 fl oz oil per gallon), and blade tip speed safety limits (<= 19,000 ft/min)."),
+            7: ("FMVSS 105 / 121 Hydraulic & Air Brake Systems Manual", "Focus on rotor minimum machine-to/discard thickness tolerances, lateral runout (<= 0.002 in), and dual-circuit master cylinder hydraulic pressure ratios."),
+            8: ("SAE J639 Mobile Air Conditioning Standards & EPA Section 609 Refrigerant Recovery Manual", "Focus on R-134a / R-1234yf pressure-temperature saturation relationships, superheat/subcooling diagnostics, and manifold gauge high/low-side fault isolation."),
+            9: ("SAE J429 / ISO 898-1 Fastener Metallurgy & Torque-Tension Engineering Manual", "Focus on the Torque-Preload equation T = K * D * F / 12, dry vs. lubricated K-factor reductions, and extracting sheared bolts without damaging parent threads."),
+            10: ("EBONY-RTOS Hardware Guillotine Spec & ISO 26262 ASIL-D Functional Safety Manual", "Focus on the 36.75 ns hardware safety interlock, CAN-Bus command authentication, and WORM cryptographic shop sign-off.")
+        }
     }
 }
 
 def _ensure_default_offline_manuals():
     for k, meta in DEFAULT_TEXTBOOK_LINKS.items():
         fpath = OFFLINE_VAULT_DIR / meta["offline_file"]
-        if not fpath.exists():
-            content = (
-                f"# {meta['title']} (LOCAL OFFLINE AIR-GAP EDITION)\n"
-                f"- **Course Code:** `{k}` | **Sovereign Air-Gap Vault:** `c2_cockpit/offline_textbooks/{meta['offline_file']}`\n"
-                f"- **Governing Authority:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | OK Title 61)\n\n"
-                f"## Covered Syllabus & Governing Standards\n{meta['syllabus_chapters']}\n\n"
-                f"## Offline Field Reference Notes\n"
-                f"This local file is stored permanently on your NVMe/SSD inside `c2_cockpit/offline_textbooks/` so it remains 100% accessible when operating in **Offline (Sovereign Fortress Air-Gap)** mode without internet connectivity.\n"
-                f"- To attach a full 500-page commercial `.pdf` textbook (such as the FHWA BIRM PDF or NDE Treatise PDF) for offline field use, simply upload the `.pdf` using the **Offline Vault Manager** in the portal or copy any `.pdf` into `c2_cockpit/offline_textbooks/`."
-            )
-            fpath.write_text(content, encoding="utf-8")
+        lines = [
+            f"# {meta['title']} (LOCAL OFFLINE AIR-GAP EDITION)",
+            f"- **Course Code:** `{k}` | **Sovereign Air-Gap Vault:** `c2_cockpit/offline_textbooks/{meta['offline_file']}`",
+            f"- **Governing Authority:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | OK Title 61)",
+            "",
+            "## Covered Syllabus & Governing Standards",
+            meta["syllabus_chapters"],
+            ""
+        ]
+        if "unit_directives" in meta:
+            lines.append("## Module-by-Module Reading & Exam Focus Directives (Units 01 - 10)")
+            for u_idx, (ch_ref, focus_txt) in sorted(meta["unit_directives"].items()):
+                lines.append(f"- **Unit {u_idx:02d} — Assigned Reading:** `{ch_ref}`  ")
+                lines.append(f"  *What to Focus On for the Exam Gate:* {focus_txt}")
+            lines.append("")
+        lines.append("## Offline Field Reference Notes")
+        lines.append("This local file is stored permanently on your NVMe/SSD inside `c2_cockpit/offline_textbooks/` so it remains 100% accessible when operating in **Offline (Sovereign Fortress Air-Gap)** mode without internet connectivity.")
+        fpath.write_text(chr(10).join(lines), encoding="utf-8")
 
 def load_textbook_links() -> dict:
     _ensure_default_offline_manuals()
@@ -2316,7 +2391,7 @@ def load_textbook_links() -> dict:
             pass
     return dict(DEFAULT_TEXTBOOK_LINKS)
 
-def render_textbook_link_portal(course_code: str = "STR-01"):
+def render_textbook_link_portal(course_code: str = "STR-01", active_unit: dict = None, unit_index: int = 1):
     import streamlit as st
     links = load_textbook_links()
     key = "STR-01"
@@ -2329,10 +2404,36 @@ def render_textbook_link_portal(course_code: str = "STR-01"):
     if not local_path.exists():
         _ensure_default_offline_manuals()
 
+    # Determine active unit title, formula, and specific reading directive
+    u_title = f"Unit {unit_index:02d}"
+    u_formula = ""
+    if isinstance(active_unit, dict):
+        u_title = active_unit.get("title", u_title)
+        u_formula = active_unit.get("formula", "")
+        # Try to infer unit number (1..10) from title like "Unit 03:"
+        m_u = _hv_re.search(r"Unit\s+0?([0-9]+)", u_title)
+        if m_u:
+            unit_index = int(m_u.group(1))
+
+    directives_map = meta.get("unit_directives", {})
+    if unit_index in directives_map:
+        assigned_ch, focus_summary = directives_map[unit_index]
+    else:
+        assigned_ch = f"{meta['title']} — Chapter/Section {unit_index:02d}"
+        focus_summary = f"Master the statutory clauses, sensor calibration tolerances (Section 1.3), and governing mathematical formulation for {u_title}."
+
     with st.container():
         st.markdown(f"### \U0001f4da Accredited Reference Textbook Portal (`{key}` \u2014 Online & Air-Gap Offline Ready)")
         st.caption(f"**Assigned Reference Volume:** {meta['title']}")
-        st.info(f"**Covered Textbook Syllabus:** {meta['syllabus_chapters']}")
+
+        # NEW: Exact Module-Specific Study Directive & Exam Focus Box!
+        st.warning(
+            f"\U0001f3af **MANDATORY READING & EXAM FOCUS DIRECTIVE FOR ACTIVE MODULE ({u_title}):**\n"
+            f"- **1. Exact Textbook Chapters / Standards to Read:** `{assigned_ch}`\n"
+            f"- **2. Core Engineering Concepts & Thresholds to Focus On:** {focus_summary}\n"
+            + (f"- **3. Governing Equation Tested in Sub-Tab 4 Calculation Gate:** `{u_formula.splitlines()[0]}`\n" if u_formula else "")
+            + "- **4. Required Mastery Sequence:** Read the assigned textbook chapter above + Sections `1.1`–`1.4` below \u2192 Work the derivation in **Sub-Tab 2** \u2192 Execute the field/shop SOP in **Sub-Tab 3** \u2192 Pass the **Sub-Tab 4** Calculation Gate & 20-Question Exam (`>= 90%`)."
+        )
 
         c1, c2, c3 = st.columns([2, 2, 3])
         if local_path.exists():
@@ -2343,7 +2444,7 @@ def render_textbook_link_portal(course_code: str = "STR-01"):
                 data=raw_bytes,
                 file_name=local_path.name,
                 mime=mime_t,
-                key=f"dl_off_tb_{key}"
+                key=f"dl_off_tb_{key}_{unit_index}"
             )
         c2.markdown(f"\U0001f310 **[Open Online Reference Manual \u2197]({meta['primary_url']})**  \n\U0001f517 **[Open Standards Library \u2197]({meta['secondary_url']})**")
 
@@ -2351,7 +2452,7 @@ def render_textbook_link_portal(course_code: str = "STR-01"):
             up_pdf = st.file_uploader(
                 f"Drop any full Textbook (.pdf or .md) into {key} Offline Vault:",
                 type=["pdf", "md", "txt"],
-                key=f"up_pdf_{key}"
+                key=f"up_pdf_{key}_{unit_index}"
             )
             if up_pdf is not None:
                 save_name = f"{key}_Offline_Textbook{ _tb_Path(up_pdf.name).suffix.lower() }"
@@ -2360,8 +2461,8 @@ def render_textbook_link_portal(course_code: str = "STR-01"):
                 links[key]["offline_file"] = save_name
                 TEXTBOOK_LINKS_FILE.write_text(_tb_json.dumps(links, indent=2), encoding="utf-8")
                 st.success(f"Stored `{save_name}` ({len(up_pdf.getvalue()):,} bytes) in local Offline Vault (`c2_cockpit/offline_textbooks/`)!")
-            new_url = st.text_input("Online Textbook URL:", value=meta["primary_url"], key=f"tb_url_{key}")
-            if st.button("\U0001f4be Save Online Link", key=f"tb_save_{key}"):
+            new_url = st.text_input("Online Textbook URL:", value=meta["primary_url"], key=f"tb_url_{key}_{unit_index}")
+            if st.button("\U0001f4be Save Online Link", key=f"tb_save_{key}_{unit_index}"):
                 links[key]["primary_url"] = new_url.strip()
                 TEXTBOOK_LINKS_FILE.write_text(_tb_json.dumps(links, indent=2), encoding="utf-8")
                 st.success("Saved online link!")
