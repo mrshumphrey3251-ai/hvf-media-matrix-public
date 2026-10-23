@@ -929,7 +929,6 @@ def get_master_glossary_and_references(course_code: str = "ALL"):
         {"term": "AASHTO", "cat": "All / Bridges", "def": "American Association of State Highway and Transportation Officials — the national body that writes the official U.S. bridge design and inspection manuals."},
         {"term": "ASTM International", "cat": "All Courses", "def": "The U.S. standards organization that defines exact testing rules (such as ASTM C1153 for infrared roof moisture scans and ASTM D6433 for roadway PCI surveys)."},
         {"term": "NBIS (23 CFR § 650)", "cat": "STR-01 Bridges", "def": "National Bridge Inspection Standards — the federal law passed after the 1967 Silver Bridge collapse requiring every public bridge (>20 ft) to be inspected at least every 24 months."},
-        {"term": "ODOT & OMES CAP", "cat": "Oklahoma Law", "def": "Oklahoma Department of Transportation (manages state bridges/highways) and Office of Management and Enterprise Services — Construction and Properties (manages state buildings/roofs under Title 61)."},
         {"term": "Oklahoma Title 61", "cat": "Statutory Law", "def": "The Oklahoma Public Buildings and Public Works statute governing state construction, engineering inspections, competitive bidding, and infrastructure safety."},
         {"term": "Condition States (CS-1 to CS-4)", "cat": "STR-01 Bridges", "def": "The 4-tier AASHTO grading scale for every square foot of a bridge: CS-1 = Good, CS-2 = Fair (minor cracks), CS-3 = Poor (needs priority repair), CS-4 = Severe (unsafe / immediate emergency closure or load restriction)."},
         {"term": "Delamination & Spalling", "cat": "STR-01 & STR-02", "def": "Delamination is a hidden horizontal split inside concrete caused by rusting rebar expanding; when that loose top slab finally breaks out leaving a pothole, it is called a Spall."},
@@ -945,7 +944,6 @@ def get_master_glossary_and_references(course_code: str = "ALL"):
         {"term": "IRI (International Roughness Index)", "cat": "STR-03 Roadways", "def": "Measures how bumpy a highway is in inches of up-and-down shock-absorber movement per mile driven. Over 170 inches/mile is rated Poor by the Federal Highway Administration."},
         {"term": "GSD (Ground Sampling Distance)", "cat": "All Courses", "def": "How much real-world surface area fits inside 1 single camera pixel (e.g., 0.003 inches/pixel lets you see a hairline steel crack; 1.38 inches/pixel maps roof moisture)."},
         {"term": "RTK / PPK GPS & Optical SLAM", "cat": "All Courses", "def": "RTK/PPK uses a ground base station to make drone GPS accurate to 0.18 inches; Optical SLAM uses downward cameras and lasers to hold position under a bridge where GPS is blocked."},
-        {"term": "WORM Ledger & SHA-256 Seal", "cat": "Legal / C2", "def": "Write-Once-Read-Many database (matrix_ledger.db) locked with a 64-character digital fingerprint (SHA-256). If anyone alters even 1 character or pixel in an inspection report, the fingerprint breaks, proving court-admissible chain of custody."}
     ]
 
     references = [
@@ -969,17 +967,9 @@ def get_master_glossary_and_references(course_code: str = "ALL"):
 
 
 def _attach_beginner_aids(u_dict: dict, u_num: int):
-    """Attaches Section X.0 Plain-English Orientation and Sub-Tab 2 Symbol-by-Symbol Equation Decoder using chr(10)."""
     nl = chr(10)
     primer_lines = [
-        f"### {u_num}.0 Beginner's Plain-English Orientation: What You Will Learn & Key Terms Decoded",
-        f"> **Welcome to Module {u_num:02d} ({u_dict['title']})!** You do **not** need prior engineering experience to master this module. Every technical term, government code, and math symbol used in this lesson is translated into plain English right here:",
         "",
-        "  * **NBI / NBIS:** *National Bridge Inventory / Inspection Standards* — The federal safety list and law covering every public bridge longer than **20.0 feet**.",
-        "  * **ODOT & OMES CAP:** *Oklahoma Dept. of Transportation* (bridges/roads) & *Office of Management and Enterprise Services* (state buildings/roofs).",
-        "  * **AASHTO & ASTM:** The national engineering boards that write the official U.S. inspection rulebooks.",
-        "  * **NDT (Non-Destructive Testing):** Finding hidden cracks, rust, or trapped water inside concrete/roofs using sensors *without* cutting or breaking the structure.",
-        "  * **WORM & SHA-256:** *Write-Once-Read-Many* database sealed with a 64-character digital fingerprint (**SHA-256**) so inspection data cannot be faked or altered.",
         "---",
         ""
     ]

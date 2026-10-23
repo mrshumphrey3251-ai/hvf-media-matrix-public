@@ -2,7 +2,7 @@
   "cage_code": "1AHA8",
   "classification": "LEVEL-5 SOVEREIGN INDUSTRIAL C2 & ACCREDITED ENGINEERING INSTITUTE",
   "entity": "Humphrey Virtual Farms LLC",
-  "master_c2_merkle_root_sha256": "c1b07086be6dd66208cee6a37c750e33f2c1061323ae5c4b0717e018e099900e",
+  "master_c2_merkle_root_sha256": "45bcadb1788079ac2e21a927a9c2a17085a86b42db9144409261547d6e75d5a5",
   "module_sha256_digests": {
     "__init__.py": "795f10286e60c8fbe6ff725e033631a06873b70207c12b47bc9c7c596c489773",
     "access_control.py": "3709685f597329fd7b3042b46096d80b9769a877135920a90b97d98ab8d22c6c",
@@ -172,7 +172,7 @@
     "ebony_stripe_billing.py": "3292c339334b0e62976a13a8dc54dda8efcc70903172af1c275359c2851d9f7f",
     "ebony_structural_mission.py": "be3fa1d5df4d15d970ebfa6ac92de3d8820e009f88550c9b0e45062219fee7bc",
     "ebony_system_audit.py": "22ab99324a4132598e36e408cf41e5119898540fec86e0f808771b33738f76fc",
-    "ebony_textbook_library.py": "0873f795ce4fe59c9f253cf8bc7afaa06e2a6d11960e44c353e2e2081d9371cb",
+    "ebony_textbook_library.py": "0187b76a93be469bbb94b026c6366879ef828482b35d74273a818f44e72844ae",
     "ebony_tier_manager.py": "7cab94cc660336b5edc7371b2f27aca6604ad57e90d7472b0b59c017fb31d681",
     "ebony_travel_autopilot.py": "ec205f569f5db620b6229530b8c86cfd13a396fd2f0a1f9f2dea3f6349348a5a",
     "ebony_travel_ui.py": "a87f437d9cf554697741a36beee96b1cd97ac3a35aa0f857dd9c72ad1ae2dda4",
