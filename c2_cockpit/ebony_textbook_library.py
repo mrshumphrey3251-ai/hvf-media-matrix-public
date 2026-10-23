@@ -2208,25 +2208,22 @@ To satisfy the **4.0 Accredited Credit Hours (0.4 CEUs / 4.0 PELS PDHs)** statut
 #### 1.4 Master Technician Shop Audit Checklist & QA/QC Sign-Off Protocol
 
 Before advancing to **Sub-Tab 4 (Calculation Gate & 20-Question Milestone Exam)**, execute and verify each of the following 6 shop QA/QC steps:
-* **[STEP 01 — OSHA 1910.147 LOTO & Mechanical Stabilization]:** Engage parking brake, chock wheels fore-and-aft, support chassis on rated mechanical jack stands, and disconnect the negative (`-`) battery terminal or apply high-voltage LOTO padlock before component disassembly.
-* **[STEP 02 — Instrument Zeroing & Lead Verification]:** Zero digital multimeter (DMM) lead resistance (`< 0.1 Ohms`), verify oscilloscope probe attenuation (`1x / 10x`), and verify NIST calibration date on digital torque transducers.
-* **[STEP 03 — Baseline Bus & Sensor Telemetry Capture]:** Record key-off CAN-Bus termination resistance (`R_bus = 60.0 Ohms`), key-on battery bus voltage (`>= 12.4V` static), and full SAE J1979/J1939 DTC + freeze-frame parameters prior to clearing codes.
-* **[STEP 04 — First-Principles Diagnostic Isolation]:** Execute voltage-drop testing under load (`<= 100 mV` per connection), differential waveform inspection, compression/leakdown testing, or hydraulic pressure-flow auditing to isolate the root physical fault.
-* **[STEP 05 — Quantitative Engineering Calculation]:** Solve the governing mechanical, electrical, or thermodynamic formulation for the active unit using measured shop values in U.S. Customary / SAE units (`Ohms`, `Volts`, `Amps`, `ft-lbs`, `psi`, `HP`, `CFM`).
-* **[STEP 06 — WORM Cryptographic Sealing]:** Commit post-repair verification waveforms, torque preload logs, and calculated diagnostic parameters to `matrix_ledger.db` under **CAGE 1AHA8 / UEI S1M4ENLHTDH5**."""
+* **[STEP 01 \u2014 OSHA 1910.147 LOTO & Mechanical Stabilization]:** Engage parking brake, chock wheels fore-and-aft, support chassis on rated mechanical jack stands, and disconnect the negative (`-`) battery terminal or apply high-voltage LOTO padlock before component disassembly.
+* **[STEP 02 \u2014 Instrument Zeroing & Lead Verification]:** Zero digital multimeter (DMM) lead resistance (`< 0.1 Ohms`), verify oscilloscope probe attenuation (`1x / 10x`), and verify NIST calibration date on digital torque transducers.
+* **[STEP 03 \u2014 Baseline Bus & Sensor Telemetry Capture]:** Record key-off CAN-Bus termination resistance (`R_bus = 60.0 Ohms`), key-on battery bus voltage (`>= 12.4V` static), and full SAE J1979/J1939 DTC + freeze-frame parameters prior to clearing codes.
+* **[STEP 04 \u2014 First-Principles Diagnostic Isolation]:** Execute voltage-drop testing under load (`<= 100 mV` per connection), differential waveform inspection, compression/leakdown testing, or hydraulic pressure-flow auditing to isolate the root physical fault.
+* **[STEP 05 \u2014 Quantitative Engineering Calculation]:** Solve the governing mechanical, electrical, or thermodynamic formulation for the active unit using measured shop values in U.S. Customary / SAE units (`Ohms`, `Volts`, `Amps`, `ft-lbs`, `psi`, `HP`, `CFM`).
+* **[STEP 06 \u2014 WORM Cryptographic Sealing]:** Commit post-repair verification waveforms, torque preload logs, and calculated diagnostic parameters to `matrix_ledger.db` under **CAGE 1AHA8 / UEI S1M4ENLHTDH5**."""
 
 def _hvf_scrub_str(s: str, is_auto: bool = False) -> str:
     if not isinstance(s, str):
         return s
-    # 1. Strip any "Bumper-to-Bumper Beginner & Master Engineering Theory //" or "from a first-time beginner opening the hood"
     s = s.replace("Bumper-to-Bumper Beginner & Master Engineering Theory //", "Sovereign SAE / ISO Master Engineering Specification //")
-    s = s.replace("Every technician—from a first-time beginner opening the hood to a Level-5 Master Engineer—must first physically identify the system on the vehicle before touching a tool.", "Before initiating diagnostic instrumentation or mechanical disassembly, verify the physical architecture and service test points of the subsystem.")
-    s = s.replace("Every technician?from a first-time beginner opening the hood to a Level-5 Master Engineer?must first physically identify the system on the vehicle before touching a tool.", "Before initiating diagnostic instrumentation or mechanical disassembly, verify the physical architecture and service test points of the subsystem.")
+    s = s.replace("from a first-time beginner opening the hood to a Level-5 Master Engineer", "operating at Level-5 Master Diagnostic Technician clearance")
     s = s.replace("1. Visual Component Landmark (Where It Is & What It Looks Like):", "#### 1.1 Subsystem Physical Architecture & Service Test-Point Topology")
     s = s.replace("2. Mandatory Life-Safety & Vehicle Protection:", "#### 1.2 Mandatory OSHA 1910.147 Life-Safety & Chassis Stabilization Protocol")
     s = s.replace("3. Governing SAE / ISO Mathematical Formulation:", "#### 1.2.1 Governing SAE / ISO Mathematical Formulation & Three-Brain Interlock")
 
-    # 2. If this is an AUT-01 string that accidentally received the STR-03 Highway/Drone 1.3 & 1.4 matrix, replace it with AUT01_ENGINEERING_MATRIX!
     if ("STR-03 // Module" in s or "200 kHz Bathymetric Sonar" in s) and ("SAE J1979" in s or "CAN-Bus" in s or "Jack Stands" in s or "60-Ohm" in s or is_auto):
         idx_13 = s.find("1.3 Comprehensive Engineering Reference Matrix")
         if idx_13 != -1:
@@ -2234,13 +2231,11 @@ def _hvf_scrub_str(s: str, is_auto: bool = False) -> str:
             cut_at = line_s if line_s != -1 else idx_13
             s = s[:cut_at].rstrip() + chr(10) + chr(10) + AUT01_ENGINEERING_MATRIX
 
-    # 3. Strip any 1.0 Beginner prefix
     if "1.1 " in s and ("1.0 " in s or "Welcome to Module" in s or "Key Acronyms" in s):
         idx_11 = s.find("1.1 ")
         line_start = s.rfind(chr(10), 0, idx_11)
         s = s[line_start + 1:] if line_start != -1 else s[idx_11:]
 
-    # 4. Strip 1.4 Plain-English Math
     if "How the Engineering Math Works" in s or "4-Step Field Logic" in s:
         s = _hv_re.sub(
             r"(?:#+|\*\*)*\s*1\.4\s+How the Engineering Math.*?(?=(?:#+|\*\*)*\s*1\.[45]\s+Inspector Field Audit Checklist|\Z)",
@@ -2249,11 +2244,11 @@ def _hvf_scrub_str(s: str, is_auto: bool = False) -> str:
             flags=_hv_re.DOTALL
         )
 
-    # 5. Unconditionally guarantee two newlines before #### 1.4 Inspector Field Audit Checklist
     s = s.replace("1.5 Inspector Field Audit Checklist", "1.4 Inspector Field Audit Checklist")
+    # Guarantee two clean newlines before 1.4 Inspector Field Audit Checklist regardless of what precedes it!
     s = _hv_re.sub(
-        r"(\|\s*)(?:#+\s*)?(1\.4\s+Inspector Field Audit Checklist)",
-        "|" + chr(10) + chr(10) + r"#### ",
+        r"\s*(?:#+\s*)?1\.4\s+Inspector Field Audit Checklist",
+        chr(10) + chr(10) + "#### 1.4 Inspector Field Audit Checklist",
         s
     )
     return s.strip()
@@ -2306,11 +2301,11 @@ DEFAULT_TEXTBOOK_LINKS = {
         "offline_file": "STR-01_Offline_NDE_Master_Manual.md",
         "syllabus_chapters": "Ch 1: RC Steel Corrosion (ASTM C876) | Ch 2: Alkali-Silica Reaction (ASR) | Ch 3: Acoustic Deck Testing (ASTM D4580/C1383) | Ch 4-8: Timber NDE & Radioscopy | Ch 9: NBIS Visual Inspection | Ch 10: Acoustic Emission | Ch 11: VR & Photogrammetry",
         "unit_directives": {
-            1: ("FHWA BIRM Ch. 1?2 & 23 CFR Part 650 Subpart C", "Memorize the 20.0-ft NBI bridge span definition, 24-month Routine vs. FCM inspection intervals, Sufficiency Rating (S1+S2+S3-S4) weights, and 18 U.S.C. 1001 criminal attestation rules."),
+            1: ("FHWA BIRM Ch. 1-2 & 23 CFR Part 650 Subpart C", "Memorize the 20.0-ft NBI bridge span definition, 24-month Routine vs. FCM inspection intervals, Sufficiency Rating (S1+S2+S3-S4) weights, and 18 U.S.C. 1001 criminal attestation rules."),
             2: ("NDE Treatise Ch. 9 & AASHTO MBEI Section 3 (Element-Level Condition States)", "Focus on optical Ground Sampling Distance (GSD <= 0.004 in/px for FCMs), lens focal-length standoff equations, and distinguishing Condition States CS-1 through CS-4."),
-            3: ("NDE Treatise Ch. 1 (Sections 1.1?1.4: Half-Cell, LPR & Resistivity) & Ch. 3 (Impact-Echo)", "Focus on ASTM C876 Cu/CuSO4 thresholds (-200 mV / -350 mV CSE), Stern-Geary icorr, and P-wave delamination depth D = (C_p * delta_t) / 2."),
+            3: ("NDE Treatise Ch. 1 (Sections 1.1-1.4: Half-Cell, LPR & Resistivity) & Ch. 3 (Impact-Echo)", "Focus on ASTM C876 Cu/CuSO4 thresholds (-200 mV / -350 mV CSE), Stern-Geary icorr, and P-wave delamination depth D = (C_p * delta_t) / 2."),
             4: ("FHWA BIRM Ch. 7 (Steel Superstructures) & AASHTO LRFD Bridge Design Sec. 6", "Focus on Mode I Stress Intensity Factor K_I = Y * sigma * sqrt(pi * a), fracture toughness K_Ic limits, and ultrasonic thickness gauging of pack-rust gusset plates."),
-            5: ("FHWA HEC-18 (Evaluating Scour at Bridges, 5th Ed.) Ch. 5?7", "Focus on the CSU Pier Scour Equation (y_s / y_1 = 2.0 * K1 * K2 * K3 * (a/y_1)^0.65 * Fr_1^0.43), Froude number calculation, and 200 kHz bathymetric sonar draft compensation."),
+            5: ("FHWA HEC-18 (Evaluating Scour at Bridges, 5th Ed.) Ch. 5-7", "Focus on the CSU Pier Scour Equation (y_s / y_1 = 2.0 * K1 * K2 * K3 * (a/y_1)^0.65 * Fr_1^0.43), Froude number calculation, and 200 kHz bathymetric sonar draft compensation."),
             6: ("FHWA BIRM Ch. 6 (Reinforced & Prestressed Concrete) & ACI 318", "Focus on concrete modulus of rupture f_r = 7.5 * sqrt(f'_c), shear-crack inclination angles, and prestressed strand corrosion/hydrogen embrittlement limits."),
             7: ("FHWA BIRM Ch. 10 (Bearings & Substructures) & AASHTO LRFD Sec. 14", "Focus on elastomeric bearing pad shear strain gamma = Delta_T / h_rt (<= 0.50 limit), thermal deck expansion Delta_L = alpha * L * Delta_T, and anchor-bolt shear."),
             8: ("ASPRS Positional Accuracy Standards & NDE Treatise Ch. 11 (3D Photogrammetry & LiDAR)", "Focus on GPS-denied 3D LiDAR SLAM drift bounds, EKF3 covariance limits, and point-cloud vertical deflection measurement (L/800 AASHTO serviceability limit)."),
@@ -2368,7 +2363,7 @@ def _ensure_default_offline_manuals():
         if "unit_directives" in meta:
             lines.append("## Module-by-Module Reading & Exam Focus Directives (Units 01 - 10)")
             for u_idx, (ch_ref, focus_txt) in sorted(meta["unit_directives"].items()):
-                lines.append(f"- **Unit {u_idx:02d} — Assigned Reading:** `{ch_ref}`  ")
+                lines.append(f"- **Unit {u_idx:02d} \u2014 Assigned Reading:** `{ch_ref}`  ")
                 lines.append(f"  *What to Focus On for the Exam Gate:* {focus_txt}")
             lines.append("")
         lines.append("## Offline Field Reference Notes")
@@ -2391,7 +2386,7 @@ def load_textbook_links() -> dict:
             pass
     return dict(DEFAULT_TEXTBOOK_LINKS)
 
-def render_textbook_link_portal(course_code: str = "STR-01", active_unit: dict = None, unit_index: int = 1):
+def render_textbook_link_portal(course_code: str = "STR-01", active_unit: dict = None, unit_index: int = None):
     import streamlit as st
     links = load_textbook_links()
     key = "STR-01"
@@ -2399,40 +2394,49 @@ def render_textbook_link_portal(course_code: str = "STR-01", active_unit: dict =
         if k in str(course_code).upper():
             key = k
             break
+    # Also check session_state if course_code was default
+    for sv in st.session_state.values():
+        if isinstance(sv, str):
+            for k in ["STR-01", "ENV-01", "PAV-01", "AUT-01"]:
+                if k in sv and course_code == "STR-01" and k != "STR-01":
+                    key = k
     meta = links[key]
     local_path = OFFLINE_VAULT_DIR / meta.get("offline_file", f"{key}_Offline_Manual.md")
     if not local_path.exists():
         _ensure_default_offline_manuals()
 
-    # Determine active unit title, formula, and specific reading directive
-    u_title = f"Unit {unit_index:02d}"
-    u_formula = ""
-    if isinstance(active_unit, dict):
-        u_title = active_unit.get("title", u_title)
-        u_formula = active_unit.get("formula", "")
-        # Try to infer unit number (1..10) from title like "Unit 03:"
-        m_u = _hv_re.search(r"Unit\s+0?([0-9]+)", u_title)
-        if m_u:
-            unit_index = int(m_u.group(1))
+    # Auto-detect active unit (1..10) from st.session_state if not passed
+    if unit_index is None:
+        unit_index = 1
+        for sv in st.session_state.values():
+            if isinstance(sv, str) and "Unit " in sv:
+                m_u = _hv_re.search(r"Unit\s+0?([0-9]+)", sv)
+                if m_u:
+                    unit_index = int(m_u.group(1))
+                    break
+
+    units_list = get_course_units(key)
+    u_obj = units_list[unit_index - 1] if (isinstance(units_list, list) and 1 <= unit_index <= len(units_list)) else {}
+    u_title = u_obj.get("title", f"Unit {unit_index:02d}") if isinstance(u_obj, dict) else f"Unit {unit_index:02d}"
+    u_formula = u_obj.get("formula", "") if isinstance(u_obj, dict) else ""
 
     directives_map = meta.get("unit_directives", {})
     if unit_index in directives_map:
         assigned_ch, focus_summary = directives_map[unit_index]
     else:
-        assigned_ch = f"{meta['title']} — Chapter/Section {unit_index:02d}"
+        assigned_ch = f"{meta['title']} \u2014 Chapter/Section {unit_index:02d}"
         focus_summary = f"Master the statutory clauses, sensor calibration tolerances (Section 1.3), and governing mathematical formulation for {u_title}."
 
     with st.container():
         st.markdown(f"### \U0001f4da Accredited Reference Textbook Portal (`{key}` \u2014 Online & Air-Gap Offline Ready)")
         st.caption(f"**Assigned Reference Volume:** {meta['title']}")
 
-        # NEW: Exact Module-Specific Study Directive & Exam Focus Box!
         st.warning(
-            f"\U0001f3af **MANDATORY READING & EXAM FOCUS DIRECTIVE FOR ACTIVE MODULE ({u_title}):**\n"
-            f"- **1. Exact Textbook Chapters / Standards to Read:** `{assigned_ch}`\n"
-            f"- **2. Core Engineering Concepts & Thresholds to Focus On:** {focus_summary}\n"
-            + (f"- **3. Governing Equation Tested in Sub-Tab 4 Calculation Gate:** `{u_formula.splitlines()[0]}`\n" if u_formula else "")
-            + "- **4. Required Mastery Sequence:** Read the assigned textbook chapter above + Sections `1.1`–`1.4` below \u2192 Work the derivation in **Sub-Tab 2** \u2192 Execute the field/shop SOP in **Sub-Tab 3** \u2192 Pass the **Sub-Tab 4** Calculation Gate & 20-Question Exam (`>= 90%`)."
+            f"\U0001f3af **MANDATORY READING & EXAM FOCUS DIRECTIVE ({u_title}):**" + chr(10)
+            + f"- **1. Exact Textbook Chapters / Standards to Read:** `{assigned_ch}`" + chr(10)
+            + f"- **2. Core Engineering Concepts & Thresholds to Focus On:** {focus_summary}" + chr(10)
+            + (f"- **3. Governing Equation Tested in Sub-Tab 4 Calculation Gate:** `{u_formula.splitlines()[0]}`" + chr(10) if u_formula else "")
+            + "- **4. Required Mastery Sequence:** Read the assigned textbook chapter above + Sections `1.1`\u2013`1.4` below \u2192 Work the derivation in **Sub-Tab 2** \u2192 Execute the field/shop SOP in **Sub-Tab 3** \u2192 Pass the **Sub-Tab 4** Calculation Gate & 20-Question Exam (`>= 90%`)."
         )
 
         c1, c2, c3 = st.columns([2, 2, 3])
@@ -2444,7 +2448,7 @@ def render_textbook_link_portal(course_code: str = "STR-01", active_unit: dict =
                 data=raw_bytes,
                 file_name=local_path.name,
                 mime=mime_t,
-                key=f"dl_off_tb_{key}_{unit_index}"
+                key=f"dl_off_tb_{key}"
             )
         c2.markdown(f"\U0001f310 **[Open Online Reference Manual \u2197]({meta['primary_url']})**  \n\U0001f517 **[Open Standards Library \u2197]({meta['secondary_url']})**")
 
@@ -2452,7 +2456,7 @@ def render_textbook_link_portal(course_code: str = "STR-01", active_unit: dict =
             up_pdf = st.file_uploader(
                 f"Drop any full Textbook (.pdf or .md) into {key} Offline Vault:",
                 type=["pdf", "md", "txt"],
-                key=f"up_pdf_{key}_{unit_index}"
+                key=f"up_pdf_{key}"
             )
             if up_pdf is not None:
                 save_name = f"{key}_Offline_Textbook{ _tb_Path(up_pdf.name).suffix.lower() }"
@@ -2461,8 +2465,8 @@ def render_textbook_link_portal(course_code: str = "STR-01", active_unit: dict =
                 links[key]["offline_file"] = save_name
                 TEXTBOOK_LINKS_FILE.write_text(_tb_json.dumps(links, indent=2), encoding="utf-8")
                 st.success(f"Stored `{save_name}` ({len(up_pdf.getvalue()):,} bytes) in local Offline Vault (`c2_cockpit/offline_textbooks/`)!")
-            new_url = st.text_input("Online Textbook URL:", value=meta["primary_url"], key=f"tb_url_{key}_{unit_index}")
-            if st.button("\U0001f4be Save Online Link", key=f"tb_save_{key}_{unit_index}"):
+            new_url = st.text_input("Online Textbook URL:", value=meta["primary_url"], key=f"tb_url_{key}")
+            if st.button("\U0001f4be Save Online Link", key=f"tb_save_{key}"):
                 links[key]["primary_url"] = new_url.strip()
                 TEXTBOOK_LINKS_FILE.write_text(_tb_json.dumps(links, indent=2), encoding="utf-8")
                 st.success("Saved online link!")
