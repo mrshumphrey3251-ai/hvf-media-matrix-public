@@ -1,18 +1,5 @@
-# HVF Sovereign C2 Canonical Line-Ending & Binary Lockfile
 * text=auto eol=lf
 *.py text eol=lf
 *.md text eol=lf
 *.json text eol=lf
-*.toml text eol=lf
-*.yaml text eol=lf
-*.yml text eol=lf
-*.sql text eol=lf
-*.txt text eol=lf
-*.db binary
-*.sqlite binary
-*.sqlite3 binary
-*.pdf binary
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.mp4 binary
+*.sh text eol=lf

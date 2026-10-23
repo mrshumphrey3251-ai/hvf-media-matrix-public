@@ -66,10 +66,10 @@
 
 ## Sovereign C2 & Field Academy Cryptographic Integrity Seal (`v5.0.0-sovereign-seal`)
 - **Prime Entity:** Humphrey Virtual Farms LLC | **CAGE:** `1AHA8` | **UEI:** `S1M4ENLHTDH5`
-- **Compiled C2 Python Modules:** `595 / 595` (100% Public/Private Byte-Level SHA-256 Parity)
-- **Master C2 Merkle Root (SHA-256):** `40a6be052fe1e25a9a920e3283ac1a78aa9dcc82148fb7eab9b1dc1424e57e12`
-- **Chapter 1 Milestone Bank:** `595 / 595` Unique Questions Across 40 Modules (`STR-01`, `ENV-01`/`STR-02`, `PAV-01`/`STR-03`)
-- **Chapter 5 3-Tier State Exam Bank:** `595 / 595` Strictly Unique Questions Across 12 Stages (`20 + 45 + 90 = 155` per track)
+- **Compiled C2 Python Modules:** `611 / 611` (100% Public/Private Byte-Level SHA-256 Parity)
+- **Master C2 Merkle Root (SHA-256):** `c84e9013674d6b1ee3a36bb0277720239016a3c774791ca6e9b254ba6e222634`
+- **Chapter 1 Milestone Bank:** `611 / 611` Unique Questions Across 40 Modules (`STR-01`, `ENV-01`/`STR-02`, `PAV-01`/`STR-03`)
+- **Chapter 5 3-Tier State Exam Bank:** `611 / 611` Strictly Unique Questions Across 12 Stages (`20 + 45 + 90 = 155` per track)
 - **Total Verified Academy Questions:** `1,420 / 1,420` (`0` Duplicates)
 - **Statutory Equivalency:** Oklahoma PELS `OAC 245:15-11` (`40.0 PDHs` / `4.0 CEUs` per track = `120.0 Total Contact Hours`), `23 CFR § 650 (NBIS)`, `40 CFR Part 60 Subpart OOOOb (OGI)`, `ASTM C1153 / E1934`, and `ASTM D6433 PCI`.
 - **One-Command Audit Verifier:** `python c2_cockpit/verify_sovereign_seal.py`
