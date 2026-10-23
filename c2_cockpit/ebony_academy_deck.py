@@ -150,7 +150,7 @@ def render_academy_deck():
         "💥 Ch 3: NTSB & Forensic Failure Reconstructions",
         "🎬 Ch 4: Flight Sortie Videos & 4-Phase Field SOPs",
         "📝 Ch 5: 3-Tier State Certification Exam (155 Qs)",
-        "📖 Ch 6: Beginner's Glossary, Symbols & References"
+        "📖 Ch 6: Statutory Nomenclature, Engineering Symbols & Standards Registry"
     ])
 
     # CHAPTER 1: 10-MODULE INTERACTIVE ENGINEERING WORKSTATION
@@ -799,7 +799,7 @@ def render_academy_deck():
 
     # CHAPTER 6: BEGINNER'S GLOSSARY, SYMBOL DECODER, U.S. UNITS & STATUTORY REFERENCES
     with tab_glossary:
-        st.subheader("📖 Beginner's Master Glossary, Math Symbol Decoder, U.S. Units & Statutory References")
+        st.subheader("📖 Engineering Master Glossary, Math Symbol Decoder, U.S. Units & Statutory References")
         st.success(
             "💡 **Zero-Jargon Training Guarantee:** Every symbol, acronym, U.S. measurement unit, and federal/state law "
             "used across all 30 modules is explained below in plain, everyday English so any student can master the curriculum from scratch."
@@ -816,7 +816,7 @@ def render_academy_deck():
         ])
 
         with g_tab1:
-            st.markdown("### A–Z Plain-English Engineering & Inspection Glossary")
+            st.markdown("### A–Z Technical Engineering & Inspection Glossary")
             for item in g_all["terms"]:
                 if not search_q or search_q in item["term"].lower() or search_q in item["def"].lower() or search_q in item["cat"].lower():
                     st.markdown(f"#### 📌 {item['term']}  `[{item['cat']}]`")
@@ -828,7 +828,7 @@ def render_academy_deck():
             for s_item in g_all["symbols"]:
                 if not search_q or search_q in s_item["sym"].lower() or search_q in s_item["meaning"].lower() or search_q in s_item["example"].lower():
                     st.markdown(f"#### 🔹 Symbol: `{s_item['sym']}`  *(Pronounced: {s_item['say']})*")
-                    st.markdown(f"* **Plain-English Meaning:** {s_item['meaning']}")
+                    st.markdown(f"* **Technical Meaning:** {s_item['meaning']}")
                     st.markdown(f"* **How to Use It on Your Calculator:** {s_item['example']}")
                     st.markdown("---")
 

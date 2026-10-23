@@ -897,7 +897,7 @@ def export_full_course_textbook_markdown(course_code: str, course_title: str) ->
 
 
 def get_master_glossary_and_references(course_code: str = "ALL"):
-    """Modular Beginner's Glossary, Mathematical Symbol Decoder, U.S. Customary Unit Guide, and Statutory References."""
+    """Modular Engineering Glossary, Mathematical Symbol Decoder, U.S. Customary Unit Guide, and Statutory References."""
     symbols = [
         {"sym": "Delta (Δ)", "say": "DEL-tuh", "meaning": "Change or Difference between two measurements", "example": "Delta_T = Indoor Temp minus Outdoor Temp (e.g., 72 °F - 27 °F = 45 °F difference)."},
         {"sym": "sigma (σ)", "say": "SIG-muh", "meaning": "Mechanical Stress (internal pressure or force inside concrete, steel, or soil)", "example": "Measured in psi (pounds per square inch) or ksi (thousands of pounds per square inch)."},
@@ -984,12 +984,12 @@ def _attach_beginner_aids(u_dict: dict, u_num: int):
         f"* **Primary Formula You Are Solving:** `{_first_eq}`",
         f"* **Required Final Answer Unit in Sub-Tab 4:** **`{target_unit}`**",
         "* **Deterministic Dimensional Analysis & Equation Execution Protocol:**",
-        "  1. **Parentheses `( ... )` FIRST:** Always calculate the numbers inside inner parentheses first and write that number down on scratch paper.",
+        "  1. **Parentheses `( ... )` FIRST:** Always calculate the numbers inside inner parentheses first and record the intermediate state variable.",
         "  2. **Exponents & Square Roots (`^` or `sqrt`) SECOND:** If the formula has `sqrt(...)`, press the `[√]` key on the number inside; if it has `^2` or `^4`, multiply the number by itself.",
         "  3. **Multiply (`*`) & Divide (`/`) THIRD:** Work left to right before doing any final addition (`+`) or subtraction (`-`).",
         ""
     ]
-    if not u_dict.get("equation_legend") or "Beginner's Symbol-by-Symbol Equation" in str(u_dict.get("equation_legend", "")):
+    if not u_dict.get("equation_legend") or "Engineering Symbol-by-Symbol Equation" in str(u_dict.get("equation_legend", "")):
         u_dict["equation_legend"] = nl.join(legend_lines)
     return u_dict
 
@@ -2112,7 +2112,7 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
 
     u_dict["beginner_primer"] = nl.join([
         f"### 📘 Old-School Master Textbook Chapter // {u_title}",
-        "> **How to Study This Chapter On Your Own (No Professor Required):** This chapter is written the old-school way—like a veteran Master Engineer and Shop Foreman sitting across the workbench from you on Day 1. Read straight down through the **Who, What, When, Where, Why, and How** sections below. Every technical term is explained in plain English right where it appears, and every math formula is worked out step-by-step before you ever take the quiz.",
+        "> **How to Study This Chapter On Your Own (No Professor Required):** This chapter is written the old-school way—like a veteran Master Engineer and Shop Foreman sitting across the workbench from you on Day 1. Read straight down through the **Who, What, When, Where, Why, and How** sections below. Every technical term is explained in standard engineering nomenclature right where it appears, and every math formula is worked out step-by-step before you ever take the quiz.",
         "",
         "#### 👥 1. WHO — Chain of Command, Legal Authority & Who Is Accountable",
         ctx["who_role"],
@@ -2128,7 +2128,7 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
 
     if not raw_theory.startswith("### 🔧 4. WHAT & WHY"):
         u_dict["theory"] = nl.join([
-            "### 🔧 4. WHAT & WHY — Physical Anatomy, Plain-English Definitions & First-Principles Physics",
+            "### 🔧 4. WHAT & WHY — Physical Anatomy, Technical Definitions & First-Principles Physics",
             "",
             raw_theory
         ])
@@ -2136,11 +2136,11 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
     u_dict["deep_supplement"] = nl.join([
         "",
         "---",
-        f"### 🧮 5. WHY & HOW THE MATH WORKS — Step-by-Step Chalkboard Lesson (`{u_title}`)",
+        f"### 🧮 5. WHY & HOW THE MATH WORKS — Step-by-Step Analytical Engineering Derivation (`{u_title}`)",
         "",
-        f"A real textbook never just throws an equation at you and expects you to guess what the letters mean. Let's break down the exact governing formula for **Module {u_num:02d}** in plain English so you can work it on any basic pocket calculator:",
+        f"A real textbook never just throws an equation at you and expects you to guess what the letters mean. Let's break down the exact governing formula for **Module {u_num:02d}** in standard engineering nomenclature so you can work it via deterministic dimensional analysis:",
         "",
-        "**A. The Governing Formula on the Chalkboard:**",
+        "**A. The Governing Formula in Governing Specification:**",
         f"{bt3}text",
         eq_str,
         f"{bt3}",
@@ -2151,13 +2151,13 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
         "",
         "**C. Why This Formula Works (Physical Common Sense):**",
         "* Every engineering equation is simply a balance scale comparing **Demand (how hard nature, traffic, heat, or electrical load is pushing on the system)** against **Capacity (how much strength, flow, or resistance the component was built to handle)**.",
-        "* When **Parentheses `( ... )`** appear in the formula, always calculate the numbers inside the parentheses **FIRST** and write that intermediate number down on scratch paper before multiplying or dividing.",
+        "* When **Parentheses `( ... )`** appear in the formula, always calculate the numbers inside the parentheses **FIRST** and record the intermediate state variable before multiplying or dividing.",
         "",
-        f"**D. Classroom Chalkboard Walkthrough of Your Module {u_num:02d} Calculation Gate:**",
+        f"**D. Classroom Analytical Engineering Derivation of Your Module {u_num:02d} Calculation Gate:**",
         f"* **The Problem You Will Solve in Sub-Tab 4:** *{calc_prompt}*",
         "* **Detailed Worked Derivation:**",
         we_str,
-        f"* **Verified Chalkboard Answer Check:** When you work the steps above on your calculator, your result should match **`{calc_target} {calc_unit}`**.",
+        f"* **Verified Deterministic Verification Check:** When you work the steps above on your calculator, your result should match **`{calc_target} {calc_unit}`**.",
         "",
         "---",
         "### 🛠️ 6. MASTER TRADESMAN'S FIELD CRAFT — Common Rookie Mistakes & How to Avoid Them",
