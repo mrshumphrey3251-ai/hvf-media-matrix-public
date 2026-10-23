@@ -186,6 +186,7 @@ def render_academy_deck():
             f"**Ledger Status:** `{'✅ CERTIFIED IN WORM LEDGER' if is_done else '⏳ PENDING CALCULATION & QUIZ VERIFICATION'}`"
         )
 
+        import hvf_reference_portal as _hrp; _hrp.render_reference_portal(selected_code, selected_unit_num)
         sub_t1, sub_t2, sub_t3, sub_t4 = st.tabs([
             "📖 1.5-Hr Engineering Treatise",
             "🧮 1.0-Hr Mathematical Derivations & Worked Case",
@@ -194,7 +195,6 @@ def render_academy_deck():
         ])
 
         with sub_t1:
-            st.markdown(active_unit.get("beginner_primer", ""))
             st.markdown(active_unit["theory"])
             st.markdown(str(active_unit.get("deep_supplement", "")).replace(chr(10) + f"### {selected_unit_num}.4", chr(10) + chr(10) + f"### {selected_unit_num}.4").replace(f"|### {selected_unit_num}.4", "|" + chr(10) + chr(10) + f"### {selected_unit_num}.4"))
             st.info("👉 Proceed to **Sub-Tab 2 (🧮 1.0-Hr Mathematical Derivations & Worked Case)** after mastering the statutory and physical treatise above.")

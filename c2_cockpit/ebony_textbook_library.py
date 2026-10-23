@@ -2189,7 +2189,7 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
     return u_dict
 
 # ==============================================================================
-# HVF EXECUTIVE TREATISE SANITIZER (UNCONDITIONAL TABLE & DOMAIN NORMALIZER)
+# HVF EXECUTIVE TREATISE SANITIZER (AST-VERIFIED IN-PLACE NORMALIZER)
 # ==============================================================================
 import re as _hv_re
 
@@ -2218,24 +2218,16 @@ Before advancing to **Sub-Tab 4 (Calculation Gate & 20-Question Milestone Exam)*
 def _hvf_scrub_str(s: str, is_auto: bool = False) -> str:
     if not isinstance(s, str):
         return s
-    s = s.replace("Bumper-to-Bumper Beginner & Master Engineering Theory //", "Sovereign SAE / ISO Master Engineering Specification //")
-    s = s.replace("from a first-time beginner opening the hood to a Level-5 Master Engineer", "operating at Level-5 Master Diagnostic Technician clearance")
-    s = s.replace("1. Visual Component Landmark (Where It Is & What It Looks Like):", "#### 1.1 Subsystem Physical Architecture & Service Test-Point Topology")
-    s = s.replace("2. Mandatory Life-Safety & Vehicle Protection:", "#### 1.2 Mandatory OSHA 1910.147 Life-Safety & Chassis Stabilization Protocol")
-    s = s.replace("3. Governing SAE / ISO Mathematical Formulation:", "#### 1.2.1 Governing SAE / ISO Mathematical Formulation & Three-Brain Interlock")
-
-    if ("STR-03 // Module" in s or "200 kHz Bathymetric Sonar" in s) and ("SAE J1979" in s or "CAN-Bus" in s or "Jack Stands" in s or "60-Ohm" in s or is_auto):
+    if is_auto and ("STR-03 // Module" in s or "200 kHz Bathymetric Sonar" in s):
         idx_13 = s.find("1.3 Comprehensive Engineering Reference Matrix")
         if idx_13 != -1:
             line_s = s.rfind(chr(10), 0, idx_13)
             cut_at = line_s if line_s != -1 else idx_13
             s = s[:cut_at].rstrip() + chr(10) + chr(10) + AUT01_ENGINEERING_MATRIX
-
     if "1.1 " in s and ("1.0 " in s or "Welcome to Module" in s or "Key Acronyms" in s):
         idx_11 = s.find("1.1 ")
         line_start = s.rfind(chr(10), 0, idx_11)
         s = s[line_start + 1:] if line_start != -1 else s[idx_11:]
-
     if "How the Engineering Math Works" in s or "4-Step Field Logic" in s:
         s = _hv_re.sub(
             r"(?:#+|\*\*)*\s*1\.4\s+How the Engineering Math.*?(?=(?:#+|\*\*)*\s*1\.[45]\s+Inspector Field Audit Checklist|\Z)",
@@ -2243,9 +2235,8 @@ def _hvf_scrub_str(s: str, is_auto: bool = False) -> str:
             s,
             flags=_hv_re.DOTALL
         )
-
     s = s.replace("1.5 Inspector Field Audit Checklist", "1.4 Inspector Field Audit Checklist")
-    # Guarantee two clean newlines before 1.4 Inspector Field Audit Checklist regardless of what precedes it!
+    # Ensure a blank line after the 1.3 table before #### 1.4 Inspector Field Audit Checklist
     s = _hv_re.sub(
         r"\s*(?:#+\s*)?1\.4\s+Inspector Field Audit Checklist",
         chr(10) + chr(10) + "#### 1.4 Inspector Field Audit Checklist",
@@ -2263,9 +2254,12 @@ def _hvf_scrub_obj(obj, _seen=None, is_auto=False):
         return _hvf_scrub_str(obj, is_auto=is_auto)
     if isinstance(obj, dict):
         _seen.add(oid)
-        auto_flag = is_auto or ("AUT-01" in str(obj.get("code", "")) or "SAE" in str(obj.get("title", "")))
+        if "beginner_primer" in obj:
+            obj["beginner_primer"] = ""
+        auto_flag = is_auto or ("AUT-01" in str(obj.get("code", "")))
         for k in list(obj.keys()):
-            obj[k] = _hvf_scrub_obj(obj[k], _seen, is_auto=auto_flag)
+            if k != "beginner_primer":
+                obj[k] = _hvf_scrub_obj(obj[k], _seen, is_auto=auto_flag)
         return obj
     if isinstance(obj, list):
         _seen.add(oid)

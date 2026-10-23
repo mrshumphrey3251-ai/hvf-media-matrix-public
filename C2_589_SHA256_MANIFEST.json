@@ -2,7 +2,7 @@
   "cage_code": "1AHA8",
   "classification": "LEVEL-5 SOVEREIGN INDUSTRIAL C2 & ACCREDITED ENGINEERING INSTITUTE",
   "entity": "Humphrey Virtual Farms LLC",
-  "master_c2_merkle_root_sha256": "b94efb6cc8e345d49582076274aca599cf050918f1a76c1b7b12b98ee0d97f9c",
+  "master_c2_merkle_root_sha256": "ff8af3e3cd93257b5eed1025a5fef1fad95ed4888b0759a4d89a25b76e2ee677",
   "module_sha256_digests": {
     "__init__.py": "795f10286e60c8fbe6ff725e033631a06873b70207c12b47bc9c7c596c489773",
     "access_control.py": "3709685f597329fd7b3042b46096d80b9769a877135920a90b97d98ab8d22c6c",
@@ -135,10 +135,10 @@
     "drone_rgb_adapter.py": "97128e2488b79c428a64f406fd7096e94640c6bd154a0f6a40f947f0a67c5e73",
     "ebony.py": "75e05054d50ba040ddad3476c56da4a342d624762801511644e57654e11d4d18",
     "ebony_academy_curriculum.py": "6e444726d46f022617cce0a91d6c635b956ba250c706cbdacf62143c50c7415c",
-    "ebony_academy_deck.py": "1c9c6e9d26bd3f702aceeae109bc9ca1a1074526e8c39d9453d98f27e1a4a67a",
+    "ebony_academy_deck.py": "10c4302e31c4950dbe8ff3a2108643fb8524cd8d2392382791fb3e43ff77fcd9",
     "ebony_agent_swarm.py": "242d87b3d0f9bde3db1743c9d29d61574af4bb39b89aeb2c0914764b7b96e5e3",
     "ebony_airgap_core.py": "d1a000aced1221919a11c2d0ea0fc1235756d9fa7aee4254249572f0f8c75c05",
-    "ebony_auto_academy_deck.py": "43ec194edbd4d2af172a928af4f6999e68e9922becbfa46901cb978611e0d5d1",
+    "ebony_auto_academy_deck.py": "f95b03d8bac32f19eb1091262329e0fab0c6f595cc8195ca8f6c964db5315d0f",
     "ebony_automotive_master.py": "c6ebbaa459575e2900f512a8d51cf8405ee9e5f7e54c2665c78f8ad6862f717a",
     "ebony_cleanroom_provenance.py": "8fdffd01b21c3ebab79c55bf85619d381aef0650d87a4fd776d2ef16ca73c69b",
     "ebony_client_updater.py": "521cc17e50013a7b23bd770c260d9d544abd916c513a8d26825b49c8b9fd1272",
@@ -172,7 +172,7 @@
     "ebony_stripe_billing.py": "3292c339334b0e62976a13a8dc54dda8efcc70903172af1c275359c2851d9f7f",
     "ebony_structural_mission.py": "be3fa1d5df4d15d970ebfa6ac92de3d8820e009f88550c9b0e45062219fee7bc",
     "ebony_system_audit.py": "22ab99324a4132598e36e408cf41e5119898540fec86e0f808771b33738f76fc",
-    "ebony_textbook_library.py": "2ef2839e3444237b33437da4743cf45c5bda09ada9182ea6563afe5fe12dc6d5",
+    "ebony_textbook_library.py": "d8033ce7652f6bf2bf9813b6c405d9f3d0a79b256386f97ea4b8b31871090dbb",
     "ebony_tier_manager.py": "7cab94cc660336b5edc7371b2f27aca6604ad57e90d7472b0b59c017fb31d681",
     "ebony_travel_autopilot.py": "ec205f569f5db620b6229530b8c86cfd13a396fd2f0a1f9f2dea3f6349348a5a",
     "ebony_travel_ui.py": "a87f437d9cf554697741a36beee96b1cd97ac3a35aa0f857dd9c72ad1ae2dda4",
@@ -287,6 +287,7 @@
     "hvf_penetration_test_suite.py": "3e0d18c4bf60ac7fd763ae08118f6cfe77483c1778ee03348ef637392f25877e",
     "hvf_rbac_controller.py": "f23e19e467148df2ed97aae122e7b40ff2dbb99b6846eae37da7b8b7e41c1976",
     "hvf_reenergization_daemon.py": "93492fe93b76163e6b01e1a675cc5b061f42d7cad44dc0564c30f61dbd78ad88",
+    "hvf_reference_portal.py": "88f3bca9d7c589f90b9e29a22202a6014bbba43b0e0564412724001dcf7eb5a4",
     "hvf_release.py": "a5229ab7f07a811ff7993ad0e2184f68c298b00a44b9a51bd9c75aa9329e807e",
     "hvf_reporting_api.py": "7a69b25dae9da98661ead93de71a5d1f9bf55dce640144189065460d583e2318",
     "hvf_schema.py": "407f9c0486d0f001f87fc51da49724c728fcbc503db5c63299ff7075b68c3855",
@@ -634,7 +635,7 @@
     "total_accredited_hours": 160.0,
     "total_unique_verified_questions": 1420
   },
-  "total_compiled_c2_modules": 611,
+  "total_compiled_c2_modules": 612,
   "tradewinds_docket": "9-26-3703",
   "uei": "S1M4ENLHTDH5"
 }

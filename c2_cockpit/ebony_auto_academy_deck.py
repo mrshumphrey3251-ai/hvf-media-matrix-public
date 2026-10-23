@@ -84,6 +84,7 @@ def render_auto_academy_deck():
             )
 
         active_unit = units[sel_u_num - 1]
+        import hvf_reference_portal as _hrp; _hrp.render_reference_portal("AUT-01", sel_u_num)
         st1, st2, st3, st4 = st.tabs([
             "📖 Sub-Tab 1: Unabridged Lecture, Hazards & Tools",
             "🧮 Sub-Tab 2: Governing Equations & Worked Shop Derivation",
@@ -91,8 +92,6 @@ def render_auto_academy_deck():
             "✅ Sub-Tab 4: Calculation Gate & 20-Question Milestone Exam"
         ])
         with st1:
-            if active_unit.get("beginner_primer"):
-                st.markdown(active_unit["beginner_primer"])
             st.markdown(active_unit["theory"])
             if active_unit.get("deep_supplement"):
                 st.markdown(active_unit["deep_supplement"])
