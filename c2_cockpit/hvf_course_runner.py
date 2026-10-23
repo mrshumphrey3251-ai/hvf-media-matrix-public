@@ -21,6 +21,24 @@ def calculate_emc_chung_pfost(temp_f: float, rh_pct: float, crop: str = "Corn") 
     val = (-math.log(1.0 - rh) / (0.0000265 * (temp_f + 45.0))) ** 0.45
     return round(max(8.0, min(25.0, val)), 2)
 
+DEFAULT_GRAIN_ASCII = (
+    "\n===================================================\n"
+    "               [ GRAVITY RELIEF VENTS ]\n"
+    "                     /          \\\n"
+    "                    /  [TOP CAP] \\  <-- Condensation Zone\n"
+    "                   /              \\\n"
+    "                  |   ZONE 4 TEMP  | <-- Upper Grain Line\n"
+    "                  |   ZONE 3 TEMP  | <-- Core Hotspot Zone\n"
+    "                  |   ZONE 2 TEMP  | <-- Thermocouple Tree\n"
+    "                  |   ZONE 1 TEMP  | <-- Lower Grain Bed\n"
+    "                  |----------------|\n"
+    "                  |================| <-- Perforated Floor\n"
+    "                  [ PLENUM CHAMBER ] <-- Static Air Chamber\n"
+    "                   ^      ^      ^\n"
+    "             [480V AXIAL / CENTRIFUGAL BLOWER]\n"
+    "==================================================="
+)
+
 def render_interactive_course(course_file: str):
     course_path = Path(course_file)
     if not course_path.exists():
@@ -64,34 +82,25 @@ def render_interactive_course(course_file: str):
     academy_tabs = st.tabs([
         "🏛️ System Anatomy & Engineering Tolerances",
         "🔬 Forensic Failure Teardowns",
-        "🎛️ Live Psychrometric Simulator",
+        "🎛️ Live Engineering Simulator",
         "🛡️ Operational Switchboard (SCADA)"
     ])
 
     # 1. ANATOMY & ENGINEERING TOLERANCES
     with academy_tabs[0]:
-        st.markdown("### 🏛️ Module 101: Aeration Bin Internal Anatomy & Engineering Tolerances")
-        st.info("**Core Axiom:** You cannot manage what you cannot visualize. Stored grain is a porous biological matrix under continuous hydrostatic and psychrometric load.")
+        mod_hdr = data.get("module_header", "🏛️ Module 101: Aeration Bin Internal Anatomy & Engineering Tolerances")
+        axiom_txt = data.get("core_axiom", "You cannot manage what you cannot visualize. Stored grain is a porous biological matrix under continuous hydrostatic and psychrometric load.")
+        fig_cap = data.get("figure_caption", "Figure 1.1: Physical Cross-Section of Commercial Aeration Cell")
+        ascii_art = data.get("ascii_schematic", DEFAULT_GRAIN_ASCII)
+
+        st.markdown(f"### {mod_hdr}")
+        st.info(f"**Core Axiom:** {axiom_txt}")
 
         col_anat_l, col_anat_r = st.columns([1, 1])
         with col_anat_l:
             st.markdown("#### 📐 Structural Cross-Section")
-            st.code(r"""===================================================
-               [ GRAVITY RELIEF VENTS ]
-                     /          \
-                    /  [TOP CAP] \  <-- Condensation Zone
-                   /              \
-                  |   ZONE 4 TEMP  | <-- Upper Grain Line
-                  |   ZONE 3 TEMP  | <-- Core Hotspot Zone
-                  |   ZONE 2 TEMP  | <-- Thermocouple Tree
-                  |   ZONE 1 TEMP  | <-- Lower Grain Bed
-                  |----------------|
-                  |================| <-- Perforated Floor
-                  [ PLENUM CHAMBER ] <-- Static Air Chamber
-                   ^      ^      ^
-             [480V AXIAL / CENTRIFUGAL BLOWER]
-===================================================""", language="text")
-            st.caption("Figure 1.1: Physical Cross-Section of Commercial Aeration Cell")
+            st.code(ascii_art.lstrip("\n"), language="text")
+            st.caption(fig_cap)
 
         with col_anat_r:
             st.markdown("#### 🔍 Subsystem Selection")
@@ -104,11 +113,17 @@ def render_interactive_course(course_file: str):
             st.markdown("---")
             st.markdown(f"#### ⚙️ Technical Dossier: {selected_mod.get('name')}")
             st.markdown(f"**Operational Role:** {selected_mod.get('role')}")
-            
+
             st.markdown("##### 🔬 Governing Physical Laws")
             st.info(selected_mod.get("physics"))
-            if "Ergun" in str(selected_mod.get("physics", "")):
+            if selected_mod.get("latex"):
+                st.latex(selected_mod.get("latex"))
+            elif "Ergun" in str(selected_mod.get("physics", "")):
                 st.latex(r"\frac{\Delta P}{L} = \frac{150 \mu (1 - \epsilon)^2}{D_p^2 \epsilon^3} v_s + \frac{1.75 \rho (1 - \epsilon)}{D_p \epsilon^3} v_s^2")
+            elif "Bernoulli" in str(selected_mod.get("physics", "")):
+                st.latex(r"P_1 + \frac{1}{2}\rho v_1^2 + \rho g h_1 = P_2 + \frac{1}{2}\rho v_2^2 + \rho g h_2")
+            elif "Shannon" in str(selected_mod.get("physics", "")):
+                st.latex(r"C = B \log_2 \left(1 + \frac{S}{N}\right) \quad \text{and} \quad H(X) = -\sum P(x_i) \log_2 P(x_i)")
 
             st.markdown("##### 📏 Operational Engineering Tolerances")
             tol = selected_mod.get("tolerances", {})
@@ -155,7 +170,7 @@ def render_interactive_course(course_file: str):
     # 3. LIVE KINETIC SIMULATOR
     with academy_tabs[2]:
         st.markdown("### 🎛️ Live Psychrometric & Airflow Flight Simulator")
-        st.caption("ASAE D245.5 Psychrometric Calculations Calibrated to Ground Truth")
+        st.caption("ASAE D245.5 Psychrometric & Industrial Telemetry Calculations Calibrated to Ground Truth")
 
         s_col1, s_col2 = st.columns(2)
         with s_col1:
@@ -173,7 +188,7 @@ def render_interactive_course(course_file: str):
         m2.metric("Target Storage Moisture", f"{in_grain_moist}%")
         delta = round(calc_emc - in_grain_moist, 2)
         m3.metric("Moisture Potential (Δ)", f"{delta}%", delta_color="inverse")
-        
+
         with m4:
             if calc_emc <= 14.5 and calc_emc <= in_grain_moist + 0.5:
                 st.success("STATUS: AERATION PERMITTED")

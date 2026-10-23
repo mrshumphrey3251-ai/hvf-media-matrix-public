@@ -1,0 +1,85 @@
+{
+  "course_id": "CIVIL-NDT-01",
+  "title": "\ud83c\udfdb\ufe0f Bridge, Building & Roadway Structural Inspection (Title 61 NDT)",
+  "statutory": "Oklahoma Title 61 / Title 74 / ODOT NBI & ASTM D6433 (CAGE: 1AHA8)",
+  "discipline": "FRACTURE-CRITICAL BRIDGE NDT, BUILDING ENVELOPE & PAVEMENT PROFILOMETRY",
+  "module_header": "\ud83c\udfdb\ufe0f Module 101: Bridge Superstructure, Building Envelope & Pavement NDT Anatomy",
+  "core_axiom": "Structural failure begins at the sub-millimeter scale. Autonomous multi-spectral LiDAR, radiometric LWIR thermography, and acoustic bathymetry expose subsurface fatigue before catastrophic collapse.",
+  "figure_caption": "Figure 1.1: Multi-Tier Structural NDT Cross-Section (Deck, Pier & Scour Zone)",
+  "ascii_schematic": "\n===================================================\n      [ UAS RTK LIDAR & 48MP OPTICAL ARRAY ]\n                |        |        |\n      ==========+========+========+==========\n      [ REINFORCED CONCRETE BRIDGE DECK     ] <-- Delamination / Rebar Cover\n      ---------------------------------------\n         ||  [ STEEL FRACTURE-CRITICAL ]  ||  <-- Ultrasonic Fatigue Zone\n         ||  [ GIRDER & PIN ASSEMBLY   ]  ||\n      =======================================\n               |   SUBSTRUCTURE   |\n               |   CONCRETE PIER  |           <-- Spalling & Chloride Ingress\n      ~~~~~~~~~|~~~~~~~~~~~~~~~~~~|~~~~~~~~~~ <-- River Waterline\n               |  [SONAR SCOUR]   |           <-- Bathymetric Pier Scour\n               [ BEDROCK FOOTING  ]\n===================================================",
+  "anatomy_modules": [
+    {
+      "name": "1. Fracture-Critical Steel Girder & Pin-Hanger Ultrasonic NDT",
+      "role": "Detects sub-surface micro-cracking and fatigue in non-redundant tension steel members across state highway bridges.",
+      "physics": "Governed by Euler-Bernoulli Beam Deflection Theory and Ultrasonic Pulse Velocity (UPV) wave propagation. Acoustic impedance discontinuities reflect shear waves back to the transducer, pinpointing internal crack geometry.",
+      "latex": "EI \\frac{d^4 w}{dx^4} = q(x) \\quad \\text{and} \\quad V_p = \\sqrt{\\frac{E(1-\\nu)}{\\rho(1+\\nu)(1-2\\nu)}}",
+      "tolerances": {
+        "Optical Crack Resolution": "< 0.15 mm via 48MP Sub-Millimeter Photogrammetry",
+        "Ultrasonic Transducer Band": "2.25 MHz - 5.0 MHz Shear Wave Array",
+        "GPS-Denied Under-Deck Hold": "+/- 2.0 cm Optical Flow + 3D LiDAR SLAM",
+        "ODOT NBI Compliance": "23 CFR Part 650 (NBIS Element-Level Coding)"
+      },
+      "failure_mechanisms": [
+        "Pack-rust expansion between gusset plates exceeding yield stress of rivet/bolt shanks.",
+        "Fatigue crack propagation at welded web stiffener toes under heavy truck cyclic axle loads.",
+        "Pin-and-hanger assembly seizure causing torsional bending stress during thermal expansion."
+      ],
+      "maintenance_protocol": "Bi-annual element-level NBI hands-on + autonomous UAS photogrammetric sweep; immediate WORM ledger docket sealing upon detecting crack growth > 0.25 mm."
+    },
+    {
+      "name": "2. Commercial Building Roof Membrane & Facade Radiometric LWIR NDT",
+      "role": "Identifies trapped sub-membrane roof moisture and masonry facade spalling across Oklahoma Title 61 public facilities.",
+      "physics": "Governed by the Stefan-Boltzmann Law of radiative heat transfer and thermal capacitance differential. Water-saturated roof insulation retains solar heat post-sunset, emitting a distinct LWIR thermal signature.",
+      "latex": "j^{\\star} = \\varepsilon \\sigma T^4 \\quad \\text{and} \\quad q = -k \\nabla T",
+      "tolerances": {
+        "Thermal Sensitivity (NETD)": "< 40 mK (Radiometric 640x512 LWIR)",
+        "Solar Loading Window": "Minimum 45 min post-sunset thermal decay scan",
+        "Roof Moisture Core Match": "ASTM C1153 / D7954 Capacitance Verification"
+      },
+      "failure_mechanisms": [
+        "Sub-membrane ponding water freeze-thaw expansion rupturing TPO/EPDM seams.",
+        "Blind tie-back anchor corrosion behind brick veneer facades threatening overhead drop hazards."
+      ],
+      "maintenance_protocol": "Annual post-equinox radiometric thermal envelope audit across all OMES CAP state facilities."
+    },
+    {
+      "name": "3. Roadway Pavement Distress & ASTM D6433 PCI LiDAR Profilometry",
+      "role": "Quantifies wheel-path rutting, alligator fatigue cracking, and cross-slope drainage across state and county corridors.",
+      "physics": "Governed by multi-layer elastic pavement theory and International Roughness Index (IRI) quarter-car kinematic response.",
+      "latex": "\\text{PCI} = 100 - \\sum_{i=1}^{p} \\sum_{j=1}^{m_i} a(T_i, S_j, D_{ij}) \\cdot F(t, q)",
+      "tolerances": {
+        "Rutting Depth Resolution": "+/- 0.5 mm Transverse Laser/LiDAR Profile",
+        "PCI Rating Scale": "0 - 100 (ASTM D6433 Standard Classification)",
+        "Point Cloud Density": "> 450 pts/m2 RTK-Corrected Corridor Mesh"
+      },
+      "failure_mechanisms": [
+        "Subbase hydraulic pumping through unsealed transverse cracks leading to alligator pothole blowout.",
+        "Blocked right-of-way culvert headwalls saturating roadbed subgrade."
+      ],
+      "maintenance_protocol": "Quarterly corridor LiDAR & RTK photogrammetry sweep with automated Title 61 maintenance docket generation."
+    }
+  ],
+  "forensic_cases": [
+    {
+      "title": "CASE-CIV-201: Fracture-Critical Gusset Plate & Sub-Surface Pier Scour Failure",
+      "location": "Regional River Truss Crossing (Historical Structural Autopsy)",
+      "asset_loss": "$18.5M Emergency Bridge Replacement & Corridor Closure",
+      "timeline": [
+        {
+          "time": "Day -90",
+          "event": "Spring floodwaters accelerate hydraulic vortex scour beneath Pier 3 footing."
+        },
+        {
+          "time": "Day -14",
+          "event": "Visual-only inspection from deck misses 1.8m undermined footing cavity below murky waterline."
+        },
+        {
+          "time": "Day 0",
+          "event": "Pier 3 settles 4.2 inches under heavy freight load, buckling fracture-critical chord."
+        }
+      ],
+      "autopsy_analysis": "Traditional clipboard bridge inspections cannot see beneath turbid river water or access under-deck gusset plates without costly snooper trucks. Integrating autonomous under-deck UAS photogrammetry with down-look bathymetric sonar detects both micro-cracks and pier scour cavities in a single 45-minute sortie.",
+      "statutory_remedy": "Mandatory dual-domain (Aerial Optical/Thermal + Sub-Surface Bathymetric Sonar) inspection sealed to the Oklahoma Title 61 WORM Ledger."
+    }
+  ]
+}

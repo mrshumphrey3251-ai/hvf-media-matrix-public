@@ -2398,8 +2398,8 @@ elif active_module == "📘 Omni-Industry Matrix":
         with tab:
             _cid_map = {
                 "VERTICAL_AGTECH": "01",
-                "VERTICAL_STRUCTURAL_CIVIL": "02",
-                "VERTICAL_STRUCTURAL_BRIDGE": "02",
+                "VERTICAL_STRUCTURAL_CIVIL": "civil",
+                "VERTICAL_STRUCTURAL_BRIDGE": "civil",
                 "VERTICAL_MICROGRID": "03",
                 "VERTICAL_SOVEREIGN_C2": "04",
                 "01": "01", "02": "02", "03": "03", "04": "04"
@@ -2516,7 +2516,7 @@ elif active_module == "📘 Omni-Industry Matrix":
             # ==============================================================================
             if v_meta.get("id") in ["VERTICAL_STRUCTURAL_CIVIL", "VERTICAL_STRUCTURAL_BRIDGE"]:
                 # 1. State Registered Apprenticeship & Job Creation Plan
-                with st.expander("\U0001F393 State Registered Apprenticeship & Oklahoma Job Creation Plan", expanded=False):
+                with st.expander("\U0001F393 State Registered Apprenticeship & Oklahoma Job Creation Plan", expanded=True):
                     st.markdown("##### \U0001F3DB Oklahoma Workforce Development & Registered Apprenticeship (USDOL / OK Title 61)")
                     st.write(
                         "Humphrey Virtual Farms LLC pairs every state infrastructure contract with a formal **Registered Apprenticeship Program**. "
