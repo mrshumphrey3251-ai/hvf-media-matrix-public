@@ -92,7 +92,7 @@ def render_auto_academy_deck():
             "✅ Sub-Tab 4: Calculation Gate & 20-Question Milestone Exam"
         ])
         with st1:
-            st.markdown(active_unit["theory"])
+            import ebony_textbook_library as _etl; st.markdown(_etl._hvf_scrub_str(active_unit["theory"], is_auto=True))
             if active_unit.get("deep_supplement"):
                 st.markdown(active_unit["deep_supplement"])
         with st2:
