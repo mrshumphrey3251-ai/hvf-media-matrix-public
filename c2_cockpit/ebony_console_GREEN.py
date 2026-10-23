@@ -2437,7 +2437,7 @@ elif active_module == "📘 Omni-Industry Matrix":
                                 data=_dl_md,
                                 file_name=f"{_m_code}_MASTER_STUDY_AND_BRIEFING_MANUAL.md",
                                 mime="text/markdown",
-                                key=f"dl_study_{_m_code}_{v_key}",
+                                key=f"dl_study_{_m_code}",
                                 use_container_width=True
                             )
 
