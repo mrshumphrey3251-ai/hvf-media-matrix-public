@@ -2,7 +2,7 @@
   "cage_code": "1AHA8",
   "classification": "LEVEL-5 SOVEREIGN INDUSTRIAL C2 & ACCREDITED ENGINEERING INSTITUTE",
   "entity": "Humphrey Virtual Farms LLC",
-  "master_c2_merkle_root_sha256": "dc3c2992be26dbdd50f3d37ddb91f98f646e0d5439d38a499f823b8af18f123e",
+  "master_c2_merkle_root_sha256": "673a9d48c6214750d14ac9f8c3cc2229c320eae6321482d8f6570a5db87dfcc0",
   "module_sha256_digests": {
     "__init__.py": "795f10286e60c8fbe6ff725e033631a06873b70207c12b47bc9c7c596c489773",
     "access_control.py": "3709685f597329fd7b3042b46096d80b9769a877135920a90b97d98ab8d22c6c",

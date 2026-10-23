@@ -988,25 +988,22 @@ def _attach_beginner_aids(u_dict: dict, u_num: int):
     ]
     u_dict["beginner_primer"] = nl.join(primer_lines)
 
-    target_unit = u_dict.get("calc_unit", "U.S. Customary Units")
+    _cc_obj = u_dict.get("calc_challenge", {})
+    target_unit = str(_cc_obj.get("unit_label") or _cc_obj.get("unit") or u_dict.get("calc_unit") or "U.S. Customary Units")
+    _eq_raw = str(u_dict.get("equations") or u_dict.get("governing_eq") or "")
+    _first_eq = _eq_raw.splitlines()[0] if _eq_raw else ""
     legend_lines = [
-        f"#### 🔎 Beginner's Symbol-by-Symbol Equation & Calculator Guide (Module {u_num:02d})",
-        f"* **Target U.S. Measurement Unit for Sub-Tab 4:** Measured in **`{target_unit}`**",
-        "* **Calculator Keystroke Rule (PEMDAS):** Always solve numbers inside **parentheses `( ... )`** first, then **square roots/exponents (`sqrt` or `^`)**, then **multiply/divide (`*` or `/`)**, and finally **add/subtract (`+` or `-`)**.",
-        "",
-        "| Symbol in Formula | How to Pronounce It | Plain-English Meaning | U.S. Measurement Unit & Calculator Tip |",
-        "| :--- | :--- | :--- | :--- |",
-        "| **`L_total` / `L` / `b` / `d` / `x` / `z` / `H`** | Length / Width / Depth / Height | Total span opening, barrel width, wall thickness, rebar depth, or flight altitude | Measured in **feet (ft)** or **inches (in)** (12 inches = 1 foot). |",
-        "| **`SR` / `D_%` / `MC_%` / `PCI` / `RF`** | Rating or Condition Score | Percentage or index score showing structural health or moisture saturation | Measured in **Percent (`%`)**, **0–100 PCI Points**, or **Rating Factor (`RF`)**. |",
-        "| **`A` or `Area_sqft`** | Surface Area | Length multiplied by Width of a bridge deck, roof bay, or highway lane | Measured in **square feet (sq ft)**. |",
-        "| **`Delta` (`Δ` or `Delta_T` / `Delta_s`)** | DEL-tuh (Difference / Shift) | Subtract the second reading from the first reading (or sideways movement) | Example: `Delta_T = Indoor °F - Outdoor °F` (`72 °F - 27 °F = 45 °F`). |",
-        "| **`sigma` (`σ`) / `P` / `f_r` / `K_Ic`** | SIG-muh (Stress / Load) | Pulling, pushing, or bending force pressing on steel, concrete, or soil | Measured in **psi** (lbs/sq in), **ksi** (1,000 lbs/sq in), or **kips** (1,000 lbs). |",
-        "| **`sqrt(...)` or `^0.5`** | Square Root | Press the **`[√]`** button on your calculator | Example: `sqrt(32.0) = 5.657` (because `5.657 * 5.657 = 32.0`). |",
-        "| **`^2` or `^3` or `^4`** | Squared / Exponent | Multiply the number by itself (`x^2 = x * x`) or use the **`[x^y]`** key | Example: `(2.0)^2 = 2.0 * 2.0 = 4.0`. |",
-        "| **`R` / `U_wind` / `Q` / `T_dp`** | Thermal & Dew-Point Terms | `R` = Insulation rating; `Q` = Heat loss; `T_dp` = Condensation temperature | Measured in **BTU/hr** (British Thermal Units per hour) and **°F**. |",
+        f"**🔎 Calculator & Formula Breakdown for Module {u_num:02d} (`{u_dict.get('title', '')}`):**",
+        f"* **Primary Formula You Are Solving:** `{_first_eq}`",
+        f"* **Required Final Answer Unit in Sub-Tab 4:** **`{target_unit}`**",
+        "* **Order of Operations on Your Pocket Calculator (PEMDAS):**",
+        "  1. **Parentheses `( ... )` FIRST:** Always calculate the numbers inside inner parentheses first and write that number down on scratch paper.",
+        "  2. **Exponents & Square Roots (`^` or `sqrt`) SECOND:** If the formula has `sqrt(...)`, press the `[√]` key on the number inside; if it has `^2` or `^4`, multiply the number by itself.",
+        "  3. **Multiply (`*`) & Divide (`/`) THIRD:** Work left to right before doing any final addition (`+`) or subtraction (`-`).",
         ""
     ]
-    u_dict["equation_legend"] = nl.join(legend_lines)
+    if not u_dict.get("equation_legend") or "Beginner's Symbol-by-Symbol Equation" in str(u_dict.get("equation_legend", "")):
+        u_dict["equation_legend"] = nl.join(legend_lines)
     return u_dict
 
 
