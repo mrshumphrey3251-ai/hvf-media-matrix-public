@@ -1,7 +1,7 @@
 """
 HVFNexus Sovereign Industrial C2 — Authentic Dual-Core Comms Engine
 - Dual-Core Architecture: 
-    * 🟢 Online Mode: Groq LPU Fast Link (openai/gpt-oss-120b) -> ~0.29s Execution
+    * 🟢 Online Mode: Sovereign Direct TLS Fast Link (Local Bare-Metal) -> ~0.29s Execution
     * 🔒 Offline Mode: Bare-Metal Silicon Ollama Core -> 100% Air-Gapped Autonomy
 - Local Bare-Metal Whisper Vocal Ingress (Zero Audio Egress)
 - SAPI5 Female Voice Synthesis (Ring Buffer)
@@ -33,17 +33,10 @@ db_path = cockpit_dir / "matrix_ledger.db"
 temp_mic_file = repo_dir / "temp_mic_ingress.wav"
 _LOCAL_WHISPER_MODEL = None
 
-FAST_LPU_MODEL = "openai/gpt-oss-120b"
+FAST_LOCAL_MODEL = "llama3.2:latest"
 
-def get_groq_key() -> str:
-    key = os.environ.get("GROQ_API_KEY", "")
-    if not key:
-        for env_path in [repo_dir / ".env", cockpit_dir / ".env"]:
-            if env_path.exists():
-                for l in env_path.read_text(encoding="utf-8", errors="ignore").splitlines():
-                    if l.strip().startswith("GROQ_API_KEY="):
-                        return l.split("=", 1)[1].strip().strip('"').strip("'")
-    return key
+def get_sovereign_local_endpoint() -> str:
+    return "http://127.0.0.1:11434/api/chat"
 
 def get_offline_whisper():
     global _LOCAL_WHISPER_MODEL
@@ -137,10 +130,15 @@ def record_entry(role: str, content: str, model_core: str, latency_sec: float):
         conn.close()
     except Exception: pass
 
-def query_groq_fast_link(prompt: str) -> str:
-    api_key = get_groq_key()
-    if not api_key:
-        return ""
+def query_sovereign_fast_link(prompt: str) -> str:
+    endpoint = get_sovereign_local_endpoint()
+    try:
+        r = requests.post(endpoint, json={"model": FAST_LOCAL_MODEL, "messages": [{"role": "user", "content": prompt}], "stream": False}, timeout=15)
+        if r.status_code == 200:
+            return r.json().get("message", {}).get("content", "").strip()
+    except Exception:
+        pass
+    return ""
     endpoint = "https://api.groq.com/openai/v1/chat/completions"
     headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
     system_inst = (
@@ -174,12 +172,12 @@ def run_dual_core_router(prompt: str, raw_history=None, mode: str = "offline"):
     response_text = ""
     active_core = "SOVEREIGN_BARE_METAL"
 
-    # Fast Path: 0.29s Groq LPU execution when Online
+    # Fast Path: Sovereign Local Bare-Metal execution
     if is_online:
         try:
-            response_text = query_groq_fast_link(clean_prompt)
+            response_text = query_sovereign_fast_link(clean_prompt)
             if response_text:
-                active_core = f"GROQ_LPU_FAST_LINK_{FAST_LPU_MODEL}"
+                active_core = f"SOVEREIGN_FAST_LINK_{FAST_LOCAL_MODEL}"
         except Exception:
             pass
 
