@@ -1,4 +1,4 @@
-﻿"""
+"""
 MODULE_NAME: sovereign_weather_scada
 AUTHOR: EBONY-AUTONOMOUS
 CLEARANCE: LEVEL 5 EXPANSION

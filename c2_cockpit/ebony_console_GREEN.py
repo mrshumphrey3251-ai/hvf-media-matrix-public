@@ -81,7 +81,7 @@ def generate_sovereign_audio_bytes(text: str) -> bytes:
     clean = re.sub(r'\s+', ' ', clean).strip()
 
     buf_id = int(time.time() * 1000)
-    temp_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
+    temp_dir = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit")
     txt_path = temp_dir / f"speech_buf_in_{buf_id}.txt"
     wav_path = temp_dir / f"speech_buf_out_{buf_id}.wav"
 
@@ -203,7 +203,7 @@ def dispatch_sovereign_vocal_directive(prompt: str) -> str:
         from pathlib import Path
         db_path = Path("matrix_ledger.db")
         if not db_path.exists():
-            db_path = Path("C:/HVF_Repos/hvf-media-matrix-private/matrix_ledger.db")
+            db_path = Path("C:/hvf_c2/hvf-media-matrix-private/matrix_ledger.db")
         if db_path.exists():
             conn = sqlite3.connect(str(db_path), timeout=5.0)
             cursor = conn.cursor()
@@ -365,7 +365,7 @@ from chromadb.utils import embedding_functions
 def inject_ultimate_law(msg_list):
     try:
         import sqlite3, os
-        db_path = "C:/HVF_Repos/ultimate-law-private/The_Written_Word/ultimate_law.db"
+        db_path = "C:/hvf_c2/ultimate-law-private/The_Written_Word/ultimate_law.db"
         if not os.path.exists(db_path): return msg_list
         user_msg = next((m['content'] for m in reversed(msg_list) if m.get('role') == 'user'), '')
         words = [w.strip("?.,!") for w in user_msg.split() if len(w.strip("?.,!")) > 4]

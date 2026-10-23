@@ -1,0 +1,208 @@
+{
+  "course_id": "V03-ENERGY-DECK",
+  "title": "\u26a1 Sovereign Energy, Microgrid & 480V Switchgear",
+  "statutory": "DFARS 252.227-7018 / OK Title 61 / HB 2992 (CAGE: 1AHA8)",
+  "discipline": "MICROGRID RESILIENCE, 480V POWER DISTRIBUTION & BESS DISPATCH",
+  "authority": "CEO Jeffery Humphrey (Level 5)",
+  "anatomy_modules": [
+    {
+      "id": "switchgear_bus",
+      "name": "1. 480V 3-Phase Main Switchgear Bus & Air Circuit Breakers (ACB)",
+      "role": "Central power distribution hub providing fault clearing and bus sectionalizing.",
+      "tolerances": {
+        "Service Voltage": "480V AC, 3-Phase, 60 Hz (+/- 2.5% regulation)",
+        "Interrupting Capacity": "65,000 Amps RMS symmetrical (65 kAIC)",
+        "Bus Temperature Rise": "< 65 deg C above ambient under full rated load",
+        "Phase Current Balance": "< 5% imbalance across phases A, B, and C"
+      },
+      "physics": "Governed by Ohm's Law and Joule's Law of Heat Dissipation (P = I^2 * R). High-amperage current passing through electrical joints encounters contact resistance. Even a fractional resistance increase (e.g., 0.05 ohms at 1,000A) generates 50 kilowatts of localized thermal dissipation, melting bus insulation and ionizing copper into plasma.",
+      "failure_mechanisms": [
+        "Loose bus bolted connections causing thermal runaway, phase conductor melting, and catastrophic arc-flash blowout.",
+        "Arc flash ionization: Conductive dust or vermin ingress bridging 480V phase-to-phase spacing, generating a 35,000 deg F plasma explosion.",
+        "ACB mechanical mechanism freeze: Dried lubricant inside spring-charged operating mechanism delaying fault tripping past clearing tolerances."
+      ],
+      "maintenance_protocol": "Annual thermal infrared thermography scanning under peak load. Semi-annual contact resistance testing (ducter testing < 50 micro-ohms per joint). Secondary injection breaker trip timing testing.",
+      "latex": "P = \\sqrt{3} \\, V_{LL} \\, I_L \\cos\\phi \\quad \\text{and} \\quad \\frac{2H}{\\omega_s} \\frac{d^2\\delta}{dt^2} = P_m - P_e"
+    },
+    {
+      "id": "bess_storage",
+      "name": "2. Lithium-Iron-Phosphate (LiFePO4) Battery Energy Storage System (BESS)",
+      "role": "Provides sub-cycle microgrid frequency regulation, peak shaving, and black-start reserves.",
+      "tolerances": {
+        "Rack Voltage Window": "600V - 850V DC nominal bus",
+        "Cell Operating Temperature": "15 deg C to 35 deg C (thermal gradient < 3 deg C across pack)",
+        "Round-Trip Efficiency": "92% - 95% at 0.5C charge/discharge rate",
+        "State of Charge (SoC) Ceiling": "Controlled between 15% and 90% for asset longevity"
+      },
+      "physics": "Governed by the Nernst Equation and electro-chemical kinetics. Cell internal resistance increases non-linearly at low temperatures (< 10 deg C), causing lithium plating during charging. At elevated temperatures (> 55 deg C), solid electrolyte interphase (SEI) layer breakdown releases oxygen, driving self-heating exothermic reactions toward thermal runaway.",
+      "failure_mechanisms": [
+        "Cell internal dendrite short: Microscopic lithium needle growth piercing polymer separators, triggering localized internal thermal ignition.",
+        "HVAC failure stagnation: Loss of container environmental cooling allowing active cells to drift past 55 deg C into uncontrollable thermal runaway.",
+        "BMS voltage sensing lead detachment: Loose balance wire blinding BMS to overcharged cell condition, driving cell voltage past electrochemical safety ceiling."
+      ],
+      "maintenance_protocol": "Continuous per-cell voltage and temperature telemetry monitoring. Automated aerosol fire suppression system verification. Quarterly capacity discharge test and cell internal impedance profiling.",
+      "latex": "P = \\sqrt{3} \\, V_{LL} \\, I_L \\cos\\phi \\quad \\text{and} \\quad \\frac{2H}{\\omega_s} \\frac{d^2\\delta}{dt^2} = P_m - P_e"
+    },
+    {
+      "id": "solar_inverters",
+      "name": "3. Grid-Forming Multi-Megawatt Inverter Array",
+      "role": "Synthesizes synthetic virtual inertia and converts DC renewable generation to AC power.",
+      "tolerances": {
+        "DC Input Window": "500V - 1000V DC (Maximum Power Point Tracking)",
+        "Total Harmonic Distortion (THD)": "< 3.0% voltage THD at rated output",
+        "Frequency Response Droop": "1% - 3% droop slope for microgrid load sharing",
+        "DC Isolation Resistance": "> 1.0 Megohm to ground prior to contactor closure"
+      },
+      "physics": "Governed by Pulse Width Modulation (PWM) and Fourier Harmonic Synthesis. Insulated-Gate Bipolar Transistors (IGBTs) switch at 4 to 16 kHz to synthesize clean 60 Hz sinusoidal voltage waveforms. High-frequency switching induces parasitic capacitive leakage currents to ground through photovoltaic panel glass and cabling.",
+      "failure_mechanisms": [
+        "IGBT thermal fatigue: Rapid solar cloud transients cycling junction temperatures across 80 deg C deltas, causing solder bond shear and silicon gate destruction.",
+        "DC ground fault flashover: Rodent damage chewing array cable insulation, dumping high-voltage DC into soil and triggering continuous ground fault lockouts.",
+        "Grid loss synchronization loss: Anti-islanding logic failing to transition from grid-following to grid-forming mode within 16 milliseconds, collapsing microgrid bus."
+      ],
+      "maintenance_protocol": "Monthly DC string open-circuit voltage (Voc) and short-circuit current (Isc) logging. Quarterly cooling heat-sink blower filter cleaning and IGBT gate drive voltage verification.",
+      "latex": "P = \\sqrt{3} \\, V_{LL} \\, I_L \\cos\\phi \\quad \\text{and} \\quad \\frac{2H}{\\omega_s} \\frac{d^2\\delta}{dt^2} = P_m - P_e"
+    },
+    {
+      "id": "ats_synchro",
+      "name": "4. Automatic Transfer Switch (ATS) & Synchroscope Control",
+      "role": "Coordinates zero-outage closed-transition transfer between utility grid and sovereign microgrid.",
+      "tolerances": {
+        "Voltage Differential": "< 2.0% delta between incoming source and running bus",
+        "Frequency Slip Rate": "< 0.1 Hz difference between sources",
+        "Phase Angle Alignment": "Closing permissible only within +/- 5 electrical degrees of zero",
+        "Transfer Mechanism Time": "< 100 milliseconds for fast open transition"
+      },
+      "physics": "Governed by AC Vector Parity and Electromagnetic Torque Dynamics. Closing two out-of-phase AC power sources creates instantaneous cross-currents proportional to the vector voltage difference. Closing 180 degrees out of phase generates torque transients exceeding 20 times normal rated motor shaft limits, violently shearing generator couplings and twisting generator stator frames.",
+      "failure_mechanisms": [
+        "Out-of-phase closure: Faulty synchroscope contact closing breaker at 120-degree phase shift, destroying generator drive couplings and exploding switchgear busbars.",
+        "Mechanical interlock latch failure: Simultaneous connection of unsynchronized sources due to bent mechanical interlock linkages.",
+        "Arc chute deterioration: Burned splitter plates allowing 480V transfer arc to flashover phase-to-phase during inductive load transfer."
+      ],
+      "maintenance_protocol": "Annual manual mechanical operation check under zero-energy Lockout/Tagout. High-pot dielectric insulation testing across pole phases. Oscilloscope verification of dual-source synchroscope closing permissive signals.",
+      "latex": "P = \\sqrt{3} \\, V_{LL} \\, I_L \\cos\\phi \\quad \\text{and} \\quad \\frac{2H}{\\omega_s} \\frac{d^2\\delta}{dt^2} = P_m - P_e"
+    },
+    {
+      "id": "grounding_matrix",
+      "name": "5. High-Resistance Grounding (HRG) & Neutral Earthing Matrix",
+      "role": "Limits phase-to-ground fault current to a safe 5 Amps to eliminate arc-flash ground escalation.",
+      "tolerances": {
+        "Neutral Grounding Resistor (NGR)": "55 Ohms continuous rating (limiting 480V ground fault to 5.0A)",
+        "Ground Fault Alarm Time": "< 100 milliseconds detection and pulsing beacon activation",
+        "Earth Grounding Resistance": "< 5.0 Ohms to true earth ground via chemical ground rods",
+        "Neutral-to-Earth Voltage": "< 2.0V AC under balanced operating conditions"
+      },
+      "physics": "Governed by Symmetrical Components and Ground Fault Current Dynamics. In solidly grounded systems, a single phase-to-ground fault creates short-circuit currents exceeding 20,000 Amps, releasing explosive arc-flash energy. An HRG system inserts a calibrated neutral resistor that restricts ground fault current to 5 Amps, converting an explosive fault into a manageable alarm without tripping the facility offline.",
+      "failure_mechanisms": [
+        "NGR open-circuit failure: Unmonitored resistor element cracking open, floating the system neutral and causing destructive transient overvoltages (up to 250% nominal) during ground faults.",
+        "Second ground fault on separate phase: Failure to locate and clear initial 5A ground fault allowing a second phase fault to occur, escalating into an uncontrolled 480V phase-to-phase fault.",
+        "Ground grid corrosion: Soil acidity corroding buried bare copper ground rods, increasing ground loop impedance and compromising personnel touch potential safeties."
+      ],
+      "maintenance_protocol": "Monthly NGR resistor element continuity and resistance check. Earth ground clamp-on fall-of-potential testing. Pulsing tracer current ground locator functional drill.",
+      "latex": "P = \\sqrt{3} \\, V_{LL} \\, I_L \\cos\\phi \\quad \\text{and} \\quad \\frac{2H}{\\omega_s} \\frac{d^2\\delta}{dt^2} = P_m - P_e"
+    }
+  ],
+  "forensic_cases": [
+    {
+      "case_id": "CASE-301",
+      "title": "Incident 301: The 480V Arc-Flash Blast in Main Distribution Section",
+      "location": "Regional Manufacturing Microgrid Hub",
+      "asset_loss": "Complete 480V Switchgear Destructed, Critical Facility Blackout ($580,000 Direct Loss)",
+      "timeline": [
+        {
+          "time": "10:15",
+          "event": "Technician attempts to tighten a loose 480V busbar bolt using an uninsulated socket wrench without de-energizing the main breaker."
+        },
+        {
+          "time": "10:15:02",
+          "event": "Wrench slips from technician grip, bridging Phase A busbar to the grounded steel chassis enclosure."
+        },
+        {
+          "time": "10:15:02.1",
+          "event": "Air gaps ionize instantly. Arc-flash plasma ball expands to 35,000 deg F. Copper busbars vaporize into expanding molten cloud."
+        },
+        {
+          "time": "10:15:02.4",
+          "event": "Blast pressure wave blows switchgear doors 40 feet across room, shattering steel structural supports."
+        },
+        {
+          "time": "10:15:03",
+          "event": "Upstream utility substation breaker trips on instantaneous overcurrent, de-energizing the destroyed facility."
+        }
+      ],
+      "autopsy_analysis": "An electrical arc-flash converts solid copper into vapor with an expansion ratio of 67,000 to 1. The resulting explosion produces an intense blast pressure wave accompanied by thermal radiation exceeding the surface temperature of the sun. Working on energized 480V equipment without verified electrically safe work conditions (NFPA 70E violations) bypassed all designed protective safety margins.",
+      "statutory_remedy": "Mandatory optical arc-flash detection relays utilizing fiber-optic light sensors coupled to ultra-fast sub-cycle shunt trip breakers (< 12 ms clearing time). Strict electronic padlock interlocks preventing switchgear door opening without verified zero-energy de-energization."
+    },
+    {
+      "case_id": "CASE-302",
+      "title": "Incident 302: Battery Energy Storage Thermal Runaway Deflagration",
+      "location": "Grid-Tied Commercial Solar-Plus-Storage Facility",
+      "asset_loss": "1.2 MWh BESS Container Total Loss, Hazardous Material Remediation ($890,000 Loss)",
+      "timeline": [
+        {
+          "time": "Day 0, 14:00",
+          "event": "HVAC compressor in BESS Enclosure B trips on high-head pressure. Ambient temperature inside container climbs to 118 deg F (48 deg C)."
+        },
+        {
+          "time": "Day 0, 15:30",
+          "event": "Operator receives high-temperature warning on SCADA deck, but defers service call to avoid dispatching weekend technician."
+        },
+        {
+          "time": "Day 0, 17:00",
+          "event": "Peak evening grid discharge cycle initiated. High current draw generates rapid internal I^2*R Joule heating inside uncooled cells."
+        },
+        {
+          "time": "Day 0, 17:42",
+          "event": "Rack 4 Cell 12 exceeds 75 deg C, triggering SEI layer decomposition and rapid self-heating exothermic runaway."
+        },
+        {
+          "time": "Day 0, 18:05",
+          "event": "Thermal runaway propagates across module cells, venting flammable hydrogen, methane, and carbon monoxide gases into container."
+        },
+        {
+          "time": "Day 0, 18:22",
+          "event": "Gas concentration reaches lower explosive limit (LEL). Spark from cooling fan relay ignites deflagration, rupturing container roof."
+        }
+      ],
+      "autopsy_analysis": "Lithium-based battery cells require strict thermal equilibrium. Discharging batteries at high C-rates inside an uncooled environment drives cell core temperatures past the point of thermal runaway. Once exothermic self-heating starts, internal temperatures escalate at hundreds of degrees per second, decomposing electrolytes into combustible gases that inevitably ignite without rapid automated water-mist cooling and deflagration venting.",
+      "statutory_remedy": "Automated hardwired SCADA lockout tying BESS charge/discharge permissives directly to environmental container temperatures. If interior enclosure temperature exceeds 35 deg C, maximum discharge current must be throttled by 50%; if temperature exceeds 45 deg C, DC contactors must trip instantly."
+    },
+    {
+      "case_id": "CASE-303",
+      "title": "Incident 303: Out-of-Phase ATS Generator Coupling Shearing",
+      "location": "Sovereign Emergency Power Generation Station",
+      "asset_loss": "750 kW Diesel Generator Stator Twist & Crankshaft Fracture ($310,000 Direct Loss)",
+      "timeline": [
+        {
+          "time": "02:10",
+          "event": "Storm causes utility grid voltage brownout. Microgrid ATS signals backup 750 kW generator to start."
+        },
+        {
+          "time": "02:10:10",
+          "event": "Generator reaches rated 1800 RPM and 480V output. Microgrid transfers load cleanly to generator."
+        },
+        {
+          "time": "02:45",
+          "event": "Utility grid power restores. ATS initiates closed-transition re-transfer sequence to return load to utility seamlessly."
+        },
+        {
+          "time": "02:45:08",
+          "event": "Synchroscope optical encoder fails, sending a false in-phase signal while incoming sources are 120 degrees out of phase."
+        },
+        {
+          "time": "02:45:08.2",
+          "event": "ATS contactor closes across out-of-phase sources. Catastrophic electromagnetic torque shock wave hits rotating generator rotor."
+        },
+        {
+          "time": "02:45:08.5",
+          "event": "Engine flywheel shear bolts snap. Crankshaft fractures across journal 4. Generator stator coils tear free from mounting frame."
+        }
+      ],
+      "autopsy_analysis": "Paralleling two alternating current sources out of phase produces instantaneous circulating fault currents equivalent to a bolted line-to-line short circuit. The magnetic field in the generator stator attempts to instantly force the rotating diesel engine mass into angular synchronization with the infinite grid. The resulting mechanical torque shockwave easily exceeded the ultimate torsional yield strength of the crankshaft steel.",
+      "statutory_remedy": "Dual redundant hardware synchrocheck relays (ANSI Device 25) wired in series. Contactor closing coils must only be energized if two independent microprocessors confirm voltage delta < 2%, frequency delta < 0.1 Hz, and phase angle < 5 electrical degrees for a minimum of 500 consecutive milliseconds."
+    }
+  ],
+  "module_header": "\u26a1 Module 101: 480V 3-Phase Microgrid Switchgear & Sub-16ms Solid-State Islanding",
+  "core_axiom": "Arc-flash plasma reaches 35,000\u00b0F in milliseconds. Synchronous phase-angle alignment and sub-cycle solid-state static transfer switches protect critical C2 loads from grid collapse.",
+  "figure_caption": "Figure 1.1: 480V 3-Phase Islanded Microgrid, Kinetic Flywheel & BESS Tie-Breaker Topology",
+  "ascii_schematic": "===================================================\n   [ UTILITY 13.8kV FEED ]      [ SOLAR PV + BESS INVERTER ]\n              |                               |\n     [ STEP-DOWN XFMR ]              [ SYNCHROSCOPE RELAY ]\n              |                               |\n      (480V Bus A - Grid)            (480V Bus B - Sovereign)\n              \\                               /\n               === [ SUB-16ms STATIC PCC ] ===\n                              |\n              =================================\n              | CRITICAL 480V 3-PHASE MCC BUS |\n              =================================\n                 |            |            |\n             [BLOWER 1]   [PUMP VFD]   [C2 RACK]\n==================================================="
+}

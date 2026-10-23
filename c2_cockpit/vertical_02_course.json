@@ -1,0 +1,200 @@
+{
+  "course_id": "V02-WATER-DECK",
+  "title": "\ud83d\udca7 Sovereign Hydrology & Industrial Water Security",
+  "statutory": "DFARS 252.227-7018 / OK Title 61 / HB 2992 (CAGE: 1AHA8)",
+  "discipline": "WATER SECURITY, REVERSE OSMOSIS & HYDRAULIC DISPATCH",
+  "authority": "CEO Jeffery Humphrey (Level 5)",
+  "anatomy_modules": [
+    {
+      "id": "booster_pump",
+      "name": "1. 480V Multi-Stage Centrifugal Booster Pump (VFD Driven)",
+      "role": "Supplies constant dynamic pressure across high-density membrane banks.",
+      "tolerances": {
+        "Service Voltage": "480V AC, 3-Phase, 60 Hz",
+        "Operating Pressure": "150 - 250 PSI dynamic discharge head",
+        "Minimum Net Positive Suction Head (NPSHr)": "8.5 feet to prevent suction cavitation",
+        "Shaft Seal Leakage": "< 3 drops/min on mechanical seal flush"
+      },
+      "physics": "Governed by the Bernoulli Equation and Affinity Laws for incompressible fluids. Flow velocity (v) is inversely proportional to cross-sectional area (A). If suction inlet pressure drops below vapor pressure, water vaporizes into micro-bubbles that violently collapse against impeller vanes at velocities exceeding 1,000 m/s, causing rapid acoustic cavitation pitting and catastrophic mechanical destruction.",
+      "failure_mechanisms": [
+        "NPSH starvation caused by clogged pre-strainer baskets leading to violent cavitation and shattered impeller bronze vanes.",
+        "Dead-head thermal runaway: Running pump against closed discharge valve heating trapped fluid past boiling point, melting mechanical seal faces within 3 minutes.",
+        "VFD harmonic resonance shaking discharge pipe flange gaskets loose at critical resonant frequencies (typically 42-45 Hz)."
+      ],
+      "maintenance_protocol": "Monthly vibration spectrum analysis on outboard pump bearings. Pre-startup suction pressure gauge verification (>15 PSI positive inlet pressure required before run permissives).",
+      "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho g h_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho g h_2 \\quad \\text{and} \\quad \\text{NPSH}_a = \\frac{P_0 - P_v}{\\rho g} + h_s - h_f"
+    },
+    {
+      "id": "sediment_media",
+      "name": "2. Multi-Media Deep-Bed Turbidity Filter",
+      "role": "Removes suspended solids down to 10 microns via layered anthracite, sand, and garnet.",
+      "tolerances": {
+        "Filtration Flux Rate": "5.0 - 8.0 GPM per sq ft of bed surface",
+        "Allowable Differential Pressure (Delta P)": "Normal: 2 - 4 PSI | Backwash Mandatory: > 12 PSI",
+        "Bed Expansion on Backwash": "30% - 40% vertical bed expansion",
+        "Rinse-to-Drain Turbidity": "< 0.5 NTU before returning to service"
+      },
+      "physics": "Governed by Darcy's Law for flow through porous granular beds. As particulate matter accumulates within the interstitial media voids, the hydraulic permeability constant (k) decreases exponentially, creating steep differential pressure spikes across the bed that can crush under-drain lateral distributor screens.",
+      "failure_mechanisms": [
+        "Media mud-balling: Inadequate backwash velocity fails to expand bed, cementing silt and polymer into dense mud balls that cause severe fluid channeling.",
+        "Under-drain lateral screen rupture: Backwash pressure surge cracking PVC hub fingers, dumping cubic yards of anthracite media into downstream high-pressure pumps.",
+        "Biological bio-fouling: Anaerobic bacterial colonization forming slime mats across media cap during prolonged stagnant outages."
+      ],
+      "maintenance_protocol": "Automated differential pressure delta logging. Annual core media depth measurement and acid-wash sanitization cycle.",
+      "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho g h_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho g h_2 \\quad \\text{and} \\quad \\text{NPSH}_a = \\frac{P_0 - P_v}{\\rho g} + h_s - h_f"
+    },
+    {
+      "id": "ro_membrane",
+      "name": "3. High-Rejection Reverse Osmosis (RO) Polyamide Membrane Arrays",
+      "role": "Removes dissolved ions, heavy metals, and biological pathogens down to 0.0001 microns.",
+      "tolerances": {
+        "Salt Rejection Efficiency": "Minimum 99.2% nominal rejection",
+        "Recovery Ratio": "Controlled at 65% - 75% to prevent mineral scaling",
+        "Silt Density Index (SDI) Feed Limit": "< 3.0 SDI to prevent colloidal fouling",
+        "Membrane Feed Pressure": "180 - 220 PSI continuous"
+      },
+      "physics": "Governed by the Van 't Hoff Equation for osmotic pressure. Water naturally diffuses through a semi-permeable membrane from low solute to high solute concentration. Reverse osmosis requires mechanical pressure exceeding natural osmotic pressure (P_applied > Pi) to force pure permeate through polyamide pore structures against thermodynamic equilibrium.",
+      "failure_mechanisms": [
+        "Calcium carbonate/sulfate scaling: Exceeding recovery limits concentrates supersaturated salts in concentrate stream, crystallizing permanent mineral scale inside membrane feed spacers.",
+        "Free chlorine oxidation: Trace free chlorine (>0.05 ppm) attacks aromatic polyamide polymer bonds, permanently destroying salt rejection in under 48 hours.",
+        "Concentrate telescoping: High pressure drop exceeding 10 PSI per vessel tearing fiberglass outer wrap and sliding membrane leaves axially."
+      ],
+      "maintenance_protocol": "Daily SDI testing on feed stream. Continuous online oxidation-reduction potential (ORP) monitoring (<200 mV required). Bi-monthly chemical clean-in-place (CIP) acid/alkaline wash.",
+      "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho g h_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho g h_2 \\quad \\text{and} \\quad \\text{NPSH}_a = \\frac{P_0 - P_v}{\\rho g} + h_s - h_f"
+    },
+    {
+      "id": "uv_reactor",
+      "name": "4. Closed-Vessel High-Output Ultraviolet (UV) Disinfection Chamber",
+      "role": "Destroys pathogen DNA and RNA via 254 nm germicidal electromagnetic radiation.",
+      "tolerances": {
+        "Germicidal Wavelength": "253.7 nm monochromatic C-band emission",
+        "UV Fluence Dose": "Minimum 40 mJ/cm\u00b2 (40,000 uW-sec/cm\u00b2) validated dose",
+        "Quartz Sleeve Transmittance": "> 90% UVT (Ultraviolet Transmittance)",
+        "Chamber Water Temperature": "Maintain < 105 deg F during continuous run"
+      },
+      "physics": "Governed by the Beer-Lambert Law and photochemical dimerization. UV photons at 254 nm are absorbed by pyrimidine bases in bacterial DNA, creating thymine dimers that prevent cellular replication and transcription. Inadequate fluid velocity causes stagnation and lamp overheating, while high turbidity shields pathogens from photon absorption.",
+      "failure_mechanisms": [
+        "Quartz sleeve mineral scale fouling: Hardness ions baking onto hot quartz sleeves, blocking germicidal UV photon transmission below minimum pathogen kill thresholds.",
+        "Lamp ballast driver failure: Grid harmonic spikes vaporizing electronic solid-state ballasts, dropping lamp arc discharge silently without immediate alarm.",
+        "Thermal trip: Running reactor during zero-flow stagnation heating chamber water to boiling, shattering quartz sleeves and waterlogging electrical connectors."
+      ],
+      "maintenance_protocol": "Quarterly quartz sleeve mechanical wiping and acid descaling. Photodiode sensor recalibration against certified reference radiometer every 6 months.",
+      "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho g h_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho g h_2 \\quad \\text{and} \\quad \\text{NPSH}_a = \\frac{P_0 - P_v}{\\rho g} + h_s - h_f"
+    },
+    {
+      "id": "backwash_switchboard",
+      "name": "5. Pneumatic Valve Manifold & Water-Hammer Relief Dampers",
+      "role": "Directs hydraulic flow paths between service, backwash, fast rinse, and bypass states.",
+      "tolerances": {
+        "Actuator Air Pressure": "80 - 100 PSI instrument-grade clean dry air",
+        "Valve Stroke Time": "Minimum 4.0 - 6.0 seconds travel time (to eliminate hydraulic shock)",
+        "Surge Arrestor Pre-Charge": "Set to 80% of normal system operating pressure (Nitrogen)",
+        "Position Telemetry": "Dual mechanical inductive limit switches on every butterfly valve"
+      },
+      "physics": "Governed by the Joukowsky Equation for transient hydraulic shock: Delta P = rho * a * Delta v, where rho is fluid density, a is acoustic wave speed (approx 1,400 m/s), and Delta v is instantaneous velocity change. Slamming a high-velocity 6-inch water line shut in under 0.5 seconds generates shockwaves exceeding 800 PSI, easily rupturing cast-iron pipe fittings and pump volutes.",
+      "failure_mechanisms": [
+        "Water-hammer pipe shear: Fast-closing pneumatic solenoid valves operating under 1 second generating extreme shock waves that blow victaulic couplings and pipe supports.",
+        "Solenoid pilot air contamination: Moisture in air lines freezing pneumatic valves in mid-stroke position, creating simultaneous forward and backwash flow cross-contamination.",
+        "Seat seal cavitation erosion: High-velocity throttling through partially seated butterfly valves cutting elastomer seats and causing permanent internal bypass leaks."
+      ],
+      "maintenance_protocol": "Monthly nitrogen pre-charge check on bladder surge arrestors. Flow throttle calibration on pneumatic exhaust ports to enforce mandatory 5-second stroke durations.",
+      "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho g h_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho g h_2 \\quad \\text{and} \\quad \\text{NPSH}_a = \\frac{P_0 - P_v}{\\rho g} + h_s - h_f"
+    }
+  ],
+  "forensic_cases": [
+    {
+      "case_id": "CASE-201",
+      "title": "Incident 201: The Cavitation Volute Explosion at Terminal Intake",
+      "location": "Regional Hydrological Processing Station",
+      "asset_loss": "150-HP Booster Pump Destruction, Flooded Motor Control Center ($220,000 Direct Loss)",
+      "timeline": [
+        {
+          "time": "03:15",
+          "event": "Autumn leaf fall severely blinds raw water intake suction trash rack. Intake level drops 4 feet below design baseline."
+        },
+        {
+          "time": "03:20",
+          "event": "Suction vacuum gauge pulls into deep vacuum (-22 in-Hg). Available NPSH drops below 3.0 feet."
+        },
+        {
+          "time": "03:22",
+          "event": "Apprentice hears loud 'gravel rattling' sound from pump volute. Assumes debris in line and overrides low-suction SCADA interlock to 'pull through the blockage.'"
+        },
+        {
+          "time": "03:41",
+          "event": "High-velocity cavitation vapor bubble implosions scour bronze impeller shroud down to paper-thin thickness. Heavy vibration spikes to 0.85 in/sec."
+        },
+        {
+          "time": "03:44",
+          "event": "Impeller disintegrates under centrifugal stress. Shrapnel breaches cast-iron volute casing. 1,200 GPM high-pressure jet floods basement and submerges 480V switchboard."
+        }
+      ],
+      "autopsy_analysis": "Operating a high-flow centrifugal pump below required Net Positive Suction Head creates severe acoustic cavitation. The imploding microscopic vapor bubbles generate localized micro-jets with localized pressures exceeding 150,000 PSI and localized temperatures of several thousand degrees. Overriding the low-suction vacuum safety interlock allowed continuous cavitation to destroy the rotating impeller structure within 25 minutes.",
+      "statutory_remedy": "Hardwired, non-bypassable low-suction pressure transducer trip switch. If suction head drops below 8.0 PSI positive pressure, VFD must initiate an emergency deceleration ramp within 500 milliseconds regardless of operator override inputs."
+    },
+    {
+      "case_id": "CASE-202",
+      "title": "Incident 202: Membrane Autopsy: Total Chlorine Oxidation Breakthrough",
+      "location": "Sovereign Industrial Reverse Osmosis Facility",
+      "asset_loss": "48 High-Rejection Polyamide RO Elements Destroyed ($75,000 Media Loss + 14-Day Production Halt)",
+      "timeline": [
+        {
+          "time": "Day 0, 08:00",
+          "event": "Sodium bisulfite (dechlorination chemical) metering pump loses prime due to air lock in suction tubing."
+        },
+        {
+          "time": "Day 0, 08:30",
+          "event": "Free chlorine in feed water rises from 0.00 ppm to 1.8 ppm city water residual. Online ORP sensor reads 680 mV (Alarm state)."
+        },
+        {
+          "time": "Day 0, 08:45",
+          "event": "Operator silences ORP alarm on SCADA screen, believing it to be a 'routine sensor calibration error' caused by cold morning water."
+        },
+        {
+          "time": "Day 2, 06:00",
+          "event": "Permeate water conductivity spikes from pure 12 uS/cm to 850 uS/cm. Permeate quality fails all industrial process standards."
+        },
+        {
+          "time": "Day 3, 10:00",
+          "event": "Membrane vessel autopsy reveals polyamide active barrier layer chemically depolymerized by hypochlorous acid attack. Salt rejection drops from 99.4% to 22%."
+        }
+      ],
+      "autopsy_analysis": "Thin-film composite reverse osmosis membranes utilize an ultra-thin crosslinked aromatic polyamide barrier layer. Hypochlorous acid (free chlorine) attacks the amide hydrogen atoms through N-chlorination, causing irreversible chain scission and ring chlorination. The polymer matrix permanently unzips, turning the membrane into an open porous sieve that allows complete passage of dissolved salts and heavy metals.",
+      "statutory_remedy": "Automated fast-acting solenoid diversion valve tied directly to ORP and free chlorine telemetry. If feed ORP exceeds 250 mV for more than 15 consecutive seconds, feed water must automatically dump to drain and trip the 480V high-pressure booster pump offline."
+    },
+    {
+      "case_id": "CASE-203",
+      "title": "Incident 203: Water-Hammer Hydraulic Shock Flange Rupture",
+      "location": "High-Pressure Hydraulic Injection Vault",
+      "asset_loss": "8-Inch Schedule 80 Stainless Piping Manifold Split, Foundation Shift ($165,000 Repair)",
+      "timeline": [
+        {
+          "time": "16:00",
+          "event": "System running at full capacity: 1,800 GPM flowing through 8-inch main header at 180 PSI (Velocity: 11.5 ft/sec)."
+        },
+        {
+          "time": "16:02",
+          "event": "Apprentice triggers emergency stop button to investigate a small floor puddle."
+        },
+        {
+          "time": "16:02:00.4",
+          "event": "Fast-acting pneumatic butterfly valve slams 100% closed in 0.3 seconds on the primary header. Zero-time stroke."
+        },
+        {
+          "time": "16:02:01",
+          "event": "Joukowsky hydraulic shock wave spikes header internal pressure from 180 PSI to 940 PSI instantly. Acoustic wave ricochets back through piping array."
+        },
+        {
+          "time": "16:02:01.8",
+          "event": "Main 8-inch 304SS pipe elbow tears completely across weld seam. Massive hydraulic thrust pulls concrete seismic anchors directly out of the floor."
+        }
+      ],
+      "autopsy_analysis": "Instantaneous fluid deceleration converts kinetic energy directly into extreme hydrostatic pressure shockwaves. With a fluid velocity of 11.5 ft/sec, closing the valve in 300 milliseconds caused a pressure surge of over 750 PSI above the 180 PSI operating pressure, generating an instantaneous total system shock of 930+ PSI that far exceeded the fatigue yield limit of the welded elbow assembly.",
+      "statutory_remedy": "All high-pressure actuated valves must be fitted with dual-stage pneumatic speed controllers enforcing a controlled, non-linear minimum 5.0-second closing stroke. Mandatory nitrogen-charged hydraulic expansion accumulators installed immediately upstream of all automated shutoff manifolds."
+    }
+  ],
+  "module_header": "\ud83d\udca7 Module 101: High-Pressure Reverse Osmosis & Centrifugal Pump Hydraulics",
+  "core_axiom": "Cavitation destroys bronze and stainless impellers at supersonic micro-jet velocities. Positive suction head (NPSHa > NPSHr) is the iron law of hydraulic continuity.",
+  "figure_caption": "Figure 1.1: Multi-Stage 480V Centrifugal Booster & Reverse Osmosis Membrane Array",
+  "ascii_schematic": "===================================================\n   [ RAW WATER INTAKE ] ---> [ DUPLEX STRAINER ]\n                                     |\n                            (Suction > 15 PSI)\n                                     v\n                    [ 480V VFD CENTRIFUGAL PUMP ]\n                                     |\n                           (Discharge 220 PSI)\n                                     v\n             +---------------------------------------+\n             |  [ HIGH-PRESSURE RO MEMBRANE VESSEL ] |\n             +---------------------------------------+\n                   |                           |\n        [ PERMEATE TO STORAGE ]     [ BRINE CONCENTRATE REJECT ]\n==================================================="
+}

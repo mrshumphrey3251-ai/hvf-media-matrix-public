@@ -1,4 +1,4 @@
-﻿import json
+import json
 import time
 
 def emit_kinetic_payload(vertical, target_node, pwr_state, actuator_state, kinetic_rate):

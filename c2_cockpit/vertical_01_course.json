@@ -1,0 +1,204 @@
+{
+  "course_id": "V01-AGRI-DECK",
+  "title": "\ud83c\udf3e Sovereign Agriculture & Biosphere Conditioning",
+  "statutory": "DFARS 252.227-7018 / OK Title 61 / HB 2992 (CAGE: 1AHA8)",
+  "discipline": "BIOSPHERE DEFENSE & BULK ASSET PRESERVATION",
+  "authority": "CEO Jeffery Humphrey (Level 5)",
+  "anatomy_modules": [
+    {
+      "id": "plenum",
+      "name": "1. Perforated Floor & Plenum Static Chamber",
+      "role": "Converts turbulent blower discharge into uniform laminar vertical static pressure.",
+      "tolerances": {
+        "Plenum Depth": "Minimum 18 - 24 inches for uniform distribution",
+        "Floor Perforation Ratio": "12% - 15% open area (corrugated galvanized steel)",
+        "Static Pressure Limit": "Maximum allowable backpressure: 4.5 in-WC",
+        "Air Velocity": "Target 30 - 45 FPM (feet per minute) through empty plenum"
+      },
+      "physics": "Governed by the Ergun Equation for fluid flow through packed porous beds. Friction losses through dense corn kernels scale non-linearly with bed depth and airflow velocity. If plenum depth is under 18 inches, the velocity pressure of the fan blast overrides static pressure conversion, forcing airflow up the opposite wall while leaving the near-side grain dead and unventilated.",
+      "failure_mechanisms": [
+        "Fine material ('dockage/fines') sift through floor perforations into plenum space over consecutive cycles, decomposing into biological sludge and choking floor perforations.",
+        "Structural floor support leg buckling caused by uneven grain compaction during high-drop filling without a grain spreader.",
+        "Plenum condensation pooling causing corrosion of structural galvanized floor piers."
+      ],
+      "maintenance_protocol": "Annual pre-harvest plenum cleanout via dedicated lower access hatch. Mechanical vacuuming of all fines below floor. Visual inspection of every support pier for vertical alignment.",
+      "latex": "\\frac{\\Delta P}{L} = \\frac{150 \\mu (1 - \\epsilon)^2}{D_p^2 \\epsilon^3} v_s + \\frac{1.75 \\rho (1 - \\epsilon)}{D_p \\epsilon^3} v_s^2"
+    },
+    {
+      "id": "blowers",
+      "name": "2. 480V 3-Phase Aeration Blowers (Axial vs. Centrifugal)",
+      "role": "Supplies engineered volumetric airflow against total system static head.",
+      "tolerances": {
+        "Electrical Service": "480V AC, 3-Phase, 60 Hz",
+        "Running Amperage": "Full Load Amps (FLA) balanced within +/- 2% across all 3 phases",
+        "Static Operating Window": "Axial: 1.0 - 3.5 in-WC | Centrifugal (In-Line): 3.0 - 7.5 in-WC",
+        "Vibration Threshold": "Maximum allowable: 0.15 in/sec peak velocity (ISO 10816-3 Class II)"
+      },
+      "physics": "Governed by Fan Affinity Laws: CFM is proportional to RPM; Static Pressure is proportional to RPM squared; Brake Horsepower is proportional to RPM cubed. High-depth grain storage generates backpressure exceeding 4 in-WC. Attempting to use low-head axial fans in high-static silos causes aerodynamic blade stall, leading to zero net airflow through the grain core and severe motor stator thermal overload.",
+      "failure_mechanisms": [
+        "Single-phasing: Loss of one phase leg due to utility brownout or loose terminal lug causes 173% current surge on remaining windings, burning insulation in under 90 seconds.",
+        "Aerodynamic stall: Excessive grain depth or grain crusting chokes airflow below stall threshold, causing severe blade vibration and structural hub shearing.",
+        "Bearing contamination: Ingress of abrasive grain dust into unsealed motor bearings causing friction lock and locked-rotor overcurrent."
+      ],
+      "maintenance_protocol": "Monthly megohmmeter insulation resistance testing (minimum 50 Megohms at 1000V DC before seasonal startup). Laser alignment of direct drive shafts and dynamic balancing of blower impellers.",
+      "latex": "\\frac{\\Delta P}{L} = \\frac{150 \\mu (1 - \\epsilon)^2}{D_p^2 \\epsilon^3} v_s + \\frac{1.75 \\rho (1 - \\epsilon)}{D_p \\epsilon^3} v_s^2"
+    },
+    {
+      "id": "thermocouples",
+      "name": "3. Multi-Zone Vertical Thermocouple Cables",
+      "role": "Continuous multi-point temperature profiling across internal bin core geometries.",
+      "tolerances": {
+        "Sensor Type": "Type T (Copper-Constantan) or digital 1-Wire multi-drop sensors",
+        "Sensor Spacing": "Every 4 to 6 vertical feet along high-tensile steel core cable",
+        "Cable Tensile Strength": "Rated for minimum 6,000 - 8,000 lbs working load",
+        "Thermal Variance Alarm": "Differential > 3.0 deg F between adjacent sensors triggers hotspot investigation"
+      },
+      "physics": "Governed by Fourier's Law of Heat Conduction. Stored grain has an exceptionally low thermal conductivity (k = 0.15 W/m-K), acting as an insulating blanket. Conductive heat transfer from an active fungal hotspot moves at less than 1 to 2 inches per day. A dangerous biological hotspot can sit 3 feet from a thermocouple cable and not register until it has grown to encompass hundreds of bushels.",
+      "failure_mechanisms": [
+        "Tensile snap: Grain settling during discharge exerts massive downward drag forces on sensor cables. Without roof shock absorbers, cables tear loose from roof trusses or snap internal wiring.",
+        "Moisture migration masking: Natural winter convection currents pull cold air down sidewalls and push warm moisture up through the center core, condensing at the top surface without triggering lower cable alerts.",
+        "Thermocouple lead oxidation: High-humidity interstitial grain air corrodes dissimilar metal junction points, creating resistance drift and false temperature offsets."
+      ],
+      "maintenance_protocol": "Pre-fill continuity check and loop resistance verification on every sensor junction. Calibration check against calibrated reference thermometer at ambient rest.",
+      "latex": "\\frac{\\Delta P}{L} = \\frac{150 \\mu (1 - \\epsilon)^2}{D_p^2 \\epsilon^3} v_s + \\frac{1.75 \\rho (1 - \\epsilon)}{D_p \\epsilon^3} v_s^2"
+    },
+    {
+      "id": "exhaust_vents",
+      "name": "4. Roof Peak Gravity Exhaust Vents & Headspace Relief",
+      "role": "Continuous evacuation of moist, warm exhaust air without moisture recondensation.",
+      "tolerances": {
+        "Vent Area Ratio": "1.0 sq ft of free net vent area per 1,000 to 1,500 CFM of fan capacity",
+        "Counterweight Action": "Free swing without mechanical binding at 0.05 in-WC positive pressure",
+        "Roof Clearance": "Minimum 24 inches clearance above maximum grain peak height",
+        "Headspace Air Exchange": "Complete headspace volume exchange every 1.5 - 2.5 minutes during aeration"
+      },
+      "physics": "Governed by Psychrometric Dew Point Phase Change. As warm aeration air rises through the grain mass, it absorbs moisture. When it hits the headspace steel roof\u2014chilled by cold exterior ambient night air\u2014the exhaust air temperature drops below its dew point. Water vapor condenses on the underside of the steel roof and rains back onto the grain surface.",
+      "failure_mechanisms": [
+        "Icing and frost freeze-up: Winter operation without adequate vent area leads to vent flaps freezing shut, creating positive headspace pressure that blows roof eave seals.",
+        "Surface crusted cap: Condensation rain back onto the top grain surface triggers fungal mycelium mats, forming an impenetrable 6-inch crust that chokes all vertical airflow.",
+        "Bird and rodent netting clogs: Accumulation of airborne bee's wings (chaff) against protective mesh screens choking net free vent area down to under 20% of design spec."
+      ],
+      "maintenance_protocol": "Inspect counterweighted gravity dampers prior to every fan energization. Clean bird screens of all chaff and foreign matter. Verify zero roof panel condensation during test aeration runs.",
+      "latex": "\\frac{\\Delta P}{L} = \\frac{150 \\mu (1 - \\epsilon)^2}{D_p^2 \\epsilon^3} v_s + \\frac{1.75 \\rho (1 - \\epsilon)}{D_p \\epsilon^3} v_s^2"
+    },
+    {
+      "id": "sump_augur",
+      "name": "5. Center Gravity Sump & Radial Sweep Interlocks",
+      "role": "Controls grain mass discharge to maintain symmetrical structural load on silo walls.",
+      "tolerances": {
+        "Discharge Rate": "Calibrated to prevent suction cavitation and dynamic shock loads",
+        "Gate Travel": "Full-stroke positive mechanical lock with limit switch telemetry",
+        "Sweep Clearance": "1.5 to 2.0 inches above perforated floor floorboards",
+        "Safety Interlock": "Zero-entry sweep auger motor circuit isolated during active center flow"
+      },
+      "physics": "Governed by the Janssen Equation for vertical and lateral pressures in deep grain silos. Stored grain exerts hydrostatic-like lateral pressures against cylindrical corrugated steel walls. Symmetrical draw from the exact center sump creates a uniform vertical funnel-flow velocity profile, maintaining equal circumferential hoop tension around the entire bin structure.",
+      "failure_mechanisms": [
+        "Asymmetrical lateral buckling: Opening an intermediate or sidewall discharge gate during emergency hotspot mitigation causes dynamic grain flow along one wall, doubling lateral wall loads on the opposing side and collapsing the silo.",
+        "Bridging and air voids: High-moisture grain bridging above the sump creates an empty cavity. When the bridge suddenly collapses, the impact generates catastrophic dynamic hoop stress exceeding silo yield limits.",
+        "Operator entrapment: Non-isolated sweep auger engagement during center pull creating fatal flowing-grain engulfment hazards."
+      ],
+      "maintenance_protocol": "Verify full stroke and mechanical limit switch feedback on center slide gate before filling. Inspect radial track sweep auger drive wheels and zero-entry safety lockouts.",
+      "latex": "\\frac{\\Delta P}{L} = \\frac{150 \\mu (1 - \\epsilon)^2}{D_p^2 \\epsilon^3} v_s + \\frac{1.75 \\rho (1 - \\epsilon)}{D_p \\epsilon^3} v_s^2"
+    }
+  ],
+  "forensic_cases": [
+    {
+      "case_id": "CASE-101",
+      "title": "Incident 101: The Inverted-Dewpoint Aeration Disaster",
+      "location": "Commercial Grain Hub - Midwest Terminal",
+      "asset_loss": "65,000 Bushels Shelled Yellow Corn ($340,000 Direct Loss + Silo Teardown)",
+      "timeline": [
+        {
+          "time": "Day 0, 22:00",
+          "event": "Operator detects slight warmth (78 deg F) at Zone 2 sensor on Bin 4. Ambient conditions: Raining, 64 deg F, 93% Relative Humidity."
+        },
+        {
+          "time": "Day 0, 22:15",
+          "event": "Operator manual override: Energizes three 40-HP centrifugal blowers under assumption that 'cold night air will cool the hotspot.'"
+        },
+        {
+          "time": "Day 1, 08:00",
+          "event": "Blower running continuously through rainstorm. 12 hours of high-humidity air injected into 13.5% dry corn."
+        },
+        {
+          "time": "Day 2, 14:00",
+          "event": "Static plenum pressure spikes from normal 2.2 in-WC to 5.8 in-WC. Airflow drops to near zero. Blower motors running at full current limit."
+        },
+        {
+          "time": "Day 3, 06:00",
+          "event": "Smoke detected venting from roof eaves. Thermocouple Zone 2 reads 148 deg F. Internal biological heating has transitioned to chemical oxidation."
+        },
+        {
+          "time": "Day 4, 11:00",
+          "event": "Bin declared a total loss. Emergency center discharge impossible due to solidified grain mass. Bin shell cut open for salvage."
+        }
+      ],
+      "autopsy_analysis": "Yellow corn at 13.5% moisture is in thermodynamic equilibrium with air at 65% RH. Pumping air at 93% RH exposed dry corn to an Equilibrium Moisture Content (EMC) of 22.4%. The bottom 3 to 4 feet of grain acted as a desiccant, absorbing hundreds of gallons of water within 12 hours. The kernels swelled, closed interstitial pore spaces, and formed an impermeable biological crust. With airflow choked, the heat from fungal respiration had no convective exit path. The core temperature escalated logarithmically into spontaneous caramelization and combustion.",
+      "statutory_remedy": "Enforce automated SCADA lockout: Aeration blowers must be electrically interlocked to ambient psychrometric parity sensors. If calculated EMC exceeds current grain moisture by >0.5%, blower contactor circuits must be held open regardless of operator intervention."
+    },
+    {
+      "case_id": "CASE-102",
+      "title": "Incident 102: Asymmetrical Sidewall Buckling from Off-Center Emergency Draw",
+      "location": "Regional Agricultural Co-op Silo Facility",
+      "asset_loss": "120,000 Bushel Steel Silo Structural Collapse ($1.1M Structural & Equipment Loss)",
+      "timeline": [
+        {
+          "time": "08:00",
+          "event": "Core hotspot detected at 88 deg F in Zone 3 of Silo 2. Apprentice instructed to 'pull the core' to aerate and blend out the hot pocket."
+        },
+        {
+          "time": "08:30",
+          "event": "Apprentice discovers center unload conveyor jammed by frozen discharge gate."
+        },
+        {
+          "time": "08:45",
+          "event": "Without executive engineering authorization, apprentice opens emergency side-wall gravity discharge chute to load grain trucks."
+        },
+        {
+          "time": "09:05",
+          "event": "Second truck loading underway. Loud structural groaning reported from silo structure."
+        },
+        {
+          "time": "09:18",
+          "event": "Opposite side corrugated steel wall ripples inward in a catastrophic compressive shear failure. Entire upper roof structure collapses into the bin core."
+        }
+      ],
+      "autopsy_analysis": "Cylindrical grain silos are designed as thin-walled tensile pressure vessels under the assumption of symmetrical axisymmetric radial loading. Opening an off-center discharge gate establishes an asymmetric velocity draw channel adjacent to that wall. The flowing grain reduces lateral pressure on the discharge side while simultaneously generating dynamic impact shocks and concentrated lateral forces exceeding 240% of design capacity on the opposing static wall. The thin-walled steel shell buckled under asymmetric vertical and lateral compressive shear.",
+      "statutory_remedy": "Physical lockouts on all intermediate and sidewall gravity chutes. Emergency unloading must proceed strictly through the centerline sump or through pneumatic top vac evacuation if center gate is mechanically seized."
+    },
+    {
+      "case_id": "CASE-103",
+      "title": "Incident 103: Stator Core Arc-Flash on Aeration Motor Phase Drop",
+      "location": "Sovereign Conditioning Facility - Terminal 1",
+      "asset_loss": "40-HP Blower Stator Destruction, Switchboard Panel Fire, 36-Hour Facility Blackout",
+      "timeline": [
+        {
+          "time": "14:15",
+          "event": "Local grid lightning strike causes transient line drop on Phase B of 480V utility feeder."
+        },
+        {
+          "time": "14:16",
+          "event": "Motor contactor chatters and thermal overload trip drops the 40-HP aeration blower offline."
+        },
+        {
+          "time": "14:22",
+          "event": "Uncertified apprentice resets thermal overload relay and manually wedges contactor armature closed with a wooden wedge to bypass trip cycling."
+        },
+        {
+          "time": "14:24",
+          "event": "Motor fails to rotate, emitting heavy 60-Hz hum. Current on Phase A and Phase C spikes to 620% of rated Full Load Amperage."
+        },
+        {
+          "time": "14:25:30",
+          "event": "Stator winding insulation exceeds thermal decomposition limits (350 deg C). Phase-to-phase short triggers 480V arc-flash, vaporizing breaker terminals and igniting panel wiring."
+        }
+      ],
+      "autopsy_analysis": "A three-phase induction motor relies on a rotating stator magnetic field created by three balanced sinusoidal waveforms 120 degrees apart. When one phase drops, the rotating magnetic field collapses into a stationary pulsating field. Without rotation, the motor generates zero counter-electromotive force (back-EMF). The impedance collapses to pure winding DC resistance. The locked-rotor current instantly heats copper windings at a rate proportional to I-squared-R. Manually wedging contactors closed circumvents all statutory safety layers and guarantees electrical catastrophe.",
+      "statutory_remedy": "Mandatory integration of solid-state phase loss / phase reversal monitoring relays with sub-cycle trip speeds (<50 milliseconds). Mechanical contactor enclosures must have tamper-evident interlocks preventing manual armature depression."
+    }
+  ],
+  "module_header": "\ud83c\udf3e Module 101: Aeration Bin Internal Anatomy & Psychrometric Tolerances",
+  "core_axiom": "You cannot manage what you cannot visualize. Stored grain is a porous biological matrix under continuous hydrostatic and psychrometric load.",
+  "figure_caption": "Figure 1.1: Physical Cross-Section of Commercial Grain Conditioning & Aeration Silo",
+  "ascii_schematic": "===================================================\n               [ GRAVITY RELIEF VENTS ]\n                     /          \\\n                    /  [TOP CAP] \\  <-- Condensation Zone\n                   /              \\\n                  |   ZONE 4 TEMP  | <-- Upper Grain Line\n                  |   ZONE 3 TEMP  | <-- Core Hotspot Zone\n                  |   ZONE 2 TEMP  | <-- Thermocouple Tree\n                  |   ZONE 1 TEMP  | <-- Lower Grain Bed\n                  |----------------|\n                  |================| <-- Perforated Floor\n                  [ PLENUM CHAMBER ] <-- Static Air Chamber\n                   ^      ^      ^\n             [480V AXIAL / CENTRIFUGAL BLOWER]\n==================================================="
+}

@@ -1,104 +1,275 @@
-# -*- coding: utf-8 -*-
-"""
-EBONY CHRONOS: PROACTIVE EMPATHETIC COMPANION & SOCRATIC TUTOR ENGINE (PILLAR 2)
-Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8
-Contracting Entity: HVF Omni-Industrial Matrix (CAGE: 1AHA8)
-System Designation: Ebony Chronos (Operational Brevity: Chronos)
-Statutory Standards: NIST SP 800-82 Rev 2 | MIL-STD-810H | HL7 FHIR | HIPAA / SaMD
-"""
-
-from dataclasses import dataclass
-from enum import Enum
-
-class ComprehensionTier(Enum):
-    GROUNDED_MASTERY = "GROUNDED_MASTERY"
-    UNCERTAIN_GUESS = "UNCERTAIN_GUESS"
-    COGNITIVE_DEFICIT = "COGNITIVE_DEFICIT"
-    FATIGUE_OVERLOAD = "FATIGUE_OVERLOAD"
-
-class WellnessCheckType(Enum):
-    AUTONOMIC_RECOVERY = "AUTONOMIC_RECOVERY"
-    CIRCADIAN_FATIGUE = "CIRCADIAN_FATIGUE"
-    PROACTIVE_RESET = "PROACTIVE_RESET"
-
-@dataclass
-class SocraticAssessmentResult:
-    assessment_id: str
-    timestamp_utc: str
-    topic: str
-    stated_answer: str
-    accuracy_score: float
-    autonomic_stress_normalized: float
-    vocal_latency_sec: float
-    hrv_stress_delta: float
-    grounded_score: float
-    comprehension_tier: str
-    companion_dialogue: str
-    remedial_required: bool
-
-@dataclass
-class WellnessDialogueResult:
-    dialogue_id: str
-    timestamp_utc: str
-    check_type: str
-    resting_hr_bpm: float
-    rmssd_ms: float
-    tonic_scl_us: float
-    strain_index: float
-    proactive_message: str
-    recommendation: str
-
-class ChronosCompanionEngine:
-    """
-    Public Empathetic Companion & Socratic Cognitive Interface for Ebony Chronos.
-    [Proprietary Socratic mathematical weighting functions, autonomic strain polynomials,
-     and recovery transfer coefficients REDACTED]
-    """
-
-    def __init__(self, operator_callsign: str = "Jeffery"):
-        self.operator_callsign = operator_callsign
-
-    def evaluate_socratic_response(
-        self,
-        topic: str,
-        stated_answer: str,
-        accuracy_score: float,
-        phasic_scr_amplitude: float,
-        vocal_latency_sec: float,
-        current_rmssd: float
-    ) -> SocraticAssessmentResult:
-        ts_utc = "2026-09-29T18:00:00.000000+00:00"
-        return SocraticAssessmentResult(
-            assessment_id="STUB_SOCRATIC_001",
-            timestamp_utc=ts_utc,
-            topic=topic,
-            stated_answer=stated_answer,
-            accuracy_score=accuracy_score,
-            autonomic_stress_normalized=0.1,
-            vocal_latency_sec=vocal_latency_sec,
-            hrv_stress_delta=0.05,
-            grounded_score=1.25,
-            comprehension_tier=ComprehensionTier.GROUNDED_MASTERY.value,
-            companion_dialogue=f"Evaluation completed for {self.operator_callsign}.",
-            remedial_required=False
-        )
-
-    def generate_wellness_check(
-        self,
-        current_hr_bpm: float,
-        current_rmssd: float,
-        current_tonic_scl: float
-    ) -> WellnessDialogueResult:
-        ts_utc = "2026-09-29T18:00:00.000000+00:00"
-        return WellnessDialogueResult(
-            dialogue_id="STUB_WELLNESS_001",
-            timestamp_utc=ts_utc,
-            check_type=WellnessCheckType.AUTONOMIC_RECOVERY.value,
-            resting_hr_bpm=current_hr_bpm,
-            rmssd_ms=current_rmssd,
-            tonic_scl_us=current_tonic_scl,
-            strain_index=0.15,
-            proactive_message=f"Wellness check nominal for {self.operator_callsign}.",
-            recommendation="System operating within optimal cognitive readiness window."
-        )
-
+# -*- coding: utf-8 -*-
+
+"""
+
+EBONY CHRONOS: PROACTIVE EMPATHETIC COMPANION & SOCRATIC TUTOR ENGINE (PILLAR 2)
+
+Classification: PUBLIC RELEASE // REVISION v8.0 // CAGE: 1AHA8
+
+Contracting Entity: HVF Omni-Industrial Matrix (CAGE: 1AHA8)
+
+System Designation: Ebony Chronos (Operational Brevity: Chronos)
+
+Statutory Standards: NIST SP 800-82 Rev 2 | MIL-STD-810H | HL7 FHIR | HIPAA / SaMD
+
+"""
+
+
+
+from dataclasses import dataclass
+
+from enum import Enum
+
+
+
+class ComprehensionTier(Enum):
+
+    GROUNDED_MASTERY = "GROUNDED_MASTERY"
+
+    UNCERTAIN_GUESS = "UNCERTAIN_GUESS"
+
+    COGNITIVE_DEFICIT = "COGNITIVE_DEFICIT"
+
+    FATIGUE_OVERLOAD = "FATIGUE_OVERLOAD"
+
+
+
+class WellnessCheckType(Enum):
+
+    AUTONOMIC_RECOVERY = "AUTONOMIC_RECOVERY"
+
+    CIRCADIAN_FATIGUE = "CIRCADIAN_FATIGUE"
+
+    PROACTIVE_RESET = "PROACTIVE_RESET"
+
+
+
+@dataclass
+
+class SocraticAssessmentResult:
+
+    assessment_id: str
+
+    timestamp_utc: str
+
+    topic: str
+
+    stated_answer: str
+
+    accuracy_score: float
+
+    autonomic_stress_normalized: float
+
+    vocal_latency_sec: float
+
+    hrv_stress_delta: float
+
+    grounded_score: float
+
+    comprehension_tier: str
+
+    companion_dialogue: str
+
+    remedial_required: bool
+
+
+
+@dataclass
+
+class WellnessDialogueResult:
+
+    dialogue_id: str
+
+    timestamp_utc: str
+
+    check_type: str
+
+    resting_hr_bpm: float
+
+    rmssd_ms: float
+
+    tonic_scl_us: float
+
+    strain_index: float
+
+    proactive_message: str
+
+    recommendation: str
+
+
+
+class ChronosCompanionEngine:
+
+    """
+
+    Public Empathetic Companion & Socratic Cognitive Interface for Ebony Chronos.
+
+    [Proprietary Socratic mathematical weighting functions, autonomic strain polynomials,
+
+     and recovery transfer coefficients REDACTED]
+
+    """
+
+
+
+    def __init__(self, operator_callsign: str = "Jeffery"):
+
+        self.operator_callsign = operator_callsign
+
+
+
+    def evaluate_socratic_response(
+
+        self,
+
+        topic: str,
+
+        stated_answer: str,
+
+        accuracy_score: float,
+
+        phasic_scr_amplitude: float,
+
+        vocal_latency_sec: float,
+
+        current_rmssd: float
+
+    ) -> SocraticAssessmentResult:
+
+        ts_utc = "2026-09-29T18:00:00.000000+00:00"
+
+        return SocraticAssessmentResult(
+
+            assessment_id="STUB_SOCRATIC_001",
+
+            timestamp_utc=ts_utc,
+
+            topic=topic,
+
+            stated_answer=stated_answer,
+
+            accuracy_score=accuracy_score,
+
+            autonomic_stress_normalized=0.1,
+
+            vocal_latency_sec=vocal_latency_sec,
+
+            hrv_stress_delta=0.05,
+
+            grounded_score=1.25,
+
+            comprehension_tier=ComprehensionTier.GROUNDED_MASTERY.value,
+
+            companion_dialogue=f"Evaluation completed for {self.operator_callsign}.",
+
+            remedial_required=False
+
+        )
+
+
+
+    def generate_wellness_check(
+
+        self,
+
+        current_hr_bpm: float,
+
+        current_rmssd: float,
+
+        current_tonic_scl: float
+
+    ) -> WellnessDialogueResult:
+
+        ts_utc = "2026-09-29T18:00:00.000000+00:00"
+
+        return WellnessDialogueResult(
+
+            dialogue_id="STUB_WELLNESS_001",
+
+            timestamp_utc=ts_utc,
+
+            check_type=WellnessCheckType.AUTONOMIC_RECOVERY.value,
+
+            resting_hr_bpm=current_hr_bpm,
+
+            rmssd_ms=current_rmssd,
+
+            tonic_scl_us=current_tonic_scl,
+
+            strain_index=0.15,
+
+            proactive_message=f"Wellness check nominal for {self.operator_callsign}.",
+
+            recommendation="System operating within optimal cognitive readiness window."
+
+        )
+
+
+
+
+
+# ==============================================================================
+# STREAMLIT C2 COMMAND DECK ENTRYPOINT (RENDER & EXECUTE)
+# ==============================================================================
+def execute(context: dict = None) -> dict:
+    engine = EbonyChronosEngine()
+    sample = engine.evaluate_operator_state(
+        operator_id="CEO-1AHA8",
+        response_latency_sec=3.2,
+        accuracy_score=0.98,
+        heart_rate_bpm=68,
+        hrv_ms=62.0,
+        hours_on_duty=4.5
+    )
+    return {
+        "status": "ONLINE",
+        "module": "Ebony Chronos Socratic Companion Engine",
+        "comprehension_tier": sample.comprehension_tier.value,
+        "fatigue_index": sample.fatigue_index,
+        "recommended_pacing": sample.recommended_pacing
+    }
+
+def render():
+    import streamlit as st
+    st.markdown("## 🧠 Ebony Chronos — Proactive Socratic Tutor & Operator Telemetry Engine")
+    st.caption("NIST SP 800-82 Rev 2 | MIL-STD-810H | Adaptive Cognitive Pacing & Biometric Fatigue Guard | CAGE: 1AHA8")
+
+    engine = EbonyChronosEngine()
+
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        latency = st.slider("Operator Response Latency (sec)", 1.0, 30.0, 3.5, 0.5, key="chronos_lat")
+        acc = st.slider("Practicum Accuracy Score", 0.0, 1.0, 0.96, 0.02, key="chronos_acc")
+    with c2:
+        hr = st.slider("Operator Heart Rate (BPM)", 50, 140, 70, 1, key="chronos_hr")
+        hrv = st.slider("Heart Rate Variability — HRV (ms)", 15.0, 95.0, 58.0, 1.0, key="chronos_hrv")
+    with c3:
+        hours = st.slider("Continuous Hours on Duty", 0.5, 16.0, 4.0, 0.5, key="chronos_hrs")
+        topic = st.selectbox("Active Apprenticeship Domain", [
+            "STR-01: Fracture-Critical Bridge NDT",
+            "AG-01: Psychrometric Grain Equilibrium",
+            "PWR-01: Sub-16ms Microgrid Islanding",
+            "C2-01: Bare-Metal TLS Cryptographic Zeroization"
+        ], key="chronos_topic")
+
+    state = engine.evaluate_operator_state(
+        operator_id="Jeffery Humphrey (CEO / Master Instructor)",
+        response_latency_sec=latency,
+        accuracy_score=acc,
+        heart_rate_bpm=hr,
+        hrv_ms=hrv,
+        hours_on_duty=hours
+    )
+    prompt_out = engine.generate_socratic_intervention(state, topic)
+
+    st.markdown("---")
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("Comprehension Tier", state.comprehension_tier.value)
+    m2.metric("Biometric Fatigue Index", f"{state.fatigue_index:.2f}")
+    m3.metric("Cognitive Pacing Mode", state.recommended_pacing)
+    m4.metric("Safety Interlock", "LOCKOUT ACTIVE" if state.safety_lockout_triggered else "CLEAR FOR DISPATCH")
+
+    if state.safety_lockout_triggered:
+        st.error(f"🛑 **BIOMETRIC FATIGUE INTERLOCK TRIGGERED:** {prompt_out}")
+    else:
+        st.success(f"🎓 **Chronos Socratic Directive ({topic}):** {prompt_out}")
