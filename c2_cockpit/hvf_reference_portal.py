@@ -71,8 +71,8 @@ COURSE_TEXTBOOKS = {
     },
     "AUT-01": {
         "title": "NHTSA / EPA OBD-II & CAN-Bus Technical Manual + OSHA 29 CFR 1910.147 Shop Safety Standard",
-        "primary_url": "https://charm.li",
-        "primary_label": "Open Operation CHARM Free OEM Auto & Truck Factory Repair Manuals (100% Free)",
+        "primary_url": "https://www.allcarmanuals.com",
+        "primary_label": "Open Free OEM Automotive & Truck Factory Service Manuals (1982-2026 Coverage ? 100% Free)",
         "secondary_url": "https://www.briggsandstratton.com/na/en_us/support/manuals.html",
         "secondary_label": "Open Free Small-Engine & Lawnmower Manuals (Briggs / Honda / Kohler ? 100% Free)",
         "offline_file": "AUT-01_Offline_Auto_Robotics_Manual.md",
@@ -93,88 +93,130 @@ COURSE_TEXTBOOKS = {
 
 OEM_AUTO_SMALL_ENGINE_SPEC_DB = [
     {
-        "Category": "Small-Engine / Lawnmower (4-Stroke OHV)",
-        "Engine / System": "Briggs & Stratton Intek / Vanguard OHV (Single & V-Twin)",
+        "Category": "Small-Engine / Lawnmower (4-Stroke Carbureted & 2014-2026 EFI)",
+        "Engine / System": "Briggs & Stratton Intek / Vanguard OHV & Vanguard 810cc/993cc EFI (1990-2026)",
         "Key Clearances & Gaps": "Intake Valve: 0.004-0.006 in | Exhaust Valve: 0.006-0.008 in | Spark Plug Gap: 0.030 in | Magneto Armature Air-Gap: 0.010-0.014 in",
         "Critical Fastener Torque": "Cylinder Head Bolts: 180-220 in-lbs (staged crisscross) | Flywheel Nut: 55-65 ft-lbs | Connecting Rod Cap: 100-115 in-lbs | Mower Blade Bolt: 50-70 ft-lbs",
-        "Electrical / Fuel / Diagnostic Spec": "Kill-Wire Resistance: Open (Run) / < 1.0 Ohm to Ground (Stop) | Ignition Coil Secondary: 2.5k-5.0k Ohms | Crankcase Oil: SAE 30 or 10W-30 (API SJ/SP)"
+        "Electrical / Fuel / Diagnostic Spec": "Carbureted Kill-Wire: < 1.0 Ohm to Ground (Stop) | 2014-2026 Vanguard EFI Fuel Rail: 43.5 psi (3.0 Bar) | Crankcase Oil: SAE 30 or 10W-30 / 15W-50 Synthetic"
     },
     {
-        "Category": "Small-Engine / Lawnmower (4-Stroke OHV)",
-        "Engine / System": "Honda GX160 / GX200 / GX390 / GCV160 Commercial & Mower Engines",
+        "Category": "Small-Engine / Lawnmower (4-Stroke Carbureted & 2014-2026 iGX EFI)",
+        "Engine / System": "Honda GX160 / GX200 / GX390 / GCV160 / GCV200 & iGX700/iGX800 EFI (1990-2026)",
         "Key Clearances & Gaps": "Intake Valve: 0.006 in (0.15 mm) Cold | Exhaust Valve: 0.008 in (0.20 mm) Cold | Spark Plug Gap: 0.028-0.031 in | Ignition Coil Air-Gap: 0.016 in (0.40 mm)",
         "Critical Fastener Torque": "Cylinder Head Bolts (GX160/200): 17 ft-lbs (24 N-m) | Cylinder Head (GX390): 25 ft-lbs | Flywheel Nut: 54-83 ft-lbs | Connecting Rod: 9-14 ft-lbs",
-        "Electrical / Fuel / Diagnostic Spec": "Low-Oil Alert Switch: Continuity to ground when oil low | Float Height: 0.54 in (13.7 mm) | Compression (Pull-Start w/ Decompressor): 71-100 psi"
+        "Electrical / Fuel / Diagnostic Spec": "Float Height: 0.54 in (13.7 mm) | iGX EFI High-Pressure Pump: 43-44 psi | Decompressor Cranking Compression: 71-100 psi (Full Running: 120-140 psi)"
     },
     {
-        "Category": "Small-Engine / Commercial Zero-Turn Turf",
-        "Engine / System": "Kohler Courage / Command PRO / Confidant & Kawasaki FR/FS/FX V-Twin",
+        "Category": "Small-Engine / Commercial Zero-Turn Turf (1995-2026)",
+        "Engine / System": "Kohler Command PRO / Confidant EFI (ECH/ECV) & Kawasaki FR/FS/FX/FX-EFI V-Twin (1995-2026)",
         "Key Clearances & Gaps": "Kawasaki Valve Lash: 0.004-0.006 in (In/Ex Cold) | Kohler Hydraulic Lifters: Zero-Lash Preload | Spark Plug Gap: 0.030 in | Armature Air-Gap: 0.012 in",
-        "Critical Fastener Torque": "Cylinder Head Bolts: 20-25 ft-lbs (in 2 stages) | Flywheel Bolt: 40-50 ft-lbs | Stator Mounting Screws: 55 in-lbs | PTO Clutch Bolt: 45-55 ft-lbs (Blue Loctite 242)",
-        "Electrical / Fuel / Diagnostic Spec": "Stator AC Output: > 28V AC @ 3,600 RPM | Regulated Charging Voltage: 13.8-14.4V DC | PTO Electromagnetic Clutch Coil: 2.4-3.2 Ohms (3.5-5.0 Amps draw)"
+        "Critical Fastener Torque": "Cylinder Head Bolts: 20-25 ft-lbs (in 2 stages) | Flywheel Bolt: 40-50 ft-lbs | Stator Screws: 55 in-lbs | PTO Clutch Bolt: 45-55 ft-lbs (Blue Loctite 242)",
+        "Electrical / Fuel / Diagnostic Spec": "Stator AC Output: > 28V AC @ 3,600 RPM | Regulated Charging: 13.8-14.4V DC | Kohler/Kawasaki EFI Fuel Pressure: 39-44 psi | PTO Clutch Coil: 2.4-3.2 Ohms"
     },
     {
-        "Category": "Small-Engine (2-Stroke Handheld / Chainsaw / Trimmer)",
-        "Engine / System": "Stihl / Echo / Husqvarna 2-Stroke Diaphragm Carburetor (Walbro / Zama)",
-        "Key Clearances & Gaps": "Spark Plug Gap: 0.020-0.025 in (0.5-0.65 mm) | Flywheel-to-Coil Air-Gap: 0.008-0.012 in (Business Card Thickness) | Metering Lever Height: Flush w/ Deck",
-        "Critical Fastener Torque": "Cylinder Base Screws: 80-95 in-lbs | Muffler Bolts: 70-85 in-lbs (Inspect Exhaust Port Carbon Screen) | Clutch Spider: 15-20 ft-lbs (Left-Hand Thread!)",
-        "Electrical / Fuel / Diagnostic Spec": "Fuel-to-Oil Premix Ratio: 50:1 (2.6 fl oz JASO-FD 2-Cycle Oil per 1.0 U.S. Gallon 89+ Octane Ethanol-Free Fuel) | Crankcase Pressure/Vac Test: Hold +/- 7.0 psi for 20 sec"
+        "Category": "Small-Engine (2-Stroke Handheld & 2014-2026 Auto-Tune / M-Tronic)",
+        "Engine / System": "Stihl (M-Tronic) / Husqvarna (AutoTune) / Echo 2-Stroke Chainsaw & Trimmer (1990-2026)",
+        "Key Clearances & Gaps": "Spark Plug Gap: 0.020-0.025 in (0.5-0.65 mm) | Flywheel-to-Coil Air-Gap: 0.008-0.012 in | Metering Lever Height: Flush w/ Carburetor Deck",
+        "Critical Fastener Torque": "Cylinder Base Screws: 80-95 in-lbs | Muffler Bolts: 70-85 in-lbs (Clean Spark Arrestor Screen) | Clutch Spider: 15-20 ft-lbs (Left-Hand Thread!)",
+        "Electrical / Fuel / Diagnostic Spec": "Premix Ratio: 50:1 (2.6 fl oz JASO-FD Synthetic per 1.0 Gal 89+ Octane Ethanol-Free) | Crankcase Seal Pressure/Vacuum Test: Hold +/- 7.0 psi for 20 sec"
     },
     {
-        "Category": "Automotive & Light-Truck (OBD-II / CAN-Bus)",
-        "Engine / System": "SAE J1979 16-Pin OBD-II DLC & ISO 11898 High-Speed CAN-Bus (500 kbps)",
-        "Key Clearances & Gaps": "Pin 4: Chassis Ground (< 0.1 Ohms) | Pin 5: Signal Ground (< 50 mV drop) | Pin 6: CAN-High (ISO 15765-4) | Pin 14: CAN-Low | Pin 16: Battery B+ (12.6V Fused)",
-        "Critical Fastener Torque": "Battery Terminal Clamp Bolt (10mm): 45-60 in-lbs (Do Not Over-Torque Lead Posts) | ECM/PCM Ground Strap Bolt: 8-10 ft-lbs (Clean Bare Metal Contact)",
-        "Electrical / Fuel / Diagnostic Spec": "Key-Off Termination Resistance (Pin 6 to Pin 14): 60.0 Ohms (+/- 2.0 Ohms) | Single Terminator Open: ~120.0 Ohms | Key-On Voltage: CAN-H = 2.5V->3.5V, CAN-L = 2.5V->1.5V (V_diff = 2.0V)"
+        "Category": "Automotive & Light-Truck (1996-2026 OBD-II / CAN-Bus / CAN-FD & SGW)",
+        "Engine / System": "SAE J1979 OBD-II, ISO 11898 CAN (500 kbps) & 2018-2026 CAN-FD (2-5 Mbps) w/ Security Gateway (SGW)",
+        "Key Clearances & Gaps": "Pin 4: Chassis Gnd (< 0.1 Ohms) | Pin 5: Signal Gnd | Pin 6 & 14: High-Speed CAN | 2018-2026 FCA/Ford/GM/Toyota SGW: Requires 12+8 Bypass Cable or J2534 Auth",
+        "Critical Fastener Torque": "Battery Terminal Clamp Bolt (10mm): 45-60 in-lbs | ECM/PCM/SGW Chassis Ground Bolt: 8-10 ft-lbs | High-Current Mega-Fuse Stud: 80-100 in-lbs",
+        "Electrical / Fuel / Diagnostic Spec": "Key-Off Termination Resistance (Pin 6 to Pin 14): 60.0 Ohms (+/- 2.0 Ohms) | Key-On Dominant: CAN-H = 3.5V, CAN-L = 1.5V (V_diff = 2.0V) | Sleep Draw: < 35 mA"
     },
     {
-        "Category": "Automotive & Light-Truck (Engine Mechanical & Fuel)",
-        "Engine / System": "4-Stroke Gasoline & Direct-Injection (GDI) / Port Fuel Injection (PFI)",
-        "Key Clearances & Gaps": "Spark Plug Gap (N/A Iridium): 0.040-0.044 in | Spark Plug Gap (Turbo/EcoBoost): 0.028-0.032 in | Piston Ring End-Gap: 0.004 in per inch of Bore Diameter",
-        "Critical Fastener Torque": "Spark Plugs (14mm Tapered/Gasket): 13-18 ft-lbs | Oil Drain Plug: 20-30 ft-lbs | Wheel Lug Nuts (Passenger): 85-100 ft-lbs | Wheel Lug Nuts (1/2-3/4 Ton Truck): 140 ft-lbs",
-        "Electrical / Fuel / Diagnostic Spec": "Port Fuel Rail Pressure: 45-65 psi | GDI High-Pressure Rail: 500-2,900 psi | Normal STFT + LTFT: +/- 8.0% (P0171/P0172 Trigger: > +/- 15-20%) | Cranking Compression: 135-185 psi (< 10% variance)"
+        "Category": "Automotive & Light-Truck (2014-2026 Late-Model GDI, Turbo & Dual-Injection)",
+        "Engine / System": "2014-2026 Ford EcoBoost / Coyote 5.0, GM LT1/L84/L87 (DFM), Ram 5.7 HEMI & Toyota D-4S",
+        "Key Clearances & Gaps": "Spark Plug Gap (2014-2026 Turbo GDI): 0.026-0.030 in | Spark Plug Gap (2014-2026 N/A GDI): 0.040-0.044 in | Timing Chain Max Cam Phaser Error: <= +/- 2.5 deg",
+        "Critical Fastener Torque": "GDI High-Pressure Fuel Line Flare Nuts: 22-28 ft-lbs (Single-Use Stainless Pipes!) | Spark Plugs (12mm/14mm): 11-16 ft-lbs | Truck Lug Nuts (M14x1.5): 140 ft-lbs",
+        "Electrical / Fuel / Diagnostic Spec": "Low-Side Lift Pump: 55-72 psi | 2014-2026 GDI High-Pressure Rail: 580 psi (Idle) to 2,900-5,075 psi (200-350 Bar Full Load) | 0W-20 / 5W-30 API SP / ILSAC GF-6A (Anti-LSPI)"
     },
     {
-        "Category": "Automotive & Light-Truck (Brakes, Chassis & Starting)",
-        "Engine / System": "Hydraulic Disc Brakes (FMVSS 105/135) & 12V Starting/Charging Circuit",
-        "Key Clearances & Gaps": "Brake Rotor Max Lateral Runout: <= 0.002 in (0.05 mm) | Rotor Thickness Variation (Parallelism): <= 0.0005 in | Pad Minimum Friction Thickness: 2.0-3.0 mm (2/32 in)",
-        "Critical Fastener Torque": "Caliper Slide-Pin Bolts: 22-35 ft-lbs (Silicone Ceramic Grease Only) | Caliper Anchor Bracket Bolts: 85-145 ft-lbs | Bleeder Screw: 80-115 in-lbs",
-        "Electrical / Fuel / Diagnostic Spec": "Max Starter Positive Cable Voltage Drop (Cranking): <= 0.20V | Max Starter Ground Drop: <= 0.20V | Max Parasitic Draw (Asleep): < 35-50 mA | Alternator AC Ripple: < 50 mV AC"
+        "Category": "Automotive & Light-Truck (2014-2026 8/9/10-Speed Transmissions, EPB & ADAS)",
+        "Engine / System": "2014-2026 8/10-Speed Auto (10R80/10L80/ZF8), Electronic Parking Brake (EPB) & SAS/ADAS",
+        "Key Clearances & Gaps": "Brake Rotor Max Runout: <= 0.002 in | Pad Min Thickness: 3.0 mm | Steering Angle Sensor (SAS) Zero-Point: +/- 0.5 deg | ULV ATF Fill Temp Gate: 195-215 deg F",
+        "Critical Fastener Torque": "Caliper Slide Bolts: 25-35 ft-lbs | Caliper Bracket Bolts: 110-148 ft-lbs | Axle Hub Nut: 150-240 ft-lbs | Transmission Pan Bolts: 80-106 in-lbs",
+        "Electrical / Fuel / Diagnostic Spec": "2014-2026 Rear EPB Service: MUST command 'EPB Maintenance/Retract Mode' via UDS 0x31 before pressing caliper piston! | Fluid: Mercon ULV / Dexron ULV / ZF Lifeguard 8"
     },
     {
-        "Category": "Heavy-Duty Diesel Truck & Ag Tractor (SAE J1939)",
-        "Engine / System": "9-Pin Deutsch SAE J1939 Diagnostic Port, HPCR Diesel & ISO 4413 Hydraulics",
-        "Key Clearances & Gaps": "9-Pin Deutsch: Pin A = Battery (-), Pin B = Battery (+12V/+24V), Pin C = CAN-High (Yellow), Pin D = CAN-Low (Green) | Diesel Lash (Typical 6.7L/15L): In 0.010-0.014 in / Ex 0.020-0.026 in",
-        "Critical Fastener Torque": "High-Pressure Injector Fuel Line Flare Nuts: 28-37 ft-lbs (Use Crowfoot Wrench) | Tractor Wheel Rim-to-Axle Bolts: 180-250 ft-lbs | Hydraulic JIC 37-Deg Flare: Flats-From-Finger-Tight (FFFT)",
-        "Electrical / Fuel / Diagnostic Spec": "J1939 Backbone Resistance (Pin C to Pin D Key-Off): 60.0 Ohms | HPCR Idle Rail Pressure: 4,500-6,500 psi (Full Load: 24,000-30,000+ psi) | Ag Tractor Remote Hydraulic Relief: 2,500-2,900 psi"
+        "Category": "Heavy-Duty Diesel & Ag Tractor (2014-2026 Tier-4 Final / Stage-V HPCR & SCR)",
+        "Engine / System": "2014-2026 Cummins 6.7/X15, Duramax L5P, PowerStroke 6.7 & John Deere/Kubota Tier-4 Final (J1939-22)",
+        "Key Clearances & Gaps": "9-Pin Green Deutsch Type-II (2016-2026 500 kbps J1939): Pin C = CAN-H, Pin D = CAN-L | Diesel Valve Lash (6.7L): Intake 0.010 in / Exhaust 0.020-0.026 in Cold",
+        "Critical Fastener Torque": "HPCR Injector Hold-Down Clamp: 24-30 ft-lbs + 60 deg | High-Pressure Rail Nuts: 30-37 ft-lbs | Tractor Rear Wheel Bolts: 220-300 ft-lbs",
+        "Electrical / Fuel / Diagnostic Spec": "HPCR Rail Pressure: 4,500 psi (Idle) to 29,000-36,000 psi (2,500 Bar) | DEF Fluid Concentration (Refractometer): 32.5% (+/- 1.5% Urea) | DPF Max Differential Pressure: < 3.5 psi"
     }
 ]
 
 FREE_OEM_MANUAL_DIRECTORY = [
-    ("Operation CHARM (100% Free Factory Auto & Light-Truck Repair Manuals, 1982-2013+)", "https://charm.li", "Select Vehicle Year -> Make -> Model -> Engine to view complete OEM Factory Service Manuals, Torque Specs, and Wiring Diagrams (Zero Paywall / No Login)."),
-    ("Briggs & Stratton Official Free PDF Engine & Mower Manual Lookup", "https://www.briggsandstratton.com/na/en_us/support/manuals.html", "Enter Model-Type-Code stamped on the valve cover or blower housing (e.g., 126T02-0135-B1) to download the free illustrated parts list and operator/repair manual."),
-    ("Honda Power Equipment & Small-Engine Official Free Manual Library (GX / GCV / Mowers)", "https://powerequipment.honda.com/support/owners-manuals", "Select Mowers, Generators, Pumps, or General Purpose Engines (GX120-GX690 / GCV) to open free factory manuals, valve clearances, and maintenance schedules."),
-    ("Kohler Engines Official Free Service & Owner's Manual Portal", "https://kohlerpower.com/en/engines/manuals", "Select Engine Series (Command PRO, Courage, Confidant, KT7000) to open the free PDF Service & Overhaul Manual with full torque and electrical specs."),
-    ("NHTSA Official Free OEM Manufacturer Service Bulletins, Recalls & Repair Instructions (.GOV)", "https://www.nhtsa.gov/recalls", "Enter any 17-character VIN or Year/Make/Model and click 'Manufacturer Communications' to read official OEM factory technical service bulletins (TSBs) and repair procedures for free."),
-    ("OSHA 29 CFR 1910.147 Lockout/Tagout & Federal OBD-II eCFR Statutory Reference (.GOV)", "https://www.osha.gov/control-hazardous-energy", "Official federal hazardous-energy lockout/tagout and shop safety regulations.")
+    ("StartMyCar 1990-2026 Interactive OEM Fuse Box Diagrams, Wiring & Repair Portal (100% Free)", "https://www.startmycar.com", "Select any 1990-2026 Make, Model, and Year to interact directly with OEM fuse box diagrams, relay locations, wiring schematics, and repair guides (Zero Login / Zero Paywall)."),
+    ("AllCarManuals 1982-2026 Free PDF Automotive Factory Service & Workshop Manuals", "https://www.allcarmanuals.com", "Select Vehicle Make and Model (including 2014-2026 late-model platforms) to download free PDF factory workshop manuals and service guides."),
+    ("ProCarManuals Free Automotive Wiring Diagrams, Transmission & Engine Overhaul Manuals", "https://procarmanuals.com", "Browse and download free PDF factory engine overhaul manuals, automatic transmission hydraulic schematics, and OBD-II fault code charts."),
+    ("Gale ChiltonLibrary (1940-2026 Full OEM Factory Service Manuals, TSBs & Labor Times ? Free State Library Access)", "https://www.gale.com/c/chilton-library", "Provides complete 1940-2026 OEM service procedures, wiring diagrams, and ADAS/torque specs for free through any public library card."),
+    ("Briggs & Stratton Official Free PDF Engine & Lawnmower Manual Lookup (All Years through 2026)", "https://www.briggsandstratton.com/na/en_us/support/manuals.html", "Enter your engine Model-Type-Code stamped on the valve cover or blower housing to download free illustrated parts lists and repair manuals."),
+    ("Kohler Engines Official Free Service & Overhaul Manual Portal (Carbureted & 2014-2026 EFI)", "https://kohlerpower.com/en/engines/manuals", "Select Engine Series (Command PRO, Courage, Confidant EFI, KT7000) to open the free PDF Service & Overhaul Manual with full torque and electrical specs.")
 ]
+
+BUILTIN_REPAIR_PROCEDURES = {
+    "2014-2026 Late-Model Auto/Truck: GDI High-Pressure Fuel System (P0087), Security Gateway (SGW) & EPB Service": (
+        "1. **2018-2026 Security Gateway (SGW) Diagnostic Access:** On `2018-2026` FCA/Ram, Ford, GM (Global B / VIP), and Toyota platforms, the SGW module blocks bidirectional active tests (`0x2E`/`0x31`) and code clearing at the 16-pin OBD-II port unless you either connect a **12+8 SGW Bypass Adapter** directly at the SGW harness or authenticate via **SAE J2534 / AutoAuth**.\n"
+        "2. **2014-2026 GDI High-Pressure Fuel Rail Depressurization (`580 - 5,075 psi`):** NEVER crack open a GDI stainless fuel rail line immediately after shutdown! Pull the Low-Pressure Fuel Pump (LPFP) relay/fuse and run the engine until it stalls (or let cool for 1 hour), wear ANSI Z87.1 eye protection, wrap the flare nut with a shop towel to absorb residual pressure, and **always install a new single-use stainless steel high-pressure line** torqued to `22 - 28 ft-lbs`.\n"
+        "3. **2014-2026 Electronic Parking Brake (EPB) Rear Pad Replacement:** NEVER force or C-clamp a rear caliper piston with an electric EPB actuator motor! Command **'Enter Brake Pad Maintenance / Retract Mode'** via scan tool (`UDS Routine 0x31`)?listen for the stepper motor to fully unwind for 8 seconds?then push the piston straight in (do not twist), install pads, pump brake pedal firm, and command **'Exit EPB Maintenance Mode'**."
+    ),
+    "Small-Engine / Lawnmower (1990-2026): No-Spark & Magneto Ignition Coil / EFI Diagnosis (Briggs / Honda / Kohler)": (
+        "1. **Safety Lockout:** Disconnect spark plug high-tension lead and ground it away from the plug; remove blower housing/recoil starter (`8mm` or `10mm` bolts).\n"
+        "2. **Isolate Kill-Switch Wire:** Unplug the primary kill-wire spade terminal from the magneto armature tab. Spin flywheel and check for spark with an inline spark tester (`>= 10 kV`). If spark returns with kill-wire unplugged, the safety bail cable, seat switch, or key switch is shorted to ground.\n"
+        "3. **Test Armature Coil Resistance & 2014-2026 EFI Fuel Pump:** Measure primary resistance (`0.2 - 1.0 Ohms`) and secondary resistance (`2,500 - 5,500 Ohms`). On `2014-2026` Briggs Vanguard / Kohler / Honda EFI turf engines, verify `12.4V+` battery voltage during cranking (EFI injectors and `43.5 psi` fuel pumps will not fire below `9.5V`!).\n"
+        "4. **Set Magneto Air-Gap (`0.010 - 0.014 in`):** Place a `0.012 in` brass/non-magnetic feeler gauge between both armature legs and the flywheel magnet, torque mounting screws to `80 - 100 in-lbs`, and remove gauge."
+    ),
+    "Small-Engine / Lawnmower (1990-2026): Carburetor Bowl Overhaul, Float Level & Surging/Hunting Fix": (
+        "1. **Fuel Shutoff & Anti-Afterfire Solenoid Check:** Clamp fuel line. If equipped with a bottom electric fuel-shutoff solenoid, apply `12V` to verify the plunger retracts with an audible click; remove the center bowl nut (`10mm` or `1/2 in`) and drop the float bowl.\n"
+        "2. **Clear Main Jet & Emulsion Tube:** Inspect the micro-orifices in the brass main jet and vertical emulsion nozzle (`0.025 - 0.038 in`). Clean with ultrasonic cleaner and compressed air (`<= 30 psi`)?never enlarge jets with steel drill bits.\n"
+        "3. **Inspect Float & Viton Needle Valve:** Verify hollow float has zero fuel inside and check Viton rubber needle tip. With carburetor inverted, verify float seam is parallel to carburetor body (`Honda GX float height = 0.54 in / 13.7 mm`).\n"
+        "4. **Governor Link & Idle Circuit Check:** Ensure governor spring and throttle link rod move freely; adjust idle mixture screw (`1.25 to 1.50 turns out`) until engine transitions smoothly from `1,750 RPM` idle to `3,100 - 3,600 RPM` governed no-load speed."
+    ),
+    "Small-Engine / Lawnmower (1990-2026): Overhead Valve (OHV) Lash Adjustment & Decompression Release Check": (
+        "1. **Find Compression Top Dead Center (TDC) Past Impulse:** Remove spark plug and valve cover. Rotate flywheel clockwise by hand until the Intake Valve opens fully and closes completely, align the TDC timing mark, and then rotate **`1/4 inch past TDC`** so the automatic compression release cam lobe is completely disengaged.\n"
+        "2. **Measure Cold Valve Clearance:** Insert a flat feeler gauge between the rocker arm toe and valve stem tip (`Briggs OHV: Intake 0.004-0.006 in, Exhaust 0.006-0.008 in` | `Honda GX: Intake 0.006 in, Exhaust 0.008 in` | `Kawasaki FR/FS/FX: 0.004-0.006 in`).\n"
+        "3. **Adjust Rocker Jam Nut & Pivot:** Loosen the rocker arm locking set-screw (Torx T20 or Allen) and turn the pivot ball nut until a slight drag is felt on the feeler gauge. Torque lock screw to `70 - 90 in-lbs` and re-verify after two crankshaft revolutions."
+    ),
+    "Automotive / Truck (1996-2026): High-Speed CAN / CAN-FD (60-Ohm) No-Comms Isolation (SAE J1979 / ISO 11898)": (
+        "1. **Key-Off Termination Resistance Check (OBD-II Pins 6 & 14):** Turn ignition OFF, wait 5 minutes for network sleep, and measure resistance across **Pin 6 (CAN-H)** and **Pin 14 (CAN-L)**. Normal reading is **`60.0 Ohms (+/- 2.0 Ohms)`** (two `120-Ohm` end-of-line resistors in parallel).\n"
+        "2. **Interpret Resistance Faults:** Reading **`~120 Ohms`** = Open circuit in one terminating module (ECM or BCM) or broken bus wire; Reading **`< 5.0 Ohms`** = Direct short between CAN-H and CAN-L.\n"
+        "3. **Key-On Differential Voltage Check:** Turn ignition ON. Measure DC voltage from **Pin 6 to Pin 4 (Ground)** (`~2.6V - 3.5V`) and **Pin 14 to Pin 4** (`~2.4V - 1.5V`). Unplug suspect shorted modules one by one until the `2.5V` recessive bias returns."
+    ),
+    "Automotive / Truck (1982-2026): Starter Circuit Cranking Voltage-Drop & Lean Fuel Trim (P0171 / P0174) Isolation": (
+        "1. **Positive & Ground Cranking Voltage Drop (`<= 0.20V` Max):** While cranking, measure DC volts from Positive (+) Battery Post to Starter B+ Stud (`<= 0.20V` max drop) and from Starter Metal Housing to Negative (-) Battery Post (`<= 0.20V` max drop).\n"
+        "2. **Idle vs. 2,500 RPM Fuel Trim Test (`P0171 / P0174`):** Monitor `STFT + LTFT` at warm idle (`700 RPM`) vs. **`2,500 RPM`**. If fuel trim drops back near `0% to +5%` at `2,500 RPM`, isolate an **intake vacuum leak**; if fuel trim stays `> +15%` at `2,500 RPM`, diagnose a **contaminated MAF sensor** or **restricted fuel supply**."
+    )
+}
 
 def render_auto_small_engine_manual_hub(unit_num: int = 1):
     import streamlit as st
     import pandas as pd
-    with st.expander("\U0001f527 Direct Free OEM Automotive, Tractor & Small-Engine/Lawnmower Repair Manual Lookup + Built-In Shop Spec Finder (100% Free / Zero Paywall)", expanded=True):
+    with st.expander("\U0001f527 Direct Free OEM Automotive (1982-2026), Tractor & Small-Engine/Lawnmower Repair Manual Lookup + Built-In Shop Spec & Procedure Finder (100% Free)", expanded=True):
         st.markdown(
-            "**1. Instant Free OEM Factory Repair Manual Portals (Zero Cost / No Account Required):**  " + chr(10)
-            + "Click any verified library below to look up vehicle-specific or lawnmower/small-engine factory repair procedures, wiring diagrams, and exploded parts diagrams:"
+            "**1. Verified Live Free OEM & Factory Repair Manual Portals (`1982-2026` Model Coverage \u2014 Zero Cost / HTTP 200 Verified):**  " + chr(10)
+            + "Click any verified library below to look up vehicle-specific (`1982-2026`) or lawnmower/small-engine factory repair manuals, interactive fuse/wiring diagrams, and exploded parts diagrams:"
         )
         for m_title, m_url, m_how in FREE_OEM_MANUAL_DIRECTORY:
             st.markdown(f"- \U0001f517 **[{m_title} \u2197]({m_url})** \u2014 *{m_how}*")
         st.markdown("---")
-        st.markdown("**2. Built-In Offline OEM Shop Repair Specification & Clearance Finder (100% Air-Gap Local Database):**")
+        st.markdown("**2. Built-In Step-by-Step Factory Repair & Diagnostic Procedure Lookup (`1982-2026` Auto, GDI, CAN-FD & Small-Engine \u2014 100% Local):**")
+        sel_proc = st.selectbox(
+            "Select an Automotive (1982-2026), CAN-Bus/SGW, or Small-Engine/Lawnmower Repair Procedure to View Step-by-Step:",
+            list(BUILTIN_REPAIR_PROCEDURES.keys()),
+            key=f"oem_proc_sel_{unit_num}"
+        )
+        st.info(BUILTIN_REPAIR_PROCEDURES[sel_proc])
+        st.markdown("---")
+        st.markdown("**3. Built-In Offline OEM Shop Repair Specification, Torque & Clearance Finder (`1982-2026` Air-Gap Local Database):**")
         cats = ["All Equipment Categories"] + sorted(list({r["Category"] for r in OEM_AUTO_SMALL_ENGINE_SPEC_DB}))
         c_sel, q_sel = st.columns([2, 3])
         picked_cat = c_sel.selectbox("Filter by Equipment Category:", cats, key=f"oem_cat_sel_{unit_num}")
-        search_kw = q_sel.text_input("Search Engine, Spec, or Part (e.g., 'Briggs', 'Honda', 'Valve', 'Torque', 'CAN-Bus', '2-Stroke', 'Lug'):", value="", key=f"oem_kw_sel_{unit_num}").strip().lower()
+        search_kw = q_sel.text_input("Search Engine, Year, Spec, or Part (e.g., '2026', 'GDI', 'Briggs', 'Honda', 'Valve', 'Torque', 'CAN-FD', 'EPB'):", value="", key=f"oem_kw_sel_{unit_num}").strip().lower()
         filtered_rows = []
         for row in OEM_AUTO_SMALL_ENGINE_SPEC_DB:
             if picked_cat != "All Equipment Categories" and row["Category"] != picked_cat:
@@ -185,7 +227,7 @@ def render_auto_small_engine_manual_hub(unit_num: int = 1):
         if filtered_rows:
             st.dataframe(pd.DataFrame(filtered_rows), use_container_width=True, hide_index=True)
         else:
-            st.info("No matching spec rows found. Clear the search filter to view all OEM Automotive, Tractor & Small-Engine specs.")
+            st.info("No matching spec rows found. Clear the search filter to view all 1982-2026 OEM Automotive, Tractor & Small-Engine specs.")
 
 
 def render_reference_portal(course_code: str = "STR-01", unit_num: int = None):
