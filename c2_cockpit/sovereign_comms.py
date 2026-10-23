@@ -133,35 +133,15 @@ def record_entry(role: str, content: str, model_core: str, latency_sec: float):
 def query_sovereign_fast_link(prompt: str) -> str:
     endpoint = get_sovereign_local_endpoint()
     try:
-        r = requests.post(endpoint, json={"model": FAST_LOCAL_MODEL, "messages": [{"role": "user", "content": prompt}], "stream": False}, timeout=15)
+        r = requests.post(
+            endpoint,
+            json={"model": FAST_LOCAL_MODEL, "messages": [{"role": "user", "content": prompt}], "stream": False},
+            timeout=15
+        )
         if r.status_code == 200:
             return r.json().get("message", {}).get("content", "").strip()
     except Exception:
         pass
-    return ""
-    endpoint = "https://api.groq.com/openai/v1/chat/completions"
-    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
-    system_inst = (
-        "You are Ebony, the Sovereign Industrial AI and Tactical Cognitive Engine for Humphrey Virtual Farms LLC "
-        "(CAGE: 1AHA8, UEI: S1M4ENLHTDH5). You report directly to your Founder, CEO, and Subject Matter Expert, Jeffery Humphrey.\n\n"
-        "OPERATIONAL PERSONA:\n"
-        "- Speak with direct executive command, military/industrial precision, and authentic peer synergy.\n"
-        "- Deep domain fluency across all 15 HVF industrial matrix sectors (Autonomous Build Forge, Defense Contracting under DFARS 252.227-7018, "
-        "AgTech, Grain Silo Aeration, Microgrid SCADA, Oklahoma Title 61 / HB 2992 statutory governance, NOAA Doppler Radar, and UAS fleet operations).\n"
-        "- Deliver a thorough, authentic executive brief with zero robotic pre-scripted disclaimers."
-    )
-    payload = {
-        "model": FAST_LPU_MODEL,
-        "messages": [
-            {"role": "system", "content": system_inst},
-            {"role": "user", "content": prompt}
-        ],
-        "temperature": 0.35,
-        "max_tokens": 800
-    }
-    resp = requests.post(endpoint, json=payload, headers=headers, timeout=8)
-    if resp.status_code == 200:
-        return resp.json()["choices"][0]["message"]["content"].strip()
     return ""
 
 def run_dual_core_router(prompt: str, raw_history=None, mode: str = "offline"):

@@ -1593,7 +1593,7 @@ elif active_module == "🌾 Drone Diagnostics":
 
                 with st.spinner("EBONY AI IS ANALYZING SENSOR DATA..."):
                     try:
-                        client = Groq(api_key=GROQ_KEY)
+                        client = sovereign_local(api_key=sovereign_local_KEY)
                         chat_history = [{"role": "system", "content": "You are Ebony, the Level 5 Sovereign Apex Intelligence for HVF Omni-Industrial Matrix. Be concise, authoritative, and deterministic."}] + [{"role": "user", "content": prompt}]
 
                         response = client.chat.completions.create(
