@@ -2204,3 +2204,10 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
 
     return u_dict
 
+_base_get_course_units_before_6part = get_course_units
+
+def get_course_units(course_code: str):
+    prof_code = "AUT-01" if course_code == "AUT-01" else ("ENV-01" if course_code in ("STR-02", "ENV-01") else ("PAV-01" if course_code in ("STR-03", "PAV-01") else "STR-01"))
+    raw_units = _base_get_course_units_before_6part(course_code)
+    return [_apply_six_part_old_school_textbook(u, prof_code) for u in raw_units]
+
