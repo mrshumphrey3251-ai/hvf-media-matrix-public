@@ -1,6 +1,6 @@
 """
 HVF Sovereign Reference Textbook & Study Directive Portal (100% Free Public-Domain & Air-Gap Offline Vault)
-Zero external paywalls ($0.00 student cost) + exact step-by-step navigation & [Ctrl+F] lookup instructions.
+Zero external paywalls (100% Free student cost) + exact step-by-step navigation & [Ctrl+F] lookup instructions.
 """
 import re
 from pathlib import Path
@@ -12,9 +12,9 @@ COURSE_TEXTBOOKS = {
     "STR-01": {
         "title": "FHWA Bridge Inspector's Reference Manual (BIRM, FHWA-NHI-12-049) & 23 CFR Part 650 (NBIS)",
         "primary_url": "https://www.fhwa.dot.gov/bridge/nbis.cfm",
-        "primary_label": "Open Free FHWA Bridge Inspection Manual Portal (.GOV ? $0.00 Free)",
+        "primary_label": "Open Free FHWA Bridge Inspection Manual Portal (.GOV \u2014 100% Free)",
         "secondary_url": "https://www.ecfr.gov/current/title-23/chapter-I/subchapter-G/part-650/subpart-C",
-        "secondary_label": "Open 23 CFR Part 650 NBIS Federal Law Text (eCFR.gov ? $0.00 Free)",
+        "secondary_label": "Open 23 CFR Part 650 NBIS Federal Law Text (eCFR.gov \u2014 100% Free)",
         "offline_file": "STR-01_Offline_NDE_Master_Manual.md",
         "directives": {
             1: ("23 CFR 650 Subpart C (Sections 650.305 - 650.313) & FHWA BIRM Ch. 1-2", "20.0 feet | 650.311 | Sufficiency Rating", "Memorize the 20.0-ft NBI bridge span rule, 24-month Routine vs. FCM inspection intervals, Sufficiency Rating (S1+S2+S3-S4) weights, and 18 U.S.C. 1001 criminal attestation."),
@@ -32,9 +32,9 @@ COURSE_TEXTBOOKS = {
     "ENV-01": {
         "title": "U.S. DOE Building Envelope Design Guide & Oklahoma OMES CAP Title 61 Facility Audit Manual",
         "primary_url": "https://bsesc.energy.gov/sources/building-envelope-design-guide",
-        "primary_label": "Open Free U.S. DOE Building Envelope Design Guide (.GOV ? $0.00 Free)",
+        "primary_label": "Open Free U.S. DOE Building Envelope Design Guide (.GOV \u2014 100% Free)",
         "secondary_url": "https://omes.ok.gov/services/construction-and-properties",
-        "secondary_label": "Open Free Oklahoma OMES CAP Title 61 Portal (.GOV ? $0.00 Free)",
+        "secondary_label": "Open Free Oklahoma OMES CAP Title 61 Portal (.GOV \u2014 100% Free)",
         "offline_file": "ENV-01_Offline_Envelope_Manual.md",
         "directives": {
             1: ("OMES CAP Title 61 Facility Audit Rules & DOE Envelope Guide Ch. 1", "Title 61 | Calibration | Life-Cycle", "Focus on statutory public-building audit mandates, Life-Cycle Cost Analysis (LCCA), and NIST-traceable radiometric calibration rules."),
@@ -52,9 +52,9 @@ COURSE_TEXTBOOKS = {
     "PAV-01": {
         "title": "FHWA Pavement & TAMP Asset Governance Manual (23 CFR Part 515) & UFC 3-270-08 PCI Manual",
         "primary_url": "https://www.fhwa.dot.gov/pavement/",
-        "primary_label": "Open Free FHWA Pavement & Profilometry Portal (.GOV ? $0.00 Free)",
+        "primary_label": "Open Free FHWA Pavement & Profilometry Portal (.GOV \u2014 100% Free)",
         "secondary_url": "https://www.ecfr.gov/current/title-23/chapter-I/subchapter-F/part-515",
-        "secondary_label": "Open Free 23 CFR Part 515 TAMP Law Text (eCFR.gov ? $0.00 Free)",
+        "secondary_label": "Open Free 23 CFR Part 515 TAMP Law Text (eCFR.gov \u2014 100% Free)",
         "offline_file": "PAV-01_Offline_Pavement_Manual.md",
         "directives": {
             1: ("23 CFR Part 515 (ODOT TAMP) & Public-Domain UFC 3-270-08 PCI Manual Ch. 1", "515 | Sample Unit | 2,500", "Focus on National Highway System (NHS) performance metrics, Oklahoma Title 61 corridor auditing, and sample unit sizing (2,500 +/- 1,000 sq ft asphalt)."),
@@ -72,9 +72,9 @@ COURSE_TEXTBOOKS = {
     "AUT-01": {
         "title": "NHTSA / EPA OBD-II & CAN-Bus Technical Manual + OSHA 29 CFR 1910.147 Shop Safety Standard",
         "primary_url": "https://www.osha.gov/control-hazardous-energy",
-        "primary_label": "Open Free OSHA 1910.147 LOTO & Shop Safety Standard (.GOV ? $0.00 Free)",
+        "primary_label": "Open Free OSHA 1910.147 LOTO & Shop Safety Standard (.GOV \u2014 100% Free)",
         "secondary_url": "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-86/subpart-S/section-86.1806-17",
-        "secondary_label": "Open Free Federal OBD-II / SAE J1979/J1939 Mandate Text (eCFR.gov ? $0.00 Free)",
+        "secondary_label": "Open Free Federal OBD-II / SAE J1979/J1939 Mandate Text (eCFR.gov \u2014 100% Free)",
         "offline_file": "AUT-01_Offline_Auto_Robotics_Manual.md",
         "directives": {
             1: ("Federal OBD-II / ISO 11898-2 High-Speed CAN Spec & OSHA 1910.147 LOTO Manual", "60.0 Ohms | V_diff | 1910.147", "Focus on parallel 120-Ohm termination resistance (R_bus = 60.0 Ohms), dominant differential voltage V_diff = V_CANH - V_CANL = 2.0V, and Portable NVIDIA Three-Brain Enclave signal isolation."),
@@ -114,13 +114,13 @@ def render_reference_portal(course_code: str = "STR-01", unit_num: int = None):
 
     with st.container():
         st.markdown(f"### \U0001f4da Accredited Reference Textbook & Study Directive Portal (`{key}` \u2014 Unit {unit_num:02d})")
-        st.caption(f"**Assigned Reference Volume:** {meta['title']} | **Student Access Policy:** `$0.00 Cost ? 100% Included & Paywall-Free`")
+        st.caption(f"**Assigned Reference Volume:** {meta['title']} | **Student Access Policy:** `Zero-Cost (100% Included & Paywall-Free)`")
 
         st.info(
-            "\U0001f9ed **HOW TO LOCATE & STUDY YOUR READING MATERIALS ($0.00 COST \u2014 NO EXTERNAL PURCHASES REQUIRED):**" + chr(10)
+            "\U0001f9ed **HOW TO LOCATE & STUDY YOUR READING MATERIALS (ZERO ADDITIONAL COST \u2014 NO EXTERNAL PURCHASES REQUIRED):**" + chr(10)
             + "1. **100% Self-Contained Inside This Console (Fastest & Air-Gap Ready):** You **never** have to pay for an external website or buy a separate book. Every statutory rule, tolerance table, and equation tested on the exam is already built directly into **Sections `1.1`\u2013`1.4` below**, **Sub-Tab 2 (Worked Math Derivations)**, and the **Local Offline Reference Manual** expander right below." + chr(10)
             + f"2. **Instant Local Lookup (`[Ctrl + F]`):** Click **`\U0001f4d6 Read Local Offline Reference Manual`** (or **`\U0001f4e5 Download / Open Offline Textbook`**) below and press **`[Ctrl + F]`** to jump straight to **`Unit {unit_num:02d}`** or search keywords: `{ctrl_f_keys}`." + chr(10)
-            + "3. **Free Federal `.GOV` Source Verification:** Both online links below point strictly to **free, public-domain U.S. Government (`.gov` / `eCFR.gov`) statutory and engineering portals** (`$0.00` cost, no login or credit card ever required)."
+            + "3. **Free Federal `.GOV` Source Verification:** Both online links below point strictly to **free, public-domain U.S. Government (`.gov` / `eCFR.gov`) statutory and engineering portals** (`100% Free` cost, no login or credit card ever required)."
         )
 
         st.warning(
@@ -157,6 +157,6 @@ def render_reference_portal(course_code: str = "STR-01", unit_num: int = None):
                 (OFFLINE_VAULT_DIR / save_name).write_bytes(up_pdf.getvalue())
                 st.success(f"Stored `{save_name}` in local Offline Vault (`c2_cockpit/offline_textbooks/`)!")
         if local_path.exists() and local_path.suffix.lower() in [".md", ".txt"]:
-            with st.expander(f"\U0001f4d6 Read Complete Local Offline Reference Manual (`{local_path.name}` \u2014 $0.00 Built-In Air-Gap Edition)", expanded=False):
+            with st.expander(f"\U0001f4d6 Read Complete Local Offline Reference Manual (`{local_path.name}` \u2014 100% Free Built-In Air-Gap Edition)", expanded=False):
                 st.markdown(local_path.read_text(encoding="utf-8", errors="ignore"))
         st.markdown("---")

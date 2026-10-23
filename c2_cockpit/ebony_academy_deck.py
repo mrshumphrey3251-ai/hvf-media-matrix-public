@@ -195,7 +195,7 @@ def render_academy_deck():
         ])
 
         with sub_t1:
-            st.markdown(active_unit["theory"])
+            import ebony_textbook_library as _etl; st.markdown(_etl._hvf_scrub_str(active_unit["theory"]))
             st.markdown(str(active_unit.get("deep_supplement", "")).replace(chr(10) + f"### {selected_unit_num}.4", chr(10) + chr(10) + f"### {selected_unit_num}.4").replace(f"|### {selected_unit_num}.4", "|" + chr(10) + chr(10) + f"### {selected_unit_num}.4"))
             st.info("👉 Proceed to **Sub-Tab 2 (🧮 1.0-Hr Mathematical Derivations & Worked Case)** after mastering the statutory and physical treatise above.")
 
