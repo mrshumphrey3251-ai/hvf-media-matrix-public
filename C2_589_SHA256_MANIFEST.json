@@ -2,7 +2,7 @@
   "cage_code": "1AHA8",
   "classification": "LEVEL-5 SOVEREIGN INDUSTRIAL C2 & ACCREDITED ENGINEERING INSTITUTE",
   "entity": "Humphrey Virtual Farms LLC",
-  "master_c2_merkle_root_sha256": "5c17543950a91470f6c615db8a4bbc6e2b67349eaf3bbc88f3c68dd7c47f8429",
+  "master_c2_merkle_root_sha256": "c84e9013674d6b1ee3a36bb0277720239016a3c774791ca6e9b254ba6e222634",
   "module_sha256_digests": {
     "__init__.py": "795f10286e60c8fbe6ff725e033631a06873b70207c12b47bc9c7c596c489773",
     "access_control.py": "3709685f597329fd7b3042b46096d80b9769a877135920a90b97d98ab8d22c6c",
@@ -278,7 +278,6 @@
     "hvf_media_transcoder.py": "10efd2006726575aeea96500455aa606e043f1cc3f68cfd2bd219aaf19278ca6",
     "hvf_memory_vault.py": "ba11112195411f7b50b398f364b6eaea6a0ece6639ee80c77e71e11db5dbecc8",
     "hvf_modbus_driver.py": "f2e332a1fc3b5ccd37dc1b36e7e27ac75820f3c8c815150b17e66a2aa55dd4ff",
-    "hvf_ndt_11chapter_treatise.py": "26172299519a48704b67b56ac52737511e39de105e20c5038c4004277b79bcb2",
     "hvf_noaa_oracle.py": "f41efc26ec4231c8bc50d1dccd4b2c1891d7f4cdd0f4d2145aedb80beda3d33c",
     "hvf_observe.py": "3e8344e6e916e2a215183e95db268f9508ea7686ca24086a9924186de499bc96",
     "hvf_optical_streamer.py": "3fe77679feb796d92626cecebb4a815333352ff90d51c530aa280f6d9be77627",
@@ -635,7 +634,7 @@
     "total_accredited_hours": 160.0,
     "total_unique_verified_questions": 1420
   },
-  "total_compiled_c2_modules": 612,
+  "total_compiled_c2_modules": 611,
   "tradewinds_docket": "9-26-3703",
   "uei": "S1M4ENLHTDH5"
 }
