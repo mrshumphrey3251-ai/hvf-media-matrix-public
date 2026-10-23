@@ -2189,32 +2189,31 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
     return u_dict
 
 # ==============================================================================
-# HVF EXECUTIVE TREATISE SANITIZER (DETERMINISTIC INDEX SLICER AT SECTION 1.1)
+# HVF EXECUTIVE TREATISE SANITIZER (UNCONDITIONAL TABLE & HEADER NORMALIZER)
 # ==============================================================================
 import re as _hv_re
 
 def _hvf_scrub_str(s: str) -> str:
     if not isinstance(s, str):
         return s
-    # 1. Deterministic slice: if "1.0 Beginner" or "Key Acronyms Decoded" or "You do not need prior" is present,
-    # find the exact position of "1.1 " and slice from the beginning of that line!
-    if ("1.0 Beginner" in s or "Key Acronyms Decoded" in s or "You do not need prior" in s) and ("1.1 " in s):
+    if "1.1 " in s and ("1.0 " in s or "Welcome to Module" in s or "Key Acronyms" in s):
         idx_11 = s.find("1.1 ")
-        line_start = s.rfind("\n", 0, idx_11)
+        line_start = s.rfind(chr(10), 0, idx_11)
         s = s[line_start + 1:] if line_start != -1 else s[idx_11:]
-
-    # 2. Strip "1.4 How the Engineering Math Works in Plain English" up to "1.5 Inspector Field Audit Checklist"
-    if "How the Engineering Math Works in Plain English" in s:
+    if "How the Engineering Math Works" in s or "4-Step Field Logic" in s:
         s = _hv_re.sub(
-            r"(?:#+|\*\*)*\s*1\.4\s+How the Engineering Math Works in Plain English.*?(?=(?:#+|\*\*)*\s*1\.[45]\s+Inspector Field Audit Checklist|\Z)",
+            r"(?:#+|\*\*)*\s*1\.4\s+How the Engineering Math.*?(?=(?:#+|\*\*)*\s*1\.[45]\s+Inspector Field Audit Checklist|\Z)",
             "",
             s,
             flags=_hv_re.DOTALL
         )
-
-    # 3. Clean table boundary before 1.3 / 1.4 / 1.5 headers and renumber 1.5 -> 1.4
-    s = _hv_re.sub(r"(\|)\s*(#+\s*1\.[345]\s+)", r"\1\n\n\2", s)
-    s = _hv_re.sub(r"(?:#+\s*)?1\.[45]\s+Inspector Field Audit Checklist", chr(10)*2 + "#### 1.4 Inspector Field Audit Checklist", s)
+    s = s.replace("1.5 Inspector Field Audit Checklist", "1.4 Inspector Field Audit Checklist")
+    # Unconditionally guarantee two newlines before #### 1.4 Inspector Field Audit Checklist so it never glues to the 1.3 table!
+    s = _hv_re.sub(
+        r"\|\s*(?:#+\s*)?1\.4\s+Inspector Field Audit Checklist",
+        "|" + chr(10) + chr(10) + "#### 1.4 Inspector Field Audit Checklist",
+        s
+    )
     return s.strip()
 
 def _hvf_scrub_obj(obj, _seen=None):
