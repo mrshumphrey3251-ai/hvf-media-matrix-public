@@ -993,6 +993,10 @@ def _attach_beginner_aids(u_dict: dict, u_num: int):
     _eq_raw = str(u_dict.get("equations") or u_dict.get("governing_eq") or "")
     _first_eq = _eq_raw.splitlines()[0] if _eq_raw else ""
     legend_lines = [
+        f"**🔎 Calculator & Formula Breakdown for Module {u_num:02d} (`{u_dict.get('title', '')}`):**",
+        f"* **Primary Formula You Are Solving:** `{_first_eq}`",
+        f"* **Required Final Answer Unit in Sub-Tab 4:** **`{target_unit}`**",
+        "* **Deterministic Dimensional Analysis & Equation Execution Protocol:**",
         "  1. **Parentheses `( ... )` FIRST:** Always calculate the numbers inside inner parentheses first and write that number down on scratch paper.",
         "  2. **Exponents & Square Roots (`^` or `sqrt`) SECOND:** If the formula has `sqrt(...)`, press the `[√]` key on the number inside; if it has `^2` or `^4`, multiply the number by itself.",
         "  3. **Multiply (`*`) & Divide (`/`) THIRD:** Work left to right before doing any final addition (`+`) or subtraction (`-`).",
@@ -1934,28 +1938,36 @@ def get_master_glossary_and_references(course_code: str = "STR-01") -> dict:
 _OLD_SCHOOL_COURSE_CONTEXT = {
     "STR-01": {
         "who_role": (
+            "**Who Governs & Executes This Work:** Under federal **23 CFR Part 650 (National Bridge Inspection Standards - NBIS)** and **Oklahoma Statutes Title 61**, three specific people stand behind every bridge inspection: "
             "(1) The **Program Manager & Professional Engineer (PE)** at the Oklahoma Department of Transportation (ODOT) or County Circuit Engineering District (CED) who carries ultimate statutory authority; "
             "(2) The **NBIS Team Leader**, who must be physically on-site for every inspection, review all structural findings, and sign the legal docket; and "
             "(3) **You, the Certified Field Inspector & sUAS NDT Specialist (CAGE: 1AHA8)**. Under **18 U.S.C. § 1001**, signing a bridge inspection log is a federal legal attestation—if you guess at a measurement or skip a girder bay and that bridge fails under a school bus or semi-truck, you are personally and criminally accountable."
         ),
         "when_context": (
+            "**When This Inspection Must Happen (And When to Abort):** Routine highway bridges must be inspected at least once every **24 months** (`730 days`), while **Fracture-Critical Members (FCMs)**—steel tension members whose failure would drop the bridge—and underwater piers require hands-on/close-range inspection every **12 to 24 months** (or immediately after a major flood, barge strike, or overweight vehicle hit). "
             "**Historical Lesson (Why We Never Delay):** On December 15, 1967, the U.S. Route 35 Silver Bridge collapsed into the Ohio River in 20 seconds (killing 46 people) because a tiny **0.125-inch (1/8-inch)** cleavage crack inside eyebar #330 went undetected. On August 1, 2007, the I-35W bridge in Minneapolis collapsed during rush hour because **0.50-inch** gusset plates bowed and buckled under added deck weight. "
             "**Weather Abort Gates:** Never launch an under-deck photogrammetry or ultrasonic sortie when sustained winds exceed **15.0 mph**, when ambient light beneath the deck drops below **1.4 foot-candles** without auxiliary gimbal strobes, or when active rain coats steel girders in a reflective water film."
         ),
         "where_context": (
+            "**Where Failures Hide First on a Real Bridge:** Do not waste battery life taking postcard photos from 200 feet away. Structural failures start in dark, wet, high-stress corners: "
             "(1) **Beneath Leaky Expansion Joints** at the ends of the concrete deck where winter road-salt brine pours straight down onto steel beam ends and elastomeric bearing pads; "
             "(2) **Mid-Span Tension Flanges and Welded Web Stiffener Toes**, where heavy truck axles flex the steel downward thousands of times a day; "
             "(3) **Pin-and-Hanger Assemblies & Gusset Plates**, where rust packs tightly between steel plates and jacks them apart; and "
             "(4) **The Upstream Nose of River Piers**, where fast floodwaters curl downward like a horseshoe vortex and dig away the riverbed soil supporting the concrete footing."
         ),
         "rookie_mistakes": [
+            "**Rookie Mistake #1 — Flying on a Magnetic Compass Under Steel Girders:** Thousands of pounds of overhead structural steel bend the Earth's magnetic field and will cause a standard GPS/compass drone to spin out of control ('toilet-bowl') and crash into the river. **Master Rule:** Always lock the flight controller into **3D LiDAR SLAM + Upward/Downward Optical Flow mode** before flying beneath a bridge deck.",
+            "**Rookie Mistake #2 — Measuring Surface Rust Instead of Net Remaining Steel:** Scraping loose flake rust off a gusset plate is not enough. Because rust occupies **6 to 8 times** the volume of the original solid steel ('pack-rust'), a 1/2-inch bulge of rust could be hiding severe section loss or an internal crack. **Master Rule:** Always couple a calibrated **Ultrasonic Thickness Gauge (`2.25–5.0 MHz`)** to bare, couplant-gelled metal to read true remaining plate thickness in thousandths of an inch (`mils`).",
+            "**Rookie Mistake #3 — Mixing Inches and Feet in Bridge Formulas:** If a span length `L` is measured in **feet (`ft`)** and a crack length `a` or bearing pad thickness `h_rt` is measured in **inches (`in`)**, plugging them into the same formula without converting will throw your safety rating off by a factor of 12! **Master Rule:** Write down the unit next to every single number before touching your calculator."
         ]
     },
     "ENV-01": {
         "who_role": (
+            "**Who Governs & Executes This Work:** Under **Oklahoma Statutes Title 61 (Public Buildings & Public Works)** and the **Office of Management and Enterprise Services — Construction and Properties (OMES CAP)**, state facility managers, university physical plant directors, and municipal engineers are legally required to protect taxpayer-funded roofs, masonry facades, and parking structures from premature collapse and energy waste. "
             "**Your Role as the Certified Building Envelope & Thermography Specialist (CAGE: 1AHA8):** Instead of letting a roofing contractor charge taxpayers $1,500,000 to tear off an entire hospital or school roof when only 12% of the insulation is wet, you provide the independent, court-admissible **ASTM C1153 Radiometric Thermal & Dielectric Moisture Map** that pinpoints the exact square footage of trapped water for surgical repair."
         ),
         "when_context": (
+            "**When This Inspection Must Happen (The Golden Sunset Window):** You **cannot** perform a roof moisture infrared scan at 12:00 Noon on a sunny day! At midday, direct sunlight reflects off white TPO or gravel roofs and creates false hot spots everywhere. "
             "**The Mandatory ASTM C1153 Window:** You must wait for a sunny day (`>= 1,400 BTU/ft²` solar heat load) with zero rain in the prior 24 hours and winds under **15.0 mph**. Then, you launch your radiometric thermal drone **45 to 120 minutes AFTER sunset**. Why? Because dry foam insulation cools off fast in the night air, while water trapped under the rubber membrane holds onto the afternoon sun's heat like a hot-water bottle—glowing brightly on your thermal camera in the dark! "
             "**Historical Lesson:** On June 24, 2021, the 12-story Champlain Towers South condominium in Surfside, Florida collapsed (98 fatalities) after years of flat-deck ponding water and chloride infiltration corroded the reinforced concrete plaza slab and column punching-shear zones from above."
         ),
@@ -1967,10 +1979,14 @@ _OLD_SCHOOL_COURSE_CONTEXT = {
             "(4) **Flat Concrete Plaza Decks Over Parking Garages:** Where failed waterproofing lets water rot the structural slab and columns."
         ),
         "rookie_mistakes": [
+            "**Rookie Mistake #1 — Forgetting Emissivity (`ε`) Calibration on Shiny Metal vs. Rubber:** An unpainted galvanized metal HVAC duct reflects the cold night sky (`ε ≈ 0.15`) and looks freezing cold on an infrared camera, while weathered TPO/EPDM rubber (`ε ≈ 0.91`) radiates its true temperature. **Master Rule:** Always set your camera emissivity to match the exact roof surface (`0.90–0.92` for single-ply membranes) and record reflected sky temperature before scanning.",
+            "**Rookie Mistake #2 — Condemning a Roof From Thermal Pictures Alone Without Physical Verification:** A thick patch of roof cement or doubled-up walkway pad can hold heat at night just like trapped water. **Master Rule:** Under **ASTM C1153**, every thermal anomaly MUST be verified on the roof deck using a **Non-Destructive Capacitance Moisture Meter (ASTM D7954)** or a physical **2-inch gravimetric core cut** weighed wet and dry.",
+            "**Rookie Mistake #3 — Ignoring Indoor Relative Humidity & Dew Point (`T_dp`):** Sometimes a roof isn't leaking rain from the outside at all—warm, humid indoor air (`72°F` at `60% RH`) is leaking upward past a torn vapor barrier and condensing into liquid water against the cold underside of the roof deck whenever the steel deck drops below the **Dew-Point Temperature (`56.25°F`)**."
         ]
     },
     "PAV-01": {
         "who_role": (
+            "**Who Governs & Executes This Work:** Under **23 CFR Part 515 (Transportation Asset Management Plan - TAMP)**, **Oklahoma Statutes Title 61**, and **ASTM D6433**, state highway engineers (ODOT), County Commissioners across all 77 Oklahoma counties, and municipal public works directors must score every mile of asphalt and concrete roadway on an objective **0-to-100 Pavement Condition Index (`PCI`)** scale before spending state or federal paving funds. "
             "**Your Role as the Certified Corridor LiDAR & PCI Specialist (CAGE: 1AHA8):** You operate the mobile/airborne RTK LiDAR and sub-millimeter optical profiler that measures crack density, wheel-path rut depth, joint faulting, and roadside ditch hydraulics—turning raw road distress into a sealed engineering repair docket."
         ),
         "when_context": (
@@ -1985,10 +2001,14 @@ _OLD_SCHOOL_COURSE_CONTEXT = {
             "(4) **Roadside Drainage Ditches & Culvert Pipes:** When weeds and mud clog a roadside ditch, water backs up under the road shoulder and turns a strong clay subgrade into wet soup."
         ),
         "rookie_mistakes": [
+            "**Rookie Mistake #1 — Simply Subtracting Total Deduct Points (`TDV`) From 100:** If a road sample unit has three different distresses whose deduct points add up to `TDV = 65`, a beginner subtracts `100 - 65 = 35` and gets the wrong answer! **Master Rule:** Under **ASTM D6433**, when multiple distresses (`q > 1`) exist in the same sample unit, you MUST apply the **Corrected Deduct Value (`CDV`)** curve so overlapping defects aren't double-counted (`PCI = 100 - CDV_max`).",
+            "**Rookie Mistake #2 — Treating a 1/2-Inch Wheel-Path Rut as 'Minor Cosmetics':** A rut that is `0.50 inches` deep holds a continuous puddle of water across the highway during an Oklahoma thunderstorm. At `58.5 mph`, a pickup truck's tires lose all contact with the pavement and ride up on a wedge of water (**dynamic hydroplaning**), resulting in zero steering and zero braking.",
+            "**Rookie Mistake #3 — Flying Directly Over Live Highway Traffic Without Lateral Offset:** Under **FAA Part 107.39 / 107.145**, you never hover a standard mapping drone directly over windshields moving at 70 mph. **Master Rule:** Fly parallel along the right-of-way shoulder maintaining a minimum **15.0-foot horizontal lateral offset** from the live travel lane with a 30° oblique camera gimbal angle."
         ]
     },
     "AUT-01": {
         "who_role": (
+            "**Who Governs & Executes This Work:** Under **SAE International (Society of Automotive Engineers)**, **ISO 11898 / ISO 14229**, **ASE Master Technician Standards**, and **OSHA 29 CFR 1910 Shop Safety**, every technician working on a passenger car, heavy-duty diesel farm tractor, or small 2-stroke/4-stroke utility engine is directly responsible for the life of the driver and operator. "
             "**Your Role as the Sovereign Master Mechanic & CAN-Bus Diagnostician:** Whether you are changing engine oil and brake pads in your home driveway, rebuilding a clogged lawnmower carburetor on the workbench, or plugging the **Portable NVIDIA Three-Brain Enclave** into a truck's 16-pin OBD-II port to diagnose a `P0171` fuel-trim or `P0087` common-rail fault, you follow one unbreakable code: **measure twice, torque to spec, and verify with live math before turning the key.**"
         ),
         "when_context": (
@@ -2005,6 +2025,9 @@ _OLD_SCHOOL_COURSE_CONTEXT = {
             "(4) **On a Lawnmower / Small Engine:** Locate the thick black rubber **Spark Plug Boot** on the cylinder head and the round metal **Carburetor Float Bowl** hanging under the side of the air filter."
         ),
         "rookie_mistakes": [
+            "**Rookie Mistake #1 — Crawling Under a Car Supported Only by a Hydraulic Jack (LETHAL):** A hydraulic floor jack is held up by a $0.50 rubber O-ring that can blow out without warning, dropping 4,500 lbs of steel in 0.2 seconds. **Master Rule:** Jack the vehicle up, lower it onto **two locked mechanical steel Jack Stands** on solid frame rails, chock the tires, and push the fender hard before ever sliding underneath.",
+            "**Rookie Mistake #2 — 'Double-Gasketing' a Spin-On Oil Filter or Draining a Differential Bottom Plug First:** If the old black rubber O-ring from the old oil filter stays stuck to the engine block and you screw the new filter on top of it, all 5 quarts of oil will blow out in 10 seconds and seize the engine! And on a differential or transfer case, **always loosen the TOP Fill Plug FIRST**—because if you drain the bottom plug first and then find out the top fill plug is rusted shut, you cannot put oil back in the truck!",
+            "**Rookie Mistake #3 — Tipping a Lawnmower Carburetor-Side Down or Pulling an OBD-II Cable Mid-Flash:** Tipping a 4-stroke mower with the air filter facing the ground floods the cylinder and paper air filter with crankcase oil. Always disconnect the **Spark Plug Wire FIRST** and tip the mower with the **Spark Plug / Muffler pointing UP**. And when using the NVIDIA Three-Brain Enclave, never unplug the OBD-II cable until the **Green WORM Safe-to-Unplug Light** confirms `Session = 0x01`!"
         ]
     }
 }
@@ -2101,7 +2124,8 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
     rookie_md   = nl.join([f"* {rm}" for rm in ctx["rookie_mistakes"]])
 
     u_dict["beginner_primer"] = nl.join([
-        f"### 📘 Sovereign Engineering Specification // {u_title}",
+        f"### 📘 Old-School Master Textbook Chapter // {u_title}",
+        "> **How to Study This Chapter On Your Own (No Professor Required):** This chapter is written the old-school way—like a veteran Master Engineer and Shop Foreman sitting across the workbench from you on Day 1. Read straight down through the **Who, What, When, Where, Why, and How** sections below. Every technical term is explained in plain English right where it appears, and every math formula is worked out step-by-step before you ever take the quiz.",
         "",
         "#### 👥 1. WHO — Chain of Command, Legal Authority & Who Is Accountable",
         ctx["who_role"],
@@ -2125,21 +2149,31 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
     u_dict["deep_supplement"] = nl.join([
         "",
         "---",
+        f"### 🧮 5. WHY & HOW THE MATH WORKS — Step-by-Step Chalkboard Lesson (`{u_title}`)",
         "",
+        f"A real textbook never just throws an equation at you and expects you to guess what the letters mean. Let's break down the exact governing formula for **Module {u_num:02d}** in plain English so you can work it on any basic pocket calculator:",
         "",
+        "**A. The Governing Formula on the Chalkboard:**",
         f"{bt3}text",
         eq_str,
         f"{bt3}",
         "",
+        "**B. What Every Symbol Means in Plain English:**",
         f"* **Final Answer Unit Required in Sub-Tab 4:** **`{calc_unit}`**",
         f"{eq_leg if eq_leg else '* **Symbol & Variable Guide:** Each variable represents a direct physical measurement in U.S. Customary units (feet, inches, pounds, psi, °F, or RPM).'}",
         "",
+        "**C. Why This Formula Works (Physical Common Sense):**",
+        "* Every engineering equation is simply a balance scale comparing **Demand (how hard nature, traffic, heat, or electrical load is pushing on the system)** against **Capacity (how much strength, flow, or resistance the component was built to handle)**.",
         "* When **Parentheses `( ... )`** appear in the formula, always calculate the numbers inside the parentheses **FIRST** and write that intermediate number down on scratch paper before multiplying or dividing.",
         "",
+        f"**D. Classroom Chalkboard Walkthrough of Your Module {u_num:02d} Calculation Gate:**",
+        f"* **The Problem You Will Solve in Sub-Tab 4:** *{calc_prompt}*",
         "* **Detailed Worked Derivation:**",
         we_str,
+        f"* **Verified Chalkboard Answer Check:** When you work the steps above on your calculator, your result should match **`{calc_target} {calc_unit}`**.",
         "",
         "---",
+        "### 🛠️ 6. MASTER TRADESMAN'S FIELD CRAFT — Common Rookie Mistakes & How to Avoid Them",
         "",
         rookie_md
     ])
@@ -2167,53 +2201,73 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
 
     return u_dict
 
-_base_get_course_units_before_6part = get_course_units
-
-def get_course_units(course_code: str):
-    prof_code = "AUT-01" if course_code == "AUT-01" else ("ENV-01" if course_code in ("STR-02", "ENV-01") else ("PAV-01" if course_code in ("STR-03", "PAV-01") else "STR-01"))
-    raw_units = _base_get_course_units_before_6part(course_code)
-    return [_apply_six_part_old_school_textbook(u, prof_code) for u in raw_units]
 # ==============================================================================
-# HVF SOVEREIGN EXTERNAL TEXTBOOK & ACCREDITED REFERENCE LINK PORTAL
+# HVF SOVEREIGN EXTERNAL & OFFLINE AIR-GAPPED TEXTBOOK VAULT PORTAL
 # ==============================================================================
 import json as _tb_json
 from pathlib import Path as _tb_Path
 
 TEXTBOOK_LINKS_FILE = _tb_Path(__file__).resolve().parent / "hvf_textbook_links.json"
+OFFLINE_VAULT_DIR = _tb_Path(__file__).resolve().parent / "offline_textbooks"
+OFFLINE_VAULT_DIR.mkdir(parents=True, exist_ok=True)
 
 DEFAULT_TEXTBOOK_LINKS = {
     "STR-01": {
         "title": "Non-Destructive Evaluation of Reinforced Concrete and Timber Structures & FHWA/NHI Bridge Inspection Reference Manual (BIRM)",
         "primary_url": "https://www.fhwa.dot.gov/bridge/nbis.cfm",
         "secondary_url": "https://www.astm.org/products-services/standards-and-publications.html",
+        "offline_file": "STR-01_Offline_NDE_Master_Manual.md",
         "syllabus_chapters": "Ch 1: RC Steel Corrosion (ASTM C876) | Ch 2: Alkali-Silica Reaction (ASR) | Ch 3: Acoustic Deck Testing (ASTM D4580/C1383) | Ch 4-8: Timber NDE & Radioscopy | Ch 9: NBIS Visual Inspection | Ch 10: Acoustic Emission | Ch 11: VR & Photogrammetry"
     },
     "ENV-01": {
         "title": "ASTM C1153 / D7954 Building Envelope Thermography & OMES Title 61 Facility Audit Manual",
         "primary_url": "https://www.astm.org",
         "secondary_url": "https://omes.ok.gov/services/construction-and-properties",
+        "offline_file": "ENV-01_Offline_Envelope_Manual.md",
         "syllabus_chapters": "Radiometric LWIR Roof Moisture Mapping | Facade Spalling & Masonry Tie-Back NDE | ASHRAE 90.1 Thermal Envelope Auditing"
     },
     "PAV-01": {
         "title": "ASTM D6433 Pavement Condition Index (PCI) & ODOT TAMP Corridor Profilometry Manual",
         "primary_url": "https://www.fhwa.dot.gov/pavement/",
         "secondary_url": "https://oklahoma.gov/odot.html",
+        "offline_file": "PAV-01_Offline_Pavement_Manual.md",
         "syllabus_chapters": "Alligator Fatigue vs. Transverse Cracking | Wheel-Path Rutting Hydroplaning | Right-of-Way Culvert LiDAR Profiling"
     },
     "AUT-01": {
         "title": "SAE J1939 / OBD-II CAN-Bus Diagnostics, Small-Engine & EBONY-RTOS Robotic Actuator Service Manual",
         "primary_url": "https://www.sae.org/standards",
         "secondary_url": "https://www.osha.gov/control-hazardous-energy",
+        "offline_file": "AUT-01_Offline_Auto_Robotics_Manual.md",
         "syllabus_chapters": "OSHA 1910.147 LOTO Life-Safety | 4-Stroke Compression, Ignition & Fuel Stoichiometry | SAE J1939 CAN-Bus & 36.75ns Robotic Guillotine"
     }
 }
 
+def _ensure_default_offline_manuals():
+    for k, meta in DEFAULT_TEXTBOOK_LINKS.items():
+        fpath = OFFLINE_VAULT_DIR / meta["offline_file"]
+        if not fpath.exists():
+            content = (
+                f"# {meta['title']} (LOCAL OFFLINE AIR-GAP EDITION)\n"
+                f"- **Course Code:** `{k}` | **Sovereign Air-Gap Vault:** `c2_cockpit/offline_textbooks/{meta['offline_file']}`\n"
+                f"- **Governing Authority:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | OK Title 61)\n\n"
+                f"## Covered Syllabus & Governing Standards\n{meta['syllabus_chapters']}\n\n"
+                f"## Offline Field Reference Notes\n"
+                f"This local file is stored permanently on your NVMe/SSD inside `c2_cockpit/offline_textbooks/` so it remains 100% accessible when operating in **Offline (Sovereign Fortress Air-Gap)** mode without internet connectivity.\n"
+                f"- To attach a full 500-page commercial `.pdf` textbook (such as the FHWA BIRM PDF or NDE Treatise PDF) for offline field use, simply upload the `.pdf` using the **Offline Vault Manager** in the portal or copy any `.pdf` into `c2_cockpit/offline_textbooks/`."
+            )
+            fpath.write_text(content, encoding="utf-8")
+
 def load_textbook_links() -> dict:
+    _ensure_default_offline_manuals()
     if TEXTBOOK_LINKS_FILE.exists():
         try:
             data = _tb_json.loads(TEXTBOOK_LINKS_FILE.read_text(encoding="utf-8"))
             merged = dict(DEFAULT_TEXTBOOK_LINKS)
-            merged.update(data)
+            for k, v in data.items():
+                if k in merged and isinstance(v, dict):
+                    merged[k].update(v)
+                else:
+                    merged[k] = v
             return merged
         except Exception:
             pass
@@ -2228,19 +2282,48 @@ def render_textbook_link_portal(course_code: str = "STR-01"):
             key = k
             break
     meta = links[key]
+    local_path = OFFLINE_VAULT_DIR / meta.get("offline_file", f"{key}_Offline_Manual.md")
+    if not local_path.exists():
+        _ensure_default_offline_manuals()
+
     with st.container():
-        st.markdown(f"### 📚 Accredited Reference Textbook Portal (`{key}`)")
+        st.markdown(f"### \U0001f4da Accredited Reference Textbook Portal (`{key}` \u2014 Online & Air-Gap Offline Ready)")
         st.caption(f"**Assigned Reference Volume:** {meta['title']}")
         st.info(f"**Covered Textbook Syllabus:** {meta['syllabus_chapters']}")
+
         c1, c2, c3 = st.columns([2, 2, 3])
-        c1.markdown(f"🔗 **[Open Primary Reference Textbook / Manual ↗]({meta['primary_url']})**")
-        c2.markdown(f"🔗 **[Open Governing Standards Library ↗]({meta['secondary_url']})**")
-        with c3.expander("⚙️ Update Custom Textbook Link / PDF URL"):
-            new_url = st.text_input("Paste Direct Textbook URL or Local PDF Path:", value=meta["primary_url"], key=f"tb_url_{key}")
-            new_title = st.text_input("Textbook Title:", value=meta["title"], key=f"tb_title_{key}")
-            if st.button("💾 Save Textbook Link", key=f"tb_save_{key}"):
-                links[key]["primary_url"] = new_url.strip()
-                links[key]["title"] = new_title.strip()
+        if local_path.exists():
+            raw_bytes = local_path.read_bytes()
+            mime_t = "application/pdf" if local_path.suffix.lower() == ".pdf" else "text/markdown"
+            c1.download_button(
+                f"\U0001f4e5 Download / Open Offline Textbook ({local_path.suffix.upper()})",
+                data=raw_bytes,
+                file_name=local_path.name,
+                mime=mime_t,
+                key=f"dl_off_tb_{key}"
+            )
+        c2.markdown(f"\U0001f310 **[Open Online Reference Manual \u2197]({meta['primary_url']})**  \n\U0001f517 **[Open Standards Library \u2197]({meta['secondary_url']})**")
+
+        with c3.expander("\U0001f4c2 Offline Vault Manager (Upload Local PDF or Edit Link)"):
+            up_pdf = st.file_uploader(
+                f"Drop any full Textbook (.pdf or .md) into {key} Offline Vault:",
+                type=["pdf", "md", "txt"],
+                key=f"up_pdf_{key}"
+            )
+            if up_pdf is not None:
+                save_name = f"{key}_Offline_Textbook{ _tb_Path(up_pdf.name).suffix.lower() }"
+                target_p = OFFLINE_VAULT_DIR / save_name
+                target_p.write_bytes(up_pdf.getvalue())
+                links[key]["offline_file"] = save_name
                 TEXTBOOK_LINKS_FILE.write_text(_tb_json.dumps(links, indent=2), encoding="utf-8")
-                st.success("Saved! Click the primary link on the left to open your textbook.")
+                st.success(f"Stored `{save_name}` ({len(up_pdf.getvalue()):,} bytes) in local Offline Vault (`c2_cockpit/offline_textbooks/`)!")
+            new_url = st.text_input("Online Textbook URL:", value=meta["primary_url"], key=f"tb_url_{key}")
+            if st.button("\U0001f4be Save Online Link", key=f"tb_save_{key}"):
+                links[key]["primary_url"] = new_url.strip()
+                TEXTBOOK_LINKS_FILE.write_text(_tb_json.dumps(links, indent=2), encoding="utf-8")
+                st.success("Saved online link!")
+
+        if local_path.exists() and local_path.suffix.lower() in [".md", ".txt"]:
+            with st.expander(f"\U0001f4d6 Read Local Offline Reference Manual (`{local_path.name}` \u2014 100% Air-Gap Local Disk)", expanded=False):
+                st.markdown(local_path.read_text(encoding="utf-8", errors="ignore"))
         st.markdown("---")

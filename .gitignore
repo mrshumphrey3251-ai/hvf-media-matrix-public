@@ -81,3 +81,4 @@ server.cert
 
 # Sovereign Credential Boundary
 c2_cockpit/email_accounts.json
+c2_cockpit/offline_textbooks/*.pdf
