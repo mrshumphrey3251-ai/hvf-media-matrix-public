@@ -155,6 +155,7 @@ def render_academy_deck():
 
     # CHAPTER 1: 10-MODULE INTERACTIVE ENGINEERING WORKSTATION
     with tab_ch1:
+        import importlib, ebony_textbook_library as _etl; importlib.reload(_etl); _etl.render_textbook_link_portal(curr_code if "curr_code" in locals() else "STR-01")
         st.markdown("### 🏛️ 10-Module Accredited Engineering Curriculum Navigator (4.0 Credit Hours per Module)")
         u_col1, u_col2 = st.columns([3, 1])
         with u_col1:
@@ -394,7 +395,7 @@ def render_academy_deck():
                 st.markdown("#### Part B: 20-Question Milestone Mastery Verification Exam (100% Required — 20/20 to Seal 4.0 Hrs)")
                 _domain_banners = {
                     0: "##### 🏛️ Domain I (Questions 01–05): Statutory Jurisprudence, Target Units & Core Formulations",
-                    5: "##### 🧮 Domain II (Questions 06–10): U.S. Customary Calculations, PEMDAS & Sensor Limits",
+                    5: "##### 🧮 Domain II (Questions 06–10): U.S. Customary Engineering Calculations, Dimensional Analysis & Sensor Tolerances",
                     10: "##### 🛰️ Domain III (Questions 11–15): RTK/PPK Geodesy, Condition States & Title 61 Compliance",
                     15: "##### 🔐 Domain IV (Questions 16–20): WORM Cryptographic Non-Repudiation & Field Readiness",
                 }

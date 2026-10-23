@@ -224,7 +224,7 @@ def dispatch_sovereign_vocal_directive(prompt: str) -> str:
     return reply
 
 try:
-    import hvf_course_runner as _hcr_mod
+    import importlib, hvf_course_runner as _hcr_mod; importlib.reload(_hcr_mod)
     importlib.reload(_hcr_mod)
     from hvf_course_runner import render_interactive_course
 except Exception:
