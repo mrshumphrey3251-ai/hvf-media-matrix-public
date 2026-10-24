@@ -19,7 +19,7 @@ All operational vectors, autonomous telemetry streams, kinetic fail-safes, and f
 ## 2. Empirically Verified Operational Baselines
 * **Operational Availability:** 100.0% verified across persistent autonomous sentinel watchdog cycles.
 * **SCADA Microgrid Synchronization:** 4/4 contactors CLOSED (`CH1` Utility Grid, `CH2` PV Solar Arrays, `CH3` BESS Storage, `CH4` Aux Generator).
-* **Modbus FC05 Actuation Latency:** 2.04 µs bare-metal coil switching.
+* **Modbus FC05 Actuation Latency:** 2.04 us bare-metal coil switching.
 * **Kinetic Contactor Response:** 13.33 ms kinetic trip; 126.13 ms soft-start recovery under NIST SP 800-82 Rev 2.
 * **Aerial Perimeter Overwatch:** Sortie Delta 02 maintaining 75.0 m MSL orbit with zero lost link track.
 * **Dismounted Blue Force Tracking:** 3 recon elements tracked across MGRS grid coordinates with 0 active distress flags.
@@ -31,10 +31,10 @@ All operational vectors, autonomous telemetry streams, kinetic fail-safes, and f
 Automated crawlers and designated evaluators can interrogate live system status via local bare-metal sockets:
 * **Tactical Command HUD:** `http://127.0.0.1:8501/` (Live tactical cockpit and telemetry streaming)
 * **Evaluator Ingress Daemon:** `http://127.0.0.1:8502/`
-  * `/evaluator/posture` – Real-time operational standing with DFARS 252.227-7018 GPR response headers.
-  * `/evaluator/packet` – Direct JSON streaming of `TRADEWINDS_ASSESSMENT_PACKET.json`.
-  * `/evaluator/dossier` – Raw markdown of `PROJECT_EBONY_EVALUATOR_DOSSIER.md`.
-  * `/health` – Sub-millisecond node health and CAGE confirmation.
+  * `/evaluator/posture` - Real-time operational standing with DFARS 252.227-7018 GPR response headers.
+  * `/evaluator/packet` - Direct JSON streaming of `TRADEWINDS_ASSESSMENT_PACKET.json`.
+  * `/evaluator/dossier` - Raw markdown of `PROJECT_EBONY_EVALUATOR_DOSSIER.md`.
+  * `/health` - Sub-millisecond node health and CAGE confirmation.
 * **Forensic Access Logging:** Automated write-on-receive logging active in SQLite `ebony_active_state.db` (6 logged events recorded).
 
 ---

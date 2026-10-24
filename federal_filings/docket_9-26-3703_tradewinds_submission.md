@@ -5,13 +5,13 @@
 - **CAGE Code:** 1AHA8
 - **SAM.gov UEI:** S1M4ENLHTDH5
 - **Point of Contact:** Jeffery Humphrey, Founder & CEO ([REDACTED_PUBLIC_RELEASE_CONTACT])
-- **Statutory Authority:** 10 U.S.C. § 4022 Prototype Other Transaction Agreement (OTA)
+- **Statutory Authority:** 10 U.S.C. Section 4022 Prototype Other Transaction Agreement (OTA)
 - **Submission Title:** Project Ebony: Sovereign Tri-Brain Bare-Metal Edge Architecture & Sub-Microsecond Kinetic Isolation
 - **Submission Status:** RECEIVED & PRODUCTION SEALED (`v8.0.0-sovereign-master-seal`)
 - **Initial Filing Date:** Sep 24, 2026 6:34 PM CDT (Baseline TRL 4)
 - **Expanded Technical Upgrade Date:** 2026-10-24T19:40:50.426079+00:00
 - **Strategic Focus Area:** Assuring Cybersecurity, Autonomous Edge C2 & Critical Infrastructure Survivability
-- **Technology Readiness Level:** **TRL 6 / TRL 7** (System Prototype Demonstrated in Operational Bare-Metal Environment ? Upgraded from Initial TRL 4 Filing)
+- **Technology Readiness Level:** **TRL 6 / TRL 7** (System Prototype Demonstrated in Operational Bare-Metal Environment -- Upgraded from Initial TRL 4 Filing)
 - **Proposed ROM:** **$1,485,000.00** (12-Month Period of Performance)
 - **Data Rights Assertion:** DFARS 252.227-7018 (100% Private Background IP Retained; Government Purpose Rights)
 - **Cybersecurity & Compliance Posture:** DoD SPRS **110 / 110** (NIST SP 800-171 Rev 2) & NIST SP 800-82 Rev 2
@@ -20,21 +20,21 @@
 
 ### 1. Executive Abstract (Expanded v8.0.0 Capability Claim)
 
-i. **Defining the Problem:** Defense OT relies on OS-dependent software stacks, cloud SCADA, and PLCs scanning at 50?200ms. In contested A2/AD theaters, under EMCON, or facing adversarial AI optimization, software guardrails fail: optimizers treat software blocks as friction to route around, and scan latencies cannot arrest sub-millisecond physical destruction.
+i. **Defining the Problem:** Defense OT relies on OS-dependent software stacks, cloud SCADA, and PLCs scanning at 50-200ms. In contested A2/AD theaters, under EMCON, or facing adversarial AI optimization, software guardrails fail: optimizers treat software blocks as friction to route around, and scan latencies cannot arrest sub-millisecond physical destruction.
 
 ii. **Accelerating the Mission:** Project Ebony provides sovereign cyber-physical survivability for autonomous naval systems, contested logistics, microreactors, autonomous UAS inspection/overwatch, and tactical microgrids, maintaining mission execution during electronic warfare, jamming, or direct network seizure.
 
 iii. **Advancing the State of the Art (Upgraded TRL 6/7 Bare-Metal Proof):** HVF replaces software promises with the Three-Brain Architecture and a fully verified **631-module Sovereign C2 & Level-5 Extension Matrix**:
-- **Brain One (Deterministic Control):** Executes compiled C/Python bare-metal loops in sub-50µs (`2.04 µs` Modbus FC05 actuation; `13.33 ms` multi-channel kinetic contactor isolation; `126.13 ms` sequential soft-start recovery).
+- **Brain One (Deterministic Control):** Executes compiled C/Python bare-metal loops in sub-50us (`2.04 us` Modbus FC05 actuation; `13.33 ms` multi-channel kinetic contactor isolation; `126.13 ms` sequential soft-start recovery).
 - **Brain Two (Air-Gapped Cognitive Inference):** Operates under 25W with Zero RF emissions (`< 5 ms` acoustic/harmonic analysis, strictly advisory with zero electrical actuator wire).
 - **Kinetic Guillotine (Analog Physical Interlock):** Collapses holding current to zero ($I = 0$) in **36.75 ns** via solid-state MOSFET gate depletion.
 - **Brain Three (Cryptographic WORM Provenance):** Seals every telemetry state and executive artifact across a **52-table bare-metal SQLite WORM & Memory Vault architecture** (`matrix_ledger.db` + `hvf_memory_vault.db`) anchored to Master C2 Merkle Root `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`.
 
-iv. **Business Model:** Humphrey Virtual Farms LLC operates as an agile Nontraditional Defense Contractor Prime under 10 U.S.C. § 4022, retaining 100% private Background IP under DFARS 252.227-7018. We propose a 12-month, **$1.485M Prototype OTA** delivering mil-spec Tactical Control Units (TCUs) and turnkey sovereign C2 enclaves.
+iv. **Business Model:** Humphrey Virtual Farms LLC operates as an agile Nontraditional Defense Contractor Prime under 10 U.S.C. Section 4022, retaining 100% private Background IP under DFARS 252.227-7018. We propose a 12-month, **$1.485M Prototype OTA** delivering mil-spec Tactical Control Units (TCUs) and turnkey sovereign C2 enclaves.
 
 ---
 
-### 2. Expanded Capabilities Built & Verified Since Initial Filing (TRL 4 → TRL 6/7 Progression)
+### 2. Expanded Capabilities Built & Verified Since Initial Filing (TRL 4 -> TRL 6/7 Progression)
 
 | Capability / Verification Pillar | Initial Filing (Sep 24, 2026) | Current Verified Posture (`v8.0.0-sovereign-master-seal`) |
 | :--- | :--- | :--- |
@@ -45,7 +45,7 @@ iv. **Business Model:** Humphrey Virtual Farms LLC operates as an agile Nontradi
 | **5. Sovereign Field & Warfighter Academy** | Not Included in v1.0 | **1,420 / 1,420 Unique Verified Exam Questions** (`800` Ch1 + `620` Ch5) & **4 Offline Manuals** |
 | **6. ISO 32000-1 WORM PDF Dossier Compilers** | Static Markdown | **6 / 6 Cryptographically Sealed `%PDF-1.4` Engines** |
 | **7. Turnkey Hardware-Locked Client Enclave** | Single Local Node | **HMAC-SHA256 Node-Locked Release Packager** (`ebony_crypto_enclave.py`) |
-| **8. Master C2 Cryptographic Merkle Root** | 64?82 Blocks | **`cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`** (100% Fixed-Point Invariant) |
+| **8. Master C2 Cryptographic Merkle Root** | 64-82 Blocks | **`cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`** (100% Fixed-Point Invariant) |
 
 ---
 

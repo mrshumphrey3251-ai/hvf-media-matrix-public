@@ -2,7 +2,7 @@
 **Commercial & Defense Entity:** Humphrey Virtual Farms LLC  
 **CAGE Code:** 1AHA8  
 **Tradewinds Submission ID:** 9-26-3703  
-**Solution Title:** Project Ebony — Sovereign C2 & Kinetic SCADA Microgrid Platform  
+**Solution Title:** Project Ebony -- Sovereign C2 & Kinetic SCADA Microgrid Platform  
 **Technology Readiness Level (TRL):** TRL 7/8 (Operational Bare-Metal Windows Demonstration)  
 **Production Release Tag:** v8.0.0-sovereign-master-seal  
 **Executive Authority:** Jeffery Humphrey, Chief Executive Officer & SME  

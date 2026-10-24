@@ -1,10 +1,10 @@
 # OKLAHOMA STATE CTO TECHNICAL EVALUATION DOSSIER (v8.0.0)
-**System Title:** Project Ebony — Sovereign C2, Bare-Metal Kinetic SCADA & Autonomous ODOT Drone Platform
+**System Title:** Project Ebony -- Sovereign C2, Bare-Metal Kinetic SCADA & Autonomous ODOT Drone Platform
 **Target Recipient:** Rob Teel, Chief Technology Officer, Oklahoma Department of Commerce (`[REDACTED_PUBLIC_RELEASE_CONTACT]`)
 **Executive Copy:** John Budd (CEO, Oklahoma Commerce), Leshia Pearson (`[REDACTED_PUBLIC_RELEASE_CONTACT]`), Linda Emrich
 **Entity Authority:** Jeffery Humphrey, Founder, Chief Executive Officer & SME (`[REDACTED_PUBLIC_RELEASE_CONTACT]`)
 **Commercial Entity:** Humphrey Virtual Farms LLC (Madill, OK | CAGE: `1AHA8` | SAM.gov UEI: `S1M4ENLHTDH5`)
-**State Statutory Framework:** Oklahoma HB 2992, Oklahoma Title 61 § 212 & 2 CFR § 200.306
+**State Statutory Framework:** Oklahoma HB 2992, Oklahoma Title 61 Section 212 & 2 CFR Section 200.306
 **Master Release Seal:** `v8.0.0-sovereign-master-seal` (`631 / 631` Modules | `83 / 83` Test Suites | `1,420` Academy Questions)
 **Master C2 Merkle Root:** `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`
 
@@ -21,11 +21,11 @@ This technical dossier provides Chief Technology Officer Rob Teel and Oklahoma D
 3. **Statewide Workforce & ODOT Field Scaling (`5 -> 45` Personnel Across 8 ODOT Divisions):**
    - Initiates a **5-specialist core strike team** scaling to **45 certified field inspection personnel across all 8 ODOT divisions**, trained on our **1,420-question Sovereign Field Academy** (`800` Chapter 1 Milestone Questions + `620` Chapter 5 State Exam Questions) and **4 offline manuals**.
 4. **$500,000.00 In-Kind State Cost-Share Satisfaction (`$0.00` Liquid Cash Escrow Required):**
-   - Under **Oklahoma HB 2992 Section 3** and federal regulation **2 CFR § 200.306**, the $500,000.00 state matching requirement is **100.0% satisfied via allowable in-kind sovereign engineering and DFARS 252.227-7018 Background IP valuation**.
+   - Under **Oklahoma HB 2992 Section 3** and federal regulation **2 CFR Section 200.306**, the $500,000.00 state matching requirement is **100.0% satisfied via allowable in-kind sovereign engineering and DFARS 252.227-7018 Background IP valuation**.
 
 ---
 
 ## 2. Oklahoma HB 2992 & NIST SP 800-82 Rev 2 Architectural Guarantees
-- **Zero Foreign Hardware / Cloud Callback Dependency:** 100% local execution across `631` compiled Python modules (`2.04 µs` Modbus FC05 actuation; `13.33 ms` contactor trip; `36.75 ns` analog Kinetic Guillotine).
+- **Zero Foreign Hardware / Cloud Callback Dependency:** 100% local execution across `631` compiled Python modules (`2.04 us` Modbus FC05 actuation; `13.33 ms` contactor trip; `36.75 ns` analog Kinetic Guillotine).
 - **Loopback Boundary Isolation:** C2 Cockpit operates strictly on `127.0.0.1` loopback with `17 / 17` Red-Team penetration vectors blocked (`test_client_penetration.py`).
 - **OMES Title 61 Vendor Readiness:** Full corporate governance and statutory compliance ledgers sealed in `matrix_ledger.db` for immediate OMES Central Purchasing onboarding.

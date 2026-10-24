@@ -1,11 +1,11 @@
-# Humphrey Virtual Farms LLC ? Sovereign Industrial Defense, Energy & Cyber-Physical C2
+# Humphrey Virtual Farms LLC -- Sovereign Industrial Defense, Energy & Cyber-Physical C2
 [![DoD SPRS Score](https://img.shields.io/badge/DoD_SPRS_NIST_800--171-110%2F110-brightgreen.svg)](SPRS_COMPLIANCE_ATTESTATION.md)
 [![CAGE Code](https://img.shields.io/badge/CAGE-1AHA8-blue.svg)](CAPABILITY_STATEMENT.md)
 [![UEI](https://img.shields.io/badge/UEI-S1M4ENLHTDH5-blue.svg)](CAPABILITY_STATEMENT.md)
 [![DFARS Status](https://img.shields.io/badge/DFARS_252.227--7018-GPR_Compliant-success.svg)](SOVEREIGN_STAGE_8F_LEDGER.md)
 [![Unit Test Ledger](https://img.shields.io/badge/Sovereign_Unit_Tests-83%2F83_PASSED-brightgreen.svg)](SOVEREIGN_STAGE_8F_LEDGER.md)
 
-**Humphrey Virtual Farms LLC (HVF)** is a Nontraditional Defense Contractor (10 U.S.C. § 4022) and Sovereign Industrial Architecture Prime operationalizing zero-cloud, bare-metal Command and Control (C2), deterministic sub-16ms SCADA grid protection (*Kinetic Guillotine*), and the 1,420-question Sovereign Field Academy.
+**Humphrey Virtual Farms LLC (HVF)** is a Nontraditional Defense Contractor (10 U.S.C. Section 4022) and Sovereign Industrial Architecture Prime operationalizing zero-cloud, bare-metal Command and Control (C2), deterministic sub-16ms SCADA grid protection (*Kinetic Guillotine*), and the 1,420-question Sovereign Field Academy.
 
 ---
 
@@ -19,7 +19,7 @@
 | **DoD Tradewinds Assessment Docket** | **`9-26-3703`** | Chief Digital and Artificial Intelligence Office (CDAO) |
 | **DoD SPRS NIST SP 800-171 Score** | **`110 / 110`** (`UID: SB00165728`) | Supplier Performance Risk System (`0` Open POA&M Items) |
 | **Intellectual Property Custody** | **DFARS 252.227-7018 / 7013 / 7014** | 100% Unencumbered Sovereign Background IP |
-| **Executive Leadership & Apex Architect** | **Jeffery Humphrey, Founder, President & CEO** | [REDACTED_PUBLIC_RELEASE_CONTACT ? Route via SAM.gov CAGE 1AHA8 / PIEE CAM] |
+| **Executive Leadership & Apex Architect** | **Jeffery Humphrey, Founder, President & CEO** | [REDACTED_PUBLIC_RELEASE_CONTACT -- Route via SAM.gov CAGE 1AHA8 / PIEE CAM] |
 
 ---
 
@@ -39,28 +39,28 @@
 
 ## 3. Statutory Procurement, Defense & Energy Documentation
 
-1. [**Stage 8i Binary Vault & Zero-Leakage Ledger**](SOVEREIGN_STAGE_8I_LEDGER.md) ? Full 2,063-file raw-byte & SQLite VACUUM zero-PII certification (`v8.0.0-stage8i-seal`).
-2. [**Stage 8h Commercial Enclave & Release Ledger**](SOVEREIGN_STAGE_8H_LEDGER.md) ? Turnkey client enclave rebuild & [`RELEASE_MANIFEST_v8.0.0.json`](RELEASE_MANIFEST_v8.0.0.json).
-3. [**Stage 8g Public Redaction & Parity Ledger**](SOVEREIGN_STAGE_8G_LEDGER.md) ? 155-file public PII redaction & BOM-free AST verification.
-4. [**Stage 8f Fixed-Point Verification Ledger**](SOVEREIGN_STAGE_8F_LEDGER.md) ? Complete 83-test and 631-module cryptographic verification certificate.
-5. [**Federal DoD CDAO Tradewinds Docket `9-26-3703` (Upgraded TRL 6/7)**](federal_filings/docket_9-26-3703_tradewinds_submission.md) ? 10 U.S.C. ? 4022 Prototype OTA ($1.485M) & [`CDAO_EXECUTIVE_TRANSMITTAL_MEMO.md`](CDAO_EXECUTIVE_TRANSMITTAL_MEMO.md).
-6. [**State of Oklahoma (Commerce / OMES / ODOT) Evaluation & Grant Runbook**](OKLAHOMA_COMMERCE_ODOT_EVALUATOR_RUNBOOK.md) ? Oklahoma HB 2992, Title 61, $25k Phase-1 ODOT Drone Grant & [`OKLAHOMA_CTO_TECHNICAL_EVALUATION_DOSSIER.md`](OKLAHOMA_CTO_TECHNICAL_EVALUATION_DOSSIER.md).
-7. [**Stage 9 Tradewinds (TRL 6/7) & Oklahoma Separation Ledger**](SOVEREIGN_STAGE_9_TRADEWINDS_OKLAHOMA_LEDGER.md) ? Complete executive comparison and TRL 6/7 upgrade ledger.
-2. [**Energy Infrastructure Capability Statement**](ENERGY_CAPABILITY_STATEMENT.md) ? Autonomous grid resilience, NERC CIP compliance, and physical actuator verification.
-3. [**Commerce Energy Pilot Deployment Framework**](COMMERCE_ENERGY_PILOT_FRAMEWORK.md) ? 90-day bare-metal validation protocol for rural electric cooperatives and municipal utilities.
-4. [**Commercial Energy Partner Engagement Protocol**](COMMERCE_PARTNER_PROTOCOL.md) ? Operational engagement rules, data sovereignty guarantees, and pilot boundaries.
-5. [**Master Capability Statement**](CAPABILITY_STATEMENT.md) ? Core competencies, past performance benchmarks, and technical differentiators.
-6. [**DFARS 252.204-7019/7020 SPRS Compliance Attestation**](SPRS_COMPLIANCE_ATTESTATION.md) ? Formal attestation of 110/110 NIST SP 800-171 security posture.
-7. [**Defense Teaming & Subcontracting Matrix**](TEAMING_MATRIX.md) ? NAICS alignment matrix and integration structures for Defense Primes.
-8. [**Prime Contractor Onboarding Protocol**](PARTNER_ONBOARDING.md) ? Step-by-step instructions for vendor registration, NDAs, and air-gapped demos.
-9. [**Defense Procurement Roadmap**](PROCUREMENT_ROADMAP.md) ? Strategic acquisition pathways under 10 U.S.C. § 4022 Other Transaction Authority (OTA).
-10. [**Sovereign Air-Gap Architecture Specification**](AIRGAP_COMPLIANCE_SPECIFICATION.md) ? Technical dossier proving zero external cloud dependency and local SHA-256 WORM ledger custody.
+1. [**Stage 8i Binary Vault & Zero-Leakage Ledger**](SOVEREIGN_STAGE_8I_LEDGER.md) -- Full 2,063-file raw-byte & SQLite VACUUM zero-PII certification (`v8.0.0-stage8i-seal`).
+2. [**Stage 8h Commercial Enclave & Release Ledger**](SOVEREIGN_STAGE_8H_LEDGER.md) -- Turnkey client enclave rebuild & [`RELEASE_MANIFEST_v8.0.0.json`](RELEASE_MANIFEST_v8.0.0.json).
+3. [**Stage 8g Public Redaction & Parity Ledger**](SOVEREIGN_STAGE_8G_LEDGER.md) -- 155-file public PII redaction & BOM-free AST verification.
+4. [**Stage 8f Fixed-Point Verification Ledger**](SOVEREIGN_STAGE_8F_LEDGER.md) -- Complete 83-test and 631-module cryptographic verification certificate.
+5. [**Federal DoD CDAO Tradewinds Docket `9-26-3703` (Upgraded TRL 6/7)**](federal_filings/docket_9-26-3703_tradewinds_submission.md) -- 10 U.S.C. -- 4022 Prototype OTA ($1.485M) & [`CDAO_EXECUTIVE_TRANSMITTAL_MEMO.md`](CDAO_EXECUTIVE_TRANSMITTAL_MEMO.md).
+6. [**State of Oklahoma (Commerce / OMES / ODOT) Evaluation & Grant Runbook**](OKLAHOMA_COMMERCE_ODOT_EVALUATOR_RUNBOOK.md) -- Oklahoma HB 2992, Title 61, $25k Phase-1 ODOT Drone Grant & [`OKLAHOMA_CTO_TECHNICAL_EVALUATION_DOSSIER.md`](OKLAHOMA_CTO_TECHNICAL_EVALUATION_DOSSIER.md).
+7. [**Stage 9 Tradewinds (TRL 6/7) & Oklahoma Separation Ledger**](SOVEREIGN_STAGE_9_TRADEWINDS_OKLAHOMA_LEDGER.md) -- Complete executive comparison and TRL 6/7 upgrade ledger.
+2. [**Energy Infrastructure Capability Statement**](ENERGY_CAPABILITY_STATEMENT.md) -- Autonomous grid resilience, NERC CIP compliance, and physical actuator verification.
+3. [**Commerce Energy Pilot Deployment Framework**](COMMERCE_ENERGY_PILOT_FRAMEWORK.md) -- 90-day bare-metal validation protocol for rural electric cooperatives and municipal utilities.
+4. [**Commercial Energy Partner Engagement Protocol**](COMMERCE_PARTNER_PROTOCOL.md) -- Operational engagement rules, data sovereignty guarantees, and pilot boundaries.
+5. [**Master Capability Statement**](CAPABILITY_STATEMENT.md) -- Core competencies, past performance benchmarks, and technical differentiators.
+6. [**DFARS 252.204-7019/7020 SPRS Compliance Attestation**](SPRS_COMPLIANCE_ATTESTATION.md) -- Formal attestation of 110/110 NIST SP 800-171 security posture.
+7. [**Defense Teaming & Subcontracting Matrix**](TEAMING_MATRIX.md) -- NAICS alignment matrix and integration structures for Defense Primes.
+8. [**Prime Contractor Onboarding Protocol**](PARTNER_ONBOARDING.md) -- Step-by-step instructions for vendor registration, NDAs, and air-gapped demos.
+9. [**Defense Procurement Roadmap**](PROCUREMENT_ROADMAP.md) -- Strategic acquisition pathways under 10 U.S.C. Section 4022 Other Transaction Authority (OTA).
+10. [**Sovereign Air-Gap Architecture Specification**](AIRGAP_COMPLIANCE_SPECIFICATION.md) -- Technical dossier proving zero external cloud dependency and local SHA-256 WORM ledger custody.
 
 ---
 
 ## 4. Primary Industry Classifications (NAICS / PSC)
 
-* **NAICS 541512** ? Computer Systems Design Services (Autonomous Bare-Metal C2 & SCADA Systems)
-* **NAICS 541715** ? R&D in the Physical, Engineering, and Life Sciences
-* **NAICS 541330** ? Engineering Services (Critical Infrastructure & Tactical Microgrids)
-* **NAICS 334511** ? Search, Detection, Navigation, Guidance, Aeronautical, and Nautical System Manufacturing
+* **NAICS 541512** -- Computer Systems Design Services (Autonomous Bare-Metal C2 & SCADA Systems)
+* **NAICS 541715** -- R&D in the Physical, Engineering, and Life Sciences
+* **NAICS 541330** -- Engineering Services (Critical Infrastructure & Tactical Microgrids)
+* **NAICS 334511** -- Search, Detection, Navigation, Guidance, Aeronautical, and Nautical System Manufacturing
