@@ -2,7 +2,7 @@
   "cage_code": "1AHA8",
   "classification": "LEVEL-5 SOVEREIGN INDUSTRIAL C2 & ACCREDITED ENGINEERING INSTITUTE",
   "entity": "Humphrey Virtual Farms LLC",
-  "master_c2_merkle_root_sha256": "c1782e8c64f294b49f836b00902eff682a7015ca78c83f5112c42a244c6e5e2c",
+  "master_c2_merkle_root_sha256": "96b48e58e7689f5c7d3a5eb08485361e70a7f3a5e70faed2b18d449a37fcfa05",
   "module_sha256_digests": {
     "__init__.py": "795f10286e60c8fbe6ff725e033631a06873b70207c12b47bc9c7c596c489773",
     "access_control.py": "3709685f597329fd7b3042b46096d80b9769a877135920a90b97d98ab8d22c6c",
@@ -148,7 +148,7 @@
     "ebony_console.py": "47894b0ad074882b36c173a859f92a1fc7526afe6a52bbdeb0a14d67085f8c8d",
     "ebony_console_BLUE.py": "f16fccc21cfd4c20306885b38aec62c9a93be57c45e6b72b569deb569b2dd281",
     "ebony_console_GOLD.py": "07d0e6ddcb262de451a838c68b43a9f327e6216edfbe2469cf992382273f6365",
-    "ebony_console_GREEN.py": "d0eb08c80de5e8752fbb4065e4564a4d5fb103c2628b56da520a1b0d2096a421",
+    "ebony_console_GREEN.py": "666d21158ee5414d13bcdc1d74e743d80afe3d22e63193a7a77e733f69d33aad",
     "ebony_contractor_registry.py": "0b51c29e02f8236034cb6eca94c4d223e9f87ca1f8e2d427dfd2069f3b73d5a7",
     "ebony_course_engine.py": "55afbc8fe08b39a800cbf9e3ed1e5cdf3a6a78287a6eb5448dcc7a0646d4a721",
     "ebony_crypto_enclave.py": "b4cf8efeb27fd02ea548d0fc0b7790d83f7689a0af1e7510c0cca87ba2efd46b",

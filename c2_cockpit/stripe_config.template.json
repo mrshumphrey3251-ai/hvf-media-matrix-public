@@ -1,4 +1,4 @@
-﻿{
+{
   "stripe_publishable_key": "pk_live_CUSTOMER_ENTER_KEY",
   "stripe_secret_key": "sk_live_CUSTOMER_ENTER_KEY",
   "webhook_secret": "whsec_CUSTOMER_ENTER_KEY",

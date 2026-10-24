@@ -317,7 +317,7 @@ SIDEBAR_REG_FILE = Path(__file__).resolve().parent.parent / "governance" / "arch
 DYNAMIC_MODULES = {}
 if SIDEBAR_REG_FILE.exists():
     try:
-        with open(SIDEBAR_REG_FILE, "r", encoding="utf-8") as f_reg:
+        with open(SIDEBAR_REG_FILE, "r", encoding="utf-8-sig") as f_reg:
             for item in json.load(f_reg):
                 DYNAMIC_MODULES[item["title"]] = item["filename"]
     except Exception:
