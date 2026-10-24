@@ -43,7 +43,7 @@ def render():
         {"Lead Name": "Elena Rostova", "Company": "Verdant Grain Logistics", "Sector": "Supply Chain", "Cadence Stage": "Touch 2: Case Study", "Dispatch Window": "Tomorrow 11:30 CDT"},
         {"Lead Name": "David Chen", "Company": "BioNutrient Systems", "Sector": "Soil SCADA", "Cadence Stage": "Touch 3: Executive Demo", "Dispatch Window": "Oct 05, 14:00 CDT"}
     ]
-    st.dataframe(sample_leads, width="stretch")
+    st.dataframe(sample_leads, use_container_width=True)
 
     st.markdown("---")
 
@@ -55,10 +55,10 @@ def render():
             "Follow-Up Value Drop (Warm Inbound)",
             "SCADA & Automation Case Study Delivery"
         ])
-        body_text = st.text_area("Template Blueprint:", value="Hello {first_name},\n\nNoticed your work expanding operations at {company}. We deployed autonomous telemetry across multi-sector facilities and cut dispatch latency by 40%.\n\nWorth a brief executive exchange?\n\nBest,\nJeffery Humphrey\nCEO, Humphrey Virtual Farm", height=140)
+        body_text = st.text_area("Template Blueprint:", value="Hello {first_name},\n\nNoticed your work expanding operations at {company}. We deployed autonomous telemetry across multi-sector facilities and cut dispatch latency by 40%.\n\nWorth a brief executive exchange?\n\nBest,\nJeffery Humphrey\nCEO, Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)", height=140)
     with col_p:
         st.write("")
         st.write("")
         st.info("💡 Tokens dynamically populated: `{first_name}`, `{company}`, `{sector}`.")
-        if st.button("Trigger Immediate Lead Batch", type="primary", width="stretch"):
+        if st.button("Trigger Immediate Lead Batch", type="primary", use_container_width=True):
             st.success("Batch scheduled for automated dispatch sequence.")

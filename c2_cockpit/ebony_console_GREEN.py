@@ -795,14 +795,14 @@ if not st.session_state.get("legal_acknowledged", False):
         ''', unsafe_allow_html=True)
         _dossier_active = st.session_state.get("view_dossier", False)
         _btn_text = "⬅ RETURN TO PREFLIGHT GATE" if _dossier_active else "📂 OPEN REPOSITORY DOSSIER (360+ FILES)"
-        if st.button(_btn_text, key="btn_preflight_dossier", width="stretch"):
+        if st.button(_btn_text, key="btn_preflight_dossier", use_container_width=True):
             st.session_state.view_dossier = not _dossier_active
             st.rerun()
 
     if st.session_state.get("view_dossier", False):
         col_d_back, col_d_hdr = st.columns([1.5, 5])
         with col_d_back:
-            if st.button("⬅ RETURN TO PREFLIGHT GATE", key="btn_close_dossier_main", width="stretch"):
+            if st.button("⬅ RETURN TO PREFLIGHT GATE", key="btn_close_dossier_main", use_container_width=True):
                 st.session_state.view_dossier = False
                 st.rerun()
         with col_d_hdr:
@@ -965,7 +965,7 @@ if not st.session_state.get("legal_acknowledged", False):
 
         btn_col1, btn_col2, btn_col3 = st.columns([2, 4, 2])
         with btn_col2:
-            if st.button("AFFIRM AND ENTER SOVEREIGN COMMAND", width="stretch"):
+            if st.button("AFFIRM AND ENTER SOVEREIGN COMMAND", use_container_width=True):
                 if confirm_check:
                     try:
                         import sqlite3
@@ -1323,22 +1323,22 @@ elif active_module == "💬 Sovereign Command":
         macro_trigger = None
 
         with m_col1:
-            if st.button("🚨 System Readiness", width="stretch"):
+            if st.button("🚨 System Readiness", use_container_width=True):
                 macro_trigger = "Ebony, report your system readiness, CAGE governance, and operational status."
         with m_col2:
-            if st.button("📊 SCADA Diagnostics", width="stretch"):
+            if st.button("📊 SCADA Diagnostics", use_container_width=True):
                 macro_trigger = "Ebony, pull real-time industrial SCADA metrics and storage integrity for node HVFNexus."
         with m_col3:
-            if st.button("🛡️ Swarm Triad Audit", width="stretch"):
+            if st.button("🛡️ Swarm Triad Audit", use_container_width=True):
                 macro_trigger = "Ebony, dispatch the autonomous agent swarm triad and verify compliance."
         with m_col4:
-            if st.button("🧹 Purge Session", width="stretch"):
+            if st.button("🧹 Purge Session", use_container_width=True):
                 st.session_state.messages = []
                 st.session_state.screen_wiped = True
                 st.rerun()
 
         active_command = macro_trigger if macro_trigger else user_directive
-        transmit_clicked = st.button("🚀 Transmit Directive", width="stretch")
+        transmit_clicked = st.button("🚀 Transmit Directive", use_container_width=True)
 
         if (transmit_clicked or macro_trigger) and active_command.strip():
             with st.spinner("Processing through Sovereign Tri-Brain Router..."):
@@ -1417,14 +1417,14 @@ elif active_module == "💬 Sovereign Command":
                 from ebony_agent_swarm import dispatch_swarm_task
                 swarm_col1, swarm_col2 = st.columns(2)
                 with swarm_col1:
-                    if st.button("Triad Sweep", key="hud_triad_btn", width="stretch"):
+                    if st.button("Triad Sweep", key="hud_triad_btn", use_container_width=True):
                         st.code(dispatch_swarm_task("all"), language="text")
-                    if st.button("Recon Agent", key="hud_recon_btn", width="stretch"):
+                    if st.button("Recon Agent", key="hud_recon_btn", use_container_width=True):
                         st.code(dispatch_swarm_task("recon"), language="text")
                 with swarm_col2:
-                    if st.button("Security Agent", key="hud_sec_btn", width="stretch"):
+                    if st.button("Security Agent", key="hud_sec_btn", use_container_width=True):
                         st.code(dispatch_swarm_task("security"), language="text")
-                    if st.button("Analyst Agent", key="hud_analyst_btn", width="stretch"):
+                    if st.button("Analyst Agent", key="hud_analyst_btn", use_container_width=True):
                         st.code(dispatch_swarm_task("analyst"), language="text")
             except Exception as e:
                 st.error("Swarm Offline.")
@@ -2351,13 +2351,13 @@ elif active_module == "🌾 Grain Silo Aeration":
     st.markdown("##### Manual Fan Contactor Command Bus (Level-5 CEO Override)")
     btn_col1, btn_col2, btn_col3 = st.columns(3)
     with btn_col1:
-        if st.button("⚡ ENERGIZE AERATION FAN (K3)", width="stretch"):
+        if st.button("⚡ ENERGIZE AERATION FAN (K3)", use_container_width=True):
             st.success("COMMAND DISPATCHED: 480V 3-Phase Contactor K3 closed. Watchdog timer set to 240 minutes.")
     with btn_col2:
-        if st.button("🛑 EMERGENCY DE-ENERGIZE (E-STOP)", width="stretch"):
+        if st.button("🛑 EMERGENCY DE-ENERGIZE (E-STOP)", use_container_width=True):
             st.error("COMMAND DISPATCHED: Contactor K3 forced OPEN. Aeration motor trip verified in 2.4 microseconds.")
     with btn_col3:
-        if st.button("🔄 RE-CALCULATE EMC & OPTIMIZE", width="stretch"):
+        if st.button("🔄 RE-CALCULATE EMC & OPTIMIZE", use_container_width=True):
             st.info("ANALYTICS DISPATCHED: NOAA ambient radar feed reconciled against thermocouple cables. Optimal cycle window: 0200 - 0630 CST.")
 
 elif active_module == "📘 Omni-Industry Matrix":
