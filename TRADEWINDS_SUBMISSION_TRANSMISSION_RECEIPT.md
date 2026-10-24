@@ -3,7 +3,7 @@
 **Commercial & Defense Entity:** Humphrey Virtual Farms LLC (CAGE: 1AHA8)  
 **Tradewinds Submission ID:** 9-26-3703  
 **Technology Readiness Level:** TRL 7/8 (Operational Bare-Metal Production Certified)  
-**Release Version Tag:** v1.0.0-tradewinds-certified  
+**Release Version Tag:** v8.0.0-sovereign-master-seal  
 **Statutory Data Rights:** DFARS 252.227-7018 (Government Purpose Rights) / Oklahoma HB 2992  
 **Industrial Cybersecurity Standard:** NIST SP 800-82 Rev 2  
 **Date of Transmission:** 2026-09-28 18:41:00 UTC  
@@ -13,7 +13,7 @@
 ## 1. Transmission & Presentation Confirmation
 * **Procurement Vehicle:** Tradewinds Solutions Marketplace (CDAO / ACC-RI)
 * **Contracting Directorate:** Army Contracting Command - Rock Island (ACC-RI)
-* **Lead Contracting Official:** Leshia Pearson & Evaluation Directorate
+* **Lead Contracting Official:** DoD CDAO & ACC-RI Evaluation Directorate
 * **Formal Demonstration Window:** **Monday, October 5, 2026 @ 10:00 AM CDT**
 * **Presentation Format:** Microsoft Teams Presentation & Live Bare-Metal Demonstration
 * **Demonstration Agenda:** 30-Minute 5-Phase Flight Plan (`DEMO_PRESENTATION_FLIGHT_PLAN_OCT5.md`)

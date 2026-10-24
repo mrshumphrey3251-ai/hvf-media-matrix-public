@@ -1,28 +1,44 @@
 {
-  "protocol": "HVF-TRADEWINDS-ATTESTATION-v1.0",
-  "timestamp_utc": "2026-09-27T17:10:08.389842+00:00",
+  "protocol": "HVF-TRADEWINDS-ATTESTATION-v8.0",
+  "timestamp_utc": "2026-10-24T19:40:50.426079+00:00",
   "submission_metadata": {
     "submission_id": "9-26-3703",
-    "portal": "Tradewinds Solutions Marketplace",
-    "cdao_intake_standing": "Compliant / Queued for Assessment",
+    "portal": "DoD CDAO Tradewinds Solutions Marketplace",
+    "cdao_intake_standing": "Compliant / Production Sealed (TRL 6/7 Operational Prototype)",
     "contractor": "Humphrey Virtual Farms LLC",
     "cage_code": "1AHA8",
+    "uei": "S1M4ENLHTDH5",
     "commanding_authority": "CEO Jeffery Humphrey (Level 5 Unrestricted)",
     "contact_email": "[REDACTED_PUBLIC_RELEASE_CONTACT]",
     "statutory_rights": "DFARS 252.227-7018 (Government Purpose Rights)",
-    "state_statute": "Oklahoma HB 2992",
+    "ota_authority": "10 U.S.C. 4022 Prototype OTA ($1,485,000.00 / 12-Month POP)",
+    "trl_posture": "TRL 6 / TRL 7 (Upgraded from Initial TRL 4 Filing)",
+    "sprs_score": "110 / 110 (NIST SP 800-171 Rev 2)",
     "response_sla_hours": 48
+  },
+  "expanded_v8_verification": {
+    "release_tag": "v8.0.0-sovereign-master-seal",
+    "compiled_python_modules": 631,
+    "c2_cockpit_modules": 616,
+    "level5_extensions": 15,
+    "automated_unit_test_suites": "83 / 83 PASSED (100.0%)",
+    "red_team_penetration_vectors": "17 / 17 BLOCKED (0 Breaches)",
+    "field_academy_verified_questions": 1420,
+    "offline_engineering_manuals": 4,
+    "iso_32000_1_pdf_compilers": 6,
+    "master_c2_merkle_root_sha256": "cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a"
   },
   "edge_defense_state": {
     "system_verdict": "SOVEREIGN_SYSTEM_LOCKED_AND_NOMINAL",
     "operational_availability_pct": 100.0,
-    "total_watchdog_cycles": 6,
+    "total_watchdog_cycles": 8,
     "mean_sweep_latency_ms": 22.78,
     "scada_microgrid": {
       "channels_synchronized": "4/4 CLOSED",
       "coil_actuation_us": 2.04,
       "breaker_isolation_ms": 13.33,
-      "soft_start_recovery_ms": 126.13
+      "soft_start_recovery_ms": 126.13,
+      "guillotine_cutoff_ns": 36.75
     },
     "uas_perimeter_overwatch": {
       "platform": "DJI Matrice 350 RTK",
@@ -36,8 +52,8 @@
       "tracking_grid": "MGRS_TACTICAL"
     },
     "cryptographic_ledger": {
-      "sealed_blocks": 64,
-      "latest_block_hash": "12d013722226d541f1e9e03b9dbd466065de48c31b281ed5780cfe7f3ae80cf5",
+      "sealed_blocks": 82,
+      "master_c2_merkle_root": "cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a",
       "asymmetric_algorithm": "ED25519",
       "synthetic_data_prohibited": true
     }

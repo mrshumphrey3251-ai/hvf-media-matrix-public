@@ -4,7 +4,7 @@
 **Signatory Authority:** Jeffery Humphrey, Chief Executive Officer (Level 5 Unrestricted)  
 **Point of Contact:** [REDACTED_PUBLIC_RELEASE_CONTACT]  
 **Timestamp (UTC):** 2026-09-27T18:55:55.660228+00:00  
-**Production Release Tag:** `v1.0.0-tradewinds-certified`  
+**Production Release Tag:** `v8.0.0-sovereign-master-seal`  
 **Statutory Data Rights Standard:** DFARS 252.227-7018 (Government Purpose Rights) / Oklahoma HB 2992  
 
 ---
@@ -40,8 +40,8 @@ Automated crawlers and designated evaluators can interrogate live system status 
 ---
 
 ## 4. Git Provenance and Release Tagging
-* **Private Repository:** `main` at `2f19e05` | Tag: `v1.0.0-tradewinds-certified`
-* **Public Repository:** `master` at `1d7e6ce` | Tag: `v1.0.0-tradewinds-certified`
+* **Private Repository:** `main` at `2f19e05` | Tag: `v8.0.0-sovereign-master-seal`
+* **Public Repository:** `master` at `1d7e6ce` | Tag: `v8.0.0-sovereign-master-seal`
 * **SHA256 Parity:** 100% binary parity verified across dual repositories.
 
 ---

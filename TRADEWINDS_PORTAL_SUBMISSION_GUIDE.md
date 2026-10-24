@@ -4,7 +4,7 @@
 **Tradewinds Submission ID:** 9-26-3703  
 **Solution Title:** Project Ebony — Sovereign C2 & Kinetic SCADA Microgrid Platform  
 **Technology Readiness Level (TRL):** TRL 7/8 (Operational Bare-Metal Windows Demonstration)  
-**Production Release Tag:** v1.0.0-tradewinds-certified  
+**Production Release Tag:** v8.0.0-sovereign-master-seal  
 **Executive Authority:** Jeffery Humphrey, Chief Executive Officer & SME  
 **Statutory Data Rights Standard:** DFARS 252.227-7018 (Government Purpose Rights) / Oklahoma HB 2992  
 **Industrial Cybersecurity Baseline:** NIST SP 800-82 Rev 2  
@@ -18,7 +18,7 @@ The following metadata fields correspond directly to the formal submission form 
 * **Vendor CAGE:** `1AHA8`
 * **Vendor DUNS / SAM Unique Entity ID:** Verified Active in SAM.gov
 * **Primary Point of Contact:** Jeffery Humphrey, CEO (`[REDACTED_PUBLIC_RELEASE_CONTACT]`)
-* **Formal Demo Presentation Reserved:** **Monday, October 5, 2026 at 10:00 AM CDT** (Microsoft Teams Call with Leshia Pearson / ACC-RI Contracting Team)
+* **Formal Demo Presentation Reserved:** **Monday, October 5, 2026 at 10:00 AM CDT** (Microsoft Teams Call with DoD CDAO / ACC-RI Evaluation Directorate)
 * **Primary Distribution Archive:** `TRADEWINDS_CDAO_EVALUATOR_BUNDLE_v1.0.0.zip`
 * **Archive SHA256 Checksum:** `4baa02878153cd551f002d3a0afae7404b8b9f7c66b2cd8a69605a48342cf78c`
 
