@@ -72,7 +72,7 @@ def render_robotics_rtos_deck():
     t1, t2, t3 = st.tabs([
         "?? 1. Mandatory Robotic Life-Safety (8 Hazards)",
         "? 2. Live 36.75ns Kinetic Guillotine Workbench",
-        "??? 3. Beginner-to-Master Robotic Actuator, Gearbox & OEM Parts Guide"
+        "??? 3. Master Engineering Robotic Actuator, Gearbox & OEM Parts Guide"
     ])
     with t1:
         for h in ROBOTIC_SAFETY_HAZARDS:

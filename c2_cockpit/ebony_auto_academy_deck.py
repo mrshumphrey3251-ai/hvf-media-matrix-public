@@ -172,7 +172,7 @@ def render_auto_academy_deck():
         st.markdown("#### 🧰 3. Exact Tools & Socket Sizes Required")
         for tl in zd["tools_required"]:
             st.markdown(f"- **{tl}**")
-        st.markdown("#### 🛠️ 4. Step-by-Step Beginner-to-Master Instructions")
+        st.markdown("#### 🛠️ 4. Step-by-Step Master Engineering Instructions")
         for sp in zd["step_by_step"]:
             st.success(sp)
 

@@ -1520,7 +1520,7 @@ elif active_module == "🌾 Drone Diagnostics":
         ]:
             st.warning(_dh)
     with d_tab_maint:
-        st.markdown("#### 🛠️ Beginner-to-Master sUAS Drone Anatomy, Pre-Flight Inspection, Field Repair & OEM Parts")
+        st.markdown("#### 🛠️ FAA Part 107 Master sUAS Drone Anatomy, Pre-Flight Inspection, Field Repair & OEM Parts")
         st.info(
             "**📍 1. Where Every Drone Component Is & What It Looks Like:**\n"
             "- **CW vs. CCW Motors & Propellers:** Look at the top of each propeller blade: motors spinning **Clockwise (CW)** and **Counter-Clockwise (CCW)** alternate around the frame (`Front-Right = CCW`, `Front-Left = CW`) so torque cancels out. The **higher/rounded leading edge** of the propeller blade must ALWAYS point in the direction the motor spins!\n"

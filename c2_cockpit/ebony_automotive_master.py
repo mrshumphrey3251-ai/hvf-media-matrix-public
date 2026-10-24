@@ -409,7 +409,7 @@ BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
         ]
     },
     "ZONE_12_PORTABLE_NVIDIA_CANBUS_PLUGIN_AND_ECU_GUIDE": {
-        "zone_title": "Zone 12: Beginner's Click-by-Click Guide to Plugging In & Unplugging the Portable NVIDIA Three-Brain CAN-Bus Enclave",
+        "zone_title": "Zone 12: Master Engineering Click-by-Click Guide to Plugging In & Unplugging the Portable NVIDIA Three-Brain CAN-Bus Enclave",
         "where_and_what": (
             "How any beginner or fleet operator connects the **Portable NVIDIA Three-Brain Enclave** to diagnose and adjust computer issues on any car, truck, or tractor, and safely removes it to use on the next vehicle:\n"
             "1. **Where to Find the 16-Pin OBD-II Port on Any Car or Pickup Truck:** Sit in the driver's seat and look underneath the dashboard, directly below the steering wheel column (within 12 inches of your knees, above the brake/gas pedals). You will see a trapezoid-shaped **16-Pin Female Connector** (usually black or white) facing downward or outward. No tools are needed to plug into it!\n"
