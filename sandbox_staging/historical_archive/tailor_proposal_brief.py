@@ -38,7 +38,7 @@ def generate_tailored_brief(solicitation_id: str):
 * **Corporate Identifiers:** CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | Small Business Concern
 * **Contracting Status:** Nontraditional Defense Contractor (10 U.S.C. § 4022(d)) / Commercial Prime
 * **Primary SME & CEO:** Jeffery Humphrey, Founder & Apex Architect
-* **Contact:** humphreyvirtualfarm@gmail.com
+* **Contact:** [REDACTED_PUBLIC_RELEASE_CONTACT]
 * **Classification:** PROPRIETARY & COMPETITION SENSITIVE (DFARS 252.227-7018)
 
 ---
@@ -99,5 +99,7 @@ Apex Architect | HVF Omni-Industrial Matrix
     print(f"  Document Hash : {doc_hash[:16]} (Sealed in Vault)")
 
 if __name__ == "__main__":
-    generate_tailored_brief("DIU-AOI-2026-AUTONOMY")
-
+    generate_tailored_brief("DIU-AOI-2026-AUTONOMY")
+
+
+

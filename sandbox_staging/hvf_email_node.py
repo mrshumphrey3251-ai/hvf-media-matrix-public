@@ -25,7 +25,7 @@ def render():
             load_dotenv()
             self.sender_email = os.getenv("GMAIL_USER")
             self.app_password = os.getenv("GMAIL_APP_PASSWORD")
-            self.target_address = "humphreyvirtualfarm@gmail.com"
+            self.target_address = "[REDACTED_PUBLIC_RELEASE_CONTACT]"
 
         def dispatch(self, payload):
             self.logger.info(f"Initializing SMTP transmission vector for: {self.target_address}")

@@ -85,7 +85,7 @@ def render():
 
     CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 
-    humphreyvirtualfarm@gmail.com
+    [REDACTED_PUBLIC_RELEASE_CONTACT]
 
     """
 

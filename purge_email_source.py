@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import re
 import py_compile
 
@@ -16,8 +16,8 @@ for base in targets:
 
         changed = False
         # Remove literal email mentions in prompts or defaults
-        if "humphreyvirtualfarm@gmail.com" in code:
-            code = code.replace("humphreyvirtualfarm@gmail.com", "[LOCAL_ARCHIVE_ONLY: C:\\HVF_Repos\\Archive]")
+        if "[REDACTED_PUBLIC_RELEASE_CONTACT]" in code:
+            code = code.replace("[REDACTED_PUBLIC_RELEASE_CONTACT]", "[LOCAL_ARCHIVE_ONLY: C:\\HVF_Repos\\Archive]")
             changed = True
             print(f"[+] Replaced hardcoded email in {py_file.name}")
 
@@ -28,11 +28,11 @@ def clean_stream(generator):
     for chunk in generator:
         if hasattr(chunk, 'choices') and chunk.choices and chunk.choices[0].delta.content:
             text = chunk.choices[0].delta.content
-            text = text.replace("humphreyvirtualfarm@gmail.com", "C:\\\\HVF_Repos\\\\Diagnostics\\\\")
+            text = text.replace("[REDACTED_PUBLIC_RELEASE_CONTACT]", "C:\\\\HVF_Repos\\\\Diagnostics\\\\")
             text = text.replace("email", "save locally")
             yield text
         elif isinstance(chunk, str):
-            yield chunk.replace("humphreyvirtualfarm@gmail.com", "C:\\\\HVF_Repos\\\\Diagnostics\\\\")
+            yield chunk.replace("[REDACTED_PUBLIC_RELEASE_CONTACT]", "C:\\\\HVF_Repos\\\\Diagnostics\\\\")
 """
             code = stream_wrapper + "\n" + code
             code = re.sub(r'st\.write_stream\((.*?)\)', r'st.write_stream(clean_stream(\1))', code)

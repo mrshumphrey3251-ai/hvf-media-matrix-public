@@ -7,7 +7,7 @@ from cryptography.fernet import Fernet
 # ==============================================================================
 # HVF Omni-Industrial Matrix | SOVEREIGN VAULT CREDENTIAL ENCRYPTION
 # Authority: Jeffery Humphrey, Founder & CEO (CAGE: 1AHA8, UEI: S1M4ENLHTDH5)
-# Endpoint: humphreyvirtualfarm@gmail.com (HVF_GMAIL_MAIN)
+# Endpoint: [REDACTED_PUBLIC_RELEASE_CONTACT] (HVF_GMAIL_MAIN)
 # ==============================================================================
 
 BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
@@ -44,9 +44,9 @@ cur = conn.cursor()
 cur.execute("""
 INSERT INTO email_accounts 
 (account_alias, email_address, imap_server, imap_port, smtp_server, smtp_port, encrypted_password, is_active, auth_type)
-VALUES ('HVF_GMAIL_MAIN', 'humphreyvirtualfarm@gmail.com', 'imap.gmail.com', 993, 'smtp.gmail.com', 465, ?, 1, 'APP_PASSWORD')
+VALUES ('HVF_GMAIL_MAIN', '[REDACTED_PUBLIC_RELEASE_CONTACT]', 'imap.gmail.com', 993, 'smtp.gmail.com', 465, ?, 1, 'APP_PASSWORD')
 ON CONFLICT(account_alias) DO UPDATE SET
-    email_address = 'humphreyvirtualfarm@gmail.com',
+    email_address = '[REDACTED_PUBLIC_RELEASE_CONTACT]',
     encrypted_password = excluded.encrypted_password,
     is_active = 1,
     imap_server = 'imap.gmail.com',

@@ -66,7 +66,7 @@ def render_comms_gate(key_suffix="sovereign_deck_main"):
         col1, col2, col3 = st.columns([1, 8, 1])
         with col2:
             default_e = list(accounts.keys())[0] if accounts else ""
-            in_email = st.text_input("Executive Email Address:", value=default_e, placeholder="e.g. humphreyvirtualfarm@gmail.com or evaluator@ok.gov", key=f"gate_email_{key_suffix}")
+            in_email = st.text_input("Executive Email Address:", value=default_e, placeholder="e.g. [REDACTED_PUBLIC_RELEASE_CONTACT] or evaluator@ok.gov", key=f"gate_email_{key_suffix}")
             in_pass = st.text_input("Password / 16-Character App Password:", type="password", placeholder="•••• •••• •••• ••••", key=f"gate_pass_{key_suffix}")
 
             stay_signed_in = st.checkbox("Remember credentials and stay signed in across sessions", value=True, key=f"gate_stay_{key_suffix}")
@@ -185,8 +185,8 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
         if st.button("📱 EMAIL DEBRIEF TO MY PHONE", key=f"btn_email_debrief_{key_suffix}", width="stretch"):
             try:
                 from ebony_travel_autopilot import run_travel_cycle
-                run_travel_cycle(auto_send=False, email_summary_to="humphreyvirtualfarm@gmail.com")
-                st.success("Executive Return Debrief transmitted to humphreyvirtualfarm@gmail.com.")
+                run_travel_cycle(auto_send=False, email_summary_to="[REDACTED_PUBLIC_RELEASE_CONTACT]")
+                st.success("Executive Return Debrief transmitted to [REDACTED_PUBLIC_RELEASE_CONTACT].")
             except Exception as _e:
                 st.error(f"Failed to transmit debrief: {_e}")
 

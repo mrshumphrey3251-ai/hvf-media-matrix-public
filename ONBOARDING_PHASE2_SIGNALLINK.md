@@ -32,4 +32,4 @@ All submitted files must be signed, notarized where indicated, and accompanied b
 Compile the required proof and intelligence, and transmit the data packet to:
 Jeffery Humphrey
 CEO, Humphrey Virtual Farms
-Email: humphreyvirtualfarm@gmail.com
+Email: [REDACTED_PUBLIC_RELEASE_CONTACT]

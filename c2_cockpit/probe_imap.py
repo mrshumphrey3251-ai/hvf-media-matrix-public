@@ -5,10 +5,10 @@ import getpass
 # ==============================================================================
 # HVF Omni-Industrial Matrix | SOVEREIGN IMAP DIAGNOSTIC PROBE
 # Authority: Jeffery Humphrey, Founder & CEO (CAGE: 1AHA8, UEI: S1M4ENLHTDH5)
-# Target: humphreyvirtualfarm@gmail.com (Direct IMAP Handshake Isolation)
+# Target: [REDACTED_PUBLIC_RELEASE_CONTACT] (Direct IMAP Handshake Isolation)
 # ==============================================================================
 
-EMAIL_ADDR = "humphreyvirtualfarm@gmail.com"
+EMAIL_ADDR = "[REDACTED_PUBLIC_RELEASE_CONTACT]"
 IMAP_SERVER = "imap.gmail.com"
 IMAP_PORT = 993
 

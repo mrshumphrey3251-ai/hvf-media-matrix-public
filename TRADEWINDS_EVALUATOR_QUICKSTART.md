@@ -15,7 +15,7 @@
 * Meeting ID: 286 410 885 824 955
 * Passcode: YM3NA7aw
 * Direct Join: https://teams.microsoft.com/meet/286410885824955?p=AYJOleVv4WYFdiSqHG
-* Official Contact: humphreyvirtualfarm@gmail.com
+* Official Contact: [REDACTED_PUBLIC_RELEASE_CONTACT]
 
 ---
 

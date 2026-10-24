@@ -75,7 +75,7 @@ output_lines = [
     "================================================================================",
     "HVF Omni-Industrial Matrix | NSF AMERICA'S SEED FUND SUBMISSION PORTAL CLIPBOARD",
     "DIRECT PORTAL URL: https://nsfgov.my.site.com/mywork/s/login/",
-    "CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PI: Jeffery Humphrey (humphreyvirtualfarm@gmail.com)",
+    "CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PI: Jeffery Humphrey ([REDACTED_PUBLIC_RELEASE_CONTACT])",
     "STATUTORY LIMIT COMPLIANCE: CHARACTER SATURATION VERIFIED",
     "================================================================================\n"
 ]
@@ -114,5 +114,7 @@ for key, spec in FIELD_SPECS.items():
     chars = len(spec["text"])
     pct = round((chars / spec["char_limit"]) * 100, 1)
     print(f"  {spec['title']:<52} : {chars:>4} / {spec['char_limit']} chars ({pct}% saturated)")
-print("-" * 80)
-
+print("-" * 80)
+
+
+

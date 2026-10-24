@@ -15,7 +15,7 @@ except Exception as e:
 def deploy_to_linkedin(topic):
     # 1. Generate the payload
     print(f"[EBONY LAUNCH]: Engine locked. Generating payload for: {topic}")
-    prompt = f"Draft an executive LinkedIn post about: {topic}. Tone must be authoritative, concise, and high-powered. No fluff. Include this contact info at the bottom: \nContact: humphreyvirtualfarm@gmail.com\nGitHub Open-Source Matrix: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
+    prompt = f"Draft an executive LinkedIn post about: {topic}. Tone must be authoritative, concise, and high-powered. No fluff. Include this contact info at the bottom: \nContact: [REDACTED_PUBLIC_RELEASE_CONTACT]\nGitHub Open-Source Matrix: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
     
     try:
         chat_completion = client.chat.completions.create(

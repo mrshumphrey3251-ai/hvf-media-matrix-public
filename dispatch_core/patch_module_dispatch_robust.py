@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import re
 import py_compile
@@ -33,7 +33,7 @@ MODULE_BODY = '''    st.header("📨 Sovereign Multi-Account Dispatch & Inbound 
                 "FINANCIAL_TREASURY",
                 "GENERAL_EXECUTIVE"
             ], key="direct_out_cat")
-            st.markdown("<div style='font-size:0.85em; color:#94a3b8; margin-top:5px;'><b>Originating Endpoint:</b><br><span style='color:#e2a03f; font-family:monospace;'>humphreyvirtualfarm@gmail.com</span></div>", unsafe_allow_html=True)
+            st.markdown("<div style='font-size:0.85em; color:#94a3b8; margin-top:5px;'><b>Originating Endpoint:</b><br><span style='color:#e2a03f; font-family:monospace;'>[REDACTED_PUBLIC_RELEASE_CONTACT]</span></div>", unsafe_allow_html=True)
 
         with st.expander("⚡ Draft Assistance with Ebony AI (Grounded in Iron Dome Intel)", expanded=False):
             ai_directive = st.text_input("Strategic Directive for Ebony AI", key="ai_out_directive", placeholder="e.g. Confirm executed LSA with Drew Phillips Jr. and coordinate DAF TENCAP Volume 2.")

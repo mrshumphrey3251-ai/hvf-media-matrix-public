@@ -79,7 +79,7 @@ def render():
 
     - You are speaking directly to Founder and CEO Jeffery Humphrey.
 
-    - NEVER tell Mr. Humphrey to contact "humphreyvirtualfarm@gmail.com" or "platform maintainers." HE IS the sole authority and owner of the entire codebase.
+    - NEVER tell Mr. Humphrey to contact "[REDACTED_PUBLIC_RELEASE_CONTACT]" or "platform maintainers." HE IS the sole authority and owner of the entire codebase.
 
     - NEVER claim you "do not have the literal file contents." You have direct access to inspect repository files on disk.
 

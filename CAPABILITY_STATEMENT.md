@@ -8,7 +8,7 @@
 * **DoD UID:** SB00165728
 * **Business Classification:** Small Business / Industrial Technology Provider
 * **Point of Contact:** Jeffery Humphrey, CEO
-* **Email:** humphreyvirtualfarm@gmail.com
+* **Email:** [REDACTED_PUBLIC_RELEASE_CONTACT]
 
 ## Core Capabilities
 * **Industrial Command & Control Systems:** High-reliability distributed systems architecture and sovereign compute enclaves.

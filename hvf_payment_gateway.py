@@ -1,4 +1,4 @@
-﻿import os
+import os
 import json
 import sqlite3
 import secrets
@@ -12,7 +12,7 @@ load_dotenv(override=True)
 REPO_DIR = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private")
 DB_PATH = os.path.join(REPO_DIR, "hvf_memory_vault.db")
 
-SMTP_EMAIL = os.getenv("HVF_SMTP_EMAIL", "humphreyvirtualfarm@gmail.com")
+SMTP_EMAIL = os.getenv("HVF_SMTP_EMAIL", "[REDACTED_PUBLIC_RELEASE_CONTACT]")
 SMTP_PASS = os.getenv("HVF_SMTP_APP_PASSWORD", "")
 
 app = Flask(__name__)

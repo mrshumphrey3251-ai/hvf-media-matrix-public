@@ -41,7 +41,7 @@ class TradewindsNotificationEngine:
                 "contractor": "Humphrey Virtual Farms LLC",
                 "cage_code": "1AHA8",
                 "commanding_authority": "CEO Jeffery Humphrey (Level 5 Unrestricted)",
-                "contact_email": "humphreyvirtualfarm@gmail.com",
+                "contact_email": "[REDACTED_PUBLIC_RELEASE_CONTACT]",
                 "statutory_rights": "DFARS 252.227-7018 (Government Purpose Rights)",
                 "state_statute": "Oklahoma HB 2992",
                 "response_sla_hours": 48

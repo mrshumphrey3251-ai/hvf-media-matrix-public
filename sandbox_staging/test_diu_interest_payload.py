@@ -87,7 +87,7 @@ def render():
 
         ("Company Name", "HVF Omni-Industrial Matrix"),
 
-        ("Email Address", "humphreyvirtualfarm@gmail.com")
+        ("Email Address", "[REDACTED_PUBLIC_RELEASE_CONTACT]")
 
     ]
 

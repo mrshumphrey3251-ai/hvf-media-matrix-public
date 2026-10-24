@@ -89,7 +89,7 @@ def render():
 
     * **Primary SME & CEO:** Jeffery Humphrey, Founder & Apex Architect
 
-    * **Contact:** humphreyvirtualfarm@gmail.com
+    * **Contact:** [REDACTED_PUBLIC_RELEASE_CONTACT]
 
     * **Classification:** PROPRIETARY & COMPETITION SENSITIVE (DFARS 252.227-7018)
 

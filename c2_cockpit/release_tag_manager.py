@@ -33,7 +33,7 @@ class ReleaseTagManager:
             "contractor": "Humphrey Virtual Farms LLC",
             "cage_code": "1AHA8",
             "commanding_authority": "CEO Jeffery Humphrey (Level 5 Unrestricted)",
-            "contact_email": "humphreyvirtualfarm@gmail.com",
+            "contact_email": "[REDACTED_PUBLIC_RELEASE_CONTACT]",
             "statutory_compliance": [
                 "DFARS 252.227-7018 (Government Purpose Rights)",
                 "Oklahoma HB 2992 (Critical Infrastructure Resilience)",

@@ -126,7 +126,7 @@ html_content = """<!DOCTYPE html>
   <li><strong>Contracting Status:</strong> Nontraditional Defense Contractor pursuant to 10 U.S.C. § 4022(d)(1)(A)</li>
   <li><strong>Primary SME & Principal Investigator:</strong> Jeffery Humphrey, Founder & CEO (Apex Architect)</li>
   <li><strong>Headquarters & Prototyping Laboratory:</strong> Oklahoma City, Oklahoma, USA</li>
-  <li><strong>Primary Operational Contact:</strong> humphreyvirtualfarm@gmail.com</li>
+  <li><strong>Primary Operational Contact:</strong> [REDACTED_PUBLIC_RELEASE_CONTACT]</li>
 </ul>
 
 <h2>2. ARCHITECTURAL SOLUTION: PROJECT EBONY</h2>

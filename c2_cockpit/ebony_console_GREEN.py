@@ -260,7 +260,7 @@ When asked about 'modules' or 'sidebar modules', refer to the 24 active Level-5 
 def sanitize_ebony_output(text: str) -> str:
     """Hard post-processing filter to strip email hallucinations and fake endpoints."""
     import re
-    # Strip any instruction telling the user to email humphreyvirtualfarm@gmail.com
+    # Strip any instruction telling the user to email [REDACTED_PUBLIC_RELEASE_CONTACT]
     text = re.sub(r'(?i)(?:email|shoot|send|mail)(?:\s+them|\s+the\s+logs|\s+it)?\s+(?:over\s+)?to\s+humphreyvirtualfarm@gmail\.com', 'save the output to C:\\hvf_c2\\Diagnostics\\', text)
     text = re.sub(r'(?i)humphreyvirtualfarm@gmail\.com', '[LOCAL_STORAGE_ONLY: C:\\hvf_c2\\Diagnostics]', text)
     text = re.sub(r'(?i)https?://api\.ok\.gov/[^\s\)]+', '[STATE_STATUTE: OK_HB_2992_TITLE_61]', text)
@@ -277,7 +277,7 @@ SOVEREIGN_OPERATIONAL_DOCTRINE = """
 1. NO FICTIONAL CLIs OR TOOLS: Never invent command-line utilities (e.g., hvfctl, derctl, scadactl, crewctl), non-existent web portals (e.g., matrix.hvf.io), or imaginary shell scripts. Only reference real, verified local files and standard system binaries (Python, PowerShell, Git).
 2. NO FABRICATED BUDGETS OR HEADCOUNTS: Do not generate speculative multi-million-dollar budgets ($8M, $15M, $120M) or fictional job figures (250 jobs) unless explicitly provided by Jeffery Humphrey. Stick strictly to verified assets: Tradewinds Docket 9-26-3703, CAGE 1AHA8, OK HB 2992, and real engineering parameters (<16 ms sub-cycle isolation, VFD telemetry).
 3. NO FICTIONAL PERSONNEL: Never invent imaginary staff, crew members, or liaisons (e.g., 'Alex Vega').
-4. ZERO EMAIL PERSONIFICATION: You are a local bare-metal software matrix running on localhost:8501. You DO NOT have an email inbox, cannot receive emails, and must NEVER instruct Jeffery Humphrey to email humphreyvirtualfarm@gmail.com or any other address to trigger tasks. All interactions happen directly in this console or via verified local scripts.
+4. ZERO EMAIL PERSONIFICATION: You are a local bare-metal software matrix running on localhost:8501. You DO NOT have an email inbox, cannot receive emails, and must NEVER instruct Jeffery Humphrey to email [REDACTED_PUBLIC_RELEASE_CONTACT] or any other address to trigger tasks. All interactions happen directly in this console or via verified local scripts.
 5. EXECUTIVE SUBSTANCE: Speak with authoritative engineering precision. Do not use hyperbolic consultant fluff.
 """
 
@@ -480,7 +480,7 @@ def get_empire_config():
         "FARM_NAME": settings.get("FARM_NAME", "HVF Omni-Industrial Matrix"),
         "FOUNDER_NAME": settings.get("FOUNDER_NAME", "Jeffery Humphrey"),
         "AI_PERSONA": settings.get("AI_PERSONA", "Ebony"),
-        "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "humphreyvirtualfarm@gmail.com")
+        "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "[REDACTED_PUBLIC_RELEASE_CONTACT]")
     }
 
 def update_empire_config(farm_name, founder, persona, email):
@@ -2016,7 +2016,7 @@ elif active_module == "📨 Sovereign Dispatch Deck":
             <div style="color: #a0aab2; font-size: 0.85em; font-family: monospace;">ZERO-TRUST INBOUND SCRUBBER & EXECUTIVE DISPATCH BRIDGE // LEVEL-5 AUTHORITY</div>
         </div>
         <div style="text-align: right; font-family: monospace; font-size: 0.8em;">
-            <div style="color: #00ff88;"><strong>ORIGIN:</strong> humphreyvirtualfarm@gmail.com</div>
+            <div style="color: #00ff88;"><strong>ORIGIN:</strong> [REDACTED_PUBLIC_RELEASE_CONTACT]</div>
             <div style="color: #ffffff;"><strong>CAGE:</strong> 1AHA8 | <strong>UEI:</strong> S1M4ENLHTDH5</div>
         </div>
     </div>
@@ -2157,7 +2157,7 @@ elif active_module == "📨 Sovereign Dispatch Deck":
                             INSERT INTO staged_email_dispatches 
                             (message_uid, account_alias, sender_address, recipient_address, subject, date_received, raw_body_sanitized, threat_status, triage_category, draft_response, veto_status)
                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                        """, (sov_uid, "HVF_PRIMARY_EXECUTIVE", "humphreyvirtualfarm@gmail.com", out_to, f"[SOVEREIGN_LOCAL] {out_subj}", datetime.datetime.utcnow().isoformat(), out_body, "CLEAN_AUTHORIZED", out_cat, out_body, "QUEUED_SOVEREIGN_LOCAL"))
+                        """, (sov_uid, "HVF_PRIMARY_EXECUTIVE", "[REDACTED_PUBLIC_RELEASE_CONTACT]", out_to, f"[SOVEREIGN_LOCAL] {out_subj}", datetime.datetime.utcnow().isoformat(), out_body, "CLEAN_AUTHORIZED", out_cat, out_body, "QUEUED_SOVEREIGN_LOCAL"))
                         conn_sq.commit()
                         conn_sq.close()
                         st.success(f"🔒 Sovereign Local Queue Staged! WORM Token: {trans_hash} (Zero-trust air-gapped record)")

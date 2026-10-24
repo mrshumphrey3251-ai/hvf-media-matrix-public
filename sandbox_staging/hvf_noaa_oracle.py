@@ -301,7 +301,7 @@ def render():
 
             url = f"https://api.weather.gov/alerts/active?area={state}"
 
-            headers = {"User-Agent": "(HumphreyVirtualFarms_SCADA, humphreyvirtualfarm@gmail.com)"}
+            headers = {"User-Agent": "(HumphreyVirtualFarms_SCADA, [REDACTED_PUBLIC_RELEASE_CONTACT])"}
 
             try:
 

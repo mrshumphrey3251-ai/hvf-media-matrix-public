@@ -38,4 +38,4 @@ Respectfully submitted,
 **Jeffery Humphrey**  
 Chief Executive Officer & Level 5 Authority  
 Humphrey Virtual Farms LLC (CAGE: 1AHA8)  
-Email: humphreyvirtualfarm@gmail.com  
+Email: [REDACTED_PUBLIC_RELEASE_CONTACT]  

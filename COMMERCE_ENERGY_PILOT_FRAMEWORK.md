@@ -41,4 +41,4 @@ This document outlines the unclassified, four-phase commercial pilot deployment 
 * **Isolation Doctrine:** Zero external public cloud dependencies; complete operational technology (OT) network isolation.
 
 ---
-*Jeffery Humphrey, Chief Executive Officer | humphreyvirtualfarm@gmail.com*
+*Jeffery Humphrey, Chief Executive Officer | [REDACTED_PUBLIC_RELEASE_CONTACT]*

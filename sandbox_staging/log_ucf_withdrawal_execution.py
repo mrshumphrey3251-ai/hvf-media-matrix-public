@@ -119,9 +119,9 @@ def render():
 
     TERM_CONTENT = """TO: Drew Phillips <drewphillips215@gmail.com>
 
-    FROM: Jeffery Humphrey <humphreyvirtualfarm@gmail.com>
+    FROM: Jeffery Humphrey <[REDACTED_PUBLIC_RELEASE_CONTACT]>
 
-    CC: humphreyvirtualfarm@gmail.com
+    CC: [REDACTED_PUBLIC_RELEASE_CONTACT]
 
     DATE: September 22, 2026 (12:01 PM CDT)
 

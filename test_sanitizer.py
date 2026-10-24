@@ -1,6 +1,6 @@
-﻿import re
+import re
 
-OFFICIAL_EMAIL = "humphreyvirtualfarm@gmail.com"
+OFFICIAL_EMAIL = "[REDACTED_PUBLIC_RELEASE_CONTACT]"
 OFFICIAL_FOUNDER = "Jeffery Humphrey"
 
 def sanitize_deterministic_output(raw_text: str) -> str:
@@ -47,5 +47,5 @@ assert "Humphrey J. Miller" not in clean_result, "Failed: Name hallucination rem
 assert "humphrey.miller@hvf.io" not in clean_result, "Failed: Fake email remained"
 assert "$14M" not in clean_result, "Failed: Fake funding remained"
 assert "Jeffery Humphrey" in clean_result, "Failed: Founder name missing"
-assert "humphreyvirtualfarm@gmail.com" in clean_result, "Failed: Official email missing"
+assert "[REDACTED_PUBLIC_RELEASE_CONTACT]" in clean_result, "Failed: Official email missing"
 print("✅ [UNIT TEST PASSED]: Anti-hallucination filter is 100% deterministic!\n")

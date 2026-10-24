@@ -265,7 +265,7 @@ def render():
 
       <li><strong>Headquarters & Prototyping Laboratory:</strong> Oklahoma City, Oklahoma, USA</li>
 
-      <li><strong>Primary Operational Contact:</strong> humphreyvirtualfarm@gmail.com</li>
+      <li><strong>Primary Operational Contact:</strong> [REDACTED_PUBLIC_RELEASE_CONTACT]</li>
 
     </ul>
 

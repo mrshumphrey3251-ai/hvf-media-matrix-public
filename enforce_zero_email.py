@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import re
 import py_compile
 
@@ -11,7 +11,7 @@ sanitizer_code = """
 def sanitize_ebony_output(text: str) -> str:
     \"\"\"Hard post-processing filter to strip email hallucinations and fake endpoints.\"\"\"
     import re
-    # Strip any instruction telling the user to email humphreyvirtualfarm@gmail.com
+    # Strip any instruction telling the user to email [REDACTED_PUBLIC_RELEASE_CONTACT]
     text = re.sub(r'(?i)(?:email|shoot|send|mail)(?:\\s+them|\\s+the\\s+logs|\\s+it)?\\s+(?:over\\s+)?to\\s+humphreyvirtualfarm@gmail\\.com', 'save the output to C:\\\\HVF_Repos\\\\Diagnostics\\\\', text)
     text = re.sub(r'(?i)humphreyvirtualfarm@gmail\\.com', '[LOCAL_STORAGE_ONLY: C:\\\\HVF_Repos\\\\Diagnostics]', text)
     text = re.sub(r'(?i)https?://api\\.ok\\.gov/[^\\s\\)]+', '[STATE_STATUTE: OK_HB_2992_TITLE_61]', text)

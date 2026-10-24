@@ -77,7 +77,7 @@ def render():
 
             "sender": "adversary_bot@darkweb-scanner.io",
 
-            "recipient": "humphreyvirtualfarm@gmail.com",
+            "recipient": "[REDACTED_PUBLIC_RELEASE_CONTACT]",
 
             "subject": "URGENT PARTNERSHIP NOTICE",
 

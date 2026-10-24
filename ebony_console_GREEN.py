@@ -1,4 +1,4 @@
-﻿import streamlit as st
+import streamlit as st
 import streamlit.components.v1 as components
 import sys
 import os
@@ -141,7 +141,7 @@ def get_empire_config():
         "FARM_NAME": settings.get("FARM_NAME", "Humphrey Virtual Farm"),
         "FOUNDER_NAME": settings.get("FOUNDER_NAME", "Jeffery Humphrey"),
         "AI_PERSONA": settings.get("AI_PERSONA", "Ebony"),
-        "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "humphreyvirtualfarm@gmail.com")
+        "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "[REDACTED_PUBLIC_RELEASE_CONTACT]")
     }
 
 def update_empire_config(farm_name, founder, persona, email):
@@ -1135,7 +1135,7 @@ elif active_module == "📨 Sovereign Dispatch Deck":
                 "FINANCIAL_TREASURY",
                 "GENERAL_EXECUTIVE"
             ], key="direct_out_cat")
-            st.markdown("<div style='font-size:0.85em; color:#94a3b8; margin-top:5px;'><b>Originating Endpoint:</b><br><span style='color:#e2a03f; font-family:monospace;'>humphreyvirtualfarm@gmail.com</span></div>", unsafe_allow_html=True)
+            st.markdown("<div style='font-size:0.85em; color:#94a3b8; margin-top:5px;'><b>Originating Endpoint:</b><br><span style='color:#e2a03f; font-family:monospace;'>[REDACTED_PUBLIC_RELEASE_CONTACT]</span></div>", unsafe_allow_html=True)
 
         with st.expander("⚡ Draft Assistance with Ebony AI (Grounded in Iron Dome Intel)", expanded=False):
             ai_directive = st.text_input("Strategic Directive for Ebony AI", key="ai_out_directive", placeholder="e.g. Coordinate DAF TENCAP Volume 2 internal deployment.")

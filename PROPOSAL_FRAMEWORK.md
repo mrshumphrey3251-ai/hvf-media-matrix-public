@@ -21,4 +21,4 @@ Humphrey Virtual Farms LLC (CAGE: 1AHA8, UEI: S1M4ENLHTDH5) executes defense con
 3. **Continuous Cyber Assurance:** Strict adherence to NIST SP 800-171 security controls across all project lifecycles.
 
 ---
-*Jeffery Humphrey, Chief Executive Officer | humphreyvirtualfarm@gmail.com*
+*Jeffery Humphrey, Chief Executive Officer | [REDACTED_PUBLIC_RELEASE_CONTACT]*

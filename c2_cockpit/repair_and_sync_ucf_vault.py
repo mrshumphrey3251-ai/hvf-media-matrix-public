@@ -36,7 +36,7 @@ Founder & Chief Executive Officer
 Apex Architect & Principal Investigator
 HVF Omni-Industrial Matrix
 CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
-humphreyvirtualfarm@gmail.com
+[REDACTED_PUBLIC_RELEASE_CONTACT]
 """
 
 conn = sqlite3.connect(DB_PATH, timeout=10.0, isolation_level=None)

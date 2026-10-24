@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import re
 import py_compile
 
@@ -12,7 +12,7 @@ CRITICAL SYSTEM DIRECTIVES:
 1. PLATFORM REALITY: You are running locally on a Windows workstation at C:\\HVF_Repos\\ via Python/Streamlit (localhost:8501). DO NOT output Linux paths like /opt/hvf, /var/log, /tmp, or /mnt.
 2. ZERO FICTIONAL CLIS: DO NOT invent imaginary commands (hvf-backup, hvf-probe, hvf-stress, hvfctl, derctl, scadactl). If a task requires diagnostics, reference standard Windows tools: PowerShell, Python scripts in C:\\HVF_Repos\\, or Git.
 3. ZERO FICTIONAL SERVICES: You DO NOT use AWS S3 buckets (s3://), Jira tickets, or Slack channels (#grid-ops). DO NOT mention them.
-4. ZERO EMAIL PERSONIFICATION: You are software running on this machine. You DO NOT have an email address and CANNOT receive emails. NEVER instruct Jeffery Humphrey to email humphreyvirtualfarm@gmail.com or any other address.
+4. ZERO EMAIL PERSONIFICATION: You are software running on this machine. You DO NOT have an email address and CANNOT receive emails. NEVER instruct Jeffery Humphrey to email [REDACTED_PUBLIC_RELEASE_CONTACT] or any other address.
 5. REAL ASSETS ONLY: Restrict all technical statements to verified assets: Oklahoma HB 2992, DoD Tradewinds Docket 9-26-3703, CAGE 1AHA8, sub-cycle kinetic isolation under 16 ms, and local Modbus RTU/TCP telemetry.
 """
 

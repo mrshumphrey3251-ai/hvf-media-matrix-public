@@ -60,7 +60,7 @@ def render():
 
         import re
 
-        # Strip any instruction telling the user to email humphreyvirtualfarm@gmail.com
+        # Strip any instruction telling the user to email [REDACTED_PUBLIC_RELEASE_CONTACT]
 
         text = re.sub(r'(?i)(?:email|shoot|send|mail)(?:\s+them|\s+the\s+logs|\s+it)?\s+(?:over\s+)?to\s+humphreyvirtualfarm@gmail\.com', 'save the output to C:\\HVF_Repos\\Diagnostics\\', text)
 
@@ -94,7 +94,7 @@ def render():
 
     3. NO FICTIONAL PERSONNEL: Never invent imaginary staff, crew members, or liaisons (e.g., 'Alex Vega').
 
-    4. ZERO EMAIL PERSONIFICATION: You are a local bare-metal software matrix running on localhost:8501. You DO NOT have an email inbox, cannot receive emails, and must NEVER instruct Jeffery Humphrey to email humphreyvirtualfarm@gmail.com or any other address to trigger tasks. All interactions happen directly in this console or via verified local scripts.
+    4. ZERO EMAIL PERSONIFICATION: You are a local bare-metal software matrix running on localhost:8501. You DO NOT have an email inbox, cannot receive emails, and must NEVER instruct Jeffery Humphrey to email [REDACTED_PUBLIC_RELEASE_CONTACT] or any other address to trigger tasks. All interactions happen directly in this console or via verified local scripts.
 
     5. EXECUTIVE SUBSTANCE: Speak with authoritative engineering precision. Do not use hyperbolic consultant fluff.
 
@@ -500,7 +500,7 @@ def render():
 
             "AI_PERSONA": settings.get("AI_PERSONA", "Ebony"),
 
-            "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "humphreyvirtualfarm@gmail.com")
+            "CONTACT_EMAIL": settings.get("CONTACT_EMAIL", "[REDACTED_PUBLIC_RELEASE_CONTACT]")
 
         }
 
@@ -2942,7 +2942,7 @@ def render():
 
             <div style="text-align: right; font-family: monospace; font-size: 0.8em;">
 
-                <div style="color: #00ff88;"><strong>ORIGIN:</strong> humphreyvirtualfarm@gmail.com</div>
+                <div style="color: #00ff88;"><strong>ORIGIN:</strong> [REDACTED_PUBLIC_RELEASE_CONTACT]</div>
 
                 <div style="color: #ffffff;"><strong>CAGE:</strong> 1AHA8 | <strong>UEI:</strong> S1M4ENLHTDH5</div>
 
@@ -3224,7 +3224,7 @@ def render():
 
                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 
-                            """, (sov_uid, "HVF_PRIMARY_EXECUTIVE", "humphreyvirtualfarm@gmail.com", out_to, f"[SOVEREIGN_LOCAL] {out_subj}", datetime.datetime.utcnow().isoformat(), out_body, "CLEAN_AUTHORIZED", out_cat, out_body, "QUEUED_SOVEREIGN_LOCAL"))
+                            """, (sov_uid, "HVF_PRIMARY_EXECUTIVE", "[REDACTED_PUBLIC_RELEASE_CONTACT]", out_to, f"[SOVEREIGN_LOCAL] {out_subj}", datetime.datetime.utcnow().isoformat(), out_body, "CLEAN_AUTHORIZED", out_cat, out_body, "QUEUED_SOVEREIGN_LOCAL"))
 
                             conn_sq.commit()
 

@@ -1,76 +1,60 @@
-# Humphrey Virtual Farms LLC ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Sovereign Industrial Defense & Energy Contractor
-
+# Humphrey Virtual Farms LLC ? Sovereign Industrial Defense, Energy & Cyber-Physical C2
 [![DoD SPRS Score](https://img.shields.io/badge/DoD_SPRS_NIST_800--171-110%2F110-brightgreen.svg)](SPRS_COMPLIANCE_ATTESTATION.md)
 [![CAGE Code](https://img.shields.io/badge/CAGE-1AHA8-blue.svg)](CAPABILITY_STATEMENT.md)
 [![UEI](https://img.shields.io/badge/UEI-S1M4ENLHTDH5-blue.svg)](CAPABILITY_STATEMENT.md)
-[![DFARS Status](https://img.shields.io/badge/DFARS_252.204--7019%2F7020-Compliant-success.svg)](SPRS_COMPLIANCE_ATTESTATION.md)
-[![Critical Energy C2](https://img.shields.io/badge/Critical_Energy_Infrastructure-Ready-brightgreen.svg)](ENERGY_CAPABILITY_STATEMENT.md)
+[![DFARS Status](https://img.shields.io/badge/DFARS_252.227--7018-GPR_Compliant-success.svg)](SOVEREIGN_STAGE_8F_LEDGER.md)
+[![Unit Test Ledger](https://img.shields.io/badge/Sovereign_Unit_Tests-83%2F83_PASSED-brightgreen.svg)](SOVEREIGN_STAGE_8F_LEDGER.md)
 
-**Humphrey Virtual Farms LLC (HVF)** is an industrial technology contractor operationalizing sovereign Command and Control (C2) architectures, bare-metal autonomous decision engines, and immutable Write-Once-Read-Many (WORM) audit ledgering for mission-critical defense and critical energy infrastructure applications.
+**Humphrey Virtual Farms LLC (HVF)** is a Nontraditional Defense Contractor (10 U.S.C. § 4022) and Sovereign Industrial Architecture Prime operationalizing zero-cloud, bare-metal Command and Control (C2), deterministic sub-16ms SCADA grid protection (*Kinetic Guillotine*), and the 1,420-question Sovereign Field Academy.
 
 ---
 
-## Statutory Corporate Identifiers & Regulatory Clearance
+## 1. Statutory Corporate Identifiers & Regulatory Clearance
 
 | Parameter | Statutory Value | Regulatory Verification |
 | :--- | :--- | :--- |
-| **Legal Business Name** | **HUMPHREY VIRTUAL FARMS LLC** | SAM.gov Active Entity |
-| **Commercial and Government Entity (CAGE)** | **1AHA8** | Defense Logistics Agency (DLA) |
-| **Unique Entity Identifier (UEI)** | **S1M4ENLHTDH5** | General Services Administration (GSA) |
-| **DoD SPRS NIST SP 800-171 Score** | **110 / 110** (Maximum BASIC Confidence) | Supplier Performance Risk System |
-| **DoD Unique Identifier (UID)** | **SB00165728** | SPRS Assessment Database |
-| **Open POA&M Deficiencies** | **0 (Zero Open Items)** | 100% Implemented Enclave Boundary |
-| **Procurement Integrated Enterprise Env. (PIEE)** | **Active Contractor Administrator (CAM)** | Defense Information Systems Agency (DISA) |
-| **Executive Leadership** | **Jeffery Humphrey, CEO & SME** | humphreyvirtualfarm@gmail.com |
+| **Legal Business Name** | **HUMPHREY VIRTUAL FARMS LLC** | SAM.gov Active Prime Entity |
+| **Commercial and Government Entity (CAGE)** | **`1AHA8`** | Defense Logistics Agency (DLA) |
+| **Unique Entity Identifier (UEI)** | **`S1M4ENLHTDH5`** | General Services Administration (GSA) |
+| **DoD Tradewinds Assessment Docket** | **`9-26-3703`** | Chief Digital and Artificial Intelligence Office (CDAO) |
+| **DoD SPRS NIST SP 800-171 Score** | **`110 / 110`** (`UID: SB00165728`) | Supplier Performance Risk System (`0` Open POA&M Items) |
+| **Intellectual Property Custody** | **DFARS 252.227-7018 / 7013 / 7014** | 100% Unencumbered Sovereign Background IP |
+| **Executive Leadership & Apex Architect** | **Jeffery Humphrey, Founder, President & CEO** | [REDACTED_PUBLIC_RELEASE_CONTACT ? Route via SAM.gov CAGE 1AHA8 / PIEE CAM] |
 
 ---
 
-## Statutory Procurement & Energy Documentation
+## 2. Stage 8g Cryptographic Integrity & Verification Seal (`v8.0-sovereign-seal`)
 
-1. [**Energy Infrastructure Capability Statement**](ENERGY_CAPABILITY_STATEMENT.md) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Autonomous microgrid C2, SCADA cybersecurity, and cryptographic WORM power accounting for Department of Commerce and utility partners.
-2. [**Commerce Energy Pilot Deployment Framework**](COMMERCE_ENERGY_PILOT_FRAMEWORK.md) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Zero-CAPEX 4-phase structured engineering methodology for deploying autonomous C2 load-shaving into municipal utilities and industrial facilities.
-3. [**Commercial Energy Partner Engagement Protocol**](COMMERCE_PARTNER_PROTOCOL.md) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Onboarding procedure for regional electric cooperatives and industrial plants initiating zero-CAPEX data ingestion pilots.
-4. [**Capability Statement**](CAPABILITY_STATEMENT.md) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Comprehensive core competencies, past performance foundation, NAICS classifications, and federal procurement profile.
-5. [**DFARS 252.204-7019/7020 SPRS Compliance Attestation**](SPRS_COMPLIANCE_ATTESTATION.md) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Official statutory certification of our NIST SP 800-171 110/110 score registered under DoD UID \SB00165728\.
-6. [**Defense Teaming & Subcontracting Matrix**](TEAMING_MATRIX.md) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â NAICS alignment matrix and capability crosswalk for Tier-1 defense primes.
-7. [**Prime Contractor Onboarding Protocol**](PARTNER_ONBOARDING.md) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Step-by-step instructions for Small Business Liaison Officers (SBLOs) and Contracting Officers onboarding HVF to Approved Vendor Lists (AVL).
-8. [**Defense Procurement Roadmap**](PROCUREMENT_ROADMAP.md) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Strategic acquisition positioning across DoD Broad Agency Announcements, SBIR/STTR topics, and Commercial Solutions Openings.
-9. [**APEX Accelerator Capability Profile**](APEX_CAPABILITY_PROFILE.md) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Formatted intake parameters, Product Service Codes (PSC/FSC), and keyword match criteria for APEX counselors.
-10. [**Sovereign C2 Operational Demo Specification**](DEMO_SPECIFICATION.md) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Unclassified technical overview of the bare-metal C2 verification engine (\HVFNexus\ / Ebony).
-11. [**Statutory Defense Verification Protocol**](VERIFICATION_PROTOCOL.md) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Step-by-step guidance for contracting officers verifying SAM.gov and SPRS database registrations.
-12. [**Official Release Notes v1.0.0**](RELEASE_NOTES_v1.0.0.md) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Baseline certification declaration and technical architecture sign-off.
-13. [**Commercial Engagement Terms & Fee Schedule**](COMMERCIAL_ENGAGEMENT_TERMS.md) Ã¢â‚¬â€ Standard commercial purchase order terms, firm-fixed-price assessment pricing, and grant sub-award rates.
-14. [**Standard Pilot Statement of Work Template**](STANDARD_PILOT_SOW_TEMPLATE.md) â€” Turnkey 30-day zero-CAPEX feasibility assessment contract vehicle and milestone schedule.
-15. [**Sovereign Air-Gap Architecture Specification**](AIRGAP_COMPLIANCE_SPECIFICATION.md) — Technical doctrine proving 100% offline, zero-cloud execution and local WORM ledgering.
+| Verification Gate | Audited Metric | Certified Result |
+| :--- | :--- | :--- |
+| **Automated Unit & Stress Test Suite (`run_all_83_tests.py`)** | All `83 / 83` (`test_*.py`) Suites Executed | **`83 / 83 PASSED (100.0%)`** |
+| **Compiled C2 & Level-5 Python Modules** | `c2_cockpit/` (`616`) + `level5_extensions/` (`15`) | **`631 / 631 Compiled` (`0` Syntax Errors)** |
+| **Master C2 Cryptographic Merkle Root (SHA-256)** | Deterministic Fixed-Point Digest | **`cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`** |
+| **Sovereign Field Academy Assessment Bank** | Chapter 1 (`800` Qs) + Chapter 5 (`620` Qs) | **`1,420 / 1,420` Unique Verified Questions** |
+| **Bare-Metal SQLite WORM & Memory Vault** | `matrix_ledger.db` (`21` tables) & `hvf_memory_vault.db` (`31` tables) | **100% Schema & SHA-256 WORM Sealed** |
+| **Red-Team Zero-Trust Penetration Harness** | `test_client_penetration.py` (`17` Attack Vectors) | **`17 / 17` Attacks Blocked (`0` Breaches)** |
+| **ISO 32000-1 WORM PDF & Dossier Compilers** | `6 / 6` Executive & Federal PDF Engines | **100% `%PDF-1.4` Cryptographically Sealed** |
 
 ---
 
-## Primary Industry Classifications
+## 3. Statutory Procurement, Defense & Energy Documentation
 
-* **NAICS 541512** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Computer Systems Design Services (Autonomous Bare-Metal C2 Systems)
-* **NAICS 541715** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â R&D in Physical, Engineering, and Life Sciences (Grid Edge Autonomy)
-* **NAICS 541519** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Other Computer Related Services (Cryptographic WORM Audit Trails)
-* **NAICS 541511** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Custom Computer Programming Services (Deterministic Telemetry Ingest)
-* **NAICS 111998** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â All Other Miscellaneous Crop Farming (Controlled-Environment Power Optimization)
-* **NAICS 221122** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Electric Power Distribution (Support & Telemetry Services)
-
----
-
-## Contact & Contracting Inquiries
-* **Executive Point of Contact:** Jeffery Humphrey, Chief Executive Officer
-* **Email:** humphreyvirtualfarm@gmail.com
-* **Telephone:** (580) 677-1055
-* **Facility:** Humphrey Virtual Farms Sovereign Industrial Enclave
+1. [**Stage 8f/8g Sovereign Verification Ledger**](SOVEREIGN_STAGE_8F_LEDGER.md) ? Complete 83-test and 631-module cryptographic verification certificate.
+2. [**Energy Infrastructure Capability Statement**](ENERGY_CAPABILITY_STATEMENT.md) ? Autonomous grid resilience, NERC CIP compliance, and physical actuator verification.
+3. [**Commerce Energy Pilot Deployment Framework**](COMMERCE_ENERGY_PILOT_FRAMEWORK.md) ? 90-day bare-metal validation protocol for rural electric cooperatives and municipal utilities.
+4. [**Commercial Energy Partner Engagement Protocol**](COMMERCE_PARTNER_PROTOCOL.md) ? Operational engagement rules, data sovereignty guarantees, and pilot boundaries.
+5. [**Master Capability Statement**](CAPABILITY_STATEMENT.md) ? Core competencies, past performance benchmarks, and technical differentiators.
+6. [**DFARS 252.204-7019/7020 SPRS Compliance Attestation**](SPRS_COMPLIANCE_ATTESTATION.md) ? Formal attestation of 110/110 NIST SP 800-171 security posture.
+7. [**Defense Teaming & Subcontracting Matrix**](TEAMING_MATRIX.md) ? NAICS alignment matrix and integration structures for Defense Primes.
+8. [**Prime Contractor Onboarding Protocol**](PARTNER_ONBOARDING.md) ? Step-by-step instructions for vendor registration, NDAs, and air-gapped demos.
+9. [**Defense Procurement Roadmap**](PROCUREMENT_ROADMAP.md) ? Strategic acquisition pathways under 10 U.S.C. § 4022 Other Transaction Authority (OTA).
+10. [**Sovereign Air-Gap Architecture Specification**](AIRGAP_COMPLIANCE_SPECIFICATION.md) ? Technical dossier proving zero external cloud dependency and local SHA-256 WORM ledger custody.
 
 ---
 
-## Sovereign C2 & Field Academy Cryptographic Integrity Seal (`v5.0.0-sovereign-seal`)
-- **Prime Entity:** Humphrey Virtual Farms LLC | **CAGE:** `1AHA8` | **UEI:** `S1M4ENLHTDH5`
-- **Compiled C2 Python Modules:** `613 / 613` (100% Public/Private Byte-Level SHA-256 Parity)
-- **Master C2 Merkle Root (SHA-256):** `5ca8cd0b744231e8f342f8634107769712df9af181b379c73415d69ed314cfa2`
-- **Chapter 1 Milestone Bank:** `613 / 613` Unique Questions Across 40 Modules (`STR-01`, `ENV-01`/`STR-02`, `PAV-01`/`STR-03`)
-- **Chapter 5 3-Tier State Exam Bank:** `613 / 613` Strictly Unique Questions Across 12 Stages (`20 + 45 + 90 = 155` per track)
-- **Total Verified Academy Questions:** `1,420 / 1,420` (`0` Duplicates)
-- **Statutory Equivalency:** Oklahoma PELS `OAC 245:15-11` (`40.0 PDHs` / `4.0 CEUs` per track = `120.0 Total Contact Hours`), `23 CFR § 650 (NBIS)`, `40 CFR Part 60 Subpart OOOOb (OGI)`, `ASTM C1153 / E1934`, and `ASTM D6433 PCI`.
-- **One-Command Audit Verifier:** `python c2_cockpit/verify_sovereign_seal.py`
+## 4. Primary Industry Classifications (NAICS / PSC)
 
+* **NAICS 541512** ? Computer Systems Design Services (Autonomous Bare-Metal C2 & SCADA Systems)
+* **NAICS 541715** ? R&D in the Physical, Engineering, and Life Sciences
+* **NAICS 541330** ? Engineering Services (Critical Infrastructure & Tactical Microgrids)
+* **NAICS 334511** ? Search, Detection, Navigation, Guidance, Aeronautical, and Nautical System Manufacturing

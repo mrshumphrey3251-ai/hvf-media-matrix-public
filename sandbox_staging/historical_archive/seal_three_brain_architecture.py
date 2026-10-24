@@ -19,7 +19,7 @@ sections = [
     "* **CORPORATE IDENTIFIERS:** CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | SBA Certified Small Business Concern",
     "* **ENTITY TYPE:** Nontraditional Defense Contractor (10 U.S.C. § 4022(d))",
     "* **PRIMARY SME / CEO:** Jeffery Humphrey, Founder & Apex Architect",
-    "* **CONTACT:** humphreyvirtualfarm@gmail.com",
+    "* **CONTACT:** [REDACTED_PUBLIC_RELEASE_CONTACT]",
     "* **SUBMISSION TARGET:** Defense Innovation Unit (DIU) / AFWERX Open Topic / DAF TENCAP",
     "* **DATE:** September 2026 | CLASSIFICATION: PROPRIETARY & COMPETITION SENSITIVE",
     "",
@@ -144,5 +144,7 @@ conn.execute("""
 conn.close()
 
 print(f"[SUCCESS] DIU_AFWERX_SOLUTION_BRIEF_PROJECT_EBONY.md updated with Three-Brain Architecture at: {BRIEF_FILE}")
-print(f"[SUCCESS] Cryptographic Record Digest: {doc_hash}")
-
+print(f"[SUCCESS] Cryptographic Record Digest: {doc_hash}")
+
+
+

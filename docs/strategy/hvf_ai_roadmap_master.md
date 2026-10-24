@@ -1,4 +1,4 @@
-﻿# “Best-Possible AI” Roadmap for Humphrey Virtual Farm
+# “Best-Possible AI” Roadmap for Humphrey Virtual Farm
 **Redacted Public Blueprint**
 
 *Proprietary ingestion pipelines and internal architectural mechanics remain strictly confidential under HVF Executive Governance.*
@@ -15,4 +15,4 @@
 
 ## Governance
 Founder & CEO: Jeffery Humphrey
-Primary Support: humphreyvirtualfarm@gmail.com
+Primary Support: [REDACTED_PUBLIC_RELEASE_CONTACT]

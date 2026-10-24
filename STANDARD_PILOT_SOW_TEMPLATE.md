@@ -26,4 +26,4 @@ This template provides the standard Firm-Fixed-Price (FFP) Statement of Work for
 * **Settlement Method:** Direct Electronic Funds Transfer (EFT) / ACH via active SAM.gov banking registration.
 
 ---
-*For formal contracting inquiries: humphreyvirtualfarm@gmail.com | (580) 677-1055*
+*For formal contracting inquiries: [REDACTED_PUBLIC_RELEASE_CONTACT] | (580) 677-1055*

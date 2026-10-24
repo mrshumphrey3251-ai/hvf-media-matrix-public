@@ -37,7 +37,7 @@ def render():
 
 
 
-    SMTP_EMAIL = os.getenv("HVF_SMTP_EMAIL", "humphreyvirtualfarm@gmail.com")
+    SMTP_EMAIL = os.getenv("HVF_SMTP_EMAIL", "[REDACTED_PUBLIC_RELEASE_CONTACT]")
 
     SMTP_PASS = os.getenv("HVF_SMTP_APP_PASSWORD", "")
 

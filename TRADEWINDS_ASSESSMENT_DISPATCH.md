@@ -2,7 +2,7 @@
 **Tradewinds Solutions Marketplace Submission ID:** 9-26-3703  
 **Contractor / CAGE:** Humphrey Virtual Farms LLC | CAGE: 1AHA8  
 **Signatory Authority:** Jeffery Humphrey, Chief Executive Officer (Level 5 Unrestricted)  
-**Point of Contact:** humphreyvirtualfarm@gmail.com  
+**Point of Contact:** [REDACTED_PUBLIC_RELEASE_CONTACT]  
 **Timestamp (UTC):** 2026-09-27T18:55:55.660228+00:00  
 **Production Release Tag:** `v1.0.0-tradewinds-certified`  
 **Statutory Data Rights Standard:** DFARS 252.227-7018 (Government Purpose Rights) / Oklahoma HB 2992  

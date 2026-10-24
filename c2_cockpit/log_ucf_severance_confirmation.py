@@ -36,11 +36,11 @@ Founder & Chief Executive Officer
 Apex Architect & Principal Investigator
 HVF Omni-Industrial Matrix
 CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
-humphreyvirtualfarm@gmail.com
+[REDACTED_PUBLIC_RELEASE_CONTACT]
 """
 
 email_raw = """From: Wendy Land <Wendy.Land@ucf.edu>
-To: Jeffery Humphrey <humphreyvirtualfarm@gmail.com>
+To: Jeffery Humphrey <[REDACTED_PUBLIC_RELEASE_CONTACT]>
 Subject: Re: Notice of Termination / HVF Decision
 Timestamp: Tuesday, September 22, 2026
 

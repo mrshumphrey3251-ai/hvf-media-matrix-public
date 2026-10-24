@@ -17,7 +17,7 @@
 * **Formal Demonstration Window:** **Monday, October 5, 2026 @ 10:00 AM CDT**
 * **Presentation Format:** Microsoft Teams Presentation & Live Bare-Metal Demonstration
 * **Demonstration Agenda:** 30-Minute 5-Phase Flight Plan (`DEMO_PRESENTATION_FLIGHT_PLAN_OCT5.md`)
-* **Primary Contracting Email:** `humphreyvirtualfarm@gmail.com`
+* **Primary Contracting Email:** `[REDACTED_PUBLIC_RELEASE_CONTACT]`
 
 ---
 

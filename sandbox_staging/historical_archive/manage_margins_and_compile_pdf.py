@@ -126,7 +126,7 @@ html_content = """<!DOCTYPE html>
   <li><strong>Contracting Status:</strong> Nontraditional Defense Contractor pursuant to 10 U.S.C. § 4022(d)(1)(A)</li>
   <li><strong>Primary SME & Principal Investigator:</strong> Jeffery Humphrey, Founder & CEO (Apex Architect)</li>
   <li><strong>Headquarters & Prototyping Laboratory:</strong> Oklahoma City, Oklahoma, USA</li>
-  <li><strong>Primary Operational Contact:</strong> humphreyvirtualfarm@gmail.com</li>
+  <li><strong>Primary Operational Contact:</strong> [REDACTED_PUBLIC_RELEASE_CONTACT]</li>
 </ul>
 
 <h2>2. ARCHITECTURAL SOLUTION: PROJECT EBONY</h2>
@@ -263,5 +263,7 @@ conn.close()
 print(f"[SUCCESS] Right-side margins managed (0.85in right boundary + fixed table layout).")
 print(f"  HTML Artifact : {HTML_FILE}")
 print(f"  PDF Artifact  : {PDF_FILE}")
-print(f"  Digest        : {doc_hash[:16]} (Sealed in memory vault)")
-
+print(f"  Digest        : {doc_hash[:16]} (Sealed in memory vault)")
+
+
+

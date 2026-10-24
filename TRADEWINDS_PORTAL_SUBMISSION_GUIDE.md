@@ -17,7 +17,7 @@ The following metadata fields correspond directly to the formal submission form 
 * **Procurement Vehicle:** Tradewinds Solutions Marketplace (CDAO / ACC-RI)
 * **Vendor CAGE:** `1AHA8`
 * **Vendor DUNS / SAM Unique Entity ID:** Verified Active in SAM.gov
-* **Primary Point of Contact:** Jeffery Humphrey, CEO (`humphreyvirtualfarm@gmail.com`)
+* **Primary Point of Contact:** Jeffery Humphrey, CEO (`[REDACTED_PUBLIC_RELEASE_CONTACT]`)
 * **Formal Demo Presentation Reserved:** **Monday, October 5, 2026 at 10:00 AM CDT** (Microsoft Teams Call with Leshia Pearson / ACC-RI Contracting Team)
 * **Primary Distribution Archive:** `TRADEWINDS_CDAO_EVALUATOR_BUNDLE_v1.0.0.zip`
 * **Archive SHA256 Checksum:** `4baa02878153cd551f002d3a0afae7404b8b9f7c66b2cd8a69605a48342cf78c`

@@ -160,7 +160,7 @@ CLEAN_WEBRTC_MODULE = '''    st.header("📡 Sovereign WebRTC Comms Deck // Proj
             st.markdown(f"<div style='font-family:monospace; font-size:0.9em; padding:4px 0;'><b>{s}:</b> {m} 🛡️ [ENCRYPTED & LOCKED]</div>", unsafe_allow_html=True)
     except Exception:
         history = st.session_state.get("p2p_chat_history", [
-            "CEO: humphreyvirtualfarm@gmail.com 🛡️ [ENCRYPTED & LOCKED]",
+            "CEO: [REDACTED_PUBLIC_RELEASE_CONTACT] 🛡️ [ENCRYPTED & LOCKED]",
             "EBONY CORE: Comms deck online. Global Sync Active."
         ])
         for line in history[-8:]:
@@ -214,5 +214,7 @@ for fpath in TARGET_FILES:
 
 print("\n" + "=" * 80)
 print("WEBRTC MODULE RECONSTRUCTION COMPLETE")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

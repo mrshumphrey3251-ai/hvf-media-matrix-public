@@ -513,8 +513,8 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
                 _cdir = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit")
                 if str(_cdir) not in sys.path: sys.path.insert(0, str(_cdir))
                 from ebony_travel_autopilot import run_travel_cycle
-                run_travel_cycle(auto_send=False, email_summary_to="humphreyvirtualfarm@gmail.com")
-                st.success("Executive Return Debrief transmitted to humphreyvirtualfarm@gmail.com.")
+                run_travel_cycle(auto_send=False, email_summary_to="[REDACTED_PUBLIC_RELEASE_CONTACT]")
+                st.success("Executive Return Debrief transmitted to [REDACTED_PUBLIC_RELEASE_CONTACT].")
             except Exception as _e:
                 st.error(f"Failed to transmit debrief: {_e}")
 

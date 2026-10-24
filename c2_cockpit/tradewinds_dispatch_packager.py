@@ -47,7 +47,7 @@ class TradewindsDispatchPackager:
             "contractor": "Humphrey Virtual Farms LLC",
             "cage_code": "1AHA8",
             "signatory": "Jeffery Humphrey, Chief Executive Officer (Level 5 Authority)",
-            "official_email": "humphreyvirtualfarm@gmail.com",
+            "official_email": "[REDACTED_PUBLIC_RELEASE_CONTACT]",
             "assessment_standing": "READY_FOR_ASSESSMENT",
             "production_release_tag": "v1.0.0-tradewinds-certified",
             "statutory_compliance": [
@@ -88,7 +88,7 @@ class TradewindsDispatchPackager:
 **Tradewinds Solutions Marketplace Submission ID:** 9-26-3703  
 **Contractor / CAGE:** Humphrey Virtual Farms LLC | CAGE: 1AHA8  
 **Signatory Authority:** Jeffery Humphrey, Chief Executive Officer (Level 5 Unrestricted)  
-**Point of Contact:** humphreyvirtualfarm@gmail.com  
+**Point of Contact:** [REDACTED_PUBLIC_RELEASE_CONTACT]  
 **Timestamp (UTC):** {now_utc}  
 **Production Release Tag:** `v1.0.0-tradewinds-certified`  
 **Statutory Data Rights Standard:** DFARS 252.227-7018 (Government Purpose Rights) / Oklahoma HB 2992  

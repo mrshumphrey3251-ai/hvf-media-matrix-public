@@ -71,7 +71,7 @@ Signature of Authorized Official: ______________________________________________
 Printed Name of Authorized Official: **Jeffery Humphrey**
 Title of Authorized Official: **Founder & Chief Executive Officer**
 Authorized Official Phone: **[Corporate Phone Number]**
-Authorized Official Email: **humphreyvirtualfarm@gmail.com**
+Authorized Official Email: **[REDACTED_PUBLIC_RELEASE_CONTACT]**
 Date of Execution: **September 21, 2026**
 """
 
@@ -108,5 +108,7 @@ conn.close()
 
 print(f"[SUCCESS] Florida Statute § 288.860 certification compiled and sealed in hvf_memory_vault.db.")
 print(f"[SUCCESS] Cryptographic Record Digest: {doc_hash}")
-print(f"[SUCCESS] Certified File: {CERT_FILE}")
-
+print(f"[SUCCESS] Certified File: {CERT_FILE}")
+
+
+

@@ -35,7 +35,7 @@ def render():
 
             "HVF_PRIMARY_EXECUTIVE",
 
-            "humphreyvirtualfarm@gmail.com",
+            "[REDACTED_PUBLIC_RELEASE_CONTACT]",
 
             "imap.gmail.com",
 

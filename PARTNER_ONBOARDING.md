@@ -25,7 +25,7 @@ This document provides instructions for Defense Prime Contractors, Procurement C
 2. **Cybersecurity Pre-Award Verification:** Query the SPRS database for CAGE \1AHA8\ or DoD UID \SB00165728\ to verify our 110/110 score under DFARS 252.204-7019/7020.
 3. **Teaming Agreement & NDA Dispatch:** Forward proprietary Non-Disclosure Agreements (NDAs) or Teaming Agreements directly to executive leadership:
    * **Executive POC:** Jeffery Humphrey, Chief Executive Officer
-   * **Email:** humphreyvirtualfarm@gmail.com
+   * **Email:** [REDACTED_PUBLIC_RELEASE_CONTACT]
    * **Phone:** (580) 677-1055
 
 ---

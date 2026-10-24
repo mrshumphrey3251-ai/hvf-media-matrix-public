@@ -17,7 +17,7 @@ sections = [
     "**SUBMITTING ENTITY:** HVF Omni-Industrial Matrix (100% Sole Small Business Prime)",
     "**CORPORATE IDENTIFIERS:** CAGE: 1AHA8 | UEI: S1M4ENLHTDH5",
     "**PRINCIPAL INVESTIGATOR / CEO:** Jeffery Humphrey, Founder & Apex Architect",
-    "**CONTACT:** humphreyvirtualfarm@gmail.com",
+    "**CONTACT:** [REDACTED_PUBLIC_RELEASE_CONTACT]",
     "**ESTIMATED PHASE I BUDGET:** $275,000 USD (Non-Dilutive Grant)",
     "",
     "---",
@@ -86,5 +86,7 @@ conn.close()
 print(f"[SUCCESS] NSF Project Pitch generated and sealed in hvf_memory_vault.db")
 print(f"  File Location : {PITCH_FILE}")
 print(f"  Document Hash : {doc_hash[:16]}")
-print(f"  Target Award  : $275,000 USD (Non-Dilutive Civilian Grant)")
-
+print(f"  Target Award  : $275,000 USD (Non-Dilutive Civilian Grant)")
+
+
+

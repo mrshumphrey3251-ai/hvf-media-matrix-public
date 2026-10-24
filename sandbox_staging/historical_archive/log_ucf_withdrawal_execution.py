@@ -53,8 +53,8 @@ conn.close()
 # Also pre-stage the Termination Notice for Drew Phillips
 TERM_FILE = os.path.join(GOV_DIR, "NOTICE_OF_CONTRACT_TERMINATION_SL003.md")
 TERM_CONTENT = """TO: Drew Phillips <drewphillips215@gmail.com>
-FROM: Jeffery Humphrey <humphreyvirtualfarm@gmail.com>
-CC: humphreyvirtualfarm@gmail.com
+FROM: Jeffery Humphrey <[REDACTED_PUBLIC_RELEASE_CONTACT]>
+CC: [REDACTED_PUBLIC_RELEASE_CONTACT]
 DATE: September 22, 2026 (12:01 PM CDT)
 SUBJECT: FORMAL NOTICE OF IMMEDIATE CONTRACT TERMINATION — HVF-CONTRACT-SL-003
 
@@ -82,5 +82,7 @@ with open(TERM_FILE, "w", encoding="utf-8") as f:
 
 print(f"[SUCCESS] UCF withdrawal dispatch permanently sealed in hvf_memory_vault.db.")
 print(f"[SUCCESS] Cryptographic Record Digest: {doc_hash}")
-print(f"[SUCCESS] Termination Instrument Pre-Staged: {TERM_FILE}")
-
+print(f"[SUCCESS] Termination Instrument Pre-Staged: {TERM_FILE}")
+
+
+

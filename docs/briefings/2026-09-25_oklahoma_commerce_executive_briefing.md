@@ -1,4 +1,4 @@
-﻿---
+---
 marp: true
 theme: gaia
 _class: lead
@@ -114,4 +114,4 @@ Empirical benchmarks certified in the Federal Compliance Ledger:
 
 **Contact:**
 Humphrey Virtual Farms LLC
-Email: humphreyvirtualfarm@gmail.com | CAGE: 1AHA8
+Email: [REDACTED_PUBLIC_RELEASE_CONTACT] | CAGE: 1AHA8

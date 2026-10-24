@@ -27,7 +27,7 @@ Enclosed in the secure distribution package (`C3PAO_RFP_Package_v1.0.zip`):
 3. **SPRS Official Certificate:** `SPRS_Score_Certificate.json` (SHA-256 sealed)
 4. **Solicitation Dossier:** `c3pao_solicitation_dossier.md`
 
-We request firm fixed-price proposals and CCA availability schedules within fourteen (14) calendar days of receipt. Direct all official correspondence to CEO Jeffery Humphrey (humphreyvirtualfarm@gmail.com).
+We request firm fixed-price proposals and CCA availability schedules within fourteen (14) calendar days of receipt. Direct all official correspondence to CEO Jeffery Humphrey ([REDACTED_PUBLIC_RELEASE_CONTACT]).
 
 Sincerely,
 

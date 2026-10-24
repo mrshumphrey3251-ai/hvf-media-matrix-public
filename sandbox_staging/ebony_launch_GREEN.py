@@ -113,7 +113,7 @@ def render():
 
                 signature = "\n\n---\n"
 
-                signature += "Contact: humphreyvirtualfarm@gmail.com\n"
+                signature += "Contact: [REDACTED_PUBLIC_RELEASE_CONTACT]\n"
 
                 signature += "GitHub Open-Source Matrix: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
 

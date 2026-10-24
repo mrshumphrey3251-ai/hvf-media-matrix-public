@@ -144,7 +144,7 @@ class HVFNoaaOracle:
         Ensures SCADA edge nodes never block or crash when WAN links sever.
         """
         url = f"https://api.weather.gov/alerts/active?area={state}"
-        headers = {"User-Agent": "(HumphreyVirtualFarms_SCADA, humphreyvirtualfarm@gmail.com)"}
+        headers = {"User-Agent": "(HumphreyVirtualFarms_SCADA, [REDACTED_PUBLIC_RELEASE_CONTACT])"}
         try:
             req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, timeout=3.0) as resp:

@@ -107,7 +107,7 @@ def render():
 
                 "signatory": "Jeffery Humphrey, Chief Executive Officer (Level 5 Authority)",
 
-                "official_email": "humphreyvirtualfarm@gmail.com",
+                "official_email": "[REDACTED_PUBLIC_RELEASE_CONTACT]",
 
                 "assessment_standing": "READY_FOR_ASSESSMENT",
 
@@ -189,7 +189,7 @@ def render():
 
     **Signatory Authority:** Jeffery Humphrey, Chief Executive Officer (Level 5 Unrestricted)  
 
-    **Point of Contact:** humphreyvirtualfarm@gmail.com  
+    **Point of Contact:** [REDACTED_PUBLIC_RELEASE_CONTACT]  
 
     **Timestamp (UTC):** {now_utc}  
 

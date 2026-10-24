@@ -12,7 +12,7 @@ sys.path.insert(0, str(cockpit_dir))
 
 from ebony_email_dispatcher import log_email_transaction, generate_executive_email_report
 
-sender = "humphreyvirtualfarm@gmail.com"
+sender = "[REDACTED_PUBLIC_RELEASE_CONTACT]"
 recipient = "state.evaluator@ok.gov"
 subject = "EXECUTIVE TRANSMISSION: Oklahoma Infrastructure Drone Initiative & Grant Working Group"
 intent = "Formalize Oct 13 briefing outcomes: $25k prototype grant, bi-weekly cadence, and Tier-1 subscription onboarding."

@@ -6,7 +6,7 @@
 * **UEI:** S1M4ENLHTDH5
 * **DoD SPRS NIST SP 800-171 Score:** **110 / 110** (UID: SB00165728)
 * **Compliance Authority:** DFARS 252.204-7012, 7019, 7020 Compliant
-* **Executive POC:** Jeffery Humphrey, Chief Executive Officer | humphreyvirtualfarm@gmail.com
+* **Executive POC:** Jeffery Humphrey, Chief Executive Officer | [REDACTED_PUBLIC_RELEASE_CONTACT]
 
 ---
 

@@ -1,4 +1,4 @@
-﻿# EXECUTIVE TRANSMITTAL DISPATCH: OKLAHOMA CRITICAL INFRASTRUCTURE ADVANCE BRIEFING
+# EXECUTIVE TRANSMITTAL DISPATCH: OKLAHOMA CRITICAL INFRASTRUCTURE ADVANCE BRIEFING
 
 **To:**  
 Mark Teel, State Chief Technology Officer  
@@ -7,7 +7,7 @@ State of Oklahoma // Oklahoma Department of Commerce
 **From:**  
 Jeffery Humphrey, Chief Executive Officer & Subject Matter Expert  
 Humphrey Virtual Farms LLC (CAGE: 1AHA8 | Tradewinds ID: 9-26-3703)  
-Email: humphreyvirtualfarm@gmail.com  
+Email: [REDACTED_PUBLIC_RELEASE_CONTACT]  
 
 **Date:** Wednesday, September 30, 2026  
 **Subject:** Operational Technology (OT) Preview & Advance Briefing Asset: Project Ebony  
@@ -88,4 +88,4 @@ Respectfully submitted,
 Chief Executive Officer & Subject Matter Expert  
 Humphrey Virtual Farms LLC  
 CAGE: 1AHA8 | Tradewinds ID: 9-26-3703  
-Email: humphreyvirtualfarm@gmail.com  
+Email: [REDACTED_PUBLIC_RELEASE_CONTACT]  

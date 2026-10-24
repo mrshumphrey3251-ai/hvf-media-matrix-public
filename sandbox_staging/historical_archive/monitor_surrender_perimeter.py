@@ -42,7 +42,7 @@ def check_perimeter():
         print(f"  STATUS             : COUNTDOWN ACTIVE")
         print(f"  TIME REMAINING     : {hours} Hours, {minutes} Minutes, {seconds} Seconds")
         print(f"  RADIO SILENCE      : STRICTLY ENFORCED (Do Not Initiate Contact)")
-        print(f"  INBOX SURVEILLANCE : Active on humphreyvirtualfarm@gmail.com")
+        print(f"  INBOX SURVEILLANCE : Active on [REDACTED_PUBLIC_RELEASE_CONTACT]")
         
         # Log heartbeat audit
         conn.execute("""
@@ -64,5 +64,7 @@ def check_perimeter():
     print("=" * 80)
 
 if __name__ == "__main__":
-    check_perimeter()
-
+    check_perimeter()
+
+
+

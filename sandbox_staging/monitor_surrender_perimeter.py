@@ -97,7 +97,7 @@ def render():
 
             print(f"  RADIO SILENCE      : STRICTLY ENFORCED (Do Not Initiate Contact)")
 
-            print(f"  INBOX SURVEILLANCE : Active on humphreyvirtualfarm@gmail.com")
+            print(f"  INBOX SURVEILLANCE : Active on [REDACTED_PUBLIC_RELEASE_CONTACT]")
 
 
 

@@ -155,7 +155,7 @@ def render():
 
     Authorized Official Phone: **[Corporate Phone Number]**
 
-    Authorized Official Email: **humphreyvirtualfarm@gmail.com**
+    Authorized Official Email: **[REDACTED_PUBLIC_RELEASE_CONTACT]**
 
     Date of Execution: **September 21, 2026**
 

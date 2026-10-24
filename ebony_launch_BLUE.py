@@ -1,4 +1,4 @@
-﻿import os
+import os
 import random
 from dotenv import load_dotenv
 from groq import Groq
@@ -50,7 +50,7 @@ def execute_strike():
             ai_content = response.choices[0].message.content
             
             signature = "\n\n---\n"
-            signature += "Contact: humphreyvirtualfarm@gmail.com\n"
+            signature += "Contact: [REDACTED_PUBLIC_RELEASE_CONTACT]\n"
             signature += "GitHub Open-Source Matrix: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
             
             post_content = ai_content + signature

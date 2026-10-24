@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY OPEN ARCHITECTURE: VERTICAL 07
+# PROJECT EBONY OPEN ARCHITECTURE: VERTICAL 07
 ## Maritime Systems & Naval Propulsion: Sub-Cycle Rudder Slew & Shaft Torsional Containment
 
 **Entity:** Humphrey Virtual Farms LLC (Oklahoma, USA)  
@@ -23,4 +23,4 @@ In modern naval vessels, autonomous unmanned surface vessels (USVs), and commerc
 
 ---
 For federal procurement inquiries, technical partnerships, or OTA licensing under 10 U.S.C. § 4022:  
-**Humphrey Virtual Farms LLC** | humphreyvirtualfarm@gmail.com
+**Humphrey Virtual Farms LLC** | [REDACTED_PUBLIC_RELEASE_CONTACT]

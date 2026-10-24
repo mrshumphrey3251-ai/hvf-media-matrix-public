@@ -19,7 +19,7 @@ sections = [
     "* **CORPORATE IDENTIFIERS:** CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | SBA Certified Small Business Concern",
     "* **ENTITY TYPE:** Nontraditional Defense Contractor (10 U.S.C. § 4022(d))",
     "* **PRIMARY SME / CEO:** Jeffery Humphrey, Founder & Apex Architect",
-    "* **CONTACT:** humphreyvirtualfarm@gmail.com",
+    "* **CONTACT:** [REDACTED_PUBLIC_RELEASE_CONTACT]",
     "* **SUBMISSION TARGET:** Defense Innovation Unit (DIU) / AFWERX Open Topic / DAF TENCAP",
     "* **DATE:** September 2026 | CLASSIFICATION: PROPRIETARY & COMPETITION SENSITIVE",
     "",

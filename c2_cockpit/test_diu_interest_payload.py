@@ -37,7 +37,7 @@ field_dict = dict(FORM_FIELDS)
 required_checks = [
     ("UEI Number", "S1M4ENLHTDH5"),
     ("Company Name", "HVF Omni-Industrial Matrix"),
-    ("Email Address", "humphreyvirtualfarm@gmail.com")
+    ("Email Address", "[REDACTED_PUBLIC_RELEASE_CONTACT]")
 ]
 for k, expected in required_checks:
     if field_dict.get(k) != expected:

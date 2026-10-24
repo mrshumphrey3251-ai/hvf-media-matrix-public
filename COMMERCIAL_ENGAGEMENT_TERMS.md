@@ -32,4 +32,4 @@ Humphrey Virtual Farms LLC accepts the following standard procurement methods:
 * **CAGE Code:** \1AHA8\ | **UEI:** \S1M4ENLHTDH5\
 * **DoD SPRS NIST SP 800-171 Score:** **110 / 110** (UID: \SB00165728\)
 * **SAM.gov Status:** Active Small Business | EFT Active
-* **Executive Point of Contact:** Jeffery Humphrey, CEO | humphreyvirtualfarm@gmail.com
+* **Executive Point of Contact:** Jeffery Humphrey, CEO | [REDACTED_PUBLIC_RELEASE_CONTACT]

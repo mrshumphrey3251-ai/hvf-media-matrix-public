@@ -8,7 +8,7 @@
 * **DoD Unique Identifier (UID):** SB00165728
 * **Open POA&M Deficiencies:** 0 (Zero Deficiencies)
 * **DFARS Compliance:** Fully Compliant with DFARS 252.204-7012, 7019, and 7020
-* **Corporate Leadership:** Jeffery Humphrey, CEO | humphreyvirtualfarm@gmail.com
+* **Corporate Leadership:** Jeffery Humphrey, CEO | [REDACTED_PUBLIC_RELEASE_CONTACT]
 
 ---
 

@@ -11,7 +11,7 @@ DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
 accounts = [
     (
         "HVF_PRIMARY_EXECUTIVE",
-        "humphreyvirtualfarm@gmail.com",
+        "[REDACTED_PUBLIC_RELEASE_CONTACT]",
         "imap.gmail.com",
         993,
         "smtp.gmail.com",

@@ -24,4 +24,4 @@ The **HVFNexus Sovereign Industrial Command and Control Core (Ebony)** operates 
 * **OT Isolation:** Fulfills Department of Energy (DOE) and Department of Defense (DoD) requirements for air-gapped critical infrastructure protection.
 
 ---
-*Jeffery Humphrey, Chief Executive Officer & SME | humphreyvirtualfarm@gmail.com*
+*Jeffery Humphrey, Chief Executive Officer & SME | [REDACTED_PUBLIC_RELEASE_CONTACT]*

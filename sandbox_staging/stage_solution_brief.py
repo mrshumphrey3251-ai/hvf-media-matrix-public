@@ -51,7 +51,7 @@ def render():
 
         "* **PRIMARY SME / CEO:** Jeffery Humphrey, Founder & Apex Architect",
 
-        "* **CONTACT:** humphreyvirtualfarm@gmail.com",
+        "* **CONTACT:** [REDACTED_PUBLIC_RELEASE_CONTACT]",
 
         "* **SUBMISSION TARGET:** Defense Innovation Unit (DIU) / AFWERX Open Topic / DAF TENCAP",
 

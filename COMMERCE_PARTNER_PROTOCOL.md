@@ -32,5 +32,5 @@ This protocol defines the formal procedure for municipal utilities, electric coo
 
 ## 3. Executive Contact & Engagement
 * **Chief Executive Officer:** Jeffery Humphrey
-* **Official Communications:** humphreyvirtualfarm@gmail.com | (580) 677-1055
+* **Official Communications:** [REDACTED_PUBLIC_RELEASE_CONTACT] | (580) 677-1055
 * **Public Repository:** https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public

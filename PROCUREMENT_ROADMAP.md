@@ -17,4 +17,4 @@ Humphrey Virtual Farms LLC (CAGE: 1AHA8, UEI: S1M4ENLHTDH5) operates as an indus
 * Industrial compute infrastructure and defense-grade systems integration.
 
 ---
-*Jeffery Humphrey, Chief Executive Officer | humphreyvirtualfarm@gmail.com*
+*Jeffery Humphrey, Chief Executive Officer | [REDACTED_PUBLIC_RELEASE_CONTACT]*

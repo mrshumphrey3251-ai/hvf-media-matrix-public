@@ -333,7 +333,7 @@ def render():
 
             history = st.session_state.get("p2p_chat_history", [
 
-                "CEO: humphreyvirtualfarm@gmail.com 🛡️ [ENCRYPTED & LOCKED]",
+                "CEO: [REDACTED_PUBLIC_RELEASE_CONTACT] 🛡️ [ENCRYPTED & LOCKED]",
 
                 "EBONY CORE: Comms deck online. Global Sync Active."
 

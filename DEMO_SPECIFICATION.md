@@ -23,4 +23,4 @@ This specification details the unclassified operational parameters of the HVFNex
 3. **Turnkey Regulatory Compliance:** Fully aligned with DFARS 252.204-7012, 7019, and 7020 pre-award cybersecurity requirements.
 
 ---
-*Jeffery Humphrey, Chief Executive Officer | humphreyvirtualfarm@gmail.com*
+*Jeffery Humphrey, Chief Executive Officer | [REDACTED_PUBLIC_RELEASE_CONTACT]*

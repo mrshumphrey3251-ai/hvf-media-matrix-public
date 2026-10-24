@@ -27,7 +27,7 @@ def render():
 
     # Authority: Jeffery Humphrey, Founder & CEO (CAGE: 1AHA8, UEI: S1M4ENLHTDH5)
 
-    # Endpoint: humphreyvirtualfarm@gmail.com (HVF_GMAIL_MAIN)
+    # Endpoint: [REDACTED_PUBLIC_RELEASE_CONTACT] (HVF_GMAIL_MAIN)
 
     # ==============================================================================
 
@@ -101,11 +101,11 @@ def render():
 
     (account_alias, email_address, imap_server, imap_port, smtp_server, smtp_port, encrypted_password, is_active, auth_type)
 
-    VALUES ('HVF_GMAIL_MAIN', 'humphreyvirtualfarm@gmail.com', 'imap.gmail.com', 993, 'smtp.gmail.com', 465, ?, 1, 'APP_PASSWORD')
+    VALUES ('HVF_GMAIL_MAIN', '[REDACTED_PUBLIC_RELEASE_CONTACT]', 'imap.gmail.com', 993, 'smtp.gmail.com', 465, ?, 1, 'APP_PASSWORD')
 
     ON CONFLICT(account_alias) DO UPDATE SET
 
-        email_address = 'humphreyvirtualfarm@gmail.com',
+        email_address = '[REDACTED_PUBLIC_RELEASE_CONTACT]',
 
         encrypted_password = excluded.encrypted_password,
 

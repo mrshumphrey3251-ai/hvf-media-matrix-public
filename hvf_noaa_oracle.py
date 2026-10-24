@@ -1,4 +1,4 @@
-﻿import os
+import os
 import json
 import sqlite3
 import requests
@@ -12,7 +12,7 @@ DB_PATH = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vau
 # Default Location: Hinton / Caddo / Kingfisher County Region (Lat: 35.47, Lon: -98.35)
 DEFAULT_LAT = os.getenv("HVF_LATITUDE", "35.47")
 DEFAULT_LON = os.getenv("HVF_LONGITUDE", "-98.35")
-USER_AGENT = "HumphreyVirtualFarm/2026.1 (humphreyvirtualfarm@gmail.com)"
+USER_AGENT = "HumphreyVirtualFarm/2026.1 ([REDACTED_PUBLIC_RELEASE_CONTACT])"
 
 class NOAAWeatherOracle:
     """

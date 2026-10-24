@@ -6,7 +6,7 @@
 * **NIST SP 800-171 Cyber Score:** **110 / 110** (SPRS DoD UID: \SB00165728\)
 * **Open POA&M Deficiencies:** 0 (Zero Open Items)
 * **Executive Leadership:** Jeffery Humphrey, Chief Executive Officer & SME
-* **Contact:** humphreyvirtualfarm@gmail.com | (580) 677-1055
+* **Contact:** [REDACTED_PUBLIC_RELEASE_CONTACT] | (580) 677-1055
 
 ---
 

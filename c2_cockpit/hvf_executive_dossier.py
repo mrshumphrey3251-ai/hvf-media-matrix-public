@@ -21,7 +21,7 @@ def generate_dossier_payload(recipient="DoD Tradewinds / Contracting Officer", c
     conn.commit(); conn.close()
     lines = [
         "# HUMPHREY VIRTUAL FARMS LLC // EXECUTIVE SOVEREIGN DOSSIER",
-        "- **CEO & Principal SME:** Jeffery Humphrey (humphreyvirtualfarm@gmail.com)",
+        "- **CEO & Principal SME:** Jeffery Humphrey ([REDACTED_PUBLIC_RELEASE_CONTACT])",
         "- **CAGE Code:** 1AHA8 | **UEI:** S1M4ENLHTDH5 | **Statutory Authority:** OK Title 61 / HB 2992",
         f"- **Tradewinds Solution Docket:** 9-26-3703 | **Classification:** {classification}",
         f"- **Target Recipient:** {recipient} | **Timestamp:** {ts}",

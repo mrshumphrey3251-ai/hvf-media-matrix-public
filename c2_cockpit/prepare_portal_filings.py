@@ -75,7 +75,7 @@ output_lines = [
     "================================================================================",
     "HVF Omni-Industrial Matrix | NSF AMERICA'S SEED FUND SUBMISSION PORTAL CLIPBOARD",
     "DIRECT PORTAL URL: https://nsfgov.my.site.com/mywork/s/login/",
-    "CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PI: Jeffery Humphrey (humphreyvirtualfarm@gmail.com)",
+    "CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PI: Jeffery Humphrey ([REDACTED_PUBLIC_RELEASE_CONTACT])",
     "STATUTORY LIMIT COMPLIANCE: CHARACTER SATURATION VERIFIED",
     "================================================================================\n"
 ]

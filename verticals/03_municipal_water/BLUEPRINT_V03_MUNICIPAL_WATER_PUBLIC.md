@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY OPEN ARCHITECTURE: VERTICAL 03
+# PROJECT EBONY OPEN ARCHITECTURE: VERTICAL 03
 ## Municipal Water & Wastewater Treatment: Sub-Cycle Chemical Overfeed Protection
 
 **Entity:** Humphrey Virtual Farms LLC (Oklahoma, USA)  
@@ -18,4 +18,4 @@ In legacy municipal SCADA configurations, chemical metering pumps (sodium hydrox
 
 ---
 For federal procurement inquiries, technical partnerships, or OTA licensing under 10 U.S.C. § 4022:  
-**Humphrey Virtual Farms LLC** | humphreyvirtualfarm@gmail.com
+**Humphrey Virtual Farms LLC** | [REDACTED_PUBLIC_RELEASE_CONTACT]

@@ -1724,7 +1724,7 @@ def query_ebony_mechanic_assistant(
         try:
             wiki_q = f"{yr_c} {mk_c} {md_c} {eng_c} {q_clean}".strip()
             mw_url = f"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch={urllib.parse.quote(wiki_q)}&utf8=&format=json&srlimit=2"
-            req_mw = urllib.request.Request(mw_url, headers={"User-Agent": "HVF-Sovereign-C2/5.0 (humphreyvirtualfarm@gmail.com)"})
+            req_mw = urllib.request.Request(mw_url, headers={"User-Agent": "HVF-Sovereign-C2/5.0 ([REDACTED_PUBLIC_RELEASE_CONTACT])"})
             with urllib.request.urlopen(req_mw, timeout=5) as resp_mw:
                 mw_json = json.loads(resp_mw.read().decode("utf-8", errors="replace"))
                 s_hits = mw_json.get("query", {}).get("search", [])
