@@ -855,10 +855,18 @@ def render_academy_deck(*args, **kwargs):
         from pathlib import Path as _P
         import hvf_pdf_engine as _hpe
         _b_md = _P(r"C:\hvf_c2\reports\executive_binder\HVF_Master_Executive_Academy_Binder_HVF-TECH-001.md")
-        _b_txt = _b_md.read_text(encoding="utf-8", errors="ignore") if _b_md.exists() else "HVF 160-Hour Accredited Master Engineering Binder (STR-01, ENV-01, PAV-01, AUT-01)"
+        _parts = []
+        if _b_md.exists():
+            _parts.append(_b_md.read_text(encoding="utf-8", errors="ignore"))
+        _md_folder = _P(__file__).resolve().parent / "offline_textbooks"
+        if _md_folder.exists():
+            for _mf in sorted(_md_folder.glob("*.md")):
+                if "AUT" not in _mf.name.upper():
+                    _parts.append(_mf.read_text(encoding="utf-8", errors="ignore"))
+        _full_acad_txt = "\n\n".join(_parts).strip() or "HVF 160-Hour Accredited Master Engineering Binder (STR-01, ENV-01, PAV-01, AUT-01)"
         _hpe.render_pdf_export_bar(
-            title="HVF Master Executive Academy Binder & 160-Hour WORM Transcript (HVF-TECH-001)",
-            body_text=_b_txt,
+            title="HVF Master Executive Academy Binder, 160-Hour WORM Transcript & STR/ENV/PAV Textbooks (HVF-TECH-001)",
+            body_text=_full_acad_txt,
             document_id="HVF-ACADEMY-BINDER-TECH-001",
             key_prefix="main_academy_pdf_binder",
         )
