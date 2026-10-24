@@ -39,7 +39,7 @@ def render():
             columns=[f"Zone C{i}" for i in range(1, 9)],
             index=[f"Row R{i}" for i in range(1, 9)]
         )
-        st.dataframe(gli_df, use_container_width=True)
+        st.dataframe(gli_df, width="stretch")
 
         st.subheader("💧 Soil Moisture & Matric Potential Trend (Last 24h)")
         hours = pd.date_range(end=datetime.now(), periods=24, freq="h")
@@ -58,7 +58,7 @@ def render():
         st.markdown("#### ⚡ Direct Actuator Override")
         sector_sel = st.selectbox("Select Target Field Sector:", ["Sector A1 (North Pivot)", "Sector B4 (South Loam)", "Sector C2 (Silo Battery)"], key="ad_sector_sel")
         action_sel = st.selectbox("Select Command Action:", ["Deploy RTK Multispectral Drone Sortie", "Pulse Variable-Rate Irrigation (15 min)", "Seal Telemetry Snapshot to WORM Ledger"], key="ad_act_sel")
-        if st.button("🚀 EXECUTE SOVEREIGN DISPATCH", key="ad_exec_btn", use_container_width=True):
+        if st.button("🚀 EXECUTE SOVEREIGN DISPATCH", key="ad_exec_btn", width="stretch"):
             st.success(f"Dispatched '{action_sel}' to {sector_sel} under CEO Level-5 Clearance.")
 
 if __name__ == "__main__":

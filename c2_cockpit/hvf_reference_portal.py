@@ -225,7 +225,7 @@ def render_auto_small_engine_manual_hub(unit_num: int = 1):
                 continue
             filtered_rows.append(row)
         if filtered_rows:
-            st.dataframe(pd.DataFrame(filtered_rows), use_container_width=True, hide_index=True)
+            st.dataframe(pd.DataFrame(filtered_rows), width="stretch", hide_index=True)
         else:
             st.info("No matching spec rows found. Clear the search filter to view all 1982-2026 OEM Automotive, Tractor & Small-Engine specs.")
 

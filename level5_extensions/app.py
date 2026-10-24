@@ -982,7 +982,7 @@ with st.sidebar:
 
         st.success(f"👑 **{current_name}**\n*({current_role} Clearance)*")
 
-        if st.button("🚪 Disconnect Session", use_container_width=True):
+        if st.button("🚪 Disconnect Session", width="stretch"):
 
             st.session_state.user_session = {"authenticated": False, "username": None, "full_name": "Public Guest", "role": "GUEST", "cipher": None, "trial_expires_at": None}
 
@@ -1232,7 +1232,7 @@ elif active_module == "📡 LinkedIn Engine":
 
             dictated_prompt = st.text_area("Dictate LinkedIn Concept / Key Talking Points:", height=120)
 
-            if st.button("🤖 Generate 100% Factual Draft", use_container_width=True):
+            if st.button("🤖 Generate 100% Factual Draft", width="stretch"):
 
                 sys_msg = f"You are ghostwriting for {EMPIRE['FOUNDER_NAME']}, CEO of {EMPIRE['FARM_NAME']}. Strict factual accuracy based solely on user input."
 
@@ -1292,7 +1292,7 @@ elif active_module == "📡 LinkedIn Engine":
 
         with col_dep1:
 
-            if st.button("🚀 Authorize & Deploy Live to LinkedIn Profile", use_container_width=True):
+            if st.button("🚀 Authorize & Deploy Live to LinkedIn Profile", width="stretch"):
 
                 sanitized_deployment = sanitize_deterministic_output(st.session_state.current_linkedin_draft)
 
@@ -1560,33 +1560,33 @@ elif active_module == "📖 System Overview":
 
         st.markdown(f'<div class="pricing-card"><div class="pricing-tier">🌱 PERSONAL</div><div class="pricing-price">$19.99<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Single-User Node<br>✔ Dual-Engine AI<br>✔ Encrypted Vault</p></div>', unsafe_allow_html=True)
 
-        if is_unlocked: st.link_button("🌱 Personal ($19.99/mo)", STRIPE_PERSONAL_LINK, use_container_width=True)
+        if is_unlocked: st.link_button("🌱 Personal ($19.99/mo)", STRIPE_PERSONAL_LINK, width="stretch")
 
-        else: st.button("🔒 Locked", disabled=True, key="lock1", use_container_width=True)
+        else: st.button("🔒 Locked", disabled=True, key="lock1", width="stretch")
 
     with col_p2:
 
         st.markdown(f'<div class="pricing-card"><div class="pricing-tier">💎 VIP MEMBER</div><div class="pricing-price">$249<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Everything in Personal<br>✔ Drone Spectator<br>✔ GLI Analytics</p></div>', unsafe_allow_html=True)
 
-        if is_unlocked: st.link_button("💎 VIP ($249/mo)", STRIPE_MONTHLY_LINK, use_container_width=True)
+        if is_unlocked: st.link_button("💎 VIP ($249/mo)", STRIPE_MONTHLY_LINK, width="stretch")
 
-        else: st.button("🔒 Locked", disabled=True, key="lock2", use_container_width=True)
+        else: st.button("🔒 Locked", disabled=True, key="lock2", width="stretch")
 
     with col_p3:
 
         st.markdown(f'<div class="pricing-card" style="border-color:#70FF00;"><div class="pricing-tier">🏛️ ENTERPRISE CEO</div><div class="pricing-price">$2,499<span style="font-size:0.85rem;color:#8899A6;">/yr</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Client Dashboard<br>✔ Issue Staff Keys<br>✔ Multi-Ranch Yield</p></div>', unsafe_allow_html=True)
 
-        if is_unlocked: st.link_button("🏛️ Enterprise Annual", STRIPE_ANNUAL_LINK, use_container_width=True)
+        if is_unlocked: st.link_button("🏛️ Enterprise Annual", STRIPE_ANNUAL_LINK, width="stretch")
 
-        else: st.button("🔒 Locked", disabled=True, key="lock3", use_container_width=True)
+        else: st.button("🔒 Locked", disabled=True, key="lock3", width="stretch")
 
     with col_p4:
 
         st.markdown(f'<div class="pricing-card"><div class="pricing-tier">📦 HARDWARE APPLIANCE</div><div class="pricing-price">$4,950<span style="font-size:0.85rem;color:#8899A6;">setup</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Physical Server<br>✔ 100% Air-Gapped<br>✔ + $299/mo Maint.</p></div>', unsafe_allow_html=True)
 
-        if is_unlocked: st.link_button("📦 Order Hardware", PAYPAL_PAY_LINK, use_container_width=True)
+        if is_unlocked: st.link_button("📦 Order Hardware", PAYPAL_PAY_LINK, width="stretch")
 
-        else: st.button("🔒 Locked", disabled=True, key="lock4", use_container_width=True)
+        else: st.button("🔒 Locked", disabled=True, key="lock4", width="stretch")
 
 
 
@@ -2138,7 +2138,7 @@ elif active_module == "⬛ Media Matrix":
 
             st.success("🔓 MFA VERIFIED: Tier-1 CEO Clearance Active.")
 
-            if st.button("🚀 [ IGNITE AUTONOMOUS ENGINE ]", use_container_width=True):
+            if st.button("🚀 [ IGNITE AUTONOMOUS ENGINE ]", width="stretch"):
 
                 with st.spinner("Arming Predict-and-Act loop..."):
 
@@ -2228,7 +2228,7 @@ elif active_module == "🎨 Asset Synthesis":
 
     prompt = st.text_input("Enter Generation Prompt:", "High-tech executive handshake: HVF on left, SignalLink on right, Project Ebony banner centered", key="asset_prompt_input")
 
-    if st.button("Generate Sovereign Asset", use_container_width=True):
+    if st.button("Generate Sovereign Asset", width="stretch"):
 
         with st.spinner("Synthesizing sovereign asset on local hardware..."):
 
@@ -2248,11 +2248,11 @@ elif active_module == "🎨 Asset Synthesis":
 
                     if img_file and os.path.isfile(img_file):
 
-                        st.image(img_file, caption="Sovereign Generated Asset | HVF Project Ebony Matrix", use_container_width=True)
+                        st.image(img_file, caption="Sovereign Generated Asset | HVF Project Ebony Matrix", width="stretch")
 
                         with open(img_file, "rb") as f:
 
-                            st.download_button("📥 Download Sovereign Graphic (PNG)", f, file_name="Project_Ebony_Joint_Venture.png", mime="image/png", use_container_width=True)
+                            st.download_button("📥 Download Sovereign Graphic (PNG)", f, file_name="Project_Ebony_Joint_Venture.png", mime="image/png", width="stretch")
 
                 else:
 

@@ -79,7 +79,7 @@ def render_auto_academy_deck():
                 data=full_tb_md,
                 file_name="AUT-01_40HR_AUTOMOTIVE_AND_SMALL_ENGINE_TEXTBOOK.md",
                 mime="text/markdown",
-                use_container_width=True,
+                width="stretch",
                 key="dl_aut01_full_tb"
             )
 
@@ -123,7 +123,7 @@ def render_auto_academy_deck():
                     )
                     if ceo_auto_key:
                         st.caption(f":green[✔ **Verified Answer Key:** {q_item['ans']}]")
-                sub_ch1 = st.form_submit_button(f"🔒 Verify & Seal Module {sel_u_num:02d} (4.0 Credit Hours) in WORM Ledger", use_container_width=True)
+                sub_ch1 = st.form_submit_button(f"🔒 Verify & Seal Module {sel_u_num:02d} (4.0 Credit Hours) in WORM Ledger", width="stretch")
             if sub_ch1:
                 etl.log_unit_completion(student_id, student_name, "AUT-01", sel_u_num, active_unit["title"], float(c_gate["expected_ans"]), float(c_gate["expected_ans"]), 100.0)
                 st.success(f"✅ Module {sel_u_num:02d} (4.0 Accredited Hours) Verified at 100.0% Mastery and Sealed in WORM Ledger!")
@@ -196,7 +196,7 @@ def render_auto_academy_deck():
                 c_idx = opts.index(corr_opt) if corr_opt in opts else 0
                 chosen = st.radio(f"Answer for {q['id']}:", opts, index=c_idx if ch5_audit else 0, key=f"aa_ch5_s{active_stg}_{q['id']}", label_visibility="collapsed")
                 sub_answers[q["id"]] = chosen[0]
-            btn_grade = st.form_submit_button(f"⚡ Submit AUT-01 Stage {active_stg} Exam for Official Grading", use_container_width=True)
+            btn_grade = st.form_submit_button(f"⚡ Submit AUT-01 Stage {active_stg} Exam for Official Grading", width="stretch")
         if btn_grade:
             g_res = eee.grade_course_stage_exam("AUT-01", active_stg, sub_answers)
             rc1, rc2, rc3 = st.columns(3)

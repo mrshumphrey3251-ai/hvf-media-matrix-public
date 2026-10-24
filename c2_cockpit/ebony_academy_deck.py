@@ -174,7 +174,7 @@ def render_academy_deck():
                 data=full_md,
                 file_name=f"{selected_code}_40HR_MASTER_ENGINEERING_TEXTBOOK.md",
                 mime="text/markdown",
-                use_container_width=True
+                width="stretch"
             )
 
         active_unit = units[selected_unit_num - 1]
@@ -230,7 +230,7 @@ def render_academy_deck():
             ]
             st.code(chr(10).join(_pkt_lines), language="text")
             if active_course["diagram"].exists():
-                st.image(str(active_course["diagram"]), caption=f"Module {selected_unit_num:02d} Field Sensor & Structural Load Path Reference", use_container_width=True)
+                st.image(str(active_course["diagram"]), caption=f"Module {selected_unit_num:02d} Field Sensor & Structural Load Path Reference", width="stretch")
 
         with sub_t4:
             st.markdown(f"### 🔐 Module {selected_unit_num:02d} Quantitative Engineering Calculation Gate & Mastery Exam")
@@ -238,7 +238,7 @@ def render_academy_deck():
             with _ceo_top_c1:
                 if st.button(
                     f"👑 CEO Seal: All 10 Modules (40.0 Hrs) for {selected_code}",
-                    use_container_width=True,
+                    width="stretch",
                     key=f"btn_perm_course_seal_{selected_code}_u{selected_unit_num}"
                 ):
                     for _m_unit in get_course_units(selected_code):
@@ -254,7 +254,7 @@ def render_academy_deck():
             with _ceo_top_c2:
                 if st.button(
                     "🌐 CEO Global Seal: All 30 Modules (120.0 Hrs: STR-01, ENV-01 & PAV-01)",
-                    use_container_width=True,
+                    width="stretch",
                     key=f"btn_perm_global_seal_{selected_code}_u{selected_unit_num}"
                 ):
                     for _c_code in ["STR-01", "ENV-01", "PAV-01"]:
@@ -297,7 +297,7 @@ def render_academy_deck():
                         data=chr(10).join(_csv_lines),
                         file_name=f"HVF_WORM_Transcript_{selected_code}_{student_id}.csv",
                         mime="text/csv",
-                        use_container_width=True,
+                        width="stretch",
                         key=f"dl_worm_transcript_{selected_code}_u{selected_unit_num}"
                     )
                     _m_csv = ["Curriculum,Module,Title,Credit_Hours,CEUs,Commercial_Tuition_Share,WORM_Status"]
@@ -310,7 +310,7 @@ def render_academy_deck():
                         data=chr(10).join(_m_csv),
                         file_name=f"HVF_Master_120Hr_WORM_Transcript_{student_id}.csv",
                         mime="text/csv",
-                        use_container_width=True,
+                        width="stretch",
                         key=f"dl_master_120hr_worm_{selected_code}_u{selected_unit_num}"
                     )
                 _reopen_gate = st.checkbox(
@@ -339,7 +339,7 @@ def render_academy_deck():
                     with _ceo_c1:
                         if st.button(
                             f"👑 Seal All 10 Modules (40.0 Hrs) for {selected_code}",
-                            use_container_width=True,
+                            width="stretch",
                             key=f"btn_top_master_seal_{selected_code}_u{selected_unit_num}"
                         ):
                             for _m_unit in get_course_units(selected_code):
@@ -355,7 +355,7 @@ def render_academy_deck():
                     with _ceo_c2:
                         if st.button(
                             "🌐 Global Seal: All 30 Modules (120.0 Hrs: STR-01, ENV-01 & PAV-01)",
-                            use_container_width=True,
+                            width="stretch",
                             key=f"btn_top_global_seal_{selected_code}_u{selected_unit_num}"
                         ):
                             for _c_code in ["STR-01", "ENV-01", "PAV-01"]:
@@ -414,7 +414,7 @@ def render_academy_deck():
                 if _audit_autofill:
                     if st.button(
                         f"👑 CEO Master Curriculum Seal: Verify & Seal All 10 Modules (40.0 Credit Hours) for {selected_code}",
-                        use_container_width=True,
+                        width="stretch",
                         key=f"btn_master_seal_{selected_code}_u{selected_unit_num}"
                     ):
                         for _m_unit in get_course_units(selected_code):
@@ -430,7 +430,7 @@ def render_academy_deck():
                         st.rerun()
                     if st.button(
                         "🌐 CEO Global Institute Seal: Verify & Seal All 30 Modules (120.0 Credit Hours / 12.0 CEUs) Across STR-01, ENV-01 & PAV-01",
-                        use_container_width=True,
+                        width="stretch",
                         key=f"btn_global_3course_seal_{selected_code}_u{selected_unit_num}"
                     ):
                         for _c_code in ["STR-01", "ENV-01", "PAV-01"]:
@@ -447,7 +447,7 @@ def render_academy_deck():
 
                 if st.button(
                     f"⚡ Verify Calculation & Grade Module {selected_unit_num:02d} to Seal 4.0 Credit Hours",
-                    use_container_width=True,
+                    width="stretch",
                     key=f"btn_verify_{selected_code}_u{selected_unit_num}"
                 ):
                     calc_ok = abs(user_calc_val - calc_ch["target"]) <= calc_ch["tol"]
@@ -480,7 +480,7 @@ def render_academy_deck():
     with tab_ch2:
         st.subheader(f"Chapter 2: Interactive Multi-Variable Engineering Workbenches & Schematics // {selected_code}")
         if active_course["diagram"].exists():
-            st.image(str(active_course["diagram"]), caption=f"Figure 2.1: {active_course['title']} — Sensor Geometry & Structural Load Path Schematic", use_container_width=True)
+            st.image(str(active_course["diagram"]), caption=f"Figure 2.1: {active_course['title']} — Sensor Geometry & Structural Load Path Schematic", width="stretch")
         st.markdown("---")
 
         if selected_code == "STR-01":
@@ -675,7 +675,7 @@ def render_academy_deck():
                 data=_cert_txt,
                 file_name=f"HVF_Official_State_Credential_{selected_code}_{student_id}.txt",
                 mime="text/plain",
-                use_container_width=True,
+                width="stretch",
                 key=f"dl_official_state_cert_{selected_code}"
             )
             try:
@@ -688,7 +688,7 @@ def render_academy_deck():
                         data=Path(_b_res["markdown_binder"]).read_text(encoding="utf-8"),
                         file_name=Path(_b_res["markdown_binder"]).name,
                         mime="text/markdown",
-                        use_container_width=True,
+                        width="stretch",
                         key=f"dl_master_exec_binder_md_{selected_code}"
                     )
                 with _b_col2:
@@ -697,7 +697,7 @@ def render_academy_deck():
                         data=Path(_b_res["csv_transcript"]).read_text(encoding="utf-8"),
                         file_name=Path(_b_res["csv_transcript"]).name,
                         mime="text/csv",
-                        use_container_width=True,
+                        width="stretch",
                         key=f"dl_master_exec_binder_csv_{selected_code}"
                     )
             except Exception:
@@ -751,7 +751,7 @@ def render_academy_deck():
 
             btn_submit = st.form_submit_button(
                 f"⚡ Submit {selected_code} Stage {active_s_num} Exam for Official State Grading",
-                use_container_width=True
+                width="stretch"
             )
 
         if btn_submit:
@@ -783,7 +783,7 @@ def render_academy_deck():
                         file_name=cert_file.name,
                         mime="text/markdown",
                         key=f"unified_dl_cert_{selected_code}_s{active_s_num}",
-                        use_container_width=True
+                        width="stretch"
                     )
             else:
                 st.error("Candidate did not achieve the required passing threshold. Review the 10-Module Workstation in Chapter 1 and resubmit.")

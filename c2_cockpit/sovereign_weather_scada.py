@@ -44,4 +44,4 @@ def render():
         {"Time (UTC)": "18:15:00", "Temp (°F)": 72.1, "Humidity (%)": 45.8, "Pressure (inHg)": 29.92, "Condition": "Clear"},
         {"Time (UTC)": "18:30:00", "Temp (°F)": 72.4, "Humidity (%)": 45.0, "Pressure (inHg)": 29.92, "Condition": "Clear"}
     ]
-    st.dataframe(sample_readings, use_container_width=True)
+    st.dataframe(sample_readings, width="stretch")

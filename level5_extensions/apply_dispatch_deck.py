@@ -68,7 +68,7 @@ elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
 
     with col_acc2:
 
-        if st.button("ðŸ”„ Poll Monitored Inboxes Now", use_container_width=True):
+        if st.button("ðŸ”„ Poll Monitored Inboxes Now", width="stretch"):
 
             try:
 
@@ -138,7 +138,7 @@ elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
 
                 with col_btn1:
 
-                    if st.button(f"âœ… APPROVE & DISPATCH #{disp_id}", use_container_width=True, key=f"app_{disp_id}"):
+                    if st.button(f"âœ… APPROVE & DISPATCH #{disp_id}", width="stretch", key=f"app_{disp_id}"):
 
                         c_up = sqlite3.connect(DB_PATH)
 
@@ -156,7 +156,7 @@ elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
 
                 with col_btn2:
 
-                    if st.button(f"ðŸš« VETO & ARCHIVE #{disp_id}", use_container_width=True, key=f"veto_{disp_id}"):
+                    if st.button(f"ðŸš« VETO & ARCHIVE #{disp_id}", width="stretch", key=f"veto_{disp_id}"):
 
                         c_up = sqlite3.connect(DB_PATH)
 

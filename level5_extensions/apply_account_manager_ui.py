@@ -92,7 +92,7 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
 
 
 
-                btn_test_save = st.form_submit_button("ðŸ”’ TEST CONNECTION & SAVE INBOX", use_container_width=True)
+                btn_test_save = st.form_submit_button("ðŸ”’ TEST CONNECTION & SAVE INBOX", width="stretch")
 
 
 
@@ -160,7 +160,7 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
 
                         toggle_lbl = "Deactivate" if a_act == 1 else "Activate"
 
-                        if st.button(toggle_lbl, key=f"tgl_{a_id}", use_container_width=True):
+                        if st.button(toggle_lbl, key=f"tgl_{a_id}", width="stretch"):
 
                             new_st = 0 if a_act == 1 else 1
 
@@ -178,7 +178,7 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
 
                     with c_del:
 
-                        if st.button("Delete", key=f"del_{a_id}", use_container_width=True):
+                        if st.button("Delete", key=f"del_{a_id}", width="stretch"):
 
                             c_del_db = sqlite3.connect(DB_PATH)
 
@@ -214,7 +214,7 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
 
     with col_acc2:
 
-        if st.button("ðŸ”„ Poll Monitored Inboxes Now", use_container_width=True):
+        if st.button("ðŸ”„ Poll Monitored Inboxes Now", width="stretch"):
 
             try:
 
@@ -282,7 +282,7 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
 
                 with col_btn1:
 
-                    if st.button(f"âœ… APPROVE & DISPATCH #{disp_id}", use_container_width=True, key=f"app_{disp_id}"):
+                    if st.button(f"âœ… APPROVE & DISPATCH #{disp_id}", width="stretch", key=f"app_{disp_id}"):
 
                         c_up = sqlite3.connect(DB_PATH)
 
@@ -300,7 +300,7 @@ NEW_MODULE_BODY = """elif active_module == "ðŸ“¨ Sovereign Dispatch Deck":
 
                 with col_btn2:
 
-                    if st.button(f"ðŸš« VETO & ARCHIVE #{disp_id}", use_container_width=True, key=f"veto_{disp_id}"):
+                    if st.button(f"ðŸš« VETO & ARCHIVE #{disp_id}", width="stretch", key=f"veto_{disp_id}"):
 
                         c_up = sqlite3.connect(DB_PATH)
 

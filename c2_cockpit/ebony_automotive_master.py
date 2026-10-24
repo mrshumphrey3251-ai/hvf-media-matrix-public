@@ -1839,7 +1839,7 @@ def render_automotive_master_deck():
         with q_col2:
             st.write("")
             st.write("")
-            st.button("⚡ Update Guide & Parts", use_container_width=True, key=f"btn_run_q_{domain_code}")
+            st.button("⚡ Update Guide & Parts", width="stretch", key=f"btn_run_q_{domain_code}")
 
         opt_c1, opt_c2 = st.columns([2.5, 1.5])
         with opt_c1:
@@ -2141,3 +2141,6 @@ def __getattr__(name: str):
     if name.startswith("BUMPER_TO_BUMPER_") and name.endswith("_GUIDE"):
         return BUMPER_TO_BUMPER_MASTER_GUIDE
     raise AttributeError(name)
+
+render = render_automotive_master_deck
+render_automotive_c2_deck = render_automotive_master_deck

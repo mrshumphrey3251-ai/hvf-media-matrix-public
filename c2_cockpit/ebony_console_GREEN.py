@@ -795,14 +795,14 @@ if not st.session_state.get("legal_acknowledged", False):
         ''', unsafe_allow_html=True)
         _dossier_active = st.session_state.get("view_dossier", False)
         _btn_text = "⬅ RETURN TO PREFLIGHT GATE" if _dossier_active else "📂 OPEN REPOSITORY DOSSIER (360+ FILES)"
-        if st.button(_btn_text, key="btn_preflight_dossier", use_container_width=True):
+        if st.button(_btn_text, key="btn_preflight_dossier", width="stretch"):
             st.session_state.view_dossier = not _dossier_active
             st.rerun()
 
     if st.session_state.get("view_dossier", False):
         col_d_back, col_d_hdr = st.columns([1.5, 5])
         with col_d_back:
-            if st.button("⬅ RETURN TO PREFLIGHT GATE", key="btn_close_dossier_main", use_container_width=True):
+            if st.button("⬅ RETURN TO PREFLIGHT GATE", key="btn_close_dossier_main", width="stretch"):
                 st.session_state.view_dossier = False
                 st.rerun()
         with col_d_hdr:
@@ -965,7 +965,7 @@ if not st.session_state.get("legal_acknowledged", False):
 
         btn_col1, btn_col2, btn_col3 = st.columns([2, 4, 2])
         with btn_col2:
-            if st.button("AFFIRM AND ENTER SOVEREIGN COMMAND", use_container_width=True):
+            if st.button("AFFIRM AND ENTER SOVEREIGN COMMAND", width="stretch"):
                 if confirm_check:
                     try:
                         import sqlite3
@@ -1323,22 +1323,22 @@ elif active_module == "💬 Sovereign Command":
         macro_trigger = None
 
         with m_col1:
-            if st.button("🚨 System Readiness", use_container_width=True):
+            if st.button("🚨 System Readiness", width="stretch"):
                 macro_trigger = "Ebony, report your system readiness, CAGE governance, and operational status."
         with m_col2:
-            if st.button("📊 SCADA Diagnostics", use_container_width=True):
+            if st.button("📊 SCADA Diagnostics", width="stretch"):
                 macro_trigger = "Ebony, pull real-time industrial SCADA metrics and storage integrity for node HVFNexus."
         with m_col3:
-            if st.button("🛡️ Swarm Triad Audit", use_container_width=True):
+            if st.button("🛡️ Swarm Triad Audit", width="stretch"):
                 macro_trigger = "Ebony, dispatch the autonomous agent swarm triad and verify compliance."
         with m_col4:
-            if st.button("🧹 Purge Session", use_container_width=True):
+            if st.button("🧹 Purge Session", width="stretch"):
                 st.session_state.messages = []
                 st.session_state.screen_wiped = True
                 st.rerun()
 
         active_command = macro_trigger if macro_trigger else user_directive
-        transmit_clicked = st.button("🚀 Transmit Directive", use_container_width=True)
+        transmit_clicked = st.button("🚀 Transmit Directive", width="stretch")
 
         if (transmit_clicked or macro_trigger) and active_command.strip():
             with st.spinner("Processing through Sovereign Tri-Brain Router..."):
@@ -1417,14 +1417,14 @@ elif active_module == "💬 Sovereign Command":
                 from ebony_agent_swarm import dispatch_swarm_task
                 swarm_col1, swarm_col2 = st.columns(2)
                 with swarm_col1:
-                    if st.button("Triad Sweep", key="hud_triad_btn", use_container_width=True):
+                    if st.button("Triad Sweep", key="hud_triad_btn", width="stretch"):
                         st.code(dispatch_swarm_task("all"), language="text")
-                    if st.button("Recon Agent", key="hud_recon_btn", use_container_width=True):
+                    if st.button("Recon Agent", key="hud_recon_btn", width="stretch"):
                         st.code(dispatch_swarm_task("recon"), language="text")
                 with swarm_col2:
-                    if st.button("Security Agent", key="hud_sec_btn", use_container_width=True):
+                    if st.button("Security Agent", key="hud_sec_btn", width="stretch"):
                         st.code(dispatch_swarm_task("security"), language="text")
-                    if st.button("Analyst Agent", key="hud_analyst_btn", use_container_width=True):
+                    if st.button("Analyst Agent", key="hud_analyst_btn", width="stretch"):
                         st.code(dispatch_swarm_task("analyst"), language="text")
             except Exception as e:
                 st.error("Swarm Offline.")
@@ -2351,13 +2351,13 @@ elif active_module == "🌾 Grain Silo Aeration":
     st.markdown("##### Manual Fan Contactor Command Bus (Level-5 CEO Override)")
     btn_col1, btn_col2, btn_col3 = st.columns(3)
     with btn_col1:
-        if st.button("⚡ ENERGIZE AERATION FAN (K3)", use_container_width=True):
+        if st.button("⚡ ENERGIZE AERATION FAN (K3)", width="stretch"):
             st.success("COMMAND DISPATCHED: 480V 3-Phase Contactor K3 closed. Watchdog timer set to 240 minutes.")
     with btn_col2:
-        if st.button("🛑 EMERGENCY DE-ENERGIZE (E-STOP)", use_container_width=True):
+        if st.button("🛑 EMERGENCY DE-ENERGIZE (E-STOP)", width="stretch"):
             st.error("COMMAND DISPATCHED: Contactor K3 forced OPEN. Aeration motor trip verified in 2.4 microseconds.")
     with btn_col3:
-        if st.button("🔄 RE-CALCULATE EMC & OPTIMIZE", use_container_width=True):
+        if st.button("🔄 RE-CALCULATE EMC & OPTIMIZE", width="stretch"):
             st.info("ANALYTICS DISPATCHED: NOAA ambient radar feed reconciled against thermocouple cables. Optimal cycle window: 0200 - 0630 CST.")
 
 elif active_module == "📘 Omni-Industry Matrix":
@@ -2437,7 +2437,7 @@ elif active_module == "📘 Omni-Industry Matrix":
                                 file_name=f"{_m_code}_MASTER_STUDY_AND_BRIEFING_MANUAL.md",
                                 mime="text/markdown",
                                 key=f"dl_study_{_m_code}",
-                                use_container_width=True
+                                width="stretch"
                             )
 
             with c_col2:
@@ -2480,7 +2480,7 @@ elif active_module == "📘 Omni-Industry Matrix":
                         conn_civ
                     )
                     conn_civ.close()
-                    st.dataframe(df_civ, use_container_width=True)
+                    st.dataframe(df_civ, width="stretch")
                     if not df_civ.empty:
                         _md_rows = ["| Docket # | Asset Target | Sector | Governing Agency | County | Status | SHA-256 Seal |", "|---|---|---|---|---|---|---|"]
                         for _, _r in df_civ.iterrows():
@@ -2537,7 +2537,7 @@ elif active_module == "📘 Omni-Industry Matrix":
                                 file_name="OK_APPRENTICESHIP_SOVEREIGN_160HR.md",
                                 mime="text/markdown",
                                 key="btn_dl_app_syllabus_clean",
-                                use_container_width=True
+                                width="stretch"
                             )
                     except Exception as ex_ap:
                         st.caption(f"Apprenticeship dossier: {ex_ap}")
@@ -2566,12 +2566,12 @@ elif active_module == "📘 Omni-Industry Matrix":
                     with c_act1:
                         st.write("")
                         st.write("")
-                        btn_launch = st.button("\U0001F680 Dispatch Drone Sortie", key="btn_dispatch_drone_clean", use_container_width=True)
+                        btn_launch = st.button("\U0001F680 Dispatch Drone Sortie", key="btn_dispatch_drone_clean", width="stretch")
                         
                     with c_act2:
                         st.write("")
                         st.write("")
-                        btn_cert = st.button("\U0001F4C4 Synthesize Deliverable", key="btn_certify_dossier_clean", use_container_width=True)
+                        btn_cert = st.button("\U0001F4C4 Synthesize Deliverable", key="btn_certify_dossier_clean", width="stretch")
                     
                     if btn_launch:
                         try:
@@ -2617,7 +2617,7 @@ elif active_module == "📘 Omni-Industry Matrix":
                                     file_name=report_file.name,
                                     mime="text/markdown",
                                     key="btn_dl_state_dossier_clean",
-                                    use_container_width=True
+                                    width="stretch"
                                 )
                         except Exception as ex_rep:
                             st.error(f"Report synthesis failed: {ex_rep}")
