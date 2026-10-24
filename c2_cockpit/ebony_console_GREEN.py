@@ -246,15 +246,14 @@ except ImportError:
 # EXACT SIDEBAR COMMAND MODULE DEFINITIONS (NOT VERTICALS)
 # =========================================================================
 SIDEBAR_MODULE_ARCHITECTURE = """
-### CANONICAL C2 SIDEBAR COMMAND MODULES:
-When asked about 'modules' or 'sidebar modules', refer STRICTLY to these 5 software/hardware command modules in the console sidebar (NOT the 15 business verticals):
-1. Master C2 Cockpit (Grid bus voltage, current, 60Hz frequency, and system state monitors)
-2. Sub-Cycle Kinetic Isolation (<16ms hardware islanding and transient quench engine)
-3. Modbus RTU / TCP Switchgear Telemetry (Direct register read/write, FC05 coil assertions at 2.04us)
-4. Sovereign Command Nexus (Cognitive air-gapped terminal and prompt dispatch interface)
-5. Level-5 Extensions & Debriefs (Offloaded historical telemetry, Merkle logs, and audit records)
-
-The 15 verticals (AgTech, Defense, Aerospace, etc.) are industry market sectors, NOT sidebar command modules.
+### CANONICAL 24 LEVEL-5 SOVEREIGN C2 SIDEBAR COMMAND MODULES (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5):
+When asked about 'modules' or 'sidebar modules', refer to the 24 active Level-5 Sovereign C2 Command Modules in the console sidebar:
+1. Master C2 Cockpit | 2. Sovereign Field Academy (STR-01, ENV-01, PAV-01, AUT-01) | 3. Autonomous Build Forge | 4. CEO Authorization Gate
+5. Sovereign Command | 6. LinkedIn Engine | 7. NOAA Radar | 8. Drone Diagnostics (FAA Part 107 sUAS)
+9. Sovereign Auto & CAN-Bus C2 | 10. HVF Master Auto & Small-Engine Academy (AUT-01) | 11. System Overview | 12. Sovereign Comms Deck
+13. Sovereign Dispatch Deck | 14. Feedback Hub | 15. Sandbox | 16. Empire Config
+17. Media Matrix | 18. Asset Synthesis | 19. Omni-Industry Matrix | 20. Executive Action Desk
+21. Chronos Companion Engine | 22. Grain Silo Aeration & Conditioning | 23. LinkedIn Lead Scheduler | 24. Sovereign Weather SCADA
 """
 
 

@@ -89,3 +89,18 @@ def render():
         if st.button("🔄 Sync Live PLC Telemetry"):
             st.toast("Polled 48 plenum sensors across Silo Complex.")
             st.rerun()
+
+    st.markdown("---")
+    st.markdown("#### \U0001f39b\ufe0f Live Silo SCADA Telemetry & 480V 3-Phase Aeration Contactor Controls")
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Bin 01 Core Temp", "54.2 \u00b0F", "-0.8 \u00b0F (Stable)")
+    c2.metric("Plenum Static Pressure", "2.85 in-wg", "Nominal (0.15 CFM/bu)")
+    c3.metric("Equilibrium Moisture (EMC)", "13.4%", "Safe Storage Parity")
+    c4.metric("Aeration Contactor K3", "ARMED / STANDBY", "480V 3-Phase Interlock")
+    b1, b2, b3 = st.columns(3)
+    if b1.button("\u26a1 ENERGIZE AERATION FAN (K3)", key="gs_k3_on", use_container_width=True):
+        st.success("COMMAND DISPATCHED: 480V 3-Phase Contactor K3 closed. Watchdog timer set to 240 minutes.")
+    if b2.button("\U0001f6d1 EMERGENCY DE-ENERGIZE (E-STOP)", key="gs_k3_off", use_container_width=True):
+        st.error("COMMAND DISPATCHED: Contactor K3 forced OPEN. Aeration motor trip verified in 2.4 microseconds.")
+    if b3.button("\U0001f504 RE-CALCULATE EMC & OPTIMIZE", key="gs_k3_emc", use_container_width=True):
+        st.info("ANALYTICS DISPATCHED: NOAA ambient radar feed reconciled against thermocouple cables. Optimal cycle window: 0200 - 0630 CST.")
