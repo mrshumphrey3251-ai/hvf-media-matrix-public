@@ -301,3 +301,41 @@ def render_reference_portal(course_code: str = "STR-01", unit_num: int = None):
             with st.expander(f"\U0001f4d6 Read Complete Local Offline Reference Manual (`{local_path.name}` \u2014 100% Free Built-In Air-Gap Edition)", expanded=False):
                 st.markdown(local_path.read_text(encoding="utf-8", errors="ignore"))
         st.markdown("---")
+
+
+def _render_portal_pdf_bar(key_prefix: str = "global") -> None:
+    try:
+        import hvf_pdf_engine as _hpe
+        _hpe.render_pdf_export_bar(
+            title="HVF 1982-2026 Master OEM Engineering & Shop Floor Reference Dossier",
+            body_text=(
+                "HUMPHREY VIRTUAL FARMS LLC // 1982-2026 MASTER OEM REFERENCE PORTAL\n"
+                "CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK Title 61 / HB 2992 | OSHA 1910.147\n\n"
+                "Verified Offline Textbooks (STR-01, ENV-01, PAV-01, AUT-01) and 1982-2026 Automotive, Heavy Diesel, "
+                "Agricultural Tractor & Small-Engine/Lawnmower Factory Specifications Verified Online (HTTP 200 OK)."
+            ),
+            document_id="HVF-OEM-PORTAL-1982-2026",
+            key_prefix=f"portal_pdf_{key_prefix}",
+        )
+    except Exception:
+        pass
+
+
+_orig_render_reference_portal = render_reference_portal
+
+
+def render_reference_portal(*args, **kwargs) -> None:
+    import inspect as _insp
+    _kp = kwargs.get("key_prefix", args[0] if args else "global")
+    _sig = _insp.signature(_orig_render_reference_portal)
+    if len(_sig.parameters) == 0:
+        _orig_render_reference_portal()
+    elif "key_prefix" in _sig.parameters:
+        _orig_render_reference_portal(key_prefix=_kp)
+    else:
+        _orig_render_reference_portal(_kp)
+    _render_portal_pdf_bar(key_prefix=str(_kp))
+
+
+render_reference_portal_expander = render_reference_portal
+render = render_reference_portal

@@ -1126,6 +1126,7 @@ with st.sidebar:
         _clean_ext_labels = {
             "grain_silo_aeration_and_f": "⚡ Grain Silo Aeration & Conditioning",
             "sovereign_weather_scada": "⚡ Sovereign Weather SCADA",
+            "hvf_pdf_engine": "⚡ Sovereign PDF Dossier Engine",
             "chronos_companion_engine": "⚡ Chronos Companion Engine",
             "linkedin_lead_scheduler": "⚡ LinkedIn Lead Scheduler",
             "action_desk": "⚡ Executive Action Desk"

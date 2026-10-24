@@ -406,3 +406,23 @@ def render() -> None:
                 "Upload any `.pdf` file above (or test using the PDF you just downloaded from Tab 1!) to extract "
                 "text streams, FAR/DFARS clauses, and engineering standards 100% offline."
             )
+
+
+def render_pdf_export_bar(
+    title: str,
+    body_text: str,
+    document_id: str = "HVF-DOC-2026",
+    key_prefix: str = "hvf_pdf_bar",
+) -> None:
+    """Modular drop-in bar allowing any C2 or Academy deck to export an ISO 32000-1 WORM-sealed PDF."""
+    import streamlit as st
+    eng = HVFSovereignPDFEngine()
+    art = eng.compile_sovereign_pdf(title=title, body_text=body_text, document_id=document_id)
+    st.download_button(
+        label=f"\U0001f4c4 Download WORM-Sealed ISO 32000-1 PDF ({document_id}.pdf | {art.page_count} Pages | SHA-256: {art.sha256_seal[:12]}...)",
+        data=art.pdf_bytes,
+        file_name=f"{document_id}.pdf",
+        mime="application/pdf",
+        width="stretch",
+        key=f"{key_prefix}_dl_btn",
+    )
