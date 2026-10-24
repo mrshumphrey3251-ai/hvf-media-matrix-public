@@ -1,0 +1,26 @@
+{
+  "release_tag": "v8.0.0-stage8g-seal",
+  "stage": "8h",
+  "timestamp_utc": "2026-10-24T13:48:23.332783+00:00",
+  "tradewinds_submission_id": "9-26-3703",
+  "contractor": "Humphrey Virtual Farms LLC",
+  "cage_code": "1AHA8",
+  "uei": "S1M4ENLHTDH5",
+  "commanding_authority": "CEO Jeffery Humphrey (Level 5 Unrestricted)",
+  "contact_email": "[REDACTED_PUBLIC_RELEASE_CONTACT]",
+  "statutory_compliance": [
+    "10 U.S.C. 4022 (Other Transaction Authority)",
+    "DFARS 252.227-7018 (Government Purpose Rights)",
+    "NIST SP 800-171 (110/110 SPRS Certified)",
+    "Oklahoma Title 61 & OK HB 2992"
+  ],
+  "verification_metrics": {
+    "unit_test_suites_passed": "83 / 83 (100.0%)",
+    "compiled_c2_modules": "631 / 631 (100.0%)",
+    "master_c2_merkle_root_sha256": "cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a",
+    "academy_verified_questions": "1,420 / 1,420 (800 Ch1 + 620 Ch5)",
+    "red_team_attacks_blocked": "17 / 17 (0 Breaches)",
+    "iso_32000_1_pdf_compilers": "6 / 6 (%PDF-1.4 WORM Sealed)",
+    "client_enclave_zip_sha256": "611a5f62b59bc4c727ebadef36fc59499f9f890331b25edf50b4ee17aad47f03"
+  }
+}
