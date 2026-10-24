@@ -2,5 +2,22 @@
   "cage_code": "1AHA8",
   "uei": "S1M4ENLHTDH5",
   "status": "PUBLIC_DEFENSE_MATRIX_ACTIVE",
-  "data_rights": "DFARS 252.227-7018 (GPR)"
+  "data_rights": "DFARS 252.227-7018 (GPR)",
+  "contractor": "Humphrey Virtual Farms LLC",
+  "release_tag": "v8.0.0-sovereign-master-seal",
+  "master_c2_merkle_root_sha256": "cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a",
+  "federal_track": {
+    "agency": "DoD CDAO Tradewinds Solutions Marketplace",
+    "docket": "9-26-3703",
+    "trl_posture": "TRL 6 / TRL 7 (631 Modules, 83/83 Test Suites, 17/17 Red-Team Blocks)",
+    "proposed_ota_rom": "$1,485,000.00 (10 U.S.C. 4022)"
+  },
+  "state_track": {
+    "agency": "State of Oklahoma (Department of Commerce, OMES & ODOT)",
+    "statutes": "Oklahoma HB 2992, Title 61 Section 212 & 2 CFR 200.306",
+    "phase_1_drone_grant": "$25,000.00 (Bridge Inspection Cost Reduction: $4,600 -> $250/sortie)",
+    "workforce_scaling": "5-Specialist Core Strike Team -> 45 Field Personnel Across 8 ODOT Divisions (1,420 Academy Qs)",
+    "state_match_satisfaction": "$500,000.00 Allowable In-Kind Cost-Share ($0.00 Liquid Cash Escrow Required)"
+  },
+  "updated_at_utc": "2026-10-24T19:53:21.733409+00:00"
 }
