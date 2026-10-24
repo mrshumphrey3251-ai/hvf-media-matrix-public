@@ -216,3 +216,27 @@ def render_auto_academy_deck():
                 st.markdown(f"#### 📌 {item['term']}  `[{item['cat']}]`")
                 st.write(item["def"])
                 st.markdown("---")
+
+
+_orig_render_auto_academy_deck = render_auto_academy_deck
+
+def render_auto_academy_deck(*args, **kwargs):
+    _res = _orig_render_auto_academy_deck(*args, **kwargs)
+    try:
+        import hvf_pdf_engine as _hpe
+        _hpe.render_pdf_export_bar(
+            title="HVF Master Automotive, Heavy Diesel & Small-Engine Academy Credential & Shop Manual (AUT-01)",
+            body_text=(
+                "HUMPHREY VIRTUAL FARMS LLC // MASTER AUTOMOTIVE & SMALL-ENGINE ACADEMY (AUT-01)\n"
+                "CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: ASE A1-A8 / L1 / L3 / EETC / OSHA 1910.147\n\n"
+                "Verified Mastery Across 10 Accredited Units (200 Milestone Qs), 16 Bumper-to-Bumper & Small-Engine Repair Zones, "
+                "and 3-Stage 120-Question ASE/EETC Master Certification Examination."
+            ),
+            document_id="HVF-AUTO-MASTER-CREDENTIAL-AUT01",
+            key_prefix="auto_academy_pdf_binder",
+        )
+    except Exception:
+        pass
+    return _res
+
+render = render_auto_academy_deck
