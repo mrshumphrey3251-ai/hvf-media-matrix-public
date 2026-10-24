@@ -2,7 +2,7 @@
   "cage_code": "1AHA8",
   "classification": "LEVEL-5 SOVEREIGN INDUSTRIAL C2 & ACCREDITED ENGINEERING INSTITUTE",
   "entity": "Humphrey Virtual Farms LLC",
-  "master_c2_merkle_root_sha256": "117c93888123f55bb6a1e3f03a2733d957307d527a4de22ec30184a0205d3530",
+  "master_c2_merkle_root_sha256": "7ef0406bb93d6b7755d589d4a2a375e3d7d570c12535e7baa168ac36ba7cb962",
   "module_sha256_digests": {
     "__init__.py": "795f10286e60c8fbe6ff725e033631a06873b70207c12b47bc9c7c596c489773",
     "access_control.py": "3709685f597329fd7b3042b46096d80b9769a877135920a90b97d98ab8d22c6c",
@@ -64,7 +64,7 @@
     "chronos_briefing_deck_compiler.py": "736e35ee907e35e580e493c6a3c7e4cb067649583c92c73bdd3e6cbf345c54af",
     "chronos_c2_cockpit.py": "70a6fed2ec7ffcb7262ff38441f7abad002a6408ea90015040a6c2dfdbc76c01",
     "chronos_cli.py": "3f017a17caa22d6a4250b1ea6516a1eac38488be6ec468ebdc227fc765b1a26b",
-    "chronos_companion_engine.py": "620ed008603d14de1da99199a88150f7f270bb8fce82d996f8e6e93cd87ea065",
+    "chronos_companion_engine.py": "03845e24bd6eac15fd5d9117e6a70f312c556a9d3c226380f1b3feef6c723cf7",
     "chronos_defense_dossier.py": "f82d4188607867293692a15d75a352dee5c5779459874cb32d93f32639ad6157",
     "chronos_dsp_engine.py": "3d3539b1e2936ba150a87da016aa3a95ca4edaa04077d54f0fa699850b363376",
     "chronos_emergency_guardian.py": "343c84af5b7c4c5e7cf21f66297d202f092c77acaceb7c22a2bc34cf8eef0093",
