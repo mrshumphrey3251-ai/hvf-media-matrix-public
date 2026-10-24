@@ -1,5 +1,13 @@
+# HVF Sovereign C2 // Deterministic Line-Ending Policy (Zero CRLF Drift)
 * text=auto eol=lf
 *.py text eol=lf
 *.md text eol=lf
 *.json text eol=lf
-*.sh text eol=lf
+*.html text eol=lf
+*.txt text eol=lf
+*.bat text eol=crlf
+*.db binary
+*.pdf binary
+*.png binary
+*.jpg binary
+*.zip binary

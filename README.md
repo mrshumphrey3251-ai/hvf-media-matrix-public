@@ -39,7 +39,10 @@
 
 ## 3. Statutory Procurement, Defense & Energy Documentation
 
-1. [**Stage 8f/8g Sovereign Verification Ledger**](SOVEREIGN_STAGE_8F_LEDGER.md) ? Complete 83-test and 631-module cryptographic verification certificate.
+1. [**Stage 8i Binary Vault & Zero-Leakage Ledger**](SOVEREIGN_STAGE_8I_LEDGER.md) ? Full 2,063-file raw-byte & SQLite VACUUM zero-PII certification (`v8.0.0-stage8i-seal`).
+2. [**Stage 8h Commercial Enclave & Release Ledger**](SOVEREIGN_STAGE_8H_LEDGER.md) ? Turnkey client enclave rebuild & [`RELEASE_MANIFEST_v8.0.0.json`](RELEASE_MANIFEST_v8.0.0.json).
+3. [**Stage 8g Public Redaction & Parity Ledger**](SOVEREIGN_STAGE_8G_LEDGER.md) ? 155-file public PII redaction & BOM-free AST verification.
+4. [**Stage 8f Fixed-Point Verification Ledger**](SOVEREIGN_STAGE_8F_LEDGER.md) ? Complete 83-test and 631-module cryptographic verification certificate.
 2. [**Energy Infrastructure Capability Statement**](ENERGY_CAPABILITY_STATEMENT.md) ? Autonomous grid resilience, NERC CIP compliance, and physical actuator verification.
 3. [**Commerce Energy Pilot Deployment Framework**](COMMERCE_ENERGY_PILOT_FRAMEWORK.md) ? 90-day bare-metal validation protocol for rural electric cooperatives and municipal utilities.
 4. [**Commercial Energy Partner Engagement Protocol**](COMMERCE_PARTNER_PROTOCOL.md) ? Operational engagement rules, data sovereignty guarantees, and pilot boundaries.
