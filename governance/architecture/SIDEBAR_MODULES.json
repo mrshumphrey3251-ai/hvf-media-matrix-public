@@ -1,58 +1,46 @@
 [
   {
-    "filename": "deploy_briefing.py",
-    "title": "\u26a1 Oklahoma Executive Conference"
+    "title": "\u26a1 Executive Action Desk",
+    "filename": "action_desk.py"
   },
   {
-    "filename": "grain_silo_aeration_and_f.py",
-    "title": "\u26a1 Grain Silo Aeration And F"
+    "title": "\u26a1 Chronos Companion Engine",
+    "filename": "chronos_companion_engine.py"
   },
   {
-    "filename": "sovereign_weather_scada.py",
-    "title": "\u26a1 Sovereign Weather Scada"
+    "title": "\u26a1 Grain Silo Aeration & Conditioning",
+    "filename": "grain_silo_aeration_and_f.py"
   },
   {
-    "filename": "access_control.py",
-    "title": "\u26a1 Access Control"
+    "title": "\u26a1 LinkedIn Lead Scheduler",
+    "filename": "linkedin_lead_scheduler.py"
   },
   {
-    "filename": "action_desk.py",
-    "title": "\u26a1 Action Desk"
+    "title": "\u26a1 Sovereign Weather SCADA",
+    "filename": "sovereign_weather_scada.py"
   },
   {
-    "filename": "chronos_companion_engine.py",
-    "title": "\u26a1 Chronos Companion Engine"
+    "title": "\u26a1 Access Control",
+    "filename": "access_control.py"
   },
   {
-    "filename": "autonomous_healing_test.py",
-    "title": "\u26a1 Autonomous Healing Test"
+    "title": "\u26a1 Ada Voice Module",
+    "filename": "ada_voice_module.py"
   },
   {
-    "filename": "ada_voice_module.py",
-    "title": "\u26a1 Ada Voice Module"
+    "title": "\u26a1 Alert Protocol",
+    "filename": "alert_protocol.py"
   },
   {
-    "filename": "alert_protocol.py",
-    "title": "\u26a1 Alert Protocol"
+    "title": "\u26a1 Api Gateway",
+    "filename": "api_gateway.py"
   },
   {
-    "filename": "api_gateway.py",
-    "title": "\u26a1 Api Gateway"
+    "title": "\u26a1 Apply Account Manager Ui",
+    "filename": "apply_account_manager_ui.py"
   },
   {
-    "filename": "app.py",
-    "title": "\u26a1 App"
-  },
-  {
-    "filename": "apply_account_manager_ui.py",
-    "title": "\u26a1 Apply Account Manager Ui"
-  },
-  {
-    "filename": "apply_dispatch_deck.py",
-    "title": "\u26a1 Apply Dispatch Deck"
-  },
-  {
-    "filename": "migrate_users_table.py",
-    "title": "\u26a1 Migrate Users Table"
+    "title": "\u26a1 Apply Dispatch Deck",
+    "filename": "apply_dispatch_deck.py"
   }
 ]

@@ -19,7 +19,7 @@ db_path = cockpit_dir / "matrix_ledger.db"
 
 BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
     "ZONE_01_SAFETY_JACKING_AND_TOOLS": {
-        "zone_title": "Zone 1: Mandatory Life-Safety, Safe Vehicle Lifting (Jack & Jack Stands) & Beginner Tool Guide",
+        "zone_title": "Zone 1: Mandatory Life-Safety, Safe Vehicle Lifting (Jack & Jack Stands) & Master Engineering Tool Guide",
         "where_and_what": (
             "Before you ever touch a wrench, you must know how to keep a 4,000-to-8,000 lb vehicle from moving or falling, and how hand tools work:\n"
             "1. **Pinch Welds & Frame Rails (Underneath Side Doors):** Look under the bottom edge of your car just behind the front wheel and just in front of the rear wheel. On unibody cars/SUVs, you will see a reinforced vertical metal lip with two small notches cut into it—that is the **Factory Pinch Weld Jacking Point**. On pickup trucks and tractors, you will see thick rectangular steel beams running front-to-back—those are the **Structural Frame Rails**. NEVER place a jack under flat floorboard sheet metal, plastic panels, or the engine oil pan!\n"
@@ -50,7 +50,7 @@ BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
         ]
     },
     "ZONE_02_UNDER_HOOD_ANATOMY_AND_FLUID_ID": {
-        "zone_title": "Zone 2: Opening the Hood, Finding the Dipstick & Identifying Every Fluid Cap (Beginner Visual Tour)",
+        "zone_title": "Zone 2: Opening the Hood, Finding the Dipstick & Identifying Every Fluid Cap (Master Engineering Visual Tour)",
         "where_and_what": (
             "When you stand in front of a vehicle, here is how to open the hood and recognize every single component without guessing:\n"
             "1. **Primary Interior Hood Release Lever:** Sit in the driver's seat and look down by your left shin/foot (under the dashboard or on the left kick panel). Pull the lever marked with a picture of a car with an open hood until you hear a loud *POP*.\n"
@@ -81,7 +81,7 @@ BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
         ]
     },
     "ZONE_03_OIL_CHANGE_AND_COOLING_SYSTEM": {
-        "zone_title": "Zone 3: Complete Beginner Oil & Filter Change, Coolant Flush, Thermostat & Serpentine Belt Guide",
+        "zone_title": "Zone 3: Complete Master Engineering Oil & Filter Change, Coolant Flush, Thermostat & Serpentine Belt Guide",
         "where_and_what": (
             "1. **Engine Oil Pan & Drain Plug:** Located at the very bottom front/center of the engine underneath the car. It is a metal (or composite) basin with a single hex bolt (`13mm`, `14mm`, `15mm`, or `17mm`) pointing sideways or downward at the lowest point. (Warning: Do not confuse the front Engine Oil Pan with the Transmission Pan further back between the front seats!).\n"
             "2. **Spin-On Oil Filter / Cartridge Housing:** A cylindrical metal can (about the size of a soup can) screwed onto the side/bottom of the engine block, OR a black hex-topped plastic cap on top of the engine housing a paper pleats cartridge.\n"
@@ -171,7 +171,7 @@ BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
             "4. **Struts & Shock Absorbers:** Hydraulic dampers inside or beside the coil springs that stop the vehicle from bouncing up and down after hitting a bump."
         ),
         "safety_precautions": [
-            "NEVER remove the center top piston nut on a MacPherson coil-over strut assembly without locking the coil spring in a rated mechanical **Coil Spring Compressor**! A compressed suspension spring stores thousands of pounds of potential energy. (For beginners, always buy a **Pre-Assembled 'Quick-Strut'** that comes with the new spring and top mount already safely assembled at the factory!).",
+            "NEVER remove the center top piston nut on a MacPherson coil-over strut assembly without locking the coil spring in a rated mechanical **Coil Spring Compressor**! A compressed suspension spring stores thousands of pounds of potential energy. (For certified technicians, always buy a **Pre-Assembled 'Quick-Strut'** that comes with the new spring and top mount already safely assembled at the factory!).",
             "Always tighten wheel lug nuts in a **Criss-Cross Star Pattern** (1 -> 3 -> 5 -> 2 -> 4 on a 5-lug wheel) using a calibrated Torque Wrench (`100 lb-ft` for cars, `140–150 lb-ft` for F-150/Silverado/Ram trucks). Tightening in a circle warps the brake rotor and causes steering wheel vibration!"
         ],
         "tools_required": [
@@ -309,7 +309,7 @@ BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
     "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE": {
         "zone_title": "Zone 13: Small Engine & Lawnmower Life-Safety, Correct Tipping Rule & 3-Step 'Won't Start' Triage",
         "where_and_what": (
-            "How a beginner identifies every part on a Push Lawnmower, Riding Mower, Generator, Pressure Washer, or Tillers (Briggs & Stratton, Honda GX/GCV, Kohler, Kawasaki, Predator):\n"
+            "How a certified technician identifies every part on a Push Lawnmower, Riding Mower, Generator, Pressure Washer, or Tillers (Briggs & Stratton, Honda GX/GCV, Kohler, Kawasaki, Predator):\n"
             "1. **Spark Plug & Thick Black Rubber Boot (Front or Side of Engine):** Sticking out of the metal cylinder head at the front of the mower is a white ceramic plug covered by a thick black rubber cap (**Spark Plug Boot**).\n"
             "2. **Engine Oil Dipstick / Fill Tube (Yellow Cap on Top of Deck):** A tall yellow or black twist-cap on top of the engine base.\n"
             "3. **Fuel Tank Cap vs. Oil Cap:** The Fuel Cap is larger (`1.5 to 2 inches` wide), sits on the plastic gas tank, and has a fuel-pump icon. NEVER pour gasoline into the yellow oil dipstick tube!\n"
@@ -411,7 +411,7 @@ BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
     "ZONE_12_PORTABLE_NVIDIA_CANBUS_PLUGIN_AND_ECU_GUIDE": {
         "zone_title": "Zone 12: Master Engineering Click-by-Click Guide to Plugging In & Unplugging the Portable NVIDIA Three-Brain CAN-Bus Enclave",
         "where_and_what": (
-            "How any beginner or fleet operator connects the **Portable NVIDIA Three-Brain Enclave** to diagnose and adjust computer issues on any car, truck, or tractor, and safely removes it to use on the next vehicle:\n"
+            "How any certified technician or fleet operator connects the **Portable NVIDIA Three-Brain Enclave** to diagnose and adjust computer issues on any car, truck, or tractor, and safely removes it to use on the next vehicle:\n"
             "1. **Where to Find the 16-Pin OBD-II Port on Any Car or Pickup Truck:** Sit in the driver's seat and look underneath the dashboard, directly below the steering wheel column (within 12 inches of your knees, above the brake/gas pedals). You will see a trapezoid-shaped **16-Pin Female Connector** (usually black or white) facing downward or outward. No tools are needed to plug into it!\n"
             "2. **Where to Find the 9-Pin J1939 / ISOBUS Port on Heavy Trucks & Tractors:** On semi-trucks and heavy pickups, look on the lower left kick panel by the driver's left foot for a **Round 9-Pin Black or Green Deutsch Connector** with a twist-lock ring. On agricultural tractors (`John Deere`, `Case IH`, `Kubota`), look on the right-hand cab pillar or behind the seat console for the **9-Pin ISO 11783 ISOBUS Diagnostic Port**."
         ),
@@ -428,7 +428,7 @@ BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
         "step_by_step": [
             "Step 1 (Locate Port & Plug In Cable): With the vehicle parked and ignition OFF, match the trapezoid shape of the 16-Pin OBD-II plug (or align the keyway notch on the round 9-Pin J1939/ISOBUS plug and twist the locking collar `1/4 turn Clockwise`). Push straight in until firm—Pin 16 (OBD-II) or Pin B (J1939) immediately powers Brain 1's isolated transceiver LED.",
             "Step 2 (Turn Key to ON / Run Mode $09 VIN Auto-Lock): Turn the vehicle ignition key to the **ON / RUN** position (or press Start button without pressing the brake pedal so dashboard lights illuminate). In `🏎️ Sovereign Auto & CAN-Bus C2`, Brain 1 automatically verifies the `60.0 Ohm` CAN-Bus loop, reads the 17-character VIN via `Mode $09`, and captures a **Baseline EEPROM SHA-256 Backup** in `matrix_ledger.db`.",
-            "Step 3 (Read Live Telemetry, Follow Beginner SOP & Apply ECU Adjustment): Review the live Fuel Trim (`STFT + LTFT`), Volumetric Efficiency (`VE_%`), and active Diagnostic Trouble Code (`DTC`). Follow the step-by-step physical check (if mechanical) and apply the **NVIDIA Brain-2 ECU Computer Adjustment** (`UDS 0x2E` parameter write or `UDS 0x31` adaptive relearn).",
+            "Step 3 (Read Live Telemetry, Follow Master Engineering SOP & Apply ECU Adjustment): Review the live Fuel Trim (`STFT + LTFT`), Volumetric Efficiency (`VE_%`), and active Diagnostic Trouble Code (`DTC`). Follow the step-by-step physical check (if mechanical) and apply the **NVIDIA Brain-2 ECU Computer Adjustment** (`UDS 0x2E` parameter write or `UDS 0x31` adaptive relearn).",
             "Step 4 (Verify Green Brain-3 Safe-Disconnect Interlock & Unplug for Next Vehicle): Confirm the green status banner reads **`SAFE TO UNPLUG NVIDIA THREE-BRAIN ENCLAVE (UDS Session 0x01 Default Restored | EEPROM Verified | WORM Sealed)`**. Turn the vehicle ignition OFF, grasp the body of the OBD-II/J1939 plug (never pull by the wire!), unplug it, and carry the NVIDIA enclave to your next vehicle or tractor!"
         ]
     }
@@ -878,7 +878,7 @@ def answer_automotive_ai_query(query_text: str) -> str:
         z16 = BUMPER_TO_BUMPER_BEGINNER_GUIDE["ZONE_16_ZERO_TURN_HYDROSTATIC_2STROKE_AND_NVIDIA_DIAG"]
         return "\n".join([
             "=== E.B.O.N.Y. SOVEREIGN SMALL ENGINE, LAWNMOWER, 2-STROKE & COMMERCIAL EFI MASTER GUIDE ===",
-            f"* **1. Mandatory Beginner Safety & Tipping Rules:** {z13['safety_precautions'][0]} | {z13['safety_precautions'][1]}",
+            f"* **1. Mandatory Master Engineering Safety & Tipping Rules:** {z13['safety_precautions'][0]} | {z13['safety_precautions'][1]}",
             f"* **2. 60-Second 'Won't Start' Triage (Spark + Fuel + Compression):** {z13['step_by_step'][0]}",
             f"* **3. Clogged Carburetor Float Bowl & Main Jet Fix (Ethanol Varnish):** {z14['step_by_step'][1]} -> {z14['step_by_step'][2]}",
             f"* **4. Mower Blade Removal, 30-Deg Butter-Knife Sharpening & Nail Balancing:** {z15['step_by_step'][2]} -> {z15['step_by_step'][3]} -> {z15['step_by_step'][4]}",
@@ -1918,10 +1918,10 @@ def render_automotive_master_deck():
     with tab_b2b:
         if is_small_engine_mode:
             allowed_keys = [k for k in BUMPER_TO_BUMPER_BEGINNER_GUIDE if k.startswith(("ZONE_13", "ZONE_14", "ZONE_15", "ZONE_16"))]
-            st.markdown("### 🌿 Complete Small-Engine, Lawnmower & 2-Stroke Beginner Repair Manual (Zones 13–16)")
+            st.markdown("### 🌿 Complete Small-Engine, Lawnmower & 2-Stroke Master Engineering Repair Manual (Zones 13–16)")
         else:
             allowed_keys = [k for k in BUMPER_TO_BUMPER_BEGINNER_GUIDE if not k.startswith(("ZONE_13", "ZONE_14", "ZONE_15", "ZONE_16"))]
-            st.markdown("### 🚗 Complete Bumper-to-Bumper Automotive, Truck & Tractor Beginner Manual (Zones 01–12)")
+            st.markdown("### 🚗 Complete Bumper-to-Bumper Automotive, Truck & Tractor Master Engineering Manual (Zones 01–12)")
 
         zone_sel = st.selectbox(
             "🔍 Select Specific System Zone to Inspect:",

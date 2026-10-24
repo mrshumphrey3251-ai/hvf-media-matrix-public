@@ -160,7 +160,7 @@ def render_auto_academy_deck():
                 st.markdown("---")
 
     with ch4:
-        st.markdown("### 🎬 Chapter 4: Complete 16-Zone Bumper-to-Bumper & Small-Engine Beginner Repair Manual + 4-Phase Shop SOPs")
+        st.markdown("### 🎬 Chapter 4: Complete 16-Zone Bumper-to-Bumper & Small-Engine Master Engineering Repair Manual + 4-Phase Shop SOPs")
         z_keys = list(eam.BUMPER_TO_BUMPER_BEGINNER_GUIDE.keys())
         sel_z = st.selectbox("Select Any of the 16 Bumper-to-Bumper Automotive, Tractor, or Small-Engine/Lawnmower Zones:", z_keys, format_func=lambda k: eam.BUMPER_TO_BUMPER_BEGINNER_GUIDE[k]["zone_title"], key="aa_ch4_zone_sel")
         zd = eam.BUMPER_TO_BUMPER_BEGINNER_GUIDE[sel_z]
