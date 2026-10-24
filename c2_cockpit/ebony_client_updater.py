@@ -149,4 +149,3 @@ def check_and_apply_downstream_updates() -> dict:
 
 if __name__ == "__main__":
     check_and_apply_downstream_updates()
-

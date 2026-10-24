@@ -1,0 +1,14 @@
+Sovereignty is not negotiated; it is engineered.
+
+In tactical logistics, uncrewed platforms, and critical infrastructure SCADA, relying on cloud brokers and software-defined safety loops is a fatal operational vulnerability. When electronic warfare severances occur in contested environments, cloud-dependent architectures fail.
+
+HVF Omni-Industrial Matrix operates with unyielding discipline and unencumbered prime authority:
+
+1. Independent Prime Authority: Operating under 10 U.S.C. § 4022 (CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5), HVF develops bare-metal cyber-physical defense architectures purpose-built for contested logistics and edge autonomy.
+2. Uncompromising Engineering Rigor: True innovation demands disciplined development. We do not rush accelerated submissions to meet artificial deadlines when methodical, uncompromised engineering yields transformative breakthroughs.
+3. The Three-Brain Architecture: Project Ebony physically separates deterministic execution, offline cognitive neural inference, and cryptographic provenance on bare-metal silicon. Actuator fail-safe boundaries are enforced by physical circuitry—the Kinetic Guillotine (<1.0 microsecond cutoff)—which cannot be bypassed, negotiated with, or overridden by corrupted software.
+4. Total Intellectual Property Sovereignty: 100% small-business Background IP retention asserted under DFARS 252.227-7018.
+
+We build for permanence, resilience, and operational superiority.
+
+#DefenseInnovation #ProjectEbony #AutonomousSystems #CyberPhysical #SCADA #EdgeAI #DoD #ContestedLogistics #SmallBusinessPrime

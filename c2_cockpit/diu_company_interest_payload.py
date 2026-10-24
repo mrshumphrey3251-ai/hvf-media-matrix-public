@@ -24,7 +24,7 @@ PITCH_300 = "HVF is a nontraditional prime submitting Project Ebony: an air-gapp
 FORM_FIELDS = [
     ("First Name", "Jeffery"),
     ("Last Name", "Humphrey"),
-    ("Email Address", "[LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive]"),
+    ("Email Address", "humphreyvirtualfarm@gmail.com"),
     ("Company Name", "HVF Omni-Industrial Matrix"),
     ("Company Website", "https://github.com/hvf-media-matrix-public"),
     ("UEI Number", "S1M4ENLHTDH5"),
