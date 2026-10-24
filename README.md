@@ -45,6 +45,7 @@
 4. [**Stage 8f Fixed-Point Verification Ledger**](SOVEREIGN_STAGE_8F_LEDGER.md) ? Complete 83-test and 631-module cryptographic verification certificate.
 5. [**Federal DoD CDAO Tradewinds Docket `9-26-3703` (Upgraded TRL 6/7)**](federal_filings/docket_9-26-3703_tradewinds_submission.md) ? 10 U.S.C. ? 4022 Prototype OTA ($1.485M) & [`CDAO_EXECUTIVE_TRANSMITTAL_MEMO.md`](CDAO_EXECUTIVE_TRANSMITTAL_MEMO.md).
 6. [**State of Oklahoma (Commerce / OMES / ODOT) Evaluation & Grant Runbook**](OKLAHOMA_COMMERCE_ODOT_EVALUATOR_RUNBOOK.md) ? Oklahoma HB 2992, Title 61, $25k Phase-1 ODOT Drone Grant & [`OKLAHOMA_CTO_TECHNICAL_EVALUATION_DOSSIER.md`](OKLAHOMA_CTO_TECHNICAL_EVALUATION_DOSSIER.md).
+7. [**Stage 9 Tradewinds (TRL 6/7) & Oklahoma Separation Ledger**](SOVEREIGN_STAGE_9_TRADEWINDS_OKLAHOMA_LEDGER.md) ? Complete executive comparison and TRL 6/7 upgrade ledger.
 2. [**Energy Infrastructure Capability Statement**](ENERGY_CAPABILITY_STATEMENT.md) ? Autonomous grid resilience, NERC CIP compliance, and physical actuator verification.
 3. [**Commerce Energy Pilot Deployment Framework**](COMMERCE_ENERGY_PILOT_FRAMEWORK.md) ? 90-day bare-metal validation protocol for rural electric cooperatives and municipal utilities.
 4. [**Commercial Energy Partner Engagement Protocol**](COMMERCE_PARTNER_PROTOCOL.md) ? Operational engagement rules, data sovereignty guarantees, and pilot boundaries.
