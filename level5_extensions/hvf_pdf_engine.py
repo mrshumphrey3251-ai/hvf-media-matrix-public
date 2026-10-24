@@ -330,7 +330,7 @@ def render() -> None:
             default_doc_id = "HVF-WORM-TRANSCRIPT-001"
             default_title = "Official 160-Hour WORM Accredited Transcript & Master Engineering Binder"
             if binder_md_path.exists():
-                default_body = binder_md_path.read_text(encoding="utf-8", errors="ignore")[:6000]
+                default_body = binder_md_path.read_text(encoding="utf-8", errors="ignore")
             else:
                 default_body = (
                     "# OFFICIAL WORM ACCREDITED TRANSCRIPT // HUMPHREY VIRTUAL FARMS LLC\n"

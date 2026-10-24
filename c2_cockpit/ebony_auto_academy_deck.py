@@ -223,15 +223,17 @@ _orig_render_auto_academy_deck = render_auto_academy_deck
 def render_auto_academy_deck(*args, **kwargs):
     _res = _orig_render_auto_academy_deck(*args, **kwargs)
     try:
+        from pathlib import Path as _P
         import hvf_pdf_engine as _hpe
+        import hvf_reference_portal as _hrp
+        _md_folder = _P(__file__).resolve().parent / "offline_textbooks"
+        _aut_matches = sorted(_md_folder.glob("*AUT*.md")) if _md_folder.exists() else []
+        _aut_txt = _aut_matches[0].read_text(encoding="utf-8", errors="ignore") if _aut_matches else ""
+        _oem_txt = _hrp._build_full_oem_portal_dossier_text() if hasattr(_hrp, "_build_full_oem_portal_dossier_text") else ""
+        _full_auto = (_aut_txt + "\n\n" + _oem_txt).strip()
         _hpe.render_pdf_export_bar(
             title="HVF Master Automotive, Heavy Diesel & Small-Engine Academy Credential & Shop Manual (AUT-01)",
-            body_text=(
-                "HUMPHREY VIRTUAL FARMS LLC // MASTER AUTOMOTIVE & SMALL-ENGINE ACADEMY (AUT-01)\n"
-                "CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: ASE A1-A8 / L1 / L3 / EETC / OSHA 1910.147\n\n"
-                "Verified Mastery Across 10 Accredited Units (200 Milestone Qs), 16 Bumper-to-Bumper & Small-Engine Repair Zones, "
-                "and 3-Stage 120-Question ASE/EETC Master Certification Examination."
-            ),
+            body_text=_full_auto,
             document_id="HVF-AUTO-MASTER-CREDENTIAL-AUT01",
             key_prefix="auto_academy_pdf_binder",
         )

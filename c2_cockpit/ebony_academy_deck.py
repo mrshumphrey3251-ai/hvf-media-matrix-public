@@ -855,7 +855,7 @@ def render_academy_deck(*args, **kwargs):
         from pathlib import Path as _P
         import hvf_pdf_engine as _hpe
         _b_md = _P(r"C:\hvf_c2\reports\executive_binder\HVF_Master_Executive_Academy_Binder_HVF-TECH-001.md")
-        _b_txt = _b_md.read_text(encoding="utf-8", errors="ignore")[:8000] if _b_md.exists() else "HVF 160-Hour Accredited Master Engineering Binder (STR-01, ENV-01, PAV-01, AUT-01)"
+        _b_txt = _b_md.read_text(encoding="utf-8", errors="ignore") if _b_md.exists() else "HVF 160-Hour Accredited Master Engineering Binder (STR-01, ENV-01, PAV-01, AUT-01)"
         _hpe.render_pdf_export_bar(
             title="HVF Master Executive Academy Binder & 160-Hour WORM Transcript (HVF-TECH-001)",
             body_text=_b_txt,
