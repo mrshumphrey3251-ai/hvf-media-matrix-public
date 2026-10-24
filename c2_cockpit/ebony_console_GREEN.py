@@ -1242,7 +1242,7 @@ elif active_module == "💬 Sovereign Command":
         if "messages" not in st.session_state or st.session_state.screen_wiped:
             db_messages = load_encrypted_messages(current_user, current_cipher)
             if not db_messages:
-                initial_msg = {"role": "assistant", "content": "Hey Jeffery, I\'m online and wired in. You want to type or talk today?"}
+                initial_msg = {"role": "assistant", "content": "CEO Jeffery Humphrey ? Level-5 Sovereign C2 Nexus online and cryptographically locked (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5). Ready for executive command dispatch."}
                 save_encrypted_message(current_user, "assistant", initial_msg["content"], current_cipher)
                 db_messages = [initial_msg]
             st.session_state.messages = db_messages
@@ -1500,10 +1500,10 @@ elif active_module == "🏎️ Sovereign Auto & CAN-Bus C2":
     _eam_mod.render_automotive_master_deck()
 
 elif active_module == "🌾 Drone Diagnostics":
-    st.subheader("🌾 Sovereign sUAS Drone Diagnostics, Optical GLI & Beginner-to-Master Flight Safety Enclave")
+    st.subheader("🌾 Sovereign sUAS Drone Diagnostics, Optical GLI & FAA Part 107 Master Flight Safety Enclave")
     d_tab_safe, d_tab_maint, d_tab_opt = st.tabs([
         "⚠️ 1. Mandatory sUAS Life-Safety & All Flight Hazards (READ FIRST)",
-        "🛠️ 2. Beginner-to-Master Drone Pre-Flight, Repair & OEM Parts Guide",
+        "🛠️ 2. FAA Part 107 sUAS Pre-Flight, Airframe Repair & OEM Parts Specification",
         "🚁 3. Live Optical GLI Payload & RTMP Telemetry Stream"
     ])
     with d_tab_safe:
@@ -1537,7 +1537,7 @@ elif active_module == "🌾 Drone Diagnostics":
             "  - **Avionics & Optical Flow:** `Cube Orange+ ADS-B Flight Controller (HX4-06150)` | `HereFlow Optical Flow + LiDAR CAN Node (HX4-06064)` | `Here3+ RTK GNSS CAN Receiver`."
         )
         st.success(
-            "**✅ 5-Step Beginner Pre-Flight & Post-Repair Verification Checklist:**\n"
+            "**✅ 5-Step Mandatory FAA Part 107 Pre-Flight & Post-Repair Verification Checklist:**\n"
             "1. **Battery Cell Gate (Drone UNPLUGGED):** Plug LiPo pack into your handheld cell checker. Verify all cells read `4.15V to 4.20V` (100% charged) and cell-to-cell difference is `<= 0.02V`. Inspect pack for zero puffing.\n"
             "2. **Frame & Prop-Screw Twist Check (Drone UNPLUGGED):** Gently flex each carbon-fiber arm listening for cracks, spin each motor bell by hand to feel for smooth bearing movement (zero gritty magnets), and verify all CW/CCW propellers are locked with zero chipped edges.\n"
             "3. **Optical & Gimbal Lens Clean:** Wipe the downward optical-flow camera, LiDAR window, and main RGB/Thermal gimbal lens with a clean microfiber cloth and remove the gimbal transport lock clamp!\n"
@@ -2322,7 +2322,7 @@ elif active_module == "🌾 Grain Silo Aeration":
 
     # STAGE 2: BLIND-SPOT INTERROGATOR
     st.markdown("#### 🔍 2. The Blind-Spot Interrogator (What You Don't Know to Ask)")
-    st.markdown("- **Beginner Mistake:** Turning fans on during rain or humid nights because the air 'feels cool.' High relative humidity re-wets the bottom grain layer, creating a concrete-like crust that blocks all future airflow.")
+    st.markdown("- **Psychrometric Operational Hazard:** Energizing aeration fans during precipitation or high ambient relative humidity solely because ambient dry-bulb temperature feels cool. High relative humidity re-wets the bottom grain layer, creating a concrete-like crust that blocks all future airflow.")
     st.markdown("- **Hidden Hazard:** Combustible grain dust explosions. Running aeration fans with ungrounded ducting or a slipping motor belt generates static discharge or friction sparks capable of igniting an explosive secondary dust cloud.")
     st.markdown("- **Directive to Ebony:** Command Ebony to calculate real-time EMC from outdoor ambient dry-bulb/wet-bulb sensors before energizing the 480V aeration contactor.")
 
