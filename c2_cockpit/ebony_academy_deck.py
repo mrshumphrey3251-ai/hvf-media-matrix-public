@@ -796,7 +796,7 @@ def render_academy_deck():
                         st.write(f":red[**{fb['id']} (Incorrect):**] Selected: `{fb['your_answer']}` | Correct: `{fb['correct_answer']}` — {fb['explanation']}")
 
 
-    # CHAPTER 6: BEGINNER'S GLOSSARY, SYMBOL DECODER, U.S. UNITS & STATUTORY REFERENCES
+    # CHAPTER 6: STATUTORY NOMENCLATURE REGISTRY, SYMBOL DECODER, U.S. UNITS & STATUTORY REFERENCES
     with tab_glossary:
         st.subheader("📖 Engineering Master Glossary, Math Symbol Decoder, U.S. Units & Statutory References")
         st.success(

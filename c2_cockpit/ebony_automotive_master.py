@@ -17,7 +17,7 @@ db_path = cockpit_dir / "matrix_ledger.db"
 
 # Modular Registry: New vehicles, DTCs, maintenance schedules, and ECU maps can be appended at runtime without rewriting code
 
-BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
+BUMPER_TO_BUMPER_MASTER_GUIDE = {
     "ZONE_01_SAFETY_JACKING_AND_TOOLS": {
         "zone_title": "Zone 1: Mandatory Life-Safety, Safe Vehicle Lifting (Jack & Jack Stands) & Master Engineering Tool Guide",
         "where_and_what": (
@@ -362,7 +362,7 @@ BUMPER_TO_BUMPER_BEGINNER_GUIDE = {
         "zone_title": "Zone 15: Lawnmower Blade Removal, 30-Degree Sharpening, Nail Balancing, Oil Change & Pull-Cord Fix",
         "where_and_what": (
             "1. **Cutting Edge vs. Sail/Lift Wing of a Mower Blade:** Only the outer 3 to 4 inches at each end of a lawnmower blade actually cut the grass! The curved upward-bent fin on the back edge is the **Air-Lift Sail** (which creates vacuum to stand the grass up and blow clippings into the bag—never sharpen the curved back sail!).\n"
-            "2. **Which Way Does a Mower Blade Go Back On? ('Grass Side Down' / 'Wings Point Up'):** Beginners often install a mower blade upside-down after sharpening! Remember: the flat bottom side of the blade is usually stamped **`GRASS SIDE` or `BOTTOM`**, and the curved **Air-Lift Wings on the back of the blade must ALWAYS point UP toward the underside of the metal mower deck** (so the sharpened bevel faces the sky)!"
+            "2. **Which Way Does a Mower Blade Go Back On? ('Grass Side Down' / 'Wings Point Up'):** Uncertified technicians often install a mower blade upside-down after sharpening! Remember: the flat bottom side of the blade is usually stamped **`GRASS SIDE` or `BOTTOM`**, and the curved **Air-Lift Wings on the back of the blade must ALWAYS point UP toward the underside of the metal mower deck** (so the sharpened bevel faces the sky)!"
         ),
         "safety_precautions": [
             "ALWAYS disconnect the Spark Plug Wire Boot before tipping the mower or touching the blade!",
@@ -611,41 +611,41 @@ PREVENTATIVE_MAINTENANCE_MATRIX = [
         "interval_miles": 5000,
         "tier": "Tier 1: Engine Oil & Filter Change, Tire Rotation, Lug Torque & 12V Battery Check",
         "tasks": "Full-Synthetic Engine Oil (API SP / ILSAC GF-6, 5W-30 or 0W-20) & Spin-On/Cartridge Filter; 4-Tire Cross-Rotation; Inspect Brake Pad Thickness (>= 4.0 mm) & 12V Battery Resting Voltage (>= 12.60V DC).",
-        "beginner_where": "Yellow/Orange loop on engine side = Dipstick; Top cap marked 'OIL' = Filler; Bottom engine pan bolt (13mm-17mm) = Drain Plug.",
-        "beginner_tools": "3/8-inch Ratchet, 13-17mm 6-Point Socket, Oil Filter Wrench, 10-Qt Drain Pan, Funnel, 1/2-inch Torque Wrench (100-140 lb-ft for lugs, 20-25 lb-ft for drain plug), Jack + 2 Locked Jack Stands + Wheel Chocks.",
-        "beginner_safety": "Park on flat concrete, chock rear wheels, support on locked Jack Stands (NEVER trust a hydraulic jack alone!), verify old rubber filter O-ring came off with old filter, and pre-lube new filter O-ring."
+        "master_where": "Yellow/Orange loop on engine side = Dipstick; Top cap marked 'OIL' = Filler; Bottom engine pan bolt (13mm-17mm) = Drain Plug.",
+        "master_tools": "3/8-inch Ratchet, 13-17mm 6-Point Socket, Oil Filter Wrench, 10-Qt Drain Pan, Funnel, 1/2-inch Torque Wrench (100-140 lb-ft for lugs, 20-25 lb-ft for drain plug), Jack + 2 Locked Jack Stands + Wheel Chocks.",
+        "master_safety": "Park on flat concrete, chock rear wheels, support on locked Jack Stands (NEVER trust a hydraulic jack alone!), verify old rubber filter O-ring came off with old filter, and pre-lube new filter O-ring."
     },
     {
         "interval_miles": 15000,
         "tier": "Tier 2: Engine Air Filter, Cabin HEPA Filter, MAF Sensor Clean & Wiper Blades",
         "tasks": "Replace Engine Air Filter & Clean Mass Air Flow (MAF) Sensor; Replace Cabin Air Filter behind Passenger Glovebox; Replace Wiper Blades & Inspect Serpentine Belt for cracks.",
-        "beginner_where": "Engine Air Box = black square box connected to intake tube near front fender; Cabin Filter = behind passenger glovebox; MAF Sensor = 4-to-6 wire plug on intake tube.",
-        "beginner_tools": "8mm Socket / Screwdriver, Can of Dedicated CRC MAF Sensor Cleaner (NEVER use brake/carb cleaner!), Folded Bath Towel (to protect windshield glass when changing wipers).",
-        "beginner_safety": "Never touch the tiny sensing wire inside the MAF sensor with fingers or Q-tips; match the 'AIR FLOW' arrow on the cabin filter; lay a towel on the windshield so the metal wiper arm cannot snap down and crack the glass."
+        "master_where": "Engine Air Box = black square box connected to intake tube near front fender; Cabin Filter = behind passenger glovebox; MAF Sensor = 4-to-6 wire plug on intake tube.",
+        "master_tools": "8mm Socket / Screwdriver, Can of Dedicated CRC MAF Sensor Cleaner (NEVER use brake/carb cleaner!), Folded Bath Towel (to protect windshield glass when changing wipers).",
+        "master_safety": "Never touch the tiny sensing wire inside the MAF sensor with fingers or Q-tips; match the 'AIR FLOW' arrow on the cabin filter; lay a towel on the windshield so the metal wiper arm cannot snap down and crack the glass."
     },
     {
         "interval_miles": 30000,
         "tier": "Tier 3: Hydraulic Brake Fluid Flush, Front/Rear Differential Gear Oil & Transfer Case",
         "tasks": "Flush Hygroscopic DOT 3 / DOT 4 Brake Fluid (moisture < 1.5%, boiling point > 400 deg F); Drain & Refill Front/Rear Differential (`75W-90` / `75W-140` GL-5) and 4WD Transfer Case; Clean Direct-Injection Intake Valves.",
-        "beginner_where": "Brake Reservoir = translucent box on driver's firewall; Differential ('Pumpkin') = round iron housing in center of axle between wheels (has a Top Fill Plug and Bottom Drain Plug).",
-        "beginner_tools": "3/8-inch & 1/2-inch Drive Ratchets, Fluid Hand Transfer Pump, 10mm/11mm Flare-Nut Wrench (for brake bleeder screws), Clear Bleeder Hose, Torque Wrench (25-35 lb-ft).",
-        "beginner_safety": "GOLDEN RULE: Always loosen and remove the TOP FILL PLUG on a differential or transfer case BEFORE removing the BOTTOM DRAIN PLUG! When bleeding brakes (RR -> LR -> FR -> FL), never let the master cylinder reservoir run dry."
+        "master_where": "Brake Reservoir = translucent box on driver's firewall; Differential ('Pumpkin') = round iron housing in center of axle between wheels (has a Top Fill Plug and Bottom Drain Plug).",
+        "master_tools": "3/8-inch & 1/2-inch Drive Ratchets, Fluid Hand Transfer Pump, 10mm/11mm Flare-Nut Wrench (for brake bleeder screws), Clear Bleeder Hose, Torque Wrench (25-35 lb-ft).",
+        "master_safety": "GOLDEN RULE: Always loosen and remove the TOP FILL PLUG on a differential or transfer case BEFORE removing the BOTTOM DRAIN PLUG! When bleeding brakes (RR -> LR -> FR -> FL), never let the master cylinder reservoir run dry."
     },
     {
         "interval_miles": 60000,
         "tier": "Tier 4: Automatic Transmission Fluid (ATF) & Filter, Iridium Spark Plugs & Coolant Flush",
         "tasks": "Service Automatic Transmission Fluid (ATF) & Filter + Execute NVIDIA Brain-2 UDS 0x31 TCM CVI Fast-Learn; Replace Iridium Spark Plugs (gap 0.032-0.044 in, torque 15-18 lb-ft); Flush 50/50 Coolant (-34 deg F protection).",
-        "beginner_where": "Spark Plugs = under the row of Ignition Coils on top of cylinder head (8mm/10mm bolt); Transmission Pan = rectangular pan under vehicle behind engine oil pan; Radiator Drain Petcock = bottom corner of front radiator.",
-        "beginner_tools": "5/8-inch (16mm) Magnetic Spark Plug Socket, 6-inch Extension, Compressed Air, Dielectric Grease, 3/8-inch Torque Wrench (15 lb-ft for plugs, 8-10 lb-ft for trans pan bolts), NVIDIA CAN-Bus Enclave.",
-        "beginner_safety": "NEVER open a hot radiator cap or remove spark plugs from a hot aluminum cylinder head! Blow compressed air into spark plug wells before unscrewing plugs so dirt cannot fall into the cylinders; start new spark plugs 5 full turns by hand."
+        "master_where": "Spark Plugs = under the row of Ignition Coils on top of cylinder head (8mm/10mm bolt); Transmission Pan = rectangular pan under vehicle behind engine oil pan; Radiator Drain Petcock = bottom corner of front radiator.",
+        "master_tools": "5/8-inch (16mm) Magnetic Spark Plug Socket, 6-inch Extension, Compressed Air, Dielectric Grease, 3/8-inch Torque Wrench (15 lb-ft for plugs, 8-10 lb-ft for trans pan bolts), NVIDIA CAN-Bus Enclave.",
+        "master_safety": "NEVER open a hot radiator cap or remove spark plugs from a hot aluminum cylinder head! Blow compressed air into spark plug wells before unscrewing plugs so dirt cannot fall into the cylinders; start new spark plugs 5 full turns by hand."
     },
     {
         "interval_miles": 100000,
         "tier": "Tier 5: Timing Belt/Chain & Water Pump, Pre-Assembled Quick-Struts, Tie Rods & SAS Calibration",
         "tasks": "Replace Timing Belt / Inspect Timing Chain Tensioners & Water Pump; Replace Front Quick-Strut Assemblies, Rear Shocks, Ball Joints & Tie Rod Ends; 4-Wheel Laser Alignment + NVIDIA ABS Steering Angle Sensor (SAS) Zero-Point Calibration.",
-        "beginner_where": "Struts = coil spring & damper assembly behind front wheels; Tie Rods = steering linkage rods connecting steering rack to wheel knuckle (test with 3-and-9 o'clock tire shake).",
-        "beginner_tools": "Pre-Assembled Quick-Struts (so you never have to compress a live coil spring!), 18mm-24mm Socket Set, Breaker Bar, Pry Bar, Torque Wrench, NVIDIA Three-Brain CAN-Bus Enclave.",
-        "beginner_safety": "NEVER remove the center top nut of a coil-over strut without a rated cage spring compressor—always install pre-assembled Quick-Struts! Count exact threads when unscrewing outer tie rods and run UDS 0x31 SAS Zero-Point Calibration after alignment."
+        "master_where": "Struts = coil spring & damper assembly behind front wheels; Tie Rods = steering linkage rods connecting steering rack to wheel knuckle (test with 3-and-9 o'clock tire shake).",
+        "master_tools": "Pre-Assembled Quick-Struts (so you never have to compress a live coil spring!), 18mm-24mm Socket Set, Breaker Bar, Pry Bar, Torque Wrench, NVIDIA Three-Brain CAN-Bus Enclave.",
+        "master_safety": "NEVER remove the center top nut of a coil-over strut without a rated cage spring compressor—always install pre-assembled Quick-Struts! Count exact threads when unscrewing outer tie rods and run UDS 0x31 SAS Zero-Point Calibration after alignment."
     }
 ]
 
@@ -872,10 +872,10 @@ def answer_automotive_ai_query(query_text: str) -> str:
             matched_dtc = code_key
             break
     if any(w in q_up for w in ["MOWER", "LAWNMOWER", "SMALL ENGINE", "CARBURETOR", "WEEDEATER", "TRIMMER", "CHAINSAW", "BLOWER", "2-STROKE", "2 STROKE", "PULL CORD", "BLADE", "ZERO TURN"]):
-        z13 = BUMPER_TO_BUMPER_BEGINNER_GUIDE["ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE"]
-        z14 = BUMPER_TO_BUMPER_BEGINNER_GUIDE["ZONE_14_CARBURETOR_CLEANING_ETHANOL_AND_GOVERNOR"]
-        z15 = BUMPER_TO_BUMPER_BEGINNER_GUIDE["ZONE_15_BLADE_SHARPENING_BALANCING_OIL_AND_RECOIL"]
-        z16 = BUMPER_TO_BUMPER_BEGINNER_GUIDE["ZONE_16_ZERO_TURN_HYDROSTATIC_2STROKE_AND_NVIDIA_DIAG"]
+        z13 = BUMPER_TO_BUMPER_MASTER_GUIDE["ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE"]
+        z14 = BUMPER_TO_BUMPER_MASTER_GUIDE["ZONE_14_CARBURETOR_CLEANING_ETHANOL_AND_GOVERNOR"]
+        z15 = BUMPER_TO_BUMPER_MASTER_GUIDE["ZONE_15_BLADE_SHARPENING_BALANCING_OIL_AND_RECOIL"]
+        z16 = BUMPER_TO_BUMPER_MASTER_GUIDE["ZONE_16_ZERO_TURN_HYDROSTATIC_2STROKE_AND_NVIDIA_DIAG"]
         return "\n".join([
             "=== E.B.O.N.Y. SOVEREIGN SMALL ENGINE, LAWNMOWER, 2-STROKE & COMMERCIAL EFI MASTER GUIDE ===",
             f"* **1. Mandatory Master Engineering Safety & Tipping Rules:** {z13['safety_precautions'][0]} | {z13['safety_precautions'][1]}",
@@ -1428,8 +1428,8 @@ UNABRIDGED_ZONE_HAZARD_ADDENDUM = {
 }
 
 for _z_key, _extra_hazards in UNABRIDGED_ZONE_HAZARD_ADDENDUM.items():
-    if _z_key in BUMPER_TO_BUMPER_BEGINNER_GUIDE:
-        _curr_list = BUMPER_TO_BUMPER_BEGINNER_GUIDE[_z_key]["safety_precautions"]
+    if _z_key in BUMPER_TO_BUMPER_MASTER_GUIDE:
+        _curr_list = BUMPER_TO_BUMPER_MASTER_GUIDE[_z_key]["safety_precautions"]
         for _eh in _extra_hazards:
             if _eh not in _curr_list:
                 _curr_list.append(_eh)
@@ -1646,12 +1646,12 @@ def query_ebony_mechanic_assistant(
     elif best_key == "CUSTOM_WATER_PUMP":
         c_data = SPECIALIZED_COMPONENT_GUIDES["water pump"]
         base_guide = {"zone_title": c_data["title"], "where_and_what": c_data["where"], "safety_precautions": list(c_data["safety"]), "tools_required": list(c_data["tools"]), "step_by_step": list(c_data["steps"])}
-    elif best_key and best_key in BUMPER_TO_BUMPER_BEGINNER_GUIDE:
-        b_orig = BUMPER_TO_BUMPER_BEGINNER_GUIDE[best_key]
+    elif best_key and best_key in BUMPER_TO_BUMPER_MASTER_GUIDE:
+        b_orig = BUMPER_TO_BUMPER_MASTER_GUIDE[best_key]
         base_guide = {"zone_title": b_orig["zone_title"], "where_and_what": b_orig["where_and_what"], "safety_precautions": list(b_orig["safety_precautions"]), "tools_required": list(b_orig["tools_required"]), "step_by_step": list(b_orig["step_by_step"])}
     else:
         default_key = "ZONE_13_SMALL_ENGINE_SAFETY_AND_NO_START_TRIAGE" if active_domain == "SMALL_ENGINE" else "ZONE_01_SAFETY_JACKING_AND_TOOLS"
-        b_orig = BUMPER_TO_BUMPER_BEGINNER_GUIDE[default_key]
+        b_orig = BUMPER_TO_BUMPER_MASTER_GUIDE[default_key]
         base_guide = {"zone_title": f"Custom Procedure for: {q_topic.title()}", "where_and_what": b_orig["where_and_what"], "safety_precautions": list(b_orig["safety_precautions"]), "tools_required": list(b_orig["tools_required"]), "step_by_step": list(b_orig["step_by_step"])}
 
     # DYNAMICALLY CUSTOMIZE EVERY FIELD OF THE GUIDE WITH THE USER'S EXACT YEAR, MAKE, MODEL, ENGINE, QUESTION & PRIMARY PART NUMBER!
@@ -1917,19 +1917,19 @@ def render_automotive_master_deck():
     # TAB 2: DOMAIN-FILTERED BUMPER-TO-BUMPER OR SMALL-ENGINE MANUAL
     with tab_b2b:
         if is_small_engine_mode:
-            allowed_keys = [k for k in BUMPER_TO_BUMPER_BEGINNER_GUIDE if k.startswith(("ZONE_13", "ZONE_14", "ZONE_15", "ZONE_16"))]
+            allowed_keys = [k for k in BUMPER_TO_BUMPER_MASTER_GUIDE if k.startswith(("ZONE_13", "ZONE_14", "ZONE_15", "ZONE_16"))]
             st.markdown("### 🌿 Complete Small-Engine, Lawnmower & 2-Stroke Master Engineering Repair Manual (Zones 13–16)")
         else:
-            allowed_keys = [k for k in BUMPER_TO_BUMPER_BEGINNER_GUIDE if not k.startswith(("ZONE_13", "ZONE_14", "ZONE_15", "ZONE_16"))]
+            allowed_keys = [k for k in BUMPER_TO_BUMPER_MASTER_GUIDE if not k.startswith(("ZONE_13", "ZONE_14", "ZONE_15", "ZONE_16"))]
             st.markdown("### 🚗 Complete Bumper-to-Bumper Automotive, Truck & Tractor Master Engineering Manual (Zones 01–12)")
 
         zone_sel = st.selectbox(
             "🔍 Select Specific System Zone to Inspect:",
             allowed_keys,
-            format_func=lambda k: BUMPER_TO_BUMPER_BEGINNER_GUIDE[k]["zone_title"],
+            format_func=lambda k: BUMPER_TO_BUMPER_MASTER_GUIDE[k]["zone_title"],
             key=f"b2b_clean_sel_{domain_code}"
         )
-        z_data = BUMPER_TO_BUMPER_BEGINNER_GUIDE[zone_sel]
+        z_data = BUMPER_TO_BUMPER_MASTER_GUIDE[zone_sel]
         zt_safe, zt1, zt3, zt4 = st.tabs([
             "⚠️ 1. Mandatory Life-Safety & All Task Hazards (READ FIRST)",
             "📍 2. Where It Is & Visual ID",
@@ -2136,3 +2136,8 @@ if __name__ == "__main__":
         print(f"  Hot-Swap Status : {r['hot_swap_status']}")
         print(f"  WORM SHA-256    : {r['post_cal_record_sha256']}")
         print("-" * 92)
+
+def __getattr__(name: str):
+    if name.startswith("BUMPER_TO_BUMPER_") and name.endswith("_GUIDE"):
+        return BUMPER_TO_BUMPER_MASTER_GUIDE
+    raise AttributeError(name)

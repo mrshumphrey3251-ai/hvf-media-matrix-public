@@ -1466,7 +1466,7 @@ def get_course_units(course_code: str):
         for _idx, _u in enumerate(units):
             if _idx < len(AUT01_STANDALONE_ACADEMIC_MODULES):
                 _m_spec = AUT01_STANDALONE_ACADEMIC_MODULES[_idx]
-                _z_obj = _eam_lib.BUMPER_TO_BUMPER_BEGINNER_GUIDE.get(_m_spec["zone_ref"], {})
+                _z_obj = _eam_lib.BUMPER_TO_BUMPER_MASTER_GUIDE.get(_m_spec["zone_ref"], {})
                 _u["unit"] = _m_spec["unit"]
                 _u["title"] = _m_spec["title"]
                 _u["governing_eq"] = _m_spec["governing_eq"]
@@ -2029,7 +2029,7 @@ def _apply_six_part_old_school_textbook(u_dict: dict, course_code: str) -> dict:
     if course_code == "AUT-01" and (u_num - 1) < len(AUT01_STANDALONE_ACADEMIC_MODULES):
         import ebony_automotive_master as _eam_lib
         _m_spec = AUT01_STANDALONE_ACADEMIC_MODULES[u_num - 1]
-        _z_obj = _eam_lib.BUMPER_TO_BUMPER_BEGINNER_GUIDE.get(_m_spec["zone_ref"], {})
+        _z_obj = _eam_lib.BUMPER_TO_BUMPER_MASTER_GUIDE.get(_m_spec["zone_ref"], {})
         u_dict["title"] = _m_spec["title"]
         u_dict["governing_eq"] = _m_spec["governing_eq"]
         u_dict["equations"] = _m_spec["governing_eq"]
