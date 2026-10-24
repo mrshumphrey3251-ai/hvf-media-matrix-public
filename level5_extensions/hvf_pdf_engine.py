@@ -90,7 +90,7 @@ class HVFSovereignPDFEngine:
         body_text: str,
         document_id: str = "HVF-DOC-2026-001",
         classification: str = "SOVEREIGN LEVEL-5 EXECUTIVE DELIVERABLE // PUBLIC/PRIVATE PARITY",
-        lines_per_page: int = 44,
+        lines_per_page: int = 42,
     ) -> SovereignPDFArtifact:
         """
         Compiles any Markdown, CSV, JSON, or technical SOP text into a valid multi-page ISO 32000-1 PDF
@@ -150,12 +150,14 @@ class HVFSovereignPDFEngine:
                     stream_cmds.append(f"({clean_ln}) Tj")
                 stream_cmds.append("0 -13 Td")
 
-            # Footer Seal
+            # Two-Line Unclipped Executive Footer Seal (Full 64-Char SHA-256 + Page X OF Y within 88-char margin)
             stream_cmds.extend([
                 "/F1 8 Tf",
-                f"({self._sanitize_pdf_line('=' * 92)}) Tj",
-                "0 -12 Td",
-                f"({self._sanitize_pdf_line(f'WORM SHA-256 SEAL: {payload_hash[:48]}... | GENERATED: {ts_utc} | PAGE {idx + 1} OF {total_pages}')}) Tj",
+                f"({self._sanitize_pdf_line('=' * 88)}) Tj",
+                "0 -11 Td",
+                f"({self._sanitize_pdf_line(f'WORM SHA-256 SEAL: {payload_hash}')}) Tj",
+                "0 -11 Td",
+                f"({self._sanitize_pdf_line(f'GENERATED: {ts_utc} | CAGE: {self.cage_code} | UEI: {self.uei_code} | PAGE {idx + 1} OF {total_pages}')}) Tj",
                 "ET",
             ])
 

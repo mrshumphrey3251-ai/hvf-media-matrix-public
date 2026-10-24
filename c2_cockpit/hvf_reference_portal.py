@@ -303,17 +303,107 @@ def render_reference_portal(course_code: str = "STR-01", unit_num: int = None):
         st.markdown("---")
 
 
+def _build_full_oem_portal_dossier_text() -> str:
+    lines = [
+        "# SECTION 1: SOVEREIGN 1982-2026 OEM ENGINEERING & SHOP FLOOR REFERENCE REGISTRY",
+        "Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | OK Title 61 / HB 2992",
+        "Mandatory Safety Standard: OSHA 29 CFR 1910.147 Lockout/Tagout & SAE J1715 High-Voltage Isolation",
+        "",
+    ]
+    # Include all verified online OEM portals & technical libraries defined in hvf_reference_portal
+    for k, val in globals().items():
+        if isinstance(val, list) and val and isinstance(val[0], dict):
+            lines.append(f"# REGISTRY TABLE: {k}")
+            for item in val:
+                row_str = " | ".join(f"{ik}: {iv}" for ik, iv in item.items())
+                lines.append(f"- {row_str}")
+            lines.append("")
+        elif isinstance(val, dict) and val and k.isupper():
+            lines.append(f"# SPECIFICATION MATRIX: {k}")
+            for dk, dv in val.items():
+                if isinstance(dv, dict):
+                    sub_str = " | ".join(f"{sk}: {sv}" for sk, sv in dv.items())
+                    lines.append(f"- [{dk}] {sub_str}")
+                else:
+                    lines.append(f"- [{dk}] {dv}")
+            lines.append("")
+
+    # Include all 16 Automotive, Heavy Diesel, Tractor & Small-Engine Repair Zones from ebony_automotive_master
+    try:
+        import ebony_automotive_master as _eam
+        guide = getattr(_eam, "BUMPER_TO_BUMPER_MASTER_GUIDE", {})
+        if guide:
+            lines.append("# SECTION 2: COMPLETE 16-ZONE AUTOMOTIVE, DIESEL, TRACTOR & SMALL-ENGINE OEM MANUAL")
+            for z_key, z_val in guide.items():
+                lines.append(f"## {z_val.get('zone_title', z_key)}")
+                lines.append(f"Subsystem Scope: {z_val.get('subsystem_scope', '')}")
+                lines.append(f"Required Master Tools: {z_val.get('tools_and_ppe', '')}")
+                for s_item in z_val.get("safety_precautions", []):
+                    lines.append(f"  [SAFETY] {s_item}")
+                for p_item in z_val.get("step_by_step_procedure", []):
+                    lines.append(f"  [STEP] {p_item}")
+                lines.append(f"  [TORQUE & FLUID SPECS] {z_val.get('torque_and_fluid_specs', '')}")
+                lines.append(f"  [VERIFICATION] {z_val.get('post_repair_verification', '')}")
+                lines.append("")
+    except Exception:
+        pass
+    return "\n".join(lines)
+
+
+def _build_full_oem_portal_dossier_text() -> str:
+    lines = [
+        "# SECTION 1: SOVEREIGN 1982-2026 OEM ENGINEERING & SHOP FLOOR REFERENCE REGISTRY",
+        "Entity: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | OK Title 61 / HB 2992",
+        "Mandatory Safety Standard: OSHA 29 CFR 1910.147 Lockout/Tagout & SAE J1715 High-Voltage Isolation",
+        "",
+    ]
+    # Include all verified online OEM portals & technical libraries defined in hvf_reference_portal
+    for k, val in globals().items():
+        if isinstance(val, list) and val and isinstance(val[0], dict):
+            lines.append(f"# REGISTRY TABLE: {k}")
+            for item in val:
+                row_str = " | ".join(f"{ik}: {iv}" for ik, iv in item.items())
+                lines.append(f"- {row_str}")
+            lines.append("")
+        elif isinstance(val, dict) and val and k.isupper():
+            lines.append(f"# SPECIFICATION MATRIX: {k}")
+            for dk, dv in val.items():
+                if isinstance(dv, dict):
+                    sub_str = " | ".join(f"{sk}: {sv}" for sk, sv in dv.items())
+                    lines.append(f"- [{dk}] {sub_str}")
+                else:
+                    lines.append(f"- [{dk}] {dv}")
+            lines.append("")
+
+    # Include all 16 Automotive, Heavy Diesel, Tractor & Small-Engine Repair Zones from ebony_automotive_master
+    try:
+        import ebony_automotive_master as _eam
+        guide = getattr(_eam, "BUMPER_TO_BUMPER_MASTER_GUIDE", {})
+        if guide:
+            lines.append("# SECTION 2: COMPLETE 16-ZONE AUTOMOTIVE, DIESEL, TRACTOR & SMALL-ENGINE OEM MANUAL")
+            for z_key, z_val in guide.items():
+                lines.append(f"## {z_val.get('zone_title', z_key)}")
+                lines.append(f"Subsystem Scope: {z_val.get('subsystem_scope', '')}")
+                lines.append(f"Required Master Tools: {z_val.get('tools_and_ppe', '')}")
+                for s_item in z_val.get("safety_precautions", []):
+                    lines.append(f"  [SAFETY] {s_item}")
+                for p_item in z_val.get("step_by_step_procedure", []):
+                    lines.append(f"  [STEP] {p_item}")
+                lines.append(f"  [TORQUE & FLUID SPECS] {z_val.get('torque_and_fluid_specs', '')}")
+                lines.append(f"  [VERIFICATION] {z_val.get('post_repair_verification', '')}")
+                lines.append("")
+    except Exception:
+        pass
+    return "\n".join(lines)
+
+
 def _render_portal_pdf_bar(key_prefix: str = "global") -> None:
     try:
         import hvf_pdf_engine as _hpe
+        full_dossier_txt = _build_full_oem_portal_dossier_text()
         _hpe.render_pdf_export_bar(
-            title="HVF 1982-2026 Master OEM Engineering & Shop Floor Reference Dossier",
-            body_text=(
-                "HUMPHREY VIRTUAL FARMS LLC // 1982-2026 MASTER OEM REFERENCE PORTAL\n"
-                "CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK Title 61 / HB 2992 | OSHA 1910.147\n\n"
-                "Verified Offline Textbooks (STR-01, ENV-01, PAV-01, AUT-01) and 1982-2026 Automotive, Heavy Diesel, "
-                "Agricultural Tractor & Small-Engine/Lawnmower Factory Specifications Verified Online (HTTP 200 OK)."
-            ),
+            title="HVF 1982-2026 Master OEM Engineering & 16-Zone Shop Floor Reference Manual",
+            body_text=full_dossier_txt,
             document_id="HVF-OEM-PORTAL-1982-2026",
             key_prefix=f"portal_pdf_{key_prefix}",
         )
