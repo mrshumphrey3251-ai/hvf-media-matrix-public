@@ -64,3 +64,23 @@ class ChronosDefenseDossierExporter:
             json.dump(dossier, f, indent=4)
         return out
 
+
+def _export_pdf_ChronosDefenseDossierExporter(self, output_path=None) -> bytes:
+    import json as _json
+    from pathlib import Path as _Path
+    import hvf_pdf_engine as _hpe
+    payload = self.compile_dossier()
+    title_str = payload.get("title") or payload.get("proposal_title") or "ChronosDefenseDossierExporter Executive Deliverable"
+    body_str = _json.dumps(payload, indent=2)
+    art = _hpe.HVFSovereignPDFEngine().compile_sovereign_pdf(
+        title=str(title_str),
+        body_text=body_str,
+        document_id="HVF-DEFENSE-DOSSIER-1AHA8",
+    )
+    if output_path:
+        _p = _Path(output_path)
+        _p.parent.mkdir(parents=True, exist_ok=True)
+        _p.write_bytes(art.pdf_bytes)
+    return art.pdf_bytes
+
+ChronosDefenseDossierExporter.export_pdf = _export_pdf_ChronosDefenseDossierExporter

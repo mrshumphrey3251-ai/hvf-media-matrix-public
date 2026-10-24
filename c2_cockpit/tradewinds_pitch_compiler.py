@@ -47,3 +47,23 @@ class TradewindsPitchCompiler:
             json.dump(data, f, indent=4)
         return out
 
+
+def _export_pdf_TradewindsPitchCompiler(self, output_path=None) -> bytes:
+    import json as _json
+    from pathlib import Path as _Path
+    import hvf_pdf_engine as _hpe
+    payload = self.compile_tradewinds_package()
+    title_str = payload.get("title") or payload.get("proposal_title") or "TradewindsPitchCompiler Executive Deliverable"
+    body_str = _json.dumps(payload, indent=2)
+    art = _hpe.HVFSovereignPDFEngine().compile_sovereign_pdf(
+        title=str(title_str),
+        body_text=body_str,
+        document_id="HVF-TRADEWINDS-1AHA8",
+    )
+    if output_path:
+        _p = _Path(output_path)
+        _p.parent.mkdir(parents=True, exist_ok=True)
+        _p.write_bytes(art.pdf_bytes)
+    return art.pdf_bytes
+
+TradewindsPitchCompiler.export_pdf = _export_pdf_TradewindsPitchCompiler
