@@ -101,7 +101,7 @@ def run_sovereign_verification() -> dict:
         if any(_t in _low_j for _t in _c_toks):
             _c_hits += 1
     print(f"Level-5 Extensions & Textbooks  : {_e_ok} / {len(_e_list)} Extensions | {_m_ok} / {len(_m_list)} Offline Manuals (100% Parity)")
-    print(f"Executive Zero-Crumb Audit Gate : {_c_hits} Juvenile/Beginner Hits Across 612 PY & {len(_j_list)} JSON Files")
+    print(f"Executive Zero-Crumb Audit Gate : {_c_hits} Juvenile/Beginner Hits Across {len(list((priv_root / 'c2_cockpit').glob('*.py')))} PY & {len(_j_list)} JSON Files")
     print("=" * 92)
     return {
         "modules": len(py_files),

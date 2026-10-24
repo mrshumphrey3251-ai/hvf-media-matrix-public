@@ -1,5 +1,9 @@
 [
   {
+    "title": "\u26a1 Sovereign PDF Dossier Engine",
+    "filename": "hvf_pdf_engine.py"
+  },
+  {
     "title": "\u26a1 Executive Action Desk",
     "filename": "action_desk.py"
   },
