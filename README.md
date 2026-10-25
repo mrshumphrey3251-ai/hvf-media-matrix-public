@@ -6,6 +6,7 @@
 - **Point-by-Point CDAO Evaluator Rubric Resolution (v8.0.0):** [`TRADEWINDS_EVALUATOR_RUBRIC_REBUTTAL_V8.md`](TRADEWINDS_EVALUATOR_RUBRIC_REBUTTAL_V8.md)
 - **Official Docket `10-26-3952` WORM PDF Resubmission Dossier:** [`federal_filings/HVF_TRADEWINDS_10-26-3952_TRL7_RESUBMISSION_DOSSIER.pdf`](federal_filings/HVF_TRADEWINDS_10-26-3952_TRL7_RESUBMISSION_DOSSIER.pdf) (`SHA-256: 676ad146c970e84c3823fbd179b06b031919f798c3460df9cc4b413e67a54ad7`)
 - **Official Docket `10-26-3952` Markdown Filing Record:** [`federal_filings/docket_10-26-3952_tradewinds_resubmission.md`](federal_filings/docket_10-26-3952_tradewinds_resubmission.md)
+- **Executive Founder Article (Overcoming Nonawardable to TRL 7):** [`executive_publications/OVERCOMING_NONAWARDABLE_TO_TRL7_ARTICLE.md`](executive_publications/OVERCOMING_NONAWARDABLE_TO_TRL7_ARTICLE.md)
 - **Official Live Portal Transmission Receipt:** [`TRADEWINDS_SUBMISSION_TRANSMISSION_RECEIPT.md`](TRADEWINDS_SUBMISSION_TRANSMISSION_RECEIPT.md)
 - **Master C2 Cryptographic Merkle Root (SHA-256):** `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a` (`631/631` Modules | `83/83` Test Suites Passed | `17/17` Red-Team Vectors Blocked | `110/110` DoD SPRS)
 
