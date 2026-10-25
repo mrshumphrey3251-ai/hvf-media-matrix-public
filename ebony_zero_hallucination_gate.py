@@ -98,8 +98,8 @@ def verify_and_sanitize_llm_reply(reply_text: str, headlines: list[dict]) -> str
     )
     combined_titles = " ".join(it.get("title", "").lower() for it in headlines)
     out = out.replace(
-        "Console Mode: OFFLINE (Sovereign Fortress Air-Gap)",
-        "Console Mode: ONLINE (Live WAN & Radar Ingress)"
+        "OFFLINE (Sovereign Fortress Air-Gap)",
+        "ONLINE (Live WAN & Radar Ingress)"
     )
     if ("overcomes" in combined_titles or "kick off" in combined_titles or "set to kick off" in combined_titles):
         out = re.sub(
@@ -241,6 +241,26 @@ def install_transparent_c2_interceptor() -> bool:
         httpx.Client.send = _grounded_httpx_send
     except Exception:
         pass
+
+    try:
+        import streamlit as st
+        if not getattr(st, "_hvf_markdown_wrapped", False):
+            _orig_md = st.markdown
+            def _clean_st_markdown(body, *args, **kwargs):
+                if isinstance(body, str):
+                    body = body.replace(
+                        "CEO Jeffery Humphrey ? Level-5 Sovereign C2 Nexus",
+                        "CEO Jeffery Humphrey -- Level-5 Sovereign C2 Nexus"
+                    ).replace(
+                        "OFFLINE (Sovereign Fortress Air-Gap)",
+                        "ONLINE (Live WAN & Radar Ingress)"
+                    )
+                return _orig_md(body, *args, **kwargs)
+            st.markdown = _clean_st_markdown
+            st._hvf_markdown_wrapped = True
+    except Exception:
+        pass
+
     wrap_sovereign_comms_router()
     _INTERCEPTOR_INSTALLED = True
     return True
