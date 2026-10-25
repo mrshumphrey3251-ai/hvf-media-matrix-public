@@ -192,6 +192,98 @@ def wrap_sovereign_comms_router() -> bool:
     except Exception:
         return False
 
+
+
+ROBOTICS_NAV_LABEL = "\U0001f916 Sovereign Robotics & Kinematics C2"
+
+def render_sovereign_robotics_command_deck() -> None:
+    """Renders the top-level Sovereign Robotics, RTOS & 36.75ns Kinetic Guillotine Command Module."""
+    import streamlit as st
+    import pandas as pd
+    c2_path = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+    if c2_path not in sys.path:
+        sys.path.insert(0, c2_path)
+    import ebony_robotics_rtos as rtos
+
+    st.subheader("\U0001f916 EBONY-RTOS // Sovereign Robotics, Kinematics & 36.75ns Kinetic Guillotine C2")
+    st.caption(
+        "Prime Authority: Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5) | "
+        "Tradewinds Docket 9-26-3703 & 10-26-3952 | Brain 1 (<50us Bare-Metal C) + Brain 2 (<25W Air-Gapped NPU) + "
+        "Brain 3 (<0.15ms SRAM Merkle) + 36.75ns Analog MOSFET Cutoff"
+    )
+
+    t1, t2, t3, t4 = st.tabs([
+        "\u26a1 1. Live 36.75ns Kinetic Guillotine Workbench",
+        "\U0001f9be 2. 6-DOF Forward/Inverse Kinematics & Actuator Matrix",
+        "\U0001f6e1\ufe0f 3. Mandatory Robotic Life-Safety (8 OSHA/ANSI Hazards)",
+        "\U0001f4dc 4. WORM Robotics Telemetry Ledger"
+    ])
+
+    with t1:
+        pk = st.selectbox(
+            "Select Target Robotic Platform:",
+            list(rtos.ROBOTIC_PLATFORMS.keys()),
+            format_func=lambda k: rtos.ROBOTIC_PLATFORMS[k]["name"],
+            key="rtos_top_plat_sel"
+        )
+        pm = rtos.ROBOTIC_PLATFORMS[pk]
+        st.info(f"**Deterministic Fieldbus:** `{pm['bus']}`")
+        k1, k2, k3, k4 = st.columns(4)
+        v_in = k1.number_input("TCP Velocity (mm/s):", value=float(pm["vel"]), step=100.0, key="rtos_v_in")
+        f_in = k2.number_input(f"Wrist Force (N, Limit {pm['f_lim']}N):", value=float(pm["force"]), step=5.0, key="rtos_f_in")
+        i_in = k3.number_input(f"Shunt Current (A, Limit {pm['i_lim']}A):", value=float(pm["curr"]), step=1.0, key="rtos_i_in")
+        sp = k4.checkbox("Simulate Rogue AI Torque Spike", value=False, key="rtos_sp_in")
+
+        r = rtos.evaluate_ebony_rtos_loop(pk, v_in, f_in, i_in, spike=sp, commit_worm=False)
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("EBONY-RTOS Overrun (36.75ns)", f"{r['eb_mm']*1000:.4f} um", "0.000055 mm (Zero Injury)")
+        c2.metric("Legacy PLC Overrun (150ms)", f"{r['plc_mm']:.1f} mm", "Severe Crush Hazard", delta_color="inverse")
+        c3.metric("Effective Contact Force", f"{r['ef']:.1f} N", f"Limit: {r['f_lim']} N")
+        c4.metric("Kinetic Guillotine State", "TRIPPED (SAFE 0.0V)" if r["tripped"] else "ARMED / NOMINAL", f"{r['ec']:.1f} A")
+
+        st.caption(f"Real-Time Cycle SHA-256 Merkle Seal: `{r['seal']}`")
+        b_col1, b_col2 = st.columns(2)
+        with b_col1:
+            if st.button("\U0001f512 Commit Telemetry & 36.75ns Seal to WORM Ledger", key="btn_rtos_worm_commit", width="stretch"):
+                r_saved = rtos.evaluate_ebony_rtos_loop(pk, v_in, f_in, i_in, spike=sp, commit_worm=True)
+                st.success(f"Committed Robotics WORM Record | SHA-256: `{r_saved['seal'][:24]}...`")
+        with b_col2:
+            if st.button("\U0001f9ea Execute Emergency 36.75ns Crowbar Trip Test", key="btn_rtos_trip_test", width="stretch"):
+                r_trip = rtos.evaluate_ebony_rtos_loop(pk, v_in, f_in, i_in, spike=True, commit_worm=True)
+                st.warning(
+                    f"36.75ns ANALOG KINETIC GUILLOTINE TRIPPED! Stopping distance: {r_trip['eb_mm']*1000:.4f} microns "
+                    f"(vs {r_trip['plc_mm']:.1f} mm legacy PLC). Logged to WORM ledger (`{r_trip['seal'][:16]}...`)."
+                )
+
+    with t2:
+        st.markdown("#### Master Engineering Robotic Actuator, Gearbox & OEM Parts Guide")
+        for pk_key, pk_val in rtos.ROBOTIC_PLATFORMS.items():
+            with st.expander(f"{pk_val['name']} ({pk_val['bus']})", expanded=(pk_key == "IND_6AXIS_ARM")):
+                rows = [{"Subsystem / Joint": p[0], "Verified OEM Part / Spec": p[1], "Deterministic Safety & Loop Parameter": p[2]} for p in pk_val["parts"]]
+                st.table(pd.DataFrame(rows))
+
+    with t3:
+        for h in rtos.ROBOTIC_SAFETY_HAZARDS:
+            clean_h = h.replace(" ? ", " -- ")
+            st.warning(clean_h)
+
+    with t4:
+        st.markdown("#### Immutable SQLite WORM Robotics Telemetry (`robotics_rtos_ledger`)")
+        try:
+            import sqlite3
+            conn = sqlite3.connect(str(rtos.db_path))
+            conn.execute("CREATE TABLE IF NOT EXISTS robotics_rtos_ledger (id INTEGER PRIMARY KEY AUTOINCREMENT, platform_key TEXT, tcp_vel_mms REAL, contact_force_n REAL, motor_current_a REAL, guillotine_tripped INTEGER, ebony_overrun_mm REAL, plc_overrun_mm REAL, sha256_seal TEXT, timestamp_utc TEXT)")
+            df_r = pd.read_sql_query("SELECT id, platform_key, tcp_vel_mms, contact_force_n, motor_current_a, guillotine_tripped, ebony_overrun_mm, plc_overrun_mm, sha256_seal, timestamp_utc FROM robotics_rtos_ledger ORDER BY id DESC LIMIT 25", conn)
+            conn.close()
+            if df_r.empty:
+                rtos.evaluate_ebony_rtos_loop("IND_6AXIS_ARM", commit_worm=True)
+                conn = sqlite3.connect(str(rtos.db_path))
+                df_r = pd.read_sql_query("SELECT id, platform_key, tcp_vel_mms, contact_force_n, motor_current_a, guillotine_tripped, ebony_overrun_mm, plc_overrun_mm, sha256_seal, timestamp_utc FROM robotics_rtos_ledger ORDER BY id DESC LIMIT 25", conn)
+                conn.close()
+            st.dataframe(df_r, width="stretch")
+        except Exception as e_db:
+            st.error(f"Ledger query error: {e_db}")
+
 def install_transparent_c2_interceptor() -> bool:
     global _INTERCEPTOR_INSTALLED
     if _INTERCEPTOR_INSTALLED:
@@ -258,6 +350,40 @@ def install_transparent_c2_interceptor() -> bool:
                 return _orig_md(body, *args, **kwargs)
             st.markdown = _clean_st_markdown
             st._hvf_markdown_wrapped = True
+    except Exception:
+        pass
+
+
+    try:
+        import streamlit as st
+        if not getattr(st, "_hvf_nav_wrapped", False):
+            _orig_radio = st.radio
+            def _robotics_aware_radio(label, options, *args, **kwargs):
+                opts_list = list(options) if isinstance(options, (list, tuple)) else options
+                if kwargs.get("key") == "ebony_c2_authoritative_nav_selector" and isinstance(opts_list, list):
+                    if ROBOTICS_NAV_LABEL not in opts_list:
+                        # Insert right after Sovereign Auto & CAN-Bus C2 (or at index 9)
+                        insert_idx = min(9, len(opts_list))
+                        for i, opt in enumerate(opts_list):
+                            if "CAN-Bus" in str(opt) or "Drone Diagnostics" in str(opt):
+                                insert_idx = i + 1
+                        opts_list.insert(insert_idx, ROBOTICS_NAV_LABEL)
+                return _orig_radio(label, opts_list, *args, **kwargs)
+            st.radio = _robotics_aware_radio
+
+            _orig_title = st.title
+            def _robotics_aware_title(body, *args, **kwargs):
+                res = _orig_title(body, *args, **kwargs)
+                try:
+                    if st.session_state.get("ebony_c2_authoritative_nav_selector") == ROBOTICS_NAV_LABEL:
+                        render_sovereign_robotics_command_deck()
+                        st.stop()
+                except Exception as _stop_ex:
+                    if "StopException" in type(_stop_ex).__name__:
+                        raise _stop_ex
+                return res
+            st.title = _robotics_aware_title
+            st._hvf_nav_wrapped = True
     except Exception:
         pass
 
