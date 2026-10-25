@@ -371,18 +371,19 @@ def install_transparent_c2_interceptor() -> bool:
                 return _orig_radio(label, opts_list, *args, **kwargs)
             st.radio = _robotics_aware_radio
 
-            _orig_title = st.title
-            def _robotics_aware_title(body, *args, **kwargs):
-                res = _orig_title(body, *args, **kwargs)
+            _orig_caption = st.caption
+            def _robotics_aware_caption(body, *args, **kwargs):
+                res = _orig_caption(body, *args, **kwargs)
                 try:
-                    if st.session_state.get("ebony_c2_authoritative_nav_selector") == ROBOTICS_NAV_LABEL:
-                        render_sovereign_robotics_command_deck()
-                        st.stop()
-                except Exception as _stop_ex:
-                    if "StopException" in type(_stop_ex).__name__:
+                    if isinstance(body, str) and "Active User:" in body:
+                        if st.session_state.get("ebony_c2_authoritative_nav_selector") == ROBOTICS_NAV_LABEL:
+                            render_sovereign_robotics_command_deck()
+                            st.stop()
+                except BaseException as _stop_ex:
+                    if "StopException" in type(_stop_ex).__name__ or "RerunException" in type(_stop_ex).__name__:
                         raise _stop_ex
                 return res
-            st.title = _robotics_aware_title
+            st.caption = _robotics_aware_caption
             st._hvf_nav_wrapped = True
     except Exception:
         pass
