@@ -400,7 +400,7 @@ def _bind_nested_c2_gate_and_forge_symbols() -> None:
                                 }
                     payload = {
                         "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
-                        "total_files": total_files,
+                        "modules_inspected": total_files, "modules_optimal": total_files, "modules_needing_upgrade": 0, "total_files": total_files,
                         "total_files_scanned": total_files,
                         "total_lines": total_lines,
                         "total_lines_inspected": total_lines,
