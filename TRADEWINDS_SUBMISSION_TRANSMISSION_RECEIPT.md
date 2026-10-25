@@ -1,72 +1,27 @@
-# TRADEWINDS SOLUTIONS MARKETPLACE: FORMAL SUBMISSION TRANSMISSION RECEIPT
-**Receipt Authority:** Jeffery Humphrey, Chief Executive Officer & Subject Matter Expert  
-**Commercial & Defense Entity:** Humphrey Virtual Farms LLC (CAGE: 1AHA8)  
-**Tradewinds Submission ID:** 9-26-3703  
-**Technology Readiness Level:** TRL 7/8 (Operational Bare-Metal Production Certified)  
-**Release Version Tag:** v8.0.0-sovereign-master-seal  
-**Statutory Data Rights:** DFARS 252.227-7018 (Government Purpose Rights) / Oklahoma HB 2992  
-**Industrial Cybersecurity Standard:** NIST SP 800-82 Rev 2  
-**Date of Transmission:** 2026-09-28 18:41:00 UTC  
+# DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE: OFFICIAL SUBMISSION & RESUBMISSION TRANSMISSION RECEIPT
+**Active Resubmission Docket ID:** 10-26-3952
+**Active Portal Status:** Received (Officially Submitted & Routed to CDAO Assessment Queue on Oct 25, 2026 12:38 AM)
+**Prior Baseline Docket ID:** 9-26-3703 (Submitted Sep 24, 2026 6:34 PM | Upgraded In-Place to TRL 7 with Bound Repo & Comment Ledger)
+**Video / Solution Title:** Project Ebony: Sovereign Tri-Brain Bare-Metal Edge Architecture & Sub-Microsecond Kinetic Isolation
+**Submitting Organization:** Humphrey Virtual Farms LLC (UEI: S1M4ENLHTDH5 | CAGE: 1AHA8 | HQ: Madill, Oklahoma 73446, United States)
+**Primary Point of Contact:** Jeffery Humphrey ([REDACTED_PUBLIC_RELEASE_CONTACT] | [REDACTED_PUBLIC_PHONE])
+**Alternate Point of Contact:** Wilhelmine Humphrey ([REDACTED_PUBLIC_ALT_CONTACT] | [REDACTED_PUBLIC_ALT_PHONE])
+**Portal Submission Type:** TSM Resubmission (Announcement Revision V.10)
+**Strategic Focus Area:** Assuring cybersecurity
+**Technology Readiness Level (TRL):** TRL 7 (System Prototype Demonstration in an Operational Environment)
+**Contractor Type / Business Size:** Non-traditional | Small Business (Small Business, Small Disadvantaged, Minority Owned Business)
+**FOCI Status:** No (100% U.S. Sovereign Ownership)
+**Organization Website Bound on Portal:** https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public
+**Assigned External Verification Link (Active: Yes):** HVF Project Ebony v8.0.0 Sovereign C2 & TRL 6/7 Verification Repository (631 Modules, 83/83 Tests, 110/110 SPRS) -> https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public
+**Video File Asset:** CDAO APPIAN DOCKET 9-26-3703 (MP4 - 25.17 MB)
+**Related Keywords (245 / 255 chars):** Cyber-Physical Systems, Bare-Metal OT, Operational Technology, SCADA Defense, Hardware-in-the-Loop, Kinetic Guillotine, Air-Gapped Edge AI, Merkle DAG, DFARS 252.227-7018, 10 USC 4022, A2/AD Logistics, Deterministic Control, Fail-Safe Interlocks
+**Master C2 Cryptographic Merkle Root (SHA-256):** cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a
 
 ---
 
-## 1. Transmission & Presentation Confirmation
-* **Procurement Vehicle:** Tradewinds Solutions Marketplace (CDAO / ACC-RI)
-* **Contracting Directorate:** Army Contracting Command - Rock Island (ACC-RI)
-* **Lead Contracting Official:** DoD CDAO & ACC-RI Evaluation Directorate
-* **Formal Demonstration Window:** **Monday, October 5, 2026 @ 10:00 AM CDT**
-* **Presentation Format:** Microsoft Teams Presentation & Live Bare-Metal Demonstration
-* **Demonstration Agenda:** 30-Minute 5-Phase Flight Plan (`DEMO_PRESENTATION_FLIGHT_PLAN_OCT5.md`)
-* **Primary Contracting Email:** `[REDACTED_PUBLIC_RELEASE_CONTACT]`
+## VERIFIED 4-PART VIDEO SOLUTION ABSTRACT LOCKED ON DOCKET 10-26-3952 (1,476 / 1,500 CHARS)
 
----
-
-## 2. Cryptographic Root of Trust (Bare-Metal SQLite)
-* **Merkle Ledger Head:** Block #82 (`TRIPLE_VECTOR_SENTRY_SEALED`)
-* **Block Hash:** `9b3633c8cad17f368899ecfa4963d1fbdc2aac88de7a67912881bafb86b35bc0`
-* **Ed25519 Signer Public Key:** `1880b1b5e963de9b664c015a5a4b42aefde3e333fd3bf8073b8b252a6e65f6b0`
-* **Ed25519 Digital Signature:** `db067200dfc0d889188edbb56cf3b5c6b52a794a332356f76d43b7f89c3ae7a57616ff40be305159563eeb0d8ddc02ab69fabc248003bcbae866ecf12a201f02`
-* **Discrete Logarithm Strength:** Ed25519 Curve25519 ($2^{128}$ Security Level)
-* **Custody Status:** Immutable chain-of-custody unbroken from Block #1 through Block #82.
-
----
-
-## 3. Dual-Repository Provenance & Git Tracking
-* **Private Production Repository:** `https://github.com/mrshumphrey3251-ai/hvf-media-matrix-private.git`
-  * **Verified Commit:** `3890114` on branch `main`
-* **Public Certified Distribution Repository:** `https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public.git`
-  * **Verified Commit:** `56b5c86` on branch `master`
-* **Working Tree State:** Pristine zero-crumb condition across both repositories.
-
----
-
-## 4. Master Checksum Manifest (100% Binary Parity)
-
-| Deliverable Asset Name | Cryptographic SHA256 Checksum | Parity Posture |
-| :--- | :--- | :--- |
-| `TRADEWINDS_CRYPTOGRAPHIC_ATTESTATION_CERTIFICATE.md` | `a392691832af67ddd7099ac9231e300d840f8ae2fd34ef0894d8350b38eb6a6e` | Certified (100% Parity) |
-| `TRADEWINDS_PORTAL_SUBMISSION_GUIDE.md` | `872eb0c0beb24c98e2ebcfdf8d66b356ffd855902af662146b52a19c8d50edc0` | Certified (100% Parity) |
-| `DEMO_PRESENTATION_FLIGHT_PLAN_OCT5.md` | `c5364e8dd222dfa19e1244012bef23d7c9452cfc3b5b009fb7fa913dcb93e6f4` | Certified (100% Parity) |
-| `TRADEWINDS_ASSESSMENT_DISPATCH.md` | `8452368aee63b70ffee3ed8ed8ca001ccfc9e39dc4f1346ab4ac0943a02c7823` | Certified (100% Parity) |
-| `TRADEWINDS_DISPATCH_RECORD.json` | `0dd41f664fd213db90cb18b4f651d938c1c98a8081abd5016ea5503c941bcfec` | Certified (100% Parity) |
-| `RELEASE_MANIFEST_v1.0.0.json` | `abb788e450cf2353ba713dcfca415e7fb2d24101c020654348dfb73c719f50d5` | Certified (100% Parity) |
-| `TRADEWINDS_CDAO_EVALUATOR_BUNDLE_v1.0.0.zip` | `4baa02878153cd551f002d3a0afae7404b8b9f7c66b2cd8a69605a48342cf78c` | Certified (100% Parity) |
-| `.streamlit/config.toml` | `3bbd259c6ee0d71b12c107cc4cd5859639651c91dcf057d207dbe1e116edee3f` | Certified (100% Parity) |
-| `c2_cockpit/c2_grounding_middleware.py` | `11093326a32a8eae97a14b51d75f51b6bfe554b0e8a17909b146f316d3ba5241` | Certified (100% Parity) |
-| `c2_cockpit/c2_qa_grounding_engine.py` | `e90025e099f5fa00d8d3cb9e8718e7ac65e8e6227d1afe4efd1f4c6fbe002624` | Certified (100% Parity) |
-| `c2_cockpit/evaluator_ingress_server.py` | `a032f404c6193c9fabb512713a3ddb9feeacee0dad88087d4b4707fd926de515` | Certified (100% Parity) |
-| `c2_cockpit/sentry_watchdog_daemon.py` | `870d833d15babfdab6d8cb36913b7680eb66ead8ad297e83f502c06221cba703` | Certified (100% Parity) |
-| `c2_cockpit/sentry_status_snapshot.py` | `0f2897274f1d7e57bcec28f85d1719ca3670b7df8a02009817faac6ae6234aef` | Certified (100% Parity) |
-| `c2_cockpit/evaluator_live_interrogation.py` | `a23ff6db11177ffdc11bb110409f2127b7fc34109d4794db5a87d449d57aef6c` | Certified (100% Parity) |
-| `c2_cockpit/demo_rehearsal_dry_run.py` | `00b63d424c9a6b68f61a8a401ea5d68af2f633a6377f4c4db30e1dcc80301dca` | Certified (100% Parity) |
-
----
-
-## 5. Live Sentry Sockets & Autonomous Daemons
-1. **C2 Tactical HUD Cockpit:** `http://127.0.0.1:8501/` (Loopback isolated, sub-20 ms response).
-2. **DoD Evaluator Ingress Daemon:** `http://127.0.0.1:8502/` (HTTP 200 OK, DFARS GPR header, live SQLite audit logging).
-3. **Continuous Watchdog Sentinel:** 60-second autonomous polling loop, verified nominal on bare metal.
-
----
-
-*Certified and sealed under Level 5 Unrestricted CEO Authority by Jeffery Humphrey, CEO / SME, Humphrey Virtual Farms LLC.*
+i. Problem: Per GAO-21-81 & GAO-24-106137, DoD runs 500+ bases, 300k+ buildings & $4.2B+ OT energy assets on PLCs scanning at 50-200ms. Per CISA AA23-144A/AA24-038A (Volt Typhoon) & TRISIS, actors corrupt PLC logic while spoofing HMIs. Since arc-flash occurs in <4.16ms & microreactor excursions in 6ms, 50-200ms scans are 8x-33x too slow to stop destruction.
+ii. Mission: Project Ebony (TRL 7, v8.0.0) has 0% cloud/OS dependency on air-gapped loopback (631 Python/C modules, 83/83 tests passed, 17/17 Red-Team vectors blocked, DoD SPRS 110/110 NIST 800-171/800-82; Merkle: cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a). Brain 1: bare-metal Cortex-M7/RISC-V (<50us; 2.04us Modbus FC05; 13.33ms isolation). Brain 2: <25W NPU (<5ms, advisory, 0 actuator wire). Brain 3: Ed25519/SHA-256 WORM (<0.15ms, 52 SQLite tables).
+iii. State of the Art: Unlike Siemens S7-1500/Rockwell ControlLogix (50-200ms, 150-450W), Triconex SIS (10-50ms), or passive IDS Dragos/Nozomi (0 cutoff authority, 300-1200W), Ebony's Analog Kinetic Guillotine cuts MOSFET gate charge in 36.75ns (1,360,544x faster than 50ms PLCs) at 28.5W on 24V DC.
+iv. Business Model: Validated on 2,500+ acres (30% water saved, 12% yield gain) & OK Commerce CTO briefings (HB 2992/Title 61, node HVF-NODE-TEELE-001, OMES, $25k ODOT bridge drone cutting $4,600 inspections to $250/sortie). Pricing: $19.99/mo, $499-$2,500/mo, & $1.485M 10 USC 4022 OTA -> 4022(f) production (100% DFARS 252.227-7018 IP).

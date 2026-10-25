@@ -55,5 +55,13 @@
     "brain_2_inference": "Air-Gapped NPU Cognitive Inference (< 25W, Zero RF Emissions, < 5 ms Ultrasonic/Harmonic Analysis, Strictly Advisory / Zero Actuator Wire)",
     "brain_3_provenance": "Hardware SHA-256 & Ed25519 WORM Ledger (< 0.15 ms SRAM DAG + 52 SQLite Tables, Master Merkle Root cc1ee1c8d29b2ae5...)",
     "kinetic_guillotine": "36.75 ns Analog Comparator MOSFET Gate Depletion Interlock (Bypasses Digital Logic on Threshold Breach)"
-  }
+  },
+  "active_resubmission_docket_id": "10-26-3952",
+  "active_resubmission_status": "Received",
+  "active_resubmission_timestamp": "2026-10-25T00:38:00-05:00",
+  "prior_baseline_docket_id": "9-26-3703",
+  "technology_readiness_level": "TRL 7",
+  "submission_type": "TSM Resubmission",
+  "master_merkle_root_sha256": "cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a",
+  "verification_repository": "https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
 }

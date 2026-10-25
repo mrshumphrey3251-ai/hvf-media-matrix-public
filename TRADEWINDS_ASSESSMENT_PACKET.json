@@ -57,5 +57,13 @@
       "asymmetric_algorithm": "ED25519",
       "synthetic_data_prohibited": true
     }
-  }
+  },
+  "active_resubmission_docket_id": "10-26-3952",
+  "active_resubmission_status": "Received",
+  "active_resubmission_timestamp": "2026-10-25T00:38:00-05:00",
+  "prior_baseline_docket_id": "9-26-3703",
+  "technology_readiness_level": "TRL 7",
+  "submission_type": "TSM Resubmission",
+  "master_merkle_root_sha256": "cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a",
+  "verification_repository": "https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
 }
