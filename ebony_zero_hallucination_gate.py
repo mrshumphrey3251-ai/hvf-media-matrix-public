@@ -329,6 +329,7 @@ def _handle_local_port_8000(method: str, url: str, **kwargs):
             draw.text((40, 205), f"TIMESTAMP: {now_utc}", fill=(160, 170, 178))
             draw.text((40, 245), "MERKLE SEAL: cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a", fill=(0, 255, 136))
             img.save(str(out_png), format="PNG")
+            img.save(str(repo_root / "Project_Ebony_Sovereign.png"), format="PNG")
         except Exception:
             # Minimal valid 1x1 PNG fallback if PIL is unavailable
             import base64
