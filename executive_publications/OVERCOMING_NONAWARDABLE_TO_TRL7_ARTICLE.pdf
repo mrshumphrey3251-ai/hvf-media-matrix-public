@@ -1,0 +1,262 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R 10 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 3260 >>
+stream
+BT
+/F1 8.5 Tf
+36 756 Td
+11 TL
+(# Assessed as Nonawardable: Why a DoD Rejection Was the Best Thing That Happened to Our Arch) Tj T*
+(  itecture--And Why You Cannot Quit) Tj T*
+() Tj T*
+(**By Jeffery Humphrey**) Tj T*
+(*Founder, Chief Executive Officer, and Apex Architect | Humphrey Virtual Farms LLC \(CAGE: 1) Tj T*
+(  AHA8 | UEI: S1M4ENLHTDH5\)*) Tj T*
+() Tj T*
+(When you are building sovereign hardware and bare-metal software from the ground up, nobody ) Tj T*
+(  talks about the silence in the room when a federal portal returns three words: **Assessed ) Tj T*
+(  as Nonawardable.**) Tj T*
+() Tj T*
+(In September 2026, Humphrey Virtual Farms LLC submitted **Project Ebony**--our Sovereign Tri) Tj T*
+(  -Brain Bare-Metal Edge Architecture and Sub-Microsecond Kinetic Isolation system--to the D) Tj T*
+(  epartment of Defense Chief Digital and Artificial Intelligence Office \(CDAO\) Tradewinds ) Tj T*
+(  Solutions Marketplace under Docket `9-26-3703`. We knew the physics of our system were sou) Tj T*
+(  nd. We knew that legacy commercial PLCs scanning at 50 to 200 milliseconds could not arres) Tj T*
+(  t a sub-5-millisecond high-voltage arc-flash or a state-sponsored cyber-physical attack in) Tj T*
+(   contested Anti-Access/Area Denial \(A2/AD\) environments.) Tj T*
+() Tj T*
+(When the final ratings came back **Nonawardable**, the doubt was real.) Tj T*
+() Tj T*
+(If you are a founder, an engineer, or a non-traditional defense contractor who has stared at) Tj T*
+(   those exact words on a government screen, I am writing this for you. You are not alone. E) Tj T*
+(  very builder pushing the boundaries of state-of-the-art technology hits the wall where vis) Tj T*
+(  ion collides with government rubric. That moment of doubt does not mean your technology is) Tj T*
+(   broken, and it certainly does not mean your mission is over. It means you have just been ) Tj T*
+(  handed the exact blueprint required to prove your dominance.) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## 1. Treat the Evaluators' Critique as Your Engineering Spec) Tj T*
+() Tj T*
+(When you receive a Nonawardable assessment, your ego wants to argue that the evaluators 'jus) Tj T*
+(  t didn't get it.' As a CEO and Subject Matter Expert, you have to kill that impulse immedi) Tj T*
+(  ately. If the evaluators didn't see it, we didn't prove it clearly enough under the pressu) Tj T*
+(  re of a five-minute pitch and a 1,500-character abstract.) Tj T*
+() Tj T*
+(We dissected the CDAO evaluators' feedback across all four rubric pillars:) Tj T*
+(1. **Defining the Problem:** Quantify the exact Department of Defense infrastructure exposur) Tj T*
+(  e and cite authoritative federal threat intelligence.) Tj T*
+(2. **Accelerating the Mission:** Elevate beyond a TRL 4 laboratory concept--prove zero exter) Tj T*
+(  nal cloud or operating-system dependencies and show hard, empirical verification at TRL 7.) Tj T*
+(3. **Advancing the State of the Art:** Put the numbers side-by-side in a quantitative Analys) Tj T*
+(  is of Alternatives \(AoA\) against legacy commercial incumbents.) Tj T*
+(4. **Business Model & Validation:** Show concrete commercial and government traction, transp) Tj T*
+(  arent dual-use pricing tiers, and a frictionless statutory contracting pathway.) Tj T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 3286 >>
+stream
+BT
+/F1 8.5 Tf
+36 756 Td
+11 TL
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## 2. Leaving Zero Crumbs: From TRL 4 Concept to TRL 7 Bare-Metal Proof) Tj T*
+() Tj T*
+(We instituted a relentless rule inside Humphrey Virtual Farms LLC: *we start at the absolute) Tj T*
+(   beginning, we work all the way to the finish line, and we leave zero crumbs behind.*) Tj T*
+() Tj T*
+(Over a thirty-day engineering marathon, we elevated Project Ebony to **v8.0.0** and **Techno) Tj T*
+(  logy Readiness Level 7 \(TRL 7\)**:) Tj T*
+(- **Quantified DoD Threat Landscape:** Anchored directly in U.S. GAO reports \(**GAO-21-81**) Tj T*
+(   and **GAO-24-106137**--covering 500+ military installations, 300,000+ buildings, and $4.2) Tj T*
+(  B+ in OT energy assets\) alongside Joint CISA/NSA/DoD Advisories \(**AA23-144A** and **AA2) Tj T*
+(  4-038A** on *Volt Typhoon* OT pre-positioning\) and *TRISIS/Triton*.) Tj T*
+(- **631 Compiled Modules & 83/83 Passing Test Suites:** Bound a live DFARS 252.227-7018 veri) Tj T*
+(  fication repository containing **631 compiled bare-metal Python and C modules**, **83/83 p) Tj T*
+(  assing automated unit and stress test suites \(100%\)**, **17/17 blocked Red-Team cyber-pe) Tj T*
+(  netration vectors**, and a **110/110 DoD SPRS score** \(NIST SP 800-171 Rev 2 & NIST SP 80) Tj T*
+(  0-82 Rev 2\) under Master SHA-256 Merkle Root `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369) Tj T*
+(  499febe14e18e9150949a`.) Tj T*
+(- **Quantitative Analysis of Alternatives \(AoA\):** Contrasted Project Ebony's **36.75-nano) Tj T*
+(  second Analog Kinetic Guillotine** MOSFET gate cutoff \(28.5W on 24V DC, 0% cloud/OS depen) Tj T*
+(  dency\) against 50-200ms digital scan loops in Siemens S7-1500 and Rockwell ControlLogix P) Tj T*
+(  LCs, Schneider Triconex SIS, and passive IDS platforms Dragos and Nozomi Guardian \(**1,36) Tj T*
+(  0,544x faster** than a 50ms PLC scan\).) Tj T*
+(- **Real-World Commercial & Government Validation:** Documented validation across **2,500+ c) Tj T*
+(  ommercial agricultural and microgrid acres** \(30% water savings, 12% yield gains\) and ac) Tj T*
+(  tive **State of Oklahoma executive engagements** \(Oklahoma Department of Commerce CTO bri) Tj T*
+(  efings under HB 2992 and Title 61, node `HVF-NODE-TEELE-001`, OMES supplier filings, and a) Tj T*
+(   Phase-1 ODOT autonomous bridge inspection drone prototype slashing $4,600 inspections to ) Tj T*
+(  $250/sortie\), structured for federal transition via a **10 U.S.C. 4022 Prototype OTA** to) Tj T*
+(   **10 U.S.C. 4022\(f\)** production.) Tj T*
+() Tj T*
+(On October 25, 2026, we locked and transmitted our official TRL 7 Resubmission under **CDAO ) Tj T*
+(  Tradewinds Docket `10-26-3952` \(`Status: Received`\)**.) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## 3. My Message to Every Innovator Knocked Down by a First Assessment) Tj T*
+() Tj T*
+(**Doubt is natural. Quitting is optional.**) Tj T*
+() Tj T*
+(The Department of Defense and our critical infrastructure need the agility, grit, and uncomp) Tj T*
+(  romising innovation of non-traditional small businesses. Take a breath. Read your evaluati) Tj T*
+(  on rubric without flinching. Open your terminal, fix every single gap the evaluators found) Tj T*
+(  , prove that your system works beyond a shadow of a doubt, and hit **Submit** again.) Tj T*
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 3202 >>
+stream
+BT
+/F1 8.5 Tf
+36 756 Td
+11 TL
+() Tj T*
+('Nonawardable' is not the end of your story. It is the forge that forces you to build someth) Tj T*
+(  ing undeniable.) Tj T*
+() Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## INTEGRATED HOST OPERATING CONSOLE & 26-MODULE PER-NODE PRICE SCHEDULE \(`DOCKET 10-26-395) Tj T*
+(  2`\)) Tj T*
+() Tj T*
+(**1. Turnkey TRL 7 Operating Console Proof \(`Project Ebony` -- 26 Modules / 72 Verified Con) Tj T*
+(  trols\):**  ) Tj T*
+(Docket `10-26-3952` executes natively inside the **HVF Level-5 Sovereign C2 Operating Consol) Tj T*
+(  e**, a fully operational, bare-metal Command & Control enclave \(`631 / 631` compiled Pyth) Tj T*
+(  on/C modules, Master SHA-256 Merkle Root: `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499f) Tj T*
+(  ebe14e18e9150949a`, `83 / 83` unit test suites passing at `100.0%`\).) Tj T*
+() Tj T*
+(**2. Unbundled Per-Node Licensing Scope \(DFARS `252.227-7018` & `227.7202`\):**  ) Tj T*
+(* **Base Entry Pilot \(`CLIN 0001`\):** The entry pilot price filed on Tradewinds Docket `10) Tj T*
+(  -26-3952` covers **strictly `CLIN 0001` \(`Module #01: Sovereign Command Chronos Base Rout) Tj T*
+(  er` on `1` Single Bare-Metal Node\)**.) Tj T*
+(* **Individual Add-On Modules \(`CLIN 0002` - `CLIN 0026`\):** Each of the remaining **25 Co) Tj T*
+(  mmand Modules** in the Operating Console is priced individually **per physical hardware no) Tj T*
+(  de / per robotic chassis / per training seat** \(`1 License = 1 Hardware UUID`\). Governme) Tj T*
+(  nt and commercial buyers may add individual modules to a `10-26-3952` contract award via s) Tj T*
+(  ole-source modification \(10 U.S.C. 4022 / FAR Part 12\):) Tj T*
+() Tj T*
+(| CLIN | Module # & Name | Licensing Basis \(Strict Per-Node\) | Annual Gov Price | Monthly ) Tj T*
+(  Commercial |) Tj T*
+(| :--- | :--- | :--- | :--- | :--- |) Tj T*
+(| `CLIN 0001` | **Mod #01:** `Sovereign Command \(Chronos Base Router\)` | **1 Single Node \) Tj T*
+(  (`10-26-3952` Base Pilot\)** | **Base Pilot Price** | **$2,450 / mo** |) Tj T*
+(| `CLIN 0002` | **Mod #02:** `System Overview & Preflight WORM Gate` | Per Enclave Server No) Tj T*
+(  de | **$35,000 / yr** | **$3,500 / mo** |) Tj T*
+(| `CLIN 0003` | **Mod #03:** `Master C2 Cockpit \(60Hz Microgrid & Fault C2\)` | Per Substat) Tj T*
+(  ion / TOC Node \(`19` Controls\) | **$95,000 / yr** | **$8,900 / mo** |) Tj T*
+(| `CLIN 0004` | **Mod #04:** `Autonomous Build Forge \(AST Synthesizer\)` | Per Engineering ) Tj T*
+(  Enclave Node | **$110,000 / yr** | **$9,800 / mo** |) Tj T*
+(| `CLIN 0005` | **Mod #05:** `CEO Authorization Gate & Sovereign Airlock` | Per Airlock Node) Tj T*
+(   \(`698` Module Sweep\) | **$125,000 / yr** | **$11,200 / mo** |) Tj T*
+(| `CLIN 0006` | **Mod #06:** `Sovereign Robotics & Kinematics C2 \(36.75ns\)` | Per Robot Co) Tj T*
+(  ntroller / UGV Chassis | **$185,000 / yr** | **$16,500 / mo** |) Tj T*
+(| `CLIN 0007` | **Mod #07:** `Drone Diagnostics & Optical GLI Core` | Per UAS Ground Control) Tj T*
+(   Station Node | **$75,000 / yr** | **$6,800 / mo** |) Tj T*
+(| `CLIN 0008` | **Mod #08:** `Sovereign Auto & CAN-Bus C2 \(SAE J1939\)` | Per Fleet Mainten) Tj T*
+(  ance Bay Node | **$85,000 / yr** | **$7,600 / mo** |) Tj T*
+ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 3449 >>
+stream
+BT
+/F1 8.5 Tf
+36 756 Td
+11 TL
+(| `CLIN 0009` | **Mod #09:** `Grain Silo Aeration & 480V Contactor C2` | Per Silo Complex / ) Tj T*
+(  480V PLC Node | **$75,000 / yr** | **$6,800 / mo** |) Tj T*
+(| `CLIN 0010` | **Mod #10:** `Omni-Industry Matrix & Title 61 Deliverables` | Per Engineerin) Tj T*
+(  g District Node | **$95,000 / yr** | **$8,900 / mo** |) Tj T*
+(| `CLIN 0011` | **Mod #11:** `Sovereign Field Academy \(1,420 Verified Qs\)` | Per 50-Seat T) Tj T*
+(  raining Cohort | **$125,000 / yr** | **$11,200 / mo** |) Tj T*
+(| `CLIN 0012` | **Mod #12:** `HVF Master Auto & Small-Engine Academy` | Per Technical Lab No) Tj T*
+(  de \(25 Seats\) | **$65,000 / yr** | **$5,900 / mo** |) Tj T*
+(| `CLIN 0013` | **Mod #13:** `Sovereign Dispatch Deck \(Air-Gap IMAP/SMTP\)` | Per Secure Co) Tj T*
+(  mms Enclave Node | **$55,000 / yr** | **$4,950 / mo** |) Tj T*
+(| `CLIN 0014` | **Mod #14:** `Sovereign Comms Deck \(Dual-Core Audio\)` | Per Tactical TOC C) Tj T*
+(  omms Node | **$50,000 / yr** | **$4,500 / mo** |) Tj T*
+(| `CLIN 0015` | **Mod #15:** `Media Matrix & Predict-and-Act Loop` | Per Autonomous Operatio) Tj T*
+(  ns Node | **$65,000 / yr** | **$5,900 / mo** |) Tj T*
+(| `CLIN 0016` | **Mod #16:** `Sovereign Asset Synthesis Engine` | Per Local Render Workstati) Tj T*
+(  on Node | **$40,000 / yr** | **$3,600 / mo** |) Tj T*
+(| `CLIN 0017` | **Mod #17:** `LinkedIn Executive Broadcast Engine` | Per Executive Comms Nod) Tj T*
+(  e | **$30,000 / yr** | **$2,750 / mo** |) Tj T*
+(| `CLIN 0018` | **Mod #18:** `Python Execution Sandbox & Quarantine` | Per Developer / Audit) Tj T*
+(   Node | **$45,000 / yr** | **$4,100 / mo** |) Tj T*
+(| `CLIN 0019` | **Mod #19:** `Empire Config & Pilot Governance Vault` | Per Administrative R) Tj T*
+(  oot Node | **$35,000 / yr** | **$3,200 / mo** |) Tj T*
+(| `CLIN 0020` | **Mod #20:** `Level-5 Ext: Action Desk Tactical Dispatcher` | Per Sector Com) Tj T*
+(  mand Node | **$30,000 / yr** | **$2,750 / mo** |) Tj T*
+(| `CLIN 0021` | **Mod #21:** `Level-5 Ext: NOAA Weather Radar & EMC Sync` | Per Base Meteoro) Tj T*
+(  logy Node | **$40,000 / yr** | **$3,600 / mo** |) Tj T*
+(| `CLIN 0022` | **Mod #22:** `Level-5 Ext: ISO 32000-1 WORM PDF Compiler` | Per Compliance D) Tj T*
+(  ocumentation Node | **$35,000 / yr** | **$3,200 / mo** |) Tj T*
+(| `CLIN 0023` | **Mod #23:** `Level-5 Ext: Autonomous Lead Scheduler` | Per Commercial Outre) Tj T*
+(  ach Node | **$25,000 / yr** | **$2,250 / mo** |) Tj T*
+(| `CLIN 0024` | **Mod #24:** `Level-5 Ext: Chronos Companion Telemetry` | Per Watch-Floor Op) Tj T*
+(  erator Node | **$30,000 / yr** | **$2,750 / mo** |) Tj T*
+(| `CLIN 0025` | **Mod #25:** `Level-5 Ext: 48-Plenum Silo PLC Synchronizer` | Per Industrial) Tj T*
+(   Facility PLC Node | **$35,000 / yr** | **$3,200 / mo** |) Tj T*
+(| `CLIN 0026` | **Mod #26:** `Level-5 Ext: Cryptographic Merkle Verifier` | Per Inspector Ge) Tj T*
+(  neral Audit Node | **$20,000 / yr** | **$1,850 / mo** |) Tj T*
+(| **TOTAL** | **All 26 Modules Unbundled \(1 Node Each\)** | **1 Single Complete Enclave Nod) Tj T*
+(  e** | **$1,630,000 / yr** | **$148,950 / mo** |) Tj T*
+(| `CLIN 1004-A` | **Full 26-Module Console Bundle \(1 Node\)** | **1 Single Bare-Metal TOC N) Tj T*
+(  ode** | **$895,000 / yr** | **$79,500 / mo** |) Tj T*
+(| `CLIN 1004-B` | **Military Installation Fleet License \(25 Nodes\)** | **Up to 25 Enclave/) Tj T*
+(  Robotic Nodes \(1 Base\)** | **$2,450,000 / yr** | **$215,000 / mo** |) Tj T*
+ET
+endstream
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000140 00000 n 
+0000000208 00000 n 
+0000000334 00000 n 
+0000003646 00000 n 
+0000003772 00000 n 
+0000007110 00000 n 
+0000007236 00000 n 
+0000010490 00000 n 
+0000010618 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+14120
+%%EOF

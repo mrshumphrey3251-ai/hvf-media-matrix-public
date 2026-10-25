@@ -577,3 +577,51 @@ def install_transparent_c2_interceptor() -> bool:
     wrap_sovereign_comms_router()
     _INTERCEPTOR_INSTALLED = True
     return True
+
+
+# === STAGE 12J: 26-MODULE PER-NODE CLIN PRICE SCHEDULE EXTENSION (DOCKET 10-26-3952) ===
+_ORIG_RENDER_ROBOTICS_DECK = globals().get("_render_sovereign_robotics_c2_deck")
+
+def _render_sovereign_robotics_c2_deck():
+    import streamlit as st
+    if callable(_ORIG_RENDER_ROBOTICS_DECK):
+        _ORIG_RENDER_ROBOTICS_DECK()
+    st.markdown("---")
+    with st.expander("?? Tradewinds Docket 10-26-3952 // 26-Module Per-Node CLIN Price Catalog (DFARS 252.227-7018)", expanded=True):
+        st.info(
+            "**STRICT PER-NODE LICENSING NOTICE:** The entry pilot price filed on Tradewinds Docket `10-26-3952` applies strictly to "
+            "**`CLIN 0001` (`Module #01: Sovereign Command Base Router` on `1` Single Bare-Metal Node)**. All remaining **25 Command Modules (`CLIN 0002` - `CLIN 0026`)** "
+            "are licensed strictly **per physical hardware node / per robotic chassis / per training seat** (`$1,630,000/yr` total unbundled single-node value)."
+        )
+        clin_rows = [
+            {"CLIN": "CLIN 0001", "Module": "Mod #01: Sovereign Command (Chronos Base Router)", "Unit": "1 Single Bare-Metal Node (10-26-3952 Entry Pilot)", "Annual Gov": "Base Pilot Price ($24,500 Std)", "Monthly Comm": "$2,450/mo"},
+            {"CLIN": "CLIN 0002", "Module": "Mod #02: System Overview & Preflight WORM Gate", "Unit": "Per Enclave Server Node", "Annual Gov": "$35,000/yr", "Monthly Comm": "$3,500/mo"},
+            {"CLIN": "CLIN 0003", "Module": "Mod #03: Master C2 Cockpit (60Hz Microgrid & Fault C2)", "Unit": "Per Substation / TOC Node (19 Controls)", "Annual Gov": "$95,000/yr", "Monthly Comm": "$8,900/mo"},
+            {"CLIN": "CLIN 0004", "Module": "Mod #04: Autonomous Build Forge (AST Synthesizer)", "Unit": "Per Engineering Enclave Node", "Annual Gov": "$110,000/yr", "Monthly Comm": "$9,800/mo"},
+            {"CLIN": "CLIN 0005", "Module": "Mod #05: CEO Authorization Gate & Sovereign Airlock", "Unit": "Per Airlock Node (698 Module Sweep)", "Annual Gov": "$125,000/yr", "Monthly Comm": "$11,200/mo"},
+            {"CLIN": "CLIN 0006", "Module": "Mod #06: Sovereign Robotics & Kinematics C2 (36.75ns)", "Unit": "Per Robot Controller / UGV Chassis (9-26-3703)", "Annual Gov": "$185,000/yr", "Monthly Comm": "$16,500/mo"},
+            {"CLIN": "CLIN 0007", "Module": "Mod #07: Drone Diagnostics & Optical GLI Core", "Unit": "Per UAS Ground Control Station Node", "Annual Gov": "$75,000/yr", "Monthly Comm": "$6,800/mo"},
+            {"CLIN": "CLIN 0008", "Module": "Mod #08: Sovereign Auto & CAN-Bus C2 (SAE J1939)", "Unit": "Per Fleet Maintenance Bay Node", "Annual Gov": "$85,000/yr", "Monthly Comm": "$7,600/mo"},
+            {"CLIN": "CLIN 0009", "Module": "Mod #09: Grain Silo Aeration & 480V Contactor C2", "Unit": "Per Silo Complex / 480V PLC Node", "Annual Gov": "$75,000/yr", "Monthly Comm": "$6,800/mo"},
+            {"CLIN": "CLIN 0010", "Module": "Mod #10: Omni-Industry Matrix & Title 61 Deliverables", "Unit": "Per Engineering District Node", "Annual Gov": "$95,000/yr", "Monthly Comm": "$8,900/mo"},
+            {"CLIN": "CLIN 0011", "Module": "Mod #11: Sovereign Field Academy (1,420 Verified Qs)", "Unit": "Per 50-Seat Training Cohort", "Annual Gov": "$125,000/yr", "Monthly Comm": "$11,200/mo"},
+            {"CLIN": "CLIN 0012", "Module": "Mod #12: HVF Master Auto & Small-Engine Academy", "Unit": "Per Technical Lab Node (Up to 25 Seats)", "Annual Gov": "$65,000/yr", "Monthly Comm": "$5,900/mo"},
+            {"CLIN": "CLIN 0013", "Module": "Mod #13: Sovereign Dispatch Deck (Air-Gap IMAP/SMTP)", "Unit": "Per Secure Comms Enclave Node", "Annual Gov": "$55,000/yr", "Monthly Comm": "$4,950/mo"},
+            {"CLIN": "CLIN 0014", "Module": "Mod #14: Sovereign Comms Deck (Dual-Core Audio)", "Unit": "Per Tactical TOC Comms Node", "Annual Gov": "$50,000/yr", "Monthly Comm": "$4,500/mo"},
+            {"CLIN": "CLIN 0015", "Module": "Mod #15: Media Matrix & Predict-and-Act Loop", "Unit": "Per Autonomous Operations Node", "Annual Gov": "$65,000/yr", "Monthly Comm": "$5,900/mo"},
+            {"CLIN": "CLIN 0016", "Module": "Mod #16: Sovereign Asset Synthesis Engine", "Unit": "Per Local Render Workstation Node", "Annual Gov": "$40,000/yr", "Monthly Comm": "$3,600/mo"},
+            {"CLIN": "CLIN 0017", "Module": "Mod #17: LinkedIn Executive Broadcast Engine", "Unit": "Per Executive Comms Node", "Annual Gov": "$30,000/yr", "Monthly Comm": "$2,750/mo"},
+            {"CLIN": "CLIN 0018", "Module": "Mod #18: Python Execution Sandbox & Quarantine", "Unit": "Per Developer / Audit Node", "Annual Gov": "$45,000/yr", "Monthly Comm": "$4,100/mo"},
+            {"CLIN": "CLIN 0019", "Module": "Mod #19: Empire Config & Pilot Governance Vault", "Unit": "Per Administrative Root Node", "Annual Gov": "$35,000/yr", "Monthly Comm": "$3,200/mo"},
+            {"CLIN": "CLIN 0020", "Module": "Mod #20: Level-5 Ext: Action Desk Dispatcher", "Unit": "Per Sector Command Node", "Annual Gov": "$30,000/yr", "Monthly Comm": "$2,750/mo"},
+            {"CLIN": "CLIN 0021", "Module": "Mod #21: Level-5 Ext: NOAA Weather Radar & EMC", "Unit": "Per Base Meteorology Node", "Annual Gov": "$40,000/yr", "Monthly Comm": "$3,600/mo"},
+            {"CLIN": "CLIN 0022", "Module": "Mod #22: Level-5 Ext: ISO 32000-1 WORM PDF Compiler", "Unit": "Per Compliance Documentation Node", "Annual Gov": "$35,000/yr", "Monthly Comm": "$3,200/mo"},
+            {"CLIN": "CLIN 0023", "Module": "Mod #23: Level-5 Ext: Autonomous Lead Scheduler", "Unit": "Per Commercial Outreach Node", "Annual Gov": "$25,000/yr", "Monthly Comm": "$2,250/mo"},
+            {"CLIN": "CLIN 0024", "Module": "Mod #24: Level-5 Ext: Chronos Companion Telemetry", "Unit": "Per Watch-Floor Operator Node", "Annual Gov": "$30,000/yr", "Monthly Comm": "$2,750/mo"},
+            {"CLIN": "CLIN 0025", "Module": "Mod #25: Level-5 Ext: 48-Plenum Silo PLC Sync", "Unit": "Per Industrial Facility PLC Node", "Annual Gov": "$35,000/yr", "Monthly Comm": "$3,200/mo"},
+            {"CLIN": "CLIN 0026", "Module": "Mod #26: Level-5 Ext: Cryptographic Merkle Verifier", "Unit": "Per Inspector General Audit Node", "Annual Gov": "$20,000/yr", "Monthly Comm": "$1,850/mo"},
+            {"CLIN": "CLIN 1004-A", "Module": "BUNDLE: Full 26-Module Console (1 Single Node)", "Unit": "1 Bare-Metal TOC Enclave Node", "Annual Gov": "$895,000/yr", "Monthly Comm": "$79,500/mo"},
+            {"CLIN": "CLIN 1004-B", "Module": "BUNDLE: Military Installation Fleet (Up to 25 Nodes)", "Unit": "Up to 25 Enclave/Robotic Nodes (1 Base)", "Annual Gov": "$2,450,000/yr", "Monthly Comm": "$215,000/mo"}
+        ]
+        st.dataframe(clin_rows, width="stretch", hide_index=True)
+
