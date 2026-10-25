@@ -1,4 +1,14 @@
 # Humphrey Virtual Farms LLC -- Sovereign Industrial Defense, Energy & Cyber-Physical C2
+
+## DOD CDAO TRADEWINDS ACTIVE RESUBMISSION DOCKET `10-26-3952` (`STATUS: RECEIVED` // `TRL 7`)
+- **Active Resubmission Docket ID:** `10-26-3952` (`Status: Received` | Submitted `Oct 25, 2026 12:38 AM` | **TRL 7**)
+- **Prior Baseline Docket ID:** `9-26-3703` (Submitted `Sep 24, 2026` | Upgraded In-Place to **TRL 7** with Full Evaluator Rubric Resolution)
+- **Point-by-Point CDAO Evaluator Rubric Resolution (v8.0.0):** [`TRADEWINDS_EVALUATOR_RUBRIC_REBUTTAL_V8.md`](TRADEWINDS_EVALUATOR_RUBRIC_REBUTTAL_V8.md)
+- **Official Docket `10-26-3952` WORM PDF Resubmission Dossier:** [`federal_filings/HVF_TRADEWINDS_10-26-3952_TRL7_RESUBMISSION_DOSSIER.pdf`](federal_filings/HVF_TRADEWINDS_10-26-3952_TRL7_RESUBMISSION_DOSSIER.pdf) (`SHA-256: 676ad146c970e84c3823fbd179b06b031919f798c3460df9cc4b413e67a54ad7`)
+- **Official Docket `10-26-3952` Markdown Filing Record:** [`federal_filings/docket_10-26-3952_tradewinds_resubmission.md`](federal_filings/docket_10-26-3952_tradewinds_resubmission.md)
+- **Official Live Portal Transmission Receipt:** [`TRADEWINDS_SUBMISSION_TRANSMISSION_RECEIPT.md`](TRADEWINDS_SUBMISSION_TRANSMISSION_RECEIPT.md)
+- **Master C2 Cryptographic Merkle Root (SHA-256):** `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a` (`631/631` Modules | `83/83` Test Suites Passed | `17/17` Red-Team Vectors Blocked | `110/110` DoD SPRS)
+
 [![DoD SPRS Score](https://img.shields.io/badge/DoD_SPRS_NIST_800--171-110%2F110-brightgreen.svg)](SPRS_COMPLIANCE_ATTESTATION.md)
 [![CAGE Code](https://img.shields.io/badge/CAGE-1AHA8-blue.svg)](CAPABILITY_STATEMENT.md)
 [![UEI](https://img.shields.io/badge/UEI-S1M4ENLHTDH5-blue.svg)](CAPABILITY_STATEMENT.md)

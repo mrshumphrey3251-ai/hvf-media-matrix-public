@@ -1,4 +1,4 @@
-﻿# HVF Media Matrix - Enterprise Git Ignore Policy
+# HVF Media Matrix - Enterprise Git Ignore Policy
 # DFARS 252.227-7018 Compliant Configuration
 
 # 1. Environment Variables & Secrets (CRITICAL)
@@ -82,3 +82,6 @@ server.cert
 # Sovereign Credential Boundary
 c2_cockpit/email_accounts.json
 c2_cockpit/offline_textbooks/*.pdf
+# Microsoft Office temporary lock files
+~$*
+*.tmp

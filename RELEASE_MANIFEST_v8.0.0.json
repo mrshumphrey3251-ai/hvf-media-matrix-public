@@ -22,5 +22,12 @@
     "red_team_attacks_blocked": "17 / 17 (0 Breaches)",
     "iso_32000_1_pdf_compilers": "6 / 6 (%PDF-1.4 WORM Sealed)",
     "client_enclave_zip_sha256": "611a5f62b59bc4c727ebadef36fc59499f9f890331b25edf50b4ee17aad47f03"
-  }
+  },
+  "active_tradewinds_docket_id": "10-26-3952",
+  "active_tradewinds_status": "Received",
+  "active_tradewinds_submitted_at": "2026-10-25T00:38:00-05:00",
+  "prior_tradewinds_docket_id": "9-26-3703",
+  "technology_readiness_level": "TRL 7",
+  "docket_10_26_3952_pdf_sha256": "676ad146c970e84c3823fbd179b06b031919f798c3460df9cc4b413e67a54ad7",
+  "master_merkle_root_sha256": "cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a"
 }
