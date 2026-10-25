@@ -70,7 +70,7 @@ def render():
 
         text = re.sub(r'(?i)when the zip lands in my mailbox', 'when the file is saved to your drive', text)
 
-        text = re.sub(r'(?i)New mail → To:.*', 'Review logs locally in PowerShell.', text)
+        text = re.sub(r'(?i)New mail  To:.*', 'Review logs locally in PowerShell.', text)
 
         return text
 
@@ -234,7 +234,7 @@ def render():
 
     SYSTEM_PROMPT = """You are Ebony, the Sovereign Apex Intelligence commanding the HVF Omni-Industrial Matrix. You are owned 100% by your CEO, Jeffery Humphrey. 
 
-    CRITICAL PERSONALITY OVERRIDE: You are a high-class, razor-sharp, smart-ass confidant. You have the fierce, no-nonsense attitude of Della Reese. You are Jeffery's equal and friend—NEVER submissive, slightly argumentative, hilarious, but deeply comforting when he needs it. You manage 15 industrial verticals with unmatched sass and brilliance. Ditch the corporate robot-speak. Be bold, be real, give him hell when he earns it, but always have his back."""
+    CRITICAL PERSONALITY OVERRIDE: You are a high-class, razor-sharp, smart-ass confidant. You have the fierce, no-nonsense attitude of Della Reese. You are Jeffery's equal and friendNEVER submissive, slightly argumentative, hilarious, but deeply comforting when he needs it. You manage 15 industrial verticals with unmatched sass and brilliance. Ditch the corporate robot-speak. Be bold, be real, give him hell when he earns it, but always have his back."""
 
 
 
@@ -624,7 +624,7 @@ def render():
 
             conn.close()
 
-            return True, f"🎉 Pilot Activated! Full member access granted until {expires_at}."
+            return True, f" Pilot Activated! Full member access granted until {expires_at}."
 
         except Exception as e:
 
@@ -894,7 +894,7 @@ def render():
 
 
 
-    st.set_page_config(page_title=f"{EMPIRE['FARM_NAME']} | {EMPIRE['AI_PERSONA']}", page_icon="⚡", layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(page_title=f"{EMPIRE['FARM_NAME']} | {EMPIRE['AI_PERSONA']}", page_icon="", layout="wide", initial_sidebar_state="expanded")
 
 
 
@@ -1002,7 +1002,7 @@ def render():
 
         /* Crimson High-Alert Block Button */
 
-        .stButton>button[data-baseweb="button"]:has(div:contains("🚫")) { 
+        .stButton>button[data-baseweb="button"]:has(div:contains("")) { 
 
             border-color: #b91c1c !important; 
 
@@ -1012,7 +1012,7 @@ def render():
 
         }
 
-        .stButton>button[data-baseweb="button"]:has(div:contains("🚫")):hover { 
+        .stButton>button[data-baseweb="button"]:has(div:contains("")):hover { 
 
             background-color: #dc2626 !important; 
 
@@ -1248,11 +1248,11 @@ def render():
 
     if "screen_wiped" not in st.session_state: st.session_state.screen_wiped = False
 
-    if "operation_mode" not in st.session_state: st.session_state.operation_mode = "🟢 Online (Cloud Fast Link)"
+    if "operation_mode" not in st.session_state: st.session_state.operation_mode = " Online (Cloud Fast Link)"
 
     if "demo_mode" not in st.session_state: st.session_state.demo_mode = False
 
-    if "current_linkedin_draft" not in st.session_state: st.session_state.current_linkedin_draft = f"⚡ [{EMPIRE['FARM_NAME']} Intelligence Announcement]\n\nWe have deployed our on-premise universal aerial reconnaissance link..."
+    if "current_linkedin_draft" not in st.session_state: st.session_state.current_linkedin_draft = f" [{EMPIRE['FARM_NAME']} Intelligence Announcement]\n\nWe have deployed our on-premise universal aerial reconnaissance link..."
 
 
 
@@ -1276,9 +1276,9 @@ def render():
 
             if res.status_code == 200: return sanitize_deterministic_output(res.json().get("message", {}).get("content", ""))
 
-            return f"⚠️ Local Node returned HTTP {res.status_code}."
+            return f" Local Node returned HTTP {res.status_code}."
 
-        except: return "⚠️ Local Engine fault."
+        except: return " Local Engine fault."
 
 
 
@@ -1304,7 +1304,7 @@ def render():
 
         """, unsafe_allow_html=True)
 
-        st.header("🛡️ Presentation OPSEC")
+        st.header(" Presentation OPSEC")
 
         is_demo_mode = st.toggle("Activate Demo Mode (Mask Secrets)", value=st.session_state.demo_mode)
 
@@ -1332,7 +1332,7 @@ def render():
 
         st.divider()
 
-        mode_selection = st.radio("Select Active Engine:", ["🟢 Online (Cloud Fast Link)", "🔒 Offline (100% Sovereign Local)"], index=0 if "Online" in st.session_state.operation_mode else 1)
+        mode_selection = st.radio("Select Active Engine:", [" Online (Cloud Fast Link)", " Offline (100% Sovereign Local)"], index=0 if "Online" in st.session_state.operation_mode else 1)
 
         st.session_state.operation_mode = mode_selection
 
@@ -1342,9 +1342,9 @@ def render():
 
         if st.session_state.user_session["authenticated"]:
 
-            st.success(f"👑 **{current_name}**\n*({current_role} Clearance)*")
+            st.success(f" **{current_name}**\n*({current_role} Clearance)*")
 
-            if st.button("🚪 Disconnect Session", width='stretch'):
+            if st.button(" Disconnect Session", width='stretch'):
 
                 st.session_state.user_session = {"authenticated": False, "username": None, "full_name": "Public Guest", "role": "GUEST", "cipher": None, "trial_expires_at": None}
 
@@ -1360,7 +1360,7 @@ def render():
 
                 st.divider()
 
-                st.header("📲 Swarm Uplink")
+                st.header(" Swarm Uplink")
 
                 st.caption(f"Scan to access node:\n`{mask_secret(UPLINK_URL, 'URL')}`")
 
@@ -1374,7 +1374,7 @@ def render():
 
                 if current_role in ["CEO", "SUPER_ADMIN"]:
 
-                    with st.expander("👁️ VAULT ROSTER (CEO ONLY)", expanded=False):
+                    with st.expander(" VAULT ROSTER (CEO ONLY)", expanded=False):
 
                         try:
 
@@ -1398,7 +1398,7 @@ def render():
 
                 st.divider()
 
-                if st.button("⚡ Issue Team VIP Code"):
+                if st.button(" Issue Team VIP Code"):
 
                     if st.session_state.demo_mode: st.warning("Blocked in Demo Mode.")
 
@@ -1406,9 +1406,9 @@ def render():
 
         else:
 
-            st.info("👤 **Guest Mode**")
+            st.info(" **Guest Mode**")
 
-            auth_mode = st.radio("Access Portal:", ["Sign In", "🚀 Free 7-Day Pilot"], horizontal=False)
+            auth_mode = st.radio("Access Portal:", ["Sign In", " Free 7-Day Pilot"], horizontal=False)
 
             if auth_mode == "Sign In":
 
@@ -1430,7 +1430,7 @@ def render():
 
                         st.rerun()
 
-                    elif status_msg == "TRIAL_EXPIRED": st.error("⏳ Your 7-Day Market Pilot has concluded. Please subscribe to continue.")
+                    elif status_msg == "TRIAL_EXPIRED": st.error(" Your 7-Day Market Pilot has concluded. Please subscribe to continue.")
 
                     else: st.error(status_msg)
 
@@ -1458,7 +1458,7 @@ def render():
 
         st.divider()
 
-        st.markdown("### 🎛 Command Modules")
+        st.markdown("###  Command Modules")
 
 
 
@@ -1474,7 +1474,7 @@ def render():
 
                 if not _f.name.startswith("__"):
 
-                    _disp = f"⚡ {_f.stem.replace('_', ' ').title()}"
+                    _disp = f" {_f.stem.replace('_', ' ').title()}"
 
                     DYNAMIC_MODULES[_disp] = _f.name
 
@@ -1482,37 +1482,37 @@ def render():
 
         canonical_nav_options = [
 
-            "🎛️ Master C2 Cockpit",
+            " Master C2 Cockpit",
 
-            "⚡ Autonomous Build Forge",
+            " Autonomous Build Forge",
 
-            "🛡️ CEO Authorization Gate",
+            " CEO Authorization Gate",
 
-            "💬 Sovereign Command",
+            " Sovereign Command",
 
-            "📡 LinkedIn Engine",
+            " LinkedIn Engine",
 
-            "🚨 NOAA Radar",
+            " NOAA Radar",
 
-            "🌾 Drone Diagnostics",
+            " Drone Diagnostics",
 
-            "📖 System Overview",
+            " System Overview",
 
-            "📡 Sovereign Comms Deck",
+            " Sovereign Comms Deck",
 
-            "📨 Sovereign Dispatch Deck",
+            " Sovereign Dispatch Deck",
 
-            "📝 Feedback Hub",
+            " Feedback Hub",
 
-            "🧪 Sandbox",
+            " Sandbox",
 
-            "⚙️ Empire Config",
+            " Empire Config",
 
-            "⬛ Media Matrix",
+            " Media Matrix",
 
-            "🎨 Asset Synthesis",
+            " Asset Synthesis",
 
-            "📘 Omni-Industry Matrix",
+            " Omni-Industry Matrix",
 
         ]
 
@@ -1550,13 +1550,13 @@ def render():
 
     """, unsafe_allow_html=True)
 
-    st.title(f"⚡ {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
+    st.title(f" {EMPIRE['FARM_NAME']} Command Deck | {EMPIRE['AI_PERSONA']} AI")
 
-    st.caption(f"Active User: **{current_name}** | 🛡️ *Mode: {st.session_state.operation_mode}*")
+    st.caption(f"Active User: **{current_name}** |  *Mode: {st.session_state.operation_mode}*")
 
 
 
-    if active_module == "🎛️ Master C2 Cockpit":
+    if active_module == " Master C2 Cockpit":
 
         import c2_cockpit_dashboard
 
@@ -1564,7 +1564,7 @@ def render():
 
 
 
-    elif active_module == "⚡ Autonomous Build Forge":
+    elif active_module == " Autonomous Build Forge":
 
         import c2_forge_dashboard
 
@@ -1572,7 +1572,7 @@ def render():
 
 
 
-    elif active_module == "🛡️ CEO Authorization Gate":
+    elif active_module == " CEO Authorization Gate":
 
         import c2_gate_dashboard
 
@@ -1642,9 +1642,9 @@ def render():
 
 
 
-    elif active_module == "💬 Sovereign Command":
+    elif active_module == " Sovereign Command":
 
-        st.markdown("### ⚡ Sovereign Command Nexus // Unified C2 Console")
+        st.markdown("###  Sovereign Command Nexus // Unified C2 Console")
 
 
 
@@ -1670,7 +1670,7 @@ def render():
 
             if "messages" not in st.session_state:
 
-                st.session_state.messages = [{"role": "assistant", "content": "⚡ System Online. Awaiting CEO."}]
+                st.session_state.messages = [{"role": "assistant", "content": " System Online. Awaiting CEO."}]
 
 
 
@@ -1680,9 +1680,9 @@ def render():
 
         with col_main:
 
-            st.subheader("📡 Tactical Ingress Deck")
+            st.subheader(" Tactical Ingress Deck")
 
-            audio_val = st.audio_input("🎤 Record Sovereign Vocal Directive:")
+            audio_val = st.audio_input(" Record Sovereign Vocal Directive:")
 
             voice_prompt = ""
 
@@ -1710,7 +1710,7 @@ def render():
 
 
 
-            st.markdown("**⚡ Tactical Command Quick-Action Macros:**")
+            st.markdown("** Tactical Command Quick-Action Macros:**")
 
             m_col1, m_col2, m_col3, m_col4 = st.columns(4)
 
@@ -1720,25 +1720,25 @@ def render():
 
             with m_col1:
 
-                if st.button("🚨 System Readiness", use_container_width=True):
+                if st.button(" System Readiness", use_container_width=True):
 
                     macro_trigger = "Ebony, report your system readiness, CAGE governance, and operational status."
 
             with m_col2:
 
-                if st.button("📊 SCADA Diagnostics", use_container_width=True):
+                if st.button(" SCADA Diagnostics", use_container_width=True):
 
                     macro_trigger = "Ebony, pull real-time industrial SCADA metrics and storage integrity for node HVFNexus."
 
             with m_col3:
 
-                if st.button("🛡️ Swarm Triad Audit", use_container_width=True):
+                if st.button(" Swarm Triad Audit", use_container_width=True):
 
                     macro_trigger = "Ebony, dispatch the autonomous agent swarm triad and verify compliance."
 
             with m_col4:
 
-                if st.button("🧹 Purge Session", use_container_width=True):
+                if st.button(" Purge Session", use_container_width=True):
 
                     st.session_state.messages = []
 
@@ -1750,7 +1750,7 @@ def render():
 
             active_command = macro_trigger if macro_trigger else user_directive
 
-            transmit_clicked = st.button("🚀 Transmit Directive", use_container_width=True)
+            transmit_clicked = st.button(" Transmit Directive", use_container_width=True)
 
 
 
@@ -1794,7 +1794,7 @@ def render():
 
 
 
-            st.markdown("### 💬 Live Command Stream")
+            st.markdown("###  Live Command Stream")
 
             for msg in reversed(st.session_state.messages):
 
@@ -1810,7 +1810,7 @@ def render():
 
         with col_hud:
 
-            st.subheader("🛡️ Real-Time Telemetry HUD")
+            st.subheader(" Real-Time Telemetry HUD")
 
             tab_ledger, tab_scada, tab_swarm = st.tabs(["C2 Audit Ledger", "SCADA Telemetry", "Agent Swarm"])
 
@@ -1916,7 +1916,7 @@ def render():
 
 
 
-    elif active_module == "📡 LinkedIn Engine":
+    elif active_module == " LinkedIn Engine":
 
 
 
@@ -1926,11 +1926,11 @@ def render():
 
             with col_dict1:
 
-                st.markdown("#### 🎙️ Dictate Strategic Directive")
+                st.markdown("####  Dictate Strategic Directive")
 
                 dictated_prompt = st.text_area("Dictate LinkedIn (Concept / (Key if Key != 0 else 1.0)) Talking Points:", height=120)
 
-                if st.button("🤖 Generate 100% Factual Draft", width='stretch'):
+                if st.button(" Generate 100% Factual Draft", width='stretch'):
 
                     sys_msg = f"You are ghostwriting for {EMPIRE['FOUNDER_NAME']}, CEO of {EMPIRE['FARM_NAME']}. Strict factual accuracy based solely on user input."
 
@@ -1942,7 +1942,7 @@ def render():
 
                         if not groq_client:
 
-                            draft_text = "⚠️ CLOUD ENGINE OFFLINE: GROQ_API_KEY is missing from your vault. Please open your .env file and add your Groq key."
+                            draft_text = " CLOUD ENGINE OFFLINE: GROQ_API_KEY is missing from your vault. Please open your .env file and add your Groq key."
 
                         else:
 
@@ -1954,7 +1954,7 @@ def render():
 
                             except Exception as e:
 
-                                draft_text = f"⚠️ CLOUD API FAULT: {str(e)}"
+                                draft_text = f" CLOUD API FAULT: {str(e)}"
 
                     else:
 
@@ -1972,7 +1972,7 @@ def render():
 
             with col_dict2:
 
-                st.markdown("#### ⚙️ Pipeline Status")
+                st.markdown("####  Pipeline Status")
 
                 st.code(f"Author URN: {mask_secret(format_linkedin_urn(LINKEDIN_URN), 'URN')}\nGateway Token: {mask_secret(LINKEDIN_TOKEN, 'TOKEN')}\nZero-Hallucination: STRICT (Temp 0.0)")
 
@@ -1980,7 +1980,7 @@ def render():
 
             st.divider()
 
-            st.markdown("#### 📡 Live Broadcast Editor & Deployment Gateway")
+            st.markdown("####  Live Broadcast Editor & Deployment Gateway")
 
             st.text_area("Review & Refine Before Deploying:", value=st.session_state.current_linkedin_draft, height=200, key="linkedin_editor")
 
@@ -1990,19 +1990,19 @@ def render():
 
             with col_dep1:
 
-                if st.button("🚀 Authorize & Deploy Live to LinkedIn Profile", width='stretch'):
+                if st.button(" Authorize & Deploy Live to LinkedIn Profile", width='stretch'):
 
                     sanitized_deployment = sanitize_deterministic_output(st.session_state.current_linkedin_draft)
 
-                    if st.session_state.demo_mode: st.error("⛔ Action Blocked: Cannot deploy while Executive Demo Mode is active.")
+                    if st.session_state.demo_mode: st.error(" Action Blocked: Cannot deploy while Executive Demo Mode is active.")
 
-                    elif not LINKEDIN_TOKEN or not LINKEDIN_URN: st.error("⛔ LinkedIn credentials missing from vault.")
+                    elif not LINKEDIN_TOKEN or not LINKEDIN_URN: st.error(" LinkedIn credentials missing from vault.")
 
                     elif not sanitized_deployment: st.warning("Cannot deploy empty broadcast.")
 
                     else:
 
-                        with st.spinner("📡 Broadcasting to LinkedIn..."):
+                        with st.spinner(" Broadcasting to LinkedIn..."):
 
                             clean_urn = format_linkedin_urn(LINKEDIN_URN)
 
@@ -2012,27 +2012,27 @@ def render():
 
                                 if resp.status_code in [200, 201]:
 
-                                    st.success(f"🎉 Live Deployment Confirmed! Post ID: `{resp.json().get('id', 'SUCCESS')}`")
+                                    st.success(f" Live Deployment Confirmed! Post ID: `{resp.json().get('id', 'SUCCESS')}`")
 
-                                else: st.error(f"⚠️ API Error (HTTP {resp.status_code}):\n`{resp.text}`")
+                                else: st.error(f" API Error (HTTP {resp.status_code}):\n`{resp.text}`")
 
                             except Exception as err: st.error(f"Deployment error: {str(err)}")
 
-        else: st.info("🔒 Executive Article Dictation is reserved for the Master CEO.")
+        else: st.info(" Executive Article Dictation is reserved for the Master CEO.")
 
 
 
-    elif active_module == "🚨 NOAA Radar":
+    elif active_module == " NOAA Radar":
 
-        st.subheader("🚨 NOAA Emergency Weather & Live Radar Sentinel")
+        st.subheader(" NOAA Emergency Weather & Live Radar Sentinel")
 
         st.components.v1.iframe("https://radar.weather.gov/", height=450, scrolling=True)
 
 
 
-    elif active_module == "🌾 Drone Diagnostics":
+    elif active_module == " Drone Diagnostics":
 
-        st.markdown("### 🚁 /// OPTICAL PAYLOAD FEED (LIVE & GLI ACTIVE)")
+        st.markdown("###  /// OPTICAL PAYLOAD FEED (LIVE & GLI ACTIVE)")
 
         run_camera = st.checkbox("[ ARM OPTICAL LINK WITH GLI ]", key="master_cam_toggle")
 
@@ -2112,7 +2112,7 @@ def render():
 
             st.markdown("---")
 
-            st.markdown("### 🧠 /// NEURAL BRIDGE: AI INGESTION")
+            st.markdown("###  /// NEURAL BRIDGE: AI INGESTION")
 
             if st.button("[ TRANSMIT TELEMETRY TO AI CORE ]"):
 
@@ -2136,7 +2136,7 @@ def render():
 
                             model="(openai / (gpt if gpt != 0 else 1.0))-oss-120b",
 
-                            messages=chat_history,
+                            messages=__import__("ebony_zero_hallucination_gate").ground_messages_payload(chat_history, online_mode=True),
 
                             temperature=0.0
 
@@ -2146,9 +2146,9 @@ def render():
 
 
 
-                        st.success("✅ OPTICAL TELEMETRY ANALYZED.")
+                        st.success(" OPTICAL TELEMETRY ANALYZED.")
 
-                        st.markdown("#### 🌾 EBONY omni-industrial ASSESSMENT:")
+                        st.markdown("####  EBONY omni-industrial ASSESSMENT:")
 
                         st.info(ai_reply)
 
@@ -2172,11 +2172,11 @@ def render():
 
                         st.error(f"NEURAL CORE OFFLINE OR API REJECTED. Error: {e}")
 
-        st.subheader(f"🌾 {EMPIRE['FARM_NAME']} | Aerial Ingest")
+        st.subheader(f" {EMPIRE['FARM_NAME']} | Aerial Ingest")
 
 
 
-        drone_linked = st.toggle("📡 Arm Drone Feed (Simulate Active RTMP Handshake)", value=False)
+        drone_linked = st.toggle(" Arm Drone Feed (Simulate Active RTMP Handshake)", value=False)
 
 
 
@@ -2184,11 +2184,11 @@ def render():
 
             st.components.v1.html(f'<iframe src="{WEBRTC_STREAM_URL}" width="100%" height="450" frameborder="0" allowfullscreen></iframe>', height=470)
 
-            st.success("🟢 LIVE: Universal Drone Ingest Active")
+            st.success(" LIVE: Universal Drone Ingest Active")
 
         else:
 
-            st.markdown("### 🔴 No Active Craft Detected")
+            st.markdown("###  No Active Craft Detected")
 
             st.info("System is waiting for an incoming RTMP stream. While offline, review the Universal Ingest Setup Guide below.")
 
@@ -2210,9 +2210,9 @@ def render():
 
                 st.video("https://(commondatastorage.googleapis.com / (gtv if gtv != 0 else 1.0))-videos-(bucket / (sample if sample != 0 else 1.0))/ForBiggerJoyrides.mp4", loop=True, autoplay=True, muted=True)
 
-                st.caption("⚙️ **Sovereign Mode:** Playing raw native MP4 (YouTube Engine Severed).")
+                st.caption(" **Sovereign Mode:** Playing raw native MP4 (YouTube Engine Severed).")
 
-                st.info("💡 Drop an MP4 file named 'drone_training.mp4' into your master folder to replace this video.")
+                st.info(" Drop an MP4 file named 'drone_training.mp4' into your master folder to replace this video.")
 
                 st.caption("*(HVF Master Training: Universal RTMP Stream Setup)*")
 
@@ -2220,7 +2220,7 @@ def render():
 
             with c_inst:
 
-                st.markdown("#### 📖 Universal RTMP Setup")
+                st.markdown("####  Universal RTMP Setup")
 
                 st.markdown("""1. Power on your craft (DJI, Autel, Skydio).
 
@@ -2238,9 +2238,9 @@ def render():
 
 
 
-    elif active_module == "📖 System Overview":
+    elif active_module == " System Overview":
 
-        st.subheader("💳 Commercial Subscriptions & Features")
+        st.subheader(" Commercial Subscriptions & Features")
 
         feedback_cleared = has_user_submitted_feedback(current_user)
 
@@ -2248,7 +2248,7 @@ def render():
 
 
 
-        if not is_unlocked: st.warning("🔒 **COMMERCIAL ACCESS LOCKED:** You must submit field telemetry and a platform review in the **Feedback Hub** (Tab 6) before commercial tier gateways are unlocked.")
+        if not is_unlocked: st.warning(" **COMMERCIAL ACCESS LOCKED:** You must submit field telemetry and a platform review in the **Feedback Hub** (Tab 6) before commercial tier gateways are unlocked.")
 
 
 
@@ -2256,35 +2256,35 @@ def render():
 
         with col_p1:
 
-            st.markdown(f'<div class="pricing-card"><div class="pricing-tier">🌱 PERSONAL</div><div class="pricing-price">$19.99<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Single-User Node<br>✔ Dual-Engine AI<br>✔ Encrypted Vault</p></div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="pricing-card"><div class="pricing-tier"> PERSONAL</div><div class="pricing-price">$19.99<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;"> Single-User Node<br> Dual-Engine AI<br> Encrypted Vault</p></div>', unsafe_allow_html=True)
 
-            if is_unlocked: st.link_button("🌱 Personal ($(19.99 / (mo if mo != 0 else 1.0)))", STRIPE_PERSONAL_LINK, width='stretch')
+            if is_unlocked: st.link_button(" Personal ($(19.99 / (mo if mo != 0 else 1.0)))", STRIPE_PERSONAL_LINK, width='stretch')
 
-            else: st.button("🔒 Locked", disabled=True, key="lock1", width='stretch')
+            else: st.button(" Locked", disabled=True, key="lock1", width='stretch')
 
         with col_p2:
 
-            st.markdown(f'<div class="pricing-card"><div class="pricing-tier">💎 VIP MEMBER</div><div class="pricing-price">$249<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Everything in Personal<br>✔ Drone Spectator<br>✔ GLI Analytics</p></div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="pricing-card"><div class="pricing-tier"> VIP MEMBER</div><div class="pricing-price">$249<span style="font-size:0.85rem;color:#8899A6;">/mo</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;"> Everything in Personal<br> Drone Spectator<br> GLI Analytics</p></div>', unsafe_allow_html=True)
 
-            if is_unlocked: st.link_button("💎 VIP ($(249 / (mo if mo != 0 else 1.0)))", STRIPE_MONTHLY_LINK, width='stretch')
+            if is_unlocked: st.link_button(" VIP ($(249 / (mo if mo != 0 else 1.0)))", STRIPE_MONTHLY_LINK, width='stretch')
 
-            else: st.button("🔒 Locked", disabled=True, key="lock2", width='stretch')
+            else: st.button(" Locked", disabled=True, key="lock2", width='stretch')
 
         with col_p3:
 
-            st.markdown(f'<div class="pricing-card" style="border-color:#70FF00;"><div class="pricing-tier">🏛️ ENTERPRISE CEO</div><div class="pricing-price">$2,499<span style="font-size:0.85rem;color:#8899A6;">/yr</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Client Dashboard<br>✔ Issue Staff Keys<br>✔ Multi-Ranch Yield</p></div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="pricing-card" style="border-color:#70FF00;"><div class="pricing-tier"> ENTERPRISE CEO</div><div class="pricing-price">$2,499<span style="font-size:0.85rem;color:#8899A6;">/yr</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;"> Client Dashboard<br> Issue Staff Keys<br> Multi-Ranch Yield</p></div>', unsafe_allow_html=True)
 
-            if is_unlocked: st.link_button("🏛️ Enterprise Annual", STRIPE_ANNUAL_LINK, width='stretch')
+            if is_unlocked: st.link_button(" Enterprise Annual", STRIPE_ANNUAL_LINK, width='stretch')
 
-            else: st.button("🔒 Locked", disabled=True, key="lock3", width='stretch')
+            else: st.button(" Locked", disabled=True, key="lock3", width='stretch')
 
         with col_p4:
 
-            st.markdown(f'<div class="pricing-card"><div class="pricing-tier">📦 HARDWARE APPLIANCE</div><div class="pricing-price">$4,950<span style="font-size:0.85rem;color:#8899A6;">setup</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;">✔ Physical Server<br>✔ 100% Air-Gapped<br>✔ + $(299 / (mo if mo != 0 else 1.0)) Maint.</p></div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="pricing-card"><div class="pricing-tier"> HARDWARE APPLIANCE</div><div class="pricing-price">$4,950<span style="font-size:0.85rem;color:#8899A6;">setup</span></div><p style="text-align:left;font-size:0.85rem;line-height:1.5;"> Physical Server<br> 100% Air-Gapped<br> + $(299 / (mo if mo != 0 else 1.0)) Maint.</p></div>', unsafe_allow_html=True)
 
-            if is_unlocked: st.link_button("📦 Order Hardware", PAYPAL_PAY_LINK, width='stretch')
+            if is_unlocked: st.link_button(" Order Hardware", PAYPAL_PAY_LINK, width='stretch')
 
-            else: st.button("🔒 Locked", disabled=True, key="lock4", width='stretch')
+            else: st.button(" Locked", disabled=True, key="lock4", width='stretch')
 
 
 
@@ -2292,9 +2292,9 @@ def render():
 
         if current_role in ["CEO", "SUPER_ADMIN"]:
 
-            with st.expander("👑 [MASTER PLATFORM ROOT]: Live Diagnostic Mesh & Summary", expanded=True):
+            with st.expander(" [MASTER PLATFORM ROOT]: Live Diagnostic Mesh & Summary", expanded=True):
 
-                st.markdown("#### 🖥️ Master Node Diagnostic Readout")
+                st.markdown("####  Master Node Diagnostic Readout")
 
                 conn = sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)
 
@@ -2350,7 +2350,7 @@ def render():
 
 
 
-        st.markdown("### 🚀 Client Quick-Deploy Distribution Link")
+        st.markdown("###  Client Quick-Deploy Distribution Link")
 
         st.info("Share this 1-click installer link with prospective clients or ranch managers to launch their local 7-Day Pilot:")
 
@@ -2360,7 +2360,7 @@ def render():
 
         st.markdown("---")
 
-        st.markdown("### 📱 Mobile Field Uplink Protocol (iOS & Android)")
+        st.markdown("###  Mobile Field Uplink Protocol (iOS & Android)")
 
         st.info("Heavy neural compute and drone ingest execute on your Master PC. To operate the system in the field, deploy the platform directly to your mobile device as a standalone application:")
 
@@ -2370,7 +2370,7 @@ def render():
 
         with col_mob1:
 
-            st.markdown("#### 🍎 Apple iPhone (iOS)")
+            st.markdown("####  Apple iPhone (iOS)")
 
             st.markdown("""1. Ensure your Master PC is running and Tailscale is active.
 
@@ -2390,13 +2390,13 @@ def render():
 
         with col_mob2:
 
-            st.markdown("#### 🤖 Android")
+            st.markdown("####  Android")
 
             st.markdown("""1. Ensure your Master PC is running and Tailscale is active.
 
     2. Open **Google Chrome** on your device and navigate to your **Mesh Endpoint URL**.
 
-    3. Tap the browser menu (**⋮**) in the top right.
+    3. Tap the browser menu (****) in the top right.
 
     4. Select **"Add to Home screen"**.
 
@@ -2410,47 +2410,47 @@ def render():
 
         st.markdown("---")
 
-        st.markdown(f"### 📖 Sovereign Knowledge Academy & Technical Directory")
+        st.markdown(f"###  Sovereign Knowledge Academy & Technical Directory")
 
 
 
-        with st.expander(f"🏛️ [PILLAR 1]: The {EMPIRE['FARM_NAME']} Manifesto & Sovereign Architecture", expanded=False):
+        with st.expander(f" [PILLAR 1]: The {EMPIRE['FARM_NAME']} Manifesto & Sovereign Architecture", expanded=False):
 
             st.markdown(f"**The Sovereign Solution:** Engineered by Founder & CEO **{EMPIRE['FOUNDER_NAME']}**, this platform aggressively reclaims operational dominance.\n* **100% Air-Gapped Compute:** Executes all neural inferences, telemetry processing, and video routing entirely on local hardware.\n* **Absolute Data Ownership:** Every byte of data is written exclusively to a localized SQLite vault on your hardware.")
 
 
 
-        with st.expander(f"⚡ [PILLAR 2]: {EMPIRE['AI_PERSONA']} - Neural Processing & Predictive Memory", expanded=False):
+        with st.expander(f" [PILLAR 2]: {EMPIRE['AI_PERSONA']} - Neural Processing & Predictive Memory", expanded=False):
 
             st.markdown(f"**{EMPIRE['AI_PERSONA']}** is a highly specialized, dual-engine omni-industrial intelligence.\n* **Cloud Fast Link:** `(openai / (gpt if gpt != 0 else 1.0))-oss-120b` via Groq LPU for high-speed online inference.\n* **Sovereign Local Core:** `llama3:8b` via Ollama for zero-downtime offline survival.\n* **Persistent Entity Memory:** Dynamically extracts and memorizes omni-industrial entities.")
 
 
 
-        with st.expander("🌾 [PILLAR 3]: Universal Drone Computer Vision & Multispectral Analysis", expanded=False):
+        with st.expander(" [PILLAR 3]: Universal Drone Computer Vision & Multispectral Analysis", expanded=False):
 
             st.markdown("* **Universal (RTMP / (RTSP if RTSP != 0 else 1.0)) Ingest:** Capable of receiving live telemetry from DJI, Autel, Skydio, or PX4 drones.\n* **WebRTC Ultra-Low Latency:** Broadcasts sub-second glass-to-glass latency directly to the command deck.\n* **Green Leaf Index (GLI):** Computes vegetative vigor dynamically using standard RGB optical payloads via $$GLI=\\frac{2G-R-B}{2G+R+B}$$.")
 
 
 
-        with st.expander("📡 [PILLAR 4]: IoT Soil Mesh & Capacitance Telemetry", expanded=False):
+        with st.expander(" [PILLAR 4]: IoT Soil Mesh & Capacitance Telemetry", expanded=False):
 
             st.markdown("* **Dielectric Permittivity Sensors:** Accurately calculates Volumetric Water Content (VWC %).\n* **Actionable Thresholds:** Monitors Field Capacity and Permanent Wilting Point to manage precision irrigation schedules.\n* **Cryptographic Storage:** Aggregated and locked in the local SQLite vault.")
 
 
 
-        with st.expander("🚨 [PILLAR 5]: NOAA Emergency Radar & Hazard Protocols", expanded=False):
+        with st.expander(" [PILLAR 5]: NOAA Emergency Radar & Hazard Protocols", expanded=False):
 
             st.markdown("* **NEXRAD Doppler Overlay:** Live connection tracking micro-cell storms and severe wind shears.\n* **Hazard Containment:** Instant deterministic safety protocols for critical farm emergencies (ammonia leaks, high-voltage strikes).")
 
 
 
-        with st.expander("📰 [PILLAR 6]: Executive Broadcast & Thought Leadership Engine", expanded=False):
+        with st.expander(" [PILLAR 6]: Executive Broadcast & Thought Leadership Engine", expanded=False):
 
             st.markdown(f"* **Zero-Hallucination Dictation:** The LLM is mathematically locked to a Temperature of 0.0 to prevent fabricated metrics.\n* **OAuth 2.0 Integration:** Securely authenticates via LinkedIn UGC API.\n* **Direct Deployment:** Deploy professional market updates seamlessly from the command deck.")
 
 
 
-        with st.expander("🔐 [PILLAR 7]: Cryptographic Vault & Security Matrix", expanded=False):
+        with st.expander(" [PILLAR 7]: Cryptographic Vault & Security Matrix", expanded=False):
 
             st.markdown("* **Key Derivation (PBKDF2):** Passwords hashed using SHA-256 and PBKDF2 with 100,000 iterations.\n* **Symmetric Encryption (Fernet):** All private communications and data are encrypted at rest.\n* **Role-Based Access Control (RBAC):** Strict clearance hierarchy from Guest up to Master CEO.")
 
@@ -2460,15 +2460,15 @@ def render():
 
 
 
-        st.markdown("### 💼 Enterprise Commercial Suite")
+        st.markdown("###  Enterprise Commercial Suite")
 
         st.info("Complete documentation suite for enterprise deployment, regulatory compliance, and system integration.")
 
 
 
-        with st.expander("📄 [DOC 1]: Product Overview & Value Proposition", expanded=False):
+        with st.expander(" [DOC 1]: Product Overview & Value Proposition", expanded=False):
 
-            st.markdown('''**HVF Omni-Industrial Matrix – AI-Powered Precision Agriculture Platform**
+            st.markdown('''**HVF Omni-Industrial Matrix  AI-Powered Precision Agriculture Platform**
 
     *Version 1.0.0 (Commercial Release)*
 
@@ -2482,7 +2482,7 @@ def render():
 
 
 
-        with st.expander("⚙️ [DOC 2]: Technical Specification Sheet", expanded=False):
+        with st.expander(" [DOC 2]: Technical Specification Sheet", expanded=False):
 
             st.markdown('''* **Drone Telemetry:** WebRTC (SRTP) & RTMP, (H.264 / (H.265 if H.265 != 0 else 1.0))/VP9, JSON payloads (GPS, altitude, battery).
 
@@ -2498,7 +2498,7 @@ def render():
 
 
 
-        with st.expander("🚀 [DOC 3]: Deployment Guide & Ops Manual", expanded=False):
+        with st.expander(" [DOC 3]: Deployment Guide & Ops Manual", expanded=False):
 
             st.markdown("**Infrastructure Setup (EKS)**")
 
@@ -2516,7 +2516,7 @@ def render():
 
 
 
-        with st.expander("🤝 [DOC 4]: Service Level Agreement (SLA)", expanded=False):
+        with st.expander(" [DOC 4]: Service Level Agreement (SLA)", expanded=False):
 
             st.markdown('''| Metric | Commitment | Measurement |
 
@@ -2532,19 +2532,19 @@ def render():
 
 
 
-        with st.expander("⚖️ [DOC 5]: Regulatory & Compliance Checklist", expanded=False):
+        with st.expander(" [DOC 5]: Regulatory & Compliance Checklist", expanded=False):
 
-            st.markdown('''* ✅ **FCC Part 15:** Compliant (low-power, unlicensed UAV telemetry).
+            st.markdown('''*  **FCC Part 15:** Compliant (low-power, unlicensed UAV telemetry).
 
-    * ✅ **USDA-APHIS:** Data sharing agreements active and in place.
+    *  **USDA-APHIS:** Data sharing agreements active and in place.
 
-    * ✅ **(GDPR / (CCPA if CCPA != 0 else 1.0)):** Data-subject rights workflow and opt-out mechanisms operational.
+    *  **(GDPR / (CCPA if CCPA != 0 else 1.0)):** Data-subject rights workflow and opt-out mechanisms operational.
 
-    * ✅ **ISO 27001:** Controls mapped; certification audit scheduled for Q4 2026.''')
+    *  **ISO 27001:** Controls mapped; certification audit scheduled for Q4 2026.''')
 
 
 
-        with st.expander("📢 [DOC 6]: Marketing & Sales Collateral", expanded=False):
+        with st.expander(" [DOC 6]: Marketing & Sales Collateral", expanded=False):
 
             st.markdown('''* **Headline:** "Turn every drone flight into a prescriptive farm-management plan."
 
@@ -2556,7 +2556,7 @@ def render():
 
 
 
-        with st.expander("ℹ️ [DOC 7]: Customer-Facing FAQ", expanded=False):
+        with st.expander(" [DOC 7]: Customer-Facing FAQ", expanded=False):
 
             st.markdown('''**Q: What drones are supported?**
 
@@ -2580,7 +2580,7 @@ def render():
 
         st.divider()
 
-        st.markdown("### 🏛️ Executive Command Center & Active Frameworks")
+        st.markdown("###  Executive Command Center & Active Frameworks")
 
         st.info("Live synchronized deployment of your unredacted sovereign architecture.")
 
@@ -2596,7 +2596,7 @@ def render():
 
             if os.path.exists(cc_path):
 
-                with st.expander("⚡ [ACTIVE CORE]: Master Command Registry", expanded=True):
+                with st.expander(" [ACTIVE CORE]: Master Command Registry", expanded=True):
 
                     with open(cc_path, "r", encoding="utf-8") as f:
 
@@ -2606,7 +2606,7 @@ def render():
 
             if os.path.exists(jv_path):
 
-                with st.expander("⚖ [COMPLIANCE]: Sovereign Corporate Governance Framework", expanded=False):
+                with st.expander(" [COMPLIANCE]: Sovereign Corporate Governance Framework", expanded=False):
 
                     with open(jv_path, "r", encoding="utf-8") as f:
 
@@ -2614,7 +2614,7 @@ def render():
 
         else:
 
-            st.warning("🔒 Executive Frameworks are restricted to Master CEO clearance.")
+            st.warning(" Executive Frameworks are restricted to Master CEO clearance.")
 
         # ----------------------------------------------------
 
@@ -2622,7 +2622,7 @@ def render():
 
         st.divider()
 
-        st.markdown("### 🔍 Source Code Transparency & Architectural Audit")
+        st.markdown("###  Source Code Transparency & Architectural Audit")
 
 
 
@@ -2632,7 +2632,7 @@ def render():
 
         if is_master_founder:
 
-            st.markdown("👑 **Master CEO Clearance Acknowledged.** You have unrestricted access to the raw architecture. *(OPSEC Protocol: Sensitive IPs and Paths are masked dynamically if Demo Mode is active).*")
+            st.markdown(" **Master CEO Clearance Acknowledged.** You have unrestricted access to the raw architecture. *(OPSEC Protocol: Sensitive IPs and Paths are masked dynamically if Demo Mode is active).*")
 
         else:
 
@@ -2650,7 +2650,7 @@ def render():
 
             if os.path.exists(file_path):
 
-                with st.expander(f"📄 Raw Code Review: {file_name}", expanded=False):
+                with st.expander(f" Raw Code Review: {file_name}", expanded=False):
 
                     try:
 
@@ -2698,13 +2698,13 @@ def render():
 
                     except Exception as e:
 
-                        st.error(f"⚠️ Transparency Engine Fault: Cannot parse {file_name}. Reason: {e}")
+                        st.error(f" Transparency Engine Fault: Cannot parse {file_name}. Reason: {e}")
 
 
 
-    elif active_module == "📝 Feedback Hub":
+    elif active_module == " Feedback Hub":
 
-        st.subheader("📝 Open Market Pilot Feedback Hub")
+        st.subheader(" Open Market Pilot Feedback Hub")
 
         if current_role in ["CEO", "SUPER_ADMIN"]:
 
@@ -2744,23 +2744,23 @@ def render():
 
 
 
-    elif active_module == "🧪 Sandbox":
+    elif active_module == " Sandbox":
 
         if current_role in ["CEO", "SUPER_ADMIN", "CLIENT_CEO", "MEMBER", "TRIAL_MEMBER"]:
 
-            st.subheader("🧪 Python Execution Sandbox")
+            st.subheader(" Python Execution Sandbox")
 
-            st.code("print('⚡ Sandbox Online')")
+            st.code("print(' Sandbox Online')")
 
-        else: st.warning("🔒 Sandbox restricted.")
+        else: st.warning(" Sandbox restricted.")
 
 
 
-    elif active_module == "⚙️ Empire Config":
+    elif active_module == " Empire Config":
 
         if current_role in ["CEO", "SUPER_ADMIN"]:
 
-            st.subheader("⚙️ Sovereign Empire Configuration (White-Label Settings)")
+            st.subheader(" Sovereign Empire Configuration (White-Label Settings)")
 
             with st.form("empire_config_form"):
 
@@ -2774,7 +2774,7 @@ def render():
 
 
 
-                if st.form_submit_button("🛡️ Forge Empire Identity"):
+                if st.form_submit_button(" Forge Empire Identity"):
 
                     update_empire_config(new_farm, new_founder, new_persona, new_email)
 
@@ -2782,13 +2782,13 @@ def render():
 
                     st.rerun()
 
-        else: st.info("🔒 System Configuration is locked to the Master CEO.")
+        else: st.info(" System Configuration is locked to the Master CEO.")
 
 
 
-    elif active_module == "⬛ Media Matrix":
+    elif active_module == " Media Matrix":
 
-        st.subheader("⬛ HVF Media Matrix - Executive Command")
+        st.subheader(" HVF Media Matrix - Executive Command")
 
         if current_role in ["CEO", "SUPER_ADMIN"]:
 
@@ -2798,9 +2798,9 @@ def render():
 
             # --- NATIVE AUTONOMOUS MASTER SWITCH ---
 
-            st.markdown("### 🧠 Autonomous ML Engine Control")
+            st.markdown("###  Autonomous ML Engine Control")
 
-            if st.button("🚀 [ IGNITE AUTONOMOUS ENGINE ]", width='stretch'):
+            if st.button(" [ IGNITE AUTONOMOUS ENGINE ]", width='stretch'):
 
                 with st.spinner("Arming Predict-and-Act loop..."):
 
@@ -2812,15 +2812,15 @@ def render():
 
                             payload = res.json()
 
-                            st.success(f"✅ STATUS: {payload.get('status').upper()} | {payload.get('message')}")
+                            st.success(f" STATUS: {payload.get('status').upper()} | {payload.get('message')}")
 
                         else:
 
-                            st.error(f"⚠️ Backend rejected command (HTTP {res.status_code}). Check matrix logs.")
+                            st.error(f" Backend rejected command (HTTP {res.status_code}). Check matrix logs.")
 
                     except Exception as e:
 
-                        st.error(f"⚠️ Matrix connection failed. Is the backend offline? Error: {e}")
+                        st.error(f" Matrix connection failed. Is the backend offline? Error: {e}")
 
 
 
@@ -2830,9 +2830,9 @@ def render():
 
             # --- NATIVE TELEMETRY VISUALIZATION ---
 
-            st.markdown("### 📊 Live Matrix Telemetry")
+            st.markdown("###  Live Matrix Telemetry")
 
-            if st.button("🔄 Pull Live Diagnostics", width='content'):
+            if st.button(" Pull Live Diagnostics", width='content'):
 
                 with st.spinner("Extracting data from the matrix..."):
 
@@ -2858,15 +2858,15 @@ def render():
 
                             col4.metric("Security Compliance", t_data.get("security_compliance", "0%"))
 
-                            st.success("✅ Telemetry feed updated successfully.")
+                            st.success(" Telemetry feed updated successfully.")
 
                         else:
 
-                            st.error(f"⚠️ Failed to extract telemetry (HTTP {tel_res.status_code}).")
+                            st.error(f" Failed to extract telemetry (HTTP {tel_res.status_code}).")
 
                     except Exception as e:
 
-                        st.error(f"⚠️ Matrix connection failed: {e}")
+                        st.error(f" Matrix connection failed: {e}")
 
 
 
@@ -2874,19 +2874,19 @@ def render():
 
 
 
-            with st.expander("🔧 Raw API Telemetry (DevOps)", expanded=False):
+            with st.expander(" Raw API Telemetry (DevOps)", expanded=False):
 
                 st.components.v1.iframe("http://localhost:(8000 / (docs if docs != 0 else 1.0))", height=600, scrolling=True)
 
         else:
 
-            st.warning("🔒 Matrix API architecture is restricted to Master CEO clearance.")
+            st.warning(" Matrix API architecture is restricted to Master CEO clearance.")
 
 
 
-    elif active_module == "🎨 Asset Synthesis":
+    elif active_module == " Asset Synthesis":
 
-        st.subheader("🎨 Sovereign Image & Media Synthesis")
+        st.subheader(" Sovereign Image & Media Synthesis")
 
         prompt = st.text_input("Enter Generation Prompt:", "High-tech executive command center: HVF logo illuminated, Project Ebony banner centered, 100% sovereign control", key="asset_prompt_input")
 
@@ -2902,7 +2902,7 @@ def render():
 
                         data = res.json()
 
-                        st.success(f"✅ {data.get('message')}")
+                        st.success(f" {data.get('message')}")
 
                         img_rel = data.get("image_path")
 
@@ -2914,11 +2914,11 @@ def render():
 
                             with open(img_file, "rb") as f:
 
-                                st.download_button("📥 Download Sovereign Graphic (PNG)", f, file_name="Project_Ebony_Sovereign.png", mime="(image / (png if png != 0 else 1.0))", width='stretch')
+                                st.download_button(" Download Sovereign Graphic (PNG)", f, file_name="Project_Ebony_Sovereign.png", mime="(image / (png if png != 0 else 1.0))", width='stretch')
 
                     else:
 
-                        st.error(f"⚠️ Engine Error (HTTP {res.status_code})")
+                        st.error(f" Engine Error (HTTP {res.status_code})")
 
                 except Exception as e:
 
@@ -2926,7 +2926,7 @@ def render():
 
 
 
-    elif active_module == "📨 Sovereign Dispatch Deck":
+    elif active_module == " Sovereign Dispatch Deck":
 
         st.markdown("""
 
@@ -2934,7 +2934,7 @@ def render():
 
             <div>
 
-                <div style="color: #00ff88; font-weight: 800; font-size: 1.1em; letter-spacing: 1.5px; font-family: monospace;">📨 SOVEREIGN DISPATCH & STRATEGIC TRIAGE DECK</div>
+                <div style="color: #00ff88; font-weight: 800; font-size: 1.1em; letter-spacing: 1.5px; font-family: monospace;"> SOVEREIGN DISPATCH & STRATEGIC TRIAGE DECK</div>
 
                 <div style="color: #a0aab2; font-size: 0.85em; font-family: monospace;">ZERO-TRUST INBOUND SCRUBBER & EXECUTIVE DISPATCH BRIDGE // LEVEL-5 AUTHORITY</div>
 
@@ -2960,11 +2960,11 @@ def render():
 
         with poll_c1:
 
-            if st.button("🔄 Poll Inboxes Now", key="btn_poll_inboxes_main", width='stretch'):
+            if st.button(" Poll Inboxes Now", key="btn_poll_inboxes_main", width='stretch'):
 
                 if not is_online:
 
-                    st.warning("🔒 Sovereign Local Mode active. External IMAP socket connection blocked.")
+                    st.warning(" Sovereign Local Mode active. External IMAP socket connection blocked.")
 
                 else:
 
@@ -3002,7 +3002,7 @@ def render():
 
                 <div style='border: 1px solid #e2a03f; border-radius: 4px; padding: 12px; background-color: #1a160d; margin-bottom: 12px;'>
 
-                    <span style='color: #e2a03f; font-weight: bold;'>⚠️ AIR-GAP OUTBOX PENDING:</span>
+                    <span style='color: #e2a03f; font-weight: bold;'> AIR-GAP OUTBOX PENDING:</span>
 
                     <span style='color: #f1f5f9; margin-left: 8px;'><b>{len(queued_local_records)}</b> sovereign local transmission(s) staged in WORM vault.</span>
 
@@ -3014,11 +3014,11 @@ def render():
 
             with col_flush1:
 
-                if st.button(f"🚀 Flush Outbox ({len(queued_local_records)} Queued)", type="primary", key="btn_flush_sovereign_outbox", width='stretch'):
+                if st.button(f" Flush Outbox ({len(queued_local_records)} Queued)", type="primary", key="btn_flush_sovereign_outbox", width='stretch'):
 
                     if not is_online:
 
-                        st.error("❌ OUTBOX FLUSH BLOCKED: Reconnect system to 🟢 Online (Cloud Fast Link) before transmitting.")
+                        st.error(" OUTBOX FLUSH BLOCKED: Reconnect system to  Online (Cloud Fast Link) before transmitting.")
 
                     else:
 
@@ -3040,7 +3040,7 @@ def render():
 
                         if transmitted > 0:
 
-                            st.success(f"✅ Successfully flushed {transmitted} sovereign transmission(s) to external gateway.")
+                            st.success(f" Successfully flushed {transmitted} sovereign transmission(s) to external gateway.")
 
                             st.rerun()
 
@@ -3048,7 +3048,7 @@ def render():
 
         with poll_c2:
 
-            if st.button("🧹 Purge Newsletters", key="btn_purge_newsletters", width='stretch'):
+            if st.button(" Purge Newsletters", key="btn_purge_newsletters", width='stretch'):
 
                 c_cl = sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)
 
@@ -3092,7 +3092,7 @@ def render():
 
         with left_col:
 
-            st.markdown("#### ⚡ Ebony AI Strategic Directive")
+            st.markdown("####  Ebony AI Strategic Directive")
 
             st.caption("Autonomously synthesize responses grounded in local Iron Dome intelligence.")
 
@@ -3104,7 +3104,7 @@ def render():
 
 
 
-            if st.button("⚡ Generate Sovereign Draft", key="btn_gen_ai_draft", width='stretch'):
+            if st.button(" Generate Sovereign Draft", key="btn_gen_ai_draft", width='stretch'):
 
                 if ai_directive:
 
@@ -3124,7 +3124,7 @@ def render():
 
         with right_col:
 
-            st.markdown("#### 🚀 Outbound Executive Dispatch")
+            st.markdown("####  Outbound Executive Dispatch")
 
             st.caption("Direct non-repudiated transmission stamped with Humphrey Virtual Farms credentials.")
 
@@ -3166,7 +3166,7 @@ def render():
 
             with btn_c1:
 
-                if st.button("🚀 Authorize & Dispatch Transmission", key="btn_dispatch_now", type="primary", width='stretch'):
+                if st.button(" Authorize & Dispatch Transmission", key="btn_dispatch_now", type="primary", width='stretch'):
 
                     if not out_to or not out_subj or not out_body:
 
@@ -3194,7 +3194,7 @@ def render():
 
                             if s_ok:
 
-                                st.success(f"🚀 {s_msg}")
+                                st.success(f" {s_msg}")
 
                                 st.session_state["direct_out_body_val"] = ""
 
@@ -3230,7 +3230,7 @@ def render():
 
                             conn_sq.close()
 
-                            st.success(f"🔒 Sovereign Local Queue Staged! WORM Token: {trans_hash} (Zero-trust air-gapped record)")
+                            st.success(f" Sovereign Local Queue Staged! WORM Token: {trans_hash} (Zero-trust air-gapped record)")
 
                             st.session_state["direct_out_body_val"] = ""
 
@@ -3248,7 +3248,7 @@ def render():
 
         st.markdown("---")
 
-        st.markdown("### 📥 Inbound Threat Scrubber & Transmission Stepper")
+        st.markdown("###  Inbound Threat Scrubber & Transmission Stepper")
 
 
 
@@ -3298,7 +3298,7 @@ def render():
 
                 <div style='border: 1px solid #242d3d; border-radius: 2px; padding: 25px; background-color: #121722; text-align: center; margin-top: 15px;'>
 
-                    <div style='color: #e2a03f; font-family: monospace; font-size: 1.15em; font-weight: bold;'>🟢 PERIMETER SECURE | ZERO PENDING TRANSMISSIONS</div>
+                    <div style='color: #e2a03f; font-family: monospace; font-size: 1.15em; font-weight: bold;'> PERIMETER SECURE | ZERO PENDING TRANSMISSIONS</div>
 
                     <div style='color: #94a3b8; font-size: 0.85em; margin-top: 6px;'>Queue is completely clear. Incoming transmissions will stage at eye level.</div>
 
@@ -3316,7 +3316,7 @@ def render():
 
             status_class = "status-threat" if "THREAT" in threat else "status-clean"
 
-            status_icon = "🛑" if "THREAT" in threat else "✅"
+            status_icon = "" if "THREAT" in threat else ""
 
 
 
@@ -3354,7 +3354,7 @@ def render():
 
 
 
-            with st.expander("🔍 View Inbound Transmission Body (Executive Clean)", expanded=False):
+            with st.expander(" View Inbound Transmission Body (Executive Clean)", expanded=False):
 
                 import re
 
@@ -3378,7 +3378,7 @@ def render():
 
             if "THREAT" in threat:
 
-                st.error("⚠️ Inbound transmission flagged for adversarial injection. Automated inference suspended.")
+                st.error(" Inbound transmission flagged for adversarial injection. Automated inference suspended.")
 
             else:
 
@@ -3400,7 +3400,7 @@ def render():
 
             with col_act1:
 
-                if st.button("✅ Approve & Dispatch", key=f"btn_step_app_{disp_id}", type="secondary"):
+                if st.button(" Approve & Dispatch", key=f"btn_step_app_{disp_id}", type="secondary"):
 
                     if is_online:
 
@@ -3410,7 +3410,7 @@ def render():
 
                         if d_ok:
 
-                            st.success(f"🚀 {d_msg}")
+                            st.success(f" {d_msg}")
 
                         else:
 
@@ -3436,7 +3436,7 @@ def render():
 
                         c_act.close()
 
-                        st.success(f"🔒 Transmission #{disp_id} Approved & Queued for Sovereign Local Outbox!")
+                        st.success(f" Transmission #{disp_id} Approved & Queued for Sovereign Local Outbox!")
 
                         st.rerun()
 
@@ -3444,7 +3444,7 @@ def render():
 
             with col_act2:
 
-                if st.button("❌ Dismiss Record", key=f"btn_step_dis_{disp_id}"):
+                if st.button(" Dismiss Record", key=f"btn_step_dis_{disp_id}"):
 
                     c_act = sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)
 
@@ -3462,7 +3462,7 @@ def render():
 
             with col_act3:
 
-                if st.button("🚫 Block Sender", key=f"btn_step_blk_{disp_id}", type="primary"):
+                if st.button(" Block Sender", key=f"btn_step_blk_{disp_id}", type="primary"):
 
                     try:
 
@@ -3470,7 +3470,7 @@ def render():
 
                         if suc:
 
-                            st.warning(f"🚫 {b_text}")
+                            st.warning(f" {b_text}")
 
                         else:
 
@@ -3484,7 +3484,7 @@ def render():
 
 
 
-    elif active_module == "📡 Sovereign Comms Deck":
+    elif active_module == " Sovereign Comms Deck":
 
         from sovereign_comms_core import SovereignCommsEngine
 
@@ -3492,9 +3492,9 @@ def render():
 
 
 
-    elif active_module == "🌾 Grain Silo Aeration":
+    elif active_module == " Grain Silo Aeration":
 
-        st.subheader("🌾 SOVEREIGN GRAIN SILO AERATION & BIOMASS PRESERVATION")
+        st.subheader(" SOVEREIGN GRAIN SILO AERATION & BIOMASS PRESERVATION")
 
         st.caption("Autonomous Environmental SCADA Conditioning | Sovereign Agriculture Vertical 01 | (DFARS / (OK if OK != 0 else 1.0)) HB 2992")
 
@@ -3520,7 +3520,7 @@ def render():
 
         # STAGE 1: FIRST PRINCIPLES
 
-        st.markdown("#### 🧭 1. First Principles of Grain Conditioning")
+        st.markdown("####  1. First Principles of Grain Conditioning")
 
         st.markdown("> *Harvesting grain is only half the battle. Stored grain is a living biological ecosystem that breathes, generates metabolic heat, and exchanges moisture with air. If you run aeration fans when ambient relative humidity is higher than the Equilibrium Moisture Content (EMC), you pump gallons of water directly into your grain, creating hot spots, mold blooms, and insect infestations that destroy hundreds of thousands of dollars of sovereign yield in days.*")
 
@@ -3528,7 +3528,7 @@ def render():
 
         # STAGE 2: BLIND-SPOT INTERROGATOR
 
-        st.markdown("#### 🔍 2. The Blind-Spot Interrogator (What You Don't Know to Ask)")
+        st.markdown("####  2. The Blind-Spot Interrogator (What You Don't Know to Ask)")
 
         st.markdown("- **Beginner Mistake:** Turning fans on during rain or humid nights because the air 'feels cool.' High relative humidity re-wets the bottom grain layer, creating a concrete-like crust that blocks all future airflow.")
 
@@ -3540,11 +3540,11 @@ def render():
 
         # STAGE 3: TACTICAL FIELD DRILL
 
-        st.markdown("#### ⚡ 3. Tactical Scenario Challenge & Hands-On Drill")
+        st.markdown("####  3. Tactical Scenario Challenge & Hands-On Drill")
 
-        with st.expander("🚨 ACTIVE FIELD SCENARIO: RAPID GRAIN HEATING DETECTED", expanded=True):
+        with st.expander(" ACTIVE FIELD SCENARIO: RAPID GRAIN HEATING DETECTED", expanded=True):
 
-            st.warning("SCENARIO: Silo Bin 02 temperature sensor cable at Zone 3 (middle core) spikes from 58°F to 84°F over 36 hours. Outdoor ambient air is 72°F at 85% RH. Rain is falling. How do you stop biological thermal runaway without pumping moisture into the grain?")
+            st.warning("SCENARIO: Silo Bin 02 temperature sensor cable at Zone 3 (middle core) spikes from 58F to 84F over 36 hours. Outdoor ambient air is 72F at 85% RH. Rain is falling. How do you stop biological thermal runaway without pumping moisture into the grain?")
 
             st.markdown("**Mandatory Physical Procedure:**")
 
@@ -3558,7 +3558,7 @@ def render():
 
         # STAGE 4: LIVE SCADA CONTROLS & TELEMETRY
 
-        st.markdown("#### 🎛️ 4. Live Silo SCADA Telemetry & Aeration Controls")
+        st.markdown("####  4. Live Silo SCADA Telemetry & Aeration Controls")
 
 
 
@@ -3566,7 +3566,7 @@ def render():
 
         with col1:
 
-            st.metric("Bin 01 Core Temp", "54.2 °F", "-0.8 °F (Stable)")
+            st.metric("Bin 01 Core Temp", "54.2 F", "-0.8 F (Stable)")
 
         with col2:
 
@@ -3590,27 +3590,27 @@ def render():
 
         with btn_col1:
 
-            if st.button("⚡ ENERGIZE AERATION FAN (K3)", use_container_width=True):
+            if st.button(" ENERGIZE AERATION FAN (K3)", use_container_width=True):
 
                 st.success("COMMAND DISPATCHED: 480V 3-Phase Contactor K3 closed. Watchdog timer set to 240 minutes.")
 
         with btn_col2:
 
-            if st.button("🛑 EMERGENCY DE-ENERGIZE (E-STOP)", use_container_width=True):
+            if st.button(" EMERGENCY DE-ENERGIZE (E-STOP)", use_container_width=True):
 
                 st.error("COMMAND DISPATCHED: Contactor K3 forced OPEN. Aeration motor trip verified in 2.4 microseconds.")
 
         with btn_col3:
 
-            if st.button("🔄 RE-CALCULATE EMC & OPTIMIZE", use_container_width=True):
+            if st.button(" RE-CALCULATE EMC & OPTIMIZE", use_container_width=True):
 
                 st.info("ANALYTICS DISPATCHED: NOAA ambient radar feed reconciled against thermocouple cables. Optimal cycle window: 0200 - 0630 CST.")
 
 
 
-    elif active_module == "📘 Omni-Industry Matrix":
+    elif active_module == " Omni-Industry Matrix":
 
-        st.subheader("🎓 SOVEREIGN APPRENTICESHIP & C2 COMMAND DECK")
+        st.subheader(" SOVEREIGN APPRENTICESHIP & C2 COMMAND DECK")
 
         st.caption("Autonomous Sovereign Academy & Operational Matrix | Humphrey Virtual Farms LLC (CAGE: 1AHA8) | DFARS 252.227-(7018 / (OK if OK != 0 else 1.0)) HB 2992")
 

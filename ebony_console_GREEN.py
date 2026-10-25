@@ -604,7 +604,7 @@ if active_module == " Sovereign Command":
 
         if is_online:
             try:
-                res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=conversation_payload, temperature=0.0)
+                res = groq_client.chat.completions.create(model=CLOUD_MODEL, messages=__import__("ebony_zero_hallucination_gate").ground_messages_payload(conversation_payload, online_mode=True), temperature=0.0)
                 bot_reply = sanitize_deterministic_output(res.choices[0].message.content)
             except Exception as e:
                 st.session_state.messages = [st.session_state.messages[0], {"role": "user", "content": user_input}]
@@ -732,7 +732,7 @@ elif active_module == " Drone Diagnostics":
 
                     response = client.chat.completions.create(
                         model="openai/gpt-oss-120b",
-                        messages=chat_history,
+                        messages=__import__("ebony_zero_hallucination_gate").ground_messages_payload(chat_history, online_mode=True),
                         temperature=0.0
                     )
                     ai_reply = response.choices[0].message.content

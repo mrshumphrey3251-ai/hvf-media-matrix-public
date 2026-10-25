@@ -82,3 +82,18 @@ def build_grounded_chronos_prompt(user_directive: str, online_mode: bool = True)
         f"OPERATOR DIRECTIVE: {user_directive}\n"
         "Provide a concise, strictly verified executive status report using ONLY the verified telemetry above:"
     )
+
+
+def ground_messages_payload(messages_payload: list, online_mode: bool = True) -> list:
+    """Intercepts any OpenAI/Ollama messages list and grounds the latest user message with live WAN telemetry."""
+    if not isinstance(messages_payload, list) or len(messages_payload) == 0:
+        return messages_payload
+    grounded = [dict(m) if isinstance(m, dict) else m for m in messages_payload]
+    for idx in range(len(grounded) - 1, -1, -1):
+        msg = grounded[idx]
+        if isinstance(msg, dict) and msg.get("role") == "user":
+            raw_u = str(msg.get("content", ""))
+            if "CRITICAL SOVEREIGN ZERO-HALLUCINATION MANDATE" not in raw_u:
+                grounded[idx]["content"] = build_grounded_chronos_prompt(raw_u, online_mode=online_mode)
+            break
+    return grounded
