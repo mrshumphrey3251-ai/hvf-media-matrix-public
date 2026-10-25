@@ -587,7 +587,7 @@ def _render_sovereign_robotics_c2_deck():
     if callable(_ORIG_RENDER_ROBOTICS_DECK):
         _ORIG_RENDER_ROBOTICS_DECK()
     st.markdown("---")
-    with st.expander("?? Tradewinds Docket 10-26-3952 // 26-Module Per-Node CLIN Price Catalog (DFARS 252.227-7018)", expanded=True):
+    with st.expander(f"{chr(0x1F4B0)} Tradewinds Docket 10-26-3952 // 26-Module Per-Node CLIN Price Catalog (DFARS 252.227-7018)", expanded=True):
         st.info(
             "**STRICT PER-NODE LICENSING NOTICE:** The entry pilot price filed on Tradewinds Docket `10-26-3952` applies strictly to "
             "**`CLIN 0001` (`Module #01: Sovereign Command Base Router` on `1` Single Bare-Metal Node)**. All remaining **25 Command Modules (`CLIN 0002` - `CLIN 0026`)** "
@@ -626,9 +626,7 @@ def _render_sovereign_robotics_c2_deck():
         st.dataframe(clin_rows, width="stretch", hide_index=True)
 
 
-
-
-# === STAGE 12L: EXECUTIVE STATUTORY BRIEF FULL DOSSIER VAULT & 26-CLIN CATALOG RESTORATION ===
+# === STAGE 12M: EXECUTIVE STATUTORY BRIEF ZERO-ARTIFACT VAULT & 26-CLIN CATALOG ===
 def _render_executive_statutory_full_vault():
     import hashlib, sqlite3
     from pathlib import Path
@@ -638,15 +636,23 @@ def _render_executive_statutory_full_vault():
         return
     st.session_state["_hvf_statutory_vault_rendered_this_run"] = True
 
+    ico_folder = chr(0x1F4C2)
+    ico_money  = chr(0x1F4B0)
+    ico_lock   = chr(0x1F510)
+    ico_scroll = chr(0x1F4DC)
+    ico_dl     = chr(0x1F4E5)
+    ico_book   = chr(0x1F4D6)
+    nl         = chr(10)
+
     repo_root = Path(__file__).resolve().parent
     st.markdown("---")
-    st.markdown("### ?? HVF Sovereign Executive Dossier Vault, Statutory Filings & 26-CLIN Price Schedule")
+    st.markdown(f"### {ico_folder} HVF Sovereign Executive Dossier Vault, Statutory Filings & 26-CLIN Price Schedule")
 
     vt1, vt2, vt3, vt4 = st.tabs([
-        "?? 1. All Statutory & Tradewinds Dossier Files (.PDF & .MD Vault)",
-        "?? 2. 26-Module Per-Node CLIN Price Schedule (DFARS 252.227-7018)",
-        "?? 3. 631-Module C2 & 54-Table WORM Cryptographic Inventory",
-        "?? 4. Complete WORM Audit Ledger (matrix_ledger.db)"
+        f"{ico_folder} 1. All Statutory & Tradewinds Dossier Files (.PDF & .MD Vault)",
+        f"{ico_money} 2. 26-Module Per-Node CLIN Price Schedule (DFARS 252.227-7018)",
+        f"{ico_lock} 3. 631-Module C2 & 54-Table WORM Cryptographic Inventory",
+        f"{ico_scroll} 4. Complete WORM Audit Ledger (matrix_ledger.db)"
     ])
 
     with vt1:
@@ -660,8 +666,12 @@ def _render_executive_statutory_full_vault():
                 try:
                     raw_b = fp.read_bytes()
                     sha = hashlib.sha256(raw_b).hexdigest()
+                    rel_str = str(fp.relative_to(repo_root))
+                    # Prioritize flagship Tradewinds & Operating Console dossiers at the top of the vault
+                    priority = 0 if ("OPERATING_CONSOLE" in rel_str or "3952" in rel_str or "TRADEWINDS" in rel_str.upper()) else (1 if len(rel_parts) == 1 else 2)
                     dossier_files.append({
-                        "Relative Path": str(fp.relative_to(repo_root)),
+                        "_priority": priority,
+                        "Relative Path": rel_str,
                         "Type": fp.suffix.upper().lstrip("."),
                         "Size (Bytes)": len(raw_b),
                         "SHA-256 Seal": sha[:24] + "...",
@@ -670,6 +680,8 @@ def _render_executive_statutory_full_vault():
                     })
                 except Exception:
                     pass
+
+        dossier_files.sort(key=lambda x: (x["_priority"], x["Relative Path"]))
 
         st.success(f"Verified **{len(dossier_files)}** Sovereign Dossier, Statutory, & Technical Documentation Files on Local Bare-Metal Disk (`{repo_root.name}`).")
         display_rows = [
@@ -699,16 +711,16 @@ def _render_executive_statutory_full_vault():
                 f"FORMAT : {chosen['Type']} ({chosen['Size (Bytes)']:,} bytes)",
                 f"SHA256 : {chosen['_full_sha']}"
             ]
-            st.code("\n".join(meta_lines), language="text")
+            st.code(nl.join(meta_lines), language="text")
             st.download_button(
-                label=f"?? Download {chosen_fp.name} ({chosen['Type']})",
+                label=f"{ico_dl} Download {chosen_fp.name} ({chosen['Type']})",
                 data=chosen_bytes,
                 file_name=chosen_fp.name,
                 mime="application/pdf" if chosen["Type"] == "PDF" else "text/plain",
                 key="hvf_stat_vault_dl_btn"
             )
             if chosen["Type"] in ("MD", "TXT"):
-                with st.expander(f"?? Read Full Text of {chosen_fp.name}", expanded=True):
+                with st.expander(f"{ico_book} Read Full Text of {chosen_fp.name}", expanded=True):
                     st.markdown(chosen_bytes.decode("utf-8", errors="ignore"))
 
     with vt2:
@@ -758,7 +770,7 @@ def _render_executive_statutory_full_vault():
             "Unit Test Suites Passed         : 83 / 83",
             "Verified Academy Questions      : 1,420 / 1,420 (800 Ch.1 + 620 Ch.5)"
         ]
-        st.code("\n".join(inv_lines), language="text")
+        st.code(nl.join(inv_lines), language="text")
         c2_dir = repo_root / "c2_cockpit"
         py_mods = sorted(c2_dir.rglob("*.py")) if c2_dir.exists() else []
         mod_rows = [
