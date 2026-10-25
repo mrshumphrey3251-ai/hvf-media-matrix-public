@@ -1,3 +1,14 @@
+# HVF LEVEL-5 SOVEREIGN C2 OPERATING CONSOLE & TRL 7 VERIFICATION ENCLAVE
+**Prime Contractor:** Humphrey Virtual Farms LLC | **CAGE:** `1AHA8` | **UEI:** `S1M4ENLHTDH5` | **CEO:** Jeffery Humphrey  
+**Master 631-Module C2 Merkle Root (SHA-256):** `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a` (`83 / 83` Unit Test Suites Passed)
+
+> ### ??? MANDATORY EVALUATOR & CONTRACTING OFFICER INDEX (DOCKETS `10-26-3952` & `9-26-3703`)
+> * ?? **[Turnkey 26-Module C2 Operating Console & 26-CLIN Per-Node Price Dossier (Markdown)](./HVF_SOVEREIGN_C2_OPERATING_CONSOLE_TRADEWINDS_DOSSIER.md)**
+> * ?? **[Turnkey 26-Module C2 Operating Console & 26-CLIN Per-Node Price Dossier (ISO 32000-1 `%PDF-1.4` | SHA-256: `d9cc8d00...607d`)](./HVF_SOVEREIGN_C2_OPERATING_CONSOLE_TRADEWINDS_DOSSIER.pdf)**
+> * ??? **DFARS `252.227-7018` Per-Node Licensing Notice:** The entry pilot price on Docket `10-26-3952` applies strictly to **`CLIN 0001` (`Module #01: Sovereign Command Starter Pilot` on `1` Single Bare-Metal Node)**. All remaining **25 Command Modules (`CLIN 0002` - `CLIN 0026`, `$1,630,000/yr` total unbundled single-node value)** and **Enterprise Bundles (`CLIN 1001` - `CLIN 1004`)** are licensed strictly **per hardware node / per robotic chassis / per training seat**.
+
+---
+
 # Humphrey Virtual Farms LLC -- Sovereign Industrial Defense, Energy & Cyber-Physical C2
 
 ## DOD CDAO TRADEWINDS ACTIVE RESUBMISSION DOCKET `10-26-3952` (`STATUS: RECEIVED` // `TRL 7`)
