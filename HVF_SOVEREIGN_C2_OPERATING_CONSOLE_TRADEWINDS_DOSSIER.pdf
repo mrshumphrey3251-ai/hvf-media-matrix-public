@@ -249,7 +249,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 13 0 R >>
 endobj
 13 0 obj
-<< /Length 446 >>
+<< /Length 3110 >>
 stream
 BT
 /F1 8.5 Tf
@@ -261,6 +261,43 @@ BT
 (  Show `CEO Authorization Gate` \(`698` modules inspected, `0` defects\) and `Sovereign Fiel) Tj T*
 (  d Academy`, concluding with immediate readiness for per-node and enterprise OTA contract a) Tj T*
 (  wards under Tradewinds.) Tj T*
+() Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## 6. 5-Year Commercial Viability, Multi-Node ARR Trajectory \(FY 2027 - FY 2031\), & DoD Ze) Tj T*
+(  ro-Cloud Cost Avoidance) Tj T*
+() Tj T*
+(Pursuant to FAR Part 12 Commercial Item price reasonableness and DoD CDAO Tradewinds Commerc) Tj T*
+(  ial Viability criteria, Humphrey Virtual Farms LLC operates a high-margin \(`>92%` gross s) Tj T*
+(  oftware margin, `$0` third-party cloud hosting drain\) recurring per-node licensing model ) Tj T*
+(  across three 5-year deployment trajectories \(1 Base Year + 4 Option Years\):) Tj T*
+() Tj T*
+(| 5-Year Deployment Tier | Active Installed Base by Year 5 \(Per-Node / Per-Chassis / Per-Co) Tj T*
+(  hort\) | Year 1 ARR | Year 3 ARR | Year 5 ARR | 5-Year Cumulative Revenue |) Tj T*
+(| :--- | :--- | :--- | :--- | :--- | :--- |) Tj T*
+(| **Tier 1: Conservative \(Regional & State DOT / Guard Scale\)** | `12` Base Pilots \(`CLIN) Tj T*
+(   0001`\), `10` SCADA/UAS Nodes, `6` Robotics Nodes \(`CLIN 0006`\), `6` Academy Cohorts, `) Tj T*
+(  3` Full Consoles \(`CLIN 1004-A`\) | **$559,000** | **$2,899,000** | **$5,689,000** | **$1) Tj T*
+(  4,990,000** |) Tj T*
+(| **Tier 2: Baseline Target \(Tradewinds Multi-Base & Depot Scale\)** | `25` Base Pilots, `3) Tj T*
+(  0` SCADA/UAS Nodes, `25` Robotics Chassis Nodes, `15` Academy Cohorts, `8` Full Consoles, ) Tj T*
+(  `3` Base 25-Node Fleet Licenses \(`CLIN 1004-B`\) | **$1,690,000** | **$10,250,000** | **$) Tj T*
+(  24,172,500** | **$54,850,000** |) Tj T*
+(| **Tier 3: Aggressive \(DoD Command-Wide & National Fleet Scale\)** | `50` Base Pilots, `80) Tj T*
+(  ` SCADA/UAS Nodes, `90` Robotics/UGV Chassis Nodes, `40` Academy Cohorts, `18` Full Consol) Tj T*
+(  es, `10` Base 25-Node Fleet Licenses | **$4,590,000** | **$28,900,000** | **$70,285,000** ) Tj T*
+(  | **$153,200,000** |) Tj T*
+() Tj T*
+(* **FAR Part 13 Simplified Acquisition Alignment:** Every individual module \(`CLIN 0001` th) Tj T*
+(  rough `CLIN 0026`, `$20,000/yr` to `$185,000/yr` per node\) is priced strictly below the *) Tj T*
+(  *`$250,000` Simplified Acquisition Threshold**, enabling rapid squadron-, depot-, and dist) Tj T*
+(  rict-level procurement without multi-quarter formal source-selection delays.) Tj T*
+(* **Zero-Cloud DoD Lifecycle Cost Avoidance \(`>42.5%` Savings\):** Because Project Ebony ex) Tj T*
+(  ecutes 100% on air-gapped bare-metal hardware with zero recurring commercial cloud egress/) Tj T*
+(  compute surcharges \(no AWS GovCloud or Azure Government meter\), procuring agencies save ) Tj T*
+(  an estimated **42.5% to 58.0%** in 5-year Total Ownership Cost \(TCO\) compared to cloud-t) Tj T*
+(  ethered C2 platforms.) Tj T*
 ET
 endstream
 endobj
@@ -283,5 +320,5 @@ xref
 trailer
 << /Size 14 /Root 1 0 R >>
 startxref
-15573
+18238
 %%EOF

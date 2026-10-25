@@ -91,3 +91,19 @@ Pursuant to **DFARS 252.227-7018**, **DFARS 252.227-7014(a)(15)**, and **DFARS 2
   Select docket `HVF-CIV-ROA-404793C1`, click `Dispatch Drone Sortie` (`HVF-SPECTRE-X8`), and click `Synthesize Deliverable` to generate the SHA-256 sealed Title 61 engineering report (`87.0 / 100 Sufficiency`).
 * **4:00 - 5:00 | CEO Authorization Airlock (`CLIN 0005`) & Accredited 1,420-Question Academy (`CLIN 0011`):**
   Show `CEO Authorization Gate` (`698` modules inspected, `0` defects) and `Sovereign Field Academy`, concluding with immediate readiness for per-node and enterprise OTA contract awards under Tradewinds.
+
+
+---
+
+## 6. 5-Year Commercial Viability, Multi-Node ARR Trajectory (FY 2027 - FY 2031), & DoD Zero-Cloud Cost Avoidance
+
+Pursuant to FAR Part 12 Commercial Item price reasonableness and DoD CDAO Tradewinds Commercial Viability criteria, Humphrey Virtual Farms LLC operates a high-margin (`>92%` gross software margin, `$0` third-party cloud hosting drain) recurring per-node licensing model across three 5-year deployment trajectories (1 Base Year + 4 Option Years):
+
+| 5-Year Deployment Tier | Active Installed Base by Year 5 (Per-Node / Per-Chassis / Per-Cohort) | Year 1 ARR | Year 3 ARR | Year 5 ARR | 5-Year Cumulative Revenue |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Tier 1: Conservative (Regional & State DOT / Guard Scale)** | `12` Base Pilots (`CLIN 0001`), `10` SCADA/UAS Nodes, `6` Robotics Nodes (`CLIN 0006`), `6` Academy Cohorts, `3` Full Consoles (`CLIN 1004-A`) | **$559,000** | **$2,899,000** | **$5,689,000** | **$14,990,000** |
+| **Tier 2: Baseline Target (Tradewinds Multi-Base & Depot Scale)** | `25` Base Pilots, `30` SCADA/UAS Nodes, `25` Robotics Chassis Nodes, `15` Academy Cohorts, `8` Full Consoles, `3` Base 25-Node Fleet Licenses (`CLIN 1004-B`) | **$1,690,000** | **$10,250,000** | **$24,172,500** | **$54,850,000** |
+| **Tier 3: Aggressive (DoD Command-Wide & National Fleet Scale)** | `50` Base Pilots, `80` SCADA/UAS Nodes, `90` Robotics/UGV Chassis Nodes, `40` Academy Cohorts, `18` Full Consoles, `10` Base 25-Node Fleet Licenses | **$4,590,000** | **$28,900,000** | **$70,285,000** | **$153,200,000** |
+
+* **FAR Part 13 Simplified Acquisition Alignment:** Every individual module (`CLIN 0001` through `CLIN 0026`, `$20,000/yr` to `$185,000/yr` per node) is priced strictly below the **`$250,000` Simplified Acquisition Threshold**, enabling rapid squadron-, depot-, and district-level procurement without multi-quarter formal source-selection delays.
+* **Zero-Cloud DoD Lifecycle Cost Avoidance (`>42.5%` Savings):** Because Project Ebony executes 100% on air-gapped bare-metal hardware with zero recurring commercial cloud egress/compute surcharges (no AWS GovCloud or Azure Government meter), procuring agencies save an estimated **42.5% to 58.0%** in 5-year Total Ownership Cost (TCO) compared to cloud-tethered C2 platforms.

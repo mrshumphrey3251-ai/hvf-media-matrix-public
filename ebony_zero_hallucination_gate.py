@@ -625,6 +625,14 @@ def _render_sovereign_robotics_c2_deck():
         ]
         st.dataframe(clin_rows, width="stretch", hide_index=True)
 
+        st.markdown(f"#### {chr(0x1F4C8)} 5-Year Per-Node Recurring Revenue (ARR) & DoD Lifecycle Scalability Schedule (FY 2027 - FY 2031)")
+        arr_rows = [
+            {"Deployment Tier": "Tier 1: Conservative (Regional DOT, Guard, & Co-op Scale)", "Installed Nodes by Yr 5": "12 Pilots + 10 SCADA/UAS + 6 Robotics + 6 Cohorts + 3 Full Consoles", "Year 1 ARR": "$559,000", "Year 3 ARR": "$2,899,000", "Year 5 ARR": "$5,689,000", "5-Yr Cumulative Income": "$14,990,000"},
+            {"Deployment Tier": "Tier 2: Baseline Target (Tradewinds Multi-Base & Depot Scale)", "Installed Nodes by Yr 5": "25 Pilots + 30 SCADA/UAS + 25 Robotics + 15 Cohorts + 8 Consoles + 3 Base Fleets", "Year 1 ARR": "$1,690,000", "Year 3 ARR": "$10,250,000", "Year 5 ARR": "$24,172,500", "5-Yr Cumulative Income": "$54,850,000"},
+            {"Deployment Tier": "Tier 3: Aggressive (DoD Command-Wide & National Fleet Scale)", "Installed Nodes by Yr 5": "50 Pilots + 80 SCADA/UAS + 90 Robotics + 40 Cohorts + 18 Consoles + 10 Base Fleets", "Year 1 ARR": "$4,590,000", "Year 3 ARR": "$28,900,000", "Year 5 ARR": "$70,285,000", "5-Yr Cumulative Income": "$153,200,000"}
+        ]
+        st.dataframe(arr_rows, width="stretch", hide_index=True)
+
 
 # === STAGE 12M: EXECUTIVE STATUTORY BRIEF ZERO-ARTIFACT VAULT & 26-CLIN CATALOG ===
 def _render_executive_statutory_full_vault():
@@ -761,6 +769,14 @@ def _render_executive_statutory_full_vault():
             {"CLIN": "CLIN 1004-B", "Module": "BUNDLE: Military Installation Fleet (Up to 25 Nodes)", "Unit": "Up to 25 Enclave/Robotic Nodes (1 Base)", "Annual Gov": "$2,450,000/yr", "Monthly Comm": "$215,000/mo"}
         ]
         st.dataframe(clin_rows, width="stretch", hide_index=True)
+
+        st.markdown(f"#### {chr(0x1F4C8)} 5-Year Per-Node Recurring Revenue (ARR) & DoD Lifecycle Scalability Schedule (FY 2027 - FY 2031)")
+        arr_rows = [
+            {"Deployment Tier": "Tier 1: Conservative (Regional DOT, Guard, & Co-op Scale)", "Installed Nodes by Yr 5": "12 Pilots + 10 SCADA/UAS + 6 Robotics + 6 Cohorts + 3 Full Consoles", "Year 1 ARR": "$559,000", "Year 3 ARR": "$2,899,000", "Year 5 ARR": "$5,689,000", "5-Yr Cumulative Income": "$14,990,000"},
+            {"Deployment Tier": "Tier 2: Baseline Target (Tradewinds Multi-Base & Depot Scale)", "Installed Nodes by Yr 5": "25 Pilots + 30 SCADA/UAS + 25 Robotics + 15 Cohorts + 8 Consoles + 3 Base Fleets", "Year 1 ARR": "$1,690,000", "Year 3 ARR": "$10,250,000", "Year 5 ARR": "$24,172,500", "5-Yr Cumulative Income": "$54,850,000"},
+            {"Deployment Tier": "Tier 3: Aggressive (DoD Command-Wide & National Fleet Scale)", "Installed Nodes by Yr 5": "50 Pilots + 80 SCADA/UAS + 90 Robotics + 40 Cohorts + 18 Consoles + 10 Base Fleets", "Year 1 ARR": "$4,590,000", "Year 3 ARR": "$28,900,000", "Year 5 ARR": "$70,285,000", "5-Yr Cumulative Income": "$153,200,000"}
+        ]
+        st.dataframe(arr_rows, width="stretch", hide_index=True)
 
     with vt3:
         st.markdown("#### Sealed 631-Module C2 Python Inventory & Master Merkle Root")
