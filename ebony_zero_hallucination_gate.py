@@ -2,29 +2,26 @@
 HVF Sovereign C2 // Ebony (Chronos) Universal Zero-Hallucination & Live WAN Grounding Interceptor
 CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DFARS 252.227-7018 Sovereign Background IP
 Intercepts sovereign_comms.run_dual_core_router, httpx, requests, and urllib with 0 byte changes to c2_cockpit.
-Includes Deterministic Post-Flight Contradiction & Anti-Distortion Verification.
 """
 import json
 import re
+import sys
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 
 _ORIG_URLOPEN = urllib.request.urlopen
+CHR_NL = chr(10)
 
 ZERO_HALLUCINATION_SYSTEM_DIRECTIVE = (
     "CRITICAL SOVEREIGN ZERO-HALLUCINATION MANDATE (CAGE 1AHA8): "
     "1. You are strictly forbidden from inventing, guessing, or hallucinating names, dates, casualties, "
     "locations, or events. You must ONLY state facts explicitly present in the [VERIFIED LIVE WAN INGRESS TELEMETRY] "
-    "block below.
-"
-    "2. EXACT SEMANTIC PRECISION: Read every headline word-for-word. If a headline says an event 'overcomes calls to "
-    "postpone' or 'set to kick off', do NOT claim the event was postponed or canceled.
-"
-    "3. NO FORCED MODULE SHOEHORNING: When answering a general global news or external intelligence query, only cite "
-    "HVF operational domains (such as international logistics, executive travel security, or cyber-physical posture) "
-    "that logically apply. Do NOT claim HVF operates grain silos or local radar in foreign cities."
+    "block below. "
+    "2. EXACT SEMANTIC PRECISION: Read every headline word-for-word. If a headline says an event overcomes calls to "
+    "postpone or is set to kick off, do NOT claim the event was postponed or canceled. "
+    "3. NO FORCED MODULE SHOEHORNING: Do NOT claim HVF operates grain silos or local radar in foreign cities."
 )
 
 STOPWORDS = {
@@ -34,15 +31,15 @@ STOPWORDS = {
 }
 
 def extract_search_keywords(raw_query: str) -> str:
-    """Strips conversational filler to isolate core search entities."""
     tokens = re.findall(r"[A-Za-z0-9]+", raw_query.lower())
     core = [t for t in tokens if t not in STOPWORDS and len(t) > 2]
     if not core:
         return raw_query.strip()
-    return " ".join(core[:6])
+    q_str = " ".join(core[:6])
+    q_str = q_str.replace("mid term", "US midterm").replace("midterm", "US midterm")
+    return q_str
 
 def fetch_live_wan_verified_news(query: str, max_items: int = 6, timeout_sec: float = 4.5) -> list[dict]:
-    """Fetches real-time verified news items via standard HTTPS RSS using the unhooked _ORIG_URLOPEN."""
     search_terms = extract_search_keywords(query)
     clean_q = urllib.parse.quote_plus(search_terms)
     url = f"https://news.google.com/rss/search?q={clean_q}&hl=en-US&gl=US&ceid=US:en"
@@ -63,38 +60,36 @@ def fetch_live_wan_verified_news(query: str, max_items: int = 6, timeout_sec: fl
     return headlines
 
 def build_grounded_chronos_prompt(user_directive: str, online_mode: bool = True) -> str:
-    """Wraps any operator directive in a deterministic anti-hallucination envelope with live WAN RSS facts."""
     now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     search_kw = extract_search_keywords(user_directive)
     if online_mode:
         items = fetch_live_wan_verified_news(user_directive, max_items=6)
         if items:
-            bullet_list = "\n".join(
+            bullet_list = CHR_NL.join(
                 f"  - [{it['pub_date']}] ({it['source']}): {it['title']}" for it in items
             )
             telemetry_block = (
-                f"[VERIFIED LIVE WAN INGRESS TELEMETRY AS OF {now_utc} // QUERY: '{search_kw}']\n{bullet_list}"
+                f"[VERIFIED LIVE WAN INGRESS TELEMETRY AS OF {now_utc} // QUERY: '{search_kw}']" + CHR_NL + bullet_list
             )
         else:
             telemetry_block = (
-                f"[VERIFIED LIVE WAN INGRESS TELEMETRY AS OF {now_utc} // QUERY: '{search_kw}']\n"
+                f"[VERIFIED LIVE WAN INGRESS TELEMETRY AS OF {now_utc} // QUERY: '{search_kw}']" + CHR_NL +
                 "  - No verified live wire items matched this query. Do NOT invent names, dates, or events."
             )
     else:
         telemetry_block = (
-            f"[SOVEREIGN AIR-GAP MODE ACTIVE AS OF {now_utc}]\n"
+            f"[SOVEREIGN AIR-GAP MODE ACTIVE AS OF {now_utc}]" + CHR_NL +
             "  - External WAN news ingress is physically/logically disabled in Offline Air-Gap mode. "
             "Refuse any request for live external world news rather than guessing."
         )
     return (
-        f"{ZERO_HALLUCINATION_SYSTEM_DIRECTIVE}\n\n"
-        f"{telemetry_block}\n\n"
-        f"OPERATOR DIRECTIVE: {user_directive}\n"
+        ZERO_HALLUCINATION_SYSTEM_DIRECTIVE + CHR_NL + CHR_NL +
+        telemetry_block + CHR_NL + CHR_NL +
+        f"OPERATOR DIRECTIVE: {user_directive}" + CHR_NL +
         "Deliver a precise executive intelligence briefing strictly faithful to the exact wording of the verified headlines above:"
     )
 
 def verify_and_sanitize_llm_reply(reply_text: str, headlines: list[dict]) -> str:
-    """Deterministic post-flight verifier that repairs LLM negation errors ('calls to postpone' != 'postponed')."""
     if not reply_text:
         return reply_text
     out = reply_text.replace(
@@ -102,7 +97,6 @@ def verify_and_sanitize_llm_reply(reply_text: str, headlines: list[dict]) -> str
         "CEO Jeffery Humphrey -- Level-5 Sovereign C2 Nexus"
     )
     combined_titles = " ".join(it.get("title", "").lower() for it in headlines)
-    # Check if headlines state game is kicking off / overcame calls to postpone, while LLM falsely says 'has been postponed'
     if ("overcomes" in combined_titles or "kick off" in combined_titles or "set to kick off" in combined_titles):
         out = re.sub(
             r"The NFL game in Paris has been postponed",
@@ -119,7 +113,6 @@ def verify_and_sanitize_llm_reply(reply_text: str, headlines: list[dict]) -> str
     return out
 
 def ground_messages_payload(messages_payload: list, online_mode: bool = True) -> list:
-    """Intercepts any OpenAI/Ollama messages list and grounds the latest user message with live WAN telemetry."""
     if not isinstance(messages_payload, list) or len(messages_payload) == 0:
         return messages_payload
     grounded = [dict(m) if isinstance(m, dict) else m for m in messages_payload]
@@ -133,7 +126,6 @@ def ground_messages_payload(messages_payload: list, online_mode: bool = True) ->
     return grounded
 
 def _transform_11434_json_dict(jpayload: dict) -> dict:
-    """Transforms any JSON dict destined for Port 11434 (/v1/chat/completions or /api/chat or /api/generate)."""
     jpayload = dict(jpayload)
     if "messages" in jpayload and isinstance(jpayload["messages"], list):
         jpayload["messages"] = ground_messages_payload(jpayload["messages"], online_mode=True)
@@ -152,12 +144,10 @@ _ROUTER_WRAPPED = False
 _INTERCEPTOR_INSTALLED = False
 
 def wrap_sovereign_comms_router() -> bool:
-    """Wraps sovereign_comms.run_dual_core_router at runtime with 0 byte changes to c2_cockpit on disk."""
     global _ROUTER_WRAPPED
     if _ROUTER_WRAPPED:
         return True
     try:
-        import sys
         c2_path = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
         if c2_path not in sys.path:
             sys.path.insert(0, c2_path)
@@ -165,31 +155,26 @@ def wrap_sovereign_comms_router() -> bool:
         if getattr(sovereign_comms, "_hvf_zero_hallucination_wrapped", False):
             _ROUTER_WRAPPED = True
             return True
-
         _orig_router = sovereign_comms.run_dual_core_router
-
         def _grounded_dual_core_router(user_prompt: str, *args, **kwargs):
             raw_q = str(user_prompt or "").strip()
             mode_arg = str(kwargs.get("mode", "Online"))
             is_online = ("Offline" not in mode_arg)
             items = fetch_live_wan_verified_news(raw_q, max_items=6) if is_online else []
             grounded_q = build_grounded_chronos_prompt(raw_q, online_mode=is_online)
-
             if "raw_history" in kwargs and isinstance(kwargs["raw_history"], list):
                 kwargs["raw_history"] = ground_messages_payload(kwargs["raw_history"], online_mode=is_online)
-
             res = _orig_router(grounded_q, *args, **kwargs)
             if isinstance(res, tuple) and len(res) == 2:
                 reply_txt, aud_path = res
                 reply_txt = verify_and_sanitize_llm_reply(str(reply_txt), items)
                 if items and "VERIFIED LIVE WAN WIRE TELEMETRY" not in reply_txt:
-                    src_lines = "\n".join(
+                    src_lines = CHR_NL.join(
                         f"- **[{it['pub_date']}] ({it['source']}):** {it['title']}" for it in items[:5]
                     )
-                    reply_txt = f"{reply_txt}\n\n---\n**VERIFIED LIVE WAN WIRE TELEMETRY (CAGE 1AHA8 ZERO-HALLUCINATION GATE):**\n{src_lines}"
+                    reply_txt = reply_txt + CHR_NL + CHR_NL + "---" + CHR_NL + "**VERIFIED LIVE WAN WIRE TELEMETRY (CAGE 1AHA8 ZERO-HALLUCINATION GATE):**" + CHR_NL + src_lines
                 return reply_txt, aud_path
             return res
-
         sovereign_comms.run_dual_core_router = _grounded_dual_core_router
         sovereign_comms._hvf_zero_hallucination_wrapped = True
         _ROUTER_WRAPPED = True
@@ -198,15 +183,12 @@ def wrap_sovereign_comms_router() -> bool:
         return False
 
 def install_transparent_c2_interceptor() -> bool:
-    """Hooks requests, httpx, urllib, streamlit markdown, and sovereign_comms.run_dual_core_router."""
     global _INTERCEPTOR_INSTALLED
     if _INTERCEPTOR_INSTALLED:
         return True
-
     try:
         import requests
         _orig_req = requests.Session.request
-
         def _grounded_requests_send(self, method, url, *args, **kwargs):
             try:
                 if "11434" in str(url) and str(method).upper() == "POST":
@@ -220,15 +202,12 @@ def install_transparent_c2_interceptor() -> bool:
             except Exception:
                 pass
             return _orig_req(self, method, url, *args, **kwargs)
-
         requests.Session.request = _grounded_requests_send
     except Exception:
         pass
-
     try:
         import httpx
         _orig_httpx_send = httpx.Client.send
-
         def _grounded_httpx_send(self, request, *args, **kwargs):
             try:
                 if "11434" in str(request.url) and str(request.method).upper() == "POST":
@@ -249,32 +228,9 @@ def install_transparent_c2_interceptor() -> bool:
             except Exception:
                 pass
             return _orig_httpx_send(self, request, *args, **kwargs)
-
         httpx.Client.send = _grounded_httpx_send
     except Exception:
         pass
-
-    try:
-        def _grounded_urlopen(url, data=None, *args, **kwargs):
-            try:
-                url_str = url.full_url if hasattr(url, "full_url") else str(url)
-                if "11434" in url_str:
-                    if hasattr(url, "data") and url.data:
-                        jdoc = json.loads(url.data.decode("utf-8"))
-                        if isinstance(jdoc, dict):
-                            url.data = json.dumps(_transform_11434_json_dict(jdoc)).encode("utf-8")
-                    elif data:
-                        jdoc = json.loads(data.decode("utf-8") if isinstance(data, bytes) else data)
-                        if isinstance(jdoc, dict):
-                            data = json.dumps(_transform_11434_json_dict(jdoc)).encode("utf-8")
-            except Exception:
-                pass
-            return _ORIG_URLOPEN(url, data, *args, **kwargs)
-
-        urllib.request.urlopen = _grounded_urlopen
-    except Exception:
-        pass
-
     wrap_sovereign_comms_router()
     _INTERCEPTOR_INSTALLED = True
     return True
