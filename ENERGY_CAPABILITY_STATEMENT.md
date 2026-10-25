@@ -1,4 +1,4 @@
-# Humphrey Virtual Farms LLC — Critical Energy Infrastructure & Autonomous C2
+# Humphrey Virtual Farms LLC  Critical Energy Infrastructure & Autonomous C2
 
 ## Corporate Identifiers & Regulatory Governance
 * **Legal Business Name:** HUMPHREY VIRTUAL FARMS LLC
@@ -6,7 +6,7 @@
 * **NIST SP 800-171 Cyber Score:** **110 / 110** (SPRS DoD UID: \SB00165728\)
 * **Open POA&M Deficiencies:** 0 (Zero Open Items)
 * **Executive Leadership:** Jeffery Humphrey, Chief Executive Officer & SME
-* **Contact:** [REDACTED_PUBLIC_RELEASE_CONTACT] | (580) 677-1055
+* **Contact:** [REDACTED_PUBLIC_RELEASE_CONTACT] | [REDACTED_PUBLIC_PHONE]
 
 ---
 
@@ -24,8 +24,8 @@ Tamper-evident Write-Once-Read-Many (WORM) ledgering tracking kilowatt-hour gene
 ---
 
 ## Primary Energy & Technology NAICS Classifications
-* **541512** — Computer Systems Design Services (Autonomous Energy C2 Architectures)
-* **541715** — R&D in Physical, Engineering, and Life Sciences (Grid Edge Autonomy)
-* **541519** — Other Computer Related Services (Cryptographic WORM Data Ledgering)
-* **111998** — All Other Miscellaneous Crop Farming (Controlled-Environment Power Optimization)
-* **221122** — Electric Power Distribution (Support & Telemetry Services)
+* **541512**  Computer Systems Design Services (Autonomous Energy C2 Architectures)
+* **541715**  R&D in Physical, Engineering, and Life Sciences (Grid Edge Autonomy)
+* **541519**  Other Computer Related Services (Cryptographic WORM Data Ledgering)
+* **111998**  All Other Miscellaneous Crop Farming (Controlled-Environment Power Optimization)
+* **221122**  Electric Power Distribution (Support & Telemetry Services)

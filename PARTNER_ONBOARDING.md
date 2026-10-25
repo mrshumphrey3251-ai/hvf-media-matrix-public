@@ -1,4 +1,4 @@
-# Humphrey Virtual Farms LLC — Prime Contractor Onboarding Guide
+# Humphrey Virtual Farms LLC  Prime Contractor Onboarding Guide
 
 ## Overview
 This document provides instructions for Defense Prime Contractors, Procurement Contracting Officers (PCOs), and Small Business Liaison Officers (SBLOs) onboarding Humphrey Virtual Farms LLC as an approved small business subcontractor or teaming partner.
@@ -26,7 +26,7 @@ This document provides instructions for Defense Prime Contractors, Procurement C
 3. **Teaming Agreement & NDA Dispatch:** Forward proprietary Non-Disclosure Agreements (NDAs) or Teaming Agreements directly to executive leadership:
    * **Executive POC:** Jeffery Humphrey, Chief Executive Officer
    * **Email:** [REDACTED_PUBLIC_RELEASE_CONTACT]
-   * **Phone:** (580) 677-1055
+   * **Phone:** [REDACTED_PUBLIC_PHONE]
 
 ---
 *Authorized by Jeffery Humphrey, CEO, Humphrey Virtual Farms LLC.*

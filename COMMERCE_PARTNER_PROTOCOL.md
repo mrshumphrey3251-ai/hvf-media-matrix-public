@@ -1,4 +1,4 @@
-# Humphrey Virtual Farms LLC — Commercial Energy Partner Engagement Protocol
+# Humphrey Virtual Farms LLC  Commercial Energy Partner Engagement Protocol
 
 ## Purpose
 This protocol defines the formal procedure for municipal utilities, electric cooperatives, and industrial agricultural facilities initiating a Software-Defined, Zero-CAPEX energy management pilot with Humphrey Virtual Farms LLC.
@@ -25,12 +25,12 @@ This protocol defines the formal procedure for municipal utilities, electric coo
 
 1. **Submission of Historical Telemetry:** Facility provides 30 to 90 days of 15-minute interval smart meter power data (Green Button XML or utility CSV format).
 2. **Deterministic Modeling:** The \HVFNexus Energy Core\ ingests interval data into a local sovereign enclave to model historical load spikes and peak demand ratchet penalties.
-3. **Executive ROI Presentation:** HVF delivers an auditable demand-reduction report identifying peak-shaving savings (typically 22%–38% demand charge reductions).
+3. **Executive ROI Presentation:** HVF delivers an auditable demand-reduction report identifying peak-shaving savings (typically 22%38% demand charge reductions).
 4. **Grant & Co-op Alignment:** If the facility elects to proceed to active edge control, hardware deployment is funded through regional utility incentives or Department of Commerce / State Energy Program grants.
 
 ---
 
 ## 3. Executive Contact & Engagement
 * **Chief Executive Officer:** Jeffery Humphrey
-* **Official Communications:** [REDACTED_PUBLIC_RELEASE_CONTACT] | (580) 677-1055
+* **Official Communications:** [REDACTED_PUBLIC_RELEASE_CONTACT] | [REDACTED_PUBLIC_PHONE]
 * **Public Repository:** https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public
