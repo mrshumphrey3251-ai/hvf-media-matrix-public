@@ -633,6 +633,32 @@ def _render_sovereign_robotics_c2_deck():
         ]
         st.dataframe(arr_rows, width="stretch", hide_index=True)
 
+        st.markdown(f"#### {chr(0x1F3E6)} Day-1 Immediate Fund Release Schedule & Post-Award Capital Allocation Budget (FAR 52.232-40 / 10 U.S.C. 4022)")
+        st.success(
+            "**DAY-1 IMMEDIATE MOBILIZATION INVOICING:** Single-node COTS licenses (`<= $250,000`) are invoiced **100% on Day 1** upon electronic license key delivery "
+            "(24-48 hrs via Government Purchase Card or <= 15 days via WAWF Accelerated Small Business Payment `FAR 52.232-40`). Multi-node/Enterprise awards (`> $250,000`) "
+            "invoice **50% on Day 1 (Payable Milestone #01: Cryptographic Key & Setup Mobilization)**, **30% at Day 30**, and **20% at Day 60**."
+        )
+        award_amt = st.number_input(
+            "Interactive Post-Award Budget Calculator -- Enter Contract Award Amount ($ USD):",
+            min_value=10000,
+            max_value=50000000,
+            value=250000,
+            step=25000,
+            key="hvf_post_award_budget_calc"
+        )
+        day1_release = award_amt if award_amt <= 250000 else int(award_amt * 0.50)
+        st.info(f"**Immediate Day-1 Cash Release Invoiced at Award Signing:** **${day1_release:,.2f}** ({'100% COTS / GPC Fast-Track' if award_amt <= 250000 else '50% OTA Payable Milestone #01'})")
+        budget_rows = [
+            {"Budget Bucket": "1. Day-1 Bare-Metal Enclave & HIL Setup Hardware", "Allocation %": "18.0%", "Allocated Amount ($)": f"${award_amt * 0.18:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release * 0.18:,.2f}", "Authorized Purpose": "Edge server appliance, 36.75ns SiC MOSFET interlock board, NVMe WORM drives, air-gap cabling"},
+            {"Budget Bucket": "2. CEO & SME Executive Compensation (Jeffery Humphrey)", "Allocation %": "35.0%", "Allocated Amount ($)": f"${award_amt * 0.35:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release * 0.35:,.2f}", "Authorized Purpose": "Executive salary/draw for Principal Architect, CEO, & SME oversight and cryptographic key signing"},
+            {"Budget Bucket": "3. TRL 8/9 Field Integration, Travel, & Site Wiring", "Allocation %": "15.0%", "Allocated Amount ($)": f"${award_amt * 0.15:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release * 0.15:,.2f}", "Authorized Purpose": "Customer PLC/ROS2/CAN-Bus wiring, on-site commissioning travel, Funded post-award customization"},
+            {"Budget Bucket": "4. Federal/OK Tax Escrow, Legal, & Insurance Reserve", "Allocation %": "17.0%", "Allocated Amount ($)": f"${award_amt * 0.17:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release * 0.17:,.2f}", "Authorized Purpose": "Federal & Oklahoma tax escrow account, cyber/general liability insurance, CPA WORM audit"},
+            {"Budget Bucket": "5. Sovereign Corporate War Chest (Retained Reserve)", "Allocation %": "15.0%", "Allocated Amount ($)": f"${award_amt * 0.15:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release * 0.15:,.2f}", "Authorized Purpose": "Retained cash reserve in Humphrey Virtual Farms LLC for zero-debt scaling & next-contract capture"},
+            {"Budget Bucket": "TOTAL POST-AWARD CAPITAL ALLOCATION", "Allocation %": "100.0%", "Allocated Amount ($)": f"${award_amt:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release:,.2f}", "Authorized Purpose": "100% Accounted For // $0.00 Cloud Drain // $0.00 External Debt"}
+        ]
+        st.dataframe(budget_rows, width="stretch", hide_index=True)
+
 
 # === STAGE 12M: EXECUTIVE STATUTORY BRIEF ZERO-ARTIFACT VAULT & 26-CLIN CATALOG ===
 def _render_executive_statutory_full_vault():
@@ -777,6 +803,32 @@ def _render_executive_statutory_full_vault():
             {"Deployment Tier": "Tier 3: Aggressive (DoD Command-Wide & National Fleet Scale)", "Installed Nodes by Yr 5": "50 Pilots + 80 SCADA/UAS + 90 Robotics + 40 Cohorts + 18 Consoles + 10 Base Fleets", "Year 1 ARR": "$4,590,000", "Year 3 ARR": "$28,900,000", "Year 5 ARR": "$70,285,000", "5-Yr Cumulative Income": "$153,200,000"}
         ]
         st.dataframe(arr_rows, width="stretch", hide_index=True)
+
+        st.markdown(f"#### {chr(0x1F3E6)} Day-1 Immediate Fund Release Schedule & Post-Award Capital Allocation Budget (FAR 52.232-40 / 10 U.S.C. 4022)")
+        st.success(
+            "**DAY-1 IMMEDIATE MOBILIZATION INVOICING:** Single-node COTS licenses (`<= $250,000`) are invoiced **100% on Day 1** upon electronic license key delivery "
+            "(24-48 hrs via Government Purchase Card or <= 15 days via WAWF Accelerated Small Business Payment `FAR 52.232-40`). Multi-node/Enterprise awards (`> $250,000`) "
+            "invoice **50% on Day 1 (Payable Milestone #01: Cryptographic Key & Setup Mobilization)**, **30% at Day 30**, and **20% at Day 60**."
+        )
+        award_amt = st.number_input(
+            "Interactive Post-Award Budget Calculator -- Enter Contract Award Amount ($ USD):",
+            min_value=10000,
+            max_value=50000000,
+            value=250000,
+            step=25000,
+            key="hvf_post_award_budget_calc"
+        )
+        day1_release = award_amt if award_amt <= 250000 else int(award_amt * 0.50)
+        st.info(f"**Immediate Day-1 Cash Release Invoiced at Award Signing:** **${day1_release:,.2f}** ({'100% COTS / GPC Fast-Track' if award_amt <= 250000 else '50% OTA Payable Milestone #01'})")
+        budget_rows = [
+            {"Budget Bucket": "1. Day-1 Bare-Metal Enclave & HIL Setup Hardware", "Allocation %": "18.0%", "Allocated Amount ($)": f"${award_amt * 0.18:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release * 0.18:,.2f}", "Authorized Purpose": "Edge server appliance, 36.75ns SiC MOSFET interlock board, NVMe WORM drives, air-gap cabling"},
+            {"Budget Bucket": "2. CEO & SME Executive Compensation (Jeffery Humphrey)", "Allocation %": "35.0%", "Allocated Amount ($)": f"${award_amt * 0.35:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release * 0.35:,.2f}", "Authorized Purpose": "Executive salary/draw for Principal Architect, CEO, & SME oversight and cryptographic key signing"},
+            {"Budget Bucket": "3. TRL 8/9 Field Integration, Travel, & Site Wiring", "Allocation %": "15.0%", "Allocated Amount ($)": f"${award_amt * 0.15:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release * 0.15:,.2f}", "Authorized Purpose": "Customer PLC/ROS2/CAN-Bus wiring, on-site commissioning travel, Funded post-award customization"},
+            {"Budget Bucket": "4. Federal/OK Tax Escrow, Legal, & Insurance Reserve", "Allocation %": "17.0%", "Allocated Amount ($)": f"${award_amt * 0.17:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release * 0.17:,.2f}", "Authorized Purpose": "Federal & Oklahoma tax escrow account, cyber/general liability insurance, CPA WORM audit"},
+            {"Budget Bucket": "5. Sovereign Corporate War Chest (Retained Reserve)", "Allocation %": "15.0%", "Allocated Amount ($)": f"${award_amt * 0.15:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release * 0.15:,.2f}", "Authorized Purpose": "Retained cash reserve in Humphrey Virtual Farms LLC for zero-debt scaling & next-contract capture"},
+            {"Budget Bucket": "TOTAL POST-AWARD CAPITAL ALLOCATION", "Allocation %": "100.0%", "Allocated Amount ($)": f"${award_amt:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release:,.2f}", "Authorized Purpose": "100% Accounted For // $0.00 Cloud Drain // $0.00 External Debt"}
+        ]
+        st.dataframe(budget_rows, width="stretch", hide_index=True)
 
     with vt3:
         st.markdown("#### Sealed 631-Module C2 Python Inventory & Master Merkle Root")

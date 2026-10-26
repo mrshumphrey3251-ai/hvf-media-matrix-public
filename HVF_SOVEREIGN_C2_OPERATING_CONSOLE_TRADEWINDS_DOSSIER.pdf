@@ -4,7 +4,7 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R] /Count 5 >>
+<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R] /Count 6 >>
 endobj
 3 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Courier >>
@@ -249,7 +249,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 13 0 R >>
 endobj
 13 0 obj
-<< /Length 3110 >>
+<< /Length 3140 >>
 stream
 BT
 /F1 8.5 Tf
@@ -298,27 +298,67 @@ BT
 (  compute surcharges \(no AWS GovCloud or Azure Government meter\), procuring agencies save ) Tj T*
 (  an estimated **42.5% to 58.0%** in 5-year Total Ownership Cost \(TCO\) compared to cloud-t) Tj T*
 (  ethered C2 platforms.) Tj T*
+() Tj T*
+() Tj T*
+(---) Tj T*
+ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 15 0 R >>
+endobj
+15 0 obj
+<< /Length 1658 >>
+stream
+BT
+/F1 8.5 Tf
+36 756 Td
+11 TL
+() Tj T*
+(## 7. Day-1 Mobilization Invoicing, Payable Milestone Schedule \(10 U.S.C. 4022 / FAR 52.212) Tj T*
+(  -4\), & 15-Day Accelerated Payment \(FAR 52.232-40\)) Tj T*
+() Tj T*
+(To ensure immediate hardware provisioning and enclave mobilization upon contract award witho) Tj T*
+(  ut vendor out-of-pocket pre-financing, all awards under `Docket 10-26-3952` and `CLIN 0001) Tj T*
+(  ` - `CLIN 1004` execute under the following federal commercial payment terms:) Tj T*
+() Tj T*
+(1. **Simplified Acquisition & Single-Node COTS Licenses \(`<= $250,000`\):** Invoiced **100%) Tj T*
+(   on Day 1 of Contract Award** upon electronic delivery of the WORM SHA-256 Hardware-Locked) Tj T*
+(   License Certificate \(`FAR 52.212-4`\), payable via Government Purchase Card \(`FAR 13.30) Tj T*
+(  1`, 24-48 hr settlement\) or PIEE/WAWF with mandatory **15-Day Accelerated Small Business ) Tj T*
+(  Payment \(`FAR 52.232-40`\)**.) Tj T*
+(2. **Multi-Node & Enterprise Console Awards \(`> $250,000` under 10 U.S.C. 4022 OTA / FAR Pa) Tj T*
+(  rt 12\):**) Tj T*
+(   * **Payable Milestone #01 \(Day 1 of Award ? `50%` of Total Award\):** Electronic issuanc) Tj T*
+(  e of Master Cryptographic License Certificate, WORM Baseline Attestation, and Bare-Metal E) Tj T*
+(  nclave Hardware Mobilization.) Tj T*
+(   * **Payable Milestone #02 \(Day 30 ? `30%` of Total Award\):** Delivery of pre-configured) Tj T*
+(   bare-metal enclave hardware and site-specific TRL 8 interface binding.) Tj T*
+(   * **Payable Milestone #03 \(Day 60 ? `20%` of Total Award\):** Final operational verifica) Tj T*
+(  tion and Field Academy cohort activation.) Tj T*
 ET
 endstream
 endobj
 xref
-0 14
+0 16
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000147 00000 n 
-0000000215 00000 n 
-0000000341 00000 n 
-0000003529 00000 n 
-0000003655 00000 n 
-0000007293 00000 n 
-0000007419 00000 n 
-0000011200 00000 n 
-0000011328 00000 n 
-0000014947 00000 n 
-0000015075 00000 n 
+0000000154 00000 n 
+0000000222 00000 n 
+0000000348 00000 n 
+0000003536 00000 n 
+0000003662 00000 n 
+0000007300 00000 n 
+0000007426 00000 n 
+0000011207 00000 n 
+0000011335 00000 n 
+0000014954 00000 n 
+0000015082 00000 n 
+0000018275 00000 n 
+0000018403 00000 n 
 trailer
-<< /Size 14 /Root 1 0 R >>
+<< /Size 16 /Root 1 0 R >>
 startxref
-18238
+20114
 %%EOF

@@ -107,3 +107,16 @@ Pursuant to FAR Part 12 Commercial Item price reasonableness and DoD CDAO Tradew
 
 * **FAR Part 13 Simplified Acquisition Alignment:** Every individual module (`CLIN 0001` through `CLIN 0026`, `$20,000/yr` to `$185,000/yr` per node) is priced strictly below the **`$250,000` Simplified Acquisition Threshold**, enabling rapid squadron-, depot-, and district-level procurement without multi-quarter formal source-selection delays.
 * **Zero-Cloud DoD Lifecycle Cost Avoidance (`>42.5%` Savings):** Because Project Ebony executes 100% on air-gapped bare-metal hardware with zero recurring commercial cloud egress/compute surcharges (no AWS GovCloud or Azure Government meter), procuring agencies save an estimated **42.5% to 58.0%** in 5-year Total Ownership Cost (TCO) compared to cloud-tethered C2 platforms.
+
+
+---
+
+## 7. Day-1 Mobilization Invoicing, Payable Milestone Schedule (10 U.S.C. 4022 / FAR 52.212-4), & 15-Day Accelerated Payment (FAR 52.232-40)
+
+To ensure immediate hardware provisioning and enclave mobilization upon contract award without vendor out-of-pocket pre-financing, all awards under `Docket 10-26-3952` and `CLIN 0001` - `CLIN 1004` execute under the following federal commercial payment terms:
+
+1. **Simplified Acquisition & Single-Node COTS Licenses (`<= $250,000`):** Invoiced **100% on Day 1 of Contract Award** upon electronic delivery of the WORM SHA-256 Hardware-Locked License Certificate (`FAR 52.212-4`), payable via Government Purchase Card (`FAR 13.301`, 24-48 hr settlement) or PIEE/WAWF with mandatory **15-Day Accelerated Small Business Payment (`FAR 52.232-40`)**.
+2. **Multi-Node & Enterprise Console Awards (`> $250,000` under 10 U.S.C. 4022 OTA / FAR Part 12):**
+   * **Payable Milestone #01 (Day 1 of Award ? `50%` of Total Award):** Electronic issuance of Master Cryptographic License Certificate, WORM Baseline Attestation, and Bare-Metal Enclave Hardware Mobilization.
+   * **Payable Milestone #02 (Day 30 ? `30%` of Total Award):** Delivery of pre-configured bare-metal enclave hardware and site-specific TRL 8 interface binding.
+   * **Payable Milestone #03 (Day 60 ? `20%` of Total Award):** Final operational verification and Field Academy cohort activation.
