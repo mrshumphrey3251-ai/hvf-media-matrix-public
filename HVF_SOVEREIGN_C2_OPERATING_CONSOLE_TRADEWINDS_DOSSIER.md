@@ -120,3 +120,17 @@ To ensure immediate hardware provisioning and enclave mobilization upon contract
    * **Payable Milestone #01 (Day 1 of Award ? `50%` of Total Award):** Electronic issuance of Master Cryptographic License Certificate, WORM Baseline Attestation, and Bare-Metal Enclave Hardware Mobilization.
    * **Payable Milestone #02 (Day 30 ? `30%` of Total Award):** Delivery of pre-configured bare-metal enclave hardware and site-specific TRL 8 interface binding.
    * **Payable Milestone #03 (Day 60 ? `20%` of Total Award):** Final operational verification and Field Academy cohort activation.
+
+
+---
+
+## 8. Post-Award TRL 8/9 Funded Engineering & Site Integration Roadmap (Day 1 to Day 90)
+
+Project Ebony's software enclave is 100% complete and frozen at **TRL 7** (`631 / 631` modules, `83 / 83` unit test suites). Following contract award and Day-1 mobilization payment settlement (`FAR 52.232-40` / `10 U.S.C. 4022`), Humphrey Virtual Farms LLC executes six customer-funded **TRL 8 (Site HIL Integration)** and **TRL 9 (Full Operational Accreditation)** work packages out of the **18% Setup Hardware** and **15% TRL 8/9 Integration** budget allocations:
+
+* **`WP-1` (Days 1-15 | TRL 8):** Customer bare-metal appliance provisioning, NVMe WORM array formatting, and Hardware UUID cryptographic license binding.
+* **`WP-2` (Days 10-30 | TRL 8):** Physical SiC MOSFET `36.75ns` hardware guillotine relay board assembly and robotic actuator bench calibration (`CLIN 0006`).
+* **`WP-3` (Days 15-45 | TRL 8):** Site-specific Modbus-TCP/DNP3 60Hz microgrid relay (`CLIN 0003`), 480V contactor (`CLIN 0009`), and SAE J1939 CAN-Bus (`CLIN 0008`) register mapping.
+* **`WP-4` (Days 20-45 | TRL 8):** Local UAS optical payload ingestion (`CLIN 0007`) and Oklahoma Title 61 / base civil engineering GIS boundary binding (`CLIN 0010`).
+* **`WP-5` (Days 30-60 | TRL 8/9):** Command-specific watch-floor role customization and automated ISO 32000-1 `%PDF-1.4` shift-ledger formatting (`CLIN 0022`).
+* **`WP-6` (Days 45-90 | TRL 9):** Site Authority to Operate (ATO / NIST SP 800-53 RMF) package sign-off and 50-seat Field Academy cohort deployment (`CLIN 0011`).

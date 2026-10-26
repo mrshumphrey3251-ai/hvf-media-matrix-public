@@ -4,7 +4,7 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R] /Count 6 >>
+<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R] /Count 7 >>
 endobj
 3 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Courier >>
@@ -308,7 +308,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 15 0 R >>
 endobj
 15 0 obj
-<< /Length 1658 >>
+<< /Length 3310 >>
 stream
 BT
 /F1 8.5 Tf
@@ -336,29 +336,70 @@ BT
 (   bare-metal enclave hardware and site-specific TRL 8 interface binding.) Tj T*
 (   * **Payable Milestone #03 \(Day 60 ? `20%` of Total Award\):** Final operational verifica) Tj T*
 (  tion and Field Academy cohort activation.) Tj T*
+() Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## 8. Post-Award TRL 8/9 Funded Engineering & Site Integration Roadmap \(Day 1 to Day 90\)) Tj T*
+() Tj T*
+(Project Ebony's software enclave is 100% complete and frozen at **TRL 7** \(`631 / 631` modu) Tj T*
+(  les, `83 / 83` unit test suites\). Following contract award and Day-1 mobilization payment) Tj T*
+(   settlement \(`FAR 52.232-40` / `10 U.S.C. 4022`\), Humphrey Virtual Farms LLC executes si) Tj T*
+(  x customer-funded **TRL 8 \(Site HIL Integration\)** and **TRL 9 \(Full Operational Accred) Tj T*
+(  itation\)** work packages out of the **18% Setup Hardware** and **15% TRL 8/9 Integration*) Tj T*
+(  * budget allocations:) Tj T*
+() Tj T*
+(* **`WP-1` \(Days 1-15 | TRL 8\):** Customer bare-metal appliance provisioning, NVMe WORM ar) Tj T*
+(  ray formatting, and Hardware UUID cryptographic license binding.) Tj T*
+(* **`WP-2` \(Days 10-30 | TRL 8\):** Physical SiC MOSFET `36.75ns` hardware guillotine relay) Tj T*
+(   board assembly and robotic actuator bench calibration \(`CLIN 0006`\).) Tj T*
+(* **`WP-3` \(Days 15-45 | TRL 8\):** Site-specific Modbus-TCP/DNP3 60Hz microgrid relay \(`C) Tj T*
+(  LIN 0003`\), 480V contactor \(`CLIN 0009`\), and SAE J1939 CAN-Bus \(`CLIN 0008`\) registe) Tj T*
+(  r mapping.) Tj T*
+(* **`WP-4` \(Days 20-45 | TRL 8\):** Local UAS optical payload ingestion \(`CLIN 0007`\) and) Tj T*
+(   Oklahoma Title 61 / base civil engineering GIS boundary binding \(`CLIN 0010`\).) Tj T*
+(* **`WP-5` \(Days 30-60 | TRL 8/9\):** Command-specific watch-floor role customization and a) Tj T*
+(  utomated ISO 32000-1 `%PDF-1.4` shift-ledger formatting \(`CLIN 0022`\).) Tj T*
+ET
+endstream
+endobj
+16 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 17 0 R >>
+endobj
+17 0 obj
+<< /Length 221 >>
+stream
+BT
+/F1 8.5 Tf
+36 756 Td
+11 TL
+(* **`WP-6` \(Days 45-90 | TRL 9\):** Site Authority to Operate \(ATO / NIST SP 800-53 RMF\) ) Tj T*
+(  package sign-off and 50-seat Field Academy cohort deployment \(`CLIN 0011`\).) Tj T*
 ET
 endstream
 endobj
 xref
-0 16
+0 18
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000154 00000 n 
-0000000222 00000 n 
-0000000348 00000 n 
-0000003536 00000 n 
-0000003662 00000 n 
-0000007300 00000 n 
-0000007426 00000 n 
-0000011207 00000 n 
-0000011335 00000 n 
-0000014954 00000 n 
-0000015082 00000 n 
-0000018275 00000 n 
-0000018403 00000 n 
+0000000161 00000 n 
+0000000229 00000 n 
+0000000355 00000 n 
+0000003543 00000 n 
+0000003669 00000 n 
+0000007307 00000 n 
+0000007433 00000 n 
+0000011214 00000 n 
+0000011342 00000 n 
+0000014961 00000 n 
+0000015089 00000 n 
+0000018282 00000 n 
+0000018410 00000 n 
+0000021773 00000 n 
+0000021901 00000 n 
 trailer
-<< /Size 16 /Root 1 0 R >>
+<< /Size 18 /Root 1 0 R >>
 startxref
-20114
+22174
 %%EOF

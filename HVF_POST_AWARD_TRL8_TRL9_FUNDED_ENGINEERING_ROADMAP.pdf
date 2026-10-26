@@ -1,0 +1,119 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R 6 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 3450 >>
+stream
+BT
+/F1 8.5 Tf
+36 756 Td
+11 TL
+(# HUMPHREY VIRTUAL FARMS LLC // POST-AWARD TRL 8 & TRL 9 FUNDED ENGINEERING ROADMAP) Tj T*
+(**Entity:** Humphrey Virtual Farms LLC \(`CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5`\)  ) Tj T*
+(**Controlling Authority:** Jeffery Humphrey, Founder, CEO, & Principal Sovereign Architect  ) Tj T*
+(**Pre-Award Baseline Status:** `TRL 7` Complete & Frozen \(`631 / 631` Modules, `83 / 83` Un) Tj T*
+(  it Tests, Master Merkle Root: `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e915) Tj T*
+(  0949a`\)  ) Tj T*
+(**Execution Condition:** All Work Packages \(`WP-1` through `WP-6`\) execute **strictly post) Tj T*
+(  -award** using settled funds from **Milestone #01 / Day-1 COTS License Release \(`18%` Set) Tj T*
+(  up Hardware Bucket + `15%` TRL 8/9 Integration Bucket\)**.) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## 1. Executive Boundary: Why Pre-Award Code Is Frozen at TRL 7) Tj T*
+() Tj T*
+(1. **Zero Uncompensated Pre-Award Custom Engineering:** The Project Ebony Sovereign C2 Opera) Tj T*
+(  ting Console \(`26` Modules / `72` Verified Controls\) is 100% complete at **Technology Re) Tj T*
+(  adiness Level 7 \(`TRL 7`\)**. No further out-of-pocket pre-award code modifications are r) Tj T*
+(  equired prior to contract award.) Tj T*
+(2. **Plug-In Modularity Without Core Rewrites:** All post-award customer adaptations \(`TRL ) Tj T*
+(  8` site hardware-in-the-loop binding and `TRL 9` multi-node base accreditation\) attach as) Tj T*
+(   isolated plug-in drivers without modifying the sealed `631`-module `c2_cockpit` core.) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## 2. Six Funded Post-Award Engineering Work Packages \(Day 1 to Day 90\)) Tj T*
+() Tj T*
+(| Work Package | Target TRL | Execution Window | Funding Source Bucket | Concrete Engineerin) Tj T*
+(  g Deliverable \(Executed Only After Award Funds Settle\) |) Tj T*
+(| :--- | :--- | :--- | :--- | :--- |) Tj T*
+(| **`WP-1: Bare-Metal Appliance Provisioning`** | **TRL 8** | **Days 1 - 15** | `18.0%` Hard) Tj T*
+(  ware Bucket \(Milestone #01\) | Procure customer-dedicated ruggedized edge server node\(s\) Tj T*
+(  ), dual NVMe hardware WORM drives, air-gap optical NICs, and bind hardware UUID to `CLIN 0) Tj T*
+(  001` - `0026` license keys. |) Tj T*
+(| **`WP-2: 36.75ns SiC MOSFET Hardware Interlock Board`** | **TRL 8** | **Days 10 - 30** | `) Tj T*
+(  18.0%` Hardware Bucket \(Milestone #01\) | Assemble & bench-verify physical Silicon-Carbid) Tj T*
+(  e \(SiC\) MOSFET solid-state DC bus breaker board \(`18.50ns` comparator + `12.00ns` gate ) Tj T*
+(  driver + `6.25ns` turn-off = `36.75ns` hardware guillotine\) for customer robotic cells \() Tj T*
+(  `CLIN 0006`\). |) Tj T*
+(| **`WP-3: Site-Specific PLC, SCADA, & CAN-Bus Binding`** | **TRL 8** | **Days 15 - 45** | `) Tj T*
+(  15.0%` TRL 8/9 Integration Bucket | Map customer's site-specific Modbus-TCP / DNP3 substat) Tj T*
+(  ion relays \(`CLIN 0003`\), 480V grain silo contactors \(`CLIN 0009`\), or SAE J1939 tacti) Tj T*
+(  cal vehicle CAN-Bus interfaces \(`CLIN 0008`\) into isolated plug-in adapter profiles. |) Tj T*
+(| **`WP-4: UAS / Drone Optical Feed & Title 61 GIS Hookup`** | **TRL 8** | **Days 20 - 45** ) Tj T*
+(  | `15.0%` TRL 8/9 Integration Bucket | Connect customer's local UAS ground control station) Tj T*
+(   RTSP/optical feeds \(`CLIN 0007`\) and county/base GIS shapefiles \(`CLIN 0010`\) into th) Tj T*
+(  e air-gapped GLI and Title 61 compliance compiler. |) Tj T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 1518 >>
+stream
+BT
+/F1 8.5 Tf
+36 756 Td
+11 TL
+(| **`WP-5: Customer UI Polish & Role-Based Watch-Floor Views`** | **TRL 8/9** | **Days 30 - ) Tj T*
+(  60** | `15.0%` TRL 8/9 Integration Bucket | Tailor customer-requested dashboard logos, uni) Tj T*
+(  t callsigns, watch-floor operator permissions, and automated shift-brief PDF templates \(`) Tj T*
+(  CLIN 0022`\) to match the awarding command's SOP. |) Tj T*
+(| **`WP-6: DoD RMF / eMASS ATO & Multi-Node Fleet Rollout`** | **TRL 9** | **Days 45 - 90** ) Tj T*
+(  | `15.0%` TRL 8/9 Integration Bucket | Generate site-specific DoD Risk Management Framewor) Tj T*
+(  k \(RMF / NIST 800-53 Rev 5\) STIG checklists, complete local Authorizing Official \(AO\) ) Tj T*
+(  accreditation, and activate 50-seat Field Academy cohorts \(`CLIN 0011`\). |) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## 3. Architectural Guarantee: Zero-Rewrite Plug-In Adapter Pattern) Tj T*
+() Tj T*
+(Every post-award Work Package \(`WP-1` through `WP-6`\) is architected to load via `HVF_SITE) Tj T*
+(  _ADAPTER_MANIFEST.json` and isolated hardware driver classes, guaranteeing:) Tj T*
+(* **0 Bytes Modified** inside the sealed `631` `c2_cockpit` core modules \(`cc1ee1c8...949a`) Tj T*
+(  \).) Tj T*
+(* **100% Backwards Compatibility** with all `83 / 83` unit test suites and `1,420 / 1,420` F) Tj T*
+(  ield Academy questions.) Tj T*
+(* **100% Customer-Funded Execution:** No hardware ordering or site travel occurs until the D) Tj T*
+(  ay-1 invoice clears into Humphrey Virtual Farms LLC's bank account.) Tj T*
+ET
+endstream
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000195 00000 n 
+0000000321 00000 n 
+0000003823 00000 n 
+0000003949 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+5519
+%%EOF

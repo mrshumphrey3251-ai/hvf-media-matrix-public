@@ -659,6 +659,17 @@ def _render_sovereign_robotics_c2_deck():
         ]
         st.dataframe(budget_rows, width="stretch", hide_index=True)
 
+        st.markdown(f"#### {chr(0x1F6E0)} Post-Award TRL 8 & TRL 9 Funded Engineering Roadmap (Executed Strictly After Day-1 Fund Release)")
+        wp_rows = [
+            {"Work Package": "WP-1: Bare-Metal Appliance & WORM Drive Provisioning", "Target TRL": "TRL 8", "Window": "Days 1 - 15", "Funded By Bucket": f"18% Hardware (${award_amt * 0.18:,.0f})", "Deliverable": "Procure ruggedized edge server, NVMe WORM drives, & bind Hardware UUID license key"},
+            {"Work Package": "WP-2: 36.75ns SiC MOSFET Hardware Interlock Board", "Target TRL": "TRL 8", "Window": "Days 10 - 30", "Funded By Bucket": f"18% Hardware (${award_amt * 0.18:,.0f})", "Deliverable": "Assemble & calibrate physical SiC MOSFET solid-state breaker board for customer robot cells"},
+            {"Work Package": "WP-3: Site PLC, 60Hz SCADA, & J1939 CAN-Bus Binding", "Target TRL": "TRL 8", "Window": "Days 15 - 45", "Funded By Bucket": f"15% Integration (${award_amt * 0.15:,.0f})", "Deliverable": "Map customer Modbus/DNP3 substation relays, 480V contactors, & tactical vehicle CAN-Bus"},
+            {"Work Package": "WP-4: UAS Optical Feed & Title 61 GIS Integration", "Target TRL": "TRL 8", "Window": "Days 20 - 45", "Funded By Bucket": f"15% Integration (${award_amt * 0.15:,.0f})", "Deliverable": "Bind customer drone ground-station feeds & civil engineering GIS shapefiles"},
+            {"Work Package": "WP-5: Command Watch-Floor UI & Custom PDF Templates", "Target TRL": "TRL 8/9", "Window": "Days 30 - 60", "Funded By Bucket": f"15% Integration (${award_amt * 0.15:,.0f})", "Deliverable": "Configure command callsigns, watch-floor operator roles, & custom WORM PDF headers"},
+            {"Work Package": "WP-6: DoD RMF ATO Sign-Off & Academy Cohort Launch", "Target TRL": "TRL 9", "Window": "Days 45 - 90", "Funded By Bucket": f"15% Integration (${award_amt * 0.15:,.0f})", "Deliverable": "Complete NIST 800-53 / RMF site ATO accreditation & onboard 50-seat Field Academy cohort"}
+        ]
+        st.dataframe(wp_rows, width="stretch", hide_index=True)
+
 
 # === STAGE 12M: EXECUTIVE STATUTORY BRIEF ZERO-ARTIFACT VAULT & 26-CLIN CATALOG ===
 def _render_executive_statutory_full_vault():
@@ -829,6 +840,17 @@ def _render_executive_statutory_full_vault():
             {"Budget Bucket": "TOTAL POST-AWARD CAPITAL ALLOCATION", "Allocation %": "100.0%", "Allocated Amount ($)": f"${award_amt:,.2f}", "Day-1 Funded From Milestone #01": f"${day1_release:,.2f}", "Authorized Purpose": "100% Accounted For // $0.00 Cloud Drain // $0.00 External Debt"}
         ]
         st.dataframe(budget_rows, width="stretch", hide_index=True)
+
+        st.markdown(f"#### {chr(0x1F6E0)} Post-Award TRL 8 & TRL 9 Funded Engineering Roadmap (Executed Strictly After Day-1 Fund Release)")
+        wp_rows = [
+            {"Work Package": "WP-1: Bare-Metal Appliance & WORM Drive Provisioning", "Target TRL": "TRL 8", "Window": "Days 1 - 15", "Funded By Bucket": f"18% Hardware (${award_amt * 0.18:,.0f})", "Deliverable": "Procure ruggedized edge server, NVMe WORM drives, & bind Hardware UUID license key"},
+            {"Work Package": "WP-2: 36.75ns SiC MOSFET Hardware Interlock Board", "Target TRL": "TRL 8", "Window": "Days 10 - 30", "Funded By Bucket": f"18% Hardware (${award_amt * 0.18:,.0f})", "Deliverable": "Assemble & calibrate physical SiC MOSFET solid-state breaker board for customer robot cells"},
+            {"Work Package": "WP-3: Site PLC, 60Hz SCADA, & J1939 CAN-Bus Binding", "Target TRL": "TRL 8", "Window": "Days 15 - 45", "Funded By Bucket": f"15% Integration (${award_amt * 0.15:,.0f})", "Deliverable": "Map customer Modbus/DNP3 substation relays, 480V contactors, & tactical vehicle CAN-Bus"},
+            {"Work Package": "WP-4: UAS Optical Feed & Title 61 GIS Integration", "Target TRL": "TRL 8", "Window": "Days 20 - 45", "Funded By Bucket": f"15% Integration (${award_amt * 0.15:,.0f})", "Deliverable": "Bind customer drone ground-station feeds & civil engineering GIS shapefiles"},
+            {"Work Package": "WP-5: Command Watch-Floor UI & Custom PDF Templates", "Target TRL": "TRL 8/9", "Window": "Days 30 - 60", "Funded By Bucket": f"15% Integration (${award_amt * 0.15:,.0f})", "Deliverable": "Configure command callsigns, watch-floor operator roles, & custom WORM PDF headers"},
+            {"Work Package": "WP-6: DoD RMF ATO Sign-Off & Academy Cohort Launch", "Target TRL": "TRL 9", "Window": "Days 45 - 90", "Funded By Bucket": f"15% Integration (${award_amt * 0.15:,.0f})", "Deliverable": "Complete NIST 800-53 / RMF site ATO accreditation & onboard 50-seat Field Academy cohort"}
+        ]
+        st.dataframe(wp_rows, width="stretch", hide_index=True)
 
     with vt3:
         st.markdown("#### Sealed 631-Module C2 Python Inventory & Master Merkle Root")
