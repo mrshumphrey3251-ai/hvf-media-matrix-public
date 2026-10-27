@@ -1,74 +1,22 @@
-# HVF SOVEREIGN C2: STAGE 9 TRADEWINDS (TRL 6/7) & OKLAHOMA SEPARATION LEDGER
-**Entity:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5`)
-**Commanding Authority:** Jeffery Humphrey, Founder, Chief Executive Officer & Apex Architect (`[REDACTED_PUBLIC_RELEASE_CONTACT]`)
-**Master Release Tag:** `v8.0.0-sovereign-master-seal` / `v8.0.0-stage9d-complete-seal`
-**Master C2 Cryptographic Merkle Root (SHA-256):** `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`
-**Timestamp (UTC):** `2026-10-24T19:59:16.703669+00:00`
+﻿# OFFICIAL TRL 4 CLARIFICATION & CDAO EVALUATOR RUBRIC ALIGNMENT
+**Active Docket:** `10-26-3976` (Resubmission of `9-26-3703` | Superseding All Prior TRL 6/7 Dossier Drafts)  
+**Contractor:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5`)  
+**CEO & Chief Architect:** Jeffery Humphrey (`humphreyvirtualfarm@gmail.com`)  
+**Date Recorded:** October 27, 2026
 
----
+This official filing aligns the public repository with Tradewinds Docket **`10-26-3976`** (`Status: Received`) and supersedes prior TRL 7 dossier drafts:
 
-## 1. Orthogonal Separation of Federal DoD Tradewinds vs. State of Oklahoma Proposals
+1. **DEFINING THE PROBLEM (DoD Scale & Citations):**
+   Per GAO-21-81 & GAO-24-106137, DoD operates 500+ installations, 300,000+ buildings, and $4.2B+ in annual OT/energy assets using commercial PLCs scanning at 50-200ms. Per CISA/NSA/DoD Advisories AA23-144A & AA24-038A (Volt Typhoon), actors pre-position inside critical energy/water/logistics OT corridors. Because arc-flash backfeeds propagate in <4.16ms and microreactor excursions occur in 6.0ms, 50-200ms PLC scans are 8x-33x too slow to arrest physical destruction.
 
-| Proposal Dimension | Track 1: Federal DoD CDAO Tradewinds (`Docket 9-26-3703`) | Track 2: State of Oklahoma (`Commerce / OMES / ODOT`) |
-| :--- | :--- | :--- |
-| **Target Agency & Directorate** | **DoD Chief Digital & Artificial Intelligence Office (CDAO)** & ACC-RI | **Oklahoma Department of Commerce, OMES & ODOT** |
-| **Evaluator / Leadership Counterparts** | DoD CDAO Tradewinds Peer & Technical Evaluation Panel | **Rob Teel** (CTO, Commerce -- `[REDACTED_PUBLIC_RELEASE_CONTACT]`), **John Budd** (CEO), **Leshia Pearson** (`[REDACTED_PUBLIC_RELEASE_CONTACT]`), **Linda Emrich** |
-| **Statutory & Procurement Authority** | **10 U.S.C. -- 4022 Prototype OTA** & **DFARS 252.227-7018 (GPR)** | **Oklahoma HB 2992**, **Oklahoma Title 61 -- 212**, & **2 CFR -- 200.306** |
-| **Contract / Grant Valuation** | **$1,485,000.00** (12-Month Period of Performance) | **$25,000.00 Phase-1 ODOT Drone Grant** + **$500,000.00 In-Kind State Match** (`$0` Cash Escrow) |
-| **Technology Readiness Level (TRL)** | **TRL 6 / TRL 7** (Upgraded from Initial Sep 24, 2026 TRL 4 Filing) | **TRL 7 Operational Bare-Metal Enclave** (`HVF-NODE-TEELE-001` Active) |
-| **Workforce & Field Deployment Scope** | 15 Defense & Industrial Verticals (`< 30W` 24V DC Tactical Control Units) | **5-Specialist Core Strike Team -- 45 Field Personnel Across 8 ODOT Divisions** (`$4,600 -- $250/bridge sortie`) |
-| **Primary Governing Dossiers** | -- [`federal_filings/docket_9-26-3703_tradewinds_submission.md`](federal_filings/docket_9-26-3703_tradewinds_submission.md)<br>? [`CDAO_EXECUTIVE_TRANSMITTAL_MEMO.md`](CDAO_EXECUTIVE_TRANSMITTAL_MEMO.md)<br>? [`PROJECT_EBONY_EVALUATOR_DOSSIER.md`](PROJECT_EBONY_EVALUATOR_DOSSIER.md)<br>? [`TRADEWINDS_EVALUATOR_QUICKSTART.md`](TRADEWINDS_EVALUATOR_QUICKSTART.md) | -- [`OKLAHOMA_COMMERCE_ODOT_EVALUATOR_RUNBOOK.md`](OKLAHOMA_COMMERCE_ODOT_EVALUATOR_RUNBOOK.md)<br>? [`OKLAHOMA_CTO_TECHNICAL_EVALUATION_DOSSIER.md`](OKLAHOMA_CTO_TECHNICAL_EVALUATION_DOSSIER.md) |
+2. **CURRENT READINESS LEVEL (TRL 4 Software Emulation Testbed):**
+   Project Ebony is currently at **TRL 4** (laboratory software testbed and mathematical emulation on a local workstation; Merkle Root: `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`). References in the video transcript to "bench verified," along with our 83/83 unit tests, 17/17 simulated red-team vectors, and NIST 800-171/800-82 mappings, reflect local software-bench emulation and architectural modeling—physical silicon/PCB fabrication, third-party HIL electrical testing, and formal DoD SPRS auditing are planned milestones under the proposed Phase-1 OTA.
 
----
+3. **ADVANCING STATE OF THE ART (Modeled Design Targets vs. Legacy OT):**
+   - **Project Ebony (Design Target):** Modeled 36.75ns Analog Kinetic Guillotine MOSFET gate cutoff at 28.5W on 24V DC.
+   - **Siemens S7-1500 / Rockwell ControlLogix:** 50-200ms digital scan; 150-450W draw.
+   - **Schneider Triconex SIS:** 10-50ms scan; 200-600W draw.
+   - **Dragos / Nozomi Guardian:** Passive IDS only (0 physical cutoff authority).
 
-## 2. Expanded `v8.0.0` Engineering & Cryptographic Proof Supporting TRL 6/7 Elevation
-1. **Compiled Sovereign C2 & Level-5 Python Modules:** `631 / 631` (`616` C2 Cockpit + `15` Level-5 Extensions -- 100% Public/Private Parity).
-2. **Automated Unit & Stress Test Ledger:** `83 / 83 PASSED (100.0%)` (`c2_cockpit/run_all_83_tests.py`).
-3. **Red-Team Cyber-Penetration Harness:** `17 / 17 Live Attack Vectors Blocked (0 Breaches)` (`c2_cockpit/test_client_penetration.py`).
-4. **Sovereign Field & Warfighter Academy:** `1,420 / 1,420 Unique Verified Exam Questions` (`800` Ch1 Milestone + `620` Ch5 State Exam) & `4 / 4` Offline Engineering Textbooks.
-5. **ISO 32000-1 WORM PDF Dossier Compilers:** `6 / 6` Cryptographically Sealed `%PDF-1.4` Engines.
-6. **DoD SPRS Cybersecurity Score:** `110 / 110` (`NIST SP 800-171 Rev 2`) & `NIST SP 800-82 Rev 2` Loopback Isolation.
-
-
----
-
-## INTEGRATED HOST OPERATING CONSOLE & 26-MODULE PER-NODE PRICE SCHEDULE (`DOCKET 10-26-3952`)
-
-**1. Turnkey TRL 7 Operating Console Proof (`Project Ebony` -- 26 Modules / 72 Verified Controls):**  
-Docket `10-26-3952` executes natively inside the **HVF Level-5 Sovereign C2 Operating Console**, a fully operational, bare-metal Command & Control enclave (`631 / 631` compiled Python/C modules, Master SHA-256 Merkle Root: `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`, `83 / 83` unit test suites passing at `100.0%`).
-
-**2. Unbundled Per-Node Licensing Scope (DFARS `252.227-7018` & `227.7202`):**  
-* **Base Entry Pilot (`CLIN 0001`):** The entry pilot price filed on Tradewinds Docket `10-26-3952` covers **strictly `CLIN 0001` (`Module #01: Sovereign Command Chronos Base Router` on `1` Single Bare-Metal Node)**.
-* **Individual Add-On Modules (`CLIN 0002` - `CLIN 0026`):** Each of the remaining **25 Command Modules** in the Operating Console is priced individually **per physical hardware node / per robotic chassis / per training seat** (`1 License = 1 Hardware UUID`). Government and commercial buyers may add individual modules to a `10-26-3952` contract award via sole-source modification (10 U.S.C. 4022 / FAR Part 12):
-
-| CLIN | Module # & Name | Licensing Basis (Strict Per-Node) | Annual Gov Price | Monthly Commercial |
-| :--- | :--- | :--- | :--- | :--- |
-| `CLIN 0001` | **Mod #01:** `Sovereign Command (Chronos Base Router)` | **1 Single Node (`10-26-3952` Base Pilot)** | **Base Pilot Price** | **$2,450 / mo** |
-| `CLIN 0002` | **Mod #02:** `System Overview & Preflight WORM Gate` | Per Enclave Server Node | **$35,000 / yr** | **$3,500 / mo** |
-| `CLIN 0003` | **Mod #03:** `Master C2 Cockpit (60Hz Microgrid & Fault C2)` | Per Substation / TOC Node (`19` Controls) | **$95,000 / yr** | **$8,900 / mo** |
-| `CLIN 0004` | **Mod #04:** `Autonomous Build Forge (AST Synthesizer)` | Per Engineering Enclave Node | **$110,000 / yr** | **$9,800 / mo** |
-| `CLIN 0005` | **Mod #05:** `CEO Authorization Gate & Sovereign Airlock` | Per Airlock Node (`698` Module Sweep) | **$125,000 / yr** | **$11,200 / mo** |
-| `CLIN 0006` | **Mod #06:** `Sovereign Robotics & Kinematics C2 (36.75ns)` | Per Robot Controller / UGV Chassis | **$185,000 / yr** | **$16,500 / mo** |
-| `CLIN 0007` | **Mod #07:** `Drone Diagnostics & Optical GLI Core` | Per UAS Ground Control Station Node | **$75,000 / yr** | **$6,800 / mo** |
-| `CLIN 0008` | **Mod #08:** `Sovereign Auto & CAN-Bus C2 (SAE J1939)` | Per Fleet Maintenance Bay Node | **$85,000 / yr** | **$7,600 / mo** |
-| `CLIN 0009` | **Mod #09:** `Grain Silo Aeration & 480V Contactor C2` | Per Silo Complex / 480V PLC Node | **$75,000 / yr** | **$6,800 / mo** |
-| `CLIN 0010` | **Mod #10:** `Omni-Industry Matrix & Title 61 Deliverables` | Per Engineering District Node | **$95,000 / yr** | **$8,900 / mo** |
-| `CLIN 0011` | **Mod #11:** `Sovereign Field Academy (1,420 Verified Qs)` | Per 50-Seat Training Cohort | **$125,000 / yr** | **$11,200 / mo** |
-| `CLIN 0012` | **Mod #12:** `HVF Master Auto & Small-Engine Academy` | Per Technical Lab Node (25 Seats) | **$65,000 / yr** | **$5,900 / mo** |
-| `CLIN 0013` | **Mod #13:** `Sovereign Dispatch Deck (Air-Gap IMAP/SMTP)` | Per Secure Comms Enclave Node | **$55,000 / yr** | **$4,950 / mo** |
-| `CLIN 0014` | **Mod #14:** `Sovereign Comms Deck (Dual-Core Audio)` | Per Tactical TOC Comms Node | **$50,000 / yr** | **$4,500 / mo** |
-| `CLIN 0015` | **Mod #15:** `Media Matrix & Predict-and-Act Loop` | Per Autonomous Operations Node | **$65,000 / yr** | **$5,900 / mo** |
-| `CLIN 0016` | **Mod #16:** `Sovereign Asset Synthesis Engine` | Per Local Render Workstation Node | **$40,000 / yr** | **$3,600 / mo** |
-| `CLIN 0017` | **Mod #17:** `LinkedIn Executive Broadcast Engine` | Per Executive Comms Node | **$30,000 / yr** | **$2,750 / mo** |
-| `CLIN 0018` | **Mod #18:** `Python Execution Sandbox & Quarantine` | Per Developer / Audit Node | **$45,000 / yr** | **$4,100 / mo** |
-| `CLIN 0019` | **Mod #19:** `Empire Config & Pilot Governance Vault` | Per Administrative Root Node | **$35,000 / yr** | **$3,200 / mo** |
-| `CLIN 0020` | **Mod #20:** `Level-5 Ext: Action Desk Tactical Dispatcher` | Per Sector Command Node | **$30,000 / yr** | **$2,750 / mo** |
-| `CLIN 0021` | **Mod #21:** `Level-5 Ext: NOAA Weather Radar & EMC Sync` | Per Base Meteorology Node | **$40,000 / yr** | **$3,600 / mo** |
-| `CLIN 0022` | **Mod #22:** `Level-5 Ext: ISO 32000-1 WORM PDF Compiler` | Per Compliance Documentation Node | **$35,000 / yr** | **$3,200 / mo** |
-| `CLIN 0023` | **Mod #23:** `Level-5 Ext: Autonomous Lead Scheduler` | Per Commercial Outreach Node | **$25,000 / yr** | **$2,250 / mo** |
-| `CLIN 0024` | **Mod #24:** `Level-5 Ext: Chronos Companion Telemetry` | Per Watch-Floor Operator Node | **$30,000 / yr** | **$2,750 / mo** |
-| `CLIN 0025` | **Mod #25:** `Level-5 Ext: 48-Plenum Silo PLC Synchronizer` | Per Industrial Facility PLC Node | **$35,000 / yr** | **$3,200 / mo** |
-| `CLIN 0026` | **Mod #26:** `Level-5 Ext: Cryptographic Merkle Verifier` | Per Inspector General Audit Node | **$20,000 / yr** | **$1,850 / mo** |
-| **TOTAL** | **All 26 Modules Unbundled (1 Node Each)** | **1 Single Complete Enclave Node** | **$1,630,000 / yr** | **$148,950 / mo** |
-| `CLIN 1004-A` | **Full 26-Module Console Bundle (1 Node)** | **1 Single Bare-Metal TOC Node** | **$895,000 / yr** | **$79,500 / mo** |
-| `CLIN 1004-B` | **Military Installation Fleet License (25 Nodes)** | **Up to 25 Enclave/Robotic Nodes (1 Base)** | **$2,450,000 / yr** | **$215,000 / mo** |
+4. **BUSINESS MODEL & PROPOSED $1.485M PROTOTYPE OTA (10 U.S.C. 4022):**
+   All agricultural microgrid, state infrastructure, and 3-tier pricing figures represent our target dual-use commercialization roadmap. We propose a 12-month, $1.485M Phase-1 Prototype OTA under 10 U.S.C. 4022 to partner with hardware fabrication specialists, build the physical Cortex-M7/SiC MOSFET prototype boards, and validate this TRL 4 software testbed in an operational TRL 6/7 hardware environment.
