@@ -1,22 +1,9 @@
-# DFARS 252.204-7019/7020 Statutory Compliance Attestation
+﻿# NIST SP 800-171 Rev 2 & NIST SP 800-82 Rev 2 Architectural Mapping (TRL 4 Testbed)
+**Contractor:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5`)  
+**Active Tradewinds Docket:** `10-26-3976` (`TRL 4` Laboratory Software Emulation Testbed)  
+**Assessment Posture:** Architectural Design Mapping & Local Loopback Software Emulation (Formal Third-Party C3PAO / DoD SPRS Audit Scheduled as Phase-1 OTA Deliverable)
 
-## Executive Summary
-Humphrey Virtual Farms LLC has officially satisfied Department of Defense pre-award cybersecurity assessment requirements. The assessment is registered and active in the Supplier Performance Risk System (SPRS).
+## 1. Compliance Scope & Transparency Statement
+Project Ebony (v8.0.0) is currently a **TRL 4** laboratory software testbed running on an air-gapped local workstation (`127.0.0.1` loopback, `0%` external cloud dependency). All 110 security requirements under **NIST SP 800-171 Rev 2** and operational technology (OT) isolation guidelines under **NIST SP 800-82 Rev 2** have been architecturally mapped across our Three-Brain software emulation model.
 
-| Metric | Official Record |
-| :--- | :--- |
-| **Contractor Entity** | Humphrey Virtual Farms LLC |
-| **CAGE Code** | 1AHA8 |
-| **Unique Entity ID (UEI)** | S1M4ENLHTDH5 |
-| **DoD Unique Identifier (UID)** | SB00165728 |
-| **Assessment Standard** | NIST SP 800-171 Rev 2 |
-| **Confidence Level** | Basic (Contractor Self-Assessment) |
-| **Assessment Score** | **110 / 110** (Maximum Score) |
-| **Assessment Scope** | Enclave-wide Industrial C2 |
-| **Open POA&M Items** | 0 (None) |
-| **Assessment Date** | 2026-10-09 |
-| **SSP Assessed** | hvf_cmmc_ssp_v1.md (1.0.0-FINAL) |
-
----
-*Authorized by Jeffery Humphrey, CEO and Authorized Representative.*
-*Cryptographic Ledger Verification Hash: `53cb15600e6efefe1a0b86a05f0dee2e6a8572007ca6307c32398869a3cf8953`*
+Formal third-party C3PAO assessment, physical hardware enclave certification, and official DoD Supplier Performance Risk System (SPRS) score registration are funded engineering milestones under our proposed **12-Month, $1.485M Phase-1 Prototype OTA (`10 U.S.C. § 4022`)**.

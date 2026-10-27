@@ -1,0 +1,17 @@
+﻿{
+  "schema_version": "8.0.0-forward-compatible",
+  "contractor": "Humphrey Virtual Farms LLC",
+  "cage_code": "1AHA8",
+  "uei": "S1M4ENLHTDH5",
+  "active_docket": {
+    "docket_id": "10-26-3976",
+    "prior_docket_id": "9-26-3703",
+    "deleted_docket_id": "10-26-3952",
+    "status": "Received",
+    "submitted_date": "2026-10-27",
+    "readiness_level": "TRL 4",
+    "classification": "Laboratory Software Emulation Testbed & Mathematical Proof-of-Concept",
+    "merkle_root": "cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a",
+    "proposed_ota": "$1.485M 12-Month Phase-1 Prototype OTA under 10 U.S.C. 4022"
+  }
+}
