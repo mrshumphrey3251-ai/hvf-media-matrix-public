@@ -11,7 +11,7 @@
 | Verification Gate | Audited Metric | Certified Result |
 | :--- | :--- | :--- |
 | **1. Automated Unit & Stress Test Suite (`run_all_83_tests.py`)** | All `83 / 83` (`test_*.py`) Suites Executed | **`83 / 83 PASSED (100.0%)`** |
-| **2. Compiled C2 & Level-5 Python Modules** | `c2_cockpit/` (`616`) + `level5_extensions/` (`15`) | **`631 / 631 Compiled` (`0` Syntax/BOM Errors)** |
+| **2. Compiled C2 & Level-5 Python Modules** | Full Repo (`1,956` Private / `1,765` Public `.py` Modules) | **`100% Repo Compiled (`1,956` Priv / `1,765` Pub)` (`0` Syntax/BOM Errors)** |
 | **3. Master C2 Cryptographic Merkle Root (SHA-256)** | Fixed-Point Deterministic Digest | **`cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`** |
 | **4. Turnkey Commercial Client Enclave (`ebony_client_rob_teel.zip`)** | Rebuilt 8-Module Tier 1/1.5 Pilot Package | **`611a5f62b59bc4c727ebadef36fc59499f9f890331b25edf50b4ee17aad47f03`** |
 | **5. Sovereign Release Manifest (`RELEASE_MANIFEST_v8.0.0.json`)** | Synchronized Private & Redacted Public Manifest | **100% Verified (`v8.0.0-stage8h-seal`)** |
