@@ -38,8 +38,7 @@ if module == "?? Sovereign Command":
         with st.chat_message("user"): st.markdown(user_input)
         with st.chat_message("assistant"): st.markdown(f"**Directive Acknowledged:** `{user_input}`. Routed through 15-Vertical Defense Matrix.")
 
-elif module == "?? Sovereign Comms Deck",
-        "?? Sovereign Dispatch Deck":
+elif module in ("?? Sovereign Comms Deck", "?? Sovereign Dispatch Deck"):
     st.subheader("?? Sovereign WebRTC Comms Deck")
     st.caption("Zero-fee sovereign P2P optical feed and encrypted dispatch.")
     col1, col2 = st.columns(2)
