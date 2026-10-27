@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY: DOD EVALUATOR RFI RAPID-RESPONSE MANUAL
+# PROJECT EBONY: DOD EVALUATOR RFI RAPID-RESPONSE MANUAL
 ## Pre-Vetted Technical Clarification Protocols for Tradewinds Submission 9-26-3703
 
 **Contractor Entity:** Humphrey Virtual Farms LLC  

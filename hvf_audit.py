@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE DOMINANCE AUDIT NODE ///
 Sector: security
 Purpose: Generates the final cryptographic compliance report for the architecture.

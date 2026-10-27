@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Dual-Channel Corporate Sovereignty Declaration Standard
 Compliance: DFARS 252.227-7018 Data Rights Protection & Public Notice Timestamps

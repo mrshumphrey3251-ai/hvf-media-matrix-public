@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC RATE LIMITER BLUEPRINT (V1: API THROTTLE MATRIX) ///
 Sector: gateway
 Purpose: Blueprint for monitoring API request volumes and deploying DDoS throttle countermeasures.

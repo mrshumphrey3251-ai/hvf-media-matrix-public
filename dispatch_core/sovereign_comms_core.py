@@ -1,4 +1,4 @@
-﻿# ==============================================================================
+# ==============================================================================
 # HVF Omni-Industrial Matrix | SOVEREIGN COMMUNICATIONS CORE
 # Zero-Latency Multi-Sensor Matrix: Arducam USB + Wire-Speed Tapo RTSP
 # Authority: Mr. Humphrey (Founder & CEO) | DFARS 252.227-7018 Compliant

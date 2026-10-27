@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Subcontractor Dispute Containment & IP Boundary Enforcement
 Compliance: DFARS 252.227-7018 Data Rights Protection & Section 9.3 Post-Termination Standard

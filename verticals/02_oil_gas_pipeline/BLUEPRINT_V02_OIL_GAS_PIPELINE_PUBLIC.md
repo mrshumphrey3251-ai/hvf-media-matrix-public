@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY OPEN ARCHITECTURE: VERTICAL 02
+# PROJECT EBONY OPEN ARCHITECTURE: VERTICAL 02
 ## Midstream Pipeline Infrastructure: Hydraulic Water Hammer & Surge Containment
 
 **Entity:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)  

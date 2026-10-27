@@ -1,4 +1,4 @@
-﻿# HVF Model-Ops Pipeline
+# HVF Model-Ops Pipeline
 **Redacted Public Overview**
 
 Humphrey Virtual Farm utilizes an automated, zero-downtime Model-Ops architecture to continuously deploy and train our agricultural AI models.

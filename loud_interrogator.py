@@ -1,4 +1,4 @@
-﻿import toml, os
+import toml, os
 try:
     env_key = os.environ.get("GROQ_API_KEY")
     if env_key:

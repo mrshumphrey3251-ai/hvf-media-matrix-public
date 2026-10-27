@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC KINETIC ASSET BLUEPRINT (V17: UNIFIED SAPPHIRE FOUNDATION) ///
 Sector: branding_assets
 Purpose: Blueprint for HTML5 kinetic brand generation featuring Abyssal Sapphire integrated foundation plates.

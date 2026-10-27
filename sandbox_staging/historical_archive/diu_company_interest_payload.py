@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Omni-Industrial Matrix | SOVEREIGN PRIME SYSTEMS
 Module: diu_company_interest_payload.py
 Author: Jeffery Humphrey, Founder & CEO (Apex Architect)

@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: State Foreign Influence Compliance & Domestic Entity Attestation
 Compliance: Florida Statute § 288.860 & DFARS 252.227-7018 Data Rights Protection

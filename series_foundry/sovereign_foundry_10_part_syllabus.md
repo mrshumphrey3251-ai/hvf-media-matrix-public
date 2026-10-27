@@ -1,4 +1,4 @@
-﻿# THE SOVEREIGN FOUNDRY | 10-PART MASTER SERIES SYLLABUS
+# THE SOVEREIGN FOUNDRY | 10-PART MASTER SERIES SYLLABUS
 ## SCALING SUB-30W BARE-METAL DEFENSE HARDWARE & INDUSTRIAL AUTONOMY
 **Public Release | Humphrey Virtual Farms LLC**
 **Statutory Standing:** 10 U.S.C. § 4022 / § 4023 Nontraditional Defense Contractor Prime | CDAO Tradewinds Docket 9-26-3703

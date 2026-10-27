@@ -1,4 +1,4 @@
-﻿# Certified Security & Compliance Frameworks
+# Certified Security & Compliance Frameworks
 **Redacted Public Overview**
 
 Humphrey Virtual Farm understands that enterprise data is the lifeblood of agribusiness and data-center operations. The Ebony AI platform is engineered to meet and exceed global compliance standards.

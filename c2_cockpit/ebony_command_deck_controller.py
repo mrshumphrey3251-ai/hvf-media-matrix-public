@@ -1,4 +1,4 @@
-﻿import ebony_command_bridge
+import ebony_command_bridge
 # -*- coding: utf-8 -*-
 """
 EBONY COMMAND DECK CONTROLLER (4-DOMAIN EXPANDED)

@@ -1,4 +1,4 @@
-﻿"""
+"""
 PROJECT EBONY: EBONY COMMAND MODULE INTERCONNECT (v6.0)
 ROLE: Binds all promoted Level 5 modules directly to Ebony Command Core
       allowing conversational execution, telemetry ingestion, and autonomous task dispatch.

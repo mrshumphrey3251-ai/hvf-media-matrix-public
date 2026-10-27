@@ -1,4 +1,4 @@
-﻿# HVF Green Leaf Index (GLI) Microservice
+# HVF Green Leaf Index (GLI) Microservice
 **Redacted Public Overview**
 
 The Humphrey Virtual Farm utilizes a proprietary, ultra-low latency AI micro-service to calculate crop vegetative vigor in real-time from drone optical payloads. 

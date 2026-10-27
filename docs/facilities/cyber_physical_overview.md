@@ -1,4 +1,4 @@
-﻿# Cyber-Physical Security & Facility Operations
+# Cyber-Physical Security & Facility Operations
 **Redacted Public Overview**
 
 Humphrey Virtual Farm ensures that the Ebony AI platform bridges the gap between digital intelligence and physical facility management. 

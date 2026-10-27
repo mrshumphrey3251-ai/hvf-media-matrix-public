@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY | VERTICAL 11: SPACE SYSTEMS & SATELLITE BUS PROTECTION
+# PROJECT EBONY | VERTICAL 11: SPACE SYSTEMS & SATELLITE BUS PROTECTION
 ## BARE-METAL ADCS/PDU CONTROL & 36.75ns SOLID-STATE LATCHUP STARVATION
 **Public Technical Specification | Humphrey Virtual Farms LLC**
 **Statutory Standing:** 10 U.S.C. § 4022 Nontraditional Defense Contractor Prime | CDAO Tradewinds Docket 9-26-3703

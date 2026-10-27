@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Unencumbered Financial Routing & Prime Disbursement Policy
 Compliance: Federal Acquisition Regulation (FAR) 52.232-33 (Payment by EFT)

@@ -1,4 +1,4 @@
-﻿# C3PAO ASSESSMENT SOLICITATION DOSSIER (CMMC LEVEL 2)
+# C3PAO ASSESSMENT SOLICITATION DOSSIER (CMMC LEVEL 2)
 **Soliciting Entity:** Humphrey Virtual Farms LLC  
 **CAGE Code:** 1AHA8 | **UEI:** S1M4ENLHTDH5  
 **Classification:** Level-5 Sovereign Industrial C2 Enclave  

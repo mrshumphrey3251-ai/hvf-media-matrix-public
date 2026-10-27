@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC DELIVERY DAEMON BLUEPRINT (V1: MASTER ORCHESTRATOR) ///
 Sector: content_delivery
 Purpose: Blueprint for automated network load balancing and encrypted media streaming.

@@ -1,4 +1,4 @@
-﻿# Why Humphrey Virtual Farm Doesn’t Need a Data Center to Govern Its Existing Equipment
+# Why Humphrey Virtual Farm Doesn’t Need a Data Center to Govern Its Existing Equipment
 *By Jeffery Humphrey, CEO, Humphrey Virtual Farm*
 
 In today’s rapidly evolving technology landscape, many organizations assume that a dedicated data center is a prerequisite for effective equipment governance. At Humphrey Virtual Farm, we have taken a different path. After carefully reviewing the assets we have already purchased, we have concluded that a separate data-center infrastructure is not required to manage, monitor, or optimize that equipment. Below are the key reasons behind this decision.

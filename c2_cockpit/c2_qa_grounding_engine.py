@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Front-Facing C2 Q&A Grounding Engine & Deterministic Reality Shield
 Intercepts front-facing queries from C2 Deck, Streamlit HUD, and ADA Voice Link.

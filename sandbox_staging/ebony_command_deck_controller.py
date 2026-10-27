@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 EBONY COMMAND DECK CONTROLLER (4-DOMAIN EXPANDED)
 Authority: CEO Jeffery Humphrey (Level 5 Authority) // CAGE: 1AHA8

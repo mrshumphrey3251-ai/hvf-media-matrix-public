@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY: GROUND-TRUTH REALITY BOUNDARY & ANTI-FABRICATION POLICY
+# PROJECT EBONY: GROUND-TRUTH REALITY BOUNDARY & ANTI-FABRICATION POLICY
 
 **Corporate Authority:** Humphrey Virtual Farms LLC (CAGE: 1AHA8)  
 **Commanding Executive:** CEO Jeffery Humphrey (Level 5 Unrestricted)  

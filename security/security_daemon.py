@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC SECURITY DAEMON BLUEPRINT (V2: UNIFIED MASTER ORCHESTRATOR) ///
 Sector: security
 Purpose: Blueprint for automated perimeter threat detection, IAM verification, and cryptographic sweeps.

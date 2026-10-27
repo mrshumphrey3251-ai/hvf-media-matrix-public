@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC — Sovereign Air-Gap Architecture & Compliance Specification
+# Humphrey Virtual Farms LLC — Sovereign Air-Gap Architecture & Compliance Specification
 
 ## Executive Doctrine
 The **HVFNexus Sovereign Industrial Command and Control Core (Ebony)** operates under an uncompromising **Air-Gap-First** engineering doctrine. In critical energy infrastructure, military microgrids, and industrial SCADA enclaves, dependence on commercial cloud infrastructure creates unacceptable exposure to cyberattack, denial-of-service, and network eavesdropping.

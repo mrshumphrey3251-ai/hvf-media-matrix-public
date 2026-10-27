@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC — Teaming & Defense Subcontracting Matrix
+# Humphrey Virtual Farms LLC — Teaming & Defense Subcontracting Matrix
 
 ## Corporate Identifiers & Statutory Governance
 * **Legal Entity Name:** HUMPHREY VIRTUAL FARMS LLC

@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY: PHASE 2 INTEGRATION PARAMETERS
+# PROJECT EBONY: PHASE 2 INTEGRATION PARAMETERS
 **Date:** September 4, 2026
 **Governance:** Humphrey Virtual Farms (52% Majority) | SignalLink Protocol (48% Minority)
 

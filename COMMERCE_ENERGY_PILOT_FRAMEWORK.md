@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC — Sovereign Energy C2 Pilot Deployment Framework
+# Humphrey Virtual Farms LLC — Sovereign Energy C2 Pilot Deployment Framework
 
 ## Overview
 This document outlines the unclassified, four-phase commercial pilot deployment framework for integrating the HVFNexus Sovereign Energy Command and Control (C2) engine into municipal utilities, electric cooperatives, and industrial agricultural facilities. 

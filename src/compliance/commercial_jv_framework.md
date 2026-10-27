@@ -1,4 +1,4 @@
-﻿# HVF COMMERCIAL JOINT VENTURE FRAMEWORK
+# HVF COMMERCIAL JOINT VENTURE FRAMEWORK
 ## SOVEREIGN ARCHITECTURE & TREASURY MATRIX
 
 Humphrey Virtual Farm strictly enforces the following commercial baseline for all enterprise joint ventures:

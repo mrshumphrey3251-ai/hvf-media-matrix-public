@@ -1,4 +1,4 @@
-﻿"""Deterministic Enclave Grounding & Invariant Egress Engine.
+"""Deterministic Enclave Grounding & Invariant Egress Engine.
 Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Level-5 Sovereign Industrial C2 Architecture
 """

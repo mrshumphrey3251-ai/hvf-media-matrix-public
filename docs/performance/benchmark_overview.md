@@ -1,4 +1,4 @@
-﻿# HVF Performance & Scalability Benchmarks
+# HVF Performance & Scalability Benchmarks
 **Redacted Public Overview**
 
 Humphrey Virtual Farm's architecture is load-tested to operate at enterprise scale, guaranteeing ultra-low latency even during peak drone swarm operations.

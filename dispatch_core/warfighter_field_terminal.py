@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Dismounted Warfighter & Field Operator Tactical Terminal
 Provides offline-first self-localization, MGRS geodetic translation,

@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF OMNI-INDUSTRIAL SOVEREIGN AUTHORITY MATRIX
 Project: Ebony Sovereign C2 Matrix
 Compliance: CAGE 1AHA8 // UEI S1M4ENLHTDH5 // Submission 9-26-3703

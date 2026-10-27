@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVFNexus Sovereign Industrial C2 — Printable Executive Meeting Packet Generator
 Compiles a polished, print-ready HTML portfolio for physical briefing with Rob Teele.
 """

@@ -1,4 +1,4 @@
-﻿# DOD CDAO TRADEWINDS CRYPTOGRAPHIC ATTESTATION CERTIFICATE (v8.0.0)
+# DOD CDAO TRADEWINDS CRYPTOGRAPHIC ATTESTATION CERTIFICATE (v8.0.0)
 **Tradewinds Docket:** `9-26-3703` | **Contractor:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5`)
 **Signatory Authority:** Jeffery Humphrey, Founder & CEO (`[REDACTED_PUBLIC_RELEASE_CONTACT]`)
 **Technology Readiness Level:** **TRL 4 Software Emulation Testbed** (Operational Bare-Metal System Prototype -- Upgraded from Initial TRL 4 Filing)

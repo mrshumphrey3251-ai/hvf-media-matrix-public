@@ -1,4 +1,4 @@
-﻿# HVF Real-Time Alert Engine
+# HVF Real-Time Alert Engine
 **Redacted Public Overview**
 
 Humphrey Virtual Farm leverages a high-throughput, real-time alert processing engine to convert raw telemetry anomalies into immediate agronomic action.

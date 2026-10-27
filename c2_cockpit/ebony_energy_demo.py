@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVFNexus Sovereign Industrial C2 — Energy Infrastructure Demonstration Engine
 Executes deterministic bare-metal microgrid telemetry ingestion and cryptographic ledgering.
 Zero external cloud dependencies; fully compliant with NIST SP 800-171 controls.

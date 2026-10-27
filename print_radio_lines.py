@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 p = Path(r"C:\HVF_Repos\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py")
 with open(p, "r", encoding="utf-8", errors="replace") as f:
     lines = f.readlines()

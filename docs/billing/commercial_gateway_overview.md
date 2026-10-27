@@ -1,4 +1,4 @@
-﻿# Commercial Billing & Financial Gateways
+# Commercial Billing & Financial Gateways
 **Redacted Public Overview**
 
 Humphrey Virtual Farm's Ebony AI platform is engineered for frictionless enterprise commerce. Our multi-tenant architecture is fully integrated with global financial gateways to ensure transparent, automated billing.

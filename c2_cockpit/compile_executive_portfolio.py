@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVFNexus Sovereign Industrial C2 — Master Executive Defense Portfolio Compiler
 Compiles all compliance proofs, C2 architecture, and meeting dossiers into a single presentation document.
 """

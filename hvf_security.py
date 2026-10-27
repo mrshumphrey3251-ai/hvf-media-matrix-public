@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE DOMINANCE SECURITY NODE ///
 Sector: security
 Purpose: Hardens infrastructure via IAM least-privilege, TLS 1.3 enforcement, and key rotation.

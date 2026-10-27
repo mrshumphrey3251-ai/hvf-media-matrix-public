@@ -1,4 +1,4 @@
-﻿print('\n' + '='*75)
+print('\n' + '='*75)
 print(' 🦅 EBONY AI: GLOBAL SYSTEM ARCHITECTURE VERIFICATION (v2.0) ')
 print('='*75)
 modules = [

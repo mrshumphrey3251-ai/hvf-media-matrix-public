@@ -1,4 +1,4 @@
-﻿# HVF API & Integration Knowledge Base
+# HVF API & Integration Knowledge Base
 **Redacted Public Overview**
 
 Humphrey Virtual Farm provides a frictionless, enterprise-grade developer experience for partner integrations and external API consumption.

@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
 Public Architecture Blueprint: Global Namespace & Outbound Dispatch Dependency Model
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)

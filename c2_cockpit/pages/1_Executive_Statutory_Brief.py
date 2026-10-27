@@ -1,4 +1,4 @@
-﻿import streamlit as st
+import streamlit as st
 import sqlite3
 from pathlib import Path
 from datetime import datetime

@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC — Project Ebony (v8.0.0)
+# Humphrey Virtual Farms LLC — Project Ebony (v8.0.0)
 **Official CDAO Tradewinds Solutions Marketplace (TSM) Verification Repository**  
 **Active TSM Docket:** `10-26-3976` (`Status: Received` — Resubmission of Prior Docket `9-26-3703`)  
 **Current Readiness Level:** `TRL 4` (Laboratory Software Emulation Testbed & Mathematical Architecture)  

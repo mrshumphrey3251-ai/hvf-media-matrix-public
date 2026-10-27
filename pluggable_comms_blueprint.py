@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
 Public Architecture Blueprint: Wire-Speed Decoupled RTSP Consumer Architecture
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)

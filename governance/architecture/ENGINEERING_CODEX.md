@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY - SOVEREIGN ENGINEERING CODEX & GOVERNANCE
+# PROJECT EBONY - SOVEREIGN ENGINEERING CODEX & GOVERNANCE
 # ROLE: Autonomous coding standard, error correction rules, and architectural invariants.
 # REVISION: 1.0.0-GOLD
 

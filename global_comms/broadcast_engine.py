@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC BROADCAST ENGINE BLUEPRINT (LIVE-FIRE PUBLISHING) ///
 Sector: global_comms
 Purpose: Blueprint for formatting JSON payloads and deploying to network.

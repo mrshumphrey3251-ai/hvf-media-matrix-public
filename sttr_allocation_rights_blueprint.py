@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: STTR Allocation of Rights & Entity Jurisdiction Verification
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)

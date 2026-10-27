@@ -1,4 +1,4 @@
-﻿# PROJECT E.B.O.N.Y. — INSTITUTIONAL CAPABILITY DOSSIER
+# PROJECT E.B.O.N.Y. — INSTITUTIONAL CAPABILITY DOSSIER
 **Entity:** Humphrey Virtual Farms LLC  
 **Defense Identifiers:** CAGE: 1AHA8 | UEI: S1M4ENLHTDH5  
 **Statutory Governance:** DFARS 252.227-7018 | Oklahoma Title 61 § 212 | Oklahoma HB 2992  

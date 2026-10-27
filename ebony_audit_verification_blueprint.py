@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Mandatory Audit, Test, and Verify Protocol
 Compliance: DFARS 252.227-7018 Data Rights Protection & NIST SP 800-230 Integrity Standard

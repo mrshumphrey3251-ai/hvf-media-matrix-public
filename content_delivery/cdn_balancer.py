@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC CDN BALANCER BLUEPRINT (V1: TRAFFIC DISTRIBUTION) ///
 Sector: content_delivery
 Purpose: Blueprint for automated heavy-iron load balancing and geographical traffic routing.

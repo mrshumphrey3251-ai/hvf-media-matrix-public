@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVFNexus Sovereign Industrial C2 — Executive Mission Readiness Dashboard
 Authoritative verification engine for Humphrey Virtual Farms LLC (CAGE: 1AHA8).
 """

@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC GATEWAY DAEMON BLUEPRINT (V1: EDGE ORCHESTRATOR) ///
 Sector: gateway
 Purpose: Blueprint for automated edge defense, rate limiting, and client authentication.

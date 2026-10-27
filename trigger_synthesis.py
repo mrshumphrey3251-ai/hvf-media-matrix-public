@@ -1,4 +1,4 @@
-﻿import sys
+import sys
 from pathlib import Path
 
 ROOT = Path(r"C:\HVF_Repos\hvf-media-matrix-private")

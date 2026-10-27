@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC ADVANCED RECONNAISSANCE BLUEPRINT (STEALTH UPGRADE) ///
 Sector: recon_intel
 Purpose: Blueprint for live tactical intelligence extraction using stealth headers.

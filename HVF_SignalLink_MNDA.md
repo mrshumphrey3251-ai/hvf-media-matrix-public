@@ -1,4 +1,4 @@
-﻿# MUTUAL NON-DISCLOSURE AGREEMENT (MNDA)
+# MUTUAL NON-DISCLOSURE AGREEMENT (MNDA)
 
 **PARTIES:**
 1. Humphrey Virtual Farms / Project Ebony (Disclosing Party)

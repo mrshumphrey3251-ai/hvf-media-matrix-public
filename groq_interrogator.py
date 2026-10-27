@@ -1,4 +1,4 @@
-﻿import toml
+import toml
 from groq import Groq
 
 try:

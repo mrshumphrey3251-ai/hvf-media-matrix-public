@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC  Critical Energy Infrastructure & Autonomous C2
+# Humphrey Virtual Farms LLC  Critical Energy Infrastructure & Autonomous C2
 
 ## Corporate Identifiers & Regulatory Governance
 * **Legal Business Name:** HUMPHREY VIRTUAL FARMS LLC

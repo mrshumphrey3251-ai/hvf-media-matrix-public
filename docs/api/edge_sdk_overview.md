@@ -1,4 +1,4 @@
-﻿# Ebony AI: Edge-Device SDKs
+# Ebony AI: Edge-Device SDKs
 **Redacted Public Overview**
 
 To eliminate integration friction for enterprise partners, drone manufacturers, and IoT sensor vendors, Humphrey Virtual Farm has released the official Ebony Edge-Device SDKs.

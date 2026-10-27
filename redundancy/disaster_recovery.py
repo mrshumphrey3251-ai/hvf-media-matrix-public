@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC DISASTER RECOVERY BLUEPRINT (V1: COLD STORAGE BACKUP) ///
 Sector: redundancy
 Purpose: Blueprint for automated heavy-iron data redundancy and off-node cold storage.

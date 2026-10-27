@@ -1,4 +1,4 @@
-﻿# WEBRTC SYNTHETIC SANDBOX PROTOCOL
+# WEBRTC SYNTHETIC SANDBOX PROTOCOL
 **Target:** Drew Phillips Jr. / SignalLink Protocol LLC
 **Authority:** Jeffery Humphrey, CEO (HVF)
 

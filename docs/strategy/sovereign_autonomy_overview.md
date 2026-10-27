@@ -1,4 +1,4 @@
-﻿# Sovereign Autonomy & Command Mesh
+# Sovereign Autonomy & Command Mesh
 **Redacted Public Overview**
 
 Humphrey Virtual Farm has engineered Ebony to transcend standard cloud dependency. The platform is a fully autonomous, offline-first command intelligence.

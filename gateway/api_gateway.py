@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC API GATEWAY BLUEPRINT (V1: CLIENT ENTRY POINT) ///
 Sector: gateway
 Purpose: Blueprint for external client authentication, API key validation, and token issuance.

@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE MASTER ORCHESTRATOR ///
 Sector: ROOT
 Purpose: The central nervous system linking Recon, Forge, and Broadcast pipelines.

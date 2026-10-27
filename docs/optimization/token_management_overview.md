@@ -1,4 +1,4 @@
-﻿# Ebony AI: Resource & Token Optimization Matrix
+# Ebony AI: Resource & Token Optimization Matrix
 **Redacted Public Overview**
 
 In sovereign edge environments, computational overhead and API bandwidth are strictly finite. Humphrey Virtual Farm has engineered a proprietary memory-management layer to guarantee 100% uptime without rate-limit throttling.

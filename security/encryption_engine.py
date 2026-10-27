@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC ENCRYPTION ENGINE BLUEPRINT (V1: LEDGER LOCKDOWN) ///
 Sector: security
 Purpose: Blueprint for deploying cryptographic ciphers to secure data at rest.

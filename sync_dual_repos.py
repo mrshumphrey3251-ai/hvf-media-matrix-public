@@ -1,4 +1,4 @@
-﻿import shutil
+import shutil
 from pathlib import Path
 
 priv_root = Path(r"C:\HVF_Repos\hvf-media-matrix-private")

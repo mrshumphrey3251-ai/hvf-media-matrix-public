@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Sovereign C2 // Ebony (Chronos) Universal Zero-Hallucination & Live WAN Grounding Interceptor
 CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DFARS 252.227-7018 Sovereign Background IP
 Intercepts sovereign_comms.run_dual_core_router, httpx, requests, and urllib with 0 byte changes to c2_cockpit.

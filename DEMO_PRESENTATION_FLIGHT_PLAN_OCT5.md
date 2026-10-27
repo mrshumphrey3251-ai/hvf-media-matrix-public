@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY: DOD EVALUATOR DEMONSTRATION FLIGHT PLAN
+# PROJECT EBONY: DOD EVALUATOR DEMONSTRATION FLIGHT PLAN
 **Session Target:** CDAO / ACC-RI Formal Demo Presentation  
 **Scheduled Date:** Monday, October 5, 2026 @ 10:00 AM CDT  
 **Audience:** Leshia Pearson & ACC-RI Evaluation Directorate  

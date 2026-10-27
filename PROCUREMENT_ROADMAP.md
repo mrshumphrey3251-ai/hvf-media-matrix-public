@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC — Defense Procurement Roadmap
+# Humphrey Virtual Farms LLC — Defense Procurement Roadmap
 
 ## Federal Vendor Readiness Overview
 Humphrey Virtual Farms LLC (CAGE: 1AHA8, UEI: S1M4ENLHTDH5) operates as an industrial technology and sovereign Command and Control (C2) contractor. Full pre-award cybersecurity compliance has been established pursuant to DFARS 252.204-7019/7020.

@@ -1,4 +1,4 @@
-﻿"""
+"""
 PRIVATE NEXUS HEALTH CHECK
 --------------------------
 

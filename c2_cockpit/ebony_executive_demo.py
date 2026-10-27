@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVFNexus Sovereign Industrial C2 — Executive Live Demonstration Engine
 Demonstrates deterministic bare-metal C2 execution, WORM ledgering, and DFARS compliance.
 """

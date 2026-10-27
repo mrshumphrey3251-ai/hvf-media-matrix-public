@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import re
 
 repo = Path(r"C:\HVF_Repos\hvf-media-matrix-private")

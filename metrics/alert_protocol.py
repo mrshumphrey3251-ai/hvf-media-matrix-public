@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC ALERT PROTOCOL BLUEPRINT (V1: THRESHOLD GUARD) ///
 Sector: metrics
 Purpose: Blueprint for evaluating telemetry data and triggering automated executive alerts.

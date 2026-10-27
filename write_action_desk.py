@@ -1,4 +1,4 @@
-﻿code = """\"\"\"
+code = """\"\"\"
 MODULE_NAME: action_desk
 AUTHOR: Jeffery Humphrey (CEO Clearance)
 ROLE: Master Operational Action Desk & Sovereign Dispatch Matrix

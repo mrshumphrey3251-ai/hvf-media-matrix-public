@@ -1,4 +1,4 @@
-﻿# HVF Actionable UI & Dashboard
+# HVF Actionable UI & Dashboard
 **Redacted Public Overview**
 
 The Humphrey Virtual Farm command center operates on a strict "Actionable Intelligence" paradigm, eliminating static vanity metrics in favor of immediate resolution pathways.

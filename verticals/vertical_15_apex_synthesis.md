@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY | VERTICAL 15: THE APEX SYNTHESIS
+# PROJECT EBONY | VERTICAL 15: THE APEX SYNTHESIS
 ## MULTI-DOMAIN DETERMINISM & 36.75ns UNIVERSAL KINETIC ISOLATION
 **Public Technical Specification | Humphrey Virtual Farms LLC**
 **Statutory Standing:** 10 U.S.C. § 4022 Nontraditional Defense Contractor Prime | CDAO Tradewinds Docket 9-26-3703

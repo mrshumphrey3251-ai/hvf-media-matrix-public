@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC  Prime Contractor Onboarding Guide
+# Humphrey Virtual Farms LLC  Prime Contractor Onboarding Guide
 
 ## Overview
 This document provides instructions for Defense Prime Contractors, Procurement Contracting Officers (PCOs), and Small Business Liaison Officers (SBLOs) onboarding Humphrey Virtual Farms LLC as an approved small business subcontractor or teaming partner.

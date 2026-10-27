@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Project Ebony Multi-Industry Cyber-Physical Engine
 Compliance: DFARS 252.227-7018 Data Rights Protection & Bayh-Dole Act Commercial Sovereignty

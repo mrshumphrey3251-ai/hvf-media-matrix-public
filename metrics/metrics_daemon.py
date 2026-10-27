@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC METRICS DAEMON BLUEPRINT (V1: MASTER ORCHESTRATOR) ///
 Sector: metrics
 Purpose: Blueprint for continuous automation of telemetry, alerts, and logging.

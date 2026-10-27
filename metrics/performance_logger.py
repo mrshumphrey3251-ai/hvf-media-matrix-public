@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC PERFORMANCE LOGGER BLUEPRINT (V1: HISTORICAL LEDGER) ///
 Sector: metrics
 Purpose: Blueprint for committing telemetry data to an immutable historical ledger.

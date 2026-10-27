@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// DUAL-VAULT SYNC ENGINE ///
 Sector: ROOT
 Purpose: Autonomously stage, commit, and push private and public repositories to remote GitHub vaults.

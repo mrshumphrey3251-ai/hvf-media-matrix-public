@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Notice: Corporate Sovereignty, Data Rights, & Solo-Prime Contracting Authority
 Compliance: DFARS 252.227-7018 Data Rights Protection & 10 U.S.C. § 4022 Defense Acquisition

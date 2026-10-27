@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Formal Communication Channel Discipline & Dispute Containment
 Compliance: DFARS 252.227-7018 Data Rights Protection & Federal Evidentiary Standards

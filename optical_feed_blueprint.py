@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
 Public Architecture Blueprint: Modern Tablet Edge Sensor & Port 4747 Streaming Standard
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)

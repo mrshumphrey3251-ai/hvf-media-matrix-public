@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import chromadb
 from chromadb.utils import embedding_functions

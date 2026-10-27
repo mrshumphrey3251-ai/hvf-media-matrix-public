@@ -1,4 +1,4 @@
-﻿"""
+"""
 PROJECT EBONY: DEEP CODE SENTINEL & LINE-BY-LINE AUDITOR (v6.0)
 ROLE: Exhaustive line-by-line semantic AST inspection, mathematical edge-case analysis,
       and proactive optimization staging across all HVF modules.

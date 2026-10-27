@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC — Official Release Notes v1.0.0
+# Humphrey Virtual Farms LLC — Official Release Notes v1.0.0
 
 ## Release Milestone: \1.0.0-COMMERCE-ENERGY-READY\
 **Date:** October 10, 2026  

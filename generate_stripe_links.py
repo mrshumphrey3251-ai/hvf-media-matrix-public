@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import subprocess
 from dotenv import load_dotenv

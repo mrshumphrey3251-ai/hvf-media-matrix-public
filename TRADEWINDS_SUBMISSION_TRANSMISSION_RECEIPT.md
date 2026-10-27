@@ -1,4 +1,4 @@
-﻿# DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE: OFFICIAL SUBMISSION & RESUBMISSION TRANSMISSION RECEIPT
+# DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE: OFFICIAL SUBMISSION & RESUBMISSION TRANSMISSION RECEIPT
 **Active Resubmission Docket ID:** 10-26-3976
 **Active Portal Status:** Received (Officially Submitted & Routed to CDAO Assessment Queue on Oct 25, 2026 12:38 AM)
 **Prior Baseline Docket ID:** 9-26-3703 (Submitted Sep 24, 2026 6:34 PM | Upgraded In-Place to TRL 4 (Phase-1 OTA Target: TRL 6) with Bound Repo & Comment Ledger)

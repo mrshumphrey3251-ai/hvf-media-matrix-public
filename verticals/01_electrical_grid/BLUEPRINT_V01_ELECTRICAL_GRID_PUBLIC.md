@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY OPEN ARCHITECTURE: VERTICAL 01
+# PROJECT EBONY OPEN ARCHITECTURE: VERTICAL 01
 ## Sub-Cycle Electrical Grid Protection: Substation SCADA Hardening
 
 **Entity:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)  

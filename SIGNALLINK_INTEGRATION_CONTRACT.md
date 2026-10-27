@@ -1,4 +1,4 @@
-﻿# SIGNALLINK TELEMETRY & MEDIA HANDOFF CONTRACT (STAGE 2)
+# SIGNALLINK TELEMETRY & MEDIA HANDOFF CONTRACT (STAGE 2)
 **Document ID:** HVF-CONTRACT-SL-002
 **Effective Date:** September 4, 2026
 **Governance:** Humphrey Virtual Farms (52% Majority / Sovereign Architecture Lead)

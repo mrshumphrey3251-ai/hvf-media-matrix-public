@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE API CONTRACT FORGE ///
 Sector: infrastructure
 Purpose: Generates the master api_contracts.json consumed by downstream services.

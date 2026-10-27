@@ -1,4 +1,4 @@
-﻿import os
+import os
 import re
 
 file_path = r"C:\HVF_Repos\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py"

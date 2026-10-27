@@ -1,4 +1,4 @@
-﻿# HARDWARE AUDIT: PHASE 2 BASELINE
+# HARDWARE AUDIT: PHASE 2 BASELINE
 **Date:** September 4, 2026
 **Primary Matrix Drive (C:):** 475.58 GB Capacity
 **Available Runway:** 145.82 GB Free Space

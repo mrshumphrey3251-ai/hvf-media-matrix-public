@@ -1,4 +1,4 @@
-﻿"""
+"""
 PROJECT EBONY: AUTONOMOUS SELF-HEALING & UI REPAIR DISPATCHER (v5.1)
 ROLE: Intercepts runtime errors, scrubs conversational preambles/safe-state banners,
       extracts pure Python code, and verifies AST in quarantine.

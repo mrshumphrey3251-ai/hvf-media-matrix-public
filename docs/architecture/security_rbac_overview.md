@@ -1,4 +1,4 @@
-﻿# HVF Zero-Trust Security & RBAC Governance
+# HVF Zero-Trust Security & RBAC Governance
 **Redacted Public Overview**
 
 Humphrey Virtual Farm enforces a strict Zero-Trust architecture across all internal micro-services and edge nodes. 

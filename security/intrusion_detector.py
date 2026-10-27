@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC INTRUSION DETECTOR BLUEPRINT (V1: PERIMETER DEFENSE) ///
 Sector: security
 Purpose: Blueprint for network threat detection and automated IP blacklisting.

@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC ACCESS CONTROL BLUEPRINT (V1: EXECUTIVE IAM) ///
 Sector: security
 Purpose: Blueprint for authenticating personnel and managing access to sovereign data systems.

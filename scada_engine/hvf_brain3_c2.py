@@ -1,4 +1,4 @@
-﻿"""
+"""
 Project Ebony: Brain 3 Sovereign Apex C2 & Guardrail Orchestrator (Full Restoration)
 Enforces 100% Absolute Controlling Authority under HVF-CONTRACT-SL-003, DFARS 252.227-7018,
 and Oklahoma HB 2992. Integrates Iron Dome RAG (20,289 vectors), Persistent Memory Vault,

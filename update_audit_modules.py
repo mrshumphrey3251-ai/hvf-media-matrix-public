@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 
 audit_tool = Path(r"C:\HVF_Repos\Tools\run_full_audit.ps1")
 

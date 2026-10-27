@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY: SOVEREIGN EDGE COMPUTE CAPABILITY BRIEF
+# PROJECT EBONY: SOVEREIGN EDGE COMPUTE CAPABILITY BRIEF
 ### Tactical Edge Compute Engine for Contested Airborne Enclaves & RF Deconfliction
 
 **Prime Authority:** Humphrey Virtual Farm (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)  

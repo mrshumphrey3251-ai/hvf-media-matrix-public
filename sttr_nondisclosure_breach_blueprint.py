@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Subcontractor Chronology Verification & False Claims Refutation
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)

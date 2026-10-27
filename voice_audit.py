@@ -1,4 +1,4 @@
-﻿import toml, requests
+import toml, requests
 try:
     path = r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml"
     sec = toml.load(path)

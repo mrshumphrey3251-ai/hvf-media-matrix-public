@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Warfighter & Field Operator GPS Beacon Subsystem
 Provides Blue Force Tracking (BFT), WGS-84 / MGRS geodetic conversion,

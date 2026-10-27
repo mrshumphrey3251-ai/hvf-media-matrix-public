@@ -1,4 +1,4 @@
-﻿torch
+torch
 torchvision
 openvino-genai
 optimum-intel[openvino,diffusers]

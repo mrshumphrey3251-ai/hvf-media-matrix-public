@@ -1,4 +1,4 @@
-﻿---
+---
 marp: true
 theme: gaia
 _class: lead

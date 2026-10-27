@@ -1,4 +1,4 @@
-﻿# ==========================================
+# ==========================================
 # HVF MEMORY VAULT - PROJECT EBONY
 # AUTHORITY: CEO [REDACTED]
 # CAGE: [REDACTED]

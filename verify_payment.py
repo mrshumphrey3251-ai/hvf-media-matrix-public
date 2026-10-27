@@ -1,4 +1,4 @@
-﻿import sqlite3
+import sqlite3
 DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db"
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()

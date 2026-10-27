@@ -1,4 +1,4 @@
-﻿# Project Ebony x SignalLink: Integration Testing Phase
+# Project Ebony x SignalLink: Integration Testing Phase
 **Date:** 2026-09-02
 **Status:** Synthetic Validation Complete
 

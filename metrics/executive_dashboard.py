@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC DASHBOARD BLUEPRINT (V1: METRICS VISUALIZATION) ///
 Sector: metrics
 Purpose: Blueprint for generating executive-level HTML telemetry visualizers.

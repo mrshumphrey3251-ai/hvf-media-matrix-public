@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC  Standard Commercial Pilot Statement of Work (SOW)
+# Humphrey Virtual Farms LLC  Standard Commercial Pilot Statement of Work (SOW)
 
 ## Overview
 This template provides the standard Firm-Fixed-Price (FFP) Statement of Work for municipal utilities, commercial enterprises, and public agencies executing a Phase 1 Software-Defined Feasibility Assessment with Humphrey Virtual Farms LLC (CAGE: \1AHA8\, UEI: \S1M4ENLHTDH5\).

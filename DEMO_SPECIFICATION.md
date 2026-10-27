@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC — Sovereign C2 Operational Demo Specification
+# Humphrey Virtual Farms LLC — Sovereign C2 Operational Demo Specification
 
 ## Overview
 This specification details the unclassified operational parameters of the HVFNexus Sovereign Industrial Command & Control (C2) engine demonstrated for defense procurement officials, APEX Accelerators, and prime contractors.

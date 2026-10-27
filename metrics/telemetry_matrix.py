@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC TELEMETRY MATRIX BLUEPRINT (V1: CORE TRACKING) ///
 Sector: metrics
 Purpose: Blueprint for monitoring data-center CPU and Memory loads.

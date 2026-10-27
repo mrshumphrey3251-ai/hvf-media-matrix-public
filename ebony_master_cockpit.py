@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF OMNI-INDUSTRIAL UNIFIED C2 MASTER CONSOLE
 Project: Ebony Sovereign Tri-Brain Matrix
 Compliance: CAGE 1AHA8 / UEI S1M4ENLHTDH5 // Submission 9-26-3703

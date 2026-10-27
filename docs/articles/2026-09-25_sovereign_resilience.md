@@ -1,4 +1,4 @@
-﻿# From Ward of the Court to the Pentagon Pipeline: The Cost and Conviction of Sovereign Architecture
+# From Ward of the Court to the Pentagon Pipeline: The Cost and Conviction of Sovereign Architecture
 
 ### By Jeffery Humphrey
 *Chief Executive Officer & Principal Architect, Humphrey Virtual Farms LLC (CAGE: 1AHA8)*

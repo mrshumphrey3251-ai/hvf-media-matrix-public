@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: DoD Evaluator Ingress Server (Port 8502)
 High-assurance HTTP daemon serving machine-readable evaluation telemetry to

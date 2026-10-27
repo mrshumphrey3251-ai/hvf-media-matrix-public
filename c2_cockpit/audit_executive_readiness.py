@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVFNexus Sovereign Industrial C2 — Executive Readiness & Defense Clearance Audit
 Performs complete bare-metal inspection of all C2 cockpit artifacts and ledger proofs.
 """

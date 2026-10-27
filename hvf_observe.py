@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PRIVATE OBSERVABILITY STACK ///
 Sector: infrastructure
 Purpose: Deploys Grafana, Prometheus, and Jaeger tracing hooks across all micro-services.

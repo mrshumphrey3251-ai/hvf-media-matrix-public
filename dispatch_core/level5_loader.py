@@ -1,4 +1,4 @@
-﻿"""
+"""
 EBONY LEVEL 5 EXTENSION HOT-RELOADER
 ROLE: Automatically detects and hot-loads verified modules inside level5_extensions/
       into the C2 Cockpit and Sovereign Command dispatch pipelines.

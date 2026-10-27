@@ -1,4 +1,4 @@
-﻿# HVF AI Explainability Layer
+# HVF AI Explainability Layer
 **Redacted Public Overview**
 
 Humphrey Virtual Farm implements a state-of-the-art Explainable AI (XAI) layer. Our system does not just trigger alerts; it mathematically explains *why* an alert was generated in plain, human-readable text.

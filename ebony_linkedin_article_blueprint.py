@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Comparative Edge Autonomy & Multi-Tier Compute Standard
 Compliance: 10 U.S.C. § 4022 Defense Prototyping & DFARS 252.227-7018 Data Rights Protection

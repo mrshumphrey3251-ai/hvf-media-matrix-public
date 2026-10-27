@@ -1,4 +1,4 @@
-﻿targets = [
+targets = [
     r"C:\HVF_Repos\hvf-media-matrix-private\c2_cockpit\ebony_command_deck_controller.py",
     r"C:\HVF_Repos\hvf-media-matrix-public\c2_cockpit\ebony_command_deck_controller.py"
 ]

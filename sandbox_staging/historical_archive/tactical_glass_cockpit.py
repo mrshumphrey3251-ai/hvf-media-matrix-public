@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 MODULE: c2_cockpit_dashboard.py
 PROJECT EBONY: UNIFIED MASTER COMMAND COCKPIT // DYNAMIC CURRENT ENGINE

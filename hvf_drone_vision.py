@@ -1,4 +1,4 @@
-﻿import os
+import os
 import cv2
 import sqlite3
 import numpy as np

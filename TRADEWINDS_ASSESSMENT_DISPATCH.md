@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY: FORMAL TRADEWINDS ASSESSMENT NOTIFICATION DISPATCH
+# PROJECT EBONY: FORMAL TRADEWINDS ASSESSMENT NOTIFICATION DISPATCH
 **Tradewinds Solutions Marketplace Submission ID:** 9-26-3703  
 **Contractor / CAGE:** Humphrey Virtual Farms LLC | CAGE: 1AHA8  
 **Signatory Authority:** Jeffery Humphrey, Chief Executive Officer (Level 5 Unrestricted)  

@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF SOVEREIGN VOCAL CORTEX - LOCAL SYNTHESIS ENGINE
 System: Project Ebony - Acoustic Rendering Subsystem
 Compliance: Sovereign Air-Gap Local Execution

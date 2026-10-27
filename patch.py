@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 file_path = r"C:\HVF_Repos\hvf-media-matrix-private\ebony_console_GREEN.py"
 with open(file_path, "r", encoding="utf-8") as f:

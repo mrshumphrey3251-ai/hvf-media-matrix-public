@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC LINKEDIN TRIAGE BLUEPRINT (LIVE WIRE) ///
 Sector: autonomous_ops
 Note: SANITIZED BLUEPRINT. API Keys redacted.

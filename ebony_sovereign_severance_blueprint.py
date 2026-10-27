@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Sole-Prime Corporate Sovereignty & Subcontractor Severance Standard
 Compliance: DFARS 252.227-7018 Data Rights Protection & 10 U.S.C. § 4022 Solo Prime Standards

@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Dual-Use Civilian Infrastructure SCADA Defense Specification
 Compliance: Bayh-Dole Act Commercial Sovereignty & NIST SP 800-230 Integrity Standard

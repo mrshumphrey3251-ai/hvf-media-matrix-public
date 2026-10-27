@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC CINEMATIC VAULT BLUEPRINT ///
 Sector: cinematic_vault
 Purpose: Blueprint for video asset processing and deployment staging.

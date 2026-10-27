@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Post-Storm All-Clear SCADA Re-Energization & Sortie Resumption Engine
 Executes controlled sequential contactor re-closure (Modbus FC05: FORCE_COIL_CLOSE)

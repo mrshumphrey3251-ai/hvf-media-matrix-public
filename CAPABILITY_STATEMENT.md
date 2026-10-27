@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC — Capability Statement
+# Humphrey Virtual Farms LLC — Capability Statement
 
 ## Federal Acquisition Profile
 * **Entity Name:** HUMPHREY VIRTUAL FARMS LLC

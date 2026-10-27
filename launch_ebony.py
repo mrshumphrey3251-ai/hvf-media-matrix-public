@@ -1,4 +1,4 @@
-﻿"""
+"""
 Project Ebony: Sovereign SCADA Defense Matrix -- Operational Live Launcher
 Tri-Brain Architecture: Brain 1 (Kinetic), Brain 2 (Tactical), Brain 3 (Apex C2).
 Real-time DirectShow Arducam / Tapo RTSP video streaming and dynamic GLI engine.

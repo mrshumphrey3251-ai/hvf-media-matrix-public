@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 
 tools_dir = Path(r"C:\HVF_Repos\Tools")
 tools_dir.mkdir(parents=True, exist_ok=True)

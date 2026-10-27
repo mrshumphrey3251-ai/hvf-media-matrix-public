@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF OMNI-INDUSTRIAL PRE-FLIGHT VERIFICATION HARNESS
 Compliance: Submission 9-26-3703 // CAGE 1AHA8
 Target: Rapid Pre-Demo Diagnostic Sweep

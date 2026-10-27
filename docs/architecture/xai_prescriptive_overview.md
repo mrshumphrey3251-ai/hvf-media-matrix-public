@@ -1,4 +1,4 @@
-﻿# Explainable-AI (XAI) & Prescriptive Analytics
+# Explainable-AI (XAI) & Prescriptive Analytics
 **Redacted Public Overview**
 
 Humphrey Virtual Farm leverages state-of-the-art reinforcement learning to transition from descriptive analytics ("what is happening") to prescriptive intelligence ("what we should do next").

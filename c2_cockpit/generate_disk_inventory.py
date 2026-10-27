@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVFNexus Sovereign Industrial C2 — Master Disk Inventory Engine
 Scans, hashes, and indexes every file saved across private, public, and briefcase enclaves.
 Excludes .git internal metadata directories to focus strictly on operational assets.

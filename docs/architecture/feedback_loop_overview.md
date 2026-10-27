@@ -1,4 +1,4 @@
-﻿# HVF Customer Feedback Loop
+# HVF Customer Feedback Loop
 **Redacted Public Overview**
 
 Humphrey Virtual Farm's AI models are continuously refined through a strict, ground-truth feedback loop governed by active operators in the field.

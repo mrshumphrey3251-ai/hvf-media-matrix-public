@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 
 targets = [
     Path(r"C:\HVF_Repos\hvf-media-matrix-private\governance\briefings\OK_COMMERCE_SLIDE_OUTLINE.md"),

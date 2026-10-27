@@ -1,4 +1,4 @@
-﻿# SignalLink Partner Onboarding Gateway
+# SignalLink Partner Onboarding Gateway
 **Redacted Public Overview**
 
 Humphrey Virtual Farm invites Tier-1 hardware manufacturers, drone operators, and enterprise agribusinesses to integrate directly into the Ebony AI ecosystem via our automated SignalLink Gateway.

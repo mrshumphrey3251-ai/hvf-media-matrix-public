@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY: DOD TRANSITION PARTNER ENGAGEMENT PACKAGE
+# PROJECT EBONY: DOD TRANSITION PARTNER ENGAGEMENT PACKAGE
 ## Accelerated Acquisition Strategy & Program Office Alignment
 
 **Entity:** Humphrey Virtual Farms LLC  

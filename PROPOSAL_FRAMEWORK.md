@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC — Defense Proposal & Delivery Framework
+# Humphrey Virtual Farms LLC — Defense Proposal & Delivery Framework
 
 ## Executive Statement
 Humphrey Virtual Farms LLC (CAGE: 1AHA8, UEI: S1M4ENLHTDH5) executes defense contracting operations under a zero-trust, bare-metal operational doctrine. All pre-award cyber compliance requirements under DFARS 252.204-7019/7020 are satisfied and verified in SPRS (Score: TRL 4 Architectural Mapping (Phase-1 OTA Target), UID: \PHASE1-OTA-TARGET\).

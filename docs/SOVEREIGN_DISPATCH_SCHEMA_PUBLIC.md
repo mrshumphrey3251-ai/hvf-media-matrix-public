@@ -1,4 +1,4 @@
-﻿### Sovereign C2 Cockpit - Air-Gap Queue & Dispatch Schema
+### Sovereign C2 Cockpit - Air-Gap Queue & Dispatch Schema
 
 #### Staged Dispatch States
 | Status Code | Operational Behavior | Air-Gap Safe |

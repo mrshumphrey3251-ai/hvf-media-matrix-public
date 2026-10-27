@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC — Commercial Engagement Terms & Procurement Vehicles
+# Humphrey Virtual Farms LLC — Commercial Engagement Terms & Procurement Vehicles
 
 ## Overview
 This document defines the standard contracting mechanisms, commercial fee structures, and procurement vehicles utilized by municipal utilities, commercial enterprises, and public agencies engaging Humphrey Virtual Farms LLC (CAGE: \1AHA8\, UEI: \S1M4ENLHTDH5\).

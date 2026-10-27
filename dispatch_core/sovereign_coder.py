@@ -1,4 +1,4 @@
-﻿"""
+"""
 PROJECT EBONY: SOVEREIGN DYNAMIC CODER WITH FEATURE FUSION & TARGET ROUTING (v3.3)
 ROLE: Standalone synthesis, cross-module feature fusion, and custom target staging.
 """

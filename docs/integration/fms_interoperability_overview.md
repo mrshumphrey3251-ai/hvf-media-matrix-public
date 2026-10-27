@@ -1,4 +1,4 @@
-﻿# FMS Interoperability & Hardware Integration
+# FMS Interoperability & Hardware Integration
 **Redacted Public Overview**
 
 Humphrey Virtual Farm engineers Ebony to act as the central nervous system of your operation, featuring native interoperability with legacy and modern agricultural systems.

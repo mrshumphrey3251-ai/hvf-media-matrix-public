@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Solo-Prime Automated Webform Submission & Ingestion Standard
 Compliance: DFARS 252.227-7018 Data Rights Protection & Bayh-Dole Act Commercial Sovereignty

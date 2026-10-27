@@ -1,4 +1,4 @@
-﻿def sanitize_memory_payload(raw_history):
+def sanitize_memory_payload(raw_history):
     """
     Omni-Industrial Context Engine.
     Acts as a sanitary firewall between the UI and the Core Router.

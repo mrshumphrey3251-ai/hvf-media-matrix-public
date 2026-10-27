@@ -1,4 +1,4 @@
-﻿# Retrieval-Augmented Generation (RAG) Vector Database
+# Retrieval-Augmented Generation (RAG) Vector Database
 **Redacted Public Overview**
 
 Humphrey Virtual Farm has eradicated the standard context-window limitations of modern AI. Ebony utilizes a state-of-the-art RAG architecture for infinite, searchable long-term memory.

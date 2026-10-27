@@ -1,4 +1,4 @@
-﻿import requests, toml
+import requests, toml
 try:
     sec = toml.load(r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml")
     key = sec.get("GROQ_API_KEY", "").strip()

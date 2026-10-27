@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Commercial Solutions Opening (CSO) Defense Solution Brief
 Compliance: 10 U.S.C. § 4022 (Prototype Other Transactions) & DFARS 252.227-7018 Data Rights Protection

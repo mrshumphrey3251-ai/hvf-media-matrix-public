@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Project Ebony: Master Sovereign Live Launcher & C2 Service Controller
 Streamlit Native Interface + Persistent Background Daemon Architecture.

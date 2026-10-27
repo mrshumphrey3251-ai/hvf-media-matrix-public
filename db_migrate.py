@@ -1,4 +1,4 @@
-﻿import sqlite3
+import sqlite3
 import os
 
 db_path = r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db"

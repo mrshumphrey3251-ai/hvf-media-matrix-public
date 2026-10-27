@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY: SOVEREIGN TRI-BRAIN BARE-METAL EDGE ARCHITECTURE
+# PROJECT EBONY: SOVEREIGN TRI-BRAIN BARE-METAL EDGE ARCHITECTURE
 ## Master Milestone Release Manifest v1.0.0 (Production Operational Baseline)
 
 **Contractor Entity:** Humphrey Virtual Farms LLC  

@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN GOVERNANCE DECK
 Public Architecture Blueprint: Autonomous Grant Opportunity Radar & Proposal Engine
 Compliance: DFARS 252.227-7018 Data Rights Protection & 10 U.S.C. § 4022 Defense Prototyping

@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import re
 
 target = Path(r"C:\HVF_Repos\hvf-media-matrix-private\level5_extensions\action_desk.py")

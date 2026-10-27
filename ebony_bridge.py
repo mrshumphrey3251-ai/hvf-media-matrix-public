@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF OMNI-INDUSTRIAL MODULAR BRIDGE - SUBSYSTEM DISPATCH FIREWALL
 Project: Ebony Sovereign C2 Matrix
 Compliance: Sovereign Air-Gap Tool Isolation & Deterministic Telemetry

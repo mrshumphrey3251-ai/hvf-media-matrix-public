@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMUNICATIONS DECK
 Public Architecture Blueprint: Multi-Grammar Autonomous Hands-Free Voice Daemon
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)

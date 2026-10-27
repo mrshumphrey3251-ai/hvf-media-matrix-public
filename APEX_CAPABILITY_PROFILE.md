@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC — APEX Capability Profile
+# Humphrey Virtual Farms LLC — APEX Capability Profile
 
 ## Statutory Procurement Data
 * **Legal Business Name:** HUMPHREY VIRTUAL FARMS LLC

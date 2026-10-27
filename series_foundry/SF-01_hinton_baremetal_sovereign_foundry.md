@@ -1,4 +1,4 @@
-﻿# THE SOVEREIGN FOUNDRY // PART 01
+# THE SOVEREIGN FOUNDRY // PART 01
 ## The Rural Defense Foundry: Anchoring Sub-30W Bare-Metal Compute and Analog Physical Enforcement in Hinton, Oklahoma
 
 Jeffery Humphrey

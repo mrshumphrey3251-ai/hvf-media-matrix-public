@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC CONTENT FORGE BLUEPRINT ///
 Sector: content_forge
 Purpose: Blueprint for AI-driven payload generation.

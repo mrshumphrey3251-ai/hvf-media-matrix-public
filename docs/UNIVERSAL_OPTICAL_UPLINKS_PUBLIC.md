@@ -1,4 +1,4 @@
-﻿### Sovereign C2 Cockpit - Universal Optical Uplink Architecture
+### Sovereign C2 Cockpit - Universal Optical Uplink Architecture
 
 #### Optical Telemetry Transport Matrix
 The Sovereign C2 Cockpit abstracts physical optical hardware into three zero-trust universal transport uplinks:

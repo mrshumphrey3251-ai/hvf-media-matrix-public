@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF OMNI-INDUSTRIAL PERSISTENT AUDIT LEDGER
 Project: Ebony Sovereign C2 Matrix
 Compliance: CAGE 1AHA8 / UEI S1M4ENLHTDH5

@@ -1,4 +1,4 @@
-﻿"""
+"""
 /// PUBLIC STREAM CONTROLLER BLUEPRINT (V1: MEDIA DISTRIBUTION) ///
 Sector: content_delivery
 Purpose: Blueprint for zero-latency, encrypted media content distribution.

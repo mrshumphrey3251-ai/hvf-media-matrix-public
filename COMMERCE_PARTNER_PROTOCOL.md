@@ -1,4 +1,4 @@
-﻿# Humphrey Virtual Farms LLC  Commercial Energy Partner Engagement Protocol
+# Humphrey Virtual Farms LLC  Commercial Energy Partner Engagement Protocol
 
 ## Purpose
 This protocol defines the formal procedure for municipal utilities, electric cooperatives, and industrial agricultural facilities initiating a Software-Defined, Zero-CAPEX energy management pilot with Humphrey Virtual Farms LLC.

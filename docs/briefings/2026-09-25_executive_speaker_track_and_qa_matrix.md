@@ -1,4 +1,4 @@
-﻿# PROJECT EBONY: EXECUTIVE BRIEFING DOSSIER
+# PROJECT EBONY: EXECUTIVE BRIEFING DOSSIER
 ## Slide-by-Slide Speaker Track & Technical Q&A Defense Matrix
 **Contractor:** Humphrey Virtual Farms LLC | **CAGE Code:** 1AHA8  
 **Statutory Authority:** Oklahoma HB 2992 / DFARS 252.227-7018  

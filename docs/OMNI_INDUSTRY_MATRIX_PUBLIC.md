@@ -1,4 +1,4 @@
-﻿### Sovereign C2 Cockpit - Omni-Industry Operational Engine Specification
+### Sovereign C2 Cockpit - Omni-Industry Operational Engine Specification
 
 #### Macro-Vertical Architecture & Pillar Schema
 The Sovereign C2 Cockpit integrates 15 distinct industrial macro-verticals, abstracting 116 operational pillar manuals into an active command architecture:

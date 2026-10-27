@@ -1,4 +1,4 @@
-﻿import logging
+import logging
 from hvf_content_generator import HVFContentGenerator
 from hvf_email_node import HVFEmailNode
 from hvf_linkedin_node import HVFLinkedInNode

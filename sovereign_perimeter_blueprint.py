@@ -1,4 +1,4 @@
-﻿"""
+"""
 HUMPHREY VIRTUAL FARMS LLC | SOVEREIGN COMMAND & CONTROL DECK
 Public Architecture Blueprint: Multi-Vector Defense Perimeters & Twin-Brain SCADA Standard
 Compliance: DFARS 252.227-7018 Data Rights Protection (Sanitized Public Export)

@@ -1,4 +1,4 @@
-﻿# Ebony AI: Strategic Platform Expansion
+# Ebony AI: Strategic Platform Expansion
 **Redacted Public Overview**
 
 Humphrey Virtual Farm is rapidly expanding the Ebony AI framework to service enterprise agribusinesses, data-center operators, and the broader ag-tech ecosystem. 

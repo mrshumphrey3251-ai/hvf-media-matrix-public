@@ -1,4 +1,4 @@
-﻿# ==============================================================================
+# ==============================================================================
 # HVF Omni-Industrial Matrix | SOVEREIGN AUTONOMOUS VOICE DAEMON
 # Zero-Touch Continuous Hands-Free Acoustic Link for Shokz OpenRun
 # Authority: Mr. Humphrey (Founder & CEO) | DFARS 252.227-7018 Compliant

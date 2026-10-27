@@ -1,4 +1,4 @@
-﻿import os
+import os
 import random
 from fastapi import FastAPI, Header, HTTPException
 from PIL import Image, ImageDraw

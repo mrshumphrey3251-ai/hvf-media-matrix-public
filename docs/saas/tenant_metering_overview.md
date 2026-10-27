@@ -1,4 +1,4 @@
-﻿# Multi-Tenant Governance & Usage Metering
+# Multi-Tenant Governance & Usage Metering
 **Redacted Public Overview**
 
 Humphrey Virtual Farm's Ebony AI is designed as a scalable SaaS platform, offering multi-tenant capabilities for large agribusinesses and data-center operators.

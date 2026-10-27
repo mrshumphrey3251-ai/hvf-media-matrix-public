@@ -1,4 +1,4 @@
-﻿# DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE: EVALUATOR TECHNICAL RUNBOOK
+# DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE: EVALUATOR TECHNICAL RUNBOOK
 **Procurement Vehicle:** DoD Chief Digital and Artificial Intelligence Office (CDAO) -- Tradewinds Solutions Marketplace
 **Statutory Authority:** 10 U.S.C. Section 4022 Prototype OTA & DFARS 252.227-7018 (Government Purpose Rights)
 **Contracting Entity:** Humphrey Virtual Farms LLC (CAGE: `1AHA8` | SAM.gov UEI: `S1M4ENLHTDH5`)

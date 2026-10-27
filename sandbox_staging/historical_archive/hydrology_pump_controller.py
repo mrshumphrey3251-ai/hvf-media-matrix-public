@@ -1,4 +1,4 @@
-﻿"""
+"""
 MODULE: Hydrology Pump Controller
 ROLE: Real-time irrigation density calculation and cavitation interlocks.
 """

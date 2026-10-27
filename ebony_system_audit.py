@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 critical_paths = [
     "src/ingestion/schemas/sensor_schema_v1.json",

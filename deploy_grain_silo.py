@@ -1,4 +1,4 @@
-﻿code = """\"\"\"
+code = """\"\"\"
 MODULE_NAME: grain_silo_aeration_and_f
 AUTHOR: Jeffery Humphrey (CEO Clearance)
 ROLE: Sovereign Grain Silo Aeration & VFD Fan SCADA Telemetry Deck

@@ -1,4 +1,4 @@
-﻿"""
+"""
 HVF Hardware Watchdog Timer & Air-Gapped Fail-Safe Heartbeat
 Deadlock detection, thread liveness monitoring, and autonomous failsafe actuation
 engineered for sovereign bare-metal edge SCADA defense.
