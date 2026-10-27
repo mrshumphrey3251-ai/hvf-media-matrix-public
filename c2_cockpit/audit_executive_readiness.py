@@ -1,4 +1,4 @@
-"""
+﻿"""
 HVFNexus Sovereign Industrial C2 — Executive Readiness & Defense Clearance Audit
 Performs complete bare-metal inspection of all C2 cockpit artifacts and ledger proofs.
 """
@@ -46,7 +46,7 @@ if db_path.exists():
     cursor.execute("""
         SELECT timestamp, core, authorized_by, cage_code, uei, action, artifact_hash, proof_hash
         FROM executive_authorizations
-        WHERE artifact_hash = 'SB00165728'
+        WHERE artifact_hash = 'PHASE1-OTA-TARGET'
         LIMIT 1
     """)
     sprs_entry = cursor.fetchone()
@@ -61,7 +61,7 @@ if db_path.exists():
         print(f"    [+] Statutory Action:                  {action}")
         print(f"    [+] Cryptographic Proof Hash:          {proof[:32]}...")
     else:
-        print("    [-] WARNING: DoD UID SB00165728 not located in active view.")
+        print("    [-] WARNING: DoD UID PHASE1-OTA-TARGET not located in active view.")
 else:
     print("    [-] ERROR: matrix_ledger.db does not exist.")
 

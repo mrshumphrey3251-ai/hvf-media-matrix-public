@@ -1,4 +1,4 @@
-"""
+﻿"""
 HVFNexus Sovereign Industrial C2 — Master Disk Inventory Engine
 Scans, hashes, and indexes every file saved across private, public, and briefcase enclaves.
 Excludes .git internal metadata directories to focus strictly on operational assets.
@@ -20,7 +20,7 @@ manifest_lines = []
 manifest_lines.append("# HUMPHREY VIRTUAL FARMS LLC — MASTER DISK ARTIFACT MANIFEST")
 manifest_lines.append(f"**Generated (UTC):** {datetime.utcnow().isoformat()}  ")
 manifest_lines.append("**Entity:** Humphrey Virtual Farms LLC | **CAGE:** `1AHA8` | **UEI:** `S1M4ENLHTDH5`  ")
-manifest_lines.append("**SPRS Cyber Score:** 110 / 110 (DoD UID: `SB00165728`)  ")
+manifest_lines.append("**SPRS Cyber Score:** 110 / 110 (DoD UID: `PHASE1-OTA-TARGET`)  ")
 manifest_lines.append("\n---\n")
 
 print("\n=== [HVFNexus C2] EXECUTING EXHAUSTIVE DISK INVENTORY ===")

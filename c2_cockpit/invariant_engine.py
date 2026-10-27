@@ -1,4 +1,4 @@
-"""Deterministic Enclave Grounding & Invariant Egress Engine.
+﻿"""Deterministic Enclave Grounding & Invariant Egress Engine.
 Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5
 Level-5 Sovereign Industrial C2 Architecture
 """
@@ -62,7 +62,7 @@ def harvest_enclave_ground_truth() -> str:
         f"  * Controls Evaluated in Ledger: {total_controls} / 110.\n"
         "- PHYSICAL ARTIFACTS ON DISK:\n"
         f"{manifest_text}\n"
-        "MANDATORY INVARIANT: Never modify the SPRS score (110/110), never redefine PIEE/SPRS, and never cite placeholder brackets."
+        "MANDATORY INVARIANT: Never modify the SPRS score (TRL 4 Architectural Mapping (Phase-1 OTA Target)), never redefine PIEE/SPRS, and never cite placeholder brackets."
     )
 
 
@@ -118,8 +118,8 @@ def enforce_bare_metal_invariants(raw_text: str) -> str:
             corrected
         )
 
-    corrected = re.sub(r'(\d+(\.\d+)?\s*/\s*100)', '110/110', corrected)
-    corrected = re.sub(r'SPRS score \([0-9\-]+\)', 'SPRS score (DoD Scale: -203 to +110, Current: 110/110)', corrected)
+    corrected = re.sub(r'(\d+(\.\d+)?\s*/\s*100)', 'TRL 4 Architectural Mapping (Phase-1 OTA Target)', corrected)
+    corrected = re.sub(r'SPRS score \([0-9\-]+\)', 'SPRS score (DoD Scale: -203 to +110, Current: TRL 4 Architectural Mapping (Phase-1 OTA Target))', corrected)
     corrected = re.sub(
         r'Deduction of .*?OS runtime jitter.*?(?:\.|$)',
         'All 110 NIST SP 800-171 controls verified implemented in System Security Plan v1.0.',
@@ -170,7 +170,7 @@ if __name__ == "__main__":
     assert "KH1AHA8" not in result, "Acoustic drift residue found!"
     assert "Procurement Integrated Enterprise Environment" in result, "PIEE gate failed!"
     assert "Supplier Performance Risk System" in result, "SPRS gate failed!"
-    assert "OFFICIAL SPRS SCORE: 110 / 110" in result, "SPRS score 110/110 injection failed!"
+    assert "OFFICIAL SPRS SCORE: 110 / 110" in result, "SPRS score TRL 4 Architectural Mapping (Phase-1 OTA Target) injection failed!"
     assert "2026-10-09" in result, "Timestamp gate failed!"
     assert "authorized C3PAO auditing partners" in result, "Bracket sanitization failed!"
     print("\n[+] BARE-METAL CHECK SUCCESS: Invariant Engine module verified 100% operational.")

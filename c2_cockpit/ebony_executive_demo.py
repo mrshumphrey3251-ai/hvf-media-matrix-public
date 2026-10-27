@@ -1,4 +1,4 @@
-"""
+﻿"""
 HVFNexus Sovereign Industrial C2 — Executive Live Demonstration Engine
 Demonstrates deterministic bare-metal C2 execution, WORM ledgering, and DFARS compliance.
 """
@@ -25,7 +25,7 @@ def run_executive_demonstration():
     print("    - PIEE CAM Authority:     ACTIVE (EB POC Authenticated)")
     print("    - DoD SPRS Status:        NIST SP 800-171 Rev 2 (BASIC)")
     print("    - SPRS Assessment Score:  110 / 110 (0 Open POA&Ms)")
-    print("    - DoD Unique ID (UID):    SB00165728")
+    print("    - DoD Unique ID (UID):    PHASE1-OTA-TARGET")
     print("    [+] RESULT: Full DFARS 252.204-7019/7020 Pre-Award Clearance Confirmed.")
 
     # Stage 2: Cryptographic WORM Ledger Audit
@@ -39,7 +39,7 @@ def run_executive_demonstration():
     cursor.execute("""
         SELECT timestamp, action, artifact_hash, proof_hash 
         FROM executive_authorizations 
-        WHERE artifact_hash = 'SB00165728' LIMIT 1
+        WHERE artifact_hash = 'PHASE1-OTA-TARGET' LIMIT 1
     """)
     sprs_event = cursor.fetchone()
     

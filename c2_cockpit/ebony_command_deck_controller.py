@@ -1,4 +1,4 @@
-import ebony_command_bridge
+﻿import ebony_command_bridge
 # -*- coding: utf-8 -*-
 """
 EBONY COMMAND DECK CONTROLLER (4-DOMAIN EXPANDED)
@@ -78,7 +78,7 @@ PROOF_DATABASE = {
             "IN_KIND_SATISFACTION": "100.0% Allowable Cost-Share",
             "LIQUID_CASH_ESCROW": "$0.00 Required",
             "FEDERAL_REGULATION": "2 CFR 200.306",
-            "DOD_TRADEWINDS_STATUS": "Docket 9-26-3703 (Awardable TRL 7/8)"
+            "DOD_TRADEWINDS_STATUS": "Docket 9-26-3703 (Awardable TRL 4 Software Emulation Testbed)"
         }
     }
 }
@@ -127,3 +127,4 @@ if __name__ == "__main__":
         print("EBONY COMMAND DECK CONTROLLER ACTIVE")
         print("Available Domain Drills: 1 (SCADA), 2 (Firewall), 3 (Crypto), 4 (Statutory/Capital)")
         dispatch_proof("4")
+

@@ -1,4 +1,4 @@
-"""
+﻿"""
 HUMPHREY VIRTUAL FARMS LLC | LEVEL-5 SOVEREIGN INDUSTRIAL C2
 MODULE: DIU COMPANY INTEREST PAYLOAD
 CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK TITLE 61 / HB 2992
@@ -77,7 +77,7 @@ def render():
 
         ("Subsidiary Status", "No (100% Independent Sovereign Prime)"),
 
-        ("Technology Readiness Level", "TRL 7 - System prototype demonstration in operational environment"),
+        ("Technology Readiness Level", "TRL 4 (Phase-1 OTA Target: TRL 6) - System prototype demonstration in operational environment"),
 
         ("DIU Portfolio Alignment", "Autonomous Warfare / AI"),
 
@@ -175,7 +175,7 @@ def render():
 
         print("  - Subsidiary: No")
 
-        print("  - TRL Level: TRL 7")
+        print("  - TRL Level: TRL 4 (Phase-1 OTA Target: TRL 6)")
 
         print("  - Portfolio: Autonomous Warfare")
 
@@ -232,3 +232,4 @@ def render():
 
 if __name__ == "__main__":
     render()
+

@@ -1,4 +1,4 @@
-"""
+﻿"""
 HVFNexus Sovereign Industrial C2 — Energy Infrastructure Demonstration Engine
 Executes deterministic bare-metal microgrid telemetry ingestion and cryptographic ledgering.
 Zero external cloud dependencies; fully compliant with NIST SP 800-171 controls.
@@ -23,7 +23,7 @@ def run_energy_demonstration():
     print("    - Operating Entity:        HUMPHREY VIRTUAL FARMS LLC")
     print("    - CAGE Code:               1AHA8 | UEI: S1M4ENLHTDH5")
     print("    - Critical Sector Scope:   Energy / Industrial SCADA / Controlled Agriculture")
-    print("    - NIST SP 800-171 Score:   110 / 110 (DoD UID: SB00165728 | 0 Open POA&Ms)")
+    print("    - NIST SP 800-171 Score:   110 / 110 (DoD UID: PHASE1-OTA-TARGET | 0 Open POA&Ms)")
     print("    [+] RESULT: Full Regulatory Eligibility for State & Federal Energy Infrastructure.")
 
     # Stage 2: Autonomous Microgrid Telemetry Ingestion

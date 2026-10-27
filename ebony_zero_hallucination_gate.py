@@ -1,4 +1,4 @@
-"""
+﻿"""
 HVF Sovereign C2 // Ebony (Chronos) Universal Zero-Hallucination & Live WAN Grounding Interceptor
 CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DFARS 252.227-7018 Sovereign Background IP
 Intercepts sovereign_comms.run_dual_core_router, httpx, requests, and urllib with 0 byte changes to c2_cockpit.
@@ -210,7 +210,7 @@ def render_sovereign_robotics_command_deck() -> None:
     st.subheader("\U0001f916 EBONY-RTOS // Sovereign Robotics, Kinematics & 36.75ns Kinetic Guillotine C2")
     st.caption(
         "Prime Authority: Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5) | "
-        "Tradewinds Docket 9-26-3703 & 10-26-3952 | Brain 1 (<50us Bare-Metal C) + Brain 2 (<25W Air-Gapped NPU) + "
+        "Tradewinds Docket 9-26-3703 & 10-26-3976 | Brain 1 (<50us Bare-Metal C) + Brain 2 (<25W Air-Gapped NPU) + "
         "Brain 3 (<0.15ms SRAM Merkle) + 36.75ns Analog MOSFET Cutoff"
     )
 
@@ -579,7 +579,7 @@ def install_transparent_c2_interceptor() -> bool:
     return True
 
 
-# === STAGE 12J: 26-MODULE PER-NODE CLIN PRICE SCHEDULE EXTENSION (DOCKET 10-26-3952) ===
+# === STAGE 12J: 26-MODULE PER-NODE CLIN PRICE SCHEDULE EXTENSION (DOCKET 10-26-3976) ===
 _ORIG_RENDER_ROBOTICS_DECK = globals().get("_render_sovereign_robotics_c2_deck")
 
 def _render_sovereign_robotics_c2_deck():
@@ -587,14 +587,14 @@ def _render_sovereign_robotics_c2_deck():
     if callable(_ORIG_RENDER_ROBOTICS_DECK):
         _ORIG_RENDER_ROBOTICS_DECK()
     st.markdown("---")
-    with st.expander(f"{chr(0x1F4B0)} Tradewinds Docket 10-26-3952 // 26-Module Per-Node CLIN Price Catalog (DFARS 252.227-7018)", expanded=True):
+    with st.expander(f"{chr(0x1F4B0)} Tradewinds Docket 10-26-3976 // 26-Module Per-Node CLIN Price Catalog (DFARS 252.227-7018)", expanded=True):
         st.info(
-            "**STRICT PER-NODE LICENSING NOTICE:** The entry pilot price filed on Tradewinds Docket `10-26-3952` applies strictly to "
+            "**STRICT PER-NODE LICENSING NOTICE:** The entry pilot price filed on Tradewinds Docket `10-26-3976` applies strictly to "
             "**`CLIN 0001` (`Module #01: Sovereign Command Base Router` on `1` Single Bare-Metal Node)**. All remaining **25 Command Modules (`CLIN 0002` - `CLIN 0026`)** "
             "are licensed strictly **per physical hardware node / per robotic chassis / per training seat** (`$1,630,000/yr` total unbundled single-node value)."
         )
         clin_rows = [
-            {"CLIN": "CLIN 0001", "Module": "Mod #01: Sovereign Command (Chronos Base Router)", "Unit": "1 Single Bare-Metal Node (10-26-3952 Entry Pilot)", "Annual Gov": "Base Pilot Price ($24,500 Std)", "Monthly Comm": "$2,450/mo"},
+            {"CLIN": "CLIN 0001", "Module": "Mod #01: Sovereign Command (Chronos Base Router)", "Unit": "1 Single Bare-Metal Node (10-26-3976 Entry Pilot)", "Annual Gov": "Base Pilot Price ($24,500 Std)", "Monthly Comm": "$2,450/mo"},
             {"CLIN": "CLIN 0002", "Module": "Mod #02: System Overview & Preflight WORM Gate", "Unit": "Per Enclave Server Node", "Annual Gov": "$35,000/yr", "Monthly Comm": "$3,500/mo"},
             {"CLIN": "CLIN 0003", "Module": "Mod #03: Master C2 Cockpit (60Hz Microgrid & Fault C2)", "Unit": "Per Substation / TOC Node (19 Controls)", "Annual Gov": "$95,000/yr", "Monthly Comm": "$8,900/mo"},
             {"CLIN": "CLIN 0004", "Module": "Mod #04: Autonomous Build Forge (AST Synthesizer)", "Unit": "Per Engineering Enclave Node", "Annual Gov": "$110,000/yr", "Monthly Comm": "$9,800/mo"},
@@ -769,14 +769,14 @@ def _render_executive_statutory_full_vault():
                     st.markdown(chosen_bytes.decode("utf-8", errors="ignore"))
 
     with vt2:
-        st.markdown("#### Tradewinds Docket `10-26-3952` // 26-Module Per-Node CLIN Price Catalog (`DFARS 252.227-7018`)")
+        st.markdown("#### Tradewinds Docket `10-26-3976` // 26-Module Per-Node CLIN Price Catalog (`DFARS 252.227-7018`)")
         st.info(
-            "**STRICT PER-NODE LICENSING MANDATE:** The entry pilot price filed on Tradewinds Docket `10-26-3952` applies strictly to "
+            "**STRICT PER-NODE LICENSING MANDATE:** The entry pilot price filed on Tradewinds Docket `10-26-3976` applies strictly to "
             "**`CLIN 0001` (`Module #01: Sovereign Command Base Router` on `1` Single Bare-Metal Node)**. All remaining **25 Command Modules (`CLIN 0002` - `CLIN 0026`)** "
             "are licensed strictly **per physical hardware node / per robotic chassis / per training seat** (`$1,630,000/yr` total unbundled single-node value)."
         )
         clin_rows = [
-            {"CLIN": "CLIN 0001", "Module": "Mod #01: Sovereign Command (Chronos Base Router)", "Unit": "1 Single Bare-Metal Node (10-26-3952 Entry Pilot)", "Annual Gov": "Base Pilot Price ($24,500 Std)", "Monthly Comm": "$2,450/mo"},
+            {"CLIN": "CLIN 0001", "Module": "Mod #01: Sovereign Command (Chronos Base Router)", "Unit": "1 Single Bare-Metal Node (10-26-3976 Entry Pilot)", "Annual Gov": "Base Pilot Price ($24,500 Std)", "Monthly Comm": "$2,450/mo"},
             {"CLIN": "CLIN 0002", "Module": "Mod #02: System Overview & Preflight WORM Gate", "Unit": "Per Enclave Server Node", "Annual Gov": "$35,000/yr", "Monthly Comm": "$3,500/mo"},
             {"CLIN": "CLIN 0003", "Module": "Mod #03: Master C2 Cockpit (60Hz Microgrid & Fault C2)", "Unit": "Per Substation / TOC Node (19 Controls)", "Annual Gov": "$95,000/yr", "Monthly Comm": "$8,900/mo"},
             {"CLIN": "CLIN 0004", "Module": "Mod #04: Autonomous Build Forge (AST Synthesizer)", "Unit": "Per Engineering Enclave Node", "Annual Gov": "$110,000/yr", "Monthly Comm": "$9,800/mo"},
@@ -932,4 +932,5 @@ try:
     _install_statutory_brief_interceptor()
 except Exception:
     pass
+
 

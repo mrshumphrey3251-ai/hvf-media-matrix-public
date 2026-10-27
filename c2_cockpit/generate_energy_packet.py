@@ -1,4 +1,4 @@
-"""
+﻿"""
 HVFNexus Sovereign Industrial C2 — Commerce Energy Briefing Packet Generator
 Compiles a polished, print-ready HTML portfolio for physical briefing with Rob Teele.
 """
@@ -20,7 +20,7 @@ conn = sqlite3.connect(str(db_path))
 cursor = conn.cursor()
 cursor.execute("SELECT count(*) FROM executive_authorizations")
 event_count = cursor.fetchone()[0]
-cursor.execute("SELECT proof_hash FROM executive_authorizations WHERE artifact_hash = 'SB00165728' LIMIT 1")
+cursor.execute("SELECT proof_hash FROM executive_authorizations WHERE artifact_hash = 'PHASE1-OTA-TARGET' LIMIT 1")
 sprs_proof = cursor.fetchone()[0]
 conn.close()
 
@@ -70,7 +70,7 @@ html_content = f"""<!DOCTYPE html>
 <table>
   <tr><th>Operational Technology Requirement</th><th>Commercial Cloud Vulnerability</th><th>HVF Sovereign C2 Solution</th></tr>
   <tr><td><strong>Peak Demand Cost Management</strong></td><td>High latency, unable to react to sub-second load spikes</td><td>Local bare-metal edge execution reduces demand charges by 22%â€“38%</td></tr>
-  <tr><td><strong>SCADA / OT Cybersecurity</strong></td><td>Third-party cloud APIs exposed to ransomware and foreign vectors</td><td>Enclave compliant with NIST SP 800-171 Rev 2 (110/110, 0 open POA&amp;Ms)</td></tr>
+  <tr><td><strong>SCADA / OT Cybersecurity</strong></td><td>Third-party cloud APIs exposed to ransomware and foreign vectors</td><td>Enclave compliant with NIST SP 800-171 Rev 2 (TRL 4 Architectural Mapping (Phase-1 OTA Target), 0 open POA&amp;Ms)</td></tr>
   <tr><td><strong>Clean Energy &amp; Carbon Accounting</strong></td><td>Self-reported spreadsheets subject to audit disputes</td><td>Append-only WORM SQLite ledger binding kWh data to SHA-256 proofs</td></tr>
 </table>
 

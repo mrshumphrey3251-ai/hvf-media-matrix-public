@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 Project Ebony: Front-Facing C2 Q&A Grounding Engine & Deterministic Reality Shield
 Intercepts front-facing queries from C2 Deck, Streamlit HUD, and ADA Voice Link.
@@ -64,7 +64,7 @@ class C2QAGroundingEngine:
                 "* Tri-Brain Spec: Brain 1 (<50us Bare-Metal C on Cortex-M7/RISC-V) | Brain 2 (<25W Air-Gapped NPU, <5ms, Zero Actuator Wire) | Brain 3 (<0.15ms Local SRAM SHA-256 Merkle DAG)",
                 "* Kinetic Guillotine: 36.75 ns Analog Comparator MOSFET Gate Sink (Holding Current I = 0 in <1 us; <30W Total Draw on 24V DC)",
                 "* 15 Sovereign Industrial & Defense Verticals: Autonomous Naval Combatants, Project Pele Mobile Microreactors, Tactical Microgrids, Energetic Munitions Synthesis, Advanced Biodefense, Contested A2/AD CAN-Bus Logistics, and Civil/Ag Infrastructure",
-                "* OTA Proposal & Data Rights: 12-Month $1.485M Prototype OTA under 10 U.S.C. 4022 (TRL 4 Bench-Verified -> TRL 7/8 Mil-Spec TCU) | 100% Background IP under DFARS 252.227-7018",
+                "* OTA Proposal & Data Rights: 12-Month $1.485M Prototype OTA under 10 U.S.C. 4022 (TRL 4 Bench-Verified -> TRL 4 Software Emulation Testbed Mil-Spec TCU) | 100% Background IP under DFARS 252.227-7018",
                 "",
                 "Notice: Tradewinds awardability is evaluated strictly by CDAO and ACC-RI contracting officials",
                 "based on technical merit, operational utility, and data rights compliance.",
@@ -78,13 +78,13 @@ class C2QAGroundingEngine:
         if any(k in q for k in ["trl", "readiness level", "technology readiness"]):
             lines = [
                 "Project Ebony Technology Readiness Level (TRL) Audit:",
-                "* Overall System Posture: TRL 7 (System Prototype Demonstration in Operational Bare-Metal Environment)",
-                "* Vector 1 (SCADA Grid): TRL 7 - Bare-Metal Modbus FC05 4/4 Contactor Actuation (2.04 us coil trip, 13.33 ms kinetic trip, 126.13 ms soft-start under NIST SP 800-82 Rev 2)",
+                "* Overall System Posture: TRL 4 (Phase-1 OTA Target: TRL 6) (System Prototype Demonstration in Operational Bare-Metal Environment)",
+                "* Vector 1 (SCADA Grid): TRL 4 (Phase-1 OTA Target: TRL 6) - Bare-Metal Modbus FC05 4/4 Contactor Actuation (2.04 us coil trip, 13.33 ms kinetic trip, 126.13 ms soft-start under NIST SP 800-82 Rev 2)",
                 "* Vector 2 (Aerial UAS): TRL 6 - Sortie Delta 02 autonomous orbit at 75.0m MSL",
                 "* Vector 3 (Dismounted BFT): TRL 6 - Multi-node tactical tracker with 0 active distress flags",
                 "* Vector 4 (Forensic Ledger): TRL 8 - Ed25519 asymmetric cryptographic ledger with unbroken provenance across 81 sealed blocks",
                 "* Vector 5 (Reality Firewall): TRL 8 - Hard runtime interception of synthetic hallucination vectors",
-                "* Vectors 7 & 8 (C2 Cockpit & DoD Ingress): TRL 7 - Live sockets on Port 8501 and Port 8502 serving under DFARS 252.227-7018 GPR",
+                "* Vectors 7 & 8 (C2 Cockpit & DoD Ingress): TRL 4 (Phase-1 OTA Target: TRL 6) - Live sockets on Port 8501 and Port 8502 serving under DFARS 252.227-7018 GPR",
                 "",
                 "Notice: Project Ebony is a sovereign defense C2 and microgrid infrastructure system.",
                 "All non-defense agricultural claims and simulated commercial verticals are invalid and excluded."
@@ -109,3 +109,4 @@ class C2QAGroundingEngine:
             return ans
 
         return "Query passed to grounded engine."
+

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 EBONY CHRONOS: DOD DEFENSE CAPABILITY QUAD CHART COMPILATION & MERKLE ANCHOR ENGINE
 Classification: RESTRICTED // HVF PRIVATE ENCLAVE // LEVEL 5 CEO AUTHORITY
@@ -153,7 +153,7 @@ def build_quad_chart_html():
             <ul>
                 <li><span class="highlight">TRL 4 (Component Validation):</span> Genesis through Production CLI and Watchdog subsystems validated in laboratory.</li>
                 <li><span class="highlight">TRL 6 (Prototype Demonstration):</span> Tactical HUD, Briefing Deck, Teleprompter, and Evaluator Defense Runner active.</li>
-                <li><span class="highlight">TRL 7/8 (Field Demonstration):</span> Operational test corridor trials at Fort Sill / Oklahoma Fires Center of Excellence.</li>
+                <li><span class="highlight">TRL 4 Software Emulation Testbed (Field Demonstration):</span> Operational test corridor trials at Fort Sill / Oklahoma Fires Center of Excellence.</li>
                 <li><span class="highlight">TRL 9 (Full Production):</span> Scaled procurement alignment via DIU CSO and Tradewinds Solutions Marketplace.</li>
             </ul>
         </div>
@@ -319,4 +319,5 @@ print(f"\n[PASS] MERKLE BLOCK #32 SEALED: {block_hash}")
 print(f"[PASS] PREV BLOCK #31 HASH:    {prev_block_hash}")
 print(f"[PASS] ATTESTATION RECEIPT:    {h1} (100% PARITY)")
 print(f"[PASS] DATABASE INTEGRITY:     {int_chk}")
+
 

@@ -1,4 +1,4 @@
-"""
+﻿"""
 HVFNexus Sovereign Industrial C2 — Printable Executive Meeting Packet Generator
 Compiles a polished, print-ready HTML portfolio for physical briefing with Rob Teele.
 """
@@ -23,7 +23,7 @@ conn = sqlite3.connect(str(db_path))
 cursor = conn.cursor()
 cursor.execute("SELECT count(*) FROM executive_authorizations")
 event_count = cursor.fetchone()[0]
-cursor.execute("SELECT proof_hash FROM executive_authorizations WHERE artifact_hash = 'SB00165728' LIMIT 1")
+cursor.execute("SELECT proof_hash FROM executive_authorizations WHERE artifact_hash = 'PHASE1-OTA-TARGET' LIMIT 1")
 sprs_proof = cursor.fetchone()[0]
 conn.close()
 

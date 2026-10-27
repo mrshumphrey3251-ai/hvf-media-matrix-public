@@ -1,4 +1,4 @@
-"""
+﻿"""
 HVFNexus Sovereign Industrial C2 — Master Executive Defense Portfolio Compiler
 Compiles all compliance proofs, C2 architecture, and meeting dossiers into a single presentation document.
 """
@@ -26,7 +26,7 @@ total_events = cursor.fetchone()[0]
 
 cursor.execute("""
     SELECT timestamp, proof_hash FROM executive_authorizations 
-    WHERE artifact_hash = 'SB00165728' LIMIT 1
+    WHERE artifact_hash = 'PHASE1-OTA-TARGET' LIMIT 1
 """)
 sprs_entry = cursor.fetchone()
 conn.close()

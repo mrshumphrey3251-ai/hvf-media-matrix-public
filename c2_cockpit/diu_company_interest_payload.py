@@ -1,4 +1,4 @@
-"""
+﻿"""
 HVF Omni-Industrial Matrix | SOVEREIGN PRIME SYSTEMS
 Module: diu_company_interest_payload.py
 Author: Jeffery Humphrey, Founder & CEO (Apex Architect)
@@ -32,7 +32,7 @@ FORM_FIELDS = [
     ("City", "Oklahoma City"),
     ("Postal Code", "73101"),
     ("Subsidiary Status", "No (100% Independent Sovereign Prime)"),
-    ("Technology Readiness Level", "TRL 7 - System prototype demonstration in operational environment"),
+    ("Technology Readiness Level", "TRL 4 (Phase-1 OTA Target: TRL 6) - System prototype demonstration in operational environment"),
     ("DIU Portfolio Alignment", "Autonomous Warfare / AI"),
     ("Technical Summary (300 Chars Max)", PITCH_300),
     ("5-Page Solution Brief Deliverable Path", PDF_FILE)
@@ -81,7 +81,7 @@ def main():
     print("[FINAL SUBMISSION CONFIRMATION]")
     print("In your browser, confirm all required fields are filled, verify the selections:")
     print("  - Subsidiary: No")
-    print("  - TRL Level: TRL 7")
+    print("  - TRL Level: TRL 4 (Phase-1 OTA Target: TRL 6)")
     print("  - Portfolio: Autonomous Warfare")
     print("Then click 'Submit' on the DIU form.")
     print("=" * 80)
@@ -107,4 +107,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

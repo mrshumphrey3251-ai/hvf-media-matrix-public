@@ -1,4 +1,4 @@
-"""
+﻿"""
 HVFNexus Sovereign Industrial C2 — Executive Mission Readiness Dashboard
 Authoritative verification engine for Humphrey Virtual Farms LLC (CAGE: 1AHA8).
 """
@@ -26,7 +26,7 @@ print("    - SAM.gov Registration:         ACTIVE (Primary EB POC Validated)")
 print("    - PIEE Administrative Authority: CONTRACTOR ADMINISTRATOR (CAM) ACTIVE")
 print("    - SPRS Cyber Vendor User Role:   ACTIVE / AUTO-ACTIVATED")
 print("    - NIST SP 800-171 Assessment:    POSTED (Score: 110 / 110 | Max Confidence: BASIC)")
-print("    - DoD Unique Identifier (UID):   SB00165728")
+print("    - DoD Unique Identifier (UID):   PHASE1-OTA-TARGET")
 print("    - Open POA&M Deficiencies:       0 (Zero Open Items)")
 print("    - System Security Plan (SSP):    hvf_cmmc_ssp_v1.md (v1.0.0-FINAL)")
 print("    - Statutory Authority:           DFARS 252.204-7012, 7019, 7020 COMPLIANT")
@@ -41,7 +41,7 @@ if db_path.exists():
     
     cursor.execute("""
         SELECT timestamp, proof_hash FROM executive_authorizations 
-        WHERE artifact_hash = 'SB00165728' LIMIT 1
+        WHERE artifact_hash = 'PHASE1-OTA-TARGET' LIMIT 1
     """)
     sprs_row = cursor.fetchone()
     conn.close()
