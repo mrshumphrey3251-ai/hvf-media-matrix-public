@@ -1,4 +1,4 @@
-# Humphrey Virtual Farms LLC  Standard Commercial Pilot Statement of Work (SOW)
+﻿# Humphrey Virtual Farms LLC  Standard Commercial Pilot Statement of Work (SOW)
 
 ## Overview
 This template provides the standard Firm-Fixed-Price (FFP) Statement of Work for municipal utilities, commercial enterprises, and public agencies executing a Phase 1 Software-Defined Feasibility Assessment with Humphrey Virtual Farms LLC (CAGE: \1AHA8\, UEI: \S1M4ENLHTDH5\).
@@ -8,7 +8,7 @@ This template provides the standard Firm-Fixed-Price (FFP) Statement of Work for
 ## 1. Statutory Contracting Identifiers
 * **Contractor:** HUMPHREY VIRTUAL FARMS LLC
 * **CAGE Code:** \1AHA8\ | **UEI:** \S1M4ENLHTDH5\
-* **DoD SPRS NIST SP 800-171 Score:** **110 / 110** (UID: \SB00165728\)
+* **DoD SPRS NIST SP 800-171 Score:** **110 / 110** (UID: \PHASE1-OTA-TARGET\)
 * **Contract Type:** Commercial Firm-Fixed-Price (FFP) Task Order
 * **Standard Assessment Fee:** **$18,500.00  $24,500.00 USD**
 

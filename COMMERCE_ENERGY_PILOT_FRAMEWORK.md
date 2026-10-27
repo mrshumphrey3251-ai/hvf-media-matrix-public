@@ -1,4 +1,4 @@
-# Humphrey Virtual Farms LLC — Sovereign Energy C2 Pilot Deployment Framework
+﻿# Humphrey Virtual Farms LLC — Sovereign Energy C2 Pilot Deployment Framework
 
 ## Overview
 This document outlines the unclassified, four-phase commercial pilot deployment framework for integrating the HVFNexus Sovereign Energy Command and Control (C2) engine into municipal utilities, electric cooperatives, and industrial agricultural facilities. 
@@ -37,7 +37,7 @@ This document outlines the unclassified, four-phase commercial pilot deployment 
 ---
 
 ## Pre-Award Security & Cyber Standards
-* **Federal Regulatory Clearance:** NIST SP 800-171 Rev 2 Score: **110 / 110** (DoD SPRS UID: \SB00165728\).
+* **Federal Regulatory Clearance:** NIST SP 800-171 Rev 2 Score: **110 / 110** (DoD SPRS UID: \PHASE1-OTA-TARGET\).
 * **Isolation Doctrine:** Zero external public cloud dependencies; complete operational technology (OT) network isolation.
 
 ---

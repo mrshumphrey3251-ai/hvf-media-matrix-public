@@ -1,4 +1,4 @@
-# HUMPHREY VIRTUAL FARMS LLC // DAY-1 IMMEDIATE FUND RELEASE & POST-AWARD CAPITAL BUDGET PLAN
+﻿# HUMPHREY VIRTUAL FARMS LLC // DAY-1 IMMEDIATE FUND RELEASE & POST-AWARD CAPITAL BUDGET PLAN
 **Entity:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5`)  
 **Controlling Authority:** Jeffery Humphrey, Founder, CEO, & Principal Sovereign Architect  
 **Statutory & Federal Authorities:** FAR Part 12 (`52.212-4`), FAR `52.232-40` (15-Day Accelerated Small Business Payment), DFARS `252.232-7003` (PIEE/WAWF Electronic Invoicing), 10 U.S.C. 4022 (OTA Payable Milestones), & OK Statutes Title 61  
@@ -8,7 +8,7 @@
 
 ## 1. Executive Mandate: Zero Out-of-Pocket Pre-Funding & Day-1 Mobilization Release
 
-Humphrey Virtual Farms LLC does not finance government or commercial hardware setup out of pocket. All contracts awarded under Tradewinds Dockets `10-26-3952` and `9-26-3703` incorporate **Day-1 Cryptographic License Issuance & Mobilization Invoicing** so setup capital is released immediately upon contract execution:
+Humphrey Virtual Farms LLC does not finance government or commercial hardware setup out of pocket. All contracts awarded under Tradewinds Dockets `10-26-3976` and `9-26-3703` incorporate **Day-1 Cryptographic License Issuance & Mobilization Invoicing** so setup capital is released immediately upon contract execution:
 
 | Payment Mechanism | Applicable Award Size | Trigger Event on Day 1 of Award | Statutory Settlement Timeline |
 | :--- | :--- | :--- | :--- |
@@ -38,3 +38,4 @@ Immediately upon receipt of Day-1 funds into the Humphrey Virtual Farms LLC oper
 1. **Hour 1 (Contract Signature):** Generate customer-specific `SHA-256` Hardware-Locked License Certificate from the Sovereign C2 Console (`Port 8501`) and transmit electronically to the Contracting Officer's Representative (COR).
 2. **Hour 2 (Immediate Invoicing):** Submit **Milestone #01 / COTS License Delivery Invoice** via DoD **PIEE / WAWF** (or process Government Purchase Card swipe for orders `<= $25,000`) citing **`FAR 52.232-40` (15-Day Accelerated Payment to Small Business `CAGE 1AHA8`)**.
 3. **Day 2?15 (Fund Settlement & Bucket Split):** Upon ACH wire receipt, execute the **5-Bucket Capital Allocation transfer** (`18%` Setup Hardware, `35%` CEO/SME Comp, `15%` TRL 8 Integration, `17%` Tax/Legal Escrow, `15%` Sovereign War Chest) BEFORE ordering customer-site hardware.
+

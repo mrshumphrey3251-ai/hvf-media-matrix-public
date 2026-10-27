@@ -1,4 +1,4 @@
-# DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE SUBMISSION RECORD (UPDATED v8.0.0)
+﻿# DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE SUBMISSION RECORD (UPDATED v8.0.0)
 ## DOCKET: 9-26-3703 | PROJECT EBONY
 
 - **Contractor:** Humphrey Virtual Farms LLC (Madill, OK)
@@ -11,7 +11,7 @@
 - **Initial Filing Date:** Sep 24, 2026 6:34 PM CDT (Baseline TRL 4)
 - **Expanded Technical Upgrade Date:** 2026-10-24T19:40:50.426079+00:00
 - **Strategic Focus Area:** Assuring Cybersecurity, Autonomous Edge C2 & Critical Infrastructure Survivability
-- **Technology Readiness Level:** **TRL 6 / TRL 7** (System Prototype Demonstrated in Operational Bare-Metal Environment -- Upgraded from Initial TRL 4 Filing)
+- **Technology Readiness Level:** **TRL 4 Software Emulation Testbed** (System Prototype Demonstrated in Operational Bare-Metal Environment -- Upgraded from Initial TRL 4 Filing)
 - **Proposed ROM:** **$1,485,000.00** (12-Month Period of Performance)
 - **Data Rights Assertion:** DFARS 252.227-7018 (100% Private Background IP Retained; Government Purpose Rights)
 - **Cybersecurity & Compliance Posture:** DoD SPRS **110 / 110** (NIST SP 800-171 Rev 2) & NIST SP 800-82 Rev 2
@@ -38,7 +38,7 @@ iv. **Business Model:** Humphrey Virtual Farms LLC operates as an agile Nontradi
 
 | Capability / Verification Pillar | Initial Filing (Sep 24, 2026) | Current Verified Posture (`v8.0.0-sovereign-master-seal`) |
 | :--- | :--- | :--- |
-| **1. Technology Readiness Level (TRL)** | TRL 4 (Bench Breadboard) | **TRL 6 / TRL 7** (Full End-to-End Bare-Metal System Prototype Demonstrated) |
+| **1. Technology Readiness Level (TRL)** | TRL 4 (Bench Breadboard) | **TRL 4 Software Emulation Testbed** (Full End-to-End Bare-Metal System Prototype Demonstrated) |
 | **2. Compiled Sovereign C2 & Level-5 Modules** | 15 Vertical Blueprints | **631 / 631 Compiled Python Modules** (`616` C2 + `15` Level-5 Extensions) |
 | **3. Automated Unit & Stress Test Suite** | Bench Verification | **83 / 83 Automated Test Suites PASSED (100.0%)** (`run_all_83_tests.py`) |
 | **4. Red-Team Adversarial Penetration Harness** | Architectural Design | **17 / 17 Live Cyber-Attack Vectors Blocked (`0` Breaches)** (`test_client_penetration.py`) |
@@ -55,18 +55,18 @@ I am Jeffery Humphrey, Founder, Chief Executive Officer, and Apex Architect of H
 
 ---
 
-## INTEGRATED HOST OPERATING CONSOLE & 26-MODULE PER-NODE PRICE SCHEDULE (`DOCKET 10-26-3952`)
+## INTEGRATED HOST OPERATING CONSOLE & 26-MODULE PER-NODE PRICE SCHEDULE (`DOCKET 10-26-3976`)
 
-**1. Turnkey TRL 7 Operating Console Proof (`Project Ebony` -- 26 Modules / 72 Verified Controls):**  
-Docket `10-26-3952` executes natively inside the **HVF Level-5 Sovereign C2 Operating Console**, a fully operational, bare-metal Command & Control enclave (`631 / 631` compiled Python/C modules, Master SHA-256 Merkle Root: `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`, `83 / 83` unit test suites passing at `100.0%`).
+**1. Turnkey TRL 4 (Phase-1 OTA Target: TRL 6) Operating Console Proof (`Project Ebony` -- 26 Modules / 72 Verified Controls):**  
+Docket `10-26-3976` executes natively inside the **HVF Level-5 Sovereign C2 Operating Console**, a fully operational, bare-metal Command & Control enclave (`631 / 631` compiled Python/C modules, Master SHA-256 Merkle Root: `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`, `83 / 83` unit test suites passing at `100.0%`).
 
 **2. Unbundled Per-Node Licensing Scope (DFARS `252.227-7018` & `227.7202`):**  
-* **Base Entry Pilot (`CLIN 0001`):** The entry pilot price filed on Tradewinds Docket `10-26-3952` covers **strictly `CLIN 0001` (`Module #01: Sovereign Command Chronos Base Router` on `1` Single Bare-Metal Node)**.
-* **Individual Add-On Modules (`CLIN 0002` - `CLIN 0026`):** Each of the remaining **25 Command Modules** in the Operating Console is priced individually **per physical hardware node / per robotic chassis / per training seat** (`1 License = 1 Hardware UUID`). Government and commercial buyers may add individual modules to a `10-26-3952` contract award via sole-source modification (10 U.S.C. 4022 / FAR Part 12):
+* **Base Entry Pilot (`CLIN 0001`):** The entry pilot price filed on Tradewinds Docket `10-26-3976` covers **strictly `CLIN 0001` (`Module #01: Sovereign Command Chronos Base Router` on `1` Single Bare-Metal Node)**.
+* **Individual Add-On Modules (`CLIN 0002` - `CLIN 0026`):** Each of the remaining **25 Command Modules** in the Operating Console is priced individually **per physical hardware node / per robotic chassis / per training seat** (`1 License = 1 Hardware UUID`). Government and commercial buyers may add individual modules to a `10-26-3976` contract award via sole-source modification (10 U.S.C. 4022 / FAR Part 12):
 
 | CLIN | Module # & Name | Licensing Basis (Strict Per-Node) | Annual Gov Price | Monthly Commercial |
 | :--- | :--- | :--- | :--- | :--- |
-| `CLIN 0001` | **Mod #01:** `Sovereign Command (Chronos Base Router)` | **1 Single Node (`10-26-3952` Base Pilot)** | **Base Pilot Price** | **$2,450 / mo** |
+| `CLIN 0001` | **Mod #01:** `Sovereign Command (Chronos Base Router)` | **1 Single Node (`10-26-3976` Base Pilot)** | **Base Pilot Price** | **$2,450 / mo** |
 | `CLIN 0002` | **Mod #02:** `System Overview & Preflight WORM Gate` | Per Enclave Server Node | **$35,000 / yr** | **$3,500 / mo** |
 | `CLIN 0003` | **Mod #03:** `Master C2 Cockpit (60Hz Microgrid & Fault C2)` | Per Substation / TOC Node (`19` Controls) | **$95,000 / yr** | **$8,900 / mo** |
 | `CLIN 0004` | **Mod #04:** `Autonomous Build Forge (AST Synthesizer)` | Per Engineering Enclave Node | **$110,000 / yr** | **$9,800 / mo** |
@@ -95,3 +95,4 @@ Docket `10-26-3952` executes natively inside the **HVF Level-5 Sovereign C2 Oper
 | **TOTAL** | **All 26 Modules Unbundled (1 Node Each)** | **1 Single Complete Enclave Node** | **$1,630,000 / yr** | **$148,950 / mo** |
 | `CLIN 1004-A` | **Full 26-Module Console Bundle (1 Node)** | **1 Single Bare-Metal TOC Node** | **$895,000 / yr** | **$79,500 / mo** |
 | `CLIN 1004-B` | **Military Installation Fleet License (25 Nodes)** | **Up to 25 Enclave/Robotic Nodes (1 Base)** | **$2,450,000 / yr** | **$215,000 / mo** |
+

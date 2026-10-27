@@ -1,4 +1,4 @@
-{
+﻿{
   "cage_code": "1AHA8",
   "uei": "S1M4ENLHTDH5",
   "status": "PUBLIC_DEFENSE_MATRIX_ACTIVE",
@@ -9,7 +9,7 @@
   "federal_track": {
     "agency": "DoD CDAO Tradewinds Solutions Marketplace",
     "docket": "9-26-3703",
-    "trl_posture": "TRL 6 / TRL 7 (631 Modules, 83/83 Test Suites, 17/17 Red-Team Blocks)",
+    "trl_posture": "TRL 4 Software Emulation Testbed (631 Modules, 83/83 Test Suites, 17/17 Red-Team Blocks)",
     "proposed_ota_rom": "$1,485,000.00 (10 U.S.C. 4022)"
   },
   "state_track": {
@@ -21,3 +21,4 @@
   },
   "updated_at_utc": "2026-10-25T00:04:57.775697+00:00"
 }
+

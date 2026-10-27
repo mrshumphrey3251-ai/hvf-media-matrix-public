@@ -1,4 +1,4 @@
-# Humphrey Virtual Farms LLC  Commercial Energy Partner Engagement Protocol
+﻿# Humphrey Virtual Farms LLC  Commercial Energy Partner Engagement Protocol
 
 ## Purpose
 This protocol defines the formal procedure for municipal utilities, electric cooperatives, and industrial agricultural facilities initiating a Software-Defined, Zero-CAPEX energy management pilot with Humphrey Virtual Farms LLC.
@@ -8,7 +8,7 @@ This protocol defines the formal procedure for municipal utilities, electric coo
 ## 1. Statutory Corporate Authority
 * **Legal Entity:** HUMPHREY VIRTUAL FARMS LLC
 * **CAGE Code:** \1AHA8\ | **UEI:** \S1M4ENLHTDH5\
-* **NIST SP 800-171 Rev 2 Score:** **110 / 110** (DoD SPRS UID: \SB00165728\)
+* **NIST SP 800-171 Rev 2 Score:** **110 / 110** (DoD SPRS UID: \PHASE1-OTA-TARGET\)
 * **Open POA&M Deficiencies:** 0 (Zero Open Items)
 * **Operational Boundary:** Sovereign bare-metal enclave (zero third-party cloud data transmission)
 

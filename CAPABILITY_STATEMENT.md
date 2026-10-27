@@ -1,11 +1,11 @@
-# Humphrey Virtual Farms LLC — Capability Statement
+﻿# Humphrey Virtual Farms LLC — Capability Statement
 
 ## Federal Acquisition Profile
 * **Entity Name:** HUMPHREY VIRTUAL FARMS LLC
 * **CAGE Code:** 1AHA8
 * **UEI:** S1M4ENLHTDH5
-* **DoD SPRS Status:** NIST SP 800-171 Rev 2 Active (Score: 110/110)
-* **DoD UID:** SB00165728
+* **DoD SPRS Status:** NIST SP 800-171 Rev 2 Active (Score: TRL 4 Architectural Mapping (Phase-1 OTA Target))
+* **DoD UID:** PHASE1-OTA-TARGET
 * **Business Classification:** Small Business / Industrial Technology Provider
 * **Point of Contact:** Jeffery Humphrey, CEO
 * **Email:** [REDACTED_PUBLIC_RELEASE_CONTACT]
@@ -21,3 +21,4 @@
 * **541511** — Custom Computer Programming Services
 * **541715** — Research & Development in Engineering & Physical Sciences
 * **111998** — All Other Miscellaneous Crop Farming
+

@@ -1,11 +1,11 @@
-# Humphrey Virtual Farms LLC — APEX Capability Profile
+﻿# Humphrey Virtual Farms LLC — APEX Capability Profile
 
 ## Statutory Procurement Data
 * **Legal Business Name:** HUMPHREY VIRTUAL FARMS LLC
 * **CAGE Code:** 1AHA8
 * **UEI:** S1M4ENLHTDH5
 * **DoD SPRS NIST SP 800-171 Score:** **110 / 110** (BASIC)
-* **DoD Unique Identifier (UID):** SB00165728
+* **DoD Unique Identifier (UID):** PHASE1-OTA-TARGET
 * **Open POA&M Deficiencies:** 0 (Zero Deficiencies)
 * **DFARS Compliance:** Fully Compliant with DFARS 252.204-7012, 7019, and 7020
 * **Corporate Leadership:** Jeffery Humphrey, CEO | [REDACTED_PUBLIC_RELEASE_CONTACT]

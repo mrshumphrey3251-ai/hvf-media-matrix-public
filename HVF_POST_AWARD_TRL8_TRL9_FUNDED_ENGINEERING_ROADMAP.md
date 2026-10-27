@@ -1,14 +1,14 @@
-# HUMPHREY VIRTUAL FARMS LLC // POST-AWARD TRL 8 & TRL 9 FUNDED ENGINEERING ROADMAP
+﻿# HUMPHREY VIRTUAL FARMS LLC // POST-AWARD TRL 8 & TRL 9 FUNDED ENGINEERING ROADMAP
 **Entity:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5`)  
 **Controlling Authority:** Jeffery Humphrey, Founder, CEO, & Principal Sovereign Architect  
-**Pre-Award Baseline Status:** `TRL 7` Complete & Frozen (`631 / 631` Modules, `83 / 83` Unit Tests, Master Merkle Root: `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`)  
+**Pre-Award Baseline Status:** `TRL 4 (Phase-1 OTA Target: TRL 6)` Complete & Frozen (`631 / 631` Modules, `83 / 83` Unit Tests, Master Merkle Root: `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`)  
 **Execution Condition:** All Work Packages (`WP-1` through `WP-6`) execute **strictly post-award** using settled funds from **Milestone #01 / Day-1 COTS License Release (`18%` Setup Hardware Bucket + `15%` TRL 8/9 Integration Bucket)**.
 
 ---
 
-## 1. Executive Boundary: Why Pre-Award Code Is Frozen at TRL 7
+## 1. Executive Boundary: Why Pre-Award Code Is Frozen at TRL 4 (Phase-1 OTA Target: TRL 6)
 
-1. **Zero Uncompensated Pre-Award Custom Engineering:** The Project Ebony Sovereign C2 Operating Console (`26` Modules / `72` Verified Controls) is 100% complete at **Technology Readiness Level 7 (`TRL 7`)**. No further out-of-pocket pre-award code modifications are required prior to contract award.
+1. **Zero Uncompensated Pre-Award Custom Engineering:** The Project Ebony Sovereign C2 Operating Console (`26` Modules / `72` Verified Controls) is 100% complete at **Technology Readiness Level 7 (`TRL 4 (Phase-1 OTA Target: TRL 6)`)**. No further out-of-pocket pre-award code modifications are required prior to contract award.
 2. **Plug-In Modularity Without Core Rewrites:** All post-award customer adaptations (`TRL 8` site hardware-in-the-loop binding and `TRL 9` multi-node base accreditation) attach as isolated plug-in drivers without modifying the sealed `631`-module `c2_cockpit` core.
 
 ---
@@ -32,3 +32,4 @@ Every post-award Work Package (`WP-1` through `WP-6`) is architected to load via
 * **0 Bytes Modified** inside the sealed `631` `c2_cockpit` core modules (`cc1ee1c8...949a`).
 * **100% Backwards Compatibility** with all `83 / 83` unit test suites and `1,420 / 1,420` Field Academy questions.
 * **100% Customer-Funded Execution:** No hardware ordering or site travel occurs until the Day-1 invoice clears into Humphrey Virtual Farms LLC's bank account.
+

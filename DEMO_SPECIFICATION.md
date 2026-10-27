@@ -1,4 +1,4 @@
-# Humphrey Virtual Farms LLC — Sovereign C2 Operational Demo Specification
+﻿# Humphrey Virtual Farms LLC — Sovereign C2 Operational Demo Specification
 
 ## Overview
 This specification details the unclassified operational parameters of the HVFNexus Sovereign Industrial Command & Control (C2) engine demonstrated for defense procurement officials, APEX Accelerators, and prime contractors.
@@ -13,7 +13,7 @@ This specification details the unclassified operational parameters of the HVFNex
 |                                                                         |
 |  [ STATUTORY VALIDATION ]    ->    [ LEDGER AUDIT ]   ->   [ C2 EVENT ] |
 |  CAGE: 1AHA8 / UEI: S1M4ENLHTDH5    PRAGMA Integrity       Real-Time    |
-|  SPRS Score: 110/110 (SB00165728)   SHA-256 Proof Chains   WORM Ingest  |
+|  SPRS Score: TRL 4 Architectural Mapping (Phase-1 OTA Target) (PHASE1-OTA-TARGET)   SHA-256 Proof Chains   WORM Ingest  |
 +-------------------------------------------------------------------------+
 \\\
 

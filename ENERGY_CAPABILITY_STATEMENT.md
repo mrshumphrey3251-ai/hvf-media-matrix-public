@@ -1,9 +1,9 @@
-# Humphrey Virtual Farms LLC  Critical Energy Infrastructure & Autonomous C2
+﻿# Humphrey Virtual Farms LLC  Critical Energy Infrastructure & Autonomous C2
 
 ## Corporate Identifiers & Regulatory Governance
 * **Legal Business Name:** HUMPHREY VIRTUAL FARMS LLC
 * **CAGE Code:** \1AHA8\ | **UEI:** \S1M4ENLHTDH5\
-* **NIST SP 800-171 Cyber Score:** **110 / 110** (SPRS DoD UID: \SB00165728\)
+* **NIST SP 800-171 Cyber Score:** **110 / 110** (SPRS DoD UID: \PHASE1-OTA-TARGET\)
 * **Open POA&M Deficiencies:** 0 (Zero Open Items)
 * **Executive Leadership:** Jeffery Humphrey, Chief Executive Officer & SME
 * **Contact:** [REDACTED_PUBLIC_RELEASE_CONTACT] | [REDACTED_PUBLIC_PHONE]

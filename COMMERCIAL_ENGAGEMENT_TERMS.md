@@ -1,4 +1,4 @@
-# Humphrey Virtual Farms LLC — Commercial Engagement Terms & Procurement Vehicles
+﻿# Humphrey Virtual Farms LLC — Commercial Engagement Terms & Procurement Vehicles
 
 ## Overview
 This document defines the standard contracting mechanisms, commercial fee structures, and procurement vehicles utilized by municipal utilities, commercial enterprises, and public agencies engaging Humphrey Virtual Farms LLC (CAGE: \1AHA8\, UEI: \S1M4ENLHTDH5\).
@@ -30,6 +30,6 @@ Humphrey Virtual Farms LLC accepts the following standard procurement methods:
 ## 3. Statutory Contracting Identifiers
 * **Legal Business Name:** HUMPHREY VIRTUAL FARMS LLC
 * **CAGE Code:** \1AHA8\ | **UEI:** \S1M4ENLHTDH5\
-* **DoD SPRS NIST SP 800-171 Score:** **110 / 110** (UID: \SB00165728\)
+* **DoD SPRS NIST SP 800-171 Score:** **110 / 110** (UID: \PHASE1-OTA-TARGET\)
 * **SAM.gov Status:** Active Small Business | EFT Active
 * **Executive Point of Contact:** Jeffery Humphrey, CEO | [REDACTED_PUBLIC_RELEASE_CONTACT]

@@ -1,4 +1,4 @@
----
+﻿---
 marp: true
 theme: gaia
 _class: lead
@@ -11,7 +11,7 @@ color: #c9d1d9
 ### Bare-Metal Edge Resilience & Critical Infrastructure Hardening
 **Presented to:** Oklahoma Department of Commerce & State Leadership
 **Contractor:** Humphrey Virtual Farms LLC | CAGE: 1AHA8
-**Date:** September 25, 2026 | Technology Readiness Level: TRL 7/8
+**Date:** September 25, 2026 | Technology Readiness Level: TRL 4 Software Emulation Testbed
 **Statutory Basis:** Oklahoma HB 2992 & DFARS 252.227-7018
 
 ---
@@ -115,3 +115,4 @@ Empirical benchmarks certified in the Federal Compliance Ledger:
 **Contact:**
 Humphrey Virtual Farms LLC
 Email: [REDACTED_PUBLIC_RELEASE_CONTACT] | CAGE: 1AHA8
+

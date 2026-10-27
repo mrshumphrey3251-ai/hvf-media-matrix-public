@@ -1,4 +1,4 @@
-# Humphrey Virtual Farms LLC — Official Release Notes v1.0.0
+﻿# Humphrey Virtual Farms LLC — Official Release Notes v1.0.0
 
 ## Release Milestone: \1.0.0-COMMERCE-ENERGY-READY\
 **Date:** October 10, 2026  
@@ -10,7 +10,7 @@
 
 ## 1. Statutory Cyber & Defense Baseline Certified
 * **DoD SPRS NIST SP 800-171 Rev 2 Score:** **110 / 110** (BASIC Confidence)
-* **DoD Unique Identifier (UID):** \SB00165728\
+* **DoD Unique Identifier (UID):** \PHASE1-OTA-TARGET\
 * **POA&M Status:** Zero Deficiencies (100% Implemented Controls)
 * **DoD PIEE Registration:** Active Contractor Account Administrator (CAM)
 * **Regulatory Compliance:** Pre-award eligible under DFARS 252.204-7012, 7019, and 7020
@@ -30,5 +30,5 @@
 * [\ENERGY_CAPABILITY_STATEMENT.md\](ENERGY_CAPABILITY_STATEMENT.md) — Critical Energy Infrastructure Dossier
 * [\COMMERCE_ENERGY_PILOT_FRAMEWORK.md\](COMMERCE_ENERGY_PILOT_FRAMEWORK.md) — Zero-CAPEX 4-Phase Energy Pilot Methodology
 * [\CAPABILITY_STATEMENT.md\](CAPABILITY_STATEMENT.md) — Comprehensive Federal Procurement Profile
-* [\SPRS_COMPLIANCE_ATTESTATION.md\](SPRS_COMPLIANCE_ATTESTATION.md) — NIST SP 800-171 110/110 Attestation
+* [\SPRS_COMPLIANCE_ATTESTATION.md\](SPRS_COMPLIANCE_ATTESTATION.md) — NIST SP 800-171 TRL 4 Architectural Mapping (Phase-1 OTA Target) Attestation
 * [\VERIFICATION_PROTOCOL.md\](VERIFICATION_PROTOCOL.md) — Independent Verification Guide for Contracting Officers

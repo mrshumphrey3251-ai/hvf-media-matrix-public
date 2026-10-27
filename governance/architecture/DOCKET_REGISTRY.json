@@ -6,7 +6,7 @@
   "active_docket": {
     "docket_id": "10-26-3976",
     "prior_docket_id": "9-26-3703",
-    "deleted_docket_id": "10-26-3952",
+    "deleted_docket_id": "10-26-3976",
     "status": "Received",
     "submitted_date": "2026-10-27",
     "readiness_level": "TRL 4",
@@ -15,3 +15,4 @@
     "proposed_ota": "$1.485M 12-Month Phase-1 Prototype OTA under 10 U.S.C. 4022"
   }
 }
+

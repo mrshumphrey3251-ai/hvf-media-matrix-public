@@ -1,10 +1,10 @@
-# Humphrey Virtual Farms LLC — Teaming & Defense Subcontracting Matrix
+﻿# Humphrey Virtual Farms LLC — Teaming & Defense Subcontracting Matrix
 
 ## Corporate Identifiers & Statutory Governance
 * **Legal Entity Name:** HUMPHREY VIRTUAL FARMS LLC
 * **CAGE Code:** 1AHA8
 * **UEI:** S1M4ENLHTDH5
-* **DoD SPRS NIST SP 800-171 Score:** **110 / 110** (UID: SB00165728)
+* **DoD SPRS NIST SP 800-171 Score:** **110 / 110** (UID: PHASE1-OTA-TARGET)
 * **Compliance Authority:** DFARS 252.204-7012, 7019, 7020 Compliant
 * **Executive POC:** Jeffery Humphrey, Chief Executive Officer | [REDACTED_PUBLIC_RELEASE_CONTACT]
 

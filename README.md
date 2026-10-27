@@ -53,4 +53,5 @@ Under **10 U.S.C. § 4022**, Humphrey Virtual Farms LLC proposes a **12-Month, $
 1. **Months 1–3 (Q1):** Subcontract electrical/PCB layout engineering and fabricate Revision-A Cortex-M7 + SiC MOSFET Kinetic Guillotine breadboards.
 2. **Months 4–6 (Q2):** Port TRL 4 C/Python deterministic control loops and Brain Three SHA-256 WORM ledger onto physical bare-metal silicon (`TRL 5`).
 3. **Months 7–9 (Q3):** Execute accredited third-party Hardware-in-the-Loop (HIL) oscilloscope verification of the `36.75ns` gate cutoff and perform formal NIST SP 800-171 / 800-82 cybersecurity auditing (`TRL 6`).
-4. **Months 10–12 (Q4):** Deliver ruggedized MIL-SPEC Tactical Control Units for DoD microgrid/OT field demonstration (`TRL 7`) and 10 U.S.C. § 4022(f) follow-on production readiness.
+4. **Months 10–12 (Q4):** Deliver ruggedized MIL-SPEC Tactical Control Units for DoD microgrid/OT field demonstration (`TRL 4 (Phase-1 OTA Target: TRL 6)`) and 10 U.S.C. § 4022(f) follow-on production readiness.
+
