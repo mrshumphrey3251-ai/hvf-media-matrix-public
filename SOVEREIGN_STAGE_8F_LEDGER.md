@@ -2,7 +2,7 @@
 **Authority:** Jeffery Humphrey, Founder, President & Chief Executive Officer (Apex Architect)  
 **Prime Identifiers:** CAGE: `1AHA8` | UEI: `S1M4ENLHTDH5` | Active DoD Tradewinds Docket: `10-26-3976` (Resubmission of `9-26-3703`)  
 **Current Readiness Level:** `TRL 4` (Laboratory Software Emulation Testbed & Mathematical Proof-of-Concept)  
-**Statutory Framework:** 10 U.S.C. § 4022 | DFARS 252.227-7018 (100% Small Business Background IP Retained) | NIST SP 800-171 / 800-82 (TRL 4 Architectural Mapping) | Oklahoma Title 61 & HB 2992  
+**Statutory Framework:** 10 U.S.C. Section 4022 | DFARS 252.227-7018 (100% Small Business Background IP Retained) | NIST SP 800-171 / 800-82 (TRL 4 Architectural Mapping) | Oklahoma Title 61 & HB 2992  
 **Repository Classification:** PUBLIC REDACTED ARCHITECTURAL BLUEPRINT (`humphreyvirtualfarm@gmail.com`)
 
 ---

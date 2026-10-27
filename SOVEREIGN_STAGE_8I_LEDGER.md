@@ -1,7 +1,7 @@
 # HUMPHREY VIRTUAL FARMS LLC // STAGE 8I BINARY VAULT & ZERO-LEAKAGE LEDGER
 **Authority:** Jeffery Humphrey, Founder, President & Chief Executive Officer (Apex Architect)
 **Prime Identifiers:** CAGE: `1AHA8` | UEI: `S1M4ENLHTDH5` | Active DoD Tradewinds Docket: `10-26-3976` (Resubmission of `9-26-3703`) | Readiness: `TRL 4` (Software Emulation Testbed)
-**Statutory Framework:** 10 U.S.C. § 4022 | DFARS 252.227-7018 (GPR) | NIST SP 800-171 (TRL 4 Architectural Mapping - Phase-1 OTA Target) | Oklahoma Title 61 & HB 2992
+**Statutory Framework:** 10 U.S.C. Section 4022 | DFARS 252.227-7018 (GPR) | NIST SP 800-171 (TRL 4 Architectural Mapping - Phase-1 OTA Target) | Oklahoma Title 61 & HB 2992
 **Repository Classification:** PUBLIC RELEASE INTERFACE (DFARS 252.227-7018 GPR | 100% Text & Binary PII Redacted)
 
 ---
