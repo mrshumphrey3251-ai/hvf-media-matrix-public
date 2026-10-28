@@ -6,7 +6,7 @@
 > * **Master Video Deliverable:** `c2_cockpit/proposals/EBONY_V8_CDAO_RUBRIC_VERIFICATION_20261028.mp4` (`28.72 MB` | SHA-256: `605c6c3e77ddabb3d151e2c828ab7f69d779a1f7a4de73ba073386940f342d7b`)
 > * **Master PDF Script & AoA Dossier:** `c2_cockpit/proposals/TRADEWINDS_RESUBMISSION_SCRIPT_10_26_3976.pdf`
 > * **Empirical Verification Standing:** `636 / 636` Compiled C2 Modules (`1,961` Private / `1,770` Public) | `85 / 85` Automated Test Suites PASSED (`100.0%`) | `17 / 17` Red-Team Penetration Vectors BLOCKED | `52` SQLite WORM & Memory Tables | `1,420` Verified Field Academy Exam Questions
-> * **Shared Core C2 Cryptographic Merkle Root (SHA-256):** `bf94e50c6a9369754efd2588977f200b3b8c949d2143782b4d0ead2aa4d4d0c2`
+> * **Shared Core C2 Cryptographic Merkle Root (SHA-256):** `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`
 
 ---
 # Humphrey Virtual Farms LLC — Project Ebony (v8.0.0)
