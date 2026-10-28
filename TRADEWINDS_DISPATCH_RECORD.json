@@ -1,6 +1,6 @@
 {
   "dispatch_protocol": "HVF-TRADEWINDS-DISPATCH-v8.0",
-  "timestamp_utc": "2026-10-28T19:18:18.209225+00:00",
+  "timestamp_utc": "2026-10-28T19:21:18.782825+00:00",
   "submission_id": "10-26-3976",
   "prior_submission_id": "9-26-3703",
   "readiness_level": "TRL 4 (Laboratory Software Emulation Testbed)",
@@ -39,8 +39,8 @@
     }
   ],
   "git_provenance": {
-    "private_repo_commit": "761ed5c3f1936360c729349ef0ac3414a844cbd9",
-    "public_repo_commit": "92e4dbe0673769537422195e63334de83278fa0e",
+    "private_repo_commit": "ca8109bd427f4ebbe2a8c11a93362f24f66606d7",
+    "public_repo_commit": "eb22db73123583e04edd1658a17535f6516cf7a1",
     "tag_verified": true
   },
   "software_emulation_telemetry": {
