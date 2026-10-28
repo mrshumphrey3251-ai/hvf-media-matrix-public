@@ -17,7 +17,7 @@ import urllib.request
 from datetime import datetime
 from pathlib import Path
 
-BASE_DIR = Path("C:/HVF_Repos/hvf-media-matrix-private")
+BASE_DIR = Path("C:/hvf_c2/hvf-media-matrix-private")
 VAULT_DB = BASE_DIR / "hvf_memory_vault.db"
 LEDGER_DB = BASE_DIR / "c2_cockpit" / "matrix_ledger.db"
 

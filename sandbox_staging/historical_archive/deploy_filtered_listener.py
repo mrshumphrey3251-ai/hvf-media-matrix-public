@@ -8,7 +8,7 @@ import sqlite3
 from datetime import datetime
 import py_compile
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 CACHE_DIR = os.path.join(BASE_DIR, "memory_core", "audio_cache")
 ENV_PATH = os.path.join(BASE_DIR, ".env")
@@ -208,5 +208,7 @@ with open(TARGET_FILE, "w", encoding="utf-8") as f:
 
 py_compile.compile(TARGET_FILE, doraise=True)
 print("[DAEMON_COMPILED] sovereign_voice_listener.py deployed with confidence squelch filter.")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

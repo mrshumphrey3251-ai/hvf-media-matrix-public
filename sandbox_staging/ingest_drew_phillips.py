@@ -65,7 +65,7 @@ def render():
 
     print("2. Verifying instant semantic recall from hvf_iron_dome_core...")
 
-    db_path = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+    db_path = r"C:\hvf_c2\hvf-media-matrix-private\chroma_db"
 
     chroma_client = chromadb.PersistentClient(path=db_path)
 

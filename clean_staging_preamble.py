@@ -2,7 +2,7 @@ from pathlib import Path
 import re
 
 targets = [
-    Path(r"C:\HVF_Repos\hvf-media-matrix-private\sandbox_staging\api_gateway.py"),
+    Path(r"C:\hvf_c2\hvf-media-matrix-private\sandbox_staging\api_gateway.py"),
     Path(r"C:\HVF_Repos\hvf-media-matrix-public\sandbox_staging\api_gateway.py")
 ]
 

@@ -17,7 +17,7 @@ def render():
 
 
 
-    REPO_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+    REPO_DIR = r"C:\hvf_c2\hvf-media-matrix-private"
 
     OUT_PATH = os.path.join(REPO_DIR, "drone_field_view.jpg")
 

@@ -39,7 +39,7 @@ def render():
 
         "master_dir": r"C:\HVF_Repos",
 
-        "db_dir": r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db",
+        "db_dir": r"C:\hvf_c2\hvf-media-matrix-private\chroma_db",
 
         "collection_name": "hvf_iron_dome_core",
 

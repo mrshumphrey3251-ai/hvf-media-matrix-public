@@ -2,7 +2,7 @@ import os
 import sys
 from pathlib import Path
 
-priv_root = Path(r"C:\HVF_Repos\hvf-media-matrix-private")
+priv_root = Path(r"C:\hvf_c2\hvf-media-matrix-private")
 pub_root  = Path(r"C:\HVF_Repos\hvf-media-matrix-public")
 
 print(f"[*] Private Repo Exists: {priv_root.exists()} | Path: {priv_root}")

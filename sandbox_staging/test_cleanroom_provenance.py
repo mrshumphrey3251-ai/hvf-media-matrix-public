@@ -17,7 +17,7 @@ def render():
 
 
 
-    sys.path.append(r"C:\HVF_Repos\hvf-media-matrix-private\core_engine")
+    sys.path.append(r"C:\hvf_c2\hvf-media-matrix-private\core_engine")
 
     from ebony_cleanroom_provenance import EbonyProvenanceEngine
 

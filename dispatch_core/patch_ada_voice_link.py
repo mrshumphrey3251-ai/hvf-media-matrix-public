@@ -4,7 +4,7 @@ import re
 import ast
 import py_compile
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 TARGET_FILES = [
     os.path.join(BASE_DIR, "ebony_console.py"),
     os.path.join(BASE_DIR, "ebony_console_GREEN.py")

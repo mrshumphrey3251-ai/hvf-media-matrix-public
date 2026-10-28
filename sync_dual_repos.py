@@ -1,7 +1,7 @@
 import shutil
 from pathlib import Path
 
-priv_root = Path(r"C:\HVF_Repos\hvf-media-matrix-private")
+priv_root = Path(r"C:\hvf_c2\hvf-media-matrix-private")
 pub_root  = Path(r"C:\HVF_Repos\hvf-media-matrix-public")
 
 sync_folders = [

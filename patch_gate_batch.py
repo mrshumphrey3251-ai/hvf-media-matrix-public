@@ -1,5 +1,5 @@
 targets = [
-    r"C:\HVF_Repos\hvf-media-matrix-private\c2_cockpit\c2_gate_dashboard.py",
+    r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\c2_gate_dashboard.py",
     r"C:\HVF_Repos\hvf-media-matrix-public\c2_cockpit\c2_gate_dashboard.py"
 ]
 

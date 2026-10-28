@@ -2,7 +2,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 targets = [
-    Path(r"C:\HVF_Repos\hvf-media-matrix-private\governance\legal\MUTUAL_NDA_VANDERPOOL_ENERGY_DESIGN_FINAL.md"),
+    Path(r"C:\hvf_c2\hvf-media-matrix-private\governance\legal\MUTUAL_NDA_VANDERPOOL_ENERGY_DESIGN_FINAL.md"),
     Path(r"C:\HVF_Repos\hvf-media-matrix-public\governance\legal\MUTUAL_NDA_VANDERPOOL_ENERGY_DESIGN_FINAL.md")
 ]
 

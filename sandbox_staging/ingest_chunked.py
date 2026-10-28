@@ -17,7 +17,7 @@ def render():
 
 
 
-    json_path = Path(r"C:\HVF_Repos\hvf-media-matrix-private\c2_cockpit\SOVEREIGN_CORPUS.json")
+    json_path = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\SOVEREIGN_CORPUS.json")
 
     db_path = r"C:\HVF_Repos\HVF_Matrix_Core\vector_vault"
 

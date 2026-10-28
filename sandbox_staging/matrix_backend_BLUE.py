@@ -23,7 +23,7 @@ def render():
 
     app = FastAPI(title="HVF Media Matrix API")
 
-    REPO_DIR = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private")
+    REPO_DIR = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private")
 
     MODEL_ID = os.path.join(REPO_DIR, "sovereign_ir_model")
 

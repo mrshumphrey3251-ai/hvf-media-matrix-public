@@ -3,7 +3,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 targets = [
-    Path(r"C:\HVF_Repos\hvf-media-matrix-private\governance\architecture\DOCKET_REGISTRY.json"),
+    Path(r"C:\hvf_c2\hvf-media-matrix-private\governance\architecture\DOCKET_REGISTRY.json"),
     Path(r"C:\HVF_Repos\hvf-media-matrix-public\governance\architecture\DOCKET_REGISTRY.json")
 ]
 

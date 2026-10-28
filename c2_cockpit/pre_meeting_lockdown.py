@@ -7,8 +7,8 @@ import hashlib
 from datetime import datetime
 from pathlib import Path
 
-cockpit_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
-private_root = Path("C:/HVF_Repos/hvf-media-matrix-private")
+cockpit_dir = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit")
+private_root = Path("C:/hvf_c2/hvf-media-matrix-private")
 db_paths = [
     cockpit_dir / "matrix_ledger.db",
     private_root / "hvf_memory_vault.db"

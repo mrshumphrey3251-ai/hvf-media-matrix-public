@@ -12,7 +12,7 @@ def harvest_enclave_ground_truth() -> str:
     """Pre-Generation Ingress Gatekeeper.
     Queries bare-metal disk and SQLite ledger to inject verified facts into model context.
     """
-    cockpit_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
+    cockpit_dir = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit")
     db_path = cockpit_dir / "matrix_ledger.db"
 
     target_files = [
@@ -74,7 +74,7 @@ def enforce_bare_metal_invariants(raw_text: str) -> str:
     import re
     from pathlib import Path
 
-    cockpit_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
+    cockpit_dir = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit")
     corrected = raw_text
 
     # INVARIANT 0: Phonetic CAGE Code Acoustic Normalization

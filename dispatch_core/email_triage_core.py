@@ -19,7 +19,7 @@ import streamlit as st
 load_dotenv(override=True)
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 ACTIVE_MODEL = "openai/gpt-oss-120b"
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 CHROMA_PATH = os.path.join(BASE_DIR, "chroma_db")
 KEY_FILE = os.path.join(BASE_DIR, "memory_core", "vault.key")

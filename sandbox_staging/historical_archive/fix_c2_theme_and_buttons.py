@@ -9,7 +9,7 @@ import py_compile
 # Design Standard: MIL-STD-1472 Defense Command & Control Interface
 # ==============================================================================
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 FILES_TO_FIX = [
     os.path.join(BASE_DIR, "ebony_console.py"),
     os.path.join(BASE_DIR, "ebony_console_GREEN.py")
@@ -206,5 +206,7 @@ for fpath in FILES_TO_FIX:
 
 print("\n" + "=" * 80)
 print("DEFENSE C2 THEME & VETO CONTROLS OPERATIONAL")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

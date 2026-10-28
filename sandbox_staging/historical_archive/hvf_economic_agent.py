@@ -10,7 +10,7 @@ from groq import Groq
 load_dotenv(override=True)
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 ACTIVE_MODEL = "openai/gpt-oss-120b"
-DB_PATH = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db")
+DB_PATH = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private\hvf_memory_vault.db")
 
 class HVFEconomicAgent:
     """
@@ -172,4 +172,5 @@ if __name__ == "__main__":
     agent = HVFEconomicAgent()
     print("\n--- Running Sovereign Economic-omni-industrial Fusion Agent ---")
     result = agent.execute_economic_diagnostic("ZONE-1-NORTH", "corn")
-    print(f"\n{result['verdict']}")
+    print(f"\n{result['verdict']}")
+

@@ -3,7 +3,7 @@ import sqlite3
 import hashlib
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 GOV_DIR = os.path.join(BASE_DIR, "corporate_governance")
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 os.makedirs(GOV_DIR, exist_ok=True)
@@ -84,5 +84,7 @@ conn.close()
 
 print(f"[SUCCESS] Comprehensive evidentiary dossier updated with Sept 14 timestamp finding and sealed in hvf_memory_vault.db.")
 print(f"[SUCCESS] Cryptographic Record Digest: {doc_hash}")
-print(f"[SUCCESS] Governance File: {RECORD_FILE}")
-
+print(f"[SUCCESS] Governance File: {RECORD_FILE}")
+
+
+

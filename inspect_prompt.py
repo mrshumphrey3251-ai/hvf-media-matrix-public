@@ -1,7 +1,7 @@
 from pathlib import Path
 import re
 
-target = Path(r"C:\HVF_Repos\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py")
+target = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py")
 
 if not target.exists():
     print(f"[-] Target missing: {target}")

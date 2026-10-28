@@ -8,7 +8,7 @@ import sqlite3
 from datetime import datetime
 from pathlib import Path
 
-cockpit_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
+cockpit_dir = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit")
 briefcase_dir = Path("C:/HVF_Briefcase_Rob_Teele")
 db_path = cockpit_dir / "matrix_ledger.db"
 

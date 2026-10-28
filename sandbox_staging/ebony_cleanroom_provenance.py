@@ -53,7 +53,7 @@ def render():
 
         def __init__(self, db_path=None):
 
-            base_dir = r"C:\HVF_Repos\hvf-media-matrix-private"
+            base_dir = r"C:\hvf_c2\hvf-media-matrix-private"
 
             self.db_path = db_path or os.path.join(base_dir, "hvf_memory_vault.db")
 

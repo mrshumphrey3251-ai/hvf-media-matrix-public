@@ -2,7 +2,7 @@ import os
 import sys
 import py_compile
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 CORE_FILE = os.path.join(BASE_DIR, "email_triage_core.py")
 CONSOLE_FILES = [
     os.path.join(BASE_DIR, "ebony_console.py"),
@@ -353,5 +353,7 @@ for fpath in CONSOLE_FILES:
 
 print("\n" + "=" * 80)
 print("UPGRADE FLOW COMPLETE")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

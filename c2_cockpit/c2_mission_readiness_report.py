@@ -7,7 +7,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-cockpit_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
+cockpit_dir = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit")
 public_dir = Path("C:/HVF_Repos/hvf-media-matrix-public")
 db_path = cockpit_dir / "matrix_ledger.db"
 pipeline_path = cockpit_dir / "solicitation_pipeline.json"

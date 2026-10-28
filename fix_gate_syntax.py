@@ -2,7 +2,7 @@ from pathlib import Path
 import py_compile
 
 targets = [
-    Path(r"C:\HVF_Repos\hvf-media-matrix-private\c2_cockpit\c2_gate_dashboard.py"),
+    Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\c2_gate_dashboard.py"),
     Path(r"C:\HVF_Repos\hvf-media-matrix-public\c2_cockpit\c2_gate_dashboard.py")
 ]
 

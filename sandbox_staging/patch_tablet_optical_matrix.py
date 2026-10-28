@@ -21,7 +21,7 @@ def render():
 
 
 
-    BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+    BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 
     DAEMON_FILE = os.path.join(BASE_DIR, "optical_stream_daemon.py")
 

@@ -2,7 +2,7 @@ import sqlite3
 import secrets
 import os
 
-DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db"
+DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
 
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()

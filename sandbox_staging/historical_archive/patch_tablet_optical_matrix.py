@@ -4,7 +4,7 @@ import re
 import json
 import py_compile
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DAEMON_FILE = os.path.join(BASE_DIR, "optical_stream_daemon.py")
 CONFIG_FILE = os.path.join(BASE_DIR, "tablet_config.json")
 TARGET_FILES = [
@@ -326,4 +326,5 @@ for fpath in TARGET_FILES:
 
 print("\n" + "=" * 80)
 print("TABLET OPTICAL ROUTER INTEGRATION COMPLETE")
-print("=" * 80)
+print("=" * 80)
+

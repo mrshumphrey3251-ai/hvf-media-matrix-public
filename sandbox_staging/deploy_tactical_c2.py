@@ -19,7 +19,7 @@ def render():
 
 
 
-    BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+    BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 
     TARGET_FILE = os.path.join(BASE_DIR, "ebony_console_GREEN.py")
 

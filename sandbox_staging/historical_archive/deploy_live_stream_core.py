@@ -5,7 +5,7 @@ import ast
 import json
 import py_compile
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 CORE_FILE = os.path.join(BASE_DIR, "sovereign_comms_core.py")
 CONSOLE_FILES = [
     os.path.join(BASE_DIR, "ebony_console.py"),
@@ -472,5 +472,7 @@ def refactor_console(fpath):
 for cf in CONSOLE_FILES:
     refactor_console(cf)
 
-print("=" * 80)
-
+print("=" * 80)
+
+
+

@@ -22,7 +22,7 @@ import requests
 from datetime import datetime
 from pathlib import Path
 
-repo_dir = Path("C:/HVF_Repos/hvf-media-matrix-private")
+repo_dir = Path("C:/hvf_c2/hvf-media-matrix-private")
 cockpit_dir = repo_dir / "c2_cockpit"
 if str(cockpit_dir) not in sys.path: sys.path.insert(0, str(cockpit_dir))
 if str(repo_dir) not in sys.path: sys.path.insert(0, str(repo_dir))

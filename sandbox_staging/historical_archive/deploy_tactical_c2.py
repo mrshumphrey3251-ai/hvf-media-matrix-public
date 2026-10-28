@@ -3,7 +3,7 @@ import sys
 import re
 import py_compile
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 TARGET_FILE = os.path.join(BASE_DIR, "ebony_console_GREEN.py")
 ALT_FILE = os.path.join(BASE_DIR, "ebony_console.py")
 
@@ -194,4 +194,5 @@ py_compile.compile(ALT_FILE, doraise=True)
 
 print(f"[SUCCESS] Injected 🚫 Block Sender control at line {insert_btn3_idx}.")
 print(f"[SUCCESS] Compiled cleanly with zero syntax errors.")
-print("=" * 80)
+print("=" * 80)
+

@@ -3,8 +3,8 @@ import hashlib
 from datetime import datetime
 from pathlib import Path
 
-db_path = Path("C:/HVF_Repos/hvf-media-matrix-private/hvf_memory_vault.db")
-brief_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/proposals")
+db_path = Path("C:/hvf_c2/hvf-media-matrix-private/hvf_memory_vault.db")
+brief_dir = Path("C:/hvf_c2/hvf-media-matrix-private/proposals")
 brief_files = list(brief_dir.glob("TAILORED_BRIEF_DIU-AOI-2026-AUTONOMY.md"))
 
 if brief_files:

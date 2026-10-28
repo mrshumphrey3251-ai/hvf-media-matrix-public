@@ -2,7 +2,7 @@ from pathlib import Path
 import re
 
 targets = [
-    Path(r"C:\HVF_Repos\hvf-media-matrix-private\dispatch_core\ceo_authorization_gate.py"),
+    Path(r"C:\hvf_c2\hvf-media-matrix-private\dispatch_core\ceo_authorization_gate.py"),
     Path(r"C:\HVF_Repos\hvf-media-matrix-public\dispatch_core\ceo_authorization_gate.py")
 ]
 

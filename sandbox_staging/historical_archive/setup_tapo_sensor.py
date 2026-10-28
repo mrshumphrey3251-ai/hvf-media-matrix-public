@@ -6,7 +6,7 @@ import json
 import re
 import cv2
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 CONFIG_FILE = os.path.join(BASE_DIR, "tapo_config.json")
 
 print("=" * 80)
@@ -74,5 +74,7 @@ with open(CONFIG_FILE, "w", encoding="utf-8") as f:
     json.dump(config_data, f, indent=4)
 
 print(f"[SUCCESS] Configuration saved to: {CONFIG_FILE}")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

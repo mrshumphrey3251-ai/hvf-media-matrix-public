@@ -13,7 +13,7 @@ import hashlib
 import subprocess
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 COMMS_DIR = os.path.join(BASE_DIR, "strategic_comms")
 os.makedirs(COMMS_DIR, exist_ok=True)
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
@@ -140,5 +140,7 @@ print(f"  Artifact on Disk   : {ART3_PATH}")
 print(f"  Cryptographic Hash : {art3_hash[:16]} (Sealed in hvf_memory_vault.db)")
 print("  Windows Clipboard  : LOADED (Ready for immediate Ctrl + V in LinkedIn)")
 print("=" * 80)
-print("[SUCCESS] Article 03 staged on disk, loaded into clipboard, and sealed in hvf_memory_vault.db.")
-
+print("[SUCCESS] Article 03 staged on disk, loaded into clipboard, and sealed in hvf_memory_vault.db.")
+
+
+

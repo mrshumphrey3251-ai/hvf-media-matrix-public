@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 targets = [
-    Path(r"C:\HVF_Repos\hvf-media-matrix-private\governance\architecture\SIDEBAR_MODULES.json"),
+    Path(r"C:\hvf_c2\hvf-media-matrix-private\governance\architecture\SIDEBAR_MODULES.json"),
     Path(r"C:\HVF_Repos\hvf-media-matrix-public\governance\architecture\SIDEBAR_MODULES.json")
 ]
 

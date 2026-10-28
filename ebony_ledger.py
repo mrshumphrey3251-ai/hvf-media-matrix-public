@@ -9,7 +9,7 @@ import sqlite3
 import datetime
 import os
 
-DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\matrix_ledger.db"
+DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\matrix_ledger.db"
 
 def init_ledger(db_path=DB_PATH):
     """Initializes the database schema if not present."""

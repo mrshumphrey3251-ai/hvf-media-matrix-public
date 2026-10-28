@@ -9,7 +9,7 @@ import sys
 import sqlite3
 import hashlib
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 DIRECTIVE_FILE = os.path.join(BASE_DIR, "strategic_comms", "STRATEGIC_LINKEDIN_DIRECTIVE.txt")
 
@@ -94,5 +94,7 @@ if passed == 4:
 else:
     print(f"[AUDIT FAILED] Only {passed}/4 gates verified.")
     sys.exit(1)
-print("=" * 80)
-
+print("=" * 80)
+
+
+

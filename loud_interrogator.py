@@ -4,7 +4,7 @@ try:
     if env_key:
         print(f"[-] WARNING: Ghost Environment Variable found overriding the vault: {env_key[:8]}...")
     
-    path = r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml"
+    path = r"C:\hvf_c2\hvf-media-matrix-private\.streamlit\secrets.toml"
     sec = toml.load(path)
     vault_key = sec.get("GROQ_API_KEY", "").strip()
     print(f"[*] Vault Key loaded: {vault_key[:8]}...")

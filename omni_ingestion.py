@@ -3,7 +3,7 @@ import chromadb
 from chromadb.utils import embedding_functions
 
 # Connect to the Sovereign Iron Dome
-DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\chroma_db"
 client = chromadb.PersistentClient(path=DB_PATH)
 collection = client.get_or_create_collection(name="hvf_iron_dome_core")
 

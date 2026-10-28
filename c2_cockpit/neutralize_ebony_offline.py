@@ -4,7 +4,7 @@ Audits every Ebony script, catalogs locations, and enforces pure bare-metal exec
 """
 from pathlib import Path
 
-repo_dir = Path("C:/HVF_Repos/hvf-media-matrix-private")
+repo_dir = Path("C:/hvf_c2/hvf-media-matrix-private")
 print("=== [HVFNexus C2] AUDITING ALL EBONY INSTANCES ===")
 
 ebony_files = [p for p in repo_dir.rglob("*ebony*.py") if ".git" not in p.parts]

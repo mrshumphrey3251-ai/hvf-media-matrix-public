@@ -49,7 +49,7 @@ def render():
 
     client = Groq(api_key=groq_key)
 
-    db_path = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+    db_path = r"C:\hvf_c2\hvf-media-matrix-private\chroma_db"
 
     chroma_client = chromadb.PersistentClient(path=db_path)
 

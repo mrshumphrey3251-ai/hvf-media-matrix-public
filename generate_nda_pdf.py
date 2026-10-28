@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 from datetime import datetime, timezone
 
-private_dir = Path(r"C:\HVF_Repos\hvf-media-matrix-private\governance\legal")
+private_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\governance\legal")
 public_dir = Path(r"C:\HVF_Repos\hvf-media-matrix-public\governance\legal")
 private_dir.mkdir(parents=True, exist_ok=True)
 public_dir.mkdir(parents=True, exist_ok=True)

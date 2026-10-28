@@ -1,7 +1,7 @@
 import os
 import re
 
-file_path = r"C:\HVF_Repos\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py"
+file_path = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py"
 
 with open(file_path, "r", encoding="utf-8") as f:
     code = f.read()
@@ -131,4 +131,5 @@ new_code = parts_A[0] + NEW_NEXUS + '\nelif active_module == "📡 LinkedIn Engi
 
 with open(file_path, "w", encoding="utf-8") as f:
     f.write(new_code)
-print("✅ SUCCESS: Command Nexus structurally rebuilt and UI fused.")
+print("✅ SUCCESS: Command Nexus structurally rebuilt and UI fused.")
+

@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-DB_PATH = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit/matrix_ledger.db")
+DB_PATH = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit/matrix_ledger.db")
 
 def init_statutory_table():
     """Initializes immutable statutory compliance milestone table."""

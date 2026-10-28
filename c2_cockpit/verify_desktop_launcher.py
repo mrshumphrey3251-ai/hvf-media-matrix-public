@@ -8,8 +8,8 @@ import hashlib
 from datetime import datetime
 from pathlib import Path
 
-cockpit_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
-private_root = Path("C:/HVF_Repos/hvf-media-matrix-private")
+cockpit_dir = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit")
+private_root = Path("C:/hvf_c2/hvf-media-matrix-private")
 desktop_dir = Path(os.environ.get("USERPROFILE", "")) / "Desktop"
 db_path = cockpit_dir / "matrix_ledger.db"
 

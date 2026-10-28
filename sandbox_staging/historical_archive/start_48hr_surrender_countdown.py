@@ -2,7 +2,7 @@ import os
 import sqlite3
 from datetime import datetime, timezone, timedelta
 
-DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db"
+DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
 
 # Hard deadline: Exactly 48 hours post-severance
 execution_time = datetime(2026, 9, 22, 12, 0, 0)
@@ -48,4 +48,5 @@ conn.close()
 print(f"[SUCCESS] 48-Hour Section 9.3 Surrender Window logged in hvf_memory_vault.db")
 print(f"  Severance Executed : {execution_time.strftime('%Y-%m-%d %H:%M:%S')} CDT")
 print(f"  Surrender Deadline : {deadline_time.strftime('%Y-%m-%d %H:%M:%S')} CDT")
-print(f"  Surveillance State : RADIO SILENCE / MONITORING INBOX")
+print(f"  Surveillance State : RADIO SILENCE / MONITORING INBOX")
+

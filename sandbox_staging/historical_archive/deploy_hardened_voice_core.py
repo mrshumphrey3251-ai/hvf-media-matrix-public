@@ -6,7 +6,7 @@ import subprocess
 import threading
 import py_compile
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 VOICE_FILE = os.path.join(BASE_DIR, "sovereign_voice_engine.py")
 
 print("=" * 80)
@@ -123,5 +123,7 @@ test_speech = (
 )
 SovereignVoiceEngine.speak(test_speech, async_mode=False)
 print(f"[SUCCESS] Verbalized briefing to OpenRun: '{test_speech}'")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

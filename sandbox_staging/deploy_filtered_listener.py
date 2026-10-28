@@ -19,7 +19,7 @@ def render():
     from datetime import datetime
     import py_compile
 
-    BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+    BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
     DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
     CACHE_DIR = os.path.join(BASE_DIR, "memory_core", "audio_cache")
     ENV_PATH = os.path.join(BASE_DIR, ".env")

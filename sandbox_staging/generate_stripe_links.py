@@ -31,7 +31,7 @@ def render():
 
 
 
-    env_path = r"C:\HVF_Repos\hvf-media-matrix-private\.env"
+    env_path = r"C:\hvf_c2\hvf-media-matrix-private\.env"
 
     load_dotenv(dotenv_path=env_path, override=True)
 

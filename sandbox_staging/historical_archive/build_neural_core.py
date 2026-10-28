@@ -13,7 +13,7 @@ from chromadb.utils import embedding_functions
 
 CONFIG = {
     "master_dir": r"C:\HVF_Repos",
-    "db_dir": r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db",
+    "db_dir": r"C:\hvf_c2\hvf-media-matrix-private\chroma_db",
     "collection_name": "hvf_iron_dome_core",
     "chunk_size": 1000,
     "chunk_overlap": 150,
@@ -216,4 +216,5 @@ def build_neural_core():
     print("=" * 80)
 
 if __name__ == "__main__":
-    build_neural_core()
+    build_neural_core()
+

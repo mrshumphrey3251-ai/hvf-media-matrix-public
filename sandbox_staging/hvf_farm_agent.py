@@ -31,7 +31,7 @@ def render():
 
     ACTIVE_MODEL = "openai/gpt-oss-120b"
 
-    DB_PATH = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db")
+    DB_PATH = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private\hvf_memory_vault.db")
 
 
 

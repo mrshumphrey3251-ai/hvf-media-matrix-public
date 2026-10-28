@@ -19,7 +19,7 @@ def _execute_llm_synthesis(prompt: str) -> str:
     import os, toml
     from groq import Groq
     key = os.environ.get("GROQ_API_KEY", "")
-    sec_path = r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml"
+    sec_path = r"C:\hvf_c2\hvf-media-matrix-private\.streamlit\secrets.toml"
     if not key and os.path.exists(sec_path):
         try:
             sec = toml.load(sec_path)

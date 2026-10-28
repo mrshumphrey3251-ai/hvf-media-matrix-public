@@ -6,7 +6,7 @@ import time
 import cv2
 import py_compile
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 CORE_FILE = os.path.join(BASE_DIR, "sovereign_comms_core.py")
 HW_CONFIG_PATH = os.path.join(BASE_DIR, "hardware_config.json")
 TAPO_CONFIG_PATH = os.path.join(BASE_DIR, "tapo_credentials.json")
@@ -503,5 +503,7 @@ with open(CORE_FILE, "w", encoding="utf-8") as f:
 
 py_compile.compile(CORE_FILE, doraise=True)
 print(f"[SUCCESS] sovereign_comms_core.py compiled cleanly with zero-latency engine.")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

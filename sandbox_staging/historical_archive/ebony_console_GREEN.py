@@ -223,7 +223,7 @@ CRITICAL PERSONALITY OVERRIDE: You are a high-class, razor-sharp, smart-ass conf
 
 
 
-sys.path.insert(0, r"C:\HVF_Repos\hvf-media-matrix-private")
+sys.path.insert(0, r"C:\hvf_c2\hvf-media-matrix-private")
 
 from sovereign_voice_engine import SovereignVoiceEngine
 
@@ -295,7 +295,7 @@ def inject_ultimate_law(msg_list):
 
 
 
-CHROMA_DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+CHROMA_DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\chroma_db"
 
 COLLECTION_NAME = "hvf_iron_dome_core"
 
@@ -363,7 +363,7 @@ LINKEDIN_TOKEN = os.getenv("LINKEDIN_ACCESS_TOKEN")
 
 LINKEDIN_URN = os.getenv("LINKEDIN_AUTHOR_URN")
 
-REPO_DIR = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private")
+REPO_DIR = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private")
 
 DB_PATH = os.path.join(REPO_DIR, "hvf_memory_vault.db")
 

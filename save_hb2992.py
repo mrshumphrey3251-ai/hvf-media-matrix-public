@@ -1,7 +1,7 @@
 from pathlib import Path
 
 targets = [
-    Path(r"C:\HVF_Repos\hvf-media-matrix-private\governance\statutes\OK_HB_2992_STATUTORY_DIGEST.md"),
+    Path(r"C:\hvf_c2\hvf-media-matrix-private\governance\statutes\OK_HB_2992_STATUTORY_DIGEST.md"),
     Path(r"C:\HVF_Repos\hvf-media-matrix-public\governance\statutes\OK_HB_2992_STATUTORY_DIGEST.md")
 ]
 

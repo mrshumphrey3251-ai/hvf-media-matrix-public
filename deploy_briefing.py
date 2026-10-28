@@ -2,7 +2,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 targets = [
-    Path(r"C:\HVF_Repos\hvf-media-matrix-private\governance\briefings\OK_COMMERCE_EXECUTIVE_BRIEFING_2026.md"),
+    Path(r"C:\hvf_c2\hvf-media-matrix-private\governance\briefings\OK_COMMERCE_EXECUTIVE_BRIEFING_2026.md"),
     Path(r"C:\HVF_Repos\hvf-media-matrix-public\governance\briefings\OK_COMMERCE_EXECUTIVE_BRIEFING_2026.md")
 ]
 

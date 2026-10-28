@@ -13,7 +13,7 @@ import sqlite3
 import subprocess
 import webbrowser
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 BRIEF_FILE = os.path.join(BASE_DIR, "proposals", "TAILORED_BRIEF_DIU-AOI-2026-AUTONOMY.md")
 DIU_PORTAL_URL = "https://www.diu.mil/work-with-us/companies/cso-process"
@@ -121,5 +121,7 @@ def main():
         print("\n[INVALID SELECTION] Run script again with 1, 2, 3, 4, A, C, or O.")
 
 if __name__ == "__main__":
-    main()
-
+    main()
+
+
+

@@ -12,7 +12,7 @@ import sqlite3
 import hashlib
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 COMMS_DIR = os.path.join(BASE_DIR, "strategic_comms")
 os.makedirs(COMMS_DIR, exist_ok=True)
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
@@ -172,5 +172,7 @@ print(f"  Article 02 Status  : STAGED_READY_FOR_DEPLOYMENT ({art2_words:,} words
 print(f"  Artifact on Disk   : {ART2_PATH}")
 print(f"  Cryptographic Hash : {art2_hash[:16]} (Sealed in hvf_memory_vault.db)")
 print("=" * 80)
-print("[SUCCESS] LinkedIn Editorial Pipeline initialized in hvf_memory_vault.db and Article 02 staged on disk.")
-
+print("[SUCCESS] LinkedIn Editorial Pipeline initialized in hvf_memory_vault.db and Article 02 staged on disk.")
+
+
+

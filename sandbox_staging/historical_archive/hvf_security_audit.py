@@ -2,7 +2,7 @@ import os
 import re
 import sqlite3
 
-REPO_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+REPO_DIR = r"C:\hvf_c2\hvf-media-matrix-private"
 DB_PATH = os.path.join(REPO_DIR, "hvf_memory_vault.db")
 
 print("==================================================")

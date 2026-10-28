@@ -13,7 +13,7 @@ import hashlib
 import subprocess
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 COMMS_DIR = os.path.join(BASE_DIR, "strategic_comms")
 os.makedirs(COMMS_DIR, exist_ok=True)
 DIRECTIVE_FILE = os.path.join(COMMS_DIR, "STRATEGIC_LINKEDIN_DIRECTIVE.txt")
@@ -76,5 +76,7 @@ print(f"  Cryptographic Hash : {doc_hash[:16]} (Sealed in hvf_memory_vault.db)")
 print("  Windows Clipboard  : LOADED (Ready for immediate Ctrl + V in Command Deck)")
 print("-" * 80)
 print("[SUCCESS] Strategic LinkedIn Broadcast staged and loaded into Windows clipboard buffer.")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

@@ -20,7 +20,7 @@ GENESIS_BLOCK_HASH = "0000000000000000000000000000000000000000000000000000000000
 
 class EbonyProvenanceEngine:
     def __init__(self, db_path=None):
-        base_dir = r"C:\HVF_Repos\hvf-media-matrix-private"
+        base_dir = r"C:\hvf_c2\hvf-media-matrix-private"
         self.db_path = db_path or os.path.join(base_dir, "hvf_memory_vault.db")
         self._init_vault()
 
@@ -124,5 +124,7 @@ if __name__ == "__main__":
     print(f"  Latency     : {result['latency_ms']} ms (Zero-Cloud Bare-Metal)")
     
     valid, msg = engine.verify_chain_integrity()
-    print(f"  Integrity   : {msg}")
-
+    print(f"  Integrity   : {msg}")
+
+
+

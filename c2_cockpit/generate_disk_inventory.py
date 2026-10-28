@@ -9,12 +9,12 @@ from datetime import datetime
 from pathlib import Path
 
 targets = {
-    "Private Enclave": Path("C:/HVF_Repos/hvf-media-matrix-private"),
+    "Private Enclave": Path("C:/hvf_c2/hvf-media-matrix-private"),
     "Public Repository": Path("C:/HVF_Repos/hvf-media-matrix-public"),
     "Offline Briefcase": Path("C:/HVF_Briefcase_Rob_Teele")
 }
 
-output_file = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit/HVF_FULL_DISK_MANIFEST.md")
+output_file = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit/HVF_FULL_DISK_MANIFEST.md")
 
 manifest_lines = []
 manifest_lines.append("# HUMPHREY VIRTUAL FARMS LLC — MASTER DISK ARTIFACT MANIFEST")

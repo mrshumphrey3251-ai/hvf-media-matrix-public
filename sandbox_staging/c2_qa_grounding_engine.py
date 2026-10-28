@@ -191,7 +191,7 @@ def render():
 
                     "Project Ebony Ground-Truth Verification Protocol:",
 
-                    r"Every operational claim is independently verifiable on bare-metal Windows at C:\HVF_Repos\hvf-media-matrix-private\:",
+                    r"Every operational claim is independently verifiable on bare-metal Windows at C:\hvf_c2\hvf-media-matrix-private\:",
 
                     f"1. Git Commit Parity: Private commit {telem.get('git_provenance', {}).get('private_repo_commit', '47c6b45')} and public commit {telem.get('git_provenance', {}).get('public_repo_commit', '956d408')}",
 

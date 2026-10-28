@@ -93,7 +93,49 @@ opportunities = [
         "Project Narrative Volume",
         "TARGETING_CALL",
         datetime.now().isoformat()
-    )
+    ),
+    (
+        "USACE-ERDC-BAA-2026",
+        "U.S. Army Engineer Research & Development Center (ERDC)",
+        "Civil Infrastructure NDE, Bridge/Pavement Diagnostics (STR-01/PAV-01) & Hydrology Telemetry (TRL 4 Testbed)",
+        "Defense & Civil Works / Infrastructure",
+        "Rolling BAA (Zero Cash Match | 100% Non-Dilutive)",
+        1200000.00,
+        1,
+        "Brain One (Deterministic Telemetry) & Sovereign Field Academy (STR-01/PAV-01/ENV-01)",
+        "IMMEDIATE - Open Rolling BAA Window",
+        "3-to-5 Page Technical White Paper (Zero Application Fee / Zero Match)",
+        "READY_TO_DRAFT_WHITE_PAPER",
+        datetime.now().isoformat()
+    ),
+    (
+        "DHS-ST-LRBAA-26-CIP",
+        "Department of Homeland Security (DHS S&T)",
+        "Air-Gapped Critical Infrastructure SCADA/OT Isolation & Municipal Water/Grid Defense (TRL 4 Testbed)",
+        "Homeland Security / Critical Infrastructure",
+        "Long Range BAA (Zero Cash Match | 100% Non-Dilutive)",
+        1000000.00,
+        1,
+        "Brain One (36.75ns Modeled Guillotine) & Brain Three (Air-Gapped SQLite WORM Vault)",
+        "IMMEDIATE - Open Rolling LRBAA Window",
+        "3-Page White Paper + 1-Slide Quad Chart (Zero Cash Match)",
+        "READY_TO_DRAFT_WHITE_PAPER",
+        datetime.now().isoformat()
+    ),
+    (
+        "ARL-ARO-BAA-2026-AI",
+        "U.S. Army Research Laboratory (ARL / ARO)",
+        "Byzantine Fault-Tolerant Edge Consensus & Zero-Cloud Tactical Decision Architecture (TRL 4 Proof-of-Concept)",
+        "Defense Basic & Applied Research (6.1 / 6.2)",
+        "Rolling 5-Year BAA (Zero Cash Match | TRL 3-5)",
+        750000.00,
+        1,
+        "Brain Two (Offline Cognitive Drift) & Brain Three (SHA-256 Merkle DAG Provenance)",
+        "IMMEDIATE - Open Rolling BAA Window",
+        "5-Page Technical White Paper to ARL TPOC",
+        "READY_TO_DRAFT_WHITE_PAPER",
+        datetime.now().isoformat()
+    ),
 ]
 
 for opp in opportunities:

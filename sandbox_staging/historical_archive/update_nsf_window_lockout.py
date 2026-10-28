@@ -3,7 +3,7 @@ import sqlite3
 import hashlib
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 
 conn = sqlite3.connect(DB_PATH, timeout=10.0, isolation_level=None)
@@ -65,5 +65,7 @@ print("  Data Rights     : 100% Small Business Background IP (DFARS 252.227-7018
 print("-" * 80)
 print(f"[SUCCESS] Pipeline re-routed: NSF locked until Nov 4, 2026. DIU elevated to PRIMARY_ACTIVE_TARGET.")
 print(f"  Audit Hash      : {doc_hash[:16]}")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

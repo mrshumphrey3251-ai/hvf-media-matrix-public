@@ -4,7 +4,7 @@ import sqlite3
 import hashlib
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 GOV_DIR = os.path.join(BASE_DIR, "corporate_governance")
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 DMZ_DIR = os.path.join(BASE_DIR, "dmz_staging")
@@ -77,5 +77,7 @@ conn.close()
 
 print(f"[SUCCESS] DMZ staging directory purged and locked down.")
 print(f"[SUCCESS] NOTICE_OF_CONTRACT_TERMINATION_SL003.md saved at: {NOTICE_FILE}")
-print(f"[SUCCESS] Legal severance recorded in hvf_memory_vault.db (Digest: {notice_hash[:16]})")
-
+print(f"[SUCCESS] Legal severance recorded in hvf_memory_vault.db (Digest: {notice_hash[:16]})")
+
+
+

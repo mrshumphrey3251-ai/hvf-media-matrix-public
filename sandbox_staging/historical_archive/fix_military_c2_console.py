@@ -9,7 +9,7 @@ import py_compile
 # Design Standard: MIL-STD-1472 Defense Command & Control Interface
 # ==============================================================================
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 TARGET_FILE = os.path.join(BASE_DIR, "ebony_console_GREEN.py")
 
 print("=" * 80)
@@ -236,5 +236,7 @@ py_compile.compile(TARGET_FILE, doraise=True)
 py_compile.compile(ALT_FILE, doraise=True)
 
 print(f"[SUCCESS] Defense C2 theme compiled cleanly into ebony_console_GREEN.py and ebony_console.py")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

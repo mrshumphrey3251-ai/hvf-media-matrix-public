@@ -9,7 +9,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-cockpit_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
+cockpit_dir = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit")
 db_path = cockpit_dir / "matrix_ledger.db"
 
 def run_simulation():

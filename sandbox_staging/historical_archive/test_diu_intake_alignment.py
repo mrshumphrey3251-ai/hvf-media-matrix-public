@@ -8,7 +8,7 @@ import os
 import sys
 import sqlite3
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 sys.path.append(os.path.join(BASE_DIR, "proposals"))
 from diu_intake_dispatcher import INTAKE_PAYLOAD, PDF_DELIVERABLE, pipe_to_clipboard
 
@@ -81,5 +81,7 @@ if passed == 4:
 else:
     print(f"[AUDIT FAILED] Only {passed}/4 gates verified.")
     sys.exit(1)
-print("=" * 80)
-
+print("=" * 80)
+
+
+

@@ -6,7 +6,7 @@ import py_compile
 import subprocess
 from pathlib import Path
 
-priv_repo = Path("C:/HVF_Repos/hvf-media-matrix-private")
+priv_repo = Path("C:/hvf_c2/hvf-media-matrix-private")
 pub_repo = Path("C:/HVF_Repos/hvf-media-matrix-public")
 vault_dir = Path("C:/HVF_Repos/Oklahoma_Executive_Preservation")
 deploy_dir = Path("C:/HVF_Repos/HVF_Laptop_Deployment")

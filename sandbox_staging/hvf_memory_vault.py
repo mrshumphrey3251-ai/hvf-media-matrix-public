@@ -45,9 +45,9 @@ def render():
 
 
 
-    SQLITE_DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db"
+    SQLITE_DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
 
-    CHROMA_DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+    CHROMA_DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\chroma_db"
 
     COLLECTION_NAME = "hvf_iron_dome_core"
 

@@ -1,6 +1,6 @@
 import requests, toml
 try:
-    sec = toml.load(r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml")
+    sec = toml.load(r"C:\hvf_c2\hvf-media-matrix-private\.streamlit\secrets.toml")
     key = sec.get("GROQ_API_KEY", "").strip()
     headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
     payload = {"model": "llama-3.3-70b-versatile", "messages": [{"role": "user", "content": "Test"}]}

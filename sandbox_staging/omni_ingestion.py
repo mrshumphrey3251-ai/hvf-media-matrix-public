@@ -19,7 +19,7 @@ def render():
 
     # Connect to the Sovereign Iron Dome
 
-    DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+    DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\chroma_db"
 
     client = chromadb.PersistentClient(path=DB_PATH)
 

@@ -9,7 +9,7 @@ import sys
 import sqlite3
 import subprocess
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 sys.path.append(os.path.join(BASE_DIR, "proposals"))
 from streamline_nsf_filing import load_payload, pipe_to_clipboard, PROJECT_TITLE, PORTAL_URL
 
@@ -77,5 +77,7 @@ if passed == 4:
 else:
     print(f"[AUDIT FAILED] Only {passed}/4 gates verified.")
     sys.exit(1)
-print("=" * 80)
-
+print("=" * 80)
+
+
+

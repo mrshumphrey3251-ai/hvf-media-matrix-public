@@ -6,7 +6,7 @@ import sys
 import subprocess
 from pathlib import Path
 
-cockpit_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
+cockpit_dir = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit")
 
 def display_menu():
     print("\n" + "=" * 80)

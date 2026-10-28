@@ -113,7 +113,7 @@ def render():
 
     # 2. Write directly into .env vault
 
-    env_path = r"C:\HVF_Repos\hvf-media-matrix-private\.env"
+    env_path = r"C:\hvf_c2\hvf-media-matrix-private\.env"
 
     lines = []
 

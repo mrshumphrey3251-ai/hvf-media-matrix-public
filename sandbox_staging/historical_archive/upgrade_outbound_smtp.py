@@ -3,7 +3,7 @@ import sys
 import re
 import py_compile
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 CORE_FILE = os.path.join(BASE_DIR, "email_triage_core.py")
 
 print("=" * 80)
@@ -128,5 +128,7 @@ else:
 
 py_compile.compile(CORE_FILE, doraise=True)
 print(f"[SUCCESS] email_triage_core.py compiled cleanly with zero syntax errors.")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

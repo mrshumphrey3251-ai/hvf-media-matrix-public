@@ -9,7 +9,7 @@ from groq import Groq
 load_dotenv(override=True)
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 ACTIVE_MODEL = "openai/gpt-oss-120b"
-DB_PATH = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db")
+DB_PATH = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private\hvf_memory_vault.db")
 
 class HVFFarmAgent:
     """
@@ -95,4 +95,5 @@ if __name__ == "__main__":
     # Sample Test Telemetry Ingestion
     agent.ingest_telemetry("SOIL-Z1-001", "ZONE-1-NORTH", soil_moisture=21.4, temp_c=27.5, humidity=48.0)
     print("\n--- Diagnostic Output ---")
-    print(agent.diagnose_zone("ZONE-1-NORTH", "Is automated irrigation recommended for Zone 1 right now?"))
+    print(agent.diagnose_zone("ZONE-1-NORTH", "Is automated irrigation recommended for Zone 1 right now?"))
+

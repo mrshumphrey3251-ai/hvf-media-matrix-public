@@ -4,7 +4,7 @@ Groups and prints all saved disk files by operational domain.
 """
 from pathlib import Path
 
-manifest_path = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit/HVF_FULL_DISK_MANIFEST.md")
+manifest_path = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit/HVF_FULL_DISK_MANIFEST.md")
 
 if not manifest_path.exists():
     print("[-] Manifest not found.")

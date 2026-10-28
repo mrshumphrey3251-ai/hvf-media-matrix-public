@@ -3,7 +3,7 @@ import sqlite3
 import hashlib
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 
 EFT_POLICY_TEXT = """# SAM.GOV FINANCIAL DISBURSEMENT & EFT ROUTING POLICY
@@ -65,5 +65,7 @@ print("  WAWF/ASAP Target   : Primary SAM.gov Corporate Account")
 print("-" * 80)
 print(f"[SUCCESS] SAM.gov EFT prime routing policy logged and sealed in hvf_memory_vault.db")
 print(f"  Policy Hash        : {doc_hash[:16]}")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

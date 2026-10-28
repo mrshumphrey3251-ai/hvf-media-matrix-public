@@ -16,8 +16,8 @@ from datetime import datetime
 import chromadb
 from chromadb.utils import embedding_functions
 
-SQLITE_DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db"
-CHROMA_DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+SQLITE_DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
+CHROMA_DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\chroma_db"
 COLLECTION_NAME = "hvf_iron_dome_core"
 
 _lock = threading.Lock()

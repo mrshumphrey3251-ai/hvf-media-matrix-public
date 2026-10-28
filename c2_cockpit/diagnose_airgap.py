@@ -6,7 +6,7 @@ import ast
 import os
 from pathlib import Path
 
-repo_dir = Path("C:/HVF_Repos/hvf-media-matrix-private")
+repo_dir = Path("C:/hvf_c2/hvf-media-matrix-private")
 cockpit_dir = repo_dir / "c2_cockpit"
 
 network_modules = {

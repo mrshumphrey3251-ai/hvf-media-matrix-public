@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-ROOT = Path(r"C:\HVF_Repos\hvf-media-matrix-private")
+ROOT = Path(r"C:\hvf_c2\hvf-media-matrix-private")
 for p in [str(ROOT / "dispatch_core"), str(ROOT / "sandbox_staging"), str(ROOT)]:
     if p not in sys.path:
         sys.path.insert(0, p)

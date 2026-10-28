@@ -4,7 +4,7 @@ import subprocess
 import json
 import cv2
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 
 print("=" * 80)
 print("HVF Omni-Industrial Matrix | OPTICAL DEVICE IDENTIFICATION PROBE")
@@ -53,5 +53,7 @@ for idx in [0, 1]:
 
 print("=" * 80)
 print("PROBE COMPLETE: INSPECT SNAPSHOTS IN BASE DIRECTORY")
-print("=" * 80)
-
+print("=" * 80)
+
+
+

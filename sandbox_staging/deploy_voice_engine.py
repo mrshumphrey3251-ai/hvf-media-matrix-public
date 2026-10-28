@@ -16,7 +16,7 @@ def render():
     import threading
     import py_compile
 
-    BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+    BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
     VOICE_FILE = os.path.join(BASE_DIR, "sovereign_voice_engine.py")
     CACHE_DIR = os.path.join(BASE_DIR, "memory_core", "audio_cache")
     os.makedirs(CACHE_DIR, exist_ok=True)

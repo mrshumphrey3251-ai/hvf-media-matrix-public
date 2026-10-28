@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 # 1. Configuration & Persistence
 load_dotenv(override=True)
-DB_PATH = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private\hvf_memory_vault.db")
+DB_PATH = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private\hvf_memory_vault.db")
 
 # Default Location: Hinton / Caddo / Kingfisher County Region (Lat: 35.47, Lon: -98.35)
 DEFAULT_LAT = os.getenv("HVF_LATITUDE", "35.47")

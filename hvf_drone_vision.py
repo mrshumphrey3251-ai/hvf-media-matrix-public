@@ -4,7 +4,7 @@ import sqlite3
 import numpy as np
 from datetime import datetime
 
-REPO_DIR = os.path.abspath(r"C:\HVF_Repos\hvf-media-matrix-private")
+REPO_DIR = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private")
 DB_PATH = os.path.join(REPO_DIR, "hvf_memory_vault.db")
 OUTPUT_DIR = os.path.join(REPO_DIR, "analyzed_frames")
 os.makedirs(OUTPUT_DIR, exist_ok=True)

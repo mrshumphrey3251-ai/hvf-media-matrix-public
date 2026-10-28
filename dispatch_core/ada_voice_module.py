@@ -7,13 +7,13 @@ import chromadb
 import sys
 
 # Hardwire the local native Acoustic Engine
-sys.path.insert(0, r"C:\HVF_Repos\hvf-media-matrix-private\dispatch_core")
+sys.path.insert(0, r"C:\hvf_c2\hvf-media-matrix-private\dispatch_core")
 try:
     from sovereign_voice_engine import SovereignVoiceEngine
 except ImportError:
     pass # Handled below
 
-CHROMA_DB_PATH = r"C:\HVF_Repos\hvf-media-matrix-private\chroma_db"
+CHROMA_DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\chroma_db"
 COLLECTION_NAME = "hvf_iron_dome_core"
 
 def query_iron_dome_memory(query_text: str) -> str:

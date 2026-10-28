@@ -1,6 +1,6 @@
 import os
 
-file_path = r"C:\HVF_Repos\hvf-media-matrix-private\ebony_console_GREEN.py"
+file_path = r"C:\hvf_c2\hvf-media-matrix-private\ebony_console_GREEN.py"
 with open(file_path, "r", encoding="utf-8") as f:
     content = f.read()
 
@@ -22,4 +22,5 @@ if "current_linkedin_draft" not in st.session_state:
         f.write(content)
     print("✅ [STEP 1 COMPLETE]: LinkedIn session state patched successfully.")
 else:
-    print("✅ [STEP 1 COMPLETE]: Patch already applied.")
+    print("✅ [STEP 1 COMPLETE]: Patch already applied.")
+

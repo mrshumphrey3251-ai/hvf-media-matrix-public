@@ -17,7 +17,7 @@ import sys
 import sqlite3
 import hashlib
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 PROP_DIR = os.path.join(BASE_DIR, "proposals")
 
@@ -189,5 +189,7 @@ def run_forensic_audit():
     print("=" * 85)
 
 if __name__ == "__main__":
-    run_forensic_audit()
-
+    run_forensic_audit()
+
+
+

@@ -31,13 +31,13 @@ def render():
 
 
 
-    BACKUP_DIR = r"C:\HVF_Repos\hvf-media-matrix-private\_code_backups"
+    BACKUP_DIR = r"C:\hvf_c2\hvf-media-matrix-private\_code_backups"
 
     TARGET_FILES = [
 
-        r"C:\HVF_Repos\hvf-media-matrix-private\ebony_console.py",
+        r"C:\hvf_c2\hvf-media-matrix-private\ebony_console.py",
 
-        r"C:\HVF_Repos\hvf-media-matrix-private\ebony_console_GREEN.py"
+        r"C:\hvf_c2\hvf-media-matrix-private\ebony_console_GREEN.py"
 
     ]
 

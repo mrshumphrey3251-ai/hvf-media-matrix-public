@@ -13,7 +13,7 @@ import argparse
 import subprocess
 from datetime import datetime
 
-BASE_DIR = r"C:\HVF_Repos\hvf-media-matrix-private"
+BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 
 parser = argparse.ArgumentParser(description="HVF Strategic Article Dispenser CLI")
@@ -88,5 +88,7 @@ print(f"  Digest (SHA-256) : {h[:16]}")
 print(f"  Windows Buffer   : LOADED INTO CLIPBOARD")
 print("-" * 85)
 print(f"[SUCCESS] Article 0{num} piped to Windows clipboard buffer (Ready for Ctrl + V in LinkedIn).")
-print("=" * 85)
-
+print("=" * 85)
+
+
+

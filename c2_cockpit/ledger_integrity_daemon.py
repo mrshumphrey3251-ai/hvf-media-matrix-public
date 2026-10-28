@@ -6,7 +6,7 @@ import sqlite3
 import hashlib
 from pathlib import Path
 
-cockpit_dir = Path("C:/HVF_Repos/hvf-media-matrix-private/c2_cockpit")
+cockpit_dir = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit")
 db_path = cockpit_dir / "matrix_ledger.db"
 
 print("=== [HVFNexus C2] EXECUTING WORM LEDGER CRYPTOGRAPHIC INTEGRITY AUDIT ===")

@@ -1,6 +1,6 @@
 import toml, requests
 try:
-    path = r"C:\HVF_Repos\hvf-media-matrix-private\.streamlit\secrets.toml"
+    path = r"C:\hvf_c2\hvf-media-matrix-private\.streamlit\secrets.toml"
     sec = toml.load(path)
     key = sec.get("ELEVENLABS_API_KEY", "").strip()
     if not key or "YOUR_" in key:
