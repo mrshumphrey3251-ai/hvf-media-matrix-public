@@ -11,8 +11,8 @@
 | Verification Gate | Audited Metric | Certified Result |
 | :--- | :--- | :--- |
 | **1. Automated Unit & Stress Test Suite (`run_all_83_tests.py`)** | All `83 / 83` (`test_*.py`) Suites Executed | **`83 / 83 PASSED (100.0%)`** |
-| **2. Compiled C2 & Level-5 Python Modules** | Full Repo (`1,958` Private / `1,767` Public `.py` Modules) | **`100% Repo Compiled (`1,958` Priv / `1,767` Pub)` (`0` Syntax/BOM Errors)** |
-| **3. Master C2 Cryptographic Merkle Root (SHA-256)** | Fixed-Point Deterministic Digest | **`f2eeb41e0062ffc7402b42f5ae4644f181d9b81900b9599195aecbe65f751062`** |
+| **2. Compiled C2 & Level-5 Python Modules** | Full Repo (`1,959` Private / `1,768` Public `.py` Modules) | **`100% Repo Compiled (`1,959` Priv / `1,768` Pub)` (`0` Syntax/BOM Errors)** |
+| **3. Master C2 Cryptographic Merkle Root (SHA-256)** | Fixed-Point Deterministic Digest | **`a7c746d59df0ece99be08f3573c03578a91a068015f907883934181320a05d56`** |
 | **4. Public Repository Zero-PII Redaction Gate** | `155 -> 0` Unredacted Email / Credential Hits | **`0` Public PII or Secret Leaks (`100% Redacted`)** |
 | **5. Sovereign Field Academy Assessment Bank** | Chapter 1 (`800` Qs) + Chapter 5 (`620` Qs) | **`1,420 / 1,420` Unique Verified Questions** |
 | **6. Bare-Metal SQLite WORM & Memory Vault** | `matrix_ledger.db` (`22` tables) & `hvf_memory_vault.db` (`30` tables) | **100% Schema & SHA-256 WORM Sealed** |

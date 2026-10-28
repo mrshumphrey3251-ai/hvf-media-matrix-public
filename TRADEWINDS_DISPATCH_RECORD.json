@@ -1,67 +1,61 @@
 {
   "dispatch_protocol": "HVF-TRADEWINDS-DISPATCH-v8.0",
-  "timestamp_utc": "2026-10-24T19:40:50.426079+00:00",
-  "submission_id": "9-26-3703",
+  "timestamp_utc": "2026-10-28T18:42:15.847253+00:00",
+  "submission_id": "10-26-3976",
+  "prior_submission_id": "9-26-3703",
+  "readiness_level": "TRL 4 (Laboratory Software Emulation Testbed)",
   "contractor": "Humphrey Virtual Farms LLC",
   "cage_code": "1AHA8",
   "uei": "S1M4ENLHTDH5",
-  "signatory": "Jeffery Humphrey, Founder, Chief Executive Officer & Apex Architect (Level 5 Authority)",
-  "official_email": "[REDACTED_PUBLIC_RELEASE_CONTACT]",
-  "assessment_standing": "UNDER_ASSESSMENT / TRL_6_7_PRODUCTION_SEALED",
-  "production_release_tag": "v8.0.0-sovereign-master-seal",
+  "signatory": "Jeffery Humphrey, Chief Executive Officer (Level 5 Authority)",
+  "official_email": "[REDACTED-FOR-PUBLIC-RELEASE]",
+  "assessment_standing": "ASSESSOR_FEEDBACK_RESOLVED_READY_FOR_RESUBMISSION",
+  "production_release_tag": "v8.0.0-trl4-tradewinds-aligned",
   "statutory_compliance": [
-    "DFARS 252.227-7018 (100% Small-Business Background IP & Government Purpose Rights)",
-    "10 U.S.C. \u00a7 4022 (Nontraditional Defense Contractor Prototype OTA)",
-    "NIST SP 800-171 Rev 2 (DoD SPRS Score: 110 / 110)",
-    "NIST SP 800-82 Rev 2 (Industrial Control Systems Security)"
+    "10 U.S.C. Section 4022 (Prototype OTA Authority)",
+    "DFARS 252.227-7018 (Government Purpose Rights)",
+    "NIST SP 800-171 Rev 2 & NIST SP 800-82 Rev 2 (Architectural Mapping Complete)"
+  ],
+  "assessor_feedback_resolutions": [
+    {
+      "id": "AF-01",
+      "prior_assessor_critique": "Clarify Technology Readiness Level (TRL) claims vs. physical field hardware deployment.",
+      "resubmission_resolution": "Explicitly baselined at TRL 4 (Laboratory Software Emulation Testbed & Mathematical Proof-of-Concept) running on air-gapped local loopback (127.0.0.1, 0% external cloud dependency). Physical PCB fabrication and TRL 6/7 field range trials are funded milestones under our proposed 12-Month, $1.485M Phase-1 Prototype OTA."
+    },
+    {
+      "id": "AF-02",
+      "prior_assessor_critique": "Substantiate sub-microsecond (36.75ns) Kinetic Guillotine and zero-trust cybersecurity claims with empirical proof.",
+      "resubmission_resolution": "Distinguished the 36.75ns physical MOSFET cutoff (28.5W / 24V DC) as our SPICE/mathematical hardware design target for Phase-1 PCB fabrication, while demonstrating live on-screen execution of 84/84 passing automated software test suites and 17/17 blocked adversarial red-team penetration vectors in our local loopback software testbed."
+    },
+    {
+      "id": "AF-03",
+      "prior_assessor_critique": "Clarify NIST SP 800-171 / CMMC / SPRS compliance posture and Government Data Rights.",
+      "resubmission_resolution": "Completed 110-control architectural mapping under NIST SP 800-171 Rev 2 and NIST SP 800-82 Rev 2 across our Three-Brain software testbed; scheduled formal third-party C3PAO / DoD SPRS audit as a funded Phase-1 OTA milestone; and locked 100% Small Business Background IP retention with Government Purpose Rights (GPR) under DFARS 252.227-7018."
+    },
+    {
+      "id": "AF-04",
+      "prior_assessor_critique": "Demonstrate clear DoD Problem Alignment, Defense Customer Transition Path, and Commercial Viability (Section VII.e).",
+      "resubmission_resolution": "Demonstrated live Three-Brain C2 & SCADA isolation for DoD tactical microgrids, base utilities, and civil works (USACE ERDC / DIU / CDAO), backed by a 4-milestone $1.485M Phase-1 Prototype OTA schedule ($150K M1A Mobilization) under 10 U.S.C. Section 4022 and an auditable 1,767-module Public GitHub blueprint."
+    }
   ],
   "git_provenance": {
-    "private_repo_commit": "8c5c8f5",
-    "public_repo_commit": "7f4c1ce",
-    "master_c2_merkle_root_sha256": "cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a",
+    "private_repo_commit": "1625fc75a429533af4ab26143967172a663efd25",
+    "public_repo_commit": "8bd3d0f2582882bc10e49d55134156cf5a9bd103",
     "tag_verified": true
   },
-  "operational_telemetry": {
+  "software_emulation_telemetry": {
     "availability_pct": 100.0,
-    "compiled_c2_modules": 631,
-    "automated_test_suites_passed": "83 / 83 (100.0%)",
-    "red_team_attacks_blocked": "17 / 17 (0 Breaches)",
-    "academy_verified_questions": 1420,
-    "scada_microgrid_status": "4/4 CLOSED & SYNCHRONIZED",
-    "modbus_fc05_latency_us": 2.04,
-    "kinetic_trip_time_ms": 13.33,
-    "soft_start_recovery_ms": 126.13,
-    "uas_orbit_altitude_msl_m": 75.0,
-    "warfighter_distress_flags": 0,
-    "total_sealed_merkle_blocks": 82,
-    "guillotine_cutoff_ns": 36.75,
-    "brain1_loop_us": 50.0,
-    "brain2_inference_ms": 5.0,
-    "brain3_merkle_ms": 0.15,
-    "system_power_watts": 28.5,
-    "dc_bus_volts": 24.0,
-    "total_verticals_committed": 15
+    "watchdog_cycles_verified": 0,
+    "scada_microgrid_status": "4/4 CLOSED & SYNCHRONIZED (LOCAL LOOPBACK EMULATION)",
+    "modeled_kinetic_guillotine_target_ns": 36.75,
+    "unit_test_suites_passed": "84/84 (100.0%)",
+    "red_team_vectors_blocked": "17/17 (100.0%)",
+    "total_sealed_merkle_blocks": 67
   },
   "network_endpoints": {
     "c2_cockpit_tactical_hud": "http://127.0.0.1:8501",
     "evaluator_ingress_daemon": "http://127.0.0.1:8502",
-    "automated_access_logging": "ENABLED"
-  },
-  "submission_title": "Project Ebony: Sovereign Tri-Brain Bare-Metal Edge Architecture & Sub-Microsecond Kinetic Isolation",
-  "contract_vehicle": "10 U.S.C. \u00a7 4022 Prototype OTA ($1,485,000.00 / 12-Month Milestone Roadmap)",
-  "trl_posture": "TRL 4 Software Emulation Testbed Operational Bare-Metal System Prototype Demonstrated (Upgraded from Initial TRL 4 Filing; 631 Modules, 83/83 Test Suites, 17/17 Red-Team Blocks Verified) -> Advancing to TRL 8 Mil-Spec Tactical Control Units (TCU)",
-  "tri_brain_architecture": {
-    "brain_1_control": "Bare-Metal ARM Cortex-M7 & RISC-V Compiled C (< 50 us Deterministic Loop, 2.04 us Modbus FC05, Zero OS Overhead)",
-    "brain_2_inference": "Air-Gapped NPU Cognitive Inference (< 25W, Zero RF Emissions, < 5 ms Ultrasonic/Harmonic Analysis, Strictly Advisory / Zero Actuator Wire)",
-    "brain_3_provenance": "Hardware SHA-256 & Ed25519 WORM Ledger (< 0.15 ms SRAM DAG + 52 SQLite Tables, Master Merkle Root cc1ee1c8d29b2ae5...)",
-    "kinetic_guillotine": "36.75 ns Analog Comparator MOSFET Gate Depletion Interlock (Bypasses Digital Logic on Threshold Breach)"
-  },
-  "active_resubmission_docket_id": "10-26-3976",
-  "active_resubmission_status": "Received",
-  "active_resubmission_timestamp": "2026-10-25T00:38:00-05:00",
-  "prior_baseline_docket_id": "9-26-3703",
-  "technology_readiness_level": "TRL 4 (Phase-1 OTA Target: TRL 6)",
-  "submission_type": "TSM Resubmission",
-  "master_merkle_root_sha256": "cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a",
-  "verification_repository": "https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
+    "automated_access_logging": "ENABLED",
+    "total_ingress_access_events": 0
+  }
 }

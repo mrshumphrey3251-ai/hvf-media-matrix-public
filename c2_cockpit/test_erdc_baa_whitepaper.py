@@ -1,7 +1,5 @@
 """
 Unit Test Suite: USACE ERDC Rolling BAA White Paper & ISO 32000-1 PDF Compiler
-Verifies TRL 4 alignment, Docket 10-26-3976 cross-reference, $1.2M ($150K M1A) budget arithmetic,
-and zero PII leakage in the Public repository.
 """
 import unittest
 from pathlib import Path
@@ -19,6 +17,10 @@ class TestErdcBaaWhitepaper(unittest.TestCase):
         res = erdc.compile_erdc_package()
         self.assertTrue(res["pdf_header_valid"])
         md_content = Path(res["md_path"]).read_text(encoding="utf-8")
+        pdf_text = erdc.generate_erdc_clean_pdf_text()
+        self.assertNotIn("**", pdf_text)
+        self.assertNotIn("`", pdf_text)
+        self.assertIn("84 / 84", pdf_text)
         self.assertIn("USACE-ERDC-BAA-2026", md_content)
         self.assertIn("10-26-3976", md_content)
         self.assertIn("TRL 4", md_content)
@@ -27,6 +29,7 @@ class TestErdcBaaWhitepaper(unittest.TestCase):
         self.assertIn("DFARS 252.227-7018", md_content)
         if "public" in str(COCKPIT_DIR).lower():
             self.assertNotIn("humphreyvirtualfarm@gmail.com", md_content)
+            self.assertNotIn("humphreyvirtualfarm@gmail.com", pdf_text)
 
 
 if __name__ == "__main__":

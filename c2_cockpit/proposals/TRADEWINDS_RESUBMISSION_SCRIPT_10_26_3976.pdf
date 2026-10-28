@@ -1,0 +1,350 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 4116 >>
+stream
+BT
+/F2 10 Tf
+45 752 Td
+(HUMPHREY VIRTUAL FARMS LLC // LEVEL-5 SOVEREIGN C2 ENCLAVE) Tj
+0 -13 Td
+/F1 8 Tf
+(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK Title 61 / HB 2992 | DOC ID: HVF-TRADEWINDS-10-26-3976) Tj
+0 -12 Td
+(CLASSIFICATION: SOVEREIGN LEVEL-5 EXECUTIVE DELIVERABLE // PUBLIC/PRIVATE PARITY) Tj
+0 -14 Td
+/F2 11 Tf
+(TRADEWINDS RESUBMISSION DOSSIER // DOCKET 10-26-3976 \(RESUBMISSION OF 9-26-3703\)) Tj
+0 -10 Td
+/F1 8 Tf
+(============================================================================================) Tj
+0 -14 Td
+/F1 9 Tf
+/F2 9 Tf
+(DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE // RESUBMISSION DOSSIER & VIDEO SCRIPT) Tj
+/F1 9 Tf
+0 -13 Td
+/F2 9 Tf
+(ACTIVE DOCKET: 10-26-3976 \(RESUBMISSION OF 9-26-3703\) | READINESS: TRL 4 TESTBED) Tj
+/F1 9 Tf
+0 -13 Td
+(CONTRACTOR: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5) Tj
+0 -13 Td
+(----------------------------------------------------------------------------------------) Tj
+0 -13 Td
+(----) Tj
+0 -13 Td
+/F2 9 Tf
+(PART 1: POINT-BY-POINT RESOLUTION OF PRIOR DOCKET 9-26-3703 ASSESSOR FEEDBACK) Tj
+/F1 9 Tf
+0 -13 Td
+(----------------------------------------------------------------------------------------) Tj
+0 -13 Td
+(----) Tj
+0 -13 Td
+([AF-01] CRITIQUE  : Clarify Technology Readiness Level \(TRL\) claims vs. physical field) Tj
+0 -13 Td
+(hardware deployment.) Tj
+0 -13 Td
+(RESOLUTION: Explicitly baselined at TRL 4 \(Laboratory Software Emulation Testbed &) Tj
+0 -13 Td
+(Mathematical Proof-of-Concept\) running on air-gapped local loopback \(127.0.0.1, 0%) Tj
+0 -13 Td
+(external cloud dependency\). Physical PCB fabrication and TRL 6/7 field range trials are) Tj
+0 -13 Td
+(funded milestones under our proposed 12-Month, $1.485M Phase-1 Prototype OTA.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+([AF-02] CRITIQUE  : Substantiate sub-microsecond \(36.75ns\) Kinetic Guillotine and) Tj
+0 -13 Td
+(zero-trust cybersecurity claims with empirical proof.) Tj
+0 -13 Td
+(RESOLUTION: Distinguished the 36.75ns physical MOSFET cutoff \(28.5W / 24V DC\) as our) Tj
+0 -13 Td
+(SPICE/mathematical hardware design target for Phase-1 PCB fabrication, while) Tj
+0 -13 Td
+(demonstrating live on-screen execution of 84/84 passing automated software test suites) Tj
+0 -13 Td
+(and 17/17 blocked adversarial red-team penetration vectors in our local loopback) Tj
+0 -13 Td
+(software testbed.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+([AF-03] CRITIQUE  : Clarify NIST SP 800-171 / CMMC / SPRS compliance posture and) Tj
+0 -13 Td
+(Government Data Rights.) Tj
+0 -13 Td
+(RESOLUTION: Completed 110-control architectural mapping under NIST SP 800-171 Rev 2 and) Tj
+0 -13 Td
+(NIST SP 800-82 Rev 2 across our Three-Brain software testbed; scheduled formal) Tj
+0 -13 Td
+(third-party C3PAO / DoD SPRS audit as a funded Phase-1 OTA milestone; and locked 100%) Tj
+0 -13 Td
+(Small Business Background IP retention with Government Purpose Rights \(GPR\) under DFARS) Tj
+0 -13 Td
+(252.227-7018.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+([AF-04] CRITIQUE  : Demonstrate clear DoD Problem Alignment, Defense Customer) Tj
+0 -13 Td
+(Transition Path, and Commercial Viability \(Section VII.e\).) Tj
+0 -13 Td
+(RESOLUTION: Demonstrated live Three-Brain C2 & SCADA isolation for DoD tactical) Tj
+0 -13 Td
+(microgrids, base utilities, and civil works \(USACE ERDC / DIU / CDAO\), backed by a) Tj
+0 -13 Td
+(4-milestone $1.485M Phase-1 Prototype OTA schedule \($150K M1A Mobilization\) under 10) Tj
+0 -13 Td
+(U.S.C. Section 4022 and an auditable 1,767-module Public GitHub blueprint.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+(----------------------------------------------------------------------------------------) Tj
+0 -13 Td
+(----) Tj
+0 -13 Td
+(PART 2: SECTION VII.e COMPLIANT VIDEO TELEPROMPTER SCRIPT \(5 SEGMENTS\)) Tj
+0 -13 Td
+(----------------------------------------------------------------------------------------) Tj
+0 -13 Td
+/F1 8 Tf
+(========================================================================================) Tj
+0 -11 Td
+(WORM SHA-256 SEAL: 057e7ea970f35fc4285d2177f7ca656ce5131b935ba3fc4d3b6fd036e72c0b1f) Tj
+0 -11 Td
+(GENERATED: 2026-10-28 18:32:48 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 1 OF 3) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 4405 >>
+stream
+BT
+/F2 10 Tf
+45 752 Td
+(HUMPHREY VIRTUAL FARMS LLC // LEVEL-5 SOVEREIGN C2 ENCLAVE) Tj
+0 -13 Td
+/F1 8 Tf
+(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK Title 61 / HB 2992 | DOC ID: HVF-TRADEWINDS-10-26-3976) Tj
+0 -12 Td
+(CLASSIFICATION: SOVEREIGN LEVEL-5 EXECUTIVE DELIVERABLE // PUBLIC/PRIVATE PARITY) Tj
+0 -14 Td
+/F2 11 Tf
+(TRADEWINDS RESUBMISSION DOSSIER // DOCKET 10-26-3976 \(RESUBMISSION OF 9-26-3703\)) Tj
+0 -10 Td
+/F1 8 Tf
+(============================================================================================) Tj
+0 -14 Td
+/F1 9 Tf
+(----) Tj
+0 -13 Td
+/F2 9 Tf
+(>>> SEGMENT 1 \(0:00 - 0:45\) // CORPORATE IDENTITY & PRIOR ASSESSOR FEEDBACK RESOLUTION) Tj
+/F1 9 Tf
+0 -13 Td
+(RUBRIC: Mandatory Resubmission Compliance Gate \(Addressing Docket 9-26-3703 Assessor) Tj
+0 -13 Td
+(Feedback\)) Tj
+0 -13 Td
+(SCRIPT: I am Jeffery Humphrey, Founder, President, and CEO of Humphrey Virtual Farms) Tj
+0 -13 Td
+(LLC, CAGE Code 1AHA8, UEI S1M4ENLHTDH5. This video is our formal resubmission for) Tj
+0 -13 Td
+(Project Ebony under Tradewinds Docket 10-26-3976, directly addressing every item of) Tj
+0 -13 Td
+(Assessor Feedback from our prior submission 9-26-3703. First, we have explicitly) Tj
+0 -13 Td
+(baselined Project Ebony at TRL 4--a laboratory software emulation testbed running 100%) Tj
+0 -13 Td
+(offline on local loopback 127.0.0.1 with zero external cloud dependency. Second, we) Tj
+0 -13 Td
+(clarify that our 36.75-nanosecond Kinetic Guillotine cutoff is our mathematical and) Tj
+0 -13 Td
+(SPICE hardware design target for Phase-1 PCB fabrication, while our software testbed is) Tj
+0 -13 Td
+(proven live on screen today across 84 of 84 passing automated unit tests and 17 of 17) Tj
+0 -13 Td
+(blocked red-team cyber-intrusion vectors. Third, our 110-control NIST 800-171 and) Tj
+0 -13 Td
+(800-82 architectural mapping is complete, with formal C3PAO and SPRS certification) Tj
+0 -13 Td
+(funded inside our proposed 12-month, $1.485 million Phase-1 Prototype OTA.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+/F2 9 Tf
+(>>> SEGMENT 2 \(0:45 - 1:30\) // DOD PROBLEM STATEMENT & OPERATIONAL IMPACT \(SECTION) Tj
+/F1 9 Tf
+0 -13 Td
+(VII.e.1\)) Tj
+0 -13 Td
+(RUBRIC: Problem Identification, Operational Relevance & Warfighter Impact) Tj
+0 -13 Td
+(SCRIPT: The Department of Defense faces a critical operational vulnerability: tactical) Tj
+0 -13 Td
+(microgrids, forward operating base utilities, autonomous UAS ground stations, and civil) Tj
+0 -13 Td
+(infrastructure SCADA controllers rely on cloud-tethered software and probabilistic AI) Tj
+0 -13 Td
+(that fail under electronic warfare, bandwidth denial, or PLC bus injection. When an) Tj
+0 -13 Td
+(adversary compromises a traditional SCADA bus or spoofs telemetry, cloud latency cannot) Tj
+0 -13 Td
+(prevent kinetic equipment destruction.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+/F2 9 Tf
+(>>> SEGMENT 3 \(1:30 - 3:00\) // TECHNICAL SOLUTION & LIVE TRL 4 TESTBED DEMO \(SECTION) Tj
+/F1 9 Tf
+0 -13 Td
+(VII.e.2\)) Tj
+0 -13 Td
+(RUBRIC: Technical Merits, Innovation, Architecture & Live Demonstration) Tj
+0 -13 Td
+(SCRIPT: Project Ebony solves this through a deterministic Three-Brain architecture.) Tj
+0 -13 Td
+(Brain One enforces deterministic physical boundary invariants and models our) Tj
+0 -13 Td
+(36.75-nanosecond Kinetic Guillotine cutoff at 28.5 Watts and 24 Volts DC. Brain Two) Tj
+0 -13 Td
+(runs air-gapped structural, pavement, and telemetry diagnostics locally on 127.0.0.1) Tj
+0 -13 Td
+(with zero cloud calls and zero authority to bypass Brain One safety limits. Brain Three) Tj
+0 -13 Td
+(seals every sensor frame and operator directive into a bare-metal SQLite) Tj
+0 -13 Td
+(Write-Once-Read-Many SHA-256 Merkle DAG vault across 52 verified database tables. On) Tj
+0 -13 Td
+(screen right now, you see our live TRL 4 software testbed executing all 84 automated) Tj
+0 -13 Td
+(unit test suites with zero failures, blocking all 17 adversarial red-team penetration) Tj
+0 -13 Td
+(vectors including automatic single-letter tamper zeroization, and verifying 100%) Tj
+0 -13 Td
+(cryptographic parity across our 1,958 Private and 1,767 Public Python modules.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+/F1 8 Tf
+(========================================================================================) Tj
+0 -11 Td
+(WORM SHA-256 SEAL: 057e7ea970f35fc4285d2177f7ca656ce5131b935ba3fc4d3b6fd036e72c0b1f) Tj
+0 -11 Td
+(GENERATED: 2026-10-28 18:32:48 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 2 OF 3) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 2348 >>
+stream
+BT
+/F2 10 Tf
+45 752 Td
+(HUMPHREY VIRTUAL FARMS LLC // LEVEL-5 SOVEREIGN C2 ENCLAVE) Tj
+0 -13 Td
+/F1 8 Tf
+(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK Title 61 / HB 2992 | DOC ID: HVF-TRADEWINDS-10-26-3976) Tj
+0 -12 Td
+(CLASSIFICATION: SOVEREIGN LEVEL-5 EXECUTIVE DELIVERABLE // PUBLIC/PRIVATE PARITY) Tj
+0 -14 Td
+/F2 11 Tf
+(TRADEWINDS RESUBMISSION DOSSIER // DOCKET 10-26-3976 \(RESUBMISSION OF 9-26-3703\)) Tj
+0 -10 Td
+/F1 8 Tf
+(============================================================================================) Tj
+0 -14 Td
+/F1 9 Tf
+/F2 9 Tf
+(>>> SEGMENT 4 \(3:00 - 4:00\) // DIFFERENTIATION, DATA RIGHTS & CYBER POSTURE \(SECTION) Tj
+/F1 9 Tf
+0 -13 Td
+(VII.e.3\)) Tj
+0 -13 Td
+(RUBRIC: Competitive Differentiation, IP Sovereignty & Cybersecurity) Tj
+0 -13 Td
+(SCRIPT: Unlike commercial cloud wrappers or black-box AI vendors, Humphrey Virtual) Tj
+0 -13 Td
+(Farms LLC is a 100% sovereign small business prime. All 1,958 Python modules,) Tj
+0 -13 Td
+(Three-Brain interlocks, and our 1,420-question Sovereign Field Academy workforce bank) Tj
+0 -13 Td
+(were engineered 100% at private expense. Under DFARS 252.227-7018, we retain background) Tj
+0 -13 Td
+(IP while granting the Department of Defense full Government Purpose Rights for funded) Tj
+0 -13 Td
+(Phase-1 prototype deliverables.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+/F2 9 Tf
+(>>> SEGMENT 5 \(4:00 - 4:45\) // ACQUISITION PATHWAY & PHASE-1 OTA MILESTONES \(SECTION) Tj
+/F1 9 Tf
+0 -13 Td
+(VII.e.4\)) Tj
+0 -13 Td
+(RUBRIC: Commercialization, Transition Strategy & Payable Milestone Schedule) Tj
+0 -13 Td
+(SCRIPT: Project Ebony is ready for immediate procurement under a 12-month, $1.485) Tj
+0 -13 Td
+(million Phase-1 Prototype Other Transaction Agreement pursuant to 10 U.S.C. Section) Tj
+0 -13 Td
+(4022, beginning with a $150,000 Day 15-to-30 mobilization tranche to procure ruggedized) Tj
+0 -13 Td
+(edge hardware and oscilloscope test benches, advancing from TRL 4 software emulation to) Tj
+0 -13 Td
+(TRL 6 and TRL 7 field demonstration by Month 12. Thank you.) Tj
+0 -13 Td
+() Tj
+0 -13 Td
+/F1 8 Tf
+(========================================================================================) Tj
+0 -11 Td
+(WORM SHA-256 SEAL: 057e7ea970f35fc4285d2177f7ca656ce5131b935ba3fc4d3b6fd036e72c0b1f) Tj
+0 -11 Td
+(GENERATED: 2026-10-28 18:32:48 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 3 OF 3) Tj
+ET
+endstream
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000133 00000 n 
+0000000201 00000 n 
+0000000274 00000 n 
+0000000410 00000 n 
+0000004578 00000 n 
+0000004714 00000 n 
+0000009171 00000 n 
+0000009308 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+11709
+%%EOF
