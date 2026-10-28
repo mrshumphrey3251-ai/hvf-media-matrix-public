@@ -246,7 +246,7 @@ class TradewindsPitchCompiler:
             "legal_entity": "Humphrey Virtual Farms LLC",
             "cage_code": self.cage_code,
             "uei": "S1M4ENLHTDH5",
-            "active_docket": "10-26-3976 (v8.0.0 Ground-Up Resubmission)",
+            "active_docket": "10-26-4014 (Submitted Oct 28, 2026 6:55 PM | Status: Received)",
             "prior_docket": "9-26-3703",
             "readiness_level": meta["trl_posture"],
             "status": "PUBLIC_TRADEWINDS_INTERFACE_ACTIVE",

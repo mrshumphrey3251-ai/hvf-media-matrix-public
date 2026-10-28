@@ -1,8 +1,8 @@
 {
   "dispatch_protocol": "HVF-TRADEWINDS-DISPATCH-v8.0",
-  "timestamp_utc": "2026-10-28T22:23:23.506274+00:00",
-  "submission_id": "10-26-3976",
-  "prior_submission_id": "9-26-3703",
+  "timestamp_utc": "2026-10-28T23:17:06.089698+00:00",
+  "submission_id": "10-26-4014",
+  "prior_submission_id": "10-26-3976 / 9-26-3703",
   "readiness_level": "TRL 4 (Laboratory Software Emulation Testbed)",
   "contractor": "Humphrey Virtual Farms LLC",
   "cage_code": "1AHA8",
@@ -39,8 +39,8 @@
     }
   ],
   "git_provenance": {
-    "private_repo_commit": "89653773c2f9f94599adafb326ce0d5520bcc095",
-    "public_repo_commit": "7a05eca5391e1db277949d3f39b60b6fd0c28ad3",
+    "private_repo_commit": "eaadca1615b038a38de02ad5ea9a17ca2637933c",
+    "public_repo_commit": "6169539065e883b2a1690e454f6a38ec76a7e2ec",
     "tag_verified": true
   },
   "software_emulation_telemetry": {

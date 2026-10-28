@@ -48,8 +48,8 @@ class TradewindsDispatchPackager:
         record = {
             "dispatch_protocol": "HVF-TRADEWINDS-DISPATCH-v8.0",
             "timestamp_utc": now_utc,
-            "submission_id": "10-26-3976",
-            "prior_submission_id": "9-26-3703",
+            "submission_id": "10-26-4014",
+            "prior_submission_id": "10-26-3976 / 9-26-3703",
             "readiness_level": "TRL 4 (Laboratory Software Emulation Testbed)",
             "contractor": "Humphrey Virtual Farms LLC",
             "cage_code": "1AHA8",
@@ -91,7 +91,7 @@ class TradewindsDispatchPackager:
 
         md_lines = [
             "# PROJECT EBONY: FORMAL TRADEWINDS RESUBMISSION & ASSESSOR FEEDBACK DISPATCH",
-            "**Active Tradewinds Submission ID:** `10-26-3976` (Resubmission of Prior Docket `9-26-3703`)",
+            "**Active Tradewinds Submission ID:** `10-26-4014` (Superseding Prior Dockets `10-26-3976` & `9-26-3703`)",
             "**Readiness Baseline:** `TRL 4` (Laboratory Software Emulation Testbed & Mathematical Proof-of-Concept)",
             "**Contractor / Identifiers:** Humphrey Virtual Farms LLC | `CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5`",
             "**Signatory Authority:** Jeffery Humphrey, Founder, President & CEO",

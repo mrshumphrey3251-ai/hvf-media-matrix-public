@@ -1,12 +1,12 @@
 # HUMPHREY VIRTUAL FARMS LLC // PROJECT EBONY v8.0.0 SOVEREIGN C2 ENCLAVE
-> **DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE — OCT 28, 2026 v8.0.0 RESUBMISSION VERIFICATION GATE**
+> **DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE — DOCKET 10-26-4014 (OCT 28, 2026 v8.0.0 VERIFICATION GATE)**
 > * **New Submission Title:** `Project Ebony v8.0.0: Deterministic Zero-Cloud OT/SCADA Interlock Testbed & WORM Merkle Provenance Architecture (TRL 4 Assessor-Aligned Resubmission)`
 > * **Submitting Prime:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5` | `100% U.S. Sovereign Small Business`)
 > * **Current Readiness Baseline:** `TRL 4` (Laboratory Software Emulation Testbed on `127.0.0.1` Loopback -> Phase-1 OTA Target: `TRL 6`)
 > * **Master Video Deliverable:** `c2_cockpit/proposals/EBONY_V8_CDAO_RUBRIC_VERIFICATION_20261028.mp4` (`28.72 MB` | SHA-256: `605c6c3e77ddabb3d151e2c828ab7f69d779a1f7a4de73ba073386940f342d7b`)
 > * **Master PDF Script & AoA Dossier:** `c2_cockpit/proposals/TRADEWINDS_RESUBMISSION_SCRIPT_10_26_3976.pdf`
 > * **Empirical Verification Standing:** `636 / 636` Compiled C2 Modules (`1,961` Private / `1,770` Public) | `85 / 85` Automated Test Suites PASSED (`100.0%`) | `17 / 17` Red-Team Penetration Vectors BLOCKED | `52` SQLite WORM & Memory Tables | `1,420` Verified Field Academy Exam Questions
-> * **Shared Core C2 Cryptographic Merkle Root (SHA-256):** `e46d18969eed340cbb865174202d369b388d5c28b1e409614e55fe400add7ed0`
+> * **Shared Core C2 Cryptographic Merkle Root (SHA-256):** `bf94e50c6a9369754efd2588977f200b3b8c949d2143782b4d0ead2aa4d4d0c2`
 
 ---
 # Humphrey Virtual Farms LLC — Project Ebony (v8.0.0)
