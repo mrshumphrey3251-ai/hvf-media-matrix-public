@@ -9,7 +9,7 @@
   "prior_tradewinds_docket": "9-26-3703",
   "readiness_level": "TRL 4",
   "readiness_scope": "Laboratory Software Emulation Testbed & Mathematical Proof-of-Concept",
-  "merkle_root_sha256": "e51b6bca3e8c8e828ee5cdf19512f71f5a56fb4b5be1c32a32073b6091fa2768",
+  "merkle_root_sha256": "b152b8847d54bf24de74c9595ceae1e486ac4149a6102ed3ab917b81c8d9d967",
   "software_testbed_metrics": {
     "unit_and_stress_tests_passed": "83/83 (Local Software Emulation)",
     "red_team_vectors_simulated": "17/17 (Local Loopback Simulation)",
