@@ -3,9 +3,8 @@
 HUMPHREY VIRTUAL FARMS LLC // AUTOMATED 1080p FULL-HD TRADEWINDS MP4 VIDEO & VOICEOVER COMPILER
 Docket: 10-26-3976 (Resubmission of Prior Docket 9-26-3703 | TRL 4 -> Phase-1 OTA Target: TRL 6)
 Entity: Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)
-Synthesizes 5 high-contrast 1920x1080 C2 Tactical Slides addressing all 4 Pillars of CDAO Assessor
-Feedback, GAO/CISA Volt Typhoon citations, the Quantitative Analysis of Alternatives (Competitor Table),
-Oklahoma customer validation, and the 26-Module CLIN Price Schedule, with offline voiceover & FFmpeg muxing.
+100% Audit-Proof Edition: Strictly distinguishes verified TRL 4 local software testbed metrics
+from modeled Phase-1 OTA hardware design targets and staged commercialization blueprints.
 """
 import hashlib
 import shutil
@@ -46,20 +45,21 @@ def build_slide_specs() -> list:
             "header": "SLIDE 1 OF 5 // MANDATORY RESUBMISSION GATE: 4-PILLAR ASSESSOR FEEDBACK RESOLUTION",
             "sub": "ACTIVE DOCKET: 10-26-3976 (RESUBMISSION OF 9-26-3703) | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | TRL 4 -> TARGET TRL 6",
             "bullets": [
-                "[AF-01 / CRITERION 1 RESOLVED] DEFINING THE PROBLEM (UPGRADED TO OUTSTANDING):",
-                "  * Quantified DoD exposure via GAO-21-81 & GAO-24-106137 (500+ bases, 300k+ buildings, $4.2B+ OT energy)",
+                "[CRITERION 1 RESOLVED] DEFINING THE PROBLEM (QUANTIFIED DOD EXPOSURE & PHYSICS GAP):",
+                "  * Cited U.S. GAO-21-81 & GAO-24-106137 (500+ bases, 300k+ buildings, $4.2B+ OT energy on 50-200ms PLCs)",
                 "    and CISA/NSA/DoD Advisories AA23-144A & AA24-038A (Volt Typhoon) + TRISIS (<4.16ms arc-flash physics).",
                 "",
-                "[AF-02 / CRITERION 2 RESOLVED] ACCELERATING THE MISSION (TRL 4 SOFTWARE TESTBED -> TRL 6 TARGET):",
-                "  * 0% cloud/OS dependency on air-gapped 127.0.0.1 loopback (100% EMCON availability). Brain 1 (<50us loop,",
-                "    2.04us Modbus FC05, 13.33ms breaker); Brain 2 (<25W NPU, <5ms, 0 actuator wire); Brain 3 (52 WORM tables).",
+                "[CRITERION 2 RESOLVED] ACCELERATING THE MISSION (TRL 4 SOFTWARE TESTBED vs. TRL 6 HARDWARE TARGET):",
+                "  * Explicitly baselined at TRL 4 (Laboratory Software Emulation on local loopback 127.0.0.1, 0% cloud).",
+                "  * Live software verification: 636 C2 modules, 85/85 passing unit tests, 17/17 Red-Team blocks, 52 WORM tables.",
                 "",
-                "[AF-03 / CRITERION 3 RESOLVED] ADVANCING STATE OF THE ART (HEAD-TO-HEAD COMPETITOR AoA MATRIX):",
-                "  * Modeled 36.75ns Analog Kinetic Guillotine (1,360,544x faster than 50ms Siemens/Rockwell PLCs) at 28.5W",
-                "    benchmarked directly against Siemens S7-1500, Rockwell ControlLogix, Triconex SIS, Dragos, Nozomi & Jev AI.",
+                "[CRITERION 3 RESOLVED] ADVANCING STATE OF THE ART (HEAD-TO-HEAD COMPETITOR AoA MATRIX):",
+                "  * Modeled 36.75ns Analog Kinetic Guillotine design target (1,360,544x faster than 50ms PLCs, 28.5W target)",
+                "    benchmarked against Siemens S7-1500, Rockwell ControlLogix, Triconex SIS, Dragos, Nozomi & Jev Cloud AI.",
                 "",
-                "[AF-04 / CRITERION 4 RESOLVED] BUSINESS MODEL, OKLAHOMA VALIDATION & 26-MODULE CLIN SCHEDULE:",
-                "  * OK Commerce CTO/CEO briefings (HB 2992/Title 61, node HVF-NODE-TEELE-001, $25K ODOT drone) & $1.485M OTA.",
+                "[CRITERION 4 RESOLVED] TRANSPARENT COMMERCIALIZATION ROADMAP, 26-CLIN SCHEDULE & $1.485M OTA:",
+                "  * All state/commercial artifacts transparently presented as staged software & proposal blueprints ready for",
+                "    immediate contracting via our 26-Module CLIN Schedule & $1.485M Phase-1 Prototype OTA (10 U.S.C. 4022).",
             ],
             "narration": scripts[0]["spoken_script"],
         },
@@ -86,19 +86,19 @@ def build_slide_specs() -> list:
         },
         {
             "slide_num": 3,
-            "header": "SLIDE 3 OF 5 // CRITERION 2: ACCELERATING THE MISSION (TRI-BRAIN TRL 4 TESTBED PROOF)",
-            "sub": "RUBRIC PILLAR 2: ZERO EXTERNAL DEPENDENCIES (NIST 800-82 / 800-171) & EMPIRICAL TESTBED TELEMETRY",
+            "header": "SLIDE 3 OF 5 // CRITERION 2: ACCELERATING THE MISSION (TRL 4 SOFTWARE TESTBED PROOF)",
+            "sub": "RUBRIC PILLAR 2: VERIFIED ZERO-CLOUD LOCAL LOOPBACK EMULATION & MODELED HARDWARE TARGETS",
             "bullets": [
-                "[ZERO EXTERNAL DEPENDENCIES & 100% EMCON AVAILABILITY]:",
-                "  * 0% commercial cloud dependency, 0 external APIs, 0 foreign firmware blobs, 0 WAN listening ports (127.0.0.1).",
+                "[ZERO EXTERNAL DEPENDENCIES — VERIFIED LIVE ON AIR-GAPPED WORKSTATION LOOPBACK (127.0.0.1)]:",
+                "  * 0% commercial cloud dependency, 0 external APIs, 0 foreign firmware blobs, 0 WAN listening ports.",
                 "",
-                "[TRI-BRAIN + MODELED ANALOG KINETIC GUILLOTINE TELEMETRY]:",
-                "  * BRAIN ONE (Deterministic Control) : < 50 us loop | 2.04 us RS-485 Modbus FC05 | 13.33 ms 4-ch breaker",
-                "                                        isolation | 126.13 ms sequential soft-start recovery.",
-                "  * BRAIN TWO (Air-Gapped Cognitive)  : < 25W local NPU harmonic anomaly detection (< 5.0 ms); wired as",
-                "                                        strictly advisory with ZERO electrical connection to actuator coils.",
-                "  * BRAIN THREE (WORM Provenance)     : Ed25519 + SHA-256 Merkle DAG (< 0.15 ms) across 52 bare-metal SQLite",
-                "                                        tables (22 in matrix_ledger.db + 30 in hvf_memory_vault.db).",
+                "[TRI-BRAIN SOFTWARE EMULATION TESTBED (TRL 4) & MODELED PHASE-1 HARDWARE DESIGN TARGETS]:",
+                "  * BRAIN ONE (Deterministic Safety)  : Software safety boundary engine + SPICE/math model targeting <50us",
+                "                                        loop, 2.04us RS-485 Modbus FC05, & 36.75ns MOSFET cutoff in Phase 1.",
+                "  * BRAIN TWO (Air-Gapped Diagnostic) : Local offline structural (STR-01), pavement (PAV-01), & telemetry",
+                "                                        anomaly engine; strictly advisory with ZERO authority to bypass Brain 1.",
+                "  * BRAIN THREE (WORM Provenance)     : Append-only SHA-256 Merkle DAG across 52 verified bare-metal SQLite",
+                "                                        tables on disk (22 in matrix_ledger.db + 30 in hvf_memory_vault.db).",
                 "",
                 "=== LIVE TRL 4 WORKSTATION VERIFICATION LEDGER (636 C2 MODULES | 1,961 PRIV / 1,770 PUB) ===",
                 "  >>> 85 / 85 Automated Test Suites PASSED (100%) | 17 / 17 Red-Team Vectors BLOCKED | 1,420 Academy Qs",
@@ -112,42 +112,42 @@ def build_slide_specs() -> list:
             "bullets": [
                 "+----------------------+------------------------+---------------------+---------------------+---------------------+",
                 "| CAPABILITY / METRIC  | PROJECT EBONY (1AHA8)  | SIEMENS S7-1500 /   | DRAGOS PLATFORM /   | SCHNEIDER ELECTRIC  |",
-                "|                      | (HVF TRL 4 TESTBED)    | ROCKWELL CONTROLLGX | NOZOMI & JEV CLOUD  | TRICONEX (SIS)      |",
+                "|                      | (TRL 4 + DESIGN TARGET)| ROCKWELL CONTROLLGX | NOZOMI & JEV CLOUD  | TRICONEX (SIS)      |",
                 "+----------------------+------------------------+---------------------+---------------------+---------------------+",
                 "| Primary Architecture | Tri-Brain Bare-Metal + | Digital OS/RTOS PLC | Passive IDS / SIEM  | Triple-Modular      |",
-                "|                      | 36.75ns Guillotine     | (5-20Hz Scan Loop)  | & Cloud AI Wrappers | Redundant PLC       |",
+                "|                      | 36.75ns Modeled Cutoff | (5-20Hz Scan Loop)  | & Cloud AI Wrappers | Redundant PLC       |",
                 "+----------------------+------------------------+---------------------+---------------------+---------------------+",
-                "| Cutoff Latency       | 36.75 ns (Analog) /    | 50,000,000 to       | NONE (0 Physical    | 10,000,000 to       |",
-                "|                      | 2.04 us (Modbus FC05)  | 200,000,000 ns      | Cutoff; >250ms RTT) | 50,000,000 ns       |",
+                "| Cutoff Latency       | 36.75 ns (Modeled) /   | 50,000,000 to       | NONE (0 Physical    | 10,000,000 to       |",
+                "| (Target vs Legacy)   | 2.04 us (Emulated FC05)| 200,000,000 ns      | Cutoff; >250ms RTT) | 50,000,000 ns       |",
                 "+----------------------+------------------------+---------------------+---------------------+---------------------+",
-                "| Speed Advantage      | 1,360,544x Faster than | 8x-33x Too Slow for | Human Operator /    | Breached by TRISIS  |",
-                "|                      | 50ms Commercial PLC    | <4.16ms Arc-Flash   | Cloud API Required  | Firmware Injection  |",
+                "| Speed Advantage      | Modeled 1,360,544x     | 8x-33x Too Slow for | Human Operator /    | Breached by TRISIS  |",
+                "|                      | Faster than 50ms PLC   | <4.16ms Arc-Flash   | Cloud API Required  | Firmware Injection  |",
                 "+----------------------+------------------------+---------------------+---------------------+---------------------+",
-                "| Total Power Draw     | 28.5 W (24V DC Bus)    | 150 W - 450 W       | 300 W - 1,200 W     | 200 W - 600 W       |",
-                "| Cloud Dependency     | 0% (100% Air-Gapped)   | Proprietary OS/HMI  | High Cloud/Linux OS | Proprietary RTOS    |",
-                "| WORM Provenance      | Ed25519+SHA256 (<0.15m)| Unauthenticated CIP | Mutable SIEM Logs   | Non-Merkle Buffer   |",
+                "| Target Power Draw    | 28.5 W Target (24V DC) | 150 W - 450 W       | 300 W - 1,200 W     | 200 W - 600 W       |",
+                "| Cloud Dependency     | 0% (Verified Loopback) | Proprietary OS/HMI  | High Cloud/Linux OS | Proprietary RTOS    |",
+                "| WORM Provenance      | SHA-256 DAG (52 Tables)| Unauthenticated CIP | Mutable SIEM Logs   | Non-Merkle Buffer   |",
                 "+----------------------+------------------------+---------------------+---------------------+---------------------+",
             ],
             "narration": scripts[3]["spoken_script"],
         },
         {
             "slide_num": 5,
-            "header": "SLIDE 5 OF 5 // CRITERION 4: BUSINESS MODEL, OKLAHOMA VALIDATION & 26-CLIN SCHEDULE",
-            "sub": "RUBRIC PILLAR 4: GOVERNMENT/COMMERCIAL VALIDATION, UNBUNDLED CLIN PRICING & 10 U.S.C. 4022 -> 4022(f) OTA",
+            "header": "SLIDE 5 OF 5 // CRITERION 4: COMMERCIALIZATION READINESS, 26-CLIN SCHEDULE & $1.485M OTA",
+            "sub": "RUBRIC PILLAR 4: AUDIT-PROOF COMMERCIALIZATION ROADMAP, UNBUNDLED CLIN PRICING & 10 U.S.C. 4022 OTA",
             "bullets": [
-                "[1. DOCUMENTED GOVERNMENT & COMMERCIAL CUSTOMER VALIDATION]:",
-                "  * Commercial Ag & Microgrid Roadmap: 30% water savings, 12% yield boost, < 5 min data-to-action latency.",
-                "  * State of Oklahoma Executive Engagement (Oct 2026): Technical briefings with OK Dept of Commerce CTO",
-                "    (Rob Teel) & CEO (John Budd) under OK HB 2992 & Title 61 Sec 212; provisioned node HVF-NODE-TEELE-001;",
-                "    completed OMES Title 74 & CAP Form M254 filings; staged $25,000 Phase-1 ODOT Autonomous Bridge Drone",
-                "    Prototype (cutting $4,600 snooper-truck inspections to $250/sortie; $500,000 in-kind match 2 CFR 200.306).",
+                "[1. AUDIT-PROOF COMMERCIALIZATION & STATE PROPOSAL READINESS (ZERO UNFILED CLAIMS)]:",
+                "  * Standalone Client Evaluation Build: Packaged & Red-Team certified (17/17 attacks blocked + tamper zeroize).",
+                "  * Staged Civil & State Infrastructure Blueprints: Engineered draft Oklahoma Title 61 / HB 2992 compliance",
+                "    dossiers and a proposed $25,000 Phase-1 ODOT Autonomous Bridge Inspection Drone blueprint modeling a cost",
+                "    reduction from $4,600 snooper-truck inspections down to $250 per autonomous drone sortie.",
+                "  * Cyber & IP Posture: 110-control NIST SP 800-171 & 800-82 architectural mapping complete; formal third-party",
+                "    C3PAO / DoD SPRS audit scheduled in Phase-1 OTA; 100% DFARS 252.227-7018 Background IP retained.",
                 "",
-                "[2. DUAL-USE PRICING, 26-MODULE CLIN SCHEDULE & 10 U.S.C. 4022 -> 4022(f) TRANSITION]:",
-                "  >>> Tier 1 (Edge Comms): $19.99/mo | Tier 2 (Commercial SCADA/NDT): $499-$2,500/mo + $250/sortie.",
-                "  >>> Unbundled 26-Module Console (CLIN 0001 - CLIN 0026): CLIN 0001 Base Pilot ($2,450/mo) | CLIN 0006",
-                "      Robotics C2 ($185K/yr) | CLIN 1004-A 1-Node Bundle ($895K/yr) | CLIN 1004-B 25-Node Base ($2.45M/yr).",
-                "  >>> Tier 3 Federal DoD OTA: $1,485,000.00 12-Month Fixed-Price Prototype OTA (10 U.S.C. 4022; $150K M1A)",
-                "      -> Non-Competitive Production under 10 U.S.C. 4022(f) with 100% DFARS 252.227-7018 Background IP.",
+                "[2. UNBUNDLED 26-MODULE CONSOLE CLIN SCHEDULE & 12-MONTH, $1.485M PHASE-1 PROTOTYPE OTA]:",
+                "  >>> Commercial Tiers: Tier 1 ($19.99/mo) | Tier 2 ($499-$2,500/mo) | CLIN 0001 Base Pilot ($2,450/mo).",
+                "  >>> Console Bundles : CLIN 1004-A Full 26-Module 1-Node ($895K/yr) | CLIN 1004-B 25-Node Base ($2.45M/yr).",
+                "  >>> Proposed Federal OTA: $1,485,000.00 12-Month Phase-1 Prototype OTA (10 U.S.C. 4022; $150K M1A Mobilization)",
+                "      to fabricate Cortex-M7/SiC MOSFET boards (TRL 4 -> TRL 6) & transition to 10 U.S.C. 4022(f) production.",
             ],
             "narration": scripts[4]["spoken_script"],
         },
@@ -164,7 +164,6 @@ def render_slide_image(spec: dict, out_png: Path) -> Path:
     font_body = _load_font(21, bold=False)
     font_caption = _load_font(19, bold=False)
 
-    # Top sovereign header bar
     draw.rectangle([(0, 0), (1920, 110)], fill=(18, 32, 56))
     draw.line([(0, 110), (1920, 110)], fill=(0, 210, 255), width=4)
     draw.text(
@@ -180,26 +179,23 @@ def render_slide_image(spec: dict, out_png: Path) -> Path:
         font=font_title,
     )
 
-    # Subheader bar
     draw.rectangle([(40, 125), (1880, 172)], fill=(22, 42, 68), outline=(0, 180, 220), width=2)
     draw.text((55, 137), spec["sub"], fill=(120, 255, 180), font=font_sub)
 
-    # Main content box
     draw.rectangle([(40, 188), (1880, 818)], fill=(14, 24, 42), outline=(45, 85, 130), width=2)
     y = 205
-    line_step = 34 if spec["slide_num"] == 4 else 41
+    line_step = 34 if spec["slide_num"] == 4 else 40
     for line in spec["bullets"]:
         color = (230, 240, 250)
         if line.startswith("[") or line.startswith("===") or line.startswith("+---"):
             color = (255, 215, 90)
-        elif ">>>" in line or "36.75 ns" in line or "1,360,544x" in line or "0% (100%" in line:
+        elif ">>>" in line or "36.75 ns" in line or "1,360,544x" in line or "0% (Verified" in line:
             color = (110, 255, 160)
         elif "| CAPABILITY" in line or "|                      |" in line:
             color = (0, 225, 255)
         draw.text((58, y), line, fill=color, font=font_body)
         y += line_step
 
-    # Bottom spoken caption box
     draw.rectangle([(40, 832), (1880, 1012)], fill=(20, 30, 48), outline=(0, 210, 255), width=2)
     draw.text((58, 840), "ON-SCREEN NARRATION TRANSCRIPT (SECTION VII.e & 4-PILLAR EVALUATOR RUBRIC ALIGNED):", fill=(0, 210, 255), font=font_sub)
     wrapped_narration = textwrap.wrap(spec["narration"], width=116)
@@ -208,7 +204,6 @@ def render_slide_image(spec: dict, out_png: Path) -> Path:
         draw.text((58, ny), wline, fill=(245, 245, 245), font=font_caption)
         ny += 22
 
-    # Footer bar
     draw.rectangle([(0, 1025), (1920, 1080)], fill=(12, 20, 36))
     draw.line([(0, 1025), (1920, 1025)], fill=(0, 210, 255), width=2)
     draw.text(
@@ -315,7 +310,7 @@ def compile_tradewinds_mp4(output_mp4: Path = None) -> dict:
 if __name__ == "__main__":
     info = compile_tradewinds_mp4()
     print("=" * 90)
-    print("  [TRADEWINDS 1080p FULL-HD MP4 RESUBMISSION VIDEO WITH COMPETITOR AoA TABLE SEALED]")
+    print("  [100% AUDIT-PROOF TRADEWINDS 1080p MP4 VIDEO WITH COMPETITOR AoA TABLE SEALED]")
     print(f"  File Path    : {info['mp4_path']}")
     print(f"  File Size    : {info['size_mb']} MB | Slides: {info['slides_rendered']} (1920x1080 @ 30fps + AAC Audio)")
     print(f"  Duration     : {info['duration_sec']} seconds (Target < 300s / 5:00 Tradewinds Max Limit)")

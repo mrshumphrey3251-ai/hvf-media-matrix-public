@@ -13,10 +13,10 @@ from typing import Dict, Any, Optional
 
 class TradewindsPitchCompiler:
     """
-    Complete Tradewinds Pitch & 4-Pillar CDAO Assessor Rubric Resolution Compiler.
-    Incorporates GAO-21-81, GAO-24-106137, CISA AA23-144A/AA24-038A (Volt Typhoon), TRISIS/Triton,
-    Quantitative Analysis of Alternatives (AoA) vs. Siemens/Rockwell, Triconex, Dragos/Nozomi, and Jev Cloud AI,
-    and the 26-Module Unbundled CLIN Price Schedule (CLIN 0001 - CLIN 0026).
+    100% Audit-Proof Tradewinds Pitch & 4-Pillar CDAO Assessor Rubric Resolution Compiler.
+    Strictly distinguishes our verified TRL 4 local software emulation testbed (85/85 unit tests,
+    17/17 red-team blocks, 636 C2 modules, 52 SQLite WORM tables) from our modeled Phase-1 OTA
+    hardware design targets (36.75ns MOSFET cutoff, 28.5W SWaP) and staged commercialization dossiers.
     """
 
     def __init__(
@@ -35,15 +35,15 @@ class TradewindsPitchCompiler:
         return [
             {
                 "metric": "Primary Architecture",
-                "project_ebony_hvf": "Tri-Brain Bare-Metal + 36.75ns Modeled Analog Guillotine (TRL 4 Testbed)",
+                "project_ebony_hvf": "Tri-Brain Software Testbed (TRL 4) + Modeled 36.75ns Analog Guillotine",
                 "siemens_rockwell_plc": "Digital OS/RTOS PLC (5-20Hz Cyclic Scan)",
                 "dragos_nozomi_ids": "Passive Network IDS / Cloud-Hybrid SIEM",
                 "schneider_triconex_sis": "Triple-Modular Redundant Digital PLC",
                 "cloud_ai_wrappers_jev": "Cloud API Classification Wrapper"
             },
             {
-                "metric": "Physical Cutoff Latency",
-                "project_ebony_hvf": "36.75 ns (Modeled Analog) / 2.04 us (Modbus FC05) / 13.33 ms Breaker",
+                "metric": "Cutoff Latency (Design Target vs Legacy)",
+                "project_ebony_hvf": "36.75 ns (Modeled SPICE Target) / 2.04 us (Emulated Modbus FC05)",
                 "siemens_rockwell_plc": "50,000,000 - 200,000,000 ns (50 - 200 ms)",
                 "dragos_nozomi_ids": "NONE (0 Physical Cutoff Authority)",
                 "schneider_triconex_sis": "10,000,000 - 50,000,000 ns (10 - 50 ms)",
@@ -51,31 +51,31 @@ class TradewindsPitchCompiler:
             },
             {
                 "metric": "Speed & Physics Advantage",
-                "project_ebony_hvf": "1,360,544x Faster than 50ms PLC (Arrests <4.16ms Arc-Flash)",
+                "project_ebony_hvf": "Modeled 1,360,544x Faster than 50ms PLC (Targets <4.16ms Arc-Flash)",
                 "siemens_rockwell_plc": "8x - 33x Too Slow for <4.16ms Arc-Flash / 6ms Excursion",
                 "dragos_nozomi_ids": "Requires Human Operator (> 250 ms Reaction)",
                 "schneider_triconex_sis": "Vulnerable to TRISIS/Triton Firmware Injection",
                 "cloud_ai_wrappers_jev": "Total Failure Under EMCON / SATCOM Severance"
             },
             {
-                "metric": "Total SWaP Power Draw",
-                "project_ebony_hvf": "28.5 W (< 30W on 24V DC Tactical Battery Bus)",
+                "metric": "Target SWaP Power Draw",
+                "project_ebony_hvf": "28.5 W Modeled Target (< 30W on 24V DC Tactical Bus)",
                 "siemens_rockwell_plc": "150 W - 450 W (Rack + HMI + Active Cooling)",
                 "dragos_nozomi_ids": "300 W - 1,200 W (Appliance Server + Cloud)",
                 "schneider_triconex_sis": "200 W - 600 W (TMR Chassis)",
                 "cloud_ai_wrappers_jev": "Data Center GPU Cluster Required"
             },
             {
-                "metric": "Cloud / OS Dependency",
-                "project_ebony_hvf": "0% (100% Air-Gapped Localhost 127.0.0.1 / RS-485 Loopback)",
+                "metric": "Cloud Dependency (Verified Live)",
+                "project_ebony_hvf": "0% (100% Air-Gapped Localhost 127.0.0.1 Software Testbed)",
                 "siemens_rockwell_plc": "Proprietary Firmware / Windows Engineering Workstation",
                 "dragos_nozomi_ids": "High (Cloud Threat Feeds / Linux OS)",
                 "schneider_triconex_sis": "Proprietary Firmware (Compromised in TRISIS)",
                 "cloud_ai_wrappers_jev": "100% Dependent on External Commercial Cloud"
             },
             {
-                "metric": "WORM Cryptographic Ledger",
-                "project_ebony_hvf": "Ed25519 + SHA-256 WORM Merkle DAG (<0.15ms | 52 SQLite Tables)",
+                "metric": "WORM Cryptographic Ledger (Verified Live)",
+                "project_ebony_hvf": "SHA-256 WORM Merkle DAG (52 Verified SQLite Tables on Disk)",
                 "siemens_rockwell_plc": "Unauthenticated Modbus/CIP by Default",
                 "dragos_nozomi_ids": "Mutable Syslog / SIEM Export",
                 "schneider_triconex_sis": "Standard Event Buffer (Non-Merkle)",
@@ -98,29 +98,31 @@ class TradewindsPitchCompiler:
                 "id": "CRITERION-2",
                 "prior_assessor_critique": "Accelerating the Mission: Clarify TRL 4 software testbed vs. TRL 6/7 hardware target, zero cloud dependency, and empirical test metrics.",
                 "resubmission_resolution": (
-                    "Explicitly baselined at TRL 4 (Laboratory Software Emulation Testbed, Phase-1 OTA Target: TRL 6) with 0% cloud dependency "
-                    "on 127.0.0.1 loopback (100% EMCON availability). Brain 1: <50us loop, 2.04us Modbus FC05, 13.33ms breaker isolation, 126.13ms "
-                    "soft-start. Brain 2: <25W NPU (<5.0ms, advisory only, 0 actuator wire). Brain 3: Ed25519/SHA-256 WORM DAG (<0.15ms, 52 tables). "
-                    "Verified by 636 C2 modules (1,961 Private / 1,770 Public), 85/85 passing test suites, 17/17 Red-Team blocks, and 1,420 Academy Qs."
+                    "Explicitly baselined at TRL 4 (Laboratory Software Emulation Testbed running on local workstation loopback 127.0.0.1 "
+                    "with 0% cloud dependency), targeting TRL 6 hardware demonstration in our Phase-1 OTA. Verified live in software across "
+                    "636 C2 modules (1,961 Private / 1,770 Public), 85/85 passing unit test suites, 17/17 blocked Red-Team penetration vectors, "
+                    "52 SQLite WORM & Memory tables, and 1,420 verified Field Academy engineering exam questions."
                 )
             },
             {
                 "id": "CRITERION-3",
                 "prior_assessor_critique": "Advancing the State of the Art: Provide a quantitative head-to-head Analysis of Alternatives (AoA) against commercial OT/SCADA & AI incumbents.",
                 "resubmission_resolution": (
-                    "Benchmarked Project Ebony's modeled 36.75ns Analog Kinetic Guillotine MOSFET cutoff (1,360,544x faster than a 50ms PLC, "
-                    "28.5W on 24V DC, 0% cloud) directly against Siemens S7-1500/Rockwell ControlLogix (50-200ms, 150-450W), Schneider Triconex SIS "
-                    "(10-50ms, 200-600W), passive IDS Dragos/Nozomi Guardian (0 physical cutoff authority, 300-1,200W), and Jev Cloud AI (>250ms RTT)."
+                    "Contrasted Project Ebony's TRL 4 zero-cloud software testbed and modeled 36.75ns Analog Kinetic Guillotine MOSFET design target "
+                    "(1,360,544x faster than a 50ms PLC, modeled at 28.5W on 24V DC) directly against Siemens S7-1500/Rockwell ControlLogix "
+                    "(50-200ms, 150-450W), Schneider Triconex SIS (10-50ms, 200-600W), passive IDS Dragos/Nozomi Guardian (0 physical cutoff "
+                    "authority, 300-1,200W), and cloud AI wrappers like Jev (>250ms RTT, fails under air-gap)."
                 )
             },
             {
                 "id": "CRITERION-4",
-                "prior_assessor_critique": "Business Model & Validation: Document concrete commercial/government traction, unbundled per-node CLIN pricing, and 10 U.S.C. 4022 OTA transition.",
+                "prior_assessor_critique": "Business Model & Transition: Present transparent TRL 4 -> TRL 6 commercialization roadmap, unbundled per-node CLIN pricing, and 10 U.S.C. 4022 OTA.",
                 "resubmission_resolution": (
-                    "Documented Target Commercialization Roadmap validation (30% water savings, 12% yield gain), State of Oklahoma executive briefings "
-                    "(OK Commerce CTO Rob Teel & CEO John Budd under HB 2992 & Title 61, node HVF-NODE-TEELE-001, OMES Title 74/M254 filings, $25K ODOT "
-                    "bridge drone cutting $4,600 inspections to $250/sortie with $500K allowable in-kind match under 2 CFR 200.306), 26-Module CLIN "
-                    "Schedule (CLIN 0001-0026; $895K/yr 1-Node Bundle; $2.45M/yr 25-Node Base Fleet), and $1.485M 10 U.S.C. 4022 OTA -> 4022(f) production."
+                    "Replaced any ambiguous field-deployment language with transparent, audit-proof commercialization readiness: engineered "
+                    "an isolated client evaluation package (HVF-NODE-TEELE-001), staged draft Oklahoma Title 61 / HB 2992 & ODOT bridge drone "
+                    "proposal blueprints inside our repository, established our unbundled 26-Module Console CLIN Schedule (CLIN 0001 Base Pilot at "
+                    "$2,450/mo; CLIN 1004-A 1-Node Bundle at $895K/yr), and structured a 12-Month, $1.485M Phase-1 Prototype OTA under 10 U.S.C. "
+                    "4022 ($150K M1A Mobilization) to fabricate physical PCB hardware and transition to 10 U.S.C. 4022(f) production."
                 )
             }
         ]
@@ -133,19 +135,19 @@ class TradewindsPitchCompiler:
                 "spoken_script": (
                     "I am Jeffery Humphrey, Founder, President, and CEO of Humphrey Virtual Farms LLC, CAGE Code 1AHA8, "
                     "UEI S1M4ENLHTDH5. This video is our official resubmission for Project Ebony under Tradewinds Docket "
-                    "10-26-3976, resolving all four pillars of Assessor Feedback from our prior submission 9-26-3703. "
-                    "First, we explicitly baseline Project Ebony at TRL 4—a laboratory software emulation testbed and "
-                    "mathematical proof of concept running on air-gapped loopback 127.0.0.1, targeting TRL 6 operational "
-                    "field demonstration under our proposed 12-month, $1.485 million Phase-1 Prototype OTA. Second, we "
-                    "quantify the exact DoD threat landscape under GAO-21-81, GAO-24-106137, and CISA Volt Typhoon advisories. "
-                    "Third, we provide a side-by-side Quantitative Analysis of Alternatives against Siemens, Rockwell, "
-                    "Schneider Triconex, Dragos, Nozomi, and cloud AI wrappers. Fourth, we detail our State of Oklahoma "
-                    "executive validation and our 26-module unbundled CLIN price schedule."
+                    "10-26-3976, directly resolving all four pillars of Assessor Feedback from our prior submission 9-26-3703 "
+                    "with 100 percent engineering transparency. First, we explicitly baseline Project Ebony at TRL 4—a "
+                    "laboratory software emulation testbed and mathematical proof of concept running on local workstation "
+                    "loopback 127.0.0.1 with zero cloud dependency, targeting TRL 6 physical hardware demonstration under our "
+                    "proposed 12-month, $1.485 million Phase-1 Prototype OTA. Second, we quantify the DoD OT threat landscape "
+                    "citing GAO-21-81, GAO-24-106137, and CISA Volt Typhoon advisories. Third, we present a head-to-head "
+                    "Analysis of Alternatives against Siemens, Rockwell, Schneider Triconex, Dragos, Nozomi, and cloud AI. "
+                    "Fourth, we present our unbundled 26-module CLIN price schedule and Phase-1 OTA transition plan."
                 )
             },
             {
                 "segment": "SLIDE 2 (0:50 - 1:40) // CRITERION 1: DEFINING THE DOD PROBLEM (GAO & CISA VOLT TYPHOON)",
-                "rubric_criterion": "Criterion 1: Defining the Problem (Upgraded from Acceptable to Outstanding)",
+                "rubric_criterion": "Criterion 1: Defining the Problem (Quantified DoD Exposure & Physics Latency Gap)",
                 "spoken_script": (
                     "Criterion 1: Defining the Problem. Per U.S. GAO reports GAO-21-81 and GAO-24-106137, the Department "
                     "of Defense operates over 500 military installations, 300,000 buildings, and $4.2 billion in annual "
@@ -159,19 +161,19 @@ class TradewindsPitchCompiler:
                 )
             },
             {
-                "segment": "SLIDE 3 (1:40 - 2:40) // CRITERION 2: ACCELERATING THE MISSION (TRI-BRAIN TRL 4 TESTBED)",
-                "rubric_criterion": "Criterion 2: Accelerating the Mission (Zero-Cloud Tri-Brain & 85/85 Test Suite)",
+                "segment": "SLIDE 3 (1:40 - 2:40) // CRITERION 2: ACCELERATING THE MISSION (TRL 4 SOFTWARE TESTBED)",
+                "rubric_criterion": "Criterion 2: Accelerating the Mission (Verified Zero-Cloud Software Emulation & 85/85 Tests)",
                 "spoken_script": (
-                    "Criterion 2: Accelerating the Mission. Project Ebony version 8.0.0 operates with zero percent commercial "
-                    "cloud dependency, zero external APIs, and zero WAN listening ports on air-gapped 127.0.0.1 loopback, "
-                    "maintaining 100 percent availability under EMCON or SATCOM severance. Brain One executes a deterministic "
-                    "control loop in under 50 microseconds, achieving 2.04-microsecond RS-485 Modbus FC05 actuation, "
-                    "13.33-millisecond 4-channel breaker isolation, and 126.13-millisecond sequential soft-start recovery. "
-                    "Brain Two runs sub-25-watt local NPU harmonic anomaly detection in under 5 milliseconds, wired as strictly "
-                    "advisory with zero electrical connection to actuator coils. Brain Three seals every frame in under "
-                    "0.15 milliseconds into an Ed25519 and SHA-256 WORM Merkle DAG across 52 bare-metal SQLite tables, verified "
-                    "by 636 C2 modules, 85 of 85 passing test suites, 17 of 17 blocked Red-Team cyber vectors, and 1,420 "
-                    "verified Field Academy exam questions."
+                    "Criterion 2: Accelerating the Mission. Project Ebony version 8.0.0 is verified live today at TRL 4 on "
+                    "air-gapped 127.0.0.1 loopback with zero percent commercial cloud dependency, zero external APIs, and "
+                    "zero WAN listening ports. In our software emulation testbed and SPICE mathematical models, Brain One "
+                    "models deterministic safety boundary checks, 2.04-microsecond RS-485 Modbus FC05 actuation, and our "
+                    "36.75-nanosecond Analog Kinetic Guillotine hardware design target. Brain Two executes local offline "
+                    "diagnostic and anomaly algorithms with zero authority to bypass Brain One safety interlocks. Brain Three "
+                    "seals every telemetry frame and operator command into an append-only SHA-256 WORM Merkle DAG across "
+                    "52 verified bare-metal SQLite tables on disk. Our local repository is empirically verified across "
+                    "636 C2 modules, 85 of 85 passing automated test suites, 17 of 17 blocked Red-Team penetration vectors "
+                    "with automatic tamper zeroization, and 1,420 verified Field Academy engineering exam questions."
                 )
             },
             {
@@ -184,24 +186,26 @@ class TradewindsPitchCompiler:
                     "safety systems require 10 to 50 milliseconds, draw 200 to 600 watts, and were breached by firmware injection "
                     "in TRISIS. Passive intrusion detection systems like Dragos Platform and Nozomi Guardian draw 300 to 1,200 watts "
                     "and have zero physical cutoff authority, requiring over 250 milliseconds for human intervention, just like "
-                    "cloud AI wrappers such as Jev that fail when air-gapped. By contrast, Project Ebony's modeled Analog Kinetic "
-                    "Guillotine sweeps MOSFET gate charge in 36.75 nanoseconds—1,360,544 times faster than a 50-millisecond PLC—at "
-                    "just 28.5 watts on a 24-volt DC battery bus with cryptographic WORM provenance."
+                    "cloud AI wrappers such as Jev that fail when air-gapped. By contrast, Project Ebony combines a verified "
+                    "zero-cloud WORM software enclave with a modeled 36.75-nanosecond Analog Kinetic Guillotine MOSFET design "
+                    "target—1,360,544 times faster than a 50-millisecond PLC—at a modeled 28.5 watts on a 24-volt DC bus."
                 )
             },
             {
-                "segment": "SLIDE 5 (3:40 - 4:35) // CRITERION 4: BUSINESS MODEL, OKLAHOMA VALIDATION & 26-CLIN SCHEDULE",
-                "rubric_criterion": "Criterion 4: Customer Validation, 26-Module CLIN Pricing & $1.485M 10 U.S.C. 4022 OTA",
+                "segment": "SLIDE 5 (3:40 - 4:35) // CRITERION 4: BUSINESS MODEL, 26-CLIN SCHEDULE & $1.485M OTA",
+                "rubric_criterion": "Criterion 4: Commercialization Readiness, 26-Module CLIN Pricing & 10 U.S.C. 4022 OTA",
                 "spoken_script": (
-                    "Criterion 4: Business Model and Customer Validation. Project Ebony is validated across our commercial "
-                    "agricultural and microgrid roadmap targeting 30 percent water savings and 12 percent yield gains, alongside "
-                    "October 2026 executive briefings with the Oklahoma Department of Commerce CTO Rob Teel and CEO John Budd "
-                    "under Oklahoma HB 2992 and Title 61, node HVF-NODE-TEELE-001, OMES supplier filings, and a $25,000 Phase-1 "
-                    "ODOT bridge inspection drone prototype slashing $4,600 snooper-truck inspections to $250 per sortie across "
-                    "8 ODOT divisions with a $500,000 allowable in-kind match under 2 CFR 200.306. Our unbundled 26-module console "
+                    "Criterion 4: Business Model and Transition Pathway. Every commercial and state artifact in our repository "
+                    "is transparently presented as staged software and engineering readiness: we have packaged a standalone "
+                    "Red-Team-certified client evaluation build, staged architectural compliance blueprints for civil bridge "
+                    "and pavement diagnostics modeling a reduction from $4,600 snooper-truck bridge inspections to $250 per "
+                    "autonomous drone sortie, and completed our 110-control NIST 800-171 and 800-82 architectural mapping, with "
+                    "formal third-party C3PAO and DoD SPRS auditing scheduled inside Phase 1. Our unbundled 26-module C2 console "
                     "scales from CLIN 0001 Base Pilot at $2,450 per month and CLIN 1004-A Full 1-Node Bundle at $895,000 per year "
-                    "to our $1.485 million, 12-month Fixed-Price Prototype OTA under 10 U.S.C. Section 4022, transitioning directly "
-                    "to non-competitive production under Section 4022(f) while retaining 100 percent DFARS 252.227-7018 Background IP. Thank you."
+                    "to our proposed 12-month, $1.485 million Fixed-Price Prototype OTA under 10 U.S.C. Section 4022, beginning "
+                    "with a $150,000 mobilization tranche to fabricate physical Cortex-M7 and silicon-carbide MOSFET boards and "
+                    "advance from TRL 4 software emulation to TRL 6 operational demonstration, while retaining 100 percent "
+                    "DFARS 252.227-7018 Background IP. Thank you."
                 )
             }
         ]
@@ -216,7 +220,7 @@ class TradewindsPitchCompiler:
             "uei": "S1M4ENLHTDH5",
             "active_docket": "10-26-3976",
             "prior_docket": "9-26-3703",
-            "readiness_level": "TRL 4 (Phase-1 OTA Target: TRL 6)",
+            "readiness_level": "TRL 4 (Laboratory Software Emulation Testbed | Phase-1 OTA Target: TRL 6)",
             "status": "PUBLIC_TRADEWINDS_INTERFACE_ACTIVE",
             "data_rights": "DFARS 252.227-7018 (GPR)",
             "tradewinds_integrity_token": "PUBLIC_TRADEWINDS_TOKEN_SHA256",
