@@ -1,6 +1,6 @@
 {
   "dispatch_protocol": "HVF-TRADEWINDS-DISPATCH-v8.0",
-  "timestamp_utc": "2026-10-28T18:42:15.847253+00:00",
+  "timestamp_utc": "2026-10-28T18:49:23.042697+00:00",
   "submission_id": "10-26-3976",
   "prior_submission_id": "9-26-3703",
   "readiness_level": "TRL 4 (Laboratory Software Emulation Testbed)",
@@ -35,12 +35,12 @@
     {
       "id": "AF-04",
       "prior_assessor_critique": "Demonstrate clear DoD Problem Alignment, Defense Customer Transition Path, and Commercial Viability (Section VII.e).",
-      "resubmission_resolution": "Demonstrated live Three-Brain C2 & SCADA isolation for DoD tactical microgrids, base utilities, and civil works (USACE ERDC / DIU / CDAO), backed by a 4-milestone $1.485M Phase-1 Prototype OTA schedule ($150K M1A Mobilization) under 10 U.S.C. Section 4022 and an auditable 1,767-module Public GitHub blueprint."
+      "resubmission_resolution": "Demonstrated live Three-Brain C2 & SCADA isolation for DoD tactical microgrids, base utilities, and civil works (USACE ERDC / DIU / CDAO), backed by a 4-milestone $1.485M Phase-1 Prototype OTA schedule ($150K M1A Mobilization) under 10 U.S.C. Section 4022 and an auditable 1,768-module Public GitHub blueprint."
     }
   ],
   "git_provenance": {
-    "private_repo_commit": "1625fc75a429533af4ab26143967172a663efd25",
-    "public_repo_commit": "8bd3d0f2582882bc10e49d55134156cf5a9bd103",
+    "private_repo_commit": "b3e2fc906e50bd9283e145d2611e3a77ed1d6cda",
+    "public_repo_commit": "f9f11d1ab73f2d629535adb6f14d966245b5bb9e",
     "tag_verified": true
   },
   "software_emulation_telemetry": {

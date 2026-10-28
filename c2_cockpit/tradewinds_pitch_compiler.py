@@ -64,7 +64,7 @@ class TradewindsPitchCompiler:
                 "resubmission_resolution": (
                     "Demonstrated live Three-Brain C2 & SCADA isolation for DoD tactical microgrids, base utilities, and civil works "
                     "(USACE ERDC / DIU / CDAO), backed by a 4-milestone $1.485M Phase-1 Prototype OTA schedule ($150K M1A Mobilization) "
-                    "under 10 U.S.C. Section 4022 and an auditable 1,767-module Public GitHub blueprint."
+                    "under 10 U.S.C. Section 4022 and an auditable 1,768-module Public GitHub blueprint."
                 )
             }
         ]
@@ -109,7 +109,7 @@ class TradewindsPitchCompiler:
                     "directive into a bare-metal SQLite Write-Once-Read-Many SHA-256 Merkle DAG vault across 52 verified database tables. "
                     "On screen right now, you see our live TRL 4 software testbed executing all 84 automated unit test suites with "
                     "zero failures, blocking all 17 adversarial red-team penetration vectors including automatic single-letter tamper "
-                    "zeroization, and verifying 100% cryptographic parity across our 1,958 Private and 1,767 Public Python modules."
+                    "zeroization, and verifying 100% cryptographic parity across our 1,959 Private and 1,768 Public Python modules."
                 )
             },
             {
@@ -117,7 +117,7 @@ class TradewindsPitchCompiler:
                 "rubric_criterion": "Competitive Differentiation, IP Sovereignty & Cybersecurity",
                 "spoken_script": (
                     "Unlike commercial cloud wrappers or black-box AI vendors, Humphrey Virtual Farms LLC is a 100% sovereign small "
-                    "business prime. All 1,958 Python modules, Three-Brain interlocks, and our 1,420-question Sovereign Field Academy "
+                    "business prime. All 1,959 Python modules, Three-Brain interlocks, and our 1,420-question Sovereign Field Academy "
                     "workforce bank were engineered 100% at private expense. Under DFARS 252.227-7018, we retain background IP while "
                     "granting the Department of Defense full Government Purpose Rights for funded Phase-1 prototype deliverables."
                 )
