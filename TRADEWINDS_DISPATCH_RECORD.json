@@ -1,6 +1,6 @@
 {
   "dispatch_protocol": "HVF-TRADEWINDS-DISPATCH-v8.0",
-  "timestamp_utc": "2026-10-28T19:21:18.782825+00:00",
+  "timestamp_utc": "2026-10-28T19:48:18.033523+00:00",
   "submission_id": "10-26-3976",
   "prior_submission_id": "9-26-3703",
   "readiness_level": "TRL 4 (Laboratory Software Emulation Testbed)",
@@ -18,29 +18,29 @@
   ],
   "assessor_feedback_resolutions": [
     {
-      "id": "AF-01",
-      "prior_assessor_critique": "Clarify Technology Readiness Level (TRL) claims vs. physical field hardware deployment.",
-      "resubmission_resolution": "Explicitly baselined at TRL 4 (Laboratory Software Emulation Testbed & Mathematical Proof-of-Concept) running on air-gapped local loopback (127.0.0.1, 0% external cloud dependency). Physical PCB fabrication and TRL 6/7 field range trials are funded milestones under our proposed 12-Month, $1.485M Phase-1 Prototype OTA."
+      "id": "CRITERION-1",
+      "prior_assessor_critique": "Defining the Problem: Quantify exact DoD infrastructure exposure, federal threat citations, and physical scan-latency failure.",
+      "resubmission_resolution": "Cited U.S. GAO reports GAO-21-81 & GAO-24-106137 (500+ DoD installations, 300,000+ buildings, $4.2B+ OT energy assets on 50-200ms PLCs) and Joint CISA/NSA/DoD Advisories AA23-144A & AA24-038A (Volt Typhoon OT pre-positioning) plus TRISIS/Triton. Proved physics gap: <4.16ms arc-flash backfeeds and 6.0ms microreactor excursions outrun 50-200ms PLCs by 8x to 33x."
     },
     {
-      "id": "AF-02",
-      "prior_assessor_critique": "Substantiate sub-microsecond (36.75ns) Kinetic Guillotine and zero-trust cybersecurity claims with empirical proof.",
-      "resubmission_resolution": "Distinguished the 36.75ns physical MOSFET cutoff (28.5W / 24V DC) as our SPICE/mathematical hardware design target for Phase-1 PCB fabrication, while demonstrating live on-screen execution of 84/84 passing automated software test suites and 17/17 blocked adversarial red-team penetration vectors in our local loopback software testbed."
+      "id": "CRITERION-2",
+      "prior_assessor_critique": "Accelerating the Mission: Clarify TRL 4 software testbed vs. TRL 6/7 hardware target, zero cloud dependency, and empirical test metrics.",
+      "resubmission_resolution": "Explicitly baselined at TRL 4 (Laboratory Software Emulation Testbed, Phase-1 OTA Target: TRL 6) with 0% cloud dependency on 127.0.0.1 loopback (100% EMCON availability). Brain 1: <50us loop, 2.04us Modbus FC05, 13.33ms breaker isolation, 126.13ms soft-start. Brain 2: <25W NPU (<5.0ms, advisory only, 0 actuator wire). Brain 3: Ed25519/SHA-256 WORM DAG (<0.15ms, 52 tables). Verified by 636 C2 modules (1,961 Private / 1,770 Public), 85/85 passing test suites, 17/17 Red-Team blocks, and 1,420 Academy Qs."
     },
     {
-      "id": "AF-03",
-      "prior_assessor_critique": "Clarify NIST SP 800-171 / CMMC / SPRS compliance posture and Government Data Rights.",
-      "resubmission_resolution": "Completed 110-control architectural mapping under NIST SP 800-171 Rev 2 and NIST SP 800-82 Rev 2 across our Three-Brain software testbed; scheduled formal third-party C3PAO / DoD SPRS audit as a funded Phase-1 OTA milestone; and locked 100% Small Business Background IP retention with Government Purpose Rights (GPR) under DFARS 252.227-7018."
+      "id": "CRITERION-3",
+      "prior_assessor_critique": "Advancing the State of the Art: Provide a quantitative head-to-head Analysis of Alternatives (AoA) against commercial OT/SCADA & AI incumbents.",
+      "resubmission_resolution": "Benchmarked Project Ebony's modeled 36.75ns Analog Kinetic Guillotine MOSFET cutoff (1,360,544x faster than a 50ms PLC, 28.5W on 24V DC, 0% cloud) directly against Siemens S7-1500/Rockwell ControlLogix (50-200ms, 150-450W), Schneider Triconex SIS (10-50ms, 200-600W), passive IDS Dragos/Nozomi Guardian (0 physical cutoff authority, 300-1,200W), and Jev Cloud AI (>250ms RTT)."
     },
     {
-      "id": "AF-04",
-      "prior_assessor_critique": "Demonstrate clear DoD Problem Alignment, Defense Customer Transition Path, and Commercial Viability (Section VII.e).",
-      "resubmission_resolution": "Demonstrated live Three-Brain C2 & SCADA isolation for DoD tactical microgrids, base utilities, and civil works (USACE ERDC / DIU / CDAO), backed by a 4-milestone $1.485M Phase-1 Prototype OTA schedule ($150K M1A Mobilization) under 10 U.S.C. Section 4022 and an auditable 1,768-module Public GitHub blueprint."
+      "id": "CRITERION-4",
+      "prior_assessor_critique": "Business Model & Validation: Document concrete commercial/government traction, unbundled per-node CLIN pricing, and 10 U.S.C. 4022 OTA transition.",
+      "resubmission_resolution": "Documented Target Commercialization Roadmap validation (30% water savings, 12% yield gain), State of Oklahoma executive briefings (OK Commerce CTO Rob Teel & CEO John Budd under HB 2992 & Title 61, node HVF-NODE-TEELE-001, OMES Title 74/M254 filings, $25K ODOT bridge drone cutting $4,600 inspections to $250/sortie with $500K allowable in-kind match under 2 CFR 200.306), 26-Module CLIN Schedule (CLIN 0001-0026; $895K/yr 1-Node Bundle; $2.45M/yr 25-Node Base Fleet), and $1.485M 10 U.S.C. 4022 OTA -> 4022(f) production."
     }
   ],
   "git_provenance": {
-    "private_repo_commit": "ca8109bd427f4ebbe2a8c11a93362f24f66606d7",
-    "public_repo_commit": "eb22db73123583e04edd1658a17535f6516cf7a1",
+    "private_repo_commit": "877ca2a598ac7bbe2add6a1808f6ec780627f9c7",
+    "public_repo_commit": "ab16b0f167f14713d8c0e5890e2ad8d3e696cc5c",
     "tag_verified": true
   },
   "software_emulation_telemetry": {

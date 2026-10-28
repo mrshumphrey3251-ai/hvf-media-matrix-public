@@ -13,7 +13,7 @@
 | :--- | :--- | :--- |
 | **1. Automated Unit & Stress Test Suite (`run_all_83_tests.py`)** | All `83 / 83` (`test_*.py`) Local Software Suites Executed | **83 / 83 PASSED (100.0% Local Software Emulation)** |
 | **2. Compiled C2 & Level-5 Python Modules** | Full Repo (`1,959` Private / `1,768` Public `.py` Modules) | **100% Repo Compiled (`1,959` Priv / `1,768` Pub) (`0` Syntax Errors)** |
-| **3. Master C2 Cryptographic Merkle Root (SHA-256)** | Public/Private Deterministic Digest Parity | **`833fe605eeff59d6675821d0eadc9fd3b2125bbf5f46bbac65ee534ab05da3c1`** |
+| **3. Master C2 Cryptographic Merkle Root (SHA-256)** | Public/Private Deterministic Digest Parity | **`2bbfa00aebe0e21ca3cd914a1b412b5f9cf904837d47b8c7b606f50d00f5792d`** |
 | **4. Sovereign Academy Assessment Bank** | Chapter 1 (`800` Qs) + Chapter 5 (`620` Qs) | **1,420 / 1,420 Unique Verified Questions** |
 | **5. Local SQLite WORM & Memory Vault Schema** | `22` Ledger Tables & `30` Memory Vault Tables (`52` Total) | **100% Schema & SHA-256 Seal Integrity (Binary DB Redacted in Public)** |
 | **6. Simulated Red-Team Zero-Trust Harness** | `test_client_penetration.py` (`17` Simulated Cyber Vectors) | **17 / 17 Simulated Vectors Blocked (`0` Breaches)** |
