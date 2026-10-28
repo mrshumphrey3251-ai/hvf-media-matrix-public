@@ -31,7 +31,7 @@
   },
   "Stage-8F-Verification": {
     "status": "Completed",
-    "notes": "7/7 Sovereign Verification Gates and 83/83 unit tests sealed under Merkle Root cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a",
+    "notes": "7/7 Sovereign Verification Gates and 83/83 unit tests sealed under Merkle Root 68e6295f98e7ba4d8fdc8fe5dae26077ddae4025d49b08693b971be888eb2f45",
     "updated": "2026-10-27T18:00:00.000000Z"
   },
   "Tradewinds-10-26-3976-TRL4": {

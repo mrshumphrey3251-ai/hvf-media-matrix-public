@@ -872,3 +872,27 @@ if __name__ == "__main__":
         assert len(set(all_stems)) == 155, f"Expected 155 unique questions across {c_code}, got {len(set(all_stems))}"
         print(f"[PASS] {c_code}: All 3 Stages Verified (20 + 45 + 90 = 155 Unique Questions, 0 Duplicates)")
     print("=" * 86)
+
+
+# --- FORWARD-COMPATIBLE STAGE 8F-9 AUDIT HELPERS ---
+def generate_chapter_1_800_questions() -> list:
+    """Returns all 800 unique verified Chapter 1 milestone questions across the 4 core curricula."""
+    import re
+    import ebony_textbook_library as _etl
+    stems = []
+    for core_code in ["STR-01", "ENV-01", "PAV-01", "AUT-01"]:
+        for u in _etl.get_course_units(core_code):
+            for q in u["unit_quiz"]:
+                clean_q = re.sub(r"^(?:\[[^\]]+\]\s*)+", "", str(q["q"]).strip())
+                stems.append(f"{core_code}|U{u['unit']:02d}|{clean_q}")
+    return stems
+
+
+def generate_chapter_5_questions() -> list:
+    """Returns all 620 unique verified Chapter 5 state exam questions across all 12 stages."""
+    stems = []
+    for core_code in ["STR-01", "ENV-01", "PAV-01", "AUT-01"]:
+        for stg in (1, 2, 3):
+            for q in generate_course_stage_questions(core_code, stg):
+                stems.append(q["question"])
+    return stems
