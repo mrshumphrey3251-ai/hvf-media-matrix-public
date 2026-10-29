@@ -4,259 +4,80 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
 endobj
 3 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
 4 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 5 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
 endobj
 6 0 obj
-<< /Length 3875 >>
+<< /Length 4870 >>
 stream
-BT
-/F2 10 Tf
-45 752 Td
-(HUMPHREY VIRTUAL FARMS LLC // LEVEL-5 SOVEREIGN C2 ENCLAVE) Tj
-0 -13 Td
-/F1 8 Tf
-(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK Title 61 / HB 2992 | DOC ID: HVF-DOC-2026-001) Tj
-0 -12 Td
-(CLASSIFICATION: SOVEREIGN LEVEL-5 EXECUTIVE DELIVERABLE // PUBLIC/PRIVATE PARITY) Tj
-0 -14 Td
-/F2 11 Tf
-(USACE-ERDC-BAA-2026 // HVF TRL 4 WHITE PAPER \(CAGE 1AHA8\)) Tj
-0 -10 Td
-/F1 8 Tf
-(============================================================================================) Tj
-0 -14 Td
-/F1 9 Tf
-/F2 9 Tf
-(U.S. ARMY ENGINEER RESEARCH AND DEVELOPMENT CENTER \(ERDC\) // ROLLING BAA WHITE PAPER) Tj
-/F1 9 Tf
-0 -13 Td
-/F2 9 Tf
-(TITLE: DETERMINISTIC THREE-BRAIN TELEMETRY, NON-DESTRUCTIVE STRUCTURAL DIAGNOSTICS) Tj
-/F1 9 Tf
-0 -13 Td
-/F2 9 Tf
-(\(STR-01/PAV-01\), AND AIR-GAPPED WORM PROVENANCE FOR CIVIL & MILITARY INFRASTRUCTURE) Tj
-/F1 9 Tf
-0 -13 Td
-(----------------------------------------------------------------------------------------) Tj
-0 -13 Td
-(----) Tj
-0 -13 Td
-(SOLICITATION IDENTIFIER : USACE-ERDC-BAA-2026 \(FAR 35.016 / 10 U.S.C. Section 4022\)) Tj
-0 -13 Td
-(SUBMITTING PRIME        : Humphrey Virtual Farms LLC \(100% Sovereign Small Business) Tj
-0 -13 Td
-(Prime\)) Tj
-0 -13 Td
-(CORPORATE IDENTIFIERS   : CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DoD CDAO Docket: 10-26-3976) Tj
-0 -13 Td
-(PRINCIPAL INVESTIGATOR  : Jeffery Humphrey, Founder, President & CEO) Tj
-0 -13 Td
-/F2 9 Tf
-(\([REDACTED-FOR-PUBLIC-RELEASE]\)) Tj
-/F1 9 Tf
-0 -13 Td
-(CURRENT READINESS LEVEL : TRL 4 \(Laboratory Software Emulation Testbed & Math) Tj
-0 -13 Td
-(Proof-of-Concept\)) Tj
-0 -13 Td
-(PROPOSED FUNDING SCOPE  : $1,200,000.00 Total \(12 Months | $0.00 Cash Match |) Tj
-0 -13 Td
-/F2 9 Tf
-($150,000.00 M1A\)) Tj
-/F1 9 Tf
-0 -13 Td
-(INTELLECTUAL PROPERTY   : 100% Small Business Background IP Retained under DFARS) Tj
-0 -13 Td
-(252.227-7018) Tj
-0 -13 Td
-(----------------------------------------------------------------------------------------) Tj
-0 -13 Td
-(----) Tj
-0 -13 Td
-() Tj
-0 -13 Td
-/F2 9 Tf
-(SECTION 1. EXECUTIVE SUMMARY & ERDC LABORATORY ALIGNMENT \(GSL / CHL / ITL\)) Tj
-/F1 9 Tf
-0 -13 Td
-() Tj
-0 -13 Td
-(Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5\) submits this Technical) Tj
-0 -13 Td
-(White) Tj
-0 -13 Td
-(Paper to the U.S. Army Engineer Research and Development Center \(ERDC\) targeting the) Tj
-0 -13 Td
-(Geotechnical and Structures Laboratory \(GSL\), Coastal and Hydraulics Laboratory \(CHL\),) Tj
-0 -13 Td
-(and Information Technology Laboratory \(ITL\) research portfolios.) Tj
-0 -13 Td
-() Tj
-0 -13 Td
-(Modern civil works, navigation locks, flood-control dams, tactical airfields, and) Tj
-0 -13 Td
-(highway) Tj
-0 -13 Td
-(bridges face an acute dual operational vulnerability:) Tj
-0 -13 Td
-(1. Cloud-Dependent SCADA & Inspection Fragility under EMI or bandwidth denial.) Tj
-0 -13 Td
-(2. Unverified Structural & Hydrological Sensor Provenance at the tactical edge.) Tj
-0 -13 Td
-() Tj
-0 -13 Td
-(Project Ebony \(v8.0.0\) resolves both vulnerabilities through an air-gapped, zero-cloud) Tj
-0 -13 Td
-(Three-Brain Software Emulation Testbed \(TRL 4\) operating at 100% local loopback) Tj
-0 -13 Td
-(\(127.0.0.1) Tj
-0 -13 Td
-(with 0% external cloud dependency\), verified across 84 / 84 passing automated unit and) Tj
-0 -13 Td
-(stress test suites, 17 / 17 blocked adversarial red-team penetration vectors, and 1,420) Tj
-0 -13 Td
-(verified civil and structural engineering assessment modules \(STR-01, PAV-01, ENV-01\).) Tj
-0 -13 Td
-() Tj
-0 -13 Td
-(----------------------------------------------------------------------------------------) Tj
-0 -13 Td
-/F1 8 Tf
-(========================================================================================) Tj
-0 -11 Td
-(WORM SHA-256 SEAL: 97dcb1c8ffc90439b5ead3076fa3d901f3c92bf4a7f1ce544bbc42ad1930b26e) Tj
-0 -11 Td
-(GENERATED: 2026-10-29 15:32:46 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 1 OF 2) Tj
-ET
-endstream
-endobj
-7 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
-endobj
-8 0 obj
-<< /Length 2898 >>
-stream
-BT
-/F2 10 Tf
-45 752 Td
-(HUMPHREY VIRTUAL FARMS LLC // LEVEL-5 SOVEREIGN C2 ENCLAVE) Tj
-0 -13 Td
-/F1 8 Tf
-(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | STATUTORY: OK Title 61 / HB 2992 | DOC ID: HVF-DOC-2026-001) Tj
-0 -12 Td
-(CLASSIFICATION: SOVEREIGN LEVEL-5 EXECUTIVE DELIVERABLE // PUBLIC/PRIVATE PARITY) Tj
-0 -14 Td
-/F2 11 Tf
-(USACE-ERDC-BAA-2026 // HVF TRL 4 WHITE PAPER \(CAGE 1AHA8\)) Tj
-0 -10 Td
-/F1 8 Tf
-(============================================================================================) Tj
-0 -14 Td
-/F1 9 Tf
-(----) Tj
-0 -13 Td
-/F2 9 Tf
-(SECTION 2. THREE-BRAIN ARCHITECTURAL SPECIFICATION \(TRL 4 SOFTWARE EMULATION TESTBED\)) Tj
-/F1 9 Tf
-0 -13 Td
-(----------------------------------------------------------------------------------------) Tj
-0 -13 Td
-(----) Tj
-0 -13 Td
-/F2 9 Tf
-(A. BRAIN ONE - DETERMINISTIC SAFETY & ACTUATION INTERLOCK ENGINE:) Tj
-/F1 9 Tf
-0 -13 Td
-(SPICE and mathematical model targeting a 36.75ns physical analog MOSFET cutoff) Tj
-0 -13 Td
-(\(Kinetic Guillotine at 28.5W / 24V DC\) to sever compromised actuation buses.) Tj
-0 -13 Td
-/F2 9 Tf
-(B. BRAIN TWO - AIR-GAPPED STRUCTURAL & PAVEMENT DIAGNOSTIC ENGINE) Tj
-/F1 9 Tf
-0 -13 Td
-/F2 9 Tf
-(\(STR-01/PAV-01/ENV-01\):) Tj
-/F1 9 Tf
-0 -13 Td
-(Processes NDE bridge metrics \(23 CFR 650\), ASTM D6433 PCI pavement deductions, and) Tj
-0 -13 Td
-(hydraulic flow anomalies locally with zero internet connectivity.) Tj
-0 -13 Td
-/F2 9 Tf
-(C. BRAIN THREE - BARE-METAL SQLITE WORM & SHA-256 MERKLE DAG VAULT:) Tj
-/F1 9 Tf
-0 -13 Td
-(Seals every sensor frame and command into 52 verified WORM SQLite tables.) Tj
-0 -13 Td
-() Tj
-0 -13 Td
-(----------------------------------------------------------------------------------------) Tj
-0 -13 Td
-(----) Tj
-0 -13 Td
-/F2 9 Tf
-(SECTION 3. PROPOSED 12-MONTH PHASE-1 MILESTONE SCHEDULE \($1,200,000.00 | ZERO CASH) Tj
-/F1 9 Tf
-0 -13 Td
-/F2 9 Tf
-(MATCH\)) Tj
-/F1 9 Tf
-0 -13 Td
-(----------------------------------------------------------------------------------------) Tj
-0 -13 Td
-(----) Tj
-0 -13 Td
-(* M1A: Kickoff & Mobilization \(Day 15-30\)  :  $150,000.00 \(Edge Nodes & NDE Sensor Rig\)) Tj
-0 -13 Td
-(* M2 : TRL 5 Bench Integration \(Month 4\)   :  $350,000.00 \(36.75ns Guillotine PCB & HIL\)) Tj
-0 -13 Td
-(* M3 : TRL 6 Field Emulation \(Month 8\)     :  $400,000.00 \(Closed-Loop) Tj
-0 -13 Td
-/F2 9 Tf
-(STR-01/PAV-01/ENV-01\)) Tj
-/F1 9 Tf
-0 -13 Td
-(* M4 : Final ERDC Dossier & Audit \(Mo 12\)  :  $300,000.00 \(TRL 6/7 Package & WORM) Tj
-0 -13 Td
-(Binder\)) Tj
-0 -13 Td
-(* TOTAL PROPOSED PHASE-1 BAA ALLOCATION    : $1,200,000.00 \(100% Non-Dilutive / $0) Tj
-0 -13 Td
-(Match\)) Tj
-0 -13 Td
-/F1 8 Tf
-(========================================================================================) Tj
-0 -11 Td
-(WORM SHA-256 SEAL: 97dcb1c8ffc90439b5ead3076fa3d901f3c92bf4a7f1ce544bbc42ad1930b26e) Tj
-0 -11 Td
-(GENERATED: 2026-10-29 15:32:46 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 2 OF 2) Tj
-ET
+0.10 0.16 0.26 rg
+BT /F2 8.0 Tf 0 Tw 72.00 748.00 Td (HUMPHREY VIRTUAL FARMS LLC // CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 // USACE-ERDC-BAA-2026 WHITE PAPER) Tj ET
+0.10 0.16 0.26 RG 1.2 w
+72.00 740.00 m 540.00 740.00 l S
+0 0 0 rg 0 0 0 RG
+BT /F2 11.20 Tf 0.0000 Tw 72.00 720.00 Td (U.S. ARMY ENGINEER RESEARCH AND DEVELOPMENT CENTER \(ERDC\) // ROLLING) Tj 0 Tw ET
+BT /F2 11.20 Tf 0.0000 Tw 72.00 704.77 Td (BAA WHITE PAPER) Tj 0 Tw ET
+0.12 0.18 0.28 rg BT /F2 10.00 Tf 0 Tw 72.00 675.54 Td (DETERMINISTIC THREE-BRAIN TELEMETRY, NON-DESTRUCTIVE STRUCTURAL DIAGNOSTICS \(STR-01/PAV-01\), AND AIR-GAPPED WORM PROVENANCE FOR CONTESTED CIVIL & MILITARY INFRASTRUCTURE) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 671.54 m 540.00 671.54 l S 0 0 0 RG
+BT /F1 9.20 Tf 0.0000 Tw 72.00 656.44 Td (Solicitation Identifier: USACE-ERDC-BAA-2026 \(FAR 35.016 Basic & Applied Research / 10 U.S.C. Section 4022\)) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 640.42 Td (Submitting Prime Contractor: Humphrey Virtual Farms LLC \(100% Sovereign Small Business Prime\)) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 624.41 Td (Corporate Identifiers: CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | Cross-Referenced DoD CDAO Docket: 10-26-3976) Tj 0 Tw ET
+BT /F1 9.20 Tf 11.9798 Tw 72.00 608.40 Td (Principal Investigator & Apex Architect: Jeffery Humphrey, Founder, President & CEO) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 595.89 Td (\([REDACTED-FOR-PUBLIC-RELEASE]\)) Tj 0 Tw ET
+BT /F1 9.20 Tf 4.8012 Tw 72.00 579.88 Td (Current Technology Readiness Level: TRL 4 \(Laboratory Software Emulation Testbed & Mathematical) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 567.36 Td (Proof-of-Concept\)) Tj 0 Tw ET
+BT /F1 9.20 Tf 1.8011 Tw 72.00 551.35 Td (Proposed Funding & Period of Performance: $1,200,000.00 Total \(12 Months | $0.00 Cash Match Required |) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 538.84 Td ($150,000.00 M1A Mobilization\)) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.9140 Tw 72.00 522.83 Td (Intellectual Property & Data Rights: 100% Small Business Background IP Retained under DFARS 252.227-7018) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 510.32 Td (\(Government Purpose Rights\)) Tj 0 Tw ET
+0.55 0.58 0.62 RG 0.8 w 72.00 491.80 m 540.00 491.80 l S 0 0 0 RG
+0.12 0.18 0.28 rg BT /F2 10.00 Tf 0 Tw 72.00 476.80 Td (1. EXECUTIVE SUMMARY & ERDC LABORATORY ALIGNMENT) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 472.80 m 540.00 472.80 l S 0 0 0 RG
+BT /F1 9.20 Tf 1.3662 Tw 72.00 456.70 Td (Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5\) submits this Executive Technical White) Tj 0 Tw ET
+BT /F1 9.20 Tf 1.7628 Tw 72.00 444.19 Td (Paper to the U.S. Army Engineer Research and Development Center \(ERDC\) targeting the Geotechnical and) Tj 0 Tw ET
+BT /F1 9.20 Tf 1.2224 Tw 72.00 431.68 Td (Structures Laboratory \(GSL\), Coastal and Hydraulics Laboratory \(CHL\), and Information Technology Laboratory) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 419.17 Td (\(ITL\) research areas.) Tj 0 Tw ET
+BT /F1 9.20 Tf 2.5281 Tw 72.00 399.66 Td (Project Ebony \(v8.0.0\) solves civil and military infrastructure telemetry vulnerabilities through an air-gapped,) Tj 0 Tw ET
+BT /F1 9.20 Tf 1.3725 Tw 72.00 387.14 Td (zero-cloud Three-Brain Software Emulation Testbed \(TRL 4\) operating at 100% local loopback \(127.0.0.1 | 0%) Tj 0 Tw ET
+BT /F1 9.20 Tf 1.2827 Tw 72.00 374.63 Td (external cloud dependency\), backed by 84 / 84 passing automated unit and stress test suites, 17 / 17 blocked) Tj 0 Tw ET
+BT /F1 9.20 Tf 2.6740 Tw 72.00 362.12 Td (adversarial red-team penetration vectors, and 1,420 verified civil/structural engineering assessment modules) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 349.61 Td (\(STR-01, PAV-01, ENV-01, AUT-01\).) Tj 0 Tw ET
+0.55 0.58 0.62 RG 0.8 w 72.00 328.60 m 540.00 328.60 l S 0 0 0 RG
+0.12 0.18 0.28 rg BT /F2 10.00 Tf 0 Tw 72.00 313.60 Td (2. PROPOSED 12-MONTH PHASE-1 RESEARCH & PROTOTYPE MILESTONE SCHEDULE \($1,200,000.00\)) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 309.60 m 540.00 309.60 l S 0 0 0 RG
+BT /F1 9.20 Tf 0.0000 Tw 72.00 293.50 Td ([+] M1A: Kickoff & Mobilization \(Day 15-30\): $150,000.00) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 274.98 Td ([+] M2: TRL 5 Benchtop Integration \(Month 4\): $350,000.00) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 256.47 Td ([+] M3: TRL 6 Field Emulation \(Month 8\): $400,000.00) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 237.96 Td ([+] M4: Final ERDC Dossier & Audit \(Month 12\): $300,000.00) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 220.45 Td (TOTAL PROPOSED AWARD: $1,200,000.00 \(0% Cash Match\)) Tj 0 Tw ET
+0.10 0.16 0.26 RG 0.8 w
+72.00 48.00 m 540.00 48.00 l S
+0.25 0.25 0.25 rg
+BT /F1 7.2 Tf 0 Tw 72.00 36.00 Td (SOVEREIGN AIR-GAPPED TRI-BRAIN ARCHITECTURE // MERKLE ROOT: bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1) Tj ET
+BT /F2 7.5 Tf 0 Tw 500.40 36.00 Td (Page 1 of 1) Tj ET
+0 0 0 rg 0 0 0 RG
 endstream
 endobj
 xref
-0 9
+0 7
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000127 00000 n 
-0000000195 00000 n 
-0000000268 00000 n 
-0000000404 00000 n 
-0000004331 00000 n 
-0000004467 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000266 00000 n 
+0000000402 00000 n 
 trailer
-<< /Size 9 /Root 1 0 R >>
+<< /Size 7 /Root 1 0 R >>
 startxref
-7417
+5324
 %%EOF
+% HVF-WORM-SHA256: 5273546cfdd0bdd8657deef7daa7bf803081fcd6c3438e17350c0449d51a08c9
