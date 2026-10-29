@@ -14,7 +14,7 @@
 | **2. Compiled C2 & Level-5 Python Modules** | Full Repo (`1,961` Private / `1,770` Public `.py` Modules) | **`100% Repo Compiled (`1,961` Priv / `1,770` Pub)` (`0` Syntax/BOM Errors)** |
 | **3. Master C2 Cryptographic Merkle Root (SHA-256)** | Fixed-Point Deterministic Digest | **`bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`** |
 | **4. Public SQLite Binary Page Sanitization (`VACUUM`)** | `1,262 -> 0` Binary B-Tree Email Occurrences | **`0` Binary SQLite PII Hits in Public Repo** |
-| **5. Full Public Repository Raw-Byte Tracked Scan** | All `2093` Git-Tracked Public Files Audited | **`0` Raw-Byte PII or Credential Leaks** |
+| **5. Full Public Repository Raw-Byte Tracked Scan** | All `2097` Git-Tracked Public Files Audited | **`0` Raw-Byte PII or Credential Leaks** |
 | **6. Private Sovereign Memory Vault Custody** | `c2_cockpit/hvf_memory_vault.db` (`30` tables) & `matrix_ledger.db` (`22` tables) | **Tracked Exclusively in Private Vault (`0` in Public)** |
 | **7. Sovereign Field Academy Assessment Bank** | Chapter 1 (`800` Qs) + Chapter 5 (`620` Qs) | **`1,420 / 1,420` Unique Verified Questions** |
 | **8. Red-Team Zero-Trust Penetration Harness** | `test_client_penetration.py` (`17` Attack Vectors) | **`17 / 17` Attacks Blocked (`0` Breaches)** |

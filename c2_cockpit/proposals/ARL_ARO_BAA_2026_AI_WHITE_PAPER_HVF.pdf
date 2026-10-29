@@ -1,0 +1,103 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [4 0 R 6 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 3610 >>
+stream
+BT
+/F1 9 Tf
+45 750 Td
+14 TL
+(# U.S. ARMY RESEARCH LABORATORY \(ARL / ARO\) BAA \(ARL-ARO-BAA-2026-AI\): TECHNICAL WHITE) Tj T*
+(PAPER) Tj T*
+(**Title:** Project Ebony v8.0.0: Byzantine Fault-Tolerant Edge Consensus, Unidirectional) Tj T*
+(Cognitive Isolation & Sub-Millisecond SHA-256 Merkle DAG Provenance) Tj T*
+(**Submitting Entity:** Humphrey Virtual Farms LLC \(`CAGE: 1AHA8` | `SAM.gov UEI:) Tj T*
+(S1M4ENLHTDH5` | Madill, OK 73446\)) Tj T*
+(**Principal Investigator:** Jeffery Humphrey, CEO | [REDACTED-FOR-PUBLIC-RELEASE]) Tj T*
+(**Research Category:** Defense Basic & Applied Research \(`6.1 / 6.2` | Current) Tj T*
+(Readiness: `TRL 4` -> Target: `TRL 5/6`\)) Tj T*
+(**Cross-Referenced Filings:** DoD CDAO Tradewinds Docket `10-26-4014` \(`Status:) Tj T*
+(Received`\) & USACE ERDC Rolling BAA \(`2026`\)) Tj T*
+(**Shared Core C2 Merkle Root \(SHA-256\):**) Tj T*
+(`bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`) Tj T*
+(**Proposed Phase-1 Effort:** `12 Months` | `$750,000.00` Fixed-Price \(`$150,000.00` Day) Tj T*
+(15?30 Mobilization | `0%` Cost Share | `DFARS 252.227-7018`\)) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## 1. Scientific Objective & Contested Tactical Edge Challenge) Tj T*
+(Tactical Army C2 and autonomous robotic platforms operating under severe electromagnetic) Tj T*
+(emission control \(`EMCON`\) and Denied, Degraded, Intermittent, and Limited \(`DDIL`\)) Tj T*
+(links cannot rely on `>250ms` commercial cloud AI wrappers or unverified probabilistic) Tj T*
+(LLM outputs to govern physical actuators. When adversary electronic warfare or cyber) Tj T*
+(injection corrupts edge sensor streams, conventional neural controllers lack) Tj T*
+(deterministic mathematical bounds to prevent unsafe physical actuation.) Tj T*
+() Tj T*
+(## 2. Mathematical & Architectural Innovation \(TRL 4 Verified\)) Tj T*
+(Project Ebony v8.0.0 establishes a provably isolated Three-Brain cyber-physical) Tj T*
+(architecture verified across `636` compiled Python C2 modules, `85 / 85` automated unit) Tj T*
+(test suites, and `1,420 / 1,420` verified engineering assessment items:) Tj T*
+(* **Unidirectional Optical/Memory Cognitive Isolation \(Brain Two -> Brain One\):** Brain) Tj T*
+(Two \(Analyst\) executes offline multi-spectral drift and structural anomaly inference) Tj T*
+(over a strictly read-only memory bus. It possesses zero physical execution path to) Tj T*
+(tactical actuators; all advisory flags must satisfy Brain One's deterministic physical) Tj T*
+(safety laws \(`<50us` loop; modeled `36.75ns` SiC MOSFET cutoff\).) Tj T*
+(* **Sub-Millisecond Byzantine WORM Merkle DAG Chaining \(Brain Three ? Arbiter\):** Every) Tj T*
+(state vector from Brain One and Brain Two is cryptographically chained into a 52-table) Tj T*
+(bare-metal SQLite Write-Once-Read-Many \(WORM\) Merkle Directed Acyclic Graph \(`<0.2ms`) Tj T*
+(latency\) bound to `127.0.0.1`. Single-byte tampering triggers immediate memory) Tj T*
+(zeroization \(`17 / 17` Red-Team vectors blocked\).) Tj T*
+() Tj T*
+(## 3. Phase-1 Research Schedule & Budget \($750,000.00 / 12 Months\)) Tj T*
+(* **Q1 \($200,000\):** Formal mathematical verification of unidirectional memory isolation) Tj T*
+(and Byzantine consensus bounds under simulated DDIL packet loss.) Tj T*
+(* **Q2 \($200,000\):** Hardware-in-the-loop \(HIL\) benchmarking of `<0.2ms` SHA-256 WORM) Tj T*
+(Merkle DAG chaining on low-SWaP \(`28.5W`, `24V DC`\) tactical edge processors.) Tj T*
+(* **Q3 \($175,000\):** Adversarial Red-Team fault-injection and single-letter tamper) Tj T*
+(zeroization stress testing across multi-node tactical clusters.) Tj T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 140 >>
+stream
+BT
+/F1 9 Tf
+45 750 Td
+14 TL
+(* **Q4 \($175,000\):** TRL 5/6 laboratory demonstration and ARL technical monograph) Tj T*
+(delivery.) Tj T*
+ET
+endstream
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000195 00000 n 
+0000000321 00000 n 
+0000003983 00000 n 
+0000004109 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+4300
+%%EOF
+% HVF-WORM-SHA256: da924e1eead59ef9638625ababfce5eaae5f5b1e2b7a2779efb514dc64ba451e
