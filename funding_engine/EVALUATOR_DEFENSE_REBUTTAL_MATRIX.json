@@ -8,7 +8,7 @@
   "master_c2_merkle_root_sha256": "bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1",
   "federal_track": {
     "agency": "DoD CDAO Tradewinds Solutions Marketplace",
-    "docket": "9-26-3703",
+    "docket": "10-26-4014",
     "trl_posture": "TRL 4 Software Emulation Testbed (631 Modules, 83/83 Test Suites, 17/17 Red-Team Blocks)",
     "proposed_ota_rom": "$1,485,000.00 (10 U.S.C. 4022)"
   },
