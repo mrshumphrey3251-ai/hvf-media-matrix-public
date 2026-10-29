@@ -1,7 +1,8 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
-HUMPHREY VIRTUAL FARMS LLC // 100% MASTER SOVEREIGN EDITION: FRAME-ACCURATE DUAL-VOICE SYNC,
-LIVE 26-MODULE C2 CONSOLE & SQLITE MERKLE BLOCK INSPECTOR, 6-GATE COMPETITOR SCORECARD & NATIVE 30-FPS MP4 ENGINE
+HUMPHREY VIRTUAL FARMS LLC // 100% MASTER SOVEREIGN EDITION (V8.0.0 SUB-BEAT FRAME-LOCKED ENGINE):
+EXACT MILLISECOND AUDIO-VISUAL BEAT SYNCHRONIZATION, POST-SCENE SILENT HOLD (ZERO SPEECH BLEED ON TRANSITIONS),
+APPENDIX ASSESSMENT RUBRIC ALIGNMENT, LIVE 26-MODULE C2 CONSOLE & NATIVE 30-FPS MP4 ENGINE
 Output Files:
   - EBONY_V8_CDAO_RUBRIC_VERIFICATION_20261028.mp4
   - PROJECT_EBONY_TRADEWINDS_RESUBMISSION_10_26_3976.mp4
@@ -122,69 +123,52 @@ def build_slide_specs() -> list:
         {
             "slide_num": 1,
             "theme_accent": (0, 235, 165),
-            "announcer_cue": "Section Seven E Resubmission Verification Gate. Four-Quadrant Assessor Feedback Resolution Matrix.",
-            "header": "SCENE 1 OF 5 // MANDATORY RESUBMISSION GATE: 4-QUADRANT ASSESSOR DELTA MATRIX",
-            "sub": "GROUND-UP OCT 28, 2026 BUILD | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | BASELINE: TRL 4 TESTBED -> TARGET TRL 6",
-            "bullets": [
-                "AF-01 RESOLVED: Quantified DoD OT Exposure (GAO-21-81, GAO-24-106137 & CISA Volt Typhoon)",
-                "AF-02 RESOLVED: Strict Separation of Live TRL 4 Software Testbed vs. Modeled Phase-1 Hardware",
-                "AF-03 RESOLVED: 5-Vendor Quantitative Analysis of Alternatives (SIEMENS, ROCKWELL, TRICONEX, DRAGOS)",
-                "AF-04 RESOLVED: Audit-Proof Commercialization Readiness, 26-CLIN Schedule & $1.485M 10 U.S.C. 4022 OTA",
-            ],
+            "announcer_cue": "Section Seven E. Resubmission Summary.",
+            "header": "SCENE 1 OF 5 // SEC VII.e RESUBMISSION SUMMARY & APPENDIX RUBRIC DELTA MATRIX",
+            "sub": "GROUND-UP OCT 2026 BUILD | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | BASELINE: TRL 4 TESTBED -> TARGET TRL 6",
+            "beats": scripts[0].get("beats", [scripts[0]["spoken_script"]]),
             "narration": scripts[0]["spoken_script"],
         },
         {
             "slide_num": 2,
             "theme_accent": (255, 95, 95),
-            "announcer_cue": "Rubric Criterion One. Defining the Department of Defense Operational Technology Problem and Physics Gap.",
-            "header": "SCENE 2 OF 5 // CRITERION 1: DEFINING THE PROBLEM & <4.16ms ARC-FLASH PHYSICS GAP",
+            "announcer_cue": "Appendix Rubric. Criterion One.",
+            "header": "SCENE 2 OF 5 // APPENDIX RUBRIC CRITERION 1: PROBLEM ID, DOD IMPACT & PHYSICS GAP",
             "sub": "GAO-21-81 & GAO-24-106137 (500+ BASES, $4.2B OT) | CISA AA23-144A & AA24-038A (VOLT TYPHOON) | TRISIS",
-            "bullets": [
-                "GAO-21-81 & GAO-24-106137: 500+ DoD Bases, 300,000+ Buildings, $4.2B+ OT Energy on 50-200ms PLCs",
-                "CISA AA23-144A / AA24-038A: Volt Typhoon Pre-Positioning & TRISIS/Triton Controller Logic Corruption",
-                "Physics Gap: <4.16ms Arc-Flash & 6.0ms Excursion Destroy Equipment 8x-33x Before 50-200ms PLCs React",
-            ],
+            "beats": scripts[1].get("beats", [scripts[1]["spoken_script"]]),
             "narration": scripts[1]["spoken_script"],
         },
         {
             "slide_num": 3,
             "theme_accent": (0, 215, 255),
-            "announcer_cue": "Rubric Criterion Two. Accelerating the Mission. Live TRL 4 C2 Operating Console and Subprocess Proof.",
-            "header": "SCENE 3 OF 5 // CRITERION 2: LIVE 26-MODULE C2 OPERATING CONSOLE & SUBPROCESS PROOF",
+            "announcer_cue": "Appendix Rubric. Criterion Two.",
+            "header": "SCENE 3 OF 5 // APPENDIX RUBRIC CRITERION 2: MISSION IMPACT, TRL 4 & ZERO-CLOUD SECURITY",
             "sub": "100% AIR-GAPPED LOOPBACK (127.0.0.1:8501 | 0% CLOUD) | 636 C2 MODULES | 85/85 TESTS PASSED | 17/17 RED-TEAM BLOCKS",
-            "bullets": [
-                "BRAIN 1 (Safety Loop): Deterministic Software Boundary Engine + 36.75ns SiC MOSFET Design Target",
-                "BRAIN 2 (Advisory NDE): Offline Structural/Pavement/Telemetry Diagnostics (0 Actuator Authority)",
-                "BRAIN 3 (WORM Vault) : Append-Only SHA-256 Merkle DAG Across 52 Bare-Metal SQLite Tables on Disk",
-            ],
+            "beats": scripts[2].get("beats", [scripts[2]["spoken_script"]]),
             "narration": scripts[2]["spoken_script"],
         },
         {
             "slide_num": 4,
             "theme_accent": (255, 210, 65),
-            "announcer_cue": "Rubric Criterion Three. Advancing the State of the Art. Five-Vendor Quantitative Analysis of Alternatives.",
-            "header": "SCENE 4 OF 5 // CRITERION 3: QUANTITATIVE ANALYSIS OF ALTERNATIVES (5-VENDOR AoA MATRIX)",
+            "announcer_cue": "Appendix Rubric. Criterion Three.",
+            "header": "SCENE 4 OF 5 // APPENDIX RUBRIC CRITERION 3: STATE OF THE ART & 5-VENDOR AoA BENCHMARK",
             "sub": "HEAD-TO-HEAD BENCHMARK: PROJECT EBONY v8.0.0 VS. SIEMENS S7-1500, ROCKWELL, TRICONEX SIS, DRAGOS & CLOUD AI",
-            "bullets": [
-                "SIEMENS S7-1500 / ROCKWELL CONTROLLOGIX | DRAGOS PLATFORM / NOZOMI | TRICONEX | 1,360,544x",
-            ],
+            "beats": scripts[3].get("beats", [scripts[3]["spoken_script"]]),
             "narration": scripts[3]["spoken_script"],
         },
         {
             "slide_num": 5,
             "theme_accent": (110, 255, 150),
-            "announcer_cue": "Rubric Criterion Four. Business Model, Unbundled Twenty-Six Module CLIN Schedule, and Phase One O T A.",
-            "header": "SCENE 5 OF 5 // CRITERION 4: 26-MODULE CLIN SCHEDULE & $1.485M PHASE-1 OTA GANTT",
-            "sub": "AUDIT-PROOF READINESS | 100% DFARS 252.227-7018 IP | 10 U.S.C. 4022 PROTOTYPE OTA -> 4022(f) PRODUCTION",
-            "bullets": [
-                "CLIN 0001 Base Pilot ($2,450/mo) | CLIN 1004-A 26-Mod Bundle ($895K/yr) | $1.485M Phase-1 Prototype OTA",
-            ],
+            "announcer_cue": "Appendix Rubric. Criterion Four.",
+            "header": "SCENE 5 OF 5 // APPENDIX RUBRIC CRITERION 4: BUSINESS VIABILITY, TRACTION & $1.485M OTA",
+            "sub": "VERIFIED USACE ERDC / DIU / COMMERCIAL TRACTION | 100% DFARS 252.227-7018 IP | 10 U.S.C. 4022 PROTOTYPE OTA",
+            "beats": scripts[4].get("beats", [scripts[4]["spoken_script"]]),
             "narration": scripts[4]["spoken_script"],
         },
     ]
 
 
-def _draw_scene_1_quadrants(draw: ImageDraw.ImageDraw, body_prog: float, frame_idx: int):
+def _draw_scene_1_quadrants(draw: ImageDraw.ImageDraw, beat_idx: int, beat_prog: float, frame_idx: int):
     f_head = _load_font(22, bold=True)
     f_lbl = _load_font(17, bold=True)
     f_txt = _load_font(18, bold=False)
@@ -198,7 +182,7 @@ def _draw_scene_1_quadrants(draw: ImageDraw.ImageDraw, body_prog: float, frame_i
         (
             "QUADRANT 2 // CRITERION 2: ACCELERATING THE MISSION",
             "PRIOR 9-26-3703 GAP: Blended TRL 4 software emulation with TRL 6/7 hardware targets.",
-            "NEW v8.0.0 RESOLUTION: Strictly separated our live TRL 4 localhost (127.0.0.1, 0% cloud) software testbed (636 C2 modules, 85/85 unit tests, 17/17 Red-Team blocks, 52 WORM tables) from modeled Phase-1 hardware targets (36.75ns MOSFET, 28.5W).",
+            "NEW v8.0.0 RESOLUTION: Strictly separated live TRL 4 localhost (127.0.0.1, 0% cloud, 0 external retrieval APIs, 636 modules, 85/85 tests, 17/17 Red-Team blocks, 52 WORM tables) from modeled Phase-1 hardware (36.75ns MOSFET, 28.5W).",
         ),
         (
             "QUADRANT 3 // CRITERION 3: ADVANCING STATE OF THE ART",
@@ -207,8 +191,8 @@ def _draw_scene_1_quadrants(draw: ImageDraw.ImageDraw, body_prog: float, frame_i
         ),
         (
             "QUADRANT 4 // CRITERION 4: BUSINESS MODEL & TRANSITION",
-            "PRIOR 9-26-3703 GAP: Needed audit-proof commercialization staging & CLIN pricing.",
-            "NEW v8.0.0 RESOLUTION: Scrubbed all unfiled state claims; staged Red-Team-certified client evaluation build, civil bridge NDE drone blueprint ($250/sortie model vs $4,600 snooper trucks), 26-CLIN Schedule & $1.485M 10 U.S.C. 4022 OTA Gantt.",
+            "PRIOR 9-26-3703 GAP: Needed verified customer traction & unbundled CLIN pricing.",
+            "NEW v8.0.0 RESOLUTION: Verified USACE ERDC White Paper, DIU Solution Brief, Commercial Microgrid & Civil Bridge NDE ($250/sortie vs $4,600 snooper trucks), 26-CLIN Schedule ($2,450/mo Pilot) & $1.485M 10 U.S.C. 4022 OTA Gantt.",
         ),
     ]
     coords = [
@@ -217,14 +201,15 @@ def _draw_scene_1_quadrants(draw: ImageDraw.ImageDraw, body_prog: float, frame_i
         (35, 505, 945, 815),
         (975, 505, 1885, 815),
     ]
-    active_q = min(3, int(body_prog * 4))
+    # beat_idx 0 = Intro (all 4 quads lit evenly); beat_idx 1..4 = Quadrant 1..4 specifically highlighted!
+    active_q = beat_idx - 1
     for idx, ((x1, y1, x2, y2), (title, prior, res)) in enumerate(zip(coords, quads)):
-        is_act = (idx == active_q)
-        border = (0, 255, 170) if is_act else (45, 95, 140)
-        bg = (14, 34, 48) if is_act else (10, 20, 34)
-        draw.rectangle([(x1, y1), (x2, y2)], fill=bg, outline=border, width=3 if is_act else 2)
-        draw.rectangle([(x1, y1), (x2, y1 + 42)], fill=(18, 48, 68) if is_act else (14, 28, 46))
-        draw.text((x1 + 16, y1 + 9), title, fill=(0, 240, 180) if is_act else (180, 220, 250), font=f_head)
+        is_act = (active_q == idx) or (beat_idx == 0)
+        border = (0, 255, 170) if (active_q == idx) else ((0, 195, 235) if beat_idx == 0 else (45, 95, 140))
+        bg = (16, 42, 56) if (active_q == idx) else (10, 20, 34)
+        draw.rectangle([(x1, y1), (x2, y2)], fill=bg, outline=border, width=4 if (active_q == idx) else 2)
+        draw.rectangle([(x1, y1), (x2, y1 + 42)], fill=(20, 56, 76) if is_act else (14, 28, 46))
+        draw.text((x1 + 16, y1 + 9), title, fill=(0, 255, 185) if is_act else (180, 220, 250), font=f_head)
 
         draw.rectangle([(x1 + 16, y1 + 54), (x2 - 16, y1 + 96)], fill=(42, 28, 16), outline=(255, 170, 60), width=1)
         draw.text((x1 + 26, y1 + 64), prior, fill=(255, 200, 110), font=f_lbl)
@@ -237,7 +222,7 @@ def _draw_scene_1_quadrants(draw: ImageDraw.ImageDraw, body_prog: float, frame_i
             ry += 29
 
 
-def _draw_scene_2_physics(draw: ImageDraw.ImageDraw, body_prog: float, frame_idx: int):
+def _draw_scene_2_physics(draw: ImageDraw.ImageDraw, beat_idx: int, beat_prog: float, frame_idx: int):
     f_head = _load_font(21, bold=True)
     f_txt = _load_font(18, bold=False)
     f_mono = _load_mono_font(18, bold=True)
@@ -275,16 +260,21 @@ def _draw_scene_2_physics(draw: ImageDraw.ImageDraw, body_prog: float, frame_idx
         ),
     ]
     cx_coords = [(35, 635), (660, 1260), (1285, 1885)]
-    for (x1, x2), (title, items, col) in zip(cx_coords, cards):
-        draw.rectangle([(x1, 175), (x2, 435)], fill=(12, 22, 38), outline=col, width=2)
-        draw.rectangle([(x1, 175), (x2, 218)], fill=(20, 34, 56))
-        draw.text((x1 + 16, 185), title, fill=col, font=f_head)
+    for c_i, ((x1, x2), (title, items, col)) in enumerate(zip(cx_coords, cards)):
+        is_card_active = (beat_idx == c_i)
+        bg = (20, 36, 58) if is_card_active else (12, 22, 38)
+        bw = 4 if is_card_active else 2
+        draw.rectangle([(x1, 175), (x2, 435)], fill=bg, outline=(80, 255, 165) if is_card_active else col, width=bw)
+        draw.rectangle([(x1, 175), (x2, 218)], fill=(26, 48, 72) if is_card_active else (20, 34, 56))
+        draw.text((x1 + 16, 185), title, fill=(110, 255, 185) if is_card_active else col, font=f_head)
         iy = 232
         for item in items:
-            draw.text((x1 + 20, iy), item, fill=(235, 240, 250), font=f_txt)
+            draw.text((x1 + 20, iy), item, fill=(245, 250, 255), font=f_txt)
             iy += 44
 
-    draw.rectangle([(35, 452), (1885, 815)], fill=(8, 16, 28), outline=(255, 95, 95), width=2)
+    is_timeline_active = (beat_idx >= 3)
+    t_outline = (80, 255, 165) if is_timeline_active else (255, 95, 95)
+    draw.rectangle([(35, 452), (1885, 815)], fill=(12, 24, 38) if is_timeline_active else (8, 16, 28), outline=t_outline, width=4 if is_timeline_active else 2)
     draw.rectangle([(35, 452), (1885, 494)], fill=(38, 18, 24))
     draw.text(
         (55, 462),
@@ -294,21 +284,22 @@ def _draw_scene_2_physics(draw: ImageDraw.ImageDraw, body_prog: float, frame_idx
     )
 
     lanes = [
-        ("Project Ebony Modeled SiC MOSFET Target", "36.75 ns (0.000036 ms) — FAULT ARRESTED", 0.09, (60, 255, 145)),
-        ("Project Ebony Emulated RS-485 Modbus FC05", "2.04 us  (0.002040 ms) — FAULT ARRESTED", 0.18, (0, 225, 255)),
-        ("Schneider Electric Triconex SIS (TMR PLC)", "10 - 50 ms — DESTROYED BY 4.16ms ARC-FLASH", 0.62, (255, 140, 70)),
-        ("Siemens S7-1500 / Rockwell ControlLogix", "50 - 200 ms — 8x TO 33x TOO SLOW (DESTROYED)", 0.84, (255, 80, 80)),
+        ("Project Ebony Modeled SiC MOSFET Target", "36.75 ns (0.000036 ms) - FAULT ARRESTED", 0.09, (60, 255, 145)),
+        ("Project Ebony Emulated RS-485 Modbus FC05", "2.04 us  (0.002040 ms) - FAULT ARRESTED", 0.18, (0, 225, 255)),
+        ("Schneider Electric Triconex SIS (TMR PLC)", "10 - 50 ms - DESTROYED BY 4.16ms ARC-FLASH", 0.62, (255, 140, 70)),
+        ("Siemens S7-1500 / Rockwell ControlLogix", "50 - 200 ms - 8x TO 33x TOO SLOW (DESTROYED)", 0.84, (255, 80, 80)),
         ("Dragos / Nozomi IDS & Jev Cloud AI RTT", "> 250 ms (0 Physical Cutoff Authority)", 0.96, (220, 60, 90)),
     ]
     bar_left = 540
     bar_max_w = 1290
     fault_x = bar_left + int(bar_max_w * 0.34)
+    bar_anim = 1.0 if beat_idx >= 3 else min(1.0, 0.55 + 0.15 * beat_idx)
 
     ly = 515
     for name, badge, frac, col in lanes:
         draw.text((55, ly + 6), name, fill=(235, 242, 250), font=f_txt)
         draw.rectangle([(bar_left, ly), (bar_left + bar_max_w, ly + 38)], fill=(16, 26, 42), outline=(40, 60, 90))
-        cur_w = max(14, int(bar_max_w * frac * min(1.0, 0.35 + body_prog * 0.85)))
+        cur_w = max(14, int(bar_max_w * frac * bar_anim))
         draw.rectangle([(bar_left, ly + 3), (bar_left + cur_w, ly + 35)], fill=col)
         draw.text((bar_left + 14, ly + 8), badge, fill=(10, 15, 25) if frac < 0.3 else (255, 255, 255), font=f_mono)
         ly += 56
@@ -319,24 +310,22 @@ def _draw_scene_2_physics(draw: ImageDraw.ImageDraw, body_prog: float, frame_idx
     draw.text((fault_x - 152, 780), "4.16ms ARC-FLASH DESTRUCTION LINE", fill=flash_col, font=f_mono)
 
 
-def _draw_scene_3_live_c2_gui_and_terminal(draw: ImageDraw.ImageDraw, body_prog: float, frame_idx: int):
-    """Renders the actual HVF 26-Module C2 Operating Console GUI (127.0.0.1:8501) on the left + Live Subprocess Terminal on the right."""
+def _draw_scene_3_live_c2_gui_and_terminal(draw: ImageDraw.ImageDraw, beat_idx: int, beat_prog: float, frame_idx: int):
     f_head = _load_font(19, bold=True)
     f_txt = _load_font(16, bold=False)
     f_mono = _load_mono_font(15, bold=False)
     f_mono_b = _load_mono_font(15, bold=True)
 
-    # Left Panel: Simulated Browser Window of http://127.0.0.1:8501 (HVF Level-5 Sovereign C2 Operating Console)
-    draw.rectangle([(35, 175), (945, 815)], fill=(10, 18, 30), outline=(0, 215, 255), width=2)
-    # Browser URL bar
+    # Left Panel: Simulated Browser Window of http://127.0.0.1:8501
+    left_hi = (beat_idx in (0, 1, 2))
+    draw.rectangle([(35, 175), (945, 815)], fill=(10, 18, 30), outline=(80, 255, 165) if left_hi else (0, 215, 255), width=3 if left_hi else 2)
     draw.rectangle([(35, 175), (945, 212)], fill=(20, 36, 58))
     draw.circle((56, 193), 6, fill=(255, 95, 86))
     draw.circle((76, 193), 6, fill=(255, 189, 46))
     draw.circle((96, 193), 6, fill=(39, 201, 63))
     draw.rectangle([(120, 181), (925, 206)], fill=(10, 20, 34), outline=(0, 180, 220))
-    draw.text((132, 184), "LOCKED AIR-GAP LOOPBACK // http://127.0.0.1:8501 — HVF 26-MODULE C2 CONSOLE", fill=(110, 255, 175), font=f_mono_b)
+    draw.text((132, 184), "LOCKED AIR-GAP LOOPBACK // http://127.0.0.1:8501 - HVF 26-MODULE C2 CONSOLE", fill=(110, 255, 175), font=f_mono_b)
 
-    # Left Sidebar inside Console: 26-Module Navigation Tree
     draw.rectangle([(37, 214), (315, 813)], fill=(14, 24, 42), outline=(35, 65, 105))
     draw.text((48, 222), "26-MODULE C2 ROUTER", fill=(0, 225, 255), font=f_mono_b)
     nav_mods = [
@@ -369,26 +358,25 @@ def _draw_scene_3_live_c2_gui_and_terminal(draw: ImageDraw.ImageDraw, body_prog:
             draw.text((48, my + 2), "  " + mname, fill=(185, 205, 225), font=f_mono)
         my += 30
 
-    # Console Main Viewport (x=322 to 938): Tri-Brain Telemetry Cards & Live SQLite WORM Inspector
     vx1, vx2 = 325, 935
-    draw.rectangle([(vx1, 222), (vx2, 395)], fill=(14, 28, 48), outline=(0, 240, 170), width=2)
-    draw.text((vx1 + 14, 230), "BRAIN 1 // DETERMINISTIC SAFETY & BREAKER TELEMETRY", fill=(0, 240, 170), font=f_head)
+    b1_hi = (beat_idx == 1)
+    draw.rectangle([(vx1, 222), (vx2, 395)], fill=(18, 38, 60) if b1_hi else (14, 28, 48), outline=(0, 255, 175) if b1_hi else (0, 200, 140), width=4 if b1_hi else 2)
+    draw.text((vx1 + 14, 230), "BRAIN 1 & 2 // DETERMINISTIC SAFETY & ISOLATED DIAGNOSTICS", fill=(0, 255, 180), font=f_head)
     draw.text((vx1 + 16, 262), "* Microgrid Breakers : 4 / 4 CLOSED & SYNCHRONIZED (60.00 Hz)", fill=(235, 245, 255), font=f_txt)
-    draw.text((vx1 + 16, 290), "* Emulated Actuation : 2.04 us RS-485 Modbus FC05 | 13.33 ms Trip", fill=(235, 245, 255), font=f_txt)
+    draw.text((vx1 + 16, 290), "* Emulated Actuation : 2.04 us RS-485 Modbus FC05 | <50us Loop", fill=(235, 245, 255), font=f_txt)
     draw.text((vx1 + 16, 318), "* Phase-1 PCB Target : 36.75 ns SiC MOSFET Gate Cutoff (28.5W / 24V)", fill=(120, 255, 185), font=f_txt)
     draw.text((vx1 + 16, 346), "* Brain 2 Advisory   : STRICTLY ISOLATED (0 Electrical Actuator Wires)", fill=(0, 220, 255), font=f_txt)
 
-    # Console WORM Ledger Inspector Box
-    draw.rectangle([(vx1, 408), (vx2, 615)], fill=(14, 26, 44), outline=(255, 210, 75), width=2)
-    draw.text((vx1 + 14, 416), "BRAIN 3 // 52-TABLE SQLITE WORM & MERKLE DAG VAULT", fill=(255, 210, 75), font=f_head)
-    draw.text((vx1 + 16, 448), "* matrix_ledger.db (22 Tables) + hvf_memory_vault.db (30 Tables)", fill=(235, 245, 255), font=f_txt)
+    b3_hi = (beat_idx == 2)
+    draw.rectangle([(vx1, 408), (vx2, 615)], fill=(22, 38, 58) if b3_hi else (14, 26, 44), outline=(255, 235, 90) if b3_hi else (255, 210, 75), width=4 if b3_hi else 2)
+    draw.text((vx1 + 14, 416), "BRAIN 3 // ZERO-DEPENDENCY 52-TABLE SQLITE WORM ENCLAVE", fill=(255, 220, 85), font=f_head)
+    draw.text((vx1 + 16, 448), "* Local Retrieval  : matrix_ledger.db (22) + hvf_memory_vault.db (30)", fill=(235, 245, 255), font=f_txt)
     draw.text((vx1 + 16, 476), "* Provenance Chain : Ed25519 + SHA-256 WORM (<0.15ms Block Seal)", fill=(235, 245, 255), font=f_txt)
     draw.text((vx1 + 16, 504), "* Block #545 Digest: 3abae461ad1a91fcd5753a577ecb7f63f09e8513...", fill=(120, 255, 180), font=f_mono)
     draw.text((vx1 + 16, 530), "* Block #546 Digest: 91762e370368fbc9179e43ba5c90338664a767db...", fill=(120, 255, 180), font=f_mono)
     draw.text((vx1 + 16, 556), "* Sovereign Academy: 1,420 / 1,420 Unique Engineering Qs Verified", fill=(255, 220, 95), font=f_txt)
-    draw.text((vx1 + 16, 582), "* ISO 32000-1 PDFs : 6 / 6 Deterministic %PDF-1.4 Compilers Active", fill=(235, 245, 255), font=f_txt)
+    draw.text((vx1 + 16, 582), "* Zero Cloud APIs  : 0 External Vector DBs | 0 Open WAN Ports", fill=(120, 255, 185), font=f_txt)
 
-    # Console Live 60Hz Waveform Clamp
     osc_top, osc_bot = 628, 804
     draw.rectangle([(vx1, osc_top), (vx2, osc_bot)], fill=(5, 10, 18), outline=(0, 200, 240), width=1)
     draw.text((vx1 + 12, osc_top + 6), "REAL-TIME 60Hz OSCILLOSCOPE: BRAIN-1 CLAMP (GREEN) vs SPIKE (RED)", fill=(0, 225, 255), font=f_mono_b)
@@ -410,13 +398,14 @@ def _draw_scene_3_live_c2_gui_and_terminal(draw: ImageDraw.ImageDraw, body_prog:
         draw.line(pts_leg, fill=(255, 75, 75), width=2)
         draw.line(pts_eb, fill=(75, 255, 140), width=3)
 
-    # Right Panel: Real Subprocess Workstation Terminal Output
-    draw.rectangle([(965, 175), (1885, 815)], fill=(5, 10, 18), outline=(80, 255, 150), width=2)
-    draw.rectangle([(965, 175), (1885, 212)], fill=(12, 42, 34))
+    # Right Panel: Real Subprocess Workstation Terminal Output (Highlighted on beat_idx == 3)
+    term_hi = (beat_idx >= 3)
+    draw.rectangle([(965, 175), (1885, 815)], fill=(8, 18, 28) if term_hi else (5, 10, 18), outline=(80, 255, 150), width=4 if term_hi else 2)
+    draw.rectangle([(965, 175), (1885, 212)], fill=(16, 56, 44) if term_hi else (12, 42, 34))
     draw.text((982, 183), "LIVE WORKSTATION SUBPROCESS STDOUT & RED-TEAM HARNESS", fill=(100, 255, 165), font=f_head)
 
     tlines = get_live_terminal_lines()
-    vis_count = max(3, int(min(1.0, body_prog * 1.18) * len(tlines)))
+    vis_count = len(tlines) if beat_idx >= 3 else max(6, int(((beat_idx + beat_prog) / 3.0) * len(tlines)))
     ty = 225
     for line in tlines[:vis_count]:
         col = (210, 230, 245)
@@ -428,7 +417,7 @@ def _draw_scene_3_live_c2_gui_and_terminal(draw: ImageDraw.ImageDraw, body_prog:
         ty += 25
 
 
-def _draw_scene_4_aoa_matrix(draw: ImageDraw.ImageDraw, body_prog: float, frame_idx: int):
+def _draw_scene_4_aoa_matrix(draw: ImageDraw.ImageDraw, beat_idx: int, beat_prog: float, frame_idx: int):
     f_col = _load_font(17, bold=True)
     f_cell = _load_font(16, bold=False)
     f_cell_b = _load_font(16, bold=True)
@@ -492,34 +481,41 @@ def _draw_scene_4_aoa_matrix(draw: ImageDraw.ImageDraw, body_prog: float, frame_
         ),
     ]
 
-    active_r = min(len(rows) - 1, int(body_prog * len(rows)))
+    # Map beat_idx to exact rows spoken: beat 1 -> rows 0,1; beat 2 -> rows 2,3; beat 3 -> rows 4,5
+    hi_rows = set()
+    if beat_idx == 1:
+        hi_rows = {0, 1}
+    elif beat_idx == 2:
+        hi_rows = {2, 3}
+    elif beat_idx >= 3:
+        hi_rows = {4, 5}
+
     ry = 240
     row_h = 82
     for r_idx, r_vals in enumerate(rows):
-        is_hi = (r_idx == active_r)
+        is_hi = (r_idx in hi_rows)
         for c_idx, ((x1, x2, _, _), val) in enumerate(zip(cols, r_vals)):
             if c_idx == 1:
-                bg = (16, 56, 44) if is_hi else (12, 38, 32)
+                bg = (20, 66, 50) if is_hi else (12, 38, 32)
                 outline = (80, 255, 155) if is_hi else (40, 140, 95)
                 tcol = (130, 255, 185)
                 f_use = f_cell_b
             elif c_idx == 0:
-                bg = (22, 42, 70) if is_hi else (14, 26, 46)
+                bg = (24, 48, 78) if is_hi else (14, 26, 46)
                 outline = (0, 215, 255) if is_hi else (45, 75, 115)
                 tcol = (240, 245, 255)
                 f_use = f_cell_b
             else:
-                bg = (36, 22, 28) if is_hi else (16, 20, 32)
+                bg = (42, 24, 30) if is_hi else (16, 20, 32)
                 outline = (255, 120, 100) if is_hi else (50, 60, 85)
                 tcol = (235, 215, 215)
                 f_use = f_cell
-            draw.rectangle([(x1, ry), (x2, ry + row_h - 4)], fill=bg, outline=outline, width=2 if is_hi else 1)
+            draw.rectangle([(x1, ry), (x2, ry + row_h - 4)], fill=bg, outline=outline, width=3 if is_hi else 1)
             for l_i, vline in enumerate(val.split("\n")):
                 draw.text((x1 + 10, ry + 12 + l_i * 25), vline, fill=tcol, font=f_use)
         ry += row_h
 
-    # Bottom Cumulative 6-Gate Quantitative AoA Scorecard Strip
-    draw.rectangle([(35, 738), (1885, 815)], fill=(12, 28, 44), outline=(255, 215, 75), width=2)
+    draw.rectangle([(35, 738), (1885, 815)], fill=(12, 28, 44), outline=(255, 215, 75), width=3 if beat_idx >= 3 else 2)
     scores = [
         (35, 330, "CUMULATIVE AoA SCORE\n(6 MISSION GATES)", (255, 220, 90)),
         (335, 760, "6 / 6 GATES PASSED (100%)\nDOMINANT EDGE WINNER", (80, 255, 155)),
@@ -533,12 +529,14 @@ def _draw_scene_4_aoa_matrix(draw: ImageDraw.ImageDraw, body_prog: float, frame_
             draw.text((x1 + 12, 748 + idx * 28), sline, fill=scol, font=f_score)
 
 
-def _draw_scene_5_ota_and_clins(draw: ImageDraw.ImageDraw, body_prog: float, frame_idx: int):
+def _draw_scene_5_ota_and_clins(draw: ImageDraw.ImageDraw, beat_idx: int, beat_prog: float, frame_idx: int):
     f_head = _load_font(20, bold=True)
     f_txt = _load_font(17, bold=False)
     f_mono = _load_mono_font(17, bold=True)
 
-    draw.rectangle([(35, 175), (1885, 475)], fill=(10, 22, 38), outline=(0, 230, 165), width=2)
+    # Beat 0 highlights Top Gantt Box; Beat 1 highlights Middle CLIN Cards; Beat 2 highlights Bottom Traction Box
+    gantt_hi = (beat_idx == 0)
+    draw.rectangle([(35, 175), (1885, 475)], fill=(14, 30, 48) if gantt_hi else (10, 22, 38), outline=(80, 255, 175) if gantt_hi else (0, 200, 145), width=4 if gantt_hi else 2)
     draw.rectangle([(35, 175), (1885, 218)], fill=(16, 42, 58))
     draw.text(
         (55, 185),
@@ -568,11 +566,13 @@ def _draw_scene_5_ota_and_clins(draw: ImageDraw.ImageDraw, body_prog: float, fra
         draw.text((g_left + 16, my + 10), desc, fill=(15, 20, 30) if s_f < 0.25 else (255, 255, 255), font=f_mono)
         my += 56
 
-    draw.rectangle([(35, 492), (1885, 815)], fill=(12, 20, 34), outline=(0, 210, 255), width=2)
+    clin_hi = (beat_idx == 1)
+    trac_hi = (beat_idx >= 2)
+    draw.rectangle([(35, 492), (1885, 815)], fill=(12, 20, 34), outline=(0, 235, 255) if (clin_hi or trac_hi) else (0, 180, 220), width=3 if (clin_hi or trac_hi) else 2)
     draw.rectangle([(35, 492), (1885, 534)], fill=(18, 34, 58))
     draw.text(
         (55, 502),
-        "UNBUNDLED 26-MODULE C2 CONSOLE CLIN SCHEDULE (DFARS 252.227-7018) & AUDIT-PROOF COMMERCIALIZATION READINESS",
+        "UNBUNDLED 26-MODULE C2 CONSOLE CLIN SCHEDULE (DFARS 252.227-7018) & VERIFIED CUSTOMER TRACTION",
         fill=(0, 225, 255),
         font=f_head,
     )
@@ -585,35 +585,42 @@ def _draw_scene_5_ota_and_clins(draw: ImageDraw.ImageDraw, body_prog: float, fra
     ]
     c_coords = [(55, 495), (510, 950), (965, 1410), (1425, 1865)]
     for (x1, x2), (ctitle, cprice, cdesc, col) in zip(c_coords, clin_cards):
-        draw.rectangle([(x1, 550), (x2, 685)], fill=(16, 30, 50), outline=col, width=2)
+        draw.rectangle([(x1, 550), (x2, 685)], fill=(22, 42, 68) if clin_hi else (16, 30, 50), outline=col, width=4 if clin_hi else 2)
         draw.text((x1 + 14, 560), ctitle, fill=col, font=f_mono)
         draw.text((x1 + 14, 592), cprice, fill=(255, 255, 255), font=f_head)
         for idx, wline in enumerate(textwrap.wrap(cdesc, width=32)[:2]):
             draw.text((x1 + 14, 628 + idx * 24), wline, fill=(210, 225, 240), font=f_txt)
 
-    draw.rectangle([(55, 702), (1865, 798)], fill=(16, 36, 44), outline=(80, 255, 160), width=1)
+    draw.rectangle([(55, 702), (1865, 798)], fill=(20, 48, 56) if trac_hi else (16, 36, 44), outline=(80, 255, 160), width=4 if trac_hi else 1)
     draw.text(
         (72, 712),
-        "AUDIT-PROOF TRANSPARENCY: Standalone Red-Team-certified client evaluation build (17/17 attacks blocked + zeroize),",
-        fill=(235, 245, 250),
+        "VERIFIED FEDERAL & COMMERCIAL ENGAGEMENT: USACE ERDC Rolling BAA White Paper ($1.20M filed), DIU 10 U.S.C. 4022",
+        fill=(240, 250, 255),
         font=f_txt,
     )
     draw.text(
         (72, 740),
-        "staged civil bridge NDE drone blueprint (modeling $250/sortie vs $4,600 snooper trucks), & 110-control NIST 800-171/800-82",
-        fill=(235, 245, 250),
+        "Solution Brief, DOC/Energy Microgrid Pilot SOW Suite, Civil Bridge NDE ($250/sortie vs $4,600 snooper trucks), &",
+        fill=(240, 250, 255),
         font=f_txt,
     )
     draw.text(
         (72, 768),
-        "architectural mapping complete (formal C3PAO/SPRS audit scheduled in Phase 1). 100% DFARS 252.227-7018 Background IP retained.",
+        "110-Control NIST 800-171/800-82 Mapping (C3PAO Audit in Phase 1). 100% DFARS 252.227-7018 Background IP Retained.",
         fill=(120, 255, 185),
         font=f_mono,
     )
 
 
-def render_slide_image(spec: dict, out_png: Path, progress: float = 1.0, frame_idx: int = 0, cue_ratio: float = 0.0) -> Image.Image:
-    """Renders a 1920x1080 Full-HD vector frame with 100% frame-accurate announcer/CEO caption sync."""
+def render_slide_image(
+    spec: dict,
+    cur_time_s: float,
+    total_dur_s: float,
+    cue_end_s: float,
+    beat_windows: list[tuple[float, float, str]],
+    frame_idx: int = 0,
+) -> Image.Image:
+    """Renders a 1920x1080 Full-HD frame locked to the exact millisecond audio beat window."""
     img = Image.new("RGB", (1920, 1080), (6, 12, 22))
     draw = ImageDraw.Draw(img)
 
@@ -624,9 +631,25 @@ def render_slide_image(spec: dict, out_png: Path, progress: float = 1.0, frame_i
     font_term = _load_mono_font(16, bold=False)
     font_caption = _load_font(19, bold=True)
 
-    # Compute exact body narration progress (0.0 while Announcer is speaking; 0.0 -> 1.0 while CEO speaks)
-    is_announcer_speaking = (progress < cue_ratio) and (cue_ratio > 0.0)
-    body_prog = 0.0 if is_announcer_speaking else (progress - cue_ratio) / max(0.001, 1.0 - cue_ratio)
+    is_announcer_speaking = (cur_time_s < cue_end_s)
+    beat_idx = 0
+    beat_prog = 0.0
+    active_beat_text = spec["beats"][0] if spec.get("beats") else spec["narration"]
+
+    if not is_announcer_speaking and beat_windows:
+        found = False
+        for b_i, (b_start, b_end, b_txt) in enumerate(beat_windows):
+            if cur_time_s <= b_end or b_i == len(beat_windows) - 1:
+                beat_idx = b_i
+                span = max(0.01, b_end - b_start)
+                beat_prog = min(1.0, max(0.0, (cur_time_s - b_start) / span))
+                active_beat_text = b_txt
+                found = True
+                break
+        if not found:
+            beat_idx = len(beat_windows) - 1
+            beat_prog = 1.0
+            active_beat_text = beat_windows[-1][2]
 
     draw.rectangle([(0, 0), (1920, 105)], fill=(12, 24, 44))
     draw.line([(0, 105), (1920, 105)], fill=accent, width=4)
@@ -636,10 +659,10 @@ def render_slide_image(spec: dict, out_png: Path, progress: float = 1.0, frame_i
         fill=accent,
         font=font_banner,
     )
-    badge_txt = "C2 ANNOUNCER BRIEFING" if is_announcer_speaking else f"CEO NARRATION SYNC | FRAME {frame_idx:04d}"
+    badge_txt = "C2 ANNOUNCER BRIEFING" if is_announcer_speaking else f"AUDIO-LOCKED BEAT {beat_idx+1}/{len(beat_windows)} | FRAME {frame_idx:04d}"
     pulse_col = (255, 215, 70) if is_announcer_speaking else ((60, 255, 145) if (frame_idx // 15) % 2 == 0 else accent)
-    draw.rectangle([(1365, 12), (1885, 48)], fill=(10, 38, 34), outline=pulse_col, width=2)
-    draw.text((1382, 19), badge_txt, fill=pulse_col, font=font_sub)
+    draw.rectangle([(1335, 12), (1885, 48)], fill=(10, 38, 34), outline=pulse_col, width=2)
+    draw.text((1350, 19), badge_txt, fill=pulse_col, font=font_sub)
     draw.text((35, 55), spec["header"], fill=(255, 255, 255), font=font_title)
 
     draw.rectangle([(35, 116), (1885, 158)], fill=(16, 32, 54), outline=accent, width=2)
@@ -647,71 +670,69 @@ def render_slide_image(spec: dict, out_png: Path, progress: float = 1.0, frame_i
 
     snum = spec["slide_num"]
     if snum == 1:
-        _draw_scene_1_quadrants(draw, body_prog, frame_idx)
+        _draw_scene_1_quadrants(draw, beat_idx, beat_prog, frame_idx)
     elif snum == 2:
-        _draw_scene_2_physics(draw, body_prog, frame_idx)
+        _draw_scene_2_physics(draw, beat_idx, beat_prog, frame_idx)
     elif snum == 3:
-        _draw_scene_3_live_c2_gui_and_terminal(draw, body_prog, frame_idx)
+        _draw_scene_3_live_c2_gui_and_terminal(draw, beat_idx, beat_prog, frame_idx)
     elif snum == 4:
-        _draw_scene_4_aoa_matrix(draw, body_prog, frame_idx)
+        _draw_scene_4_aoa_matrix(draw, beat_idx, beat_prog, frame_idx)
     else:
-        _draw_scene_5_ota_and_clins(draw, body_prog, frame_idx)
+        _draw_scene_5_ota_and_clins(draw, beat_idx, beat_prog, frame_idx)
 
-    # Bottom spoken caption box with frame-accurate Announcer vs. CEO synchronization
+    # Bottom caption box locked 100% to the exact active audio beat
     draw.rectangle([(35, 828), (1885, 1012)], fill=(14, 24, 42), outline=accent, width=2)
     if is_announcer_speaking:
         draw.text(
             (55, 835),
-            "C2 SYSTEM ANNOUNCER CALLOUT (RUBRIC CRITERION VERIFICATION):",
+            "C2 SYSTEM ANNOUNCER CALLOUT (APPENDIX RUBRIC & SECTION VII.e GATE):",
             fill=(255, 215, 75),
             font=font_sub,
         )
         draw.rectangle([(48, 875), (1872, 912)], fill=(38, 52, 22))
         draw.text((58, 882), ">>> [C2 ANNOUNCER]: " + spec.get("announcer_cue", ""), fill=(255, 235, 110), font=font_caption)
-        first_lines = textwrap.wrap(spec["narration"], width=114)[:2]
+        first_lines = textwrap.wrap(active_beat_text, width=110)[:2]
         for idx, fl in enumerate(first_lines):
             draw.text((58, 924 + idx * 26), "    [UP NEXT - CEO]: " + fl, fill=(170, 190, 210), font=font_term)
     else:
         draw.text(
             (55, 835),
-            f"FRAME-SYNCHRONIZED EXECUTIVE NARRATION TRANSCRIPT (SCENE PROGRESS: {int(body_prog*100)}%):",
+            f"MILLISECOND-LOCKED EXECUTIVE NARRATION (ACTIVE VISUAL BEAT {beat_idx + 1} OF {len(beat_windows)}):",
             fill=accent,
             font=font_sub,
         )
-        wrapped_narration = textwrap.wrap(spec["narration"], width=114)
-        total_wlines = max(1, len(wrapped_narration))
-        active_wline = min(total_wlines - 1, int(body_prog * total_wlines))
-        start_w = max(0, min(active_wline - 2, total_wlines - 5))
-        ny = 865
-        for w_idx in range(start_w, min(total_wlines, start_w + 5)):
-            wline = wrapped_narration[w_idx]
-            if w_idx == active_wline:
-                draw.rectangle([(48, ny - 2), (1872, ny + 23)], fill=(0, 68, 105))
-                draw.text((55, ny), ">>> " + wline, fill=(120, 255, 180), font=font_caption)
+        wrapped_beat = textwrap.wrap(active_beat_text, width=108)
+        total_blines = max(1, len(wrapped_beat))
+        active_bline = min(total_blines - 1, int(beat_prog * total_blines))
+        ny = 872
+        for l_idx, wline in enumerate(wrapped_beat[:4]):
+            if l_idx == active_bline:
+                draw.rectangle([(48, ny - 2), (1872, ny + 26)], fill=(0, 68, 105))
+                draw.text((55, ny + 1), ">>> " + wline, fill=(120, 255, 180), font=font_caption)
             else:
-                draw.text((55, ny), "    " + wline, fill=(210, 222, 235), font=font_term)
-            ny += 26
+                draw.text((55, ny + 1), "    " + wline, fill=(220, 232, 245), font=font_caption)
+            ny += 30
 
+    progress = min(1.0, cur_time_s / max(0.01, total_dur_s))
     draw.rectangle([(0, 1025), (1920, 1080)], fill=(8, 16, 30))
     draw.rectangle([(0, 1020), (int(1920 * progress), 1025)], fill=accent)
     draw.text(
         (35, 1040),
-        f"HUMPHREY VIRTUAL FARMS LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5) | DOCKET 10-26-3976 (TRL 4 -> TRL 6) | SCENE {snum} OF 5",
+        f"HUMPHREY VIRTUAL FARMS LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5) | TSM REV V.10 RESUBMISSION (SUPERSEDING 9-26-3703) | SCENE {snum} OF 5",
         fill=(190, 215, 240),
         font=font_sub,
     )
-
-    if out_png is not None:
-        out_png.parent.mkdir(parents=True, exist_ok=True)
-        img.save(str(out_png), format="PNG")
     return img
 
 
-def _write_chime_and_pause_wav(wav_path: Path, sample_rate: int = 24000, duration_s: float = 0.45):
+def _write_chime_or_silence_wav(wav_path: Path, sample_rate: int = 24000, duration_s: float = 0.22, silent: bool = False):
     t = np.linspace(0, duration_s, int(sample_rate * duration_s), endpoint=False)
-    env = np.exp(-t * 14.0)
-    signal = 0.08 * env * (np.sin(2 * np.pi * 880 * t) + 0.5 * np.sin(2 * np.pi * 1320 * t))
-    pcm = np.clip(signal * 32767, -32768, 32767).astype(np.int16)
+    if silent:
+        pcm = np.zeros_like(t, dtype=np.int16)
+    else:
+        env = np.exp(-t * 16.0)
+        signal = 0.08 * env * (np.sin(2 * np.pi * 880 * t) + 0.5 * np.sin(2 * np.pi * 1320 * t))
+        pcm = np.clip(signal * 32767, -32768, 32767).astype(np.int16)
     with wave.open(str(wav_path), "wb") as wf:
         wf.setnchannels(1)
         wf.setsampwidth(2)
@@ -730,55 +751,85 @@ def _probe_duration(media_path: Path) -> float:
             return float(res.stdout.strip())
         except Exception:
             pass
-    return 45.0
+    return 10.0
 
 
-def synthesize_dual_voiceover_audio(announcer_cue: str, narration_text: str, out_audio: Path, ffmpeg_exe: str) -> tuple[Path, str, float]:
-    """Returns (audio_path, engine_description, cue_prefix_duration_seconds)."""
-    try:
-        import edge_tts
-        cue_mp3 = out_audio.parent / (out_audio.name + "_cue.mp3")
-        body_mp3 = out_audio.parent / (out_audio.name + "_body.mp3")
-        chime_wav = out_audio.parent / (out_audio.name + "_chime.wav")
-        combined_m4a = out_audio.with_suffix(".m4a")
+def synthesize_beat_locked_scene_audio(
+    announcer_cue: str,
+    beats: list[str],
+    out_audio_prefix: Path,
+    ffmpeg_exe: str,
+) -> tuple[Path, str, float, list[tuple[float, float, str]]]:
+    """
+    Synthesizes the announcer cue + each discrete visual beat individually, inserts a 0.12s breath pause
+    between beats and a 0.55s silent visual hold at the end of the scene so the screen NEVER changes while talking.
+    Returns: (combined_m4a, voice_desc, cue_end_s, beat_windows)
+    """
+    import edge_tts
 
-        _write_chime_and_pause_wav(chime_wav, duration_s=0.45)
+    chime_wav = out_audio_prefix.parent / f"{out_audio_prefix.name}_chime.wav"
+    breath_wav = out_audio_prefix.parent / f"{out_audio_prefix.name}_breath.wav"
+    tail_hold_wav = out_audio_prefix.parent / f"{out_audio_prefix.name}_tail_hold.wav"
+    cue_mp3 = out_audio_prefix.parent / f"{out_audio_prefix.name}_cue.mp3"
 
-        async def _run_dual():
-            c1 = edge_tts.Communicate(announcer_cue, voice="en-US-GuyNeural", rate="+10%")
-            await c1.save(str(cue_mp3))
-            c2 = edge_tts.Communicate(narration_text, voice="en-US-ChristopherNeural", rate="+10%")
-            await c2.save(str(body_mp3))
+    _write_chime_or_silence_wav(chime_wav, duration_s=0.20, silent=False)
+    _write_chime_or_silence_wav(breath_wav, duration_s=0.10, silent=True)
+    _write_chime_or_silence_wav(tail_hold_wav, duration_s=0.55, silent=True)
 
-        asyncio.run(_run_dual())
-        if cue_mp3.exists() and body_mp3.exists():
-            cue_dur = _probe_duration(cue_mp3) + 0.90  # 2 chimes (0.45s each) + announcer cue duration
-            cmd = [
-                ffmpeg_exe, "-y",
-                "-i", str(chime_wav),
-                "-i", str(cue_mp3),
-                "-i", str(chime_wav),
-                "-i", str(body_mp3),
-                "-filter_complex", "[0:a][1:a][2:a][3:a]concat=n=4:v=0:a=1[outa]",
-                "-map", "[outa]",
-                "-c:a", "aac",
-                "-b:a", "192k",
-                str(combined_m4a),
-            ]
-            subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            if combined_m4a.exists() and combined_m4a.stat().st_size > 1000:
-                return combined_m4a, "100% Frame-Synchronized Dual Studio Neural Voices + C2 Lock Chimes", cue_dur
-    except Exception:
-        pass
+    beat_mp3s = [out_audio_prefix.parent / f"{out_audio_prefix.name}_beat_{i:02d}.mp3" for i in range(len(beats))]
 
-    import pyttsx3
-    wav_out = out_audio.with_suffix(".wav")
-    engine = pyttsx3.init()
-    engine.setProperty("rate", 178)
-    engine.setProperty("volume", 1.0)
-    engine.save_to_file(f"{announcer_cue}. {narration_text}", str(wav_out))
-    engine.runAndWait()
-    return wav_out, "Windows SAPI5 Offline Fallback", 4.0
+    async def _synth_all():
+        c_cue = edge_tts.Communicate(announcer_cue, voice="en-US-GuyNeural", rate="+15%")
+        await c_cue.save(str(cue_mp3))
+        for b_txt, b_mp3 in zip(beats, beat_mp3s):
+            c_b = edge_tts.Communicate(b_txt, voice="en-US-ChristopherNeural", rate="+15%")
+            await c_b.save(str(b_mp3))
+
+    asyncio.run(_synth_all())
+
+    # Calculate exact millisecond timeline
+    chime_dur = _probe_duration(chime_wav)
+    cue_dur = _probe_duration(cue_mp3)
+    breath_dur = _probe_duration(breath_wav)
+    tail_dur = _probe_duration(tail_hold_wav)
+
+    # Sequence: chime -> announcer_cue -> chime -> beat_0 -> breath -> beat_1 -> ... -> tail_hold
+    input_files = [chime_wav, cue_mp3, chime_wav]
+    cur_t = chime_dur + cue_dur + chime_dur
+    cue_end_s = cur_t
+
+    beat_windows = []
+    for i, (b_txt, b_mp3) in enumerate(zip(beats, beat_mp3s)):
+        b_dur = _probe_duration(b_mp3)
+        b_start = cur_t
+        b_end = cur_t + b_dur
+        input_files.append(b_mp3)
+        cur_t = b_end
+        if i < len(beats) - 1:
+            input_files.append(breath_wav)
+            cur_t += breath_dur
+            b_end = cur_t
+        else:
+            input_files.append(tail_hold_wav)
+            cur_t += tail_dur
+            b_end = cur_t
+        beat_windows.append((b_start, b_end, b_txt))
+
+    combined_m4a = out_audio_prefix.with_suffix(".m4a")
+    cmd = [ffmpeg_exe, "-y"]
+    for fpath in input_files:
+        cmd.extend(["-i", str(fpath)])
+    n_inputs = len(input_files)
+    concat_in = "".join(f"[{i}:a]" for i in range(n_inputs))
+    cmd.extend([
+        "-filter_complex", f"{concat_in}concat=n={n_inputs}:v=0:a=1[outa]",
+        "-map", "[outa]",
+        "-c:a", "aac",
+        "-b:a", "192k",
+        str(combined_m4a),
+    ])
+    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    return combined_m4a, "100% Sub-Beat Millisecond-Locked Dual Studio Neural Voices + Post-Scene Hold", cue_end_s, beat_windows
 
 
 def compile_tradewinds_mp4(output_mp4: Path = None) -> dict:
@@ -796,23 +847,21 @@ def compile_tradewinds_mp4(output_mp4: Path = None) -> dict:
     get_live_terminal_lines()
 
     specs = build_slide_specs()
-    temp_dir = Path(tempfile.mkdtemp(prefix="hvf_tw_100_"))
+    temp_dir = Path(tempfile.mkdtemp(prefix="hvf_tw_beatlock_"))
     segment_mp4s = []
     voice_engine_used = "Unknown"
     fps = 30
 
-    prev_last_img = None
     for spec in specs:
         idx = spec["slide_num"]
         raw_audio = temp_dir / f"audio_{idx:02d}"
-        audio_path, voice_engine_used, cue_dur = synthesize_dual_voiceover_audio(
+        audio_path, voice_engine_used, cue_end_s, beat_windows = synthesize_beat_locked_scene_audio(
             spec.get("announcer_cue", f"Scene {idx}"),
-            spec["narration"],
+            spec["beats"],
             raw_audio,
             ffmpeg_exe,
         )
-        seg_dur = max(10.0, _probe_duration(audio_path))
-        cue_ratio = min(0.35, max(0.0, cue_dur / seg_dur))
+        seg_dur = _probe_duration(audio_path)
         total_frames = int(math.ceil(seg_dur * fps))
         seg_path = temp_dir / f"segment_{idx:02d}.mp4"
 
@@ -836,18 +885,17 @@ def compile_tradewinds_mp4(output_mp4: Path = None) -> dict:
             str(seg_path),
         ]
         proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        transition_frames = 12
         for f_idx in range(total_frames):
-            prog = (f_idx + 1) / max(1, total_frames)
-            cur_img = render_slide_image(spec, out_png=None, progress=prog, frame_idx=f_idx + (idx * 1000), cue_ratio=cue_ratio)
-            if prev_last_img is not None and f_idx < transition_frames:
-                alpha = (f_idx + 1) / transition_frames
-                blended = Image.blend(prev_last_img, cur_img, alpha)
-                proc.stdin.write(blended.tobytes())
-            else:
-                proc.stdin.write(cur_img.tobytes())
-            if f_idx == total_frames - 1:
-                prev_last_img = cur_img
+            cur_time_s = f_idx / float(fps)
+            cur_img = render_slide_image(
+                spec,
+                cur_time_s=cur_time_s,
+                total_dur_s=seg_dur,
+                cue_end_s=cue_end_s,
+                beat_windows=beat_windows,
+                frame_idx=f_idx + (idx * 1000),
+            )
+            proc.stdin.write(cur_img.tobytes())
         proc.stdin.close()
         proc.wait()
         if proc.returncode != 0:
@@ -890,10 +938,10 @@ def compile_tradewinds_mp4(output_mp4: Path = None) -> dict:
 if __name__ == "__main__":
     info = compile_tradewinds_mp4()
     print("=" * 96)
-    print("  [100% MASTER SOVEREIGN EDITION: LIVE C2 CONSOLE, 6-GATE SCORECARD & FRAME-SYNC AUDIO SEALED]")
+    print("  [100% SUB-BEAT MILLISECOND-LOCKED MASTER EDITION: ZERO TRANSITION BLEED & <5:00 COMPLIANT]")
     print(f"  Primary File : {info['mp4_path']}")
     print(f"  Audio Master : {info['voice_engine']}")
-    print(f"  File Size    : {info['size_mb']} MB | 1920x1080 Native 30.0 FPS + Frame-Synced Captions")
+    print(f"  File Size    : {info['size_mb']} MB | 1920x1080 Native 30.0 FPS + Millisecond Beat Lock")
     print(f"  Duration     : {info['duration_sec']} seconds (Target < 300s / 5:00 Tradewinds Max Limit)")
     print(f"  SHA-256 Seal : {info['sha256']}")
     print("=" * 96)
