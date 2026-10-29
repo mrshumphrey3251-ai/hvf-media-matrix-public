@@ -1,7 +1,7 @@
 # HUMPHREY VIRTUAL FARMS LLC // POST-AWARD TRL 8 & TRL 9 FUNDED ENGINEERING ROADMAP
 **Entity:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5`)  
 **Controlling Authority:** Jeffery Humphrey, Founder, CEO, & Principal Sovereign Architect  
-**Pre-Award Baseline Status:** `TRL 4 (Phase-1 OTA Target: TRL 6)` Complete & Frozen (`631 / 631` Modules, `83 / 83` Unit Tests, Master Merkle Root: `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`)  
+**Pre-Award Baseline Status:** `TRL 4 (Phase-1 OTA Target: TRL 6)` Complete & Frozen (`631 / 631` Modules, `85 / 85` Unit Tests, Master Merkle Root: `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`)  
 **Execution Condition:** All Work Packages (`WP-1` through `WP-6`) execute **strictly post-award** using settled funds from **Milestone #01 / Day-1 COTS License Release (`18%` Setup Hardware Bucket + `15%` TRL 8/9 Integration Bucket)**.
 
 ---
@@ -30,6 +30,6 @@
 
 Every post-award Work Package (`WP-1` through `WP-6`) is architected to load via `HVF_SITE_ADAPTER_MANIFEST.json` and isolated hardware driver classes, guaranteeing:
 * **0 Bytes Modified** inside the sealed `631` `c2_cockpit` core modules (`cc1ee1c8...949a`).
-* **100% Backwards Compatibility** with all `83 / 83` unit test suites and `1,420 / 1,420` Field Academy questions.
+* **100% Backwards Compatibility** with all `85 / 85` unit test suites and `1,420 / 1,420` Field Academy questions.
 * **100% Customer-Funded Execution:** No hardware ordering or site travel occurs until the Day-1 invoice clears into Humphrey Virtual Farms LLC's bank account.
 

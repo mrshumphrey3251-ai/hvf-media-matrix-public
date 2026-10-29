@@ -1,16 +1,16 @@
 # OFFICIAL TRL 4 CLARIFICATION & CDAO EVALUATOR RUBRIC ALIGNMENT
-**Active Docket:** `10-26-4014` (Superseding `10-26-3976` & `9-26-3703`) (Resubmission of `9-26-3703` | Superseding All Prior TRL 6/7 Dossier Drafts)  
+**Active Docket:** `10-26-4014` (`Status: Received` | Superseding `10-26-3976` & `9-26-3703` | Superseding All Prior TRL 6/7 Dossier Drafts)  
 **Contractor:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5`)  
-**CEO & Chief Architect:** Jeffery Humphrey (`humphreyvirtualfarm@gmail.com`)  
-**Date Recorded:** October 27, 2026
+**CEO & Chief Architect:** Jeffery Humphrey (`[REDACTED-FOR-PUBLIC-RELEASE]`)  
+**Date Recorded:** October 28, 2026
 
-This official filing aligns the public repository with Tradewinds Docket **`10-26-3976`** (`Status: Received`) and supersedes prior TRL 4 (Phase-1 OTA Target: TRL 6) dossier drafts:
+This official filing aligns the public repository with Tradewinds Docket **`10-26-4014`** (`Status: Received`) and supersedes prior TRL 4 (Phase-1 OTA Target: TRL 6) dossier drafts:
 
 1. **DEFINING THE PROBLEM (DoD Scale & Citations):**
    Per GAO-21-81 & GAO-24-106137, DoD operates 500+ installations, 300,000+ buildings, and $4.2B+ in annual OT/energy assets using commercial PLCs scanning at 50-200ms. Per CISA/NSA/DoD Advisories AA23-144A & AA24-038A (Volt Typhoon), actors pre-position inside critical energy/water/logistics OT corridors. Because arc-flash backfeeds propagate in <4.16ms and microreactor excursions occur in 6.0ms, 50-200ms PLC scans are 8x-33x too slow to arrest physical destruction.
 
 2. **CURRENT READINESS LEVEL (TRL 4 Software Emulation Testbed):**
-   Project Ebony is currently at **TRL 4** (laboratory software testbed and mathematical emulation on a local workstation; Merkle Root: `95e0e3e1dfb8e3fa4d74b2a3ec9b8672244fbba4f953bb782d2ab0c71dd7be65`). References in the video transcript to "bench verified," along with our 85/85 unit tests, 17/17 simulated red-team vectors, and NIST 800-171/800-82 mappings, reflect local software-bench emulation and architectural modeling—physical silicon/PCB fabrication, third-party HIL electrical testing, and formal DoD SPRS auditing are planned milestones under the proposed Phase-1 OTA.
+   Project Ebony is currently at **TRL 4** (laboratory software testbed and mathematical emulation on a local workstation; Merkle Root: `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`). References in the video transcript to "bench verified," along with our 85/85 unit tests, 17/17 simulated red-team vectors, and NIST 800-171/800-82 mappings, reflect local software-bench emulation and architectural modeling—physical silicon/PCB fabrication, third-party HIL electrical testing, and formal DoD SPRS auditing are planned milestones under the proposed Phase-1 OTA.
 
 3. **ADVANCING STATE OF THE ART (Modeled Design Targets vs. Legacy OT):**
    - **Project Ebony (Design Target):** Modeled 36.75ns Analog Kinetic Guillotine MOSFET gate cutoff at 28.5W on 24V DC.

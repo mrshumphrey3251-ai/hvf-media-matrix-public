@@ -20,7 +20,7 @@
 ---
 
 ## 1. Executive Summary & TRL 4 Readiness Clarification
-This repository serves as the public architectural blueprint and TRL 4 software-bench verification record for **Project Ebony (v8.0.0)** under Tradewinds Docket **`10-26-3976`**.
+This repository serves as the public architectural blueprint and TRL 4 software-bench verification record for **Project Ebony (v8.0.0)** under Tradewinds Docket **`10-26-4014`**.
 
 * **TRL 4 Software Emulation Scope:** Project Ebony is currently at **TRL 4** (laboratory software testbed and mathematical emulation running on an air-gapped local workstation under Master SHA-256 Merkle Root `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`).
 * **Software-Bench Verification vs. Physical Silicon Target:** References in pitch transcripts and legacy dossiers to *"bench verified,"* `83/83` passed unit/stress suites, `17/17` simulated red-team vectors, and `NIST SP 800-171 / 800-82` mappings reflect local Python/C/SQLite software-bench emulation and architectural modeling. Physical Cortex-M7/RISC-V PCB fabrication, third-party high-voltage SiC MOSFET electrical testing, and formal DoD SPRS third-party auditing are scheduled Phase-1 milestones under our proposed **12-Month, $1.485M Prototype OTA (`10 U.S.C. § 4022`)**.
