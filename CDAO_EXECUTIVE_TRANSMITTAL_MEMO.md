@@ -23,7 +23,7 @@ Project Ebony provides the Department of Defense with an operational, cloud-inde
 ---
 
 ### 2. Certified TRL 6/7 Performance & Verification Benchmarks (`v8.0.0-sovereign-master-seal`)
-1. **631 Compiled Sovereign C2 & Level-5 Python Modules (`100% AST & BOM-Free Verified`):** Complete 15-vertical operational matrix (`616` core C2 modules + `15` Level-5 extensions) sealed under Master SHA-256 Merkle Root `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`.
+1. **631 Compiled Sovereign C2 & Level-5 Python Modules (`100% AST & BOM-Free Verified`):** Complete 15-vertical operational matrix (`616` core C2 modules + `15` Level-5 extensions) sealed under Master SHA-256 Merkle Root `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`.
 2. **83 / 83 Automated Unit & Stress Test Suites Passed (`100.0%`):** Verified via `c2_cockpit/run_all_83_tests.py` with full per-test cryptographic snapshot isolation.
 3. **17 / 17 Red-Team Adversarial Penetration Vectors Blocked (`0 Breaches`):** Verified via `c2_cockpit/test_client_penetration.py` against replay, MITM, license forgery, SQL injection, and static credential extraction.
 4. **Kinetic Guillotine & SCADA Microgrid Isolation:** `36.75 ns` analog MOSFET gate depletion cutoff; `2.04 us` RS-485 Modbus FC05 coil actuation; `13.33 ms` 4-channel de-energization (`CH1_UTILITY_GRID`, `CH2_PV_ARRAYS`, `CH3_BESS_STORAGE`, `CH4_AUX_GENERATOR`); `126.13 ms` inrush-suppressed sequential soft-start recovery.

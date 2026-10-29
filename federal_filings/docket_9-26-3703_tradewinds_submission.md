@@ -28,7 +28,7 @@ iii. **Advancing the State of the Art (Upgraded TRL 6/7 Bare-Metal Proof):** HVF
 - **Brain One (Deterministic Control):** Executes compiled C/Python bare-metal loops in sub-50us (`2.04 us` Modbus FC05 actuation; `13.33 ms` multi-channel kinetic contactor isolation; `126.13 ms` sequential soft-start recovery).
 - **Brain Two (Air-Gapped Cognitive Inference):** Operates under 25W with Zero RF emissions (`< 5 ms` acoustic/harmonic analysis, strictly advisory with zero electrical actuator wire).
 - **Kinetic Guillotine (Analog Physical Interlock):** Collapses holding current to zero ($I = 0$) in **36.75 ns** via solid-state MOSFET gate depletion.
-- **Brain Three (Cryptographic WORM Provenance):** Seals every telemetry state and executive artifact across a **52-table bare-metal SQLite WORM & Memory Vault architecture** (`matrix_ledger.db` + `hvf_memory_vault.db`) anchored to Master C2 Merkle Root `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`.
+- **Brain Three (Cryptographic WORM Provenance):** Seals every telemetry state and executive artifact across a **52-table bare-metal SQLite WORM & Memory Vault architecture** (`matrix_ledger.db` + `hvf_memory_vault.db`) anchored to Master C2 Merkle Root `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`.
 
 iv. **Business Model:** Humphrey Virtual Farms LLC operates as an agile Nontraditional Defense Contractor Prime under 10 U.S.C. Section 4022, retaining 100% private Background IP under DFARS 252.227-7018. We propose a 12-month, **$1.485M Prototype OTA** delivering mil-spec Tactical Control Units (TCUs) and turnkey sovereign C2 enclaves.
 
@@ -45,7 +45,7 @@ iv. **Business Model:** Humphrey Virtual Farms LLC operates as an agile Nontradi
 | **5. Sovereign Field & Warfighter Academy** | Not Included in v1.0 | **1,420 / 1,420 Unique Verified Exam Questions** (`800` Ch1 + `620` Ch5) & **4 Offline Manuals** |
 | **6. ISO 32000-1 WORM PDF Dossier Compilers** | Static Markdown | **6 / 6 Cryptographically Sealed `%PDF-1.4` Engines** |
 | **7. Turnkey Hardware-Locked Client Enclave** | Single Local Node | **HMAC-SHA256 Node-Locked Release Packager** (`ebony_crypto_enclave.py`) |
-| **8. Master C2 Cryptographic Merkle Root** | 64-82 Blocks | **`cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`** (100% Fixed-Point Invariant) |
+| **8. Master C2 Cryptographic Merkle Root** | 64-82 Blocks | **`bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`** (100% Fixed-Point Invariant) |
 
 ---
 
@@ -58,7 +58,7 @@ I am Jeffery Humphrey, Founder, Chief Executive Officer, and Apex Architect of H
 ## INTEGRATED HOST OPERATING CONSOLE & 26-MODULE PER-NODE PRICE SCHEDULE (`DOCKET 10-26-3976`)
 
 **1. Turnkey TRL 4 (Phase-1 OTA Target: TRL 6) Operating Console Proof (`Project Ebony` -- 26 Modules / 72 Verified Controls):**  
-Docket `10-26-3976` executes natively inside the **HVF Level-5 Sovereign C2 Operating Console**, a fully operational, bare-metal Command & Control enclave (`631 / 631` compiled Python/C modules, Master SHA-256 Merkle Root: `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a`, `83 / 83` unit test suites passing at `100.0%`).
+Docket `10-26-3976` executes natively inside the **HVF Level-5 Sovereign C2 Operating Console**, a fully operational, bare-metal Command & Control enclave (`631 / 631` compiled Python/C modules, Master SHA-256 Merkle Root: `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`, `83 / 83` unit test suites passing at `100.0%`).
 
 **2. Unbundled Per-Node Licensing Scope (DFARS `252.227-7018` & `227.7202`):**  
 * **Base Entry Pilot (`CLIN 0001`):** The entry pilot price filed on Tradewinds Docket `10-26-3976` covers **strictly `CLIN 0001` (`Module #01: Sovereign Command Chronos Base Router` on `1` Single Bare-Metal Node)**.

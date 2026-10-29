@@ -12,7 +12,7 @@
 | :--- | :--- | :--- |
 | **1. Automated Unit & Stress Test Suite (`run_all_83_tests.py`)** | All `83 / 83` (`test_*.py`) Suites Executed | **`83 / 83 PASSED (100.0%)`** |
 | **2. Compiled C2 & Level-5 Python Modules** | Full Repo (`1,959` Private / `1,768` Public `.py` Modules) | **`100% Repo Compiled (`1,959` Priv / `1,768` Pub)` (`0` Syntax/BOM Errors)** |
-| **3. Master C2 Cryptographic Merkle Root (SHA-256)** | Fixed-Point Deterministic Digest | **`2bbfa00aebe0e21ca3cd914a1b412b5f9cf904837d47b8c7b606f50d00f5792d`** |
+| **3. Master C2 Cryptographic Merkle Root (SHA-256)** | Fixed-Point Deterministic Digest | **`bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`** |
 | **4. Public SQLite Binary Page Sanitization (`VACUUM`)** | `1,262 -> 0` Binary B-Tree Email Occurrences | **`0` Binary SQLite PII Hits in Public Repo** |
 | **5. Full Public Repository Raw-Byte Tracked Scan** | All `2063` Git-Tracked Public Files Audited | **`0` Raw-Byte PII or Credential Leaks** |
 | **6. Private Sovereign Memory Vault Custody** | `c2_cockpit/hvf_memory_vault.db` (`30` tables) & `matrix_ledger.db` (`22` tables) | **Tracked Exclusively in Private Vault (`0` in Public)** |

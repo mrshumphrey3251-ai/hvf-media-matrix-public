@@ -6,7 +6,7 @@
   "stage": "8g",
   "timestamp_utc": "2026-10-24T13:34:20.646963+00:00",
   "total_python_modules": 646,
-  "master_merkle_root_sha256": "cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a",
+  "master_merkle_root_sha256": "bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1",
   "sha256_manifest": {
     "c2_cockpit/__init__.py": "ab76a59ff7bc2f3e2628388f2edf8db77a14ac99820b25801cfcde32aa748633",
     "c2_cockpit/access_control.py": "3709685f597329fd7b3042b46096d80b9769a877135920a90b97d98ab8d22c6c",

@@ -2,7 +2,7 @@
 **Entity:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5`)  
 **Controlling Authority:** Jeffery Humphrey, Founder, CEO, & Principal Sovereign Architect  
 **Statutory & Federal Authorities:** FAR Part 12 (`52.212-4`), FAR `52.232-40` (15-Day Accelerated Small Business Payment), DFARS `252.232-7003` (PIEE/WAWF Electronic Invoicing), 10 U.S.C. 4022 (OTA Payable Milestones), & OK Statutes Title 61  
-**Baseline Master C2 Merkle Root:** `cc1ee1c8d29b2ae5e856fc0fcb672a52e7e49d50369499febe14e18e9150949a` (`631 / 631` Modules Verified)
+**Baseline Master C2 Merkle Root:** `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1` (`631 / 631` Modules Verified)
 
 ---
 
