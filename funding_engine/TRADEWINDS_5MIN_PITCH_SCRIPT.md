@@ -9,10 +9,10 @@
 ## INTEGRATED HOST OPERATING CONSOLE & 26-MODULE PER-NODE PRICE SCHEDULE (`DOCKET 10-26-3976`)
 
 **1. Turnkey TRL 4 (Phase-1 OTA Target: TRL 6) Operating Console Proof (`Project Ebony` -- 26 Modules / 72 Verified Controls):**  
-Docket `10-26-3976` executes natively inside the **HVF Level-5 Sovereign C2 Operating Console**, a fully operational, bare-metal Command & Control enclave (`631 / 631` compiled Python/C modules, Master SHA-256 Merkle Root: `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`, `83 / 83` unit test suites passing at `100.0%`).
+Docket `10-26-4014` executes natively inside the **HVF Level-5 Sovereign C2 Operating Console**, a fully operational, bare-metal Command & Control enclave (`631 / 631` compiled Python/C modules, Master SHA-256 Merkle Root: `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`, `83 / 83` unit test suites passing at `100.0%`).
 
 **2. Unbundled Per-Node Licensing Scope (DFARS `252.227-7018` & `227.7202`):**  
-* **Base Entry Pilot (`CLIN 0001`):** The entry pilot price filed on Tradewinds Docket `10-26-3976` covers **strictly `CLIN 0001` (`Module #01: Sovereign Command Chronos Base Router` on `1` Single Bare-Metal Node)**.
+* **Base Entry Pilot (`CLIN 0001`):** The entry pilot price filed on Tradewinds Docket `10-26-4014` covers **strictly `CLIN 0001` (`Module #01: Sovereign Command Chronos Base Router` on `1` Single Bare-Metal Node)**.
 * **Individual Add-On Modules (`CLIN 0002` - `CLIN 0026`):** Each of the remaining **25 Command Modules** in the Operating Console is priced individually **per physical hardware node / per robotic chassis / per training seat** (`1 License = 1 Hardware UUID`). Government and commercial buyers may add individual modules to a `10-26-3976` contract award via sole-source modification (10 U.S.C. 4022 / FAR Part 12):
 
 | CLIN | Module # & Name | Licensing Basis (Strict Per-Node) | Annual Gov Price | Monthly Commercial |

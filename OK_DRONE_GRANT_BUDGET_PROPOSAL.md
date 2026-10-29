@@ -58,7 +58,7 @@ Funded via Oklahoma Workforce Development, ODOT recurring infrastructure preserv
 3. **Oklahoma Department of Transportation (ODOT) Research & Innovation:**
    * State Planning and Research (SPR) funds dedicated to automating bridge and pavement preservation.
 4. **Tradewinds CDAO / DoD Dual-Use SBIR Fast-Track:**
-   * Federal matching funds leveraging CAGE Code 1AHA8 and Docket 10-26-3976 (Resubmission of 9-26-3703 | TRL 4 Software Emulation Testbed) for perimeter and defense installation security.
+   * Federal matching funds leveraging CAGE Code 1AHA8 and Docket 10-26-4014 (Resubmission of 9-26-3703 | TRL 4 Software Emulation Testbed) for perimeter and defense installation security.
 
 ---
 
