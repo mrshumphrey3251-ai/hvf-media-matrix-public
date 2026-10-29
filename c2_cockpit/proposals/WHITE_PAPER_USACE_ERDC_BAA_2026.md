@@ -13,7 +13,7 @@
 ## 1. EXECUTIVE SUMMARY & ERDC LABORATORY ALIGNMENT
 Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5`) submits this Executive Technical White Paper to the **U.S. Army Engineer Research and Development Center (ERDC)** targeting the **Geotechnical and Structures Laboratory (GSL)**, **Coastal and Hydraulics Laboratory (CHL)**, and **Information Technology Laboratory (ITL)** research areas.
 
-**Project Ebony (v8.0.0)** solves civil and military infrastructure telemetry vulnerabilities through an air-gapped, zero-cloud **Three-Brain Software Emulation Testbed (`TRL 4`)** operating at `100%` local loopback (`127.0.0.1` | `0%` external cloud dependency), backed by **`85 / 85` passing automated unit and stress test suites**, **`17 / 17` blocked adversarial red-team penetration vectors**, and **`1,420` verified civil/structural engineering assessment modules** (`STR-01`, `PAV-01`, `ENV-01`, `AUT-01`).
+**Project Ebony (v8.0.0)** solves civil and military infrastructure telemetry vulnerabilities through an air-gapped, zero-cloud **Three-Brain Software Emulation Testbed (`TRL 4`)** operating at `100%` local loopback (`127.0.0.1` | `0%` external cloud dependency), backed by **`84 / 84` passing automated unit and stress test suites**, **`17 / 17` blocked adversarial red-team penetration vectors**, and **`1,420` verified civil/structural engineering assessment modules** (`STR-01`, `PAV-01`, `ENV-01`, `AUT-01`).
 
 ---
 

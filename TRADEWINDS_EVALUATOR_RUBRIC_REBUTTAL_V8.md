@@ -1,7 +1,7 @@
 # OFFICIAL TRL 4 CLARIFICATION & CDAO EVALUATOR RUBRIC ALIGNMENT
 **Active Docket:** `10-26-4014` (`Status: Received` | Superseding `10-26-3976` & `9-26-3703` | Superseding All Prior TRL 6/7 Dossier Drafts)  
 **Contractor:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5`)  
-**CEO & Chief Architect:** Jeffery Humphrey (`humphreyvirtualfarm@gmail.com`)  
+**CEO & Chief Architect:** Jeffery Humphrey (`[REDACTED-FOR-PUBLIC-RELEASE]`)  
 **Date Recorded:** October 28, 2026
 
 This official filing aligns the public repository with Tradewinds Docket **`10-26-4014`** (`Status: Received`) and supersedes prior TRL 4 (Phase-1 OTA Target: TRL 6) dossier drafts:

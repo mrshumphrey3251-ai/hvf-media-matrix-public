@@ -14,7 +14,7 @@
 **Active TSM Docket:** `10-26-3976` (`Status: Received` — Resubmission of Prior Docket `9-26-3703`)  
 **Current Readiness Level:** `TRL 4` (Laboratory Software Emulation Testbed & Mathematical Architecture)  
 **Contractor:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5`)  
-**Founder, CEO & Chief Architect:** Jeffery Humphrey (`humphreyvirtualfarm@gmail.com`)  
+**Founder, CEO & Chief Architect:** Jeffery Humphrey (`[REDACTED-FOR-PUBLIC-RELEASE]`)  
 **Intellectual Property Protection:** 100% Small Business Background IP Retained under `DFARS 252.227-7018` (Public Redacted Blueprint)
 
 ---
