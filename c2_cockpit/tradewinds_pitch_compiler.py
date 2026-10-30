@@ -159,64 +159,112 @@ class TradewindsPitchCompiler:
         return [
             {
                 "scene": 1,
+                "segment": "SCENE 1 (00:00 - 00:52) // SEC VII.e MANDATORY RESUBMISSION SUMMARY & 4-QUADRANT DELTA MATRIX",
+                "time_window": "00:00 - 00:52",
                 "title": "Scene 1: Section VII.e Mandatory Resubmission Summary & Appendix Assessment Rubric Matrix",
+                "visual_cue": "4-Quadrant Assessor Delta Matrix (Docket 10-26-4046 Superseding 9-26-3703)",
+                "rubric_criterion": "Section VII.e Mandatory Resubmission Gate & 4-Quadrant Assessor Feedback Resolution",
+                "visual_on_screen": "4-Quadrant Resubmission Delta Matrix (Docket 10-26-4046 Superseding 9-26-3703)",
+                "assessor_resolution": "Resolves AF-01 through AF-04 across all four Appendix Assessment Rubric criteria.",
+                "beats": [
+                    "Per Announcement Section Seven E and the Appendix Assessment Rubric, welcome to the version 8.0.0 resubmission of Project Ebony by Jeffery Humphrey, Founder and CEO of Humphrey Virtual Farms LLC, CAGE 1AHA8. This briefing resolves all prior Docket 9-26-3703 feedback across four quadrants.",
+                    "Quadrant One quantifies defense operational technology risk per federal GAO audits and CISA Volt Typhoon advisories, proving 4.16-millisecond arc-flash faults outrun legacy PLCs.",
+                    "Quadrant Two separates our live TRL 4 air-gapped software testbed and zero-dependency SQLite retrieval security from our modeled Phase-1 hardware targets.",
+                    "Quadrant Three benchmarks Project Ebony head-to-head against Siemens, Rockwell, Triconex, Dragos, Nozomi, and cloud AI across six mission gates.",
+                    "Quadrant Four proves our commercial and federal traction, dual-use 26-module CLIN pricing, and 1.485 million dollar Phase-1 Prototype OTA.",
+                ],
                 "spoken_script": (
-                    "Per Announcement Section Seven E and the Appendix Assessment Rubric, welcome to the version 8.0.0 "
-                    "resubmission of Project Ebony by Jeffery Humphrey, Founder and CEO of Humphrey Virtual Farms LLC, CAGE 1AHA8. "
-                    "This briefing directly resolves all prior Docket 9-26-3703 assessor feedback across all four Appendix Rubric "
-                    "pillars: Criterion One quantifies defense operational technology risk per federal GAO audits and CISA Volt Typhoon "
-                    "advisories. Criterion Two separates our live TRL 4 air-gapped software testbed and zero-dependency SQLite retrieval "
-                    "security from modeled Phase-1 hardware targets. Criterion Three benchmarks Project Ebony against five industry "
-                    "incumbents. Criterion Four proves our commercial and federal traction, dual-use CLIN pricing, and 1.485 million dollar OTA."
+                    "Per Announcement Section Seven E and the Appendix Assessment Rubric, welcome to the version 8.0.0 resubmission of Project Ebony by Jeffery Humphrey, Founder and CEO of Humphrey Virtual Farms LLC, CAGE 1AHA8. This briefing resolves all prior Docket 9-26-3703 feedback across four quadrants. "
+                    "Quadrant One quantifies defense operational technology risk per federal GAO audits and CISA Volt Typhoon advisories, proving 4.16-millisecond arc-flash faults outrun legacy PLCs. "
+                    "Quadrant Two separates our live TRL 4 air-gapped software testbed and zero-dependency SQLite retrieval security from our modeled Phase-1 hardware targets. "
+                    "Quadrant Three benchmarks Project Ebony head-to-head against Siemens, Rockwell, Triconex, Dragos, Nozomi, and cloud AI across six mission gates. "
+                    "Quadrant Four proves our commercial and federal traction, dual-use 26-module CLIN pricing, and 1.485 million dollar Phase-1 Prototype OTA."
                 ),
             },
             {
                 "scene": 2,
+                "segment": "SCENE 2 (00:52 - 01:44) // APPENDIX RUBRIC CRITERION 1: PROBLEM ID, DOD IMPACT & <4.16ms PHYSICS GAP",
+                "time_window": "00:52 - 01:44",
                 "title": "Scene 2: Appendix Rubric Criterion 1 — Problem Identification, DoD Mission Impact & Status Quo Risk",
+                "visual_cue": "GAO-21-81 / GAO-24-106137 DoD OT Exposure + CISA Volt Typhoon + Logarithmic Physics Timeline",
+                "rubric_criterion": "Appendix Rubric Criterion 1: Defining the Problem, DoD Mission Impact & Status Quo Risk",
+                "visual_on_screen": "GAO-21-81 / GAO-24-106137 Exposure Cards + <4.16ms Logarithmic Arc-Flash Timeline",
+                "assessor_resolution": "Quantifies 500+ bases, $4.2B OT energy, CISA Volt Typhoon, and <4.16ms physics gap vs 50-200ms PLCs.",
+                "beats": [
+                    "Appendix Rubric Criterion One: Problem Identification and DoD Mission Impact. Per GAO audits 21-81 and 24-106137, the Department of Defense operates over 500 installations, 300,000 buildings, and 4.2 billion dollars in energy systems relying on 50 to 200 millisecond PLCs.",
+                    "Joint CISA and DoD Volt Typhoon advisories confirm state actors pre-position inside defense grids to corrupt PLC logic while spoofing operator HMIs.",
+                    "Under the status quo, arc-flash faults destroy equipment in 4.16 milliseconds and thermal excursions occur in 6.0 milliseconds.",
+                    "On our logarithmic timeline below, Project Ebony targets a 36.75-nanosecond cutoff and emulates a 2.04-microsecond Modbus trip—whereas legacy 50 to 200 millisecond PLCs react 8 to 33 times too late.",
+                ],
                 "spoken_script": (
-                    "Appendix Rubric Criterion One: Problem Identification and DoD Mission Impact. Per GAO audits 21-81 and 24-106137, "
-                    "the Department of Defense operates over 500 installations, 300,000 buildings, and 4.2 billion dollars in energy "
-                    "systems relying on commercial PLCs scanning at 50 to 200 milliseconds. Joint CISA and DoD Volt Typhoon advisories "
-                    "confirm state actors pre-position inside defense grids to corrupt PLC logic while spoofing operator displays. "
-                    "Under the status quo, arc-flash faults destroy equipment in 4.16 milliseconds and thermal excursions occur in "
-                    "6.0 milliseconds—meaning 50 to 200 millisecond PLC scans react 8 to 33 times too late."
+                    "Appendix Rubric Criterion One: Problem Identification and DoD Mission Impact. Per GAO audits 21-81 and 24-106137, the Department of Defense operates over 500 installations, 300,000 buildings, and 4.2 billion dollars in energy systems relying on 50 to 200 millisecond PLCs. "
+                    "Joint CISA and DoD Volt Typhoon advisories confirm state actors pre-position inside defense grids to corrupt PLC logic while spoofing operator HMIs. "
+                    "Under the status quo, arc-flash faults destroy equipment in 4.16 milliseconds and thermal excursions occur in 6.0 milliseconds. "
+                    "On our logarithmic timeline below, Project Ebony targets a 36.75-nanosecond cutoff and emulates a 2.04-microsecond Modbus trip—whereas legacy 50 to 200 millisecond PLCs react 8 to 33 times too late."
                 ),
             },
             {
                 "scene": 3,
+                "segment": "SCENE 3 (01:44 - 02:38) // APPENDIX RUBRIC CRITERION 2: MISSION IMPACT, TRL 4 & ZERO-CLOUD SECURITY",
+                "time_window": "01:44 - 02:38",
                 "title": "Scene 3: Appendix Rubric Criterion 2 — Mission Acceleration, TRL 4 Evidence & Zero-Dependency Security",
+                "visual_cue": "Live 127.0.0.1:8501 26-Module C2 Console + 52-Table SQLite WORM Inspector + Subprocess Test Harness",
+                "rubric_criterion": "Appendix Rubric Criterion 2: Accelerating the Mission, TRL 4 Evidence & Zero-Dependency Security",
+                "visual_on_screen": "Live 127.0.0.1:8501 26-Module C2 Console + 52-Table SQLite WORM DAG + 85/85 Subprocess Harness",
+                "assessor_resolution": "Strictly separates live TRL 4 air-gapped software testbed from modeled Phase-1 hardware targets.",
+                "beats": [
+                    "Appendix Rubric Criterion Two: Mission Acceleration, TRL 4 Maturity, and Zero-Dependency Security. On the left is our live 26-module C2 Console at TRL 4 on localhost 127.0.0.1 with zero cloud dependency, zero external retrieval APIs, and zero open WAN ports.",
+                    "Brain One runs deterministic safety logic and models our Phase-1 hardware target: a 50-microsecond loop, 2.04-microsecond Modbus trip, and 36.75-nanosecond silicon-carbide MOSFET cutoff, while Brain Two runs isolated read-only diagnostics with zero actuator wire.",
+                    "Brain Three executes all data retrieval locally inside our 52-table SQLite WORM enclave and seals a SHA-256 Merkle DAG in under 0.15 milliseconds.",
+                    "On the right, our live workstation subprocess harness verifies all 636 Python modules, 85 of 85 passing unit test suites, and 17 of 17 blocked Red-Team vectors with automatic tamper zeroization.",
+                ],
                 "spoken_script": (
-                    "Appendix Rubric Criterion Two: Mission Acceleration, TRL 4 Maturity, and Cybersecurity. On screen is our live "
-                    "26-module C2 Console at TRL 4 on localhost with zero cloud dependency, zero external retrieval APIs, and zero open "
-                    "WAN ports. All data retrieval executes locally inside our 52-table SQLite WORM enclave. Brain One runs deterministic "
-                    "safety logic and models our Phase-1 hardware target: a 50-microsecond loop, 2.04-microsecond Modbus trip, and "
-                    "36.75-nanosecond silicon-carbide MOSFET cutoff. Brain Two runs isolated read-only diagnostics with zero actuator wire. "
-                    "Brain Three seals a SHA-256 Merkle DAG across 636 modules, 85 passing test suites, and 17 blocked Red-Team vectors."
+                    "Appendix Rubric Criterion Two: Mission Acceleration, TRL 4 Maturity, and Zero-Dependency Security. On the left is our live 26-module C2 Console at TRL 4 on localhost 127.0.0.1 with zero cloud dependency, zero external retrieval APIs, and zero open WAN ports. "
+                    "Brain One runs deterministic safety logic and models our Phase-1 hardware target: a 50-microsecond loop, 2.04-microsecond Modbus trip, and 36.75-nanosecond silicon-carbide MOSFET cutoff, while Brain Two runs isolated read-only diagnostics with zero actuator wire. "
+                    "Brain Three executes all data retrieval locally inside our 52-table SQLite WORM enclave and seals a SHA-256 Merkle DAG in under 0.15 milliseconds. "
+                    "On the right, our live workstation subprocess harness verifies all 636 Python modules, 85 of 85 passing unit test suites, and 17 of 17 blocked Red-Team vectors with automatic tamper zeroization."
                 ),
             },
             {
                 "scene": 4,
+                "segment": "SCENE 4 (02:38 - 03:31) // APPENDIX RUBRIC CRITERION 3: STATE OF THE ART & 5-VENDOR AoA MATRIX",
+                "time_window": "02:38 - 03:31",
                 "title": "Scene 4: Appendix Rubric Criterion 3 — Advancing State of the Art & 5-Vendor Quantitative Differentiation",
+                "visual_cue": "6-Gate Quantitative Analysis of Alternatives Matrix (Ebony vs. Siemens, Rockwell, Triconex, Dragos & Cloud AI)",
+                "rubric_criterion": "Appendix Rubric Criterion 3: Advancing the State of the Art (5-Vendor Quantitative AoA)",
+                "visual_on_screen": "5-Vendor Quantitative AoA Table & 6-Gate Mission Scorecard (1,360,544x Speedup Target)",
+                "assessor_resolution": "Benchmarks Ebony (6/6 Gates) against Siemens, Rockwell, Triconex, Dragos/Nozomi, and Cloud AI.",
+                "beats": [
+                    "Appendix Rubric Criterion Three: Advancing the State of the Art. Our Five-Vendor Quantitative Analysis of Alternatives benchmarks Project Ebony across six mission gates.",
+                    "Gate One and Gate Two evaluate architecture and cutoff latency: Siemens, Rockwell, and Triconex require 10 to 200 milliseconds and Dragos has zero cutoff authority, whereas Ebony models a 36.75-nanosecond cutoff.",
+                    "Gate Three and Gate Four evaluate physics speed and SWaP: incumbents draw 150 to 1,200 watts and fail under TRISIS or EMCON, while Ebony is 1.36 million times faster than a 50-millisecond PLC at a 28.5-watt target on 24-volt DC.",
+                    "Gate Five and Gate Six verify zero-cloud independence and cryptographic provenance: Project Ebony passes all six mission gates with 100 percent local SQLite WORM Merkle verification.",
+                ],
                 "spoken_script": (
-                    "Appendix Rubric Criterion Three: Advancing the State of the Art. Our Quantitative Analysis of Alternatives benchmarks "
-                    "Project Ebony across six mission gates. Siemens and Rockwell PLCs require 50 to 200 milliseconds and up to 450 watts. "
-                    "Schneider Triconex requires 10 to 50 milliseconds, draws up to 600 watts, and was breached by TRISIS firmware injection. "
-                    "Passive monitors Dragos and Nozomi draw up to 1,200 watts with zero cutoff authority, while cloud AI wrappers require "
-                    "250-millisecond round-trips and fail under EMCON. Project Ebony passes all six gates—combining a zero-cloud WORM enclave "
-                    "with a modeled 36.75-nanosecond cutoff target, 1.36 million times faster than a 50-millisecond PLC, at 28.5 watts."
+                    "Appendix Rubric Criterion Three: Advancing the State of the Art. Our Five-Vendor Quantitative Analysis of Alternatives benchmarks Project Ebony across six mission gates. "
+                    "Gate One and Gate Two evaluate architecture and cutoff latency: Siemens, Rockwell, and Triconex require 10 to 200 milliseconds and Dragos has zero cutoff authority, whereas Ebony models a 36.75-nanosecond cutoff. "
+                    "Gate Three and Gate Four evaluate physics speed and SWaP: incumbents draw 150 to 1,200 watts and fail under TRISIS or EMCON, while Ebony is 1.36 million times faster than a 50-millisecond PLC at a 28.5-watt target on 24-volt DC. "
+                    "Gate Five and Gate Six verify zero-cloud independence and cryptographic provenance: Project Ebony passes all six mission gates with 100 percent local SQLite WORM Merkle verification."
                 ),
             },
             {
                 "scene": 5,
+                "segment": "SCENE 5 (03:31 - 04:24) // APPENDIX RUBRIC CRITERION 4: VIABILITY, TRACTION, 26-CLINs & $1.485M OTA",
+                "time_window": "03:31 - 04:24",
                 "title": "Scene 5: Appendix Rubric Criterion 4 — Commercial & Defense Viability, Traction, CLINs & 10 U.S.C. 4022 OTA",
+                "visual_cue": "12-Month $1.485M Phase-1 OTA Gantt + Unbundled 26-Module CLIN Cards + USACE ERDC / DIU Traction",
+                "rubric_criterion": "Appendix Rubric Criterion 4: Business Model Viability, Verified Traction, 26-CLINs & $1.485M OTA",
+                "visual_on_screen": "12-Month $1.485M Phase-1 OTA Gantt + 26-Module CLIN Schedule + USACE ERDC / DIU Traction",
+                "assessor_resolution": "Details verified USACE ERDC/DIU/Commercial traction, CLIN 0001 ($2,450/mo), and $1.485M 10 U.S.C. 4022 OTA.",
+                "beats": [
+                    "Appendix Rubric Criterion Four: Business Model Viability, Traction, and Transition. On the top Gantt schedule is our 12-month, 1.485 million dollar Phase-1 Prototype OTA under 10 U.S.C. 4022, starting with a 150,000-dollar mobilization tranche to advance from TRL 4 to TRL 6.",
+                    "In the middle is our unbundled dual-use 26-module CLIN schedule: CLIN 0001 Base Pilot at 2,450 dollars per month, CLIN 1004-A Full Node Bundle at 895,000 dollars per year, and CLIN 1004-B Base Fleet License.",
+                    "At the bottom is our verified federal and commercial traction: our filed U.S. Army Corps of Engineers ERDC White Paper, Defense Innovation Unit Solution Brief, microgrid pilot packets, civil bridge drone diagnostics at 250 dollars per sortie, and 110-control NIST mapping with 100 percent DFARS Background IP retained. Thank you.",
+                ],
                 "spoken_script": (
-                    "Appendix Rubric Criterion Four: Business Model Viability, Traction, and Transition. Project Ebony is backed by "
-                    "verified federal and commercial engagement: our filed U.S. Army Corps of Engineers ERDC White Paper, Defense "
-                    "Innovation Unit Solution Brief, private microgrid pilot packets, civil bridge drone diagnostics cutting 4,600-dollar "
-                    "inspections to 250 dollars per sortie, and a 110-control NIST 800-171 and 800-82 mapping. Buyers can procure identical "
-                    "dual-use licensing at CLIN 0001 Base Pilot for 2,450 dollars per month, CLIN 1004-A Full Node Bundle for 895,000 "
-                    "dollars per year, or our 12-month, 1.485 million dollar Phase-1 Prototype OTA under 10 U.S.C. 4022 with 100 percent "
-                    "DFARS Background IP retained. Thank you."
+                    "Appendix Rubric Criterion Four: Business Model Viability, Traction, and Transition. On the top Gantt schedule is our 12-month, 1.485 million dollar Phase-1 Prototype OTA under 10 U.S.C. 4022, starting with a 150,000-dollar mobilization tranche to advance from TRL 4 to TRL 6. "
+                    "In the middle is our unbundled dual-use 26-module CLIN schedule: CLIN 0001 Base Pilot at 2,450 dollars per month, CLIN 1004-A Full Node Bundle at 895,000 dollars per year, and CLIN 1004-B Base Fleet License. "
+                    "At the bottom is our verified federal and commercial traction: our filed U.S. Army Corps of Engineers ERDC White Paper, Defense Innovation Unit Solution Brief, microgrid pilot packets, civil bridge drone diagnostics at 250 dollars per sortie, and 110-control NIST mapping with 100 percent DFARS Background IP retained. Thank you."
                 ),
             },
         ]

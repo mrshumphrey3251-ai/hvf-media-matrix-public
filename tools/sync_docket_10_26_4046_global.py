@@ -3,7 +3,7 @@
 HVF Project Ebony v8.0.0 — Global Docket 10-26-4046 Repository Synchronizer
 Author: Jeffery Humphrey, Founder, President & CEO, Humphrey Virtual Farms LLC (CAGE: 1AHA8)
 Purpose: Scans all .md, .py, .json, .txt, and .html files across Private and Public
-         repositories to replace superseded docket numbers (10-26-3976 / 10-26-4014)
+         repositories to replace superseded docket numbers (10-26-4046 / 10-26-4046)
          with active TSM Docket 10-26-4046 and lock in the 04:24 (264.23s) SHA-256 hash.
 Security & Extensibility: 100% Offline Loopback, Zero Cloud, Hook-Extensible Class Architecture.
 """
@@ -25,12 +25,12 @@ class GlobalDocketSynchronizer:
     SKIP_DIRS = {".git", "__pycache__", ".venv", "venv", "node_modules"}
 
     REPLACEMENTS = [
-        ("10-26-4014", "10-26-4046"),
-        ("10_26_4014", "10_26_4046"),
-        ("10-26-3976", "10-26-4046"),
-        ("10_26_3976", "10_26_4046"),
-        ("605c6c3e77ddabb3d151e2c828ab7f69d779a1f7a4de73ba073386940f342d7b", "c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd"),
-        ("1c3804f4473fa3f2946e1711c592f421ffccca37ee5a04fe13642ec5f8864a19", "c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd"),
+        ("10-26-4046", "10-26-4046"),
+        ("10_26_4046", "10_26_4046"),
+        ("10-26-4046", "10-26-4046"),
+        ("10_26_4046", "10_26_4046"),
+        ("c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd", "c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd"),
+        ("c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd", "c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd"),
         ("TSM REV V.10 RESUBMISSION (SUPERSEDING 9-26-3703)", "DOCKET 10-26-4046 (SUPERSEDING 9-26-3703 | TRL 4 -> TRL 6)"),
     ]
 
@@ -68,7 +68,7 @@ class GlobalDocketSynchronizer:
         # Ensure the docket-specific MP4 alias exists
         master_mp4 = repo_root / "c2_cockpit/proposals/EBONY_V8_CDAO_RUBRIC_VERIFICATION_20261028.mp4"
         docket_mp4 = repo_root / "c2_cockpit/proposals/PROJECT_EBONY_TRADEWINDS_RESUBMISSION_10_26_4046.mp4"
-        old_docket_mp4 = repo_root / "c2_cockpit/proposals/PROJECT_EBONY_TRADEWINDS_RESUBMISSION_10_26_3976.mp4"
+        old_docket_mp4 = repo_root / "c2_cockpit/proposals/PROJECT_EBONY_TRADEWINDS_RESUBMISSION_10_26_4046.mp4"
         if master_mp4.exists():
             shutil.copy2(master_mp4, docket_mp4)
             if old_docket_mp4.exists():

@@ -126,6 +126,12 @@ def build_slide_specs() -> list:
             "announcer_cue": "Section Seven E. Resubmission Summary.",
             "header": "SCENE 1 OF 5 // SEC VII.e RESUBMISSION SUMMARY & APPENDIX RUBRIC DELTA MATRIX",
             "sub": "GROUND-UP OCT 2026 BUILD | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | BASELINE: TRL 4 TESTBED -> TARGET TRL 6",
+            "bullets": [
+                "AF-01 RESOLVED: Quantified DoD OT Exposure (GAO-21-81, GAO-24-106137 & CISA Volt Typhoon)",
+                "AF-02 RESOLVED: Strict Separation of Live TRL 4 Software Testbed vs. Modeled Phase-1 Hardware",
+                "AF-03 RESOLVED: 5-Vendor Quantitative Analysis of Alternatives (SIEMENS, ROCKWELL, TRICONEX, DRAGOS)",
+                "AF-04 RESOLVED: Verified Customer Traction, 26-CLIN Schedule & $1.485M 10 U.S.C. 4022 OTA",
+            ],
             "beats": scripts[0].get("beats", [scripts[0]["spoken_script"]]),
             "narration": scripts[0]["spoken_script"],
         },
@@ -135,6 +141,11 @@ def build_slide_specs() -> list:
             "announcer_cue": "Appendix Rubric. Criterion One.",
             "header": "SCENE 2 OF 5 // APPENDIX RUBRIC CRITERION 1: PROBLEM ID, DOD IMPACT & PHYSICS GAP",
             "sub": "GAO-21-81 & GAO-24-106137 (500+ BASES, $4.2B OT) | CISA AA23-144A & AA24-038A (VOLT TYPHOON) | TRISIS",
+            "bullets": [
+                "GAO-21-81 & GAO-24-106137: 500+ DoD Bases, 300,000+ Buildings, $4.2B+ OT Energy on 50-200ms PLCs",
+                "CISA AA23-144A / AA24-038A: Volt Typhoon Pre-Positioning & TRISIS/Triton Controller Logic Corruption",
+                "Physics Gap: <4.16ms Arc-Flash & 6.0ms Excursion Destroy Equipment 8x-33x Before 50-200ms PLCs React",
+            ],
             "beats": scripts[1].get("beats", [scripts[1]["spoken_script"]]),
             "narration": scripts[1]["spoken_script"],
         },
@@ -144,6 +155,11 @@ def build_slide_specs() -> list:
             "announcer_cue": "Appendix Rubric. Criterion Two.",
             "header": "SCENE 3 OF 5 // APPENDIX RUBRIC CRITERION 2: MISSION IMPACT, TRL 4 & ZERO-CLOUD SECURITY",
             "sub": "100% AIR-GAPPED LOOPBACK (127.0.0.1:8501 | 0% CLOUD) | 636 C2 MODULES | 85/85 TESTS PASSED | 17/17 RED-TEAM BLOCKS",
+            "bullets": [
+                "BRAIN 1 (Safety Loop): Deterministic Software Boundary Engine + 36.75ns SiC MOSFET Design Target",
+                "BRAIN 2 (Advisory NDE): Offline Structural/Pavement/Telemetry Diagnostics (0 Actuator Authority)",
+                "BRAIN 3 (WORM Vault) : Append-Only SHA-256 Merkle DAG Across 52 Bare-Metal SQLite Tables on Disk",
+            ],
             "beats": scripts[2].get("beats", [scripts[2]["spoken_script"]]),
             "narration": scripts[2]["spoken_script"],
         },
@@ -153,6 +169,9 @@ def build_slide_specs() -> list:
             "announcer_cue": "Appendix Rubric. Criterion Three.",
             "header": "SCENE 4 OF 5 // APPENDIX RUBRIC CRITERION 3: STATE OF THE ART & 5-VENDOR AoA BENCHMARK",
             "sub": "HEAD-TO-HEAD BENCHMARK: PROJECT EBONY v8.0.0 VS. SIEMENS S7-1500, ROCKWELL, TRICONEX SIS, DRAGOS & CLOUD AI",
+            "bullets": [
+                "SIEMENS S7-1500 / ROCKWELL CONTROLLOGIX | DRAGOS PLATFORM / NOZOMI | TRICONEX | 1,360,544x",
+            ],
             "beats": scripts[3].get("beats", [scripts[3]["spoken_script"]]),
             "narration": scripts[3]["spoken_script"],
         },
@@ -162,6 +181,9 @@ def build_slide_specs() -> list:
             "announcer_cue": "Appendix Rubric. Criterion Four.",
             "header": "SCENE 5 OF 5 // APPENDIX RUBRIC CRITERION 4: BUSINESS VIABILITY, TRACTION & $1.485M OTA",
             "sub": "VERIFIED USACE ERDC / DIU / COMMERCIAL TRACTION | 100% DFARS 252.227-7018 IP | 10 U.S.C. 4022 PROTOTYPE OTA",
+            "bullets": [
+                "CLIN 0001 Base Pilot ($2,450/mo) | CLIN 1004-A 26-Mod Bundle ($895K/yr) | $1.485M Phase-1 Prototype OTA",
+            ],
             "beats": scripts[4].get("beats", [scripts[4]["spoken_script"]]),
             "narration": scripts[4]["spoken_script"],
         },
@@ -614,15 +636,37 @@ def _draw_scene_5_ota_and_clins(draw: ImageDraw.ImageDraw, beat_idx: int, beat_p
 
 def render_slide_image(
     spec: dict,
-    cur_time_s: float,
-    total_dur_s: float,
-    cue_end_s: float,
-    beat_windows: list[tuple[float, float, str]],
+    out_png: Path = None,
+    progress: float = 1.0,
     frame_idx: int = 0,
+    cue_ratio: float = 0.0,
+    cur_time_s: float = None,
+    total_dur_s: float = None,
+    cue_end_s: float = None,
+    beat_windows: list = None,
 ) -> Image.Image:
-    """Renders a 1920x1080 Full-HD frame locked to the exact millisecond audio beat window."""
+    """
+    100% Backward- and Forward-Compatible Full-HD 1920x1080 Vector Renderer.
+    Supports both legacy unit tests (spec, out_png, progress, frame_idx, cue_ratio)
+    and millisecond sub-beat audio lock (cur_time_s, total_dur_s, cue_end_s, beat_windows).
+    """
     img = Image.new("RGB", (1920, 1080), (6, 12, 22))
     draw = ImageDraw.Draw(img)
+
+    beats_list = spec.get("beats") or [spec.get("narration", "")]
+    if total_dur_s is None:
+        total_dur_s = 50.0
+    if cur_time_s is None:
+        cur_time_s = float(progress) * total_dur_s
+    if cue_end_s is None:
+        cue_end_s = float(cue_ratio) * total_dur_s
+    if not beat_windows:
+        rem = max(1.0, total_dur_s - cue_end_s)
+        step = rem / max(1, len(beats_list))
+        beat_windows = [
+            (cue_end_s + i * step, cue_end_s + (i + 1) * step, b_txt)
+            for i, b_txt in enumerate(beats_list)
+        ]
 
     accent = spec.get("theme_accent", (0, 215, 255))
     font_banner = _load_font(21, bold=True)
@@ -631,10 +675,10 @@ def render_slide_image(
     font_term = _load_mono_font(16, bold=False)
     font_caption = _load_font(19, bold=True)
 
-    is_announcer_speaking = (cur_time_s < cue_end_s)
+    is_announcer_speaking = (cur_time_s < cue_end_s) and (cue_end_s > 0.0)
     beat_idx = 0
     beat_prog = 0.0
-    active_beat_text = spec["beats"][0] if spec.get("beats") else spec["narration"]
+    active_beat_text = beats_list[0]
 
     if not is_announcer_speaking and beat_windows:
         found = False
@@ -680,7 +724,6 @@ def render_slide_image(
     else:
         _draw_scene_5_ota_and_clins(draw, beat_idx, beat_prog, frame_idx)
 
-    # Bottom caption box locked 100% to the exact active audio beat
     draw.rectangle([(35, 828), (1885, 1012)], fill=(14, 24, 42), outline=accent, width=2)
     if is_announcer_speaking:
         draw.text(
@@ -713,15 +756,20 @@ def render_slide_image(
                 draw.text((55, ny + 1), "    " + wline, fill=(220, 232, 245), font=font_caption)
             ny += 30
 
-    progress = min(1.0, cur_time_s / max(0.01, total_dur_s))
+    prog_bar = min(1.0, cur_time_s / max(0.01, total_dur_s))
     draw.rectangle([(0, 1025), (1920, 1080)], fill=(8, 16, 30))
-    draw.rectangle([(0, 1020), (int(1920 * progress), 1025)], fill=accent)
+    draw.rectangle([(0, 1020), (int(1920 * prog_bar), 1025)], fill=accent)
     draw.text(
         (35, 1040),
         f"HUMPHREY VIRTUAL FARMS LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5) | DOCKET 10-26-4046 (SUPERSEDING 9-26-3703 | TRL 4 -> TRL 6) | SCENE {snum} OF 5",
         fill=(190, 215, 240),
         font=font_sub,
     )
+
+    if out_png is not None:
+        out_p = Path(out_png)
+        out_p.parent.mkdir(parents=True, exist_ok=True)
+        img.save(str(out_p), format="PNG")
     return img
 
 
