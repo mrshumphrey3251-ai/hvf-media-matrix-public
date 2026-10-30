@@ -25,7 +25,7 @@
     {
       "id": "DELTA-02",
       "prior_assessor_critique": "Prior Critique (Criterion 2): Separate TRL 4 software emulation from TRL 6/7 hardware claims and verify zero cloud dependency.",
-      "resubmission_resolution": "NEW IN v8.0.0: Strictly separated our live TRL 4 local loopback software testbed (127.0.0.1, 0% cloud, 636 C2 modules, 85/85 passing unit test suites, 17/17 Red-Team blocks, 52 SQLite WORM tables, 1,420 Academy Qs) from our modeled Phase-1 OTA hardware fabrication targets (36.75ns SiC MOSFET cutoff, <50us Cortex-M7 loop, 28.5W SWaP)."
+      "resubmission_resolution": "NEW IN v8.0.0: Strictly separated our live TRL 4 local loopback software testbed (127.0.0.1, 0% cloud, 640 C2 modules, 85/85 passing unit test suites, 17/17 Red-Team blocks, 52 SQLite WORM tables, 1,420 Academy Qs) from our modeled Phase-1 OTA hardware fabrication targets (36.75ns SiC MOSFET cutoff, <50us Cortex-M7 loop, 28.5W SWaP)."
     },
     {
       "id": "DELTA-03",

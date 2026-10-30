@@ -3,7 +3,7 @@
 **Signatory Authority:** Jeffery Humphrey, Founder & CEO (`[REDACTED_PUBLIC_RELEASE_CONTACT]`)
 **Technology Readiness Level:** **TRL 4 Software Emulation Testbed** (Operational Bare-Metal System Prototype -- Upgraded from Initial TRL 4 Filing)
 **Master Release Tag:** `v8.0.0-sovereign-master-seal`
-**Master C2 Merkle Root (SHA-256):** `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`
+**Master C2 Merkle Root (SHA-256):** `07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`
 **Automated Verification Standing:** `631 / 631` Compiled Modules | `85 / 85` Test Suites Passed | `17 / 17` Red-Team Attacks Blocked | `1,420 / 1,420` Academy Questions Verified
 **Timestamp (UTC):** `2026-10-24T19:47:25.619703+00:00`
 
@@ -13,7 +13,7 @@
 ## INTEGRATED HOST OPERATING CONSOLE & 26-MODULE PER-NODE PRICE SCHEDULE (`DOCKET 10-26-4046`)
 
 **1. Turnkey TRL 4 (Phase-1 OTA Target: TRL 6) Operating Console Proof (`Project Ebony` -- 26 Modules / 72 Verified Controls):**  
-Docket `10-26-4046` executes natively inside the **HVF Level-5 Sovereign C2 Operating Console**, a fully operational, bare-metal Command & Control enclave (`631 / 631` compiled Python/C modules, Master SHA-256 Merkle Root: `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`, `85 / 85` unit test suites passing at `100.0%`).
+Docket `10-26-4046` executes natively inside the **HVF Level-5 Sovereign C2 Operating Console**, a fully operational, bare-metal Command & Control enclave (`631 / 631` compiled Python/C modules, Master SHA-256 Merkle Root: `07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`, `85 / 85` unit test suites passing at `100.0%`).
 
 **2. Unbundled Per-Node Licensing Scope (DFARS `252.227-7018` & `227.7202`):**  
 * **Base Entry Pilot (`CLIN 0001`):** The entry pilot price filed on Tradewinds Docket `10-26-4046` covers **strictly `CLIN 0001` (`Module #01: Sovereign Command Chronos Base Router` on `1` Single Bare-Metal Node)**.

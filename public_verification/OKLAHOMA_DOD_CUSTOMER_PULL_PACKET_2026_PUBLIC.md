@@ -14,7 +14,7 @@ Public Cryptographic Repo: https://github.com/mrshumphrey3251-ai/hvf-media-matri
 
 1. Five Active Pre-Positioned Federal Dockets Ready for Immediate Oklahoma DoD Pull
 
-- DoD CDAO Tradewinds Solutions Marketplace (TSM): Docket 10-26-4046 (Status: Received | Video SHA-256: c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd | Merkle Root: bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1).
+- DoD CDAO Tradewinds Solutions Marketplace (TSM): Docket 10-26-4046 (Status: Received | Video SHA-256: c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd | Merkle Root: 07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb).
 
 - USACE ERDC CERL Commercial Solutions Opening (CSO 2026): Submittable Docket #0126 (Operational Energy | Status: Received).
 

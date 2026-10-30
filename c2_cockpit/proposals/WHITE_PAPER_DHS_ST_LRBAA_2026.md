@@ -4,7 +4,7 @@
 **Principal Investigator:** Jeffery Humphrey, CEO | [REDACTED-FOR-PUBLIC-RELEASE]
 **Current Readiness Level:** TRL 4 (Laboratory Software Emulation Testbed on 127.0.0.1 -> Phase-1 Target: TRL 6)
 **Cross-Referenced Filings:** DoD CDAO Tradewinds Docket 10-26-4046 (Status: Received) & USACE ERDC Rolling BAA (2026)
-**Shared Core C2 Merkle Root (SHA-256):** bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1
+**Shared Core C2 Merkle Root (SHA-256):** 07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb
 **Proposed Phase-1 Effort:** 12 Months | $1,000,000.00 Fixed-Price ($150,000.00 Day 15-30 Mobilization | 0% Cost Share | DFARS 252.227-7018 / FAR 52.227-14)
 
 ---
@@ -13,7 +13,7 @@
 Per U.S. Government Accountability Office Reports GAO-21-81 and GAO-24-106137 and Joint CISA/NSA/FBI/DoD Cybersecurity Advisories AA23-144A and AA24-038A (Volt Typhoon), U.S. municipal water treatment facilities, electrical substations, agricultural grain/microgrid corridors, and defense installations rely on legacy commercial digital PLCs (Siemens SIMATIC S7-1500, Rockwell ControlLogix, Schneider Electric Triconex) scanning at 50ms to 200ms. Because high-voltage 480V/4.16kV arc-flash backfeeds propagate to catastrophic busbar destruction in less than 4.16ms (one-quarter of a 60Hz AC cycle) and thermal excursions cross irreversible damage thresholds in 6.0ms, 50-200ms digital PLC scan loops arrive 8x to 33x too late to prevent physical equipment destruction when state-sponsored adversaries corrupt PLC ladder logic while spoofing operator HMIs (as demonstrated in the TRISIS/Triton safety-system attack).
 
 ## 2. Technical Approach: Three-Brain Air-Gapped Architecture (TRL 4 Verified)
-Project Ebony v8.0.0 operates 100% offline on local loopback (127.0.0.1) with 0% commercial cloud dependency, 0 external APIs, and 0 open WAN ports across 636 compiled Python C2 modules, 85 / 85 passing automated unit test suites, and 1,420 / 1,420 verified engineering assessment questions:
+Project Ebony v8.0.0 operates 100% offline on local loopback (127.0.0.1) with 0% commercial cloud dependency, 0 external APIs, and 0 open WAN ports across 640 compiled Python C2 modules, 85 / 85 passing automated unit test suites, and 1,420 / 1,420 verified engineering assessment questions:
 * **Brain One (Controller -- Deterministic SCADA Safety Core):** Models a sub-50us bare-metal safety loop, 2.04us RS-485 Modbus RTU (Function Code 05) emergency coil actuation, and a 36.75ns Silicon Carbide (SiC) MOSFET Analog Kinetic Guillotine gate cutoff design target (1,360,544x faster than a 50ms PLC) drawing 28.5W on a standard 24V DC DIN-rail bus.
 * **Brain Two (Analyst -- Zero-Cloud Edge Neural Inference):** Executes offline multi-spectral Non-Destructive Evaluation (NDE), EPA 40 CFR Part 60 Subpart OOOOb optical gas imaging, and ASTM D6433 structural diagnostics across a strictly unidirectional read-only isolation buffer with zero physical wire to the actuator bus.
 * **Brain Three (Arbiter -- Cryptographic WORM Provenance Vault):** Chains every state vector and actuation event in less than 0.2ms into a local 52-table bare-metal SQLite Write-Once-Read-Many (WORM) SHA-256 Merkle DAG (matrix_ledger.db [22 tables] + hvf_memory_vault.db [30 tables]), blocking 17 / 17 simulated Red-Team penetration vectors with automatic single-letter tamper zeroization.

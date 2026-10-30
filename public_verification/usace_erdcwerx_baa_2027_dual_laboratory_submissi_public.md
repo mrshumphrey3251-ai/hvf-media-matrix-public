@@ -3,7 +3,7 @@
 **Commanding Authority:** Jeffery Humphrey, Founder, President & CEO (`humphreyvirtualfarm@gmail.com` | [REDACTED-CEO-DIRECT-LINE])  
 **Active TSM Docket ID:** `10-26-4046` (Superseding `9-26-3703`)  
 **Timestamp (UTC):** `2026-10-30T15:34:51Z`  
-**Shared Core C2 Merkle Root (SHA-256):** `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`  
+**Shared Core C2 Merkle Root (SHA-256):** `07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`  
 **Master Video SHA-256 (`04:24`):** `c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd`  
 
 ---
@@ -34,5 +34,5 @@ OFFICIAL USACE ERDCWERX BAA 2027 DUAL-LABORATORY SUBMISSION RECEIPT (ITL-4 & GSL
    - Uploaded PDF Artifact: c2_cockpit/proposals/WHITE_PAPER_USACE_ERDC_BAA_2026.pdf (12-pt Times New Roman, 1.0-in margins, 1 of 2 / 2 of 2)
    - Uploaded PDF SHA-256 Digest: 6da8d8428f69d7be24d12ff5a1c5721331cbfd580f4368a4141802f56d062e50
    - Cross-Referenced DoD CDAO Tradewinds Docket: 10-26-4046 (Status: Received | 04:24 Master Video SHA-256: c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd)
-   - Shared Core C2 Cryptographic Merkle Root (SHA-256): bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1
+   - Shared Core C2 Cryptographic Merkle Root (SHA-256): 07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb
    - USACE ERDC Contracting Office Email Thread: Confirmed reply dispatched to ERDC-BAA@usace.army.mil on October 30, 2026.

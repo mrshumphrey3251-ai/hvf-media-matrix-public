@@ -3,7 +3,7 @@
 **Commanding Authority:** Jeffery Humphrey, Founder, President & CEO (`humphreyvirtualfarm@gmail.com` | [REDACTED-CEO-DIRECT-LINE])  
 **Active TSM Docket ID:** `10-26-4046` (Superseding `9-26-3703`)  
 **Timestamp (UTC):** `2026-10-30T18:04:03Z`  
-**Shared Core C2 Merkle Root (SHA-256):** `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`  
+**Shared Core C2 Merkle Root (SHA-256):** `07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`  
 **Master Video SHA-256 (`04:24`):** `c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd`  
 
 ---
@@ -24,7 +24,7 @@ STAGE 8G // OKLAHOMA DoD & USACE TULSA DISTRICT DIRECT CUSTOMER-PULL OUTREACH LE
    - USACE ERDC CERL Rolling BAA 2026: Submittable Docket #0069 (Critical Infrastructure & Utility Systems Protection | Status: in-progress)
    - USACE ERDC GSL Rolling BAA 2027: Submittable Docket #0008 (Bridge Research GSL-19 | Status: in-progress)
    - USACE ERDC ITL Rolling BAA 2027: Submittable Docket #0005 (Cybersecurity ITL-4 | Status: received)
-   - Shared Core C2 Cryptographic Merkle Root (SHA-256): bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1
+   - Shared Core C2 Cryptographic Merkle Root (SHA-256): 07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb
 
 2. TARGET OKLAHOMA DEFENSE INSTALLATIONS & CONTRACTING COMMANDS:
    - Target 1: Tinker Air Force Base (72nd Air Base Wing Civil Engineering & Oklahoma City Air Logistics Complex / OC-ALC)

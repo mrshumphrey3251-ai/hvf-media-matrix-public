@@ -33,7 +33,7 @@ BT /F1 9.20 Tf 0.0000 Tw 72.00 625.21 Td (Current Readiness Level: TRL 4 \(Labor
 BT /F1 9.20 Tf 0.0173 Tw 72.00 609.20 Td (Cross-Referenced Filings: DoD CDAO Tradewinds Docket 10-26-4046 \(Status: Received\) & USACE ERDC Rolling) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 596.68 Td (BAA \(2026\)) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 580.67 Td (Shared Core C2 Merkle Root \(SHA-256\):) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 568.16 Td (bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 568.16 Td (07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.6155 Tw 72.00 552.15 Td (Proposed Phase-1 Effort: 12 Months | $1,000,000.00 Fixed-Price \($150,000.00 Day 15-30 Mobilization | 0% Cost) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 539.64 Td (Share | DFARS 252.227-7018 / FAR 52.227-14\)) Tj 0 Tw ET
 0.55 0.58 0.62 RG 0.8 w 72.00 521.12 m 540.00 521.12 l S 0 0 0 RG
@@ -51,7 +51,7 @@ BT /F1 9.20 Tf 0.0000 Tw 72.00 385.93 Td (\(as demonstrated in the TRISIS/Triton
 0.12 0.18 0.28 rg BT /F2 10.00 Tf 0 Tw 72.00 359.92 Td (2. TECHNICAL APPROACH: THREE-BRAIN AIR-GAPPED ARCHITECTURE \(TRL 4 VERIFIED\)) Tj ET 0 0 0 rg
 0.75 0.78 0.82 RG 0.6 w 72.00 355.92 m 540.00 355.92 l S 0 0 0 RG
 BT /F1 9.20 Tf 0.4827 Tw 72.00 339.82 Td (Project Ebony v8.0.0 operates 100% offline on local loopback \(127.0.0.1\) with 0% commercial cloud dependency,) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.3552 Tw 72.00 327.30 Td (0 external APIs, and 0 open WAN ports across 636 compiled Python C2 modules, 85 / 85 passing automated unit) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.3552 Tw 72.00 327.30 Td (0 external APIs, and 0 open WAN ports across 640 compiled Python C2 modules, 85 / 85 passing automated unit) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 314.79 Td (test suites, and 1,420 / 1,420 verified engineering assessment questions:) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.4033 Tw 72.00 295.28 Td ([+] Brain One \(Controller -- Deterministic SCADA Safety Core\): Models a sub-50us bare-metal safety loop, 2.04us) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.1475 Tw 72.00 282.77 Td (RS-485 Modbus RTU \(Function Code 05\) emergency coil actuation, and a 36.75ns Silicon Carbide \(SiC\) MOSFET) Tj 0 Tw ET
@@ -71,7 +71,7 @@ BT /F1 9.20 Tf 0.0000 Tw 72.00 100.54 Td (the only architecture engineered to sa
 0.10 0.16 0.26 RG 0.8 w
 72.00 48.00 m 540.00 48.00 l S
 0.25 0.25 0.25 rg
-BT /F1 7.2 Tf 0 Tw 72.00 36.00 Td (SOVEREIGN AIR-GAPPED TRI-BRAIN ARCHITECTURE // MERKLE ROOT: bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1) Tj ET
+BT /F1 7.2 Tf 0 Tw 72.00 36.00 Td (SOVEREIGN AIR-GAPPED TRI-BRAIN ARCHITECTURE // MERKLE ROOT: 07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb) Tj ET
 BT /F2 7.5 Tf 0 Tw 500.40 36.00 Td (Page 1 of 2) Tj ET
 0 0 0 rg 0 0 0 RG
 endstream
@@ -117,7 +117,7 @@ BT /F1 9.20 Tf 0.0000 Tw 72.00 344.61 Td (Background IP under FAR 52.227-14 / DF
 0.10 0.16 0.26 RG 0.8 w
 72.00 48.00 m 540.00 48.00 l S
 0.25 0.25 0.25 rg
-BT /F1 7.2 Tf 0 Tw 72.00 36.00 Td (SOVEREIGN AIR-GAPPED TRI-BRAIN ARCHITECTURE // MERKLE ROOT: bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1) Tj ET
+BT /F1 7.2 Tf 0 Tw 72.00 36.00 Td (SOVEREIGN AIR-GAPPED TRI-BRAIN ARCHITECTURE // MERKLE ROOT: 07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb) Tj ET
 BT /F2 7.5 Tf 0 Tw 500.40 36.00 Td (Page 2 of 2) Tj ET
 0 0 0 rg 0 0 0 RG
 endstream
@@ -138,4 +138,4 @@ trailer
 startxref
 11698
 %%EOF
-% HVF-WORM-SHA256: f0e094e975d6990fb0b77591dee2c58bf5e1f2b87d809dec4e2ec98a8db744d7
+% HVF-WORM-SHA256: 45e369d2a6664cbf7364a1b5f2b718a01e0e4d648bade79eabfe672426b7fac4
