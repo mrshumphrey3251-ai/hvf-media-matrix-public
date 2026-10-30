@@ -22,7 +22,7 @@ class TestErdcBaaWhitepaper(unittest.TestCase):
         self.assertNotIn("`", pdf_text)
         self.assertIn("84 / 84", pdf_text)
         self.assertIn("USACE-ERDC-BAA-2026", md_content)
-        self.assertIn("10-26-3976", md_content)
+        self.assertIn("10-26-4046", md_content)
         self.assertIn("TRL 4", md_content)
         self.assertIn("$1,200,000.00", md_content)
         self.assertIn("$150,000.00", md_content)

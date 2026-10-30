@@ -1,6 +1,6 @@
 # HUMPHREY VIRTUAL FARMS LLC // STAGE 8G SOVEREIGN COMPLETION LEDGER
 **Authority:** Jeffery Humphrey, Founder, President & Chief Executive Officer (Apex Architect)
-**Prime Identifiers:** CAGE: `1AHA8` | UEI: `S1M4ENLHTDH5` | Active DoD Tradewinds Docket: `10-26-4014` (`Status: Received` | Superseding `10-26-3976` & `9-26-3703`) | Readiness: `TRL 4` (Software Emulation Testbed)
+**Prime Identifiers:** CAGE: `1AHA8` | UEI: `S1M4ENLHTDH5` | Active DoD Tradewinds Docket: `10-26-4046` (`Status: Received` | Superseding `10-26-4046` & `9-26-3703`) | Readiness: `TRL 4` (Software Emulation Testbed)
 **Statutory Framework:** 10 U.S.C. Section 4022 | DFARS 252.227-7018 (GPR) | NIST SP 800-171 (TRL 4 Architectural Mapping - Phase-1 OTA Target) | Oklahoma Title 61 & HB 2992
 **Repository Classification:** PUBLIC RELEASE INTERFACE (DFARS 252.227-7018 GPR | 100% PII Redacted)
 

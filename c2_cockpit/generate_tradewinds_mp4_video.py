@@ -5,7 +5,7 @@ EXACT MILLISECOND AUDIO-VISUAL BEAT SYNCHRONIZATION, POST-SCENE SILENT HOLD (ZER
 APPENDIX ASSESSMENT RUBRIC ALIGNMENT, LIVE 26-MODULE C2 CONSOLE & NATIVE 30-FPS MP4 ENGINE
 Output Files:
   - EBONY_V8_CDAO_RUBRIC_VERIFICATION_20261028.mp4
-  - PROJECT_EBONY_TRADEWINDS_RESUBMISSION_10_26_3976.mp4
+  - PROJECT_EBONY_TRADEWINDS_RESUBMISSION_10_26_4046.mp4
 Entity: Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)
 """
 import asyncio
@@ -718,7 +718,7 @@ def render_slide_image(
     draw.rectangle([(0, 1020), (int(1920 * progress), 1025)], fill=accent)
     draw.text(
         (35, 1040),
-        f"HUMPHREY VIRTUAL FARMS LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5) | TSM REV V.10 RESUBMISSION (SUPERSEDING 9-26-3703) | SCENE {snum} OF 5",
+        f"HUMPHREY VIRTUAL FARMS LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5) | DOCKET 10-26-4046 (SUPERSEDING 9-26-3703 | TRL 4 -> TRL 6) | SCENE {snum} OF 5",
         fill=(190, 215, 240),
         font=font_sub,
     )
@@ -836,7 +836,7 @@ def compile_tradewinds_mp4(output_mp4: Path = None) -> dict:
     prop_dir = COCKPIT_DIR / "proposals"
     prop_dir.mkdir(parents=True, exist_ok=True)
     new_named_mp4 = prop_dir / "EBONY_V8_CDAO_RUBRIC_VERIFICATION_20261028.mp4"
-    legacy_named_mp4 = prop_dir / "PROJECT_EBONY_TRADEWINDS_RESUBMISSION_10_26_3976.mp4"
+    legacy_named_mp4 = prop_dir / "PROJECT_EBONY_TRADEWINDS_RESUBMISSION_10_26_4046.mp4"
     if output_mp4 is None:
         output_mp4 = new_named_mp4
 

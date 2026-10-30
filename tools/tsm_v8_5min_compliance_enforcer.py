@@ -112,19 +112,19 @@ class TSMVideoComplianceEnforcer:
         return hasher.hexdigest()
 
     def write_dual_repo_ledgers(self, manifest: Dict[str, Any]) -> None:
-        private_ledger = self.root_dir / Path("federal_filings/tsm_docket_10_26_4014_remediation_ledger.md")
+        private_ledger = self.root_dir / Path("federal_filings/tsm_docket_10_26_4046_remediation_ledger.md")
         public_ledger = self.root_dir / Path("public_verification/tsm_5min_compliance_proof.md")
         private_ledger.parent.mkdir(parents=True, exist_ok=True)
         public_ledger.parent.mkdir(parents=True, exist_ok=True)
 
-        private_content = f"""# OFFICIAL EXECUTIVE REMEDIATION LEDGER — TSM DOCKET 10-26-4014 (5:00 VIDEO CAP ENFORCEMENT)
+        private_content = f"""# OFFICIAL EXECUTIVE REMEDIATION LEDGER — TSM DOCKET 10-26-4046 (5:00 VIDEO CAP ENFORCEMENT)
 **Contractor:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)  
 **Commanding Authority:** Jeffery Humphrey, Founder, President & CEO (`humphreyvirtualfarm@gmail.com` | (572) 358-9978)  
 **Timestamp (UTC):** {manifest['timestamp_utc']}  
 **Execution Environment:** Windows PowerShell ({manifest['os_environment']})  
 **Shared Core C2 Merkle Root (SHA-256):** `{self.SHARED_MERKLE_ROOT}`  
 
-## 1. ROOT CAUSE OF DOCKET 10-26-4014 ADMINISTRATIVE "NONCOMPLIANT" FLAG
+## 1. ROOT CAUSE OF DOCKET 10-26-4046 ADMINISTRATIVE "NONCOMPLIANT" FLAG
 - **Administrative Trigger:** Master video file `EBONY_V8_CDAO_RUBRIC_VERIFICATION_20261028.mp4` had a runtime of **{manifest['source_duration_seconds']} seconds (06:25)**, exceeding the Tradewinds Solutions Marketplace (TSM) Revision V.10 strict administrative limit of **300.0 seconds (05:00)**.
 - **Source Video SHA-256:** `{manifest['source_sha256']}`
 - **Technical Content Integrity:** 100% of the 4-Pillar CDAO Assessor Rubric proof, 5-Vendor AoA Matrix, TRL 4 software testbed verification (`127.0.0.1` loopback, 636 modules, 85/85 unit tests, 17/17 Red-Team vectors), and 26-Module CLIN pricing schedule remain intact.
@@ -226,7 +226,7 @@ class TSMVideoComplianceEnforcer:
             "os_environment": f"{platform.system()} {platform.release()}",
             "contractor": "Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)",
             "commanding_authority": "Jeffery Humphrey, Founder, President & CEO",
-            "docket_superseded": "10-26-4014 (6:25 Noncompliant Duration Trigger)",
+            "docket_superseded": "10-26-4046 (6:25 Noncompliant Duration Trigger)",
             "source_video": str(self.source_path),
             "source_duration_seconds": round(original_duration, 2),
             "source_sha256": original_sha256,
@@ -238,7 +238,7 @@ class TSMVideoComplianceEnforcer:
             "speed_factor_applied": speed_factor,
             "tsm_ceiling_seconds": self.TSM_HARD_CEILING_SECONDS,
             "safety_buffer_seconds": round(self.TSM_HARD_CEILING_SECONDS - final_duration, 2),
-            "private_repo_ledger": "federal_filings/tsm_docket_10_26_4014_remediation_ledger.md",
+            "private_repo_ledger": "federal_filings/tsm_docket_10_26_4046_remediation_ledger.md",
             "public_repo_ledger": "public_verification/tsm_5min_compliance_proof.md",
             "compliance_verdict": "PASS — 100% COMPLIANT WITH TSM REVISION V.10 (<= 5:00 CAP)",
         }

@@ -1,6 +1,6 @@
 """
 Humphrey Virtual Farms LLC // Permanent Sovereign C2 & Field Academy Integrity Verifier
-CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | Active DoD Tradewinds Docket: 10-26-3976 (TRL 4)
+CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | Active DoD Tradewinds Docket: 10-26-4046 (TRL 4)
 Statutory: 10 U.S.C. Section 4022, DFARS 252.227-7018, OK Title 61, OAC 245:15-11, 23 CFR 650
 """
 import hashlib

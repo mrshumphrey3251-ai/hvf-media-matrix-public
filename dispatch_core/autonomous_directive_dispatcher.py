@@ -1,7 +1,7 @@
 """
 E.B.O.N.Y. SOVEREIGN COMMAND DIRECTIVE INTERCEPTOR
 Authority: CEO Jeffery Humphrey (Level 5 Clearance) // CAGE: 1AHA8
-Standard: DFARS 252.227-7018 GPR | Active Docket: 10-26-3976 (TRL 4)
+Standard: DFARS 252.227-7018 GPR | Active Docket: 10-26-4046 (TRL 4)
 
 Direct Command Intake:
 Ingests natural language executive engineering directives, extracts module scope,

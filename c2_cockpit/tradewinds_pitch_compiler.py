@@ -37,7 +37,7 @@ class TradewindsPitchCompiler:
                 "Project Ebony v8.0.0: Deterministic Zero-Cloud OT/SCADA Interlock Testbed "
                 "& WORM Merkle Provenance Architecture (TRL 4 Assessor-Aligned Resubmission)"
             ),
-            "prior_dockets_superseded": "9-26-3703 & 10-26-3976 (Initial Upload)",
+            "prior_dockets_superseded": "9-26-3703 & 10-26-4046 (Initial Upload)",
             "video_filename": "EBONY_V8_CDAO_RUBRIC_VERIFICATION_20261028.mp4",
             "focus_area": "Assuring Cybersecurity / Resilient Cyber-Physical Infrastructure",
             "trl_posture": "TRL 4 (Laboratory Software Emulation Testbed -> Phase-1 OTA Target: TRL 6)",
@@ -45,7 +45,7 @@ class TradewindsPitchCompiler:
 
     def get_fresh_portal_abstract(self) -> str:
         abstract = (
-            "[OCT 2026 v8.0.0 RESUBMISSION DELTA: Explicitly resolves all prior 9-26-3703/10-26-3976 Assessor Feedback "
+            "[OCT 2026 v8.0.0 RESUBMISSION DELTA: Explicitly resolves all prior 9-26-3703/10-26-4046 Assessor Feedback "
             "with new 4-Pillar Rubric proof, TRL 4 software-vs-hardware target separation, & a 5-vendor AoA matrix.] "
             "1. PROBLEM: Per GAO-21-81/GAO-24-106137, DoD's 500+ installations & $4.2B+ OT energy systems rely on "
             "digital PLCs scanning at 50-200ms. Per CISA AA23-144A/AA24-038A (Volt Typhoon) & TRISIS, adversaries "
@@ -230,7 +230,7 @@ class TradewindsPitchCompiler:
             "legal_entity": "Humphrey Virtual Farms LLC",
             "cage_code": self.cage_code,
             "uei": "S1M4ENLHTDH5",
-            "active_docket": "10-26-4014 (Submitted Oct 28, 2026 6:55 PM | Status: Received)",
+            "active_docket": "10-26-4046 (Submitted Oct 28, 2026 6:55 PM | Status: Received)",
             "prior_docket": "9-26-3703",
             "readiness_level": meta["trl_posture"],
             "status": "PUBLIC_TRADEWINDS_INTERFACE_ACTIVE",
@@ -310,7 +310,7 @@ TradewindsPitchCompiler.export_pdf = _export_pdf_TradewindsPitchCompiler
 if __name__ == "__main__":
     from pathlib import Path
     compiler = TradewindsPitchCompiler()
-    pdf_out = Path(__file__).resolve().parent / "proposals" / "TRADEWINDS_RESUBMISSION_SCRIPT_10_26_3976.pdf"
+    pdf_out = Path(__file__).resolve().parent / "proposals" / "TRADEWINDS_RESUBMISSION_SCRIPT_10_26_4046.pdf"
     compiler.export_pdf(output_path=str(pdf_out))
     abs_text = compiler.get_fresh_portal_abstract()
     print(f"[NEW v8.0.0 RESUBMISSION PDF SEALED] {pdf_out}")

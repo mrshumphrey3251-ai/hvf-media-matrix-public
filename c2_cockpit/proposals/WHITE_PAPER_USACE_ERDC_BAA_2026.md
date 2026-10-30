@@ -2,7 +2,7 @@
 ## DETERMINISTIC THREE-BRAIN TELEMETRY, NON-DESTRUCTIVE STRUCTURAL DIAGNOSTICS (STR-01/PAV-01), AND AIR-GAPPED WORM PROVENANCE FOR CONTESTED CIVIL & MILITARY INFRASTRUCTURE
 **Solicitation Identifier:** `USACE-ERDC-BAA-2026` (FAR 35.016 Basic & Applied Research / 10 U.S.C. Section 4022)
 **Submitting Prime Contractor:** Humphrey Virtual Farms LLC (100% Sovereign Small Business Prime)
-**Corporate Identifiers:** `CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5` | **Cross-Referenced DoD CDAO Docket:** `10-26-3976`
+**Corporate Identifiers:** `CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5` | **Cross-Referenced DoD CDAO Docket:** `10-26-4046`
 **Principal Investigator & Apex Architect:** Jeffery Humphrey, Founder, President & CEO (`[REDACTED-FOR-PUBLIC-RELEASE]`)
 **Current Technology Readiness Level:** `TRL 4` (Laboratory Software Emulation Testbed & Mathematical Proof-of-Concept)
 **Proposed Funding & Period of Performance:** `$1,200,000.00` Total (`12 Months` | `$0.00` Cash Match Required | `$150,000.00` M1A Mobilization)

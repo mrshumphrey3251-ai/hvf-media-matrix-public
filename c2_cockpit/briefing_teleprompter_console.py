@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-HUMPHREY VIRTUAL FARMS LLC // TRADEWINDS DOCKET 10-26-3976 ON-SCREEN VIDEO TELEPROMPTER
+HUMPHREY VIRTUAL FARMS LLC // TRADEWINDS DOCKET 10-26-4046 ON-SCREEN VIDEO TELEPROMPTER
 Displays the Mandatory Assessor Feedback Resolution Matrix & Section VII.e Rubric Segments
 on screen for video capture while executing live TRL 4 software verification.
 """
@@ -23,7 +23,7 @@ class BriefingTeleprompterConsole:
         return {
             "cage_code": self.cage_code,
             "uei": "S1M4ENLHTDH5",
-            "active_docket": "10-26-3976",
+            "active_docket": "10-26-4046",
             "prior_docket": "9-26-3703",
             "readiness_level": "TRL 4",
             "status": "PUBLIC_TELEPROMPTER_INTERFACE_ACTIVE",
@@ -45,7 +45,7 @@ class BriefingTeleprompterConsole:
         manifest = self.get_full_presentation_manifest()
         print("=" * 96)
         print("  DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE // OFFICIAL VIDEO RESUBMISSION BRIEFING")
-        print("  DOCKET: 10-26-3976 (RESUBMISSION OF 9-26-3703) | ENTITY: HUMPHREY VIRTUAL FARMS LLC")
+        print("  DOCKET: 10-26-4046 (RESUBMISSION OF 9-26-3703) | ENTITY: HUMPHREY VIRTUAL FARMS LLC")
         print("  CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | BASELINE: TRL 4 SOFTWARE EMULATION TESTBED (127.0.0.1)")
         print("=" * 96)
         print("\n--- ON-SCREEN MATRIX 1: PRIOR DOCKET 9-26-3703 ASSESSOR FEEDBACK RESOLUTION ---")

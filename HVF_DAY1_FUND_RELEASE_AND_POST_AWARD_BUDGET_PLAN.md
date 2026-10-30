@@ -8,7 +8,7 @@
 
 ## 1. Executive Mandate: Zero Out-of-Pocket Pre-Funding & Day-1 Mobilization Release
 
-Humphrey Virtual Farms LLC does not finance government or commercial hardware setup out of pocket. All contracts awarded under Tradewinds Dockets `10-26-3976` and `9-26-3703` incorporate **Day-1 Cryptographic License Issuance & Mobilization Invoicing** so setup capital is released immediately upon contract execution:
+Humphrey Virtual Farms LLC does not finance government or commercial hardware setup out of pocket. All contracts awarded under Tradewinds Dockets `10-26-4046` and `9-26-3703` incorporate **Day-1 Cryptographic License Issuance & Mobilization Invoicing** so setup capital is released immediately upon contract execution:
 
 | Payment Mechanism | Applicable Award Size | Trigger Event on Day 1 of Award | Statutory Settlement Timeline |
 | :--- | :--- | :--- | :--- |

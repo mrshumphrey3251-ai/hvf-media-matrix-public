@@ -1,7 +1,7 @@
 """
 HUMPHREY VIRTUAL FARMS LLC // USACE ERDC ROLLING BAA WHITE PAPER & PDF COMPILER
 Solicitation Target: USACE-ERDC-BAA-2026 (U.S. Army Engineer Research & Development Center)
-Prime Identifiers: CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | Active Tradewinds Docket: 10-26-3976 (TRL 4)
+Prime Identifiers: CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | Active Tradewinds Docket: 10-26-4046 (TRL 4)
 Statutory Framework: 10 U.S.C. Section 4022 | FAR 35.016 (Broad Agency Announcement) | DFARS 252.227-7018
 """
 import hashlib
@@ -26,7 +26,7 @@ def generate_erdc_whitepaper_markdown(is_public: bool = IS_PUBLIC) -> str:
 ## DETERMINISTIC THREE-BRAIN TELEMETRY, NON-DESTRUCTIVE STRUCTURAL DIAGNOSTICS (STR-01/PAV-01), AND AIR-GAPPED WORM PROVENANCE FOR CONTESTED CIVIL & MILITARY INFRASTRUCTURE
 **Solicitation Identifier:** `USACE-ERDC-BAA-2026` (FAR 35.016 Basic & Applied Research / 10 U.S.C. Section 4022)
 **Submitting Prime Contractor:** Humphrey Virtual Farms LLC (100% Sovereign Small Business Prime)
-**Corporate Identifiers:** `CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5` | **Cross-Referenced DoD CDAO Docket:** `10-26-3976`
+**Corporate Identifiers:** `CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5` | **Cross-Referenced DoD CDAO Docket:** `10-26-4046`
 **Principal Investigator & Apex Architect:** Jeffery Humphrey, Founder, President & CEO (`{contact_email}`)
 **Current Technology Readiness Level:** `TRL 4` (Laboratory Software Emulation Testbed & Mathematical Proof-of-Concept)
 **Proposed Funding & Period of Performance:** `$1,200,000.00` Total (`12 Months` | `$0.00` Cash Match Required | `$150,000.00` M1A Mobilization)
@@ -59,7 +59,7 @@ def generate_erdc_clean_pdf_text(is_public: bool = IS_PUBLIC) -> str:
         "--------------------------------------------------------------------------------------------",
         "SOLICITATION IDENTIFIER : USACE-ERDC-BAA-2026 (FAR 35.016 / 10 U.S.C. Section 4022)",
         "SUBMITTING PRIME        : Humphrey Virtual Farms LLC (100% Sovereign Small Business Prime)",
-        "CORPORATE IDENTIFIERS   : CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DoD CDAO Docket: 10-26-3976",
+        "CORPORATE IDENTIFIERS   : CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DoD CDAO Docket: 10-26-4046",
         f"PRINCIPAL INVESTIGATOR  : Jeffery Humphrey, Founder, President & CEO ({contact_email})",
         "CURRENT READINESS LEVEL : TRL 4 (Laboratory Software Emulation Testbed & Math Proof-of-Concept)",
         "PROPOSED FUNDING SCOPE  : $1,200,000.00 Total (12 Months | $0.00 Cash Match | $150,000.00 M1A)",

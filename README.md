@@ -1,17 +1,17 @@
 # HUMPHREY VIRTUAL FARMS LLC // PROJECT EBONY v8.0.0 SOVEREIGN C2 ENCLAVE
-> **DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE — DOCKET 10-26-4014 (OCT 28, 2026 v8.0.0 VERIFICATION GATE)**
+> **DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE — DOCKET 10-26-4046 (OCT 28, 2026 v8.0.0 VERIFICATION GATE)**
 > * **New Submission Title:** `Project Ebony v8.0.0: Deterministic Zero-Cloud OT/SCADA Interlock Testbed & WORM Merkle Provenance Architecture (TRL 4 Assessor-Aligned Resubmission)`
 > * **Submitting Prime:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5` | `100% U.S. Sovereign Small Business`)
 > * **Current Readiness Baseline:** `TRL 4` (Laboratory Software Emulation Testbed on `127.0.0.1` Loopback -> Phase-1 OTA Target: `TRL 6`)
-> * **Master Video Deliverable:** `c2_cockpit/proposals/EBONY_V8_CDAO_RUBRIC_VERIFICATION_20261028.mp4` (`28.72 MB` | SHA-256: `605c6c3e77ddabb3d151e2c828ab7f69d779a1f7a4de73ba073386940f342d7b`)
-> * **Master PDF Script & AoA Dossier:** `c2_cockpit/proposals/TRADEWINDS_RESUBMISSION_SCRIPT_10_26_3976.pdf`
+> * **Master Video Deliverable:** `c2_cockpit/proposals/EBONY_V8_CDAO_RUBRIC_VERIFICATION_20261028.mp4` (`28.72 MB` | SHA-256: `c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd`)
+> * **Master PDF Script & AoA Dossier:** `c2_cockpit/proposals/TRADEWINDS_RESUBMISSION_SCRIPT_10_26_4046.pdf`
 > * **Empirical Verification Standing:** `636 / 636` Compiled C2 Modules (`1,961` Private / `1,770` Public) | `85 / 85` Automated Test Suites PASSED (`100.0%`) | `17 / 17` Red-Team Penetration Vectors BLOCKED | `52` SQLite WORM & Memory Tables | `1,420` Verified Field Academy Exam Questions
 > * **Shared Core C2 Cryptographic Merkle Root (SHA-256):** `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`
 
 ---
 # Humphrey Virtual Farms LLC — Project Ebony (v8.0.0)
 **Official CDAO Tradewinds Solutions Marketplace (TSM) Verification Repository**  
-**Active TSM Docket:** `10-26-3976` (`Status: Received` — Resubmission of Prior Docket `9-26-3703`)  
+**Active TSM Docket:** `10-26-4046` (`Status: Received` — Resubmission of Prior Docket `9-26-3703`)  
 **Current Readiness Level:** `TRL 4` (Laboratory Software Emulation Testbed & Mathematical Architecture)  
 **Contractor:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5`)  
 **Founder, CEO & Chief Architect:** Jeffery Humphrey (`[REDACTED-FOR-PUBLIC-RELEASE]`)  
@@ -20,7 +20,7 @@
 ---
 
 ## 1. Executive Summary & TRL 4 Readiness Clarification
-This repository serves as the public architectural blueprint and TRL 4 software-bench verification record for **Project Ebony (v8.0.0)** under Tradewinds Docket **`10-26-4014`**.
+This repository serves as the public architectural blueprint and TRL 4 software-bench verification record for **Project Ebony (v8.0.0)** under Tradewinds Docket **`10-26-4046`**.
 
 * **TRL 4 Software Emulation Scope:** Project Ebony is currently at **TRL 4** (laboratory software testbed and mathematical emulation running on an air-gapped local workstation under Master SHA-256 Merkle Root `bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1`).
 * **Software-Bench Verification vs. Physical Silicon Target:** References in pitch transcripts and legacy dossiers to *"bench verified,"* `83/83` passed unit/stress suites, `17/17` simulated red-team vectors, and `NIST SP 800-171 / 800-82` mappings reflect local Python/C/SQLite software-bench emulation and architectural modeling. Physical Cortex-M7/RISC-V PCB fabrication, third-party high-voltage SiC MOSFET electrical testing, and formal DoD SPRS third-party auditing are scheduled Phase-1 milestones under our proposed **12-Month, $1.485M Prototype OTA (`10 U.S.C. § 4022`)**.

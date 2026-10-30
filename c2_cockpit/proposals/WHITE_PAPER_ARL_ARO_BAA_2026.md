@@ -3,7 +3,7 @@
 **Submitting Entity:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | 701 E Drew, Madill, OK 73446)
 **Principal Investigator:** Jeffery Humphrey, CEO | [REDACTED-FOR-PUBLIC-RELEASE]
 **Research Category:** Defense Basic & Applied Research (6.1 / 6.2 | Current Readiness: TRL 4 -> Phase-1 Target: TRL 5/6)
-**Cross-Referenced Filings:** DoD CDAO Tradewinds Docket 10-26-4014 (Status: Received) & USACE ERDC Rolling BAA (2026)
+**Cross-Referenced Filings:** DoD CDAO Tradewinds Docket 10-26-4046 (Status: Received) & USACE ERDC Rolling BAA (2026)
 **Shared Core C2 Merkle Root (SHA-256):** bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1
 **Proposed Phase-1 Effort:** 12 Months | $750,000.00 Fixed-Price ($150,000.00 Day 15-30 Mobilization | 0% Cost Share | DFARS 252.227-7018)
 

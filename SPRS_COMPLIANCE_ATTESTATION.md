@@ -1,6 +1,6 @@
 # NIST SP 800-171 Rev 2 & NIST SP 800-82 Rev 2 Architectural Mapping (TRL 4 Testbed)
 **Contractor:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5`)  
-**Active Tradewinds Docket:** `10-26-3976` (`TRL 4` Laboratory Software Emulation Testbed)  
+**Active Tradewinds Docket:** `10-26-4046` (`TRL 4` Laboratory Software Emulation Testbed)  
 **Assessment Posture:** Architectural Design Mapping & Local Loopback Software Emulation (Formal Third-Party C3PAO / DoD SPRS Audit Scheduled as Phase-1 OTA Deliverable)
 
 ## 1. Compliance Scope & Transparency Statement
