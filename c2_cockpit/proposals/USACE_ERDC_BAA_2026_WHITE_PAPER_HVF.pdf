@@ -29,7 +29,7 @@ BT /F2 11.20 Tf 0.0000 Tw 72.00 704.77 Td (BAA WHITE PAPER) Tj 0 Tw ET
 0.75 0.78 0.82 RG 0.6 w 72.00 671.54 m 540.00 671.54 l S 0 0 0 RG
 BT /F1 9.20 Tf 0.0000 Tw 72.00 656.44 Td (Solicitation Identifier: USACE-ERDC-BAA-2026 \(FAR 35.016 Basic & Applied Research / 10 U.S.C. Section 4022\)) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 640.42 Td (Submitting Prime Contractor: Humphrey Virtual Farms LLC \(100% Sovereign Small Business Prime\)) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 624.41 Td (Corporate Identifiers: CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | Cross-Referenced DoD CDAO Docket: 10-26-3976) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 624.41 Td (Corporate Identifiers: CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | Cross-Referenced DoD CDAO Docket: 10-26-4046) Tj 0 Tw ET
 BT /F1 9.20 Tf 11.9798 Tw 72.00 608.40 Td (Principal Investigator & Apex Architect: Jeffery Humphrey, Founder, President & CEO) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 595.89 Td (\([REDACTED-FOR-PUBLIC-RELEASE]\)) Tj 0 Tw ET
 BT /F1 9.20 Tf 4.8012 Tw 72.00 579.88 Td (Current Technology Readiness Level: TRL 4 \(Laboratory Software Emulation Testbed & Mathematical) Tj 0 Tw ET
@@ -80,4 +80,4 @@ trailer
 startxref
 5324
 %%EOF
-% HVF-WORM-SHA256: 5273546cfdd0bdd8657deef7daa7bf803081fcd6c3438e17350c0449d51a08c9
+% HVF-WORM-SHA256: 51c55c5dc65288469914ba1e76887e4785e4d8a81f4c8ee8468d1b5199604977

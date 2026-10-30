@@ -30,7 +30,7 @@ BT /F1 9.20 Tf 0.6824 Tw 72.00 669.74 Td (Submitting Entity: Humphrey Virtual Fa
 BT /F1 9.20 Tf 0.0000 Tw 72.00 657.23 Td (Madill, OK 73446\)) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 641.22 Td (Principal Investigator: Jeffery Humphrey, CEO | [REDACTED-FOR-PUBLIC-RELEASE]) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 625.21 Td (Current Readiness Level: TRL 4 \(Laboratory Software Emulation Testbed on 127.0.0.1 -> Phase-1 Target: TRL 6\)) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0173 Tw 72.00 609.20 Td (Cross-Referenced Filings: DoD CDAO Tradewinds Docket 10-26-4014 \(Status: Received\) & USACE ERDC Rolling) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0173 Tw 72.00 609.20 Td (Cross-Referenced Filings: DoD CDAO Tradewinds Docket 10-26-4046 \(Status: Received\) & USACE ERDC Rolling) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 596.68 Td (BAA \(2026\)) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 580.67 Td (Shared Core C2 Merkle Root \(SHA-256\):) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 568.16 Td (bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1) Tj 0 Tw ET
@@ -138,4 +138,4 @@ trailer
 startxref
 11698
 %%EOF
-% HVF-WORM-SHA256: d4c505bbc1c72d532d9ccae44f274cde692741f7b85d118916b511048453427c
+% HVF-WORM-SHA256: f0e094e975d6990fb0b77591dee2c58bf5e1f2b87d809dec4e2ec98a8db744d7

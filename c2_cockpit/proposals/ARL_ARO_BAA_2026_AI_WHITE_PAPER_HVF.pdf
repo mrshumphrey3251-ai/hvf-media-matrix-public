@@ -32,7 +32,7 @@ BT /F1 9.20 Tf 0.0000 Tw 72.00 642.00 Td (Madill, OK 73446\)) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 625.99 Td (Principal Investigator: Jeffery Humphrey, CEO | [REDACTED-FOR-PUBLIC-RELEASE]) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.4538 Tw 72.00 609.98 Td (Research Category: Defense Basic & Applied Research \(6.1 / 6.2 | Current Readiness: TRL 4 -> Phase-1 Target:) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 597.46 Td (TRL 5/6\)) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0173 Tw 72.00 581.45 Td (Cross-Referenced Filings: DoD CDAO Tradewinds Docket 10-26-4014 \(Status: Received\) & USACE ERDC Rolling) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0173 Tw 72.00 581.45 Td (Cross-Referenced Filings: DoD CDAO Tradewinds Docket 10-26-4046 \(Status: Received\) & USACE ERDC Rolling) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 568.94 Td (BAA \(2026\)) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 552.93 Td (Shared Core C2 Merkle Root \(SHA-256\):) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 540.42 Td (bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1) Tj 0 Tw ET
@@ -130,4 +130,4 @@ trailer
 startxref
 10295
 %%EOF
-% HVF-WORM-SHA256: 883d2eee2d7ebab965c92e04a7fe6229b77db2ae70f7d6edf171b70658baaeb8
+% HVF-WORM-SHA256: 4b9b47a0e625ce18828395b78ec89c534743d3d785b44667b26abf4d39a25be8
