@@ -1,0 +1,118 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Bold >>
+endobj
+3 0 obj
+<< /Length 3089 >>
+stream
+BT
+72 708 Td
+14.4 TL
+/F2 12 Tf (USACE ERDC CERL COMMERCIAL SOLUTIONS OPENING \(CSO 2026\) - PRICE & ROM) Tj T*
+/F2 12 Tf (SCHEDULE) Tj T*
+/F1 12 Tf (Primary Offeror: Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | SAM.gov UEI:) Tj T*
+/F1 12 Tf (S1M4ENLHTDH5\)) Tj T*
+/F1 12 Tf (Address: 701 E Drew St., Madill, OK 73446 | POC: Jeffery Humphrey, CEO | \(572\)) Tj T*
+/F1 12 Tf (358-9978 | humphreyvirtualfarm@gmail.com) Tj T*
+/F1 12 Tf (Solution Title: Project Ebony v8.0.0: Air-Gapped Tri-Brain OT/SCADA Safety) Tj T*
+/F1 12 Tf (Interlock, Automated Bridge/Pavement NDE & WORM Merkle Provenance Testbed) Tj T*
+/F1 12 Tf (Contracting Vehicles Supported: Commercial Solutions Opening \(CSO\) Fixed-Price) Tj T*
+/F1 12 Tf (Agreement, 10 U.S.C. 4022 Prototype OTA \(0% Cost Share for NTDC/SDB\), or FAR) Tj T*
+/F1 12 Tf (Part 12/13 Commercial Award.) Tj T*
+/F1 12 Tf () Tj T*
+/F2 12 Tf (1. Option A: 12-Month Fixed-Price Phase-1 Prototype Effort \(TRL 4 to TRL) Tj T*
+/F2 12 Tf (6\) - $1,200,000.00 Total ROM) Tj T*
+/F1 12 Tf (Humphrey Virtual Farms LLC proposes a 12-Month, $1,200,000.00 Firm-Fixed-Price) Tj T*
+/F1 12 Tf (Milestone Schedule to fabricate, calibrate, and field-validate the TRL 6 CERL) Tj T*
+/F1 12 Tf (Operational Energy & Sustainment Management Prototype \(0% Cost Share required) Tj T*
+/F1 12 Tf (per NTDC status\):) Tj T*
+/F1 12 Tf (- Milestone 1 \(Months 1-2 | Days 15-30 Mobilization\): $150,000.00 ? CERL) Tj T*
+/F1 12 Tf (Operational Energy & Sustainment Management Interface Control Document \(ICD\),) Tj T*
+/F1 12 Tf (52-Table SQLite WORM Enclave Baseline & Test Plan.) Tj T*
+/F1 12 Tf (- Milestone 2 \(Months 3-6\): $350,000.00 ? Brain 1 Bare-Metal Cortex-M7 + SiC) Tj T*
+/F1 12 Tf (MOSFET Safety Interlock PCB Fabrication & <50us Loop / 36.75ns Cutoff) Tj T*
+/F1 12 Tf (Oscilloscope Verification.) Tj T*
+/F1 12 Tf (- Milestone 3 \(Months 7-9\): $350,000.00 ? Brain 2 Isolated Read-Only ASTM) Tj T*
+/F1 12 Tf (D6433 Pavement, Bridge & Facility Sensor Analytics Calibration with ERDC CERL) Tj T*
+/F1 12 Tf (Datasets.) Tj T*
+/F1 12 Tf (- Milestone 4 \(Months 10-12\): $350,000.00 ? TRL 6 Integrated CERL Hardware-in-) Tj T*
+/F1 12 Tf (the-Loop \(HIL\) Demonstration, 110-Control NIST SP 800-171 / 800-82 C3PAO) Tj T*
+/F1 12 Tf (Package & Final Report.) Tj T*
+/F1 12 Tf (- Total 12-Month Phase-1 Prototype Price: $1,200,000.00 USD \(Inclusive of) Tj T*
+/F1 12 Tf (Engineering Labor, PCB/SiC Hardware Fabrication, HIL Test Equipment, and) Tj T*
+/F1 12 Tf (Technical Data Deliverables\).) Tj T*
+/F1 12 Tf () Tj T*
+/F2 12 Tf (2. Option B: Extended 5-Node Installation Microgrid & SMS Field Pilot OTA) Tj T*
+/F2 12 Tf (- $1,485,000.00 \(12 Months\)) Tj T*
+/F1 12 Tf (For installations requiring a multi-bay 5-Node Hardware-in-the-Loop microgrid) Tj T*
+/F1 12 Tf (and Sustainment Management System deployment \(matching CDAO Tradewinds Docket) Tj T*
+/F1 12 Tf (10-26-4046\), total 12-month fixed price is $1,485,000.00 \($150,000.00) Tj T*
+/F1 12 Tf (Mobilization; $445,000.00 Month 4; $445,000.00 Month 8; $445,000.00 Month 12\).) Tj T*
+ET
+BT
+/F1 12 Tf 285 72 Td (1 of 2) Tj
+ET
+endstream
+endobj
+4 0 obj
+<< /Length 1329 >>
+stream
+BT
+72 708 Td
+14.4 TL
+/F1 12 Tf () Tj T*
+/F2 12 Tf (3. Option C: Unbundled Dual-Use Commercial Software Licensing Schedule) Tj T*
+/F2 12 Tf (\(26-Module C2 Console\)) Tj T*
+/F1 12 Tf (- CLIN 0001 \(Base Single-Node TRL 4 Software Testbed & WORM Enclave Pilot\):) Tj T*
+/F1 12 Tf ($2,450.00 / Month \($29,400.00 / Year\).) Tj T*
+/F1 12 Tf (- CLIN 0002 through CLIN 0026 \(Individual Specialized OT, NDE, Microgrid &) Tj T*
+/F1 12 Tf (Cryptographic Add-On Modules\): $20,000.00 to $185,000.00 / Year per module.) Tj T*
+/F1 12 Tf (- CLIN 1004-A \(Full 26-Module 1-Node Tactical Operations Center Bundle\):) Tj T*
+/F1 12 Tf ($895,000.00 / Year.) Tj T*
+/F1 12 Tf (- CLIN 1004-B \(Enterprise 25-Node Installation / Base Fleet License\):) Tj T*
+/F1 12 Tf ($2,450,000.00 / Year.) Tj T*
+/F1 12 Tf () Tj T*
+/F2 12 Tf (4. Intellectual Property & Data Rights Statement) Tj T*
+/F1 12 Tf (This price schedule contains no classified or restricted proprietary markings.) Tj T*
+/F1 12 Tf (All 637 core C2 software modules and WORM schemas developed exclusively at) Tj T*
+/F1 12 Tf (private expense are retained by Humphrey Virtual Farms LLC under DFARS) Tj T*
+/F1 12 Tf (252.227-7018 / FAR 52.227-14, with standard Government Purpose Rights granted) Tj T*
+/F1 12 Tf (for funded Phase-1 deliverables.) Tj T*
+ET
+BT
+/F1 12 Tf 285 72 Td (2 of 2) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 7 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 3 0 R >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 7 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 4 0 R >>
+endobj
+7 0 obj
+<< /Type /Pages /Kids [5 0 R 6 0 R] /Count 2 >>
+endobj
+8 0 obj
+<< /Type /Catalog /Pages 7 0 R >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000087 00000 n 
+0000000158 00000 n 
+0000003299 00000 n 
+0000004680 00000 n 
+0000004816 00000 n 
+0000004952 00000 n 
+0000005015 00000 n 
+trailer
+<< /Size 9 /Root 8 0 R >>
+startxref
+5064
+%%EOF

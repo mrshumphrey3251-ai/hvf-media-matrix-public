@@ -1,0 +1,124 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Bold >>
+endobj
+3 0 obj
+<< /Length 2943 >>
+stream
+BT
+72 708 Td
+14.4 TL
+/F2 12 Tf (SLIDE 1 OF 5: EXECUTIVE OVERVIEW & CERL MISSION ALIGNMENT) Tj T*
+/F1 12 Tf (- Solution: Project Ebony v8.0.0: Air-Gapped Tri-Brain OT/SCADA Safety) Tj T*
+/F1 12 Tf (Interlock, Automated Bridge/Pavement NDE & WORM Merkle Provenance Testbed) Tj T*
+/F1 12 Tf (- Offeror: Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 |) Tj T*
+/F1 12 Tf (Madill, OK 73446\)) Tj T*
+/F1 12 Tf (- Status: Non-Traditional Defense Contractor \(NTDC\) & Small Disadvantaged) Tj T*
+/F1 12 Tf (Business \(SDB\)) Tj T*
+/F1 12 Tf (- CERL Alignment: Operational Energy \(Microgrids/Switchgear\), Sustainment) Tj T*
+/F1 12 Tf (Management System \(SMS/BUILDER Sensor Analytics\), Robotics for Engineering) Tj T*
+/F1 12 Tf (Operations \(Autonomous NDE\)) Tj T*
+/F1 12 Tf (- Verified Federal Docket: DoD CDAO Tradewinds Docket 10-26-4046 \(Status:) Tj T*
+/F1 12 Tf (Received | 04:24 Video SHA-256:) Tj T*
+/F1 12 Tf (c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd\)) Tj T*
+/F1 12 Tf () Tj T*
+/F2 12 Tf (SLIDE 2 OF 5: THE <4.16ms INSTALLATION OT/SCADA & SUSTAINMENT PHYSICS GAP) Tj T*
+/F1 12 Tf (- GAO-21-81 & GAO-24-106137: DoD operates 500+ installations, 300,000+) Tj T*
+/F1 12 Tf (buildings, and $4.2B+ in OT energy systems on legacy PLCs scanning at 50 to) Tj T*
+/F1 12 Tf (200ms.) Tj T*
+/F1 12 Tf (- CISA AA23-144A / AA24-038A \(Volt Typhoon\) & TRISIS: Adversaries corrupt PLC) Tj T*
+/F1 12 Tf (safety logic while spoofing operator displays.) Tj T*
+/F1 12 Tf (- Physics Gap: High-voltage arc-flash faults destroy switchgear in <4.16ms and) Tj T*
+/F1 12 Tf (thermal excursions occur in 6.0ms?meaning 50-200ms PLCs react 8x to 33x too) Tj T*
+/F1 12 Tf (late.) Tj T*
+/F1 12 Tf (- Sustainment Gap: Manual bridge, pavement, and facility inspections cost) Tj T*
+/F1 12 Tf ($4,600+/day with snooper-truck closures and lack cryptographic chain-of-) Tj T*
+/F1 12 Tf (custody verification.) Tj T*
+/F1 12 Tf () Tj T*
+/F2 12 Tf (SLIDE 3 OF 5: LIVE TRL 4 AIR-GAPPED TRI-BRAIN ARCHITECTURE \(127.0.0.1) Tj T*
+/F2 12 Tf (LOOPBACK\)) Tj T*
+/F1 12 Tf (- Baseline Maturity: TRL 4 laboratory software emulation testbed \(0% cloud, 0) Tj T*
+/F1 12 Tf (external retrieval APIs, 0 open WAN ports, 637 C2 Python modules, 85/85) Tj T*
+/F1 12 Tf (passing unit test suites, 17/17 blocked Red-Team vectors, 52 bare-metal SQLite) Tj T*
+/F1 12 Tf (WORM tables\).) Tj T*
+/F1 12 Tf (- Brain 1 \(Safety Interlock\): Models <50us Cortex-M7/RISC-V bare-metal loop,) Tj T*
+/F1 12 Tf (2.04us RS-485 Modbus FC05 trip, and 36.75ns SiC MOSFET cutoff target at 28.5W) Tj T*
+/F1 12 Tf (on 24V DC.) Tj T*
+/F1 12 Tf (- Brain 2 \(Isolated NDE\): Read-only buffer \(0 actuator wire\) executing offline) Tj T*
+/F1 12 Tf (ASTM D6433 PCI and structural crack mensuration \($250/sortie vs. $4,600/day) Tj T*
+/F1 12 Tf (manual\).) Tj T*
+/F1 12 Tf (- Brain 3 \(WORM Provenance\): Seals SHA-256 Merkle DAG \(Root:) Tj T*
+ET
+BT
+/F1 12 Tf 285 72 Td (1 of 2) Tj
+ET
+endstream
+endobj
+4 0 obj
+<< /Length 1604 >>
+stream
+BT
+72 708 Td
+14.4 TL
+/F1 12 Tf (bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1\) in <0.15ms.) Tj T*
+/F1 12 Tf () Tj T*
+/F2 12 Tf (SLIDE 4 OF 5: 5-VENDOR QUANTITATIVE ANALYSIS OF ALTERNATIVES \(6/6 GATES) Tj T*
+/F2 12 Tf (PASSED\)) Tj T*
+/F1 12 Tf (- Project Ebony v8.0.0 \(CAGE 1AHA8\): 6/6 Gates Passed | Modeled 36.75ns cutoff) Tj T*
+/F1 12 Tf (\(1,360,544x faster than 50ms PLC\) | 28.5W target draw | 100% air-gapped SQLite) Tj T*
+/F1 12 Tf (WORM.) Tj T*
+/F1 12 Tf (- Siemens S7-1500 / Rockwell ControlLogix: 0/6 Gates | 50-200ms scan |) Tj T*
+/F1 12 Tf (150-450W draw.) Tj T*
+/F1 12 Tf (- Schneider Triconex SIS: 0/6 Gates | 10-50ms scan | 200-600W draw | Breached) Tj T*
+/F1 12 Tf (by TRISIS.) Tj T*
+/F1 12 Tf (- Dragos / Nozomi Passive IDS: 0/6 Gates | 0 physical cutoff authority |) Tj T*
+/F1 12 Tf (300-1,200W draw.) Tj T*
+/F1 12 Tf (- Cloud AI Wrappers \(Jev AI\): 0/6 Gates | >250ms cloud RTT | Fails under) Tj T*
+/F1 12 Tf (EMCON.) Tj T*
+/F1 12 Tf () Tj T*
+/F2 12 Tf (SLIDE 5 OF 5: TRACTION, DUAL-USE CLIN PRICING & 12-MONTH PHASE-1 PROTOTYPE) Tj T*
+/F2 12 Tf (PLAN) Tj T*
+/F1 12 Tf (- Verified Traction: Active CDAO Tradewinds Docket 10-26-4046; USACE ERDC BAA) Tj T*
+/F1 12 Tf (filings \(CERL, ITL-4, GSL-19\); 11-artifact Microgrid SOW suite; 110-control) Tj T*
+/F1 12 Tf (NIST 800-171/800-82 map.) Tj T*
+/F1 12 Tf (- Phase-1 Prototype ROM: $1,200,000.00 \(12 Months; TRL 4 to TRL 6; $150,000.00) Tj T*
+/F1 12 Tf (Mobilization\) or 26-Module Commercial CLINs \(CLIN 0001 $2,450/mo; CLIN 1004-A) Tj T*
+/F1 12 Tf ($895K/yr\).) Tj T*
+ET
+BT
+/F1 12 Tf 285 72 Td (2 of 2) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 7 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 3 0 R >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 7 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 4 0 R >>
+endobj
+7 0 obj
+<< /Type /Pages /Kids [5 0 R 6 0 R] /Count 2 >>
+endobj
+8 0 obj
+<< /Type /Catalog /Pages 7 0 R >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000087 00000 n 
+0000000158 00000 n 
+0000003153 00000 n 
+0000004809 00000 n 
+0000004945 00000 n 
+0000005081 00000 n 
+0000005144 00000 n 
+trailer
+<< /Size 9 /Root 8 0 R >>
+startxref
+5193
+%%EOF

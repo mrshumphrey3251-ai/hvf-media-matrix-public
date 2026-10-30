@@ -1,0 +1,111 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Bold >>
+endobj
+3 0 obj
+<< /Length 3285 >>
+stream
+BT
+72 708 Td
+14.4 TL
+/F2 12 Tf (USACE ERDC CONSTRUCTION & ENGINEERING RESEARCH LABORATORY \(CERL\)) Tj T*
+/F2 12 Tf (COMMERCIAL SOLUTIONS OPENING \(CSO 2026\) - EXECUTIVE COVER LETTER) Tj T*
+/F1 12 Tf (Date: October 30, 2026) Tj T*
+/F1 12 Tf (Primary Offeror: Humphrey Virtual Farms LLC \(701 E Drew St., Madill, OK 73446\)) Tj T*
+/F1 12 Tf (Business Status: Non-Traditional Defense Contractor \(NTDC\), Small) Tj T*
+/F1 12 Tf (Disadvantaged Business \(SDB\), Minority-Owned Small Business) Tj T*
+/F1 12 Tf (SAM.gov UEI: S1M4ENLHTDH5 | CAGE Code: 1AHA8 | NAICS: 541715, 541511, 541330) Tj T*
+/F1 12 Tf (Authorized Representative: Jeffery Humphrey, Founder, President & CEO | \(572\)) Tj T*
+/F1 12 Tf (358-9978 | humphreyvirtualfarm@gmail.com) Tj T*
+/F1 12 Tf (Proposed Solution Title: Project Ebony v8.0.0: Air-Gapped Tri-Brain OT/SCADA) Tj T*
+/F1 12 Tf (Safety Interlock, Automated Bridge/Pavement NDE & WORM Merkle Provenance) Tj T*
+/F1 12 Tf (Testbed) Tj T*
+/F1 12 Tf (CERL Areas of Interest: Operational Energy; Sustainment Management System;) Tj T*
+/F1 12 Tf (Robotics for Engineering Operations) Tj T*
+/F1 12 Tf (Cross-Referenced Federal Filings: Active DoD CDAO Tradewinds Solutions) Tj T*
+/F1 12 Tf (Marketplace Docket 10-26-4046 \(Status: Received | Video SHA-256:) Tj T*
+/F1 12 Tf (c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd | Merkle) Tj T*
+/F1 12 Tf (Root: bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1\) and) Tj T*
+/F1 12 Tf (USACE ERDC BAA Filings \(CERL, ITL-4, GSL-19\).) Tj T*
+/F1 12 Tf () Tj T*
+/F2 12 Tf (1. Executive Purpose & Statutory Eligibility \(10 U.S.C. 4022 / 10 U.S.C.) Tj T*
+/F2 12 Tf (3458\)) Tj T*
+/F1 12 Tf (Humphrey Virtual Farms LLC respectfully submits this complete four-part) Tj T*
+/F1 12 Tf (Commercial Solutions Opening \(CSO\) package to the U.S. Army Engineer Research) Tj T*
+/F1 12 Tf (and Development Center \(ERDC\) Construction and Engineering Research Laboratory) Tj T*
+/F1 12 Tf (\(CERL\). As a verified U.S. Non-Traditional Defense Contractor \(NTDC\) and Small) Tj T*
+/F1 12 Tf (Disadvantaged Business \(SDB\) actively registered in SAM.gov \(UEI: S1M4ENLHTDH5) Tj T*
+/F1 12 Tf (| CAGE: 1AHA8\), Humphrey Virtual Farms LLC qualifies for streamlined) Tj T*
+/F1 12 Tf (commercial and prototype Other Transaction Authority \(OTA\) or FAR/DFARS award) Tj T*
+/F1 12 Tf (with 0% required cost sharing.) Tj T*
+/F1 12 Tf () Tj T*
+/F2 12 Tf (2. Summary of Operational Impact for CERL Installations & Facilities) Tj T*
+/F1 12 Tf (Per U.S. GAO reports GAO-21-81 and GAO-24-106137 and Joint CISA/DoD Volt) Tj T*
+/F1 12 Tf (Typhoon advisories \(AA23-144A / AA24-038A\), DoD's 500+ installations, 300,000+) Tj T*
+/F1 12 Tf (buildings, and $4.2B+ in operational energy and utility assets rely on) Tj T*
+/F1 12 Tf (commercial PLCs scanning at 50 to 200ms, whereas arc-flash faults destroy) Tj T*
+/F1 12 Tf (switchgear in <4.16ms and thermal excursions occur in 6.0ms. Project Ebony) Tj T*
+/F1 12 Tf (v8.0.0 provides a live TRL 4 air-gapped software emulation testbed on local) Tj T*
+/F1 12 Tf (loopback 127.0.0.1 \(0% cloud dependency, 0 external retrieval APIs, 637 C2) Tj T*
+/F1 12 Tf (modules, 85/85 passing unit test suites, 52 SQLite WORM tables\) modeling a) Tj T*
+ET
+BT
+/F1 12 Tf 285 72 Td (1 of 2) Tj
+ET
+endstream
+endobj
+4 0 obj
+<< /Length 974 >>
+stream
+BT
+72 708 Td
+14.4 TL
+/F1 12 Tf (<50us safety loop and 36.75ns SiC MOSFET cutoff target \(Brain 1\), isolated) Tj T*
+/F1 12 Tf (ASTM D6433 structural/pavement NDE diagnostics cutting $4,600/day inspections) Tj T*
+/F1 12 Tf (to $250/sortie \(Brain 2\), and SHA-256 WORM Merkle provenance \(Brain 3\).) Tj T*
+/F1 12 Tf () Tj T*
+/F2 12 Tf (3. Non-Proprietary & Unclassified Compliance Statement) Tj T*
+/F1 12 Tf (In strict compliance with ERDCWERX CSO instructions, this submission contains) Tj T*
+/F1 12 Tf (no classified, confidential, or restricted proprietary markings and may be) Tj T*
+/F1 12 Tf (shared across ERDC teams. Background commercial software modules developed at) Tj T*
+/F1 12 Tf (private expense are governed by standard DFARS 252.227-7018 / FAR 52.227-14) Tj T*
+/F1 12 Tf (provisions upon award. Respectfully submitted by Jeffery Humphrey, Founder,) Tj T*
+/F1 12 Tf (President & CEO, Humphrey Virtual Farms LLC.) Tj T*
+ET
+BT
+/F1 12 Tf 285 72 Td (2 of 2) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 7 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 3 0 R >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 7 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 4 0 R >>
+endobj
+7 0 obj
+<< /Type /Pages /Kids [5 0 R 6 0 R] /Count 2 >>
+endobj
+8 0 obj
+<< /Type /Catalog /Pages 7 0 R >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000087 00000 n 
+0000000158 00000 n 
+0000003495 00000 n 
+0000004520 00000 n 
+0000004656 00000 n 
+0000004792 00000 n 
+0000004855 00000 n 
+trailer
+<< /Size 9 /Root 8 0 R >>
+startxref
+4904
+%%EOF
