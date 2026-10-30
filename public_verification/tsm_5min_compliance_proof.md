@@ -2,7 +2,7 @@
 **Submitting Organization:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | 100% U.S. Sovereign Small Business)  
 **Commanding Authority:** Jeffery Humphrey, Founder, President & CEO  
 **Public Verification Repository:** https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public  
-**Shared Core C2 Merkle Root (SHA-256):** `07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`  
+**Shared Core C2 Merkle Root (SHA-256):** `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`  
 **Verification Timestamp (UTC):** `2026-10-29T21:25:31Z`  
 
 ## VERIFIED SECTION VII.d.i & APPENDIX RUBRIC METRICS

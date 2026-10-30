@@ -4,7 +4,7 @@
 **Principal Investigator:** Jeffery Humphrey, CEO | [REDACTED-FOR-PUBLIC-RELEASE]
 **Research Category:** Defense Basic & Applied Research (6.1 / 6.2 | Current Readiness: TRL 4 -> Phase-1 Target: TRL 5/6)
 **Cross-Referenced Filings:** DoD CDAO Tradewinds Docket 10-26-4046 (Status: Received) & USACE ERDC Rolling BAA (2026)
-**Shared Core C2 Merkle Root (SHA-256):** 07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb
+**Shared Core C2 Merkle Root (SHA-256):** d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb
 **Proposed Phase-1 Effort:** 12 Months | $750,000.00 Fixed-Price ($150,000.00 Day 15-30 Mobilization | 0% Cost Share | DFARS 252.227-7018)
 
 ---

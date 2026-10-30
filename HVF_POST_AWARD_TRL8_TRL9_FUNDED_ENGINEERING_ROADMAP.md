@@ -1,7 +1,7 @@
 # HUMPHREY VIRTUAL FARMS LLC // POST-AWARD TRL 8 & TRL 9 FUNDED ENGINEERING ROADMAP
 **Entity:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5`)  
 **Controlling Authority:** Jeffery Humphrey, Founder, CEO, & Principal Sovereign Architect  
-**Pre-Award Baseline Status:** `TRL 4 (Phase-1 OTA Target: TRL 6)` Complete & Frozen (`631 / 631` Modules, `85 / 85` Unit Tests, Master Merkle Root: `07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`)  
+**Pre-Award Baseline Status:** `TRL 4 (Phase-1 OTA Target: TRL 6)` Complete & Frozen (`631 / 631` Modules, `85 / 85` Unit Tests, Master Merkle Root: `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`)  
 **Execution Condition:** All Work Packages (`WP-1` through `WP-6`) execute **strictly post-award** using settled funds from **Milestone #01 / Day-1 COTS License Release (`18%` Setup Hardware Bucket + `15%` TRL 8/9 Integration Bucket)**.
 
 ---

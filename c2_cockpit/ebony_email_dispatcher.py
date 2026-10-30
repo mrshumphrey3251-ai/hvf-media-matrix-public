@@ -153,7 +153,7 @@ def generate_autonomous_response(sender: str, subject: str, body: str) -> tuple[
         response = (
             "Thank you for contacting the Executive Office of Humphrey Virtual Farms LLC.\n\n"
             "This transmission has been logged and routed to our Oklahoma Title 61 & Infrastructure Grant Working Group. "
-            "Our Phase-1 UAS technical specification ($25,000 prototype schedule) and OMES vendor packet are active. "
+            "Project Ebony v8.0.0 (DoD CDAO Tradewinds Docket 10-26-4046 [Compliant/Queued for Assessment] | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5) is active. "
             "Our executive team will follow up directly on this docket.\n\n"
             "Executive Dispatch // Humphrey Virtual Farms LLC\n"
             "CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | Bare-Metal Node: HVFNexus"

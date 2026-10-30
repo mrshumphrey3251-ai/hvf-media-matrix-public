@@ -3,7 +3,7 @@
 **Commanding Authority:** Jeffery Humphrey, Founder, President & CEO (`humphreyvirtualfarm@gmail.com` | [REDACTED-CEO-DIRECT-LINE])  
 **Active TSM Docket ID:** `10-26-4046` (Superseding `9-26-3703`)  
 **Timestamp (UTC):** `2026-10-30T16:34:29Z`  
-**Shared Core C2 Merkle Root (SHA-256):** `07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`  
+**Shared Core C2 Merkle Root (SHA-256):** `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`  
 **Master Video SHA-256 (`04:24`):** `c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd`  
 
 ---
@@ -38,5 +38,5 @@ OFFICIAL USACE ERDCWERX 4-PORTAL SUBMISSION LEDGER (DOCKETS #0126, #0069, #0008 
 
 5. SYNCHRONIZED CRYPTOGRAPHIC & CROSS-DOCKET LEDGER:
    - Cross-Referenced DoD CDAO Tradewinds Solutions Marketplace Docket: 10-26-4046 (Status: Received | 04:24 Master Video SHA-256: c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd)
-   - Shared Core C2 Cryptographic Merkle Root (SHA-256): 07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb
+   - Shared Core C2 Cryptographic Merkle Root (SHA-256): d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb
    - Master BAA White Paper PDF SHA-256 Digest: 6da8d8428f69d7be24d12ff5a1c5721331cbfd580f4368a4141802f56d062e50

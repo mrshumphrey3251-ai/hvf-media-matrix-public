@@ -12,7 +12,7 @@
 | :--- | :--- | :--- |
 | **1. Automated Unit & Stress Test Suite (`run_all_83_tests.py`)** | All `85 / 85` (`test_*.py`) Suites Executed | **`85 / 85 PASSED (100.0%)`** |
 | **2. Compiled C2 & Level-5 Python Modules** | Full Repo (`1,961` Private / `1,770` Public `.py` Modules) | **`100% Repo Compiled (`1,961` Priv / `1,770` Pub)` (`0` Syntax/BOM Errors)** |
-| **3. Master C2 Cryptographic Merkle Root (SHA-256)** | Fixed-Point Deterministic Digest | **`07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`** |
+| **3. Master C2 Cryptographic Merkle Root (SHA-256)** | Fixed-Point Deterministic Digest | **`d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`** |
 | **4. Turnkey Commercial Client Enclave (`ebony_client_rob_teel.zip`)** | Rebuilt 8-Module Tier 1/1.5 Pilot Package | **`611a5f62b59bc4c727ebadef36fc59499f9f890331b25edf50b4ee17aad47f03`** |
 | **5. Sovereign Release Manifest (`RELEASE_MANIFEST_v8.0.0.json`)** | Synchronized Private & Redacted Public Manifest | **100% Verified (`v8.0.0-stage8h-seal`)** |
 | **6. Public Repository Zero-PII Redaction Gate** | Unredacted Email / Credential Scan | **`0` Public PII or Secret Leaks (`100% Redacted`)** |

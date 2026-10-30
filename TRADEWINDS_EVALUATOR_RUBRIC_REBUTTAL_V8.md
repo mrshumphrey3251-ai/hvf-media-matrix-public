@@ -10,7 +10,7 @@ This official filing aligns the public repository with Tradewinds Docket **`10-2
    Per GAO-21-81 & GAO-24-106137, DoD operates 500+ installations, 300,000+ buildings, and $4.2B+ in annual OT/energy assets using commercial PLCs scanning at 50-200ms. Per CISA/NSA/DoD Advisories AA23-144A & AA24-038A (Volt Typhoon), actors pre-position inside critical energy/water/logistics OT corridors. Because arc-flash backfeeds propagate in <4.16ms and microreactor excursions occur in 6.0ms, 50-200ms PLC scans are 8x-33x too slow to arrest physical destruction.
 
 2. **CURRENT READINESS LEVEL (TRL 4 Software Emulation Testbed):**
-   Project Ebony is currently at **TRL 4** (laboratory software testbed and mathematical emulation on a local workstation; Merkle Root: `07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`). References in the video transcript to "bench verified," along with our 85/85 unit tests, 17/17 simulated red-team vectors, and NIST 800-171/800-82 mappings, reflect local software-bench emulation and architectural modeling—physical silicon/PCB fabrication, third-party HIL electrical testing, and formal DoD SPRS auditing are planned milestones under the proposed Phase-1 OTA.
+   Project Ebony is currently at **TRL 4** (laboratory software testbed and mathematical emulation on a local workstation; Merkle Root: `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`). References in the video transcript to "bench verified," along with our 85/85 unit tests, 17/17 simulated red-team vectors, and NIST 800-171/800-82 mappings, reflect local software-bench emulation and architectural modeling—physical silicon/PCB fabrication, third-party HIL electrical testing, and formal DoD SPRS auditing are planned milestones under the proposed Phase-1 OTA.
 
 3. **ADVANCING STATE OF THE ART (Modeled Design Targets vs. Legacy OT):**
    - **Project Ebony (Design Target):** Modeled 36.75ns Analog Kinetic Guillotine MOSFET gate cutoff at 28.5W on 24V DC.
@@ -27,7 +27,7 @@ This official filing aligns the public repository with Tradewinds Docket **`10-2
 ## SECTION 5: WORD-FOR-WORD EVALUATOR 1 & EVALUATOR 2 OBSERVATION RESOLUTION MATRIX (DOCKET 9-26-3703 -> DOCKET 10-26-4046)
 
 **Active Tradewinds Resubmission Docket:** `10-26-4046` (`Status: Received` — Submitted Oct 28, 2026 6:55 PM)  
-**Shared Core C2 Cryptographic Merkle Root (SHA-256):** `07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`  
+**Shared Core C2 Cryptographic Merkle Root (SHA-256):** `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`  
 
 | Criterion & Prior Score | Evaluator 1 & Evaluator 2 Verbatim Critique (`9-26-3703`) | Verifiable Resolution Sealed in Docket `10-26-4046` |
 | :--- | :--- | :--- |

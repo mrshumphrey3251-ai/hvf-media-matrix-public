@@ -21,7 +21,7 @@
     "modbus_fc05_actuation_us": 2.04,
     "kinetic_trip_ms": 13.33,
     "soft_start_recovery_ms": 126.13,
-    "master_c2_merkle_root_sha256": "07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb"
+    "master_c2_merkle_root_sha256": "d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb"
   },
   "updated_at_utc": "2026-10-25T00:04:57.775697+00:00"
 }

@@ -6,7 +6,7 @@
 > * **Master Video Deliverable:** `c2_cockpit/proposals/EBONY_V8_CDAO_RUBRIC_VERIFICATION_20261028.mp4` (`28.72 MB` | SHA-256: `c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd`)
 > * **Master PDF Script & AoA Dossier:** `c2_cockpit/proposals/TRADEWINDS_RESUBMISSION_SCRIPT_10_26_4046.pdf`
 > * **Empirical Verification Standing:** `636 / 636` Compiled C2 Modules (`1,961` Private / `1,770` Public) | `85 / 85` Automated Test Suites PASSED (`100.0%`) | `17 / 17` Red-Team Penetration Vectors BLOCKED | `52` SQLite WORM & Memory Tables | `1,420` Verified Field Academy Exam Questions
-> * **Shared Core C2 Cryptographic Merkle Root (SHA-256):** `07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`
+> * **Shared Core C2 Cryptographic Merkle Root (SHA-256):** `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`
 
 ---
 # Humphrey Virtual Farms LLC — Project Ebony (v8.0.0)
@@ -22,7 +22,7 @@
 ## 1. Executive Summary & TRL 4 Readiness Clarification
 This repository serves as the public architectural blueprint and TRL 4 software-bench verification record for **Project Ebony (v8.0.0)** under Tradewinds Docket **`10-26-4046`**.
 
-* **TRL 4 Software Emulation Scope:** Project Ebony is currently at **TRL 4** (laboratory software testbed and mathematical emulation running on an air-gapped local workstation under Master SHA-256 Merkle Root `07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`).
+* **TRL 4 Software Emulation Scope:** Project Ebony is currently at **TRL 4** (laboratory software testbed and mathematical emulation running on an air-gapped local workstation under Master SHA-256 Merkle Root `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`).
 * **Software-Bench Verification vs. Physical Silicon Target:** References in pitch transcripts and legacy dossiers to *"bench verified,"* `83/83` passed unit/stress suites, `17/17` simulated red-team vectors, and `NIST SP 800-171 / 800-82` mappings reflect local Python/C/SQLite software-bench emulation and architectural modeling. Physical Cortex-M7/RISC-V PCB fabrication, third-party high-voltage SiC MOSFET electrical testing, and formal DoD SPRS third-party auditing are scheduled Phase-1 milestones under our proposed **12-Month, $1.485M Prototype OTA (`10 U.S.C. § 4022`)**.
 
 ---

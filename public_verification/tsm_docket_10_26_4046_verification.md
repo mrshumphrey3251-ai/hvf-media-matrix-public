@@ -4,7 +4,7 @@
 **Commanding Authority:** Jeffery Humphrey, Founder, President & CEO  
 **Submission Status:** `Received` (`Oct 29, 2026 7:45 PM`)  
 **Public Verification Repository:** https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public  
-**Shared Core C2 Merkle Root (SHA-256):** `07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`  
+**Shared Core C2 Merkle Root (SHA-256):** `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`  
 
 ## 1. SECTION VII.d.i (<5:00 CAP) & SECTION VII.e MASTER VIDEO PROOF
 - **Master Video Asset:** `c2_cockpit/proposals/EBONY_V8_CDAO_RUBRIC_VERIFICATION_20261028.mp4`

@@ -16,7 +16,7 @@ ERDC Topic Areas: ITL-4 (Cybersecurity), ITL-8 (Edge Computing), GSL-19 (Bridge 
 
 Research Classification: Applied Research and Development (TRL 4 Laboratory Software Testbed advancing to TRL 6 Prototype; Non-Proprietary Pre-Proposal Summary)
 
-Cross-Referenced DoD CDAO Tradewinds Docket: 10-26-4046 (Status: Received | Video SHA-256: c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd | Merkle Root: 07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb)
+Cross-Referenced DoD CDAO Tradewinds Docket: 10-26-4046 (Status: Received | Video SHA-256: c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd | Merkle Root: d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb)
 
 Public Verification Repository: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public
 

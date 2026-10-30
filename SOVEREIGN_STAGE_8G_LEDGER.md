@@ -12,7 +12,7 @@
 | :--- | :--- | :--- |
 | **1. Automated Unit & Stress Test Suite (`run_all_83_tests.py`)** | All `85 / 85` (`test_*.py`) Suites Executed | **`85 / 85 PASSED (100.0%)`** |
 | **2. Compiled C2 & Level-5 Python Modules** | Full Repo (`1,961` Private / `1,770` Public `.py` Modules) | **`100% Repo Compiled (`1,961` Priv / `1,770` Pub)` (`0` Syntax/BOM Errors)** |
-| **3. Master C2 Cryptographic Merkle Root (SHA-256)** | Fixed-Point Deterministic Digest | **`07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb`** |
+| **3. Master C2 Cryptographic Merkle Root (SHA-256)** | Fixed-Point Deterministic Digest | **`d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`** |
 | **4. Public Repository Zero-PII Redaction Gate** | `155 -> 0` Unredacted Email / Credential Hits | **`0` Public PII or Secret Leaks (`100% Redacted`)** |
 | **5. Sovereign Field Academy Assessment Bank** | Chapter 1 (`800` Qs) + Chapter 5 (`620` Qs) | **`1,420 / 1,420` Unique Verified Questions** |
 | **6. Bare-Metal SQLite WORM & Memory Vault** | `matrix_ledger.db` (`22` tables) & `hvf_memory_vault.db` (`30` tables) | **100% Schema & SHA-256 WORM Sealed** |

@@ -26,7 +26,7 @@
     "field_academy_verified_questions": 1420,
     "offline_engineering_manuals": 4,
     "iso_32000_1_pdf_compilers": 6,
-    "master_c2_merkle_root_sha256": "07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb"
+    "master_c2_merkle_root_sha256": "d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb"
   },
   "edge_defense_state": {
     "system_verdict": "SOVEREIGN_SYSTEM_LOCKED_AND_NOMINAL",
@@ -53,7 +53,7 @@
     },
     "cryptographic_ledger": {
       "sealed_blocks": 82,
-      "master_c2_merkle_root": "07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb",
+      "master_c2_merkle_root": "d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb",
       "asymmetric_algorithm": "ED25519",
       "synthetic_data_prohibited": true
     }
@@ -64,6 +64,6 @@
   "prior_baseline_docket_id": "9-26-3703",
   "technology_readiness_level": "TRL 4 (Phase-1 OTA Target: TRL 6)",
   "submission_type": "TSM Resubmission",
-  "master_merkle_root_sha256": "07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb",
+  "master_merkle_root_sha256": "d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb",
   "verification_repository": "https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"
 }

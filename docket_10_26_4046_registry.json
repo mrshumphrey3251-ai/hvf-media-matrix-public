@@ -12,7 +12,7 @@
     "submitted_date": "2026-10-27",
     "readiness_level": "TRL 4",
     "classification": "Laboratory Software Emulation Testbed & Mathematical Proof-of-Concept",
-    "merkle_root": "07b3906115eab667f51562c265219b5274fcd1288f58cc3ea34d465600d28ccb",
+    "merkle_root": "d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb",
     "proposed_ota": "$1.485M 12-Month Phase-1 Prototype OTA under 10 U.S.C. 4022",
     "data_rights": "DFARS 252.227-7018 (100% Small Business Background IP Retained)"
   }
