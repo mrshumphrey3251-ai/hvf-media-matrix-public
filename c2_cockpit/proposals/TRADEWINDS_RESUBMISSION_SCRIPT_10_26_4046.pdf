@@ -55,7 +55,7 @@ BT
 0 -13 Td
 (----) Tj
 0 -13 Td
-([OCT 2026 v8.0.0 RESUBMISSION DELTA: Explicitly resolves all prior 9-26-3703/10-26-3976) Tj
+([OCT 2026 v8.0.0 RESUBMISSION DELTA: Explicitly resolves all prior 9-26-3703/10-26-4046) Tj
 0 -13 Td
 (Assessor Feedback with new 4-Pillar Rubric proof, TRL 4 software-vs-hardware target) Tj
 0 -13 Td
@@ -126,9 +126,9 @@ BT
 /F1 8 Tf
 (========================================================================================) Tj
 0 -11 Td
-(WORM SHA-256 SEAL: 87083ef6018e02ea3fcb2b5732b5cef9f2a8981333430489642cd7417343f4ee) Tj
+(WORM SHA-256 SEAL: 6fe98285d688c985544c5379bc74f24d48ffd71e4acff74ae0a4ca3080c7995b) Tj
 0 -11 Td
-(GENERATED: 2026-10-28 23:06:39 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 1 OF 5) Tj
+(GENERATED: 2026-10-30 00:40:36 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 1 OF 5) Tj
 ET
 endstream
 endobj
@@ -244,9 +244,9 @@ BT
 /F1 8 Tf
 (========================================================================================) Tj
 0 -11 Td
-(WORM SHA-256 SEAL: 87083ef6018e02ea3fcb2b5732b5cef9f2a8981333430489642cd7417343f4ee) Tj
+(WORM SHA-256 SEAL: 6fe98285d688c985544c5379bc74f24d48ffd71e4acff74ae0a4ca3080c7995b) Tj
 0 -11 Td
-(GENERATED: 2026-10-28 23:06:39 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 2 OF 5) Tj
+(GENERATED: 2026-10-30 00:40:36 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 2 OF 5) Tj
 ET
 endstream
 endobj
@@ -254,7 +254,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 10 0 R >>
 endobj
 10 0 obj
-<< /Length 4211 >>
+<< /Length 4224 >>
 stream
 BT
 /F2 10 Tf
@@ -337,34 +337,36 @@ BT
 0 -13 Td
 (----) Tj
 0 -13 Td
-(>>> SCENE 1 \(0:00 - 0:50\) // NEW v8.0.0 RESUBMISSION DELTA MATRIX \(4-QUADRANT BEFORE) Tj
+(>>> SCENE 1 \(00:00 - 00:52\) // SEC VII.e MANDATORY RESUBMISSION SUMMARY & 4-QUADRANT) Tj
 0 -13 Td
-(vs. AFTER\)) Tj
+/F2 9 Tf
+(DELTA MATRIX) Tj
+/F1 9 Tf
 0 -13 Td
-(RUBRIC: Section VII.e Mandatory Resubmission Gate: Point-by-Point Assessor Feedback) Tj
+(RUBRIC: Section VII.e Mandatory Resubmission Gate & 4-Quadrant Assessor Feedback) Tj
 0 -13 Td
 (Resolution) Tj
 0 -13 Td
-(SCRIPT: Welcome to the October 2026 version 8.0.0 architectural verification of Project) Tj
+(SCRIPT: Per Announcement Section Seven E and the Appendix Assessment Rubric, welcome to) Tj
 0 -13 Td
-(Ebony, presented by Jeffery Humphrey, Founder, President, and Chief Executive Officer) Tj
+(the version 8.0.0 resubmission of Project Ebony by Jeffery Humphrey, Founder and CEO of) Tj
 0 -13 Td
-(of Humphrey Virtual Farms LLC, CAGE Code 1AHA8, UEI S1M4ENLHTDH5. We engineered this) Tj
+(Humphrey Virtual Farms LLC, CAGE 1AHA8. This briefing resolves all prior Docket) Tj
 0 -13 Td
-(completely new verification briefing from the ground up to directly resolve every item) Tj
+(9-26-3703 feedback across four quadrants. Quadrant One quantifies defense operational) Tj
 0 -13 Td
-(of Assessor Feedback from our prior Tradewinds filings. On screen in our four-quadrant) Tj
+(technology risk per federal GAO audits and CISA Volt Typhoon advisories, proving) Tj
 0 -13 Td
-(Resubmission Delta Matrix, you see our four structural upgrades: Quadrant One) Tj
+(4.16-millisecond arc-flash faults outrun legacy PLCs. Quadrant Two separates our live) Tj
 0 -13 Td
-(quantifies the DoD operational technology threat using GAO-21-81, GAO-24-106137, and) Tj
+(TRL 4 air-gapped software testbed and zero-dependency SQLite retrieval security from) Tj
 0 -13 Td
 /F1 8 Tf
 (========================================================================================) Tj
 0 -11 Td
-(WORM SHA-256 SEAL: 87083ef6018e02ea3fcb2b5732b5cef9f2a8981333430489642cd7417343f4ee) Tj
+(WORM SHA-256 SEAL: 6fe98285d688c985544c5379bc74f24d48ffd71e4acff74ae0a4ca3080c7995b) Tj
 0 -11 Td
-(GENERATED: 2026-10-28 23:06:39 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 3 OF 5) Tj
+(GENERATED: 2026-10-30 00:40:36 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 3 OF 5) Tj
 ET
 endstream
 endobj
@@ -372,7 +374,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 12 0 R >>
 endobj
 12 0 obj
-<< /Length 4402 >>
+<< /Length 4391 >>
 stream
 BT
 /F2 10 Tf
@@ -391,104 +393,104 @@ BT
 (============================================================================================) Tj
 0 -14 Td
 /F1 9 Tf
-(CISA Volt Typhoon advisories. Quadrant Two establishes strict audit) Tj
+(our modeled Phase-1 hardware targets. Quadrant Three benchmarks Project Ebony) Tj
 0 -13 Td
-(transparency--separating our live TRL 4 local software emulation testbed from our) Tj
+(head-to-head against Siemens, Rockwell, Triconex, Dragos, Nozomi, and cloud AI across) Tj
 0 -13 Td
-(modeled Phase-1 hardware design targets. Quadrant Three introduces a five-vendor) Tj
+(six mission gates. Quadrant Four proves our commercial and federal traction, dual-use) Tj
 0 -13 Td
-(Quantitative Analysis of Alternatives against Siemens, Rockwell, Triconex, Dragos,) Tj
-0 -13 Td
-(Nozomi, and cloud AI. Quadrant Four details our 26-module CLIN price schedule and our) Tj
-0 -13 Td
-($1.485 million Phase-1 Prototype OTA pathway.) Tj
+(26-module CLIN pricing, and 1.485 million dollar Phase-1 Prototype OTA.) Tj
 0 -13 Td
 () Tj
 0 -13 Td
 /F2 9 Tf
-(>>> SCENE 2 \(0:50 - 1:40\) // CRITERION 1: DEFINING THE PROBLEM & LOGARITHMIC PHYSICS) Tj
+(>>> SCENE 2 \(00:52 - 01:44\) // APPENDIX RUBRIC CRITERION 1: PROBLEM ID, DOD IMPACT &) Tj
 /F1 9 Tf
 0 -13 Td
-/F2 9 Tf
-(TIMELINE) Tj
-/F1 9 Tf
+(<4.16ms PHYSICS GAP) Tj
 0 -13 Td
-(RUBRIC: Criterion 1: Defining the Problem \(GAO Citations, Volt Typhoon & <4.16ms) Tj
+(RUBRIC: Appendix Rubric Criterion 1: Defining the Problem, DoD Mission Impact & Status) Tj
 0 -13 Td
-(Arc-Flash Physics\)) Tj
+(Quo Risk) Tj
 0 -13 Td
-(SCRIPT: Pillar One: Defining the Problem. According to U.S. Government Accountability) Tj
+(SCRIPT: Appendix Rubric Criterion One: Problem Identification and DoD Mission Impact.) Tj
 0 -13 Td
-(Office reports GAO-21-81 and GAO-24-106137, the Department of Defense operates more) Tj
+(Per GAO audits 21-81 and 24-106137, the Department of Defense operates over 500) Tj
 0 -13 Td
-(than 500 military installations, 300,000 facilities, and $4.2 billion in annual energy) Tj
+(installations, 300,000 buildings, and 4.2 billion dollars in energy systems relying on) Tj
 0 -13 Td
-(and microgrid assets controlled by commercial PLCs scanning at 50 to 200 milliseconds.) Tj
+(50 to 200 millisecond PLCs. Joint CISA and DoD Volt Typhoon advisories confirm state) Tj
 0 -13 Td
-(Joint CISA, NSA, FBI, and DoD Advisories AA23-144A and AA24-038A confirm that) Tj
+(actors pre-position inside defense grids to corrupt PLC logic while spoofing operator) Tj
 0 -13 Td
-(state-sponsored Volt Typhoon actors pre-position inside critical energy, water, and) Tj
+(HMIs. Under the status quo, arc-flash faults destroy equipment in 4.16 milliseconds and) Tj
 0 -13 Td
-(logistics OT corridors. As shown on our physics timeline below, high-voltage arc-flash) Tj
+(thermal excursions occur in 6.0 milliseconds. On our logarithmic timeline below,) Tj
 0 -13 Td
-(backfeeds destroy equipment in 4.16 milliseconds, and microreactor thermal excursions) Tj
+(Project Ebony targets a 36.75-nanosecond cutoff and emulates a 2.04-microsecond Modbus) Tj
 0 -13 Td
-(occur in 6.0 milliseconds. Legacy 50-to-200 millisecond digital PLC scan loops arrive 8) Tj
-0 -13 Td
-(to 33 times after physical destruction has already occurred.) Tj
+(trip--whereas legacy 50 to 200 millisecond PLCs react 8 to 33 times too late.) Tj
 0 -13 Td
 () Tj
 0 -13 Td
 /F2 9 Tf
-(>>> SCENE 3 \(1:40 - 2:40\) // CRITERION 2: ACCELERATING THE MISSION \(TRI-BRAIN SCHEMATIC) Tj
+(>>> SCENE 3 \(01:44 - 02:38\) // APPENDIX RUBRIC CRITERION 2: MISSION IMPACT, TRL 4 &) Tj
 /F1 9 Tf
 0 -13 Td
 /F2 9 Tf
-(& LIVE TESTBED\)) Tj
+(ZERO-CLOUD SECURITY) Tj
 /F1 9 Tf
 0 -13 Td
-(RUBRIC: Criterion 2: Accelerating the Mission \(Live 127.0.0.1 Testbed, 85/85 Tests &) Tj
+(RUBRIC: Appendix Rubric Criterion 2: Accelerating the Mission, TRL 4 Evidence &) Tj
 0 -13 Td
-(17/17 Red-Team Blocks\)) Tj
+(Zero-Dependency Security) Tj
 0 -13 Td
-(SCRIPT: Pillar Two: Accelerating the Mission. On screen is our Tri-Brain architectural) Tj
+(SCRIPT: Appendix Rubric Criterion Two: Mission Acceleration, TRL 4 Maturity, and) Tj
 0 -13 Td
-(schematic alongside live execution of our TRL 4 software emulation testbed on) Tj
+(Zero-Dependency Security. On the left is our live 26-module C2 Console at TRL 4 on) Tj
 0 -13 Td
-(air-gapped localhost 127.0.0.1, operating with zero percent commercial cloud dependency) Tj
+(localhost 127.0.0.1 with zero cloud dependency, zero external retrieval APIs, and zero) Tj
 0 -13 Td
-(and zero external APIs. Brain One executes deterministic safety boundary logic in) Tj
+(open WAN ports. Brain One runs deterministic safety logic and models our Phase-1) Tj
 0 -13 Td
-(software while our SPICE mathematical model targets a 50-microsecond bare-metal loop,) Tj
+(hardware target: a 50-microsecond loop, 2.04-microsecond Modbus trip, and) Tj
 0 -13 Td
-(2.04-microsecond RS-485 Modbus FC05 trip, and a 36.75-nanosecond silicon-carbide MOSFET) Tj
+(36.75-nanosecond silicon-carbide MOSFET cutoff, while Brain Two runs isolated read-only) Tj
 0 -13 Td
-(cutoff for Phase-1 hardware fabrication. Brain Two executes offline structural,) Tj
+(diagnostics with zero actuator wire. Brain Three executes all data retrieval locally) Tj
 0 -13 Td
-(pavement, and telemetry anomaly detection with zero physical or logical authority to) Tj
+(inside our 52-table SQLite WORM enclave and seals a SHA-256 Merkle DAG in under 0.15) Tj
 0 -13 Td
-(override Brain One safety interlocks. Brain Three chains every frame into an) Tj
+(milliseconds. On the right, our live workstation subprocess harness verifies all 636) Tj
 0 -13 Td
-(append-only SHA-256 WORM Merkle Directed Acyclic Graph across 52 verified SQLite) Tj
+(Python modules, 85 of 85 passing unit test suites, and 17 of 17 blocked Red-Team) Tj
 0 -13 Td
-(tables, proven live across 636 C2 modules, 85 of 85 passing unit test suites, and 17 of) Tj
-0 -13 Td
-(17 blocked Red-Team cyber vectors.) Tj
+(vectors with automatic tamper zeroization.) Tj
 0 -13 Td
 () Tj
 0 -13 Td
-(>>> SCENE 4 \(2:40 - 3:40\) // CRITERION 3: ADVANCING STATE OF THE ART \(5-VENDOR AoA &) Tj
+/F2 9 Tf
+(>>> SCENE 4 \(02:38 - 03:31\) // APPENDIX RUBRIC CRITERION 3: STATE OF THE ART & 5-VENDOR) Tj
+/F1 9 Tf
 0 -13 Td
-(SWaP CHART\)) Tj
+(AoA MATRIX) Tj
 0 -13 Td
-(RUBRIC: Criterion 3: Quantitative Analysis of Alternatives vs. Siemens, Rockwell,) Tj
+(RUBRIC: Appendix Rubric Criterion 3: Advancing the State of the Art \(5-Vendor) Tj
+0 -13 Td
+(Quantitative AoA\)) Tj
+0 -13 Td
+(SCRIPT: Appendix Rubric Criterion Three: Advancing the State of the Art. Our) Tj
+0 -13 Td
+(Five-Vendor Quantitative Analysis of Alternatives benchmarks Project Ebony across six) Tj
+0 -13 Td
+(mission gates. Gate One and Gate Two evaluate architecture and cutoff latency: Siemens,) Tj
 0 -13 Td
 /F1 8 Tf
 (========================================================================================) Tj
 0 -11 Td
-(WORM SHA-256 SEAL: 87083ef6018e02ea3fcb2b5732b5cef9f2a8981333430489642cd7417343f4ee) Tj
+(WORM SHA-256 SEAL: 6fe98285d688c985544c5379bc74f24d48ffd71e4acff74ae0a4ca3080c7995b) Tj
 0 -11 Td
-(GENERATED: 2026-10-28 23:06:39 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 4 OF 5) Tj
+(GENERATED: 2026-10-30 00:40:36 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 4 OF 5) Tj
 ET
 endstream
 endobj
@@ -496,7 +498,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 14 0 R >>
 endobj
 14 0 obj
-<< /Length 3739 >>
+<< /Length 2838 >>
 stream
 BT
 /F2 10 Tf
@@ -515,84 +517,60 @@ BT
 (============================================================================================) Tj
 0 -14 Td
 /F1 9 Tf
-(Triconex, Dragos & Cloud AI) Tj
+(Rockwell, and Triconex require 10 to 200 milliseconds and Dragos has zero cutoff) Tj
 0 -13 Td
-(SCRIPT: Pillar Three: Advancing the State of the Art. Our Quantitative Analysis of) Tj
+(authority, whereas Ebony models a 36.75-nanosecond cutoff. Gate Three and Gate Four) Tj
 0 -13 Td
-(Alternatives table and SWaP bar chart benchmark Project Ebony directly against four) Tj
+(evaluate physics speed and SWaP: incumbents draw 150 to 1,200 watts and fail under) Tj
 0 -13 Td
-(classes of industry incumbents. First, digital PLCs like Siemens S7-1500 and Rockwell) Tj
+(TRISIS or EMCON, while Ebony is 1.36 million times faster than a 50-millisecond PLC at) Tj
 0 -13 Td
-(ControlLogix require 50 to 200 milliseconds per scan and draw 150 to 450 watts. Second,) Tj
+(a 28.5-watt target on 24-volt DC. Gate Five and Gate Six verify zero-cloud independence) Tj
 0 -13 Td
-(triple-modular redundant safety systems like Schneider Electric Triconex require 10 to) Tj
+(and cryptographic provenance: Project Ebony passes all six mission gates with 100) Tj
 0 -13 Td
-(50 milliseconds, draw 200 to 600 watts, and were compromised by TRISIS firmware) Tj
-0 -13 Td
-(injection. Third, passive OT network monitors like Dragos Platform and Nozomi Guardian) Tj
-0 -13 Td
-(draw up to 1,200 watts and possess zero physical cutoff authority, requiring over 250) Tj
-0 -13 Td
-(milliseconds for human intervention. Fourth, commercial cloud AI wrappers like Jev) Tj
-0 -13 Td
-(require 250-millisecond cloud round-trips and fail completely under EMCON. Project) Tj
-0 -13 Td
-(Ebony combines a verified zero-cloud WORM enclave with a modeled 36.75-nanosecond) Tj
-0 -13 Td
-(cutoff target--1.36 million times faster than a 50-millisecond PLC--at a modeled 28.5) Tj
-0 -13 Td
-(watts on a 24-volt DC battery bus.) Tj
+(percent local SQLite WORM Merkle verification.) Tj
 0 -13 Td
 () Tj
 0 -13 Td
 /F2 9 Tf
-(>>> SCENE 5 \(3:40 - 4:35\) // CRITERION 4: 26-MODULE CLIN SCHEDULE & $1.485M PHASE-1 OTA) Tj
+(>>> SCENE 5 \(03:31 - 04:24\) // APPENDIX RUBRIC CRITERION 4: VIABILITY, TRACTION,) Tj
 /F1 9 Tf
 0 -13 Td
-/F2 9 Tf
-(GANTT) Tj
-/F1 9 Tf
+(26-CLINs & $1.485M OTA) Tj
 0 -13 Td
-(RUBRIC: Criterion 4: Audit-Proof Commercialization Readiness, Unbundled CLINs & 10) Tj
+(RUBRIC: Appendix Rubric Criterion 4: Business Model Viability, Verified Traction,) Tj
 0 -13 Td
-/F2 9 Tf
-(U.S.C. 4022 OTA) Tj
-/F1 9 Tf
+(26-CLINs & $1.485M OTA) Tj
 0 -13 Td
-(SCRIPT: Pillar Four: Business Model and Acquisition Pathway. Every commercial and state) Tj
+(SCRIPT: Appendix Rubric Criterion Four: Business Model Viability, Traction, and) Tj
 0 -13 Td
-(artifact in our codebase is transparently engineered as audit-proof deployment) Tj
+(Transition. On the top Gantt schedule is our 12-month, 1.485 million dollar Phase-1) Tj
 0 -13 Td
-(readiness: a standalone Red-Team-certified client evaluation package, staged civil) Tj
+(Prototype OTA under 10 U.S.C. 4022, starting with a 150,000-dollar mobilization tranche) Tj
 0 -13 Td
-(bridge and pavement diagnostic blueprints modeling a cost reduction from $4,600) Tj
+(to advance from TRL 4 to TRL 6. In the middle is our unbundled dual-use 26-module CLIN) Tj
 0 -13 Td
-(snooper-truck inspections to $250 per autonomous drone sortie, and a complete) Tj
+(schedule: CLIN 0001 Base Pilot at 2,450 dollars per month, CLIN 1004-A Full Node Bundle) Tj
 0 -13 Td
-(110-control NIST 800-171 and 800-82 architectural mapping with formal C3PAO and SPRS) Tj
+(at 895,000 dollars per year, and CLIN 1004-B Base Fleet License. At the bottom is our) Tj
 0 -13 Td
-(certification scheduled in Phase 1. Government buyers can procure our unbundled) Tj
+(verified federal and commercial traction: our filed U.S. Army Corps of Engineers ERDC) Tj
 0 -13 Td
-(26-module console starting at CLIN 0001 Base Pilot for $2,450 per month or CLIN 1004-A) Tj
+(White Paper, Defense Innovation Unit Solution Brief, microgrid pilot packets, civil) Tj
 0 -13 Td
-(Full 1-Node Bundle for $895,000 per year, or award our 12-month, $1.485 million) Tj
+(bridge drone diagnostics at 250 dollars per sortie, and 110-control NIST mapping with) Tj
 0 -13 Td
-(Fixed-Price Prototype OTA under 10 U.S.C. Section 4022, beginning with a $150,000 Day) Tj
-0 -13 Td
-(15-to-30 mobilization tranche to fabricate physical Cortex-M7 and MOSFET boards and) Tj
-0 -13 Td
-(advance from TRL 4 to TRL 6, while Humphrey Virtual Farms LLC retains 100 percent DFARS) Tj
-0 -13 Td
-(252.227-7018 Background IP. Thank you.) Tj
+(100 percent DFARS Background IP retained. Thank you.) Tj
 0 -13 Td
 () Tj
 0 -13 Td
 /F1 8 Tf
 (========================================================================================) Tj
 0 -11 Td
-(WORM SHA-256 SEAL: 87083ef6018e02ea3fcb2b5732b5cef9f2a8981333430489642cd7417343f4ee) Tj
+(WORM SHA-256 SEAL: 6fe98285d688c985544c5379bc74f24d48ffd71e4acff74ae0a4ca3080c7995b) Tj
 0 -11 Td
-(GENERATED: 2026-10-28 23:06:39 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 5 OF 5) Tj
+(GENERATED: 2026-10-30 00:40:36 UTC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | PAGE 5 OF 5) Tj
 ET
 endstream
 endobj
@@ -609,12 +587,12 @@ xref
 0000005125 00000 n 
 0000009311 00000 n 
 0000009448 00000 n 
-0000013712 00000 n 
-0000013850 00000 n 
-0000018305 00000 n 
-0000018443 00000 n 
+0000013725 00000 n 
+0000013863 00000 n 
+0000018307 00000 n 
+0000018445 00000 n 
 trailer
 << /Size 15 /Root 1 0 R >>
 startxref
-22235
+21336
 %%EOF
