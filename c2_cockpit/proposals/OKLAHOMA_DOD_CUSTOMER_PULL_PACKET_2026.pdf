@@ -1,0 +1,86 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Bold >>
+endobj
+3 0 obj
+<< /Length 4051 >>
+stream
+BT
+72 714 Td
+13.8 TL
+/F2 10.5 Tf (OKLAHOMA DoD & USACE TULSA DISTRICT DIRECT CUSTOMER-PULL BRIEF \(10 U.S.C. 4022 / CSO\)) Tj T*
+/F2 10.5 Tf (Project Ebony v8.0.0: Air-Gapped Tri-Brain OT/SCADA Interlock, Bridge NDE & WORM Enclave) Tj T*
+/F1 10.5 Tf (Prime Offeror: Humphrey Virtual Farms LLC \(701 E Drew St., Madill, OK 73446 | SDB, Minority-) Tj T*
+/F1 10.5 Tf (Owned & NTDC\)) Tj T*
+/F1 10.5 Tf (Identifiers: CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | NAICS: 541715, 541511, 541330, 541690) Tj T*
+/F1 10.5 Tf (POC: Jeffery Humphrey, Founder, President & CEO | \(572\) 358-9978 |) Tj T*
+/F1 10.5 Tf (humphreyvirtualfarm@gmail.com) Tj T*
+/F1 10.5 Tf (Public Cryptographic Repo: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public) Tj T*
+/F2 10.5 Tf (1. Five Active Pre-Positioned Federal Dockets Ready for Immediate Oklahoma DoD Pull) Tj T*
+/F1 10.5 Tf (- DoD CDAO Tradewinds Solutions Marketplace \(TSM\): Docket 10-26-4046 \(Status: Received |) Tj T*
+/F1 10.5 Tf (Video SHA-256: c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd | Merkle) Tj T*
+/F1 10.5 Tf (Root: bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1\).) Tj T*
+/F1 10.5 Tf (- USACE ERDC CERL Commercial Solutions Opening \(CSO 2026\): Submittable Docket #0126) Tj T*
+/F1 10.5 Tf (\(Operational Energy | Status: Received\).) Tj T*
+/F1 10.5 Tf (- USACE ERDC CERL BAA 2026: Submittable Docket #0069 \(Critical Infrastructure & Utility) Tj T*
+/F1 10.5 Tf (Systems Protection | Status: In-Progress\).) Tj T*
+/F1 10.5 Tf (- USACE ERDC GSL BAA 2027: Submittable Docket #0008 \(Bridge Research GSL-19 | Status: In-) Tj T*
+/F1 10.5 Tf (Progress\).) Tj T*
+/F1 10.5 Tf (- USACE ERDC ITL BAA 2027: Submittable Docket #0005 \(Cybersecurity ITL-4 | Status:) Tj T*
+/F1 10.5 Tf (Received\).) Tj T*
+/F2 10.5 Tf (2. Technical Capability & Mission Fit for Oklahoma Installations \(TRL 4 Baseline to TRL) Tj T*
+/F2 10.5 Tf (6\)) Tj T*
+/F1 10.5 Tf (Per GAO-21-81, GAO-24-106137, and CISA Volt Typhoon advisories, base microgrids and OT) Tj T*
+/F1 10.5 Tf (networks rely on PLCs scanning at 50-200ms, while arc-flash faults destroy switchgear in) Tj T*
+/F1 10.5 Tf (<4.16ms and thermal excursions occur in 6.0ms. Project Ebony v8.0.0 is an active TRL 4) Tj T*
+/F1 10.5 Tf (software testbed on local loopback 127.0.0.1 \(0% cloud, 638 C2 modules, 86/86 passing test) Tj T*
+/F1 10.5 Tf (suites, 52 SQLite WORM tables\):) Tj T*
+/F1 10.5 Tf (- Tinker Air Force Base \(72nd ABW Civil Engineering & OC-ALC\): Brain 1 models a <50us bare-) Tj T*
+/F1 10.5 Tf (metal loop, 2.04us RS-485 Modbus FC05 trip, and 36.75ns SiC MOSFET cutoff target \(28.5W on) Tj T*
+/F1 10.5 Tf (24V DC\) for depot switchgear, while Brain 2 automates ASTM D6433 airfield pavement PCI NDE) Tj T*
+/F1 10.5 Tf (\($250/sortie vs. $4,600/day manual closures\).) Tj T*
+/F1 10.5 Tf (- McAlester Army Ammunition Plant \(MCAAP Industrial OT\): Air-gapped cyber-physical safety) Tj T*
+/F1 10.5 Tf (interlock and Brain 3 SHA-256 WORM Merkle DAG \(<0.15ms sealing, 17/17 Red-Team vectors) Tj T*
+/F1 10.5 Tf (blocked with single-byte tamper zeroization\).) Tj T*
+/F1 10.5 Tf (- USACE Tulsa District \(Dams, Locks, Bridges & MILCON\): Automated GSL-19 / ASTM D6433 bridge) Tj T*
+/F1 10.5 Tf (and dam crack-width mensuration with WORM chain-of-custody logs and 110-control NIST SP) Tj T*
+/F1 10.5 Tf (800-171 / 800-82 compliance.) Tj T*
+/F2 10.5 Tf (3. Rapid Acquisition Pathways, Pricing & DFARS 252.227-7018 Background IP Protection) Tj T*
+/F1 10.5 Tf (Oklahoma Contracting Officers can pull Docket 10-26-4046 or ERDC Dockets) Tj T*
+/F1 10.5 Tf (#0126/#0069/#0008/#0005 via 10 U.S.C. 4022 Prototype OTA \(0% Cost Share for NTDC/SDB\),) Tj T*
+/F1 10.5 Tf (ERDCWERX CSO Call Order, or FAR Part 12/13 Award: \(a\) CLIN 0001 Base Pilot: $2,450/mo; \(b\)) Tj T*
+/F1 10.5 Tf (CLIN 1004-A 1-Node Bundle: $895,000/yr; \(c\) 12-Month Phase-1 TRL 6 Prototype: $1,200,000.00) Tj T*
+/F1 10.5 Tf (\($150,000.00 Mobilization\). Background IP retained under DFARS 252.227-7018.) Tj T*
+ET
+BT
+/F1 10.5 Tf 290 72 Td (1 of 1) Tj
+ET
+endstream
+endobj
+4 0 obj
+<< /Type /Page /Parent 5 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 3 0 R >>
+endobj
+5 0 obj
+<< /Type /Pages /Kids [4 0 R] /Count 1 >>
+endobj
+6 0 obj
+<< /Type /Catalog /Pages 5 0 R >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000087 00000 n 
+0000000158 00000 n 
+0000004261 00000 n 
+0000004397 00000 n 
+0000004454 00000 n 
+trailer
+<< /Size 7 /Root 6 0 R >>
+startxref
+4503
+%%EOF
