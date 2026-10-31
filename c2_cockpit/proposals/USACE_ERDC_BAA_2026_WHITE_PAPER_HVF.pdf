@@ -16,7 +16,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
 endobj
 6 0 obj
-<< /Length 6536 >>
+<< /Length 6650 >>
 stream
 0.10 0.16 0.26 rg
 BT /F2 8.0 Tf 0 Tw 72.00 748.00 Td (HUMPHREY VIRTUAL FARMS LLC // CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 // USACE ERDC BAA \(GSL / ITL\) WHITE PAPER) Tj ET
@@ -31,42 +31,43 @@ BT /F1 9.00 Tf 3.2768 Tw 72.00 658.42 Td (Rolling Broad Agency Announcement \(BA
 BT /F1 9.00 Tf 0.0000 Tw 72.00 646.27 Td (Technology Laboratory \(ITL\)) Tj 0 Tw ET
 BT /F1 9.00 Tf 1.0935 Tw 72.00 630.62 Td (Submitting Entity: Humphrey Virtual Farms LLC \(HQ: 701 E Drew, Madill, OK 73446-2620 | 100% U.S. Sovereign) Tj 0 Tw ET
 BT /F1 9.00 Tf 0.0000 Tw 72.00 618.47 Td (Small Business, 0% FOCI\)) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 602.82 Td (Statutory Identifiers: CAGE Code: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | Active Federal Prime Contractor) Tj 0 Tw ET
-BT /F1 9.00 Tf 11.1526 Tw 72.00 587.17 Td (Principal Investigator: Jeffery Humphrey, Founder, President & CEO | \(572\) 358-9978 |) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 575.02 Td (humphreyvirtualfarm@gmail.com) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 559.37 Td (Public Verification Repository: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public) Tj 0 Tw ET
-BT /F1 9.00 Tf 14.5890 Tw 72.00 543.72 Td (Shared Core C2 Cryptographic Merkle Root \(640 Compiled Python C2 Modules\):) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 531.57 Td (d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb) Tj 0 Tw ET
-BT /F1 9.00 Tf 3.5361 Tw 72.00 515.92 Td (Cross-Referenced Active Filings: DoD CDAO Tradewinds Solutions Marketplace Docket 10-26-4046 \(Status:) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.5599 Tw 72.00 503.77 Td (Compliant/Queued for Assessment -- Oct 29, 2026\), Defense Innovation Unit \(DIU\) Portfolio Network & SWAP-USV) Tj 0 Tw ET
-BT /F1 9.00 Tf 2.7746 Tw 72.00 491.62 Td (Sprint 2 \(Submitted Oct 31, 2026\), U.S. Army DEVCOM ARL BAA W911NF-23-S-0001 \($750K White Paper) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 479.47 Td (Transmitted\), and DHS S&T LRBAA \($1.0M OIP Confirmed\)) Tj 0 Tw ET
-BT /F1 9.00 Tf 1.6103 Tw 72.00 463.82 Td (Proposed Phase-1 Effort: $1,200,000.00 Fixed-Price Research & Prototype Effort \(12 Months | $150,000.00 Day) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 451.67 Td (15-30 Mobilization Tranche | 0% Cost Share | TRL 4 Verified Baseline Advancing to TRL 6\)) Tj 0 Tw ET
-0.55 0.58 0.62 RG 0.8 w 72.00 433.52 m 540.00 433.52 l S 0 0 0 RG
-0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 419.52 Td (1. EXECUTIVE BLUF & GSL / ITL RESEARCH ALIGNMENT) Tj ET 0 0 0 rg
-0.75 0.78 0.82 RG 0.6 w 72.00 415.52 m 540.00 415.52 l S 0 0 0 RG
-BT /F1 9.00 Tf 2.3363 Tw 72.00 399.79 Td (Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5\) submits this updated, cryptographically) Tj 0 Tw ET
-BT /F1 9.00 Tf 2.2950 Tw 72.00 387.64 Td (re-baselined Pre-Proposal White Paper under the USACE ERDC Rolling BAA for Geotechnical and Structures) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.3313 Tw 72.00 375.49 Td (Laboratory \(GSL\) and Information Technology Laboratory \(ITL\) topic areas. Project Ebony v8.0.0 is a TRL 4 verified,) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.1699 Tw 72.00 363.34 Td (deterministic, zero-cloud Three-Brain cyber-physical SCADA/OT protection, automated civil/structural non-destructive) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.6235 Tw 72.00 351.19 Td (evaluation \(NDE\), and 52-table Write-Once-Read-Many \(WORM\) Merkle provenance architecture operating on local) Tj 0 Tw ET
-BT /F1 9.00 Tf 7.9875 Tw 72.00 339.04 Td (loopback \(127.0.0.1\) across 640 compiled Python C2 modules \(Shared Core C2 Merkle Root:) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 326.89 Td (d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb\).) Tj 0 Tw ET
-BT /F1 9.00 Tf 2.2230 Tw 72.00 308.24 Td ([+] Solving the USACE Civil Works, Lock/Dam SCADA & Structural Diagnostics Gap: Critical navigation locks,) Tj 0 Tw ET
-BT /F1 9.00 Tf 1.9478 Tw 72.00 296.09 Td (flood-control dams, tactical military bridges, and airfields require real-time structural health monitoring \(STR-01\),) Tj 0 Tw ET
-BT /F1 9.00 Tf 2.8730 Tw 72.00 283.94 Td (pavement/airfield distress analytics \(PAV-01\), hydrology/scour telemetry \(ENV-01\), and cyber-physical actuator) Tj 0 Tw ET
-BT /F1 9.00 Tf 1.2353 Tw 72.00 271.79 Td (isolation without exposing operational technology \(OT\) networks to commercial cloud dependencies or adversarial) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 259.64 Td (PLC injection.) Tj 0 Tw ET
-BT /F1 9.00 Tf 2.4646 Tw 72.00 241.49 Td ([+] Verified 640-Module C2 & 1,420-Question Field Engineering Baseline: Project Ebony v8.0.0 combines 640) Tj 0 Tw ET
-BT /F1 9.00 Tf 1.6775 Tw 72.00 229.34 Td (deterministic C2 modules \(verified across 85/85 automated test suites and 17/17 blocked Red-Team penetration) Tj 0 Tw ET
-BT /F1 9.00 Tf 4.5303 Tw 72.00 217.19 Td (vectors with automatic single-letter tamper zeroization\) with an integrated 1,420-question Sovereign Field) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.1493 Tw 72.00 205.04 Td (Engineering & NDE Academy \(800 Chapter 1 Milestone Questions + 620 Chapter 5 State Exam Questions across 15) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 192.89 Td (engineering extensions and 4 offline manuals\).) Tj 0 Tw ET
-0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 169.24 Td (2. THREE-BRAIN HARDWARE-ENFORCED ARCHITECTURE \(28.5W / 24V DC\)) Tj ET 0 0 0 rg
-0.75 0.78 0.82 RG 0.6 w 72.00 165.24 m 540.00 165.24 l S 0 0 0 RG
-BT /F1 9.00 Tf 1.0641 Tw 72.00 149.51 Td (Project Ebony v8.0.0 physically and logically isolates civil/tactical actuator safety from neural structural diagnostics) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 137.36 Td (and cryptographic telemetry sealing:) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0829 Tw 72.00 602.82 Td (Statutory Identifiers: CAGE Code: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | Active Federal Prime Contractor \(100%) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 590.67 Td (Section 889 NDAA Compliant\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 11.1526 Tw 72.00 575.02 Td (Principal Investigator: Jeffery Humphrey, Founder, President & CEO | \(572\) 358-9978 |) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 562.87 Td (humphreyvirtualfarm@gmail.com) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 547.22 Td (Public Verification Repository: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public) Tj 0 Tw ET
+BT /F1 9.00 Tf 14.5890 Tw 72.00 531.57 Td (Shared Core C2 Cryptographic Merkle Root \(640 Compiled Python C2 Modules\):) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 519.42 Td (d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb) Tj 0 Tw ET
+BT /F1 9.00 Tf 3.5361 Tw 72.00 503.77 Td (Cross-Referenced Active Filings: DoD CDAO Tradewinds Solutions Marketplace Docket 10-26-4046 \(Status:) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.5599 Tw 72.00 491.62 Td (Compliant/Queued for Assessment -- Oct 29, 2026\), Defense Innovation Unit \(DIU\) Portfolio Network & SWAP-USV) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.7039 Tw 72.00 479.47 Td (Sprint 2 \(Confirmed Oct 31, 2026\), U.S. Army DEVCOM ARL BAA W911NF-23-S-0001 \($750K White Paper) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 467.32 Td (Submitted Oct 30, 2026\), and DHS S&T LRBAA \($1.0M White Paper Submitted Oct 31, 2026\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.6103 Tw 72.00 451.67 Td (Proposed Phase-1 Effort: $1,200,000.00 Fixed-Price Research & Prototype Effort \(12 Months | $150,000.00 Day) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 439.52 Td (15-30 Mobilization Tranche | 0% Cost Share | TRL 4 Verified Baseline Advancing to TRL 6\)) Tj 0 Tw ET
+0.55 0.58 0.62 RG 0.8 w 72.00 421.37 m 540.00 421.37 l S 0 0 0 RG
+0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 407.37 Td (1. EXECUTIVE BLUF & GSL / ITL RESEARCH ALIGNMENT) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 403.37 m 540.00 403.37 l S 0 0 0 RG
+BT /F1 9.00 Tf 1.1288 Tw 72.00 387.64 Td (Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5\) submits this cryptographically re-baselined) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.7020 Tw 72.00 375.49 Td (Pre-Proposal White Paper under the USACE ERDC Rolling BAA for Geotechnical and Structures Laboratory \(GSL\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.4544 Tw 72.00 363.34 Td (and Information Technology Laboratory \(ITL\) topic areas. Project Ebony v8.0.0 is a TRL 4 verified, deterministic,) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.6684 Tw 72.00 351.19 Td (zero-cloud Three-Brain cyber-physical SCADA/OT protection, automated civil/structural non-destructive evaluation) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.0784 Tw 72.00 339.04 Td (\(NDE\), and 52-table Write-Once-Read-Many \(WORM\) Merkle provenance architecture operating on local loopback) Tj 0 Tw ET
+BT /F1 9.00 Tf 12.2155 Tw 72.00 326.89 Td (\(127.0.0.1\) across 640 compiled Python C2 modules \(Shared Core C2 Merkle Root:) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 314.74 Td (d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb\).) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.2230 Tw 72.00 296.09 Td ([+] Solving the USACE Civil Works, Lock/Dam SCADA & Structural Diagnostics Gap: Critical navigation locks,) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.9478 Tw 72.00 283.94 Td (flood-control dams, tactical military bridges, and airfields require real-time structural health monitoring \(STR-01\),) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.8730 Tw 72.00 271.79 Td (pavement/airfield distress analytics \(PAV-01\), hydrology/scour telemetry \(ENV-01\), and cyber-physical actuator) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.2353 Tw 72.00 259.64 Td (isolation without exposing operational technology \(OT\) networks to commercial cloud dependencies or adversarial) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 247.49 Td (PLC injection.) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.4646 Tw 72.00 229.34 Td ([+] Verified 640-Module C2 & 1,420-Question Field Engineering Baseline: Project Ebony v8.0.0 combines 640) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.6775 Tw 72.00 217.19 Td (deterministic C2 modules \(verified across 85/85 automated test suites and 17/17 blocked Red-Team penetration) Tj 0 Tw ET
+BT /F1 9.00 Tf 4.5303 Tw 72.00 205.04 Td (vectors with automatic single-letter tamper zeroization\) with an integrated 1,420-question Sovereign Field) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.1493 Tw 72.00 192.89 Td (Engineering & NDE Academy \(800 Chapter 1 Milestone Questions + 620 Chapter 5 State Exam Questions across 15) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 180.74 Td (engineering extensions and 4 offline manuals\).) Tj 0 Tw ET
+0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 157.09 Td (2. THREE-BRAIN HARDWARE-ENFORCED ARCHITECTURE \(28.5W / 24V DC\)) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 153.09 m 540.00 153.09 l S 0 0 0 RG
+BT /F1 9.00 Tf 1.0641 Tw 72.00 137.36 Td (Project Ebony v8.0.0 physically and logically isolates civil/tactical actuator safety from neural structural diagnostics) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 125.21 Td (and cryptographic telemetry sealing:) Tj 0 Tw ET
 0.10 0.16 0.26 RG 0.8 w
 72.00 48.00 m 540.00 48.00 l S
 0.25 0.25 0.25 rg
@@ -130,11 +131,11 @@ xref
 0000000197 00000 n 
 0000000272 00000 n 
 0000000408 00000 n 
-0000006996 00000 n 
-0000007132 00000 n 
+0000007110 00000 n 
+0000007246 00000 n 
 trailer
 << /Size 9 /Root 1 0 R >>
 startxref
-11652
+11766
 %%EOF
-% HVF-WORM-SHA256: e547403473278e438acb8950f50ec70703fad18ad2954294802c77e3dddd022c
+% HVF-WORM-SHA256: cb5ca3b7f12380eae0dec1ee2b955eb4500587245ec7755b49c30d2cfe7b0d65

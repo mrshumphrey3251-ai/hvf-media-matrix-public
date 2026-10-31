@@ -4,7 +4,7 @@
   "uei": "S1M4ENLHTDH5",
   "docket": "10-26-4046 (Status: Compliant/Queued for Assessment | Superseding 10-26-4014, 10-26-3976 & 9-26-3703)",
   "stage": "8F-9",
-  "timestamp_utc": "2026-10-31T16:50:00.000000+00:00",
+  "timestamp_utc": "2026-10-31T16:58:00.000000+00:00",
   "c2_cockpit_python_modules": 640,
   "level5_extension_modules": 15,
   "total_python_modules": 1781,
@@ -14,6 +14,7 @@
   "master_merkle_root_sha256": "d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb",
   "enclave_merkle_root_sha256": "bc77449c12a4f7e056d69b3ee9a40a9963a5cc0c7bdabbb3fc2fe1bf7c52b646",
   "sha256_manifest": {
+    "SOVEREIGN_STAGE_8F_LEDGER.md": "9f8d304a154b7e47c168770d12b7ad5c28b9d6047a4a2c4396cc26079d68a379",
     "c2_cockpit/__init__.py": "ab76a59ff7bc2f3e2628388f2edf8db77a14ac99820b25801cfcde32aa748633",
     "c2_cockpit/access_control.py": "3709685f597329fd7b3042b46096d80b9769a877135920a90b97d98ab8d22c6c",
     "c2_cockpit/action_desk.py": "af8f597b9037bc7a33ce603d6cf2a8afeb729b17ceb3affe7e90b1fd95ed3e7a",
@@ -436,11 +437,12 @@
     "c2_cockpit/proposals/DIU_SWAP_USV_SPRINT2_SOLUTION_BRIEF.md": "faf46e88ac8bd91550476f8c6c144bc47a372dd7849afd0eefb61ba483076dbd",
     "c2_cockpit/proposals/DIU_SWAP_USV_SPRINT2_SOLUTION_BRIEF_HVF.pdf": "e77831c55cd68687cae534441e3171b7c3f9cabec0653d49ccb211d44aa3e454",
     "c2_cockpit/proposals/TRADEWINDS_RESUBMISSION_SCRIPT_10_26_4046.pdf": "a5a12f1216514626a7b9844b830cdce05bde94c31beafb89561a865d625f5819",
-    "c2_cockpit/proposals/USACE_ERDC_BAA_2026_WHITE_PAPER.md": "418a58da26f053718331bc5be4495159cb97122ed789871201f3acdb1cbc5691",
-    "c2_cockpit/proposals/USACE_ERDC_BAA_2026_WHITE_PAPER_HVF.pdf": "303edcaf058941f05fe964f64e82dd3c970f529882ec5c1b9fc8b4b8b4a6289d",
+    "c2_cockpit/proposals/USACE_ERDC_BAA_2026_WHITE_PAPER.md": "7fd2b0dd9c71727c8319b10e95d83d706853f63988149397923aab716a25f940",
+    "c2_cockpit/proposals/USACE_ERDC_BAA_2026_WHITE_PAPER_HVF.pdf": "ca8098f86a46fc6b65463fcc8387fa1a87cfc9671fa56cb04b69b7caa94083f1",
     "c2_cockpit/proposals/WHITE_PAPER_ARL_ARO_BAA_2026.md": "33b92a3f0bddf7fdfe13fdf0a8704f82a5641de54703d53662f75b89ee50d978",
     "c2_cockpit/proposals/WHITE_PAPER_DHS_ST_LRBAA_2026.md": "4a75f25aacb2dd0c489cf024efeecafab4e6bcd04cd2be6c0afd67bce384d1c5",
     "c2_cockpit/proposals/WHITE_PAPER_USACE_ERDC_BAA_2026.md": "993aba1202706de4224fbfd0641929ab6303f0286fbd0477c16a3b894317a31a",
+    "c2_cockpit/proposals/WHITE_PAPER_USACE_ERDC_BAA_2026.pdf": "ca8098f86a46fc6b65463fcc8387fa1a87cfc9671fa56cb04b69b7caa94083f1",
     "c2_cockpit/protocol_lambda_diode.py": "f8bd54824403205b3eda9ac3d69a6f8b813c0c93b30526ff5db0300107a21d63",
     "c2_cockpit/provision_subscriber_tier1.py": "9961babca60e03cfc6767ca19671cc932a3984d90a3bcdaa177b4e422aa75caf",
     "c2_cockpit/pue_metrics.py": "2275366e5024dc910f8c2a48898f7e04829e419395e17e037318a0b3311684f1",
@@ -676,6 +678,6 @@
     "public_verification/arl_aro_baa_w911nf_23_s_0001_dispatch_receipt_public.md": "665f2c29cea096dad1b3f5aa931c2404010d39117125db16b098ea71da9c60b6",
     "public_verification/dhs_st_lrbaa_26_cip_dispatch_receipt_public.md": "5b72ddb5ab26836cf3749eaa646c8e937b72bf316613fdd102c73394c5ec7bec",
     "public_verification/diu_onramp_and_cso_submission_receipt_20261031_public.md": "91cad7c7e6408500b352a0c16a56f777f163ea5fb1c956c38bab89696f47888c",
-    "public_verification/usace_erdc_baa_2026_superseding_dispatch_receipt_public.md": "3ec6db6de40dd3fbc23080a2098e98172415e7e5e0ae4dfae9c7234619e4fb65"
+    "public_verification/usace_erdc_baa_2026_superseding_dispatch_receipt_public.md": "0b805f48b24af52b34faef549d8a9e9ed7974814aa08bcf961c7b9f563d768c0"
   }
 }
