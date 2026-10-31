@@ -1,0 +1,144 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 6840 >>
+stream
+0.10 0.16 0.26 rg
+BT /F2 8.0 Tf 0 Tw 72.00 748.00 Td (HUMPHREY VIRTUAL FARMS LLC // CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 // TARGETING SPRINT 2 - COUNTER-AIR EVALUATION - CAT 1-4) Tj ET
+0.10 0.16 0.26 RG 1.2 w
+72.00 740.00 m 540.00 740.00 l S
+0 0 0 rg 0 0 0 RG
+BT /F2 10.60 Tf 0.0000 Tw 72.00 720.00 Td (TARGETING SPRINT 2 - COUNTER-AIR EVALUATION - CATEGORIES 1, 2, 3 & 4) Tj 0 Tw ET
+BT /F2 10.60 Tf 0.0000 Tw 72.00 705.69 Td (\(INTEGRATED MOSA C2 / PROJECT AVO SAFETY INTERLOCK & 10 U.S.C. 4023) Tj 0 Tw ET
+BT /F2 10.60 Tf 0.0000 Tw 72.00 691.38 Td (SUBSYSTEM PAYLOAD\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0487 Tw 72.00 670.57 Td (Solicitation: DIU / DRPM UxS Suitable Warfighting Adaptive Payloads \(SWAP\)-USV Sprint 2 \(10 U.S.C. 4025 / 4022 /) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 658.42 Td (4023\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.6874 Tw 72.00 642.77 Td (Submitting Entity: Humphrey Virtual Farms LLC \(701 E Drew, Madill, OK 73446-2620 | 100% U.S. Sovereign Small) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 630.62 Td (Business, 0% FOCI\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0118 Tw 72.00 614.97 Td (Statutory Identifiers: CAGE Code: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | Non-Traditional Defense Contractor \(10) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 602.82 Td (U.S.C. 4022\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 11.1526 Tw 72.00 587.17 Td (Principal Investigator: Jeffery Humphrey, Founder, President & CEO | \(572\) 358-9978 |) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 575.02 Td (humphreyvirtualfarm@gmail.com) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 559.37 Td (Public Verification Repository: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 543.72 Td (Shared Core C2 Cryptographic Merkle Root \(SHA-256\):) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 531.57 Td (d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb) Tj 0 Tw ET
+BT /F1 9.00 Tf 3.5856 Tw 72.00 515.92 Td (Cross-Referenced Active Filings: DoD CDAO Tradewinds Docket 10-26-4046 \(Status: Compliant/Queued for) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.2038 Tw 72.00 503.77 Td (Assessment -- Oct 29, 2026\), U.S. Army DEVCOM ARL BAA W911NF-23-S-0001 \($750K White Paper Transmitted\),) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 491.62 Td (USACE ERDC BAA \($1.2M\), and DHS S&T LRBAA \($1.0M OIP Confirmed\)) Tj 0 Tw ET
+0.55 0.58 0.62 RG 0.8 w 72.00 473.47 m 540.00 473.47 l S 0 0 0 RG
+0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 459.47 Td (1. BLUF: TARGETING SPRINT 2 - COUNTER-AIR EVALUATION - CATEGORIES 1, 2, 3 & 4) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 455.47 m 540.00 455.47 l S 0 0 0 RG
+BT /F1 9.00 Tf 3.6103 Tw 72.00 439.74 Td (Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5\) submits Project Ebony v8.0.0 -- a) Tj 0 Tw ET
+BT /F1 9.00 Tf 8.6520 Tw 72.00 427.59 Td (deterministic, zero-cloud, Three-Brain Maritime Autonomous C2, Project AVO Interoperability, and) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.7355 Tw 72.00 415.44 Td (Human-in-the-Loop Weapon Safety Interlock payload architecture -- for immediate integration across Category 1) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.7393 Tw 72.00 403.29 Td (\(Heavy Kinetic AGM-114L/AGM-179 GFI TDP\), Category 2 \(APKWS Precision Rocketry\), Category 3 \(Stabilized) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.2264 Tw 72.00 391.14 Td (RWS / Stinger / HPL\), and Category 4 \(Modular Box/Tube Effectors\) USV platforms under 10 U.S.C. 4025 / 4022, as) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.1485 Tw 72.00 378.99 Td (well as direct experimental subsystem/testbed procurement under 10 U.S.C. 4023 \($1,485,000.00 Phase-1 Prototype) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 366.84 Td (OTA / Experimental Subsystem Procurement\).) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.0755 Tw 72.00 348.19 Td ([+] Solving the Contested Maritime Cost-Exchange & Safety Interlock Gap: Counter-air USVs operating in Denied,) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.8026 Tw 72.00 336.04 Td (Degraded, Intermittent, and Limited \(DDIL\) and GNSS-denied littoral environments face catastrophic cyber-physical) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.2882 Tw 72.00 323.89 Td (risks: spoofing of remote firing links, neural target-PID hallucinations in sea clutter, and loss of human-in-the-loop) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 311.74 Td (abort custody. Project Ebony v8.0.0 eliminates these failure modes at a 28.5W / 24V DC shipboard power envelope.) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.6467 Tw 72.00 293.59 Td ([+] Production-Ready Software C2 & SIL/HIL Baseline \(640 Verified Modules\): Verified across 640 compiled Python) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.9842 Tw 72.00 281.44 Td (C2 modules, 85/85 passing automated test suites, 17/17 blocked Red-Team penetration vectors with automatic) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.3439 Tw 72.00 269.29 Td (single-letter tamper zeroization, and 52 bare-metal SQLite WORM/vault tables on local loopback \(127.0.0.1\) with 0%) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 257.14 Td (commercial cloud dependency.) Tj 0 Tw ET
+0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 233.49 Td (2. THREE-BRAIN MOSA ARCHITECTURE & PROJECT AVO C2 INTEROPERABILITY) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 229.49 m 540.00 229.49 l S 0 0 0 RG
+BT /F1 9.00 Tf 2.5235 Tw 72.00 213.76 Td (Project Ebony v8.0.0 enforces strict physical and logical separation across three dedicated compute enclaves) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0675 Tw 72.00 201.61 Td (designed to drop directly into standard 20/40ft ISO containerized USV mission bays and interface natively with DoW's) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 189.46 Td (Project AVO \(Autonomous Vehicle Orchestrator\):) Tj 0 Tw ET
+BT /F1 9.00 Tf 3.2947 Tw 72.00 170.81 Td ([+] Brain One \(Deterministic Effector Safety Interlock & Human-in-the-Loop Custody Core\): Executes a <50) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.0301 Tw 72.00 158.66 Td (microsecond bare-metal safety loop governing fail-safe over-the-horizon remote arming, firing, safe/de-arming, and) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.2394 Tw 72.00 146.51 Td (emergency mission abort across CAT 1-4 launchers. Models a 2.04 microsecond RS-485 Modbus RTU \(Function) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.3858 Tw 72.00 134.36 Td (Code 05\) emergency actuator disconnect and a 36.75 nanosecond Silicon Carbide \(SiC\) MOSFET gate cutoff target) Tj 0 Tw ET
+BT /F1 9.00 Tf 3.0882 Tw 72.00 122.21 Td (-- 1,360,544x faster than a legacy 50ms marine PLC -- ensuring instant physical weapon safe/de-arming if) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 110.06 Td (human-in-the-loop custody or stabilization envelopes \(pitch/roll launch limits\) are violated.) Tj 0 Tw ET
+0.10 0.16 0.26 RG 0.8 w
+72.00 48.00 m 540.00 48.00 l S
+0.25 0.25 0.25 rg
+BT /F1 7.2 Tf 0 Tw 72.00 36.00 Td (SOVEREIGN AIR-GAPPED TRI-BRAIN ARCHITECTURE // MERKLE ROOT: d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb) Tj ET
+BT /F2 7.5 Tf 0 Tw 500.40 36.00 Td (Page 1 of 2) Tj ET
+0 0 0 rg 0 0 0 RG
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 4979 >>
+stream
+0.10 0.16 0.26 rg
+BT /F2 8.0 Tf 0 Tw 72.00 748.00 Td (HUMPHREY VIRTUAL FARMS LLC // CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 // TARGETING SPRINT 2 - COUNTER-AIR EVALUATION - CAT 1-4) Tj ET
+0.10 0.16 0.26 RG 1.2 w
+72.00 740.00 m 540.00 740.00 l S
+0 0 0 rg 0 0 0 RG
+BT /F1 9.00 Tf 0.7768 Tw 72.00 719.50 Td ([+] Brain Two \(DDIL / GNSS-Denied Localization & 360-Degree Clutter-Resilient PID Analyst\): Executes zero-cloud) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.5554 Tw 72.00 707.35 Td (edge neural inference for 360-degree airborne threat detection, tracking, and positive identification \(Group 1-5 UAS,) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.4867 Tw 72.00 695.20 Td (rotary-wing, and go-fast surface vectors\) in high-sea-state clutter, plus optical/inertial dead-reckoning when GNSS is) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.5612 Tw 72.00 683.05 Td (jammed or spoofed. Brain Two communicates with Brain One exclusively across a unidirectional, read-only memory) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.6894 Tw 72.00 670.90 Td (diode with zero physical wire to launcher firing circuits, mathematically preventing adversarial AI spoofing or sensor) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 658.75 Td (clutter from triggering unauthorized weapon release.) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.1864 Tw 72.00 640.60 Td ([+] Brain Three \(Sub-Millisecond WORM Merkle DAG Provenance & SIL/HIL Telemetry Arbiter\): Computes and seals) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.4925 Tw 72.00 628.45 Td (a cryptographic SHA-256 Write-Once-Read-Many \(WORM\) Merkle Directed Acyclic Graph \(DAG\) across 52 local) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.1111 Tw 72.00 616.30 Td (SQLite tables in <0.2 milliseconds per event, logging every Project AVO cueing packet, operator arm/fire/abort) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 604.15 Td (command, and 3DOF/6DOF kinematic engagement state for Test Event 1 and Test Event 2 engineering depositions.) Tj 0 Tw ET
+0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 580.50 Td (3. ALIGNMENT WITH SPRINT 2 DESIRED ATTRIBUTES & TEST EVENTS 1 & 2) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 576.50 m 540.00 576.50 l S 0 0 0 RG
+BT /F1 9.00 Tf 3.0767 Tw 72.00 560.77 Td ([+] Project AVO & 3rd-Party Open C2 Interface \(MOSA SDK/API Ready\): Provides a documented, modular) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.2360 Tw 72.00 548.62 Td (JSON/REST and RS-485/CAN-bus C2 interface package \(SDK/API and emulator\) ready for immediate integration) Tj 0 Tw ET
+BT /F1 9.00 Tf 16.7060 Tw 72.00 536.47 Td (with Project AVO, processing offboard tactical cueing coordinates and enforcing) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 524.32 Td (human-on-the-loop/human-in-the-loop firing authorization.) Tj 0 Tw ET
+BT /F1 9.00 Tf 5.5835 Tw 72.00 506.17 Td ([+] SIL/HIL Kinematic Validation & 30-Day Test Event 1 Readiness: Includes a built-in, deterministic) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.3338 Tw 72.00 494.02 Td (Software-in-the-Loop \(SIL\) and Hardware-in-the-Loop \(HIL\) simulation harness modeling target kinematics, launch) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.4548 Tw 72.00 481.87 Td (platform stabilization limits, and effector error conditions, ready for live onsite demonstration within 30 calendar days) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 469.72 Td (of down-selection \(Test Event 1\) and Little Creek, VA operational integration \(Test Event 2\).) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.6378 Tw 72.00 451.57 Td ([+] SWaP-C & Containerized Logistics Affordability: Operates at 28.5W continuous auxiliary draw on native 24V DC) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.5678 Tw 72.00 439.42 Td (marine vessel power \(requiring zero specialized MHE or shore infrastructure\), compatible with C-130/C-17 air) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 427.27 Td (transport, commercial highway trailering, and 20ft/40ft ISO containerized well-deck deployment.) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0579 Tw 72.00 409.12 Td ([+] Dual Acquisition Readiness \(Teamed CAT 1-4 Integration + 10 U.S.C. 4023 Experimental Procurement\): Available) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.2980 Tw 72.00 396.97 Td (immediately to DIU and DRPM UxS either \(a\) paired with DIU down-selected CAT 1-4 USV hull and launcher primes) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.8325 Tw 72.00 384.82 Td (as the standardized MOSA C2 / Human-in-the-Loop Safety Interlock & Project AVO bridge, or \(b\) procured directly) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.9854 Tw 72.00 372.67 Td (under 10 U.S.C. 4023 as an experimental C2 safety-interlock payload and SIL/HIL test article \($1,485,000.00 /) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.8983 Tw 72.00 360.52 Td (12-Month Fixed-Price Schedule; 100% Background IP retained under DFARS 252.227-7018; 100% Section 889) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 348.37 Td (NDAA compliant\).) Tj 0 Tw ET
+0.10 0.16 0.26 RG 0.8 w
+72.00 48.00 m 540.00 48.00 l S
+0.25 0.25 0.25 rg
+BT /F1 7.2 Tf 0 Tw 72.00 36.00 Td (SOVEREIGN AIR-GAPPED TRI-BRAIN ARCHITECTURE // MERKLE ROOT: d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb) Tj ET
+BT /F2 7.5 Tf 0 Tw 500.40 36.00 Td (Page 2 of 2) Tj ET
+0 0 0 rg 0 0 0 RG
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000197 00000 n 
+0000000272 00000 n 
+0000000408 00000 n 
+0000007300 00000 n 
+0000007436 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+12467
+%%EOF
+% HVF-WORM-SHA256: 5b3244f49b5e2fac5527a8e7373466bb3dc0aba148c163bcd333b28d787e60d0
