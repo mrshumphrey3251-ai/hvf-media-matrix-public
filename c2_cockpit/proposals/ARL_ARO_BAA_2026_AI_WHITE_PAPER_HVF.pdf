@@ -16,7 +16,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
 endobj
 6 0 obj
-<< /Length 5892 >>
+<< /Length 5911 >>
 stream
 0.10 0.16 0.26 rg
 BT /F2 8.0 Tf 0 Tw 72.00 748.00 Td (HUMPHREY VIRTUAL FARMS LLC // CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 // ARL-ARO-BAA-2026-AI WHITE PAPER) Tj ET
@@ -29,7 +29,7 @@ BT /F1 9.20 Tf 3.2196 Tw 72.00 683.04 Td (Title: Project Ebony v8.0.0: Byzantine
 BT /F1 9.20 Tf 0.0000 Tw 72.00 670.52 Td (Sub-Millisecond SHA-256 Merkle DAG Provenance) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.6824 Tw 72.00 654.51 Td (Submitting Entity: Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | 701 E Drew,) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 642.00 Td (Madill, OK 73446\)) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 625.99 Td (Principal Investigator: Jeffery Humphrey, CEO | [REDACTED-FOR-PUBLIC-RELEASE]) Tj 0 Tw ET
+BT /F1 9.20 Tf 0.0000 Tw 72.00 625.99 Td (Principal Investigator: Jeffery Humphrey, CEO | humphreyvirtualfarm@gmail.com | \(572\) 358-9978) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.4538 Tw 72.00 609.98 Td (Research Category: Defense Basic & Applied Research \(6.1 / 6.2 | Current Readiness: TRL 4 -> Phase-1 Target:) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0000 Tw 72.00 597.46 Td (TRL 5/6\)) Tj 0 Tw ET
 BT /F1 9.20 Tf 0.0173 Tw 72.00 581.45 Td (Cross-Referenced Filings: DoD CDAO Tradewinds Docket 10-26-4046 \(Status: Received\) & USACE ERDC Rolling) Tj 0 Tw ET
@@ -123,11 +123,11 @@ xref
 0000000197 00000 n 
 0000000272 00000 n 
 0000000408 00000 n 
-0000006352 00000 n 
-0000006488 00000 n 
+0000006371 00000 n 
+0000006507 00000 n 
 trailer
 << /Size 9 /Root 1 0 R >>
 startxref
-10295
+10314
 %%EOF
-% HVF-WORM-SHA256: 8487bdf13934a8b2d41603bb5995f2913ce1ccae9d169cd54390239812667d17
+% HVF-WORM-SHA256: 6b0eacc0d8b46c2973d2a321cad480d6d78d6ffe1d026d1a65dc798931027081
