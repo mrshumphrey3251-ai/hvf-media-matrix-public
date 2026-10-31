@@ -16,7 +16,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
 endobj
 6 0 obj
-<< /Length 6840 >>
+<< /Length 6960 >>
 stream
 0.10 0.16 0.26 rg
 BT /F2 8.0 Tf 0 Tw 72.00 748.00 Td (HUMPHREY VIRTUAL FARMS LLC // CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 // TARGETING SPRINT 2 - COUNTER-AIR EVALUATION - CAT 1-4) Tj ET
@@ -38,37 +38,38 @@ BT /F1 9.00 Tf 0.0000 Tw 72.00 559.37 Td (Public Verification Repository: https:
 BT /F1 9.00 Tf 0.0000 Tw 72.00 543.72 Td (Shared Core C2 Cryptographic Merkle Root \(SHA-256\):) Tj 0 Tw ET
 BT /F1 9.00 Tf 0.0000 Tw 72.00 531.57 Td (d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb) Tj 0 Tw ET
 BT /F1 9.00 Tf 3.5856 Tw 72.00 515.92 Td (Cross-Referenced Active Filings: DoD CDAO Tradewinds Docket 10-26-4046 \(Status: Compliant/Queued for) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.2038 Tw 72.00 503.77 Td (Assessment -- Oct 29, 2026\), U.S. Army DEVCOM ARL BAA W911NF-23-S-0001 \($750K White Paper Transmitted\),) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 491.62 Td (USACE ERDC BAA \($1.2M\), and DHS S&T LRBAA \($1.0M OIP Confirmed\)) Tj 0 Tw ET
-0.55 0.58 0.62 RG 0.8 w 72.00 473.47 m 540.00 473.47 l S 0 0 0 RG
-0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 459.47 Td (1. BLUF: TARGETING SPRINT 2 - COUNTER-AIR EVALUATION - CATEGORIES 1, 2, 3 & 4) Tj ET 0 0 0 rg
-0.75 0.78 0.82 RG 0.6 w 72.00 455.47 m 540.00 455.47 l S 0 0 0 RG
-BT /F1 9.00 Tf 3.6103 Tw 72.00 439.74 Td (Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5\) submits Project Ebony v8.0.0 -- a) Tj 0 Tw ET
-BT /F1 9.00 Tf 8.6520 Tw 72.00 427.59 Td (deterministic, zero-cloud, Three-Brain Maritime Autonomous C2, Project AVO Interoperability, and) Tj 0 Tw ET
-BT /F1 9.00 Tf 1.7355 Tw 72.00 415.44 Td (Human-in-the-Loop Weapon Safety Interlock payload architecture -- for immediate integration across Category 1) Tj 0 Tw ET
-BT /F1 9.00 Tf 1.7393 Tw 72.00 403.29 Td (\(Heavy Kinetic AGM-114L/AGM-179 GFI TDP\), Category 2 \(APKWS Precision Rocketry\), Category 3 \(Stabilized) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.2264 Tw 72.00 391.14 Td (RWS / Stinger / HPL\), and Category 4 \(Modular Box/Tube Effectors\) USV platforms under 10 U.S.C. 4025 / 4022, as) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.1485 Tw 72.00 378.99 Td (well as direct experimental subsystem/testbed procurement under 10 U.S.C. 4023 \($1,485,000.00 Phase-1 Prototype) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 366.84 Td (OTA / Experimental Subsystem Procurement\).) Tj 0 Tw ET
-BT /F1 9.00 Tf 1.0755 Tw 72.00 348.19 Td ([+] Solving the Contested Maritime Cost-Exchange & Safety Interlock Gap: Counter-air USVs operating in Denied,) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.8026 Tw 72.00 336.04 Td (Degraded, Intermittent, and Limited \(DDIL\) and GNSS-denied littoral environments face catastrophic cyber-physical) Tj 0 Tw ET
-BT /F1 9.00 Tf 1.2882 Tw 72.00 323.89 Td (risks: spoofing of remote firing links, neural target-PID hallucinations in sea clutter, and loss of human-in-the-loop) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 311.74 Td (abort custody. Project Ebony v8.0.0 eliminates these failure modes at a 28.5W / 24V DC shipboard power envelope.) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.6467 Tw 72.00 293.59 Td ([+] Production-Ready Software C2 & SIL/HIL Baseline \(640 Verified Modules\): Verified across 640 compiled Python) Tj 0 Tw ET
-BT /F1 9.00 Tf 1.9842 Tw 72.00 281.44 Td (C2 modules, 85/85 passing automated test suites, 17/17 blocked Red-Team penetration vectors with automatic) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.3439 Tw 72.00 269.29 Td (single-letter tamper zeroization, and 52 bare-metal SQLite WORM/vault tables on local loopback \(127.0.0.1\) with 0%) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 257.14 Td (commercial cloud dependency.) Tj 0 Tw ET
-0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 233.49 Td (2. THREE-BRAIN MOSA ARCHITECTURE & PROJECT AVO C2 INTEROPERABILITY) Tj ET 0 0 0 rg
-0.75 0.78 0.82 RG 0.6 w 72.00 229.49 m 540.00 229.49 l S 0 0 0 RG
-BT /F1 9.00 Tf 2.5235 Tw 72.00 213.76 Td (Project Ebony v8.0.0 enforces strict physical and logical separation across three dedicated compute enclaves) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0675 Tw 72.00 201.61 Td (designed to drop directly into standard 20/40ft ISO containerized USV mission bays and interface natively with DoW's) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 189.46 Td (Project AVO \(Autonomous Vehicle Orchestrator\):) Tj 0 Tw ET
-BT /F1 9.00 Tf 3.2947 Tw 72.00 170.81 Td ([+] Brain One \(Deterministic Effector Safety Interlock & Human-in-the-Loop Custody Core\): Executes a <50) Tj 0 Tw ET
-BT /F1 9.00 Tf 1.0301 Tw 72.00 158.66 Td (microsecond bare-metal safety loop governing fail-safe over-the-horizon remote arming, firing, safe/de-arming, and) Tj 0 Tw ET
-BT /F1 9.00 Tf 1.2394 Tw 72.00 146.51 Td (emergency mission abort across CAT 1-4 launchers. Models a 2.04 microsecond RS-485 Modbus RTU \(Function) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.3858 Tw 72.00 134.36 Td (Code 05\) emergency actuator disconnect and a 36.75 nanosecond Silicon Carbide \(SiC\) MOSFET gate cutoff target) Tj 0 Tw ET
-BT /F1 9.00 Tf 3.0882 Tw 72.00 122.21 Td (-- 1,360,544x faster than a legacy 50ms marine PLC -- ensuring instant physical weapon safe/de-arming if) Tj 0 Tw ET
-BT /F1 9.00 Tf 0.0000 Tw 72.00 110.06 Td (human-in-the-loop custody or stabilization envelopes \(pitch/roll launch limits\) are violated.) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.4616 Tw 72.00 503.77 Td (Assessment -- Oct 29, 2026\), DIU Portfolio Network Intake \(Status: Received -- Oct 31, 2026\), U.S. Army DEVCOM) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.3739 Tw 72.00 491.62 Td (ARL BAA W911NF-23-S-0001 \($750K White Paper Transmitted\), USACE ERDC BAA \($1.2M\), and DHS S&T) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 479.47 Td (LRBAA \($1.0M OIP Confirmed\)) Tj 0 Tw ET
+0.55 0.58 0.62 RG 0.8 w 72.00 461.32 m 540.00 461.32 l S 0 0 0 RG
+0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 447.32 Td (1. BLUF: TARGETING SPRINT 2 - COUNTER-AIR EVALUATION - CATEGORIES 1, 2, 3 & 4) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 443.32 m 540.00 443.32 l S 0 0 0 RG
+BT /F1 9.00 Tf 3.6103 Tw 72.00 427.59 Td (Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5\) submits Project Ebony v8.0.0 -- a) Tj 0 Tw ET
+BT /F1 9.00 Tf 8.6520 Tw 72.00 415.44 Td (deterministic, zero-cloud, Three-Brain Maritime Autonomous C2, Project AVO Interoperability, and) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.7355 Tw 72.00 403.29 Td (Human-in-the-Loop Weapon Safety Interlock payload architecture -- for immediate integration across Category 1) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.7393 Tw 72.00 391.14 Td (\(Heavy Kinetic AGM-114L/AGM-179 GFI TDP\), Category 2 \(APKWS Precision Rocketry\), Category 3 \(Stabilized) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.2264 Tw 72.00 378.99 Td (RWS / Stinger / HPL\), and Category 4 \(Modular Box/Tube Effectors\) USV platforms under 10 U.S.C. 4025 / 4022, as) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.1485 Tw 72.00 366.84 Td (well as direct experimental subsystem/testbed procurement under 10 U.S.C. 4023 \($1,485,000.00 Phase-1 Prototype) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 354.69 Td (OTA / Experimental Subsystem Procurement\).) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.0755 Tw 72.00 336.04 Td ([+] Solving the Contested Maritime Cost-Exchange & Safety Interlock Gap: Counter-air USVs operating in Denied,) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.8026 Tw 72.00 323.89 Td (Degraded, Intermittent, and Limited \(DDIL\) and GNSS-denied littoral environments face catastrophic cyber-physical) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.2882 Tw 72.00 311.74 Td (risks: spoofing of remote firing links, neural target-PID hallucinations in sea clutter, and loss of human-in-the-loop) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 299.59 Td (abort custody. Project Ebony v8.0.0 eliminates these failure modes at a 28.5W / 24V DC shipboard power envelope.) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.6467 Tw 72.00 281.44 Td ([+] Production-Ready Software C2 & SIL/HIL Baseline \(640 Verified Modules\): Verified across 640 compiled Python) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.9842 Tw 72.00 269.29 Td (C2 modules, 85/85 passing automated test suites, 17/17 blocked Red-Team penetration vectors with automatic) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.3439 Tw 72.00 257.14 Td (single-letter tamper zeroization, and 52 bare-metal SQLite WORM/vault tables on local loopback \(127.0.0.1\) with 0%) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 244.99 Td (commercial cloud dependency.) Tj 0 Tw ET
+0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 221.34 Td (2. THREE-BRAIN MOSA ARCHITECTURE & PROJECT AVO C2 INTEROPERABILITY) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 217.34 m 540.00 217.34 l S 0 0 0 RG
+BT /F1 9.00 Tf 2.5235 Tw 72.00 201.61 Td (Project Ebony v8.0.0 enforces strict physical and logical separation across three dedicated compute enclaves) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0675 Tw 72.00 189.46 Td (designed to drop directly into standard 20/40ft ISO containerized USV mission bays and interface natively with DoW's) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 177.31 Td (Project AVO \(Autonomous Vehicle Orchestrator\):) Tj 0 Tw ET
+BT /F1 9.00 Tf 3.2947 Tw 72.00 158.66 Td ([+] Brain One \(Deterministic Effector Safety Interlock & Human-in-the-Loop Custody Core\): Executes a <50) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.0301 Tw 72.00 146.51 Td (microsecond bare-metal safety loop governing fail-safe over-the-horizon remote arming, firing, safe/de-arming, and) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.2394 Tw 72.00 134.36 Td (emergency mission abort across CAT 1-4 launchers. Models a 2.04 microsecond RS-485 Modbus RTU \(Function) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.3858 Tw 72.00 122.21 Td (Code 05\) emergency actuator disconnect and a 36.75 nanosecond Silicon Carbide \(SiC\) MOSFET gate cutoff target) Tj 0 Tw ET
+BT /F1 9.00 Tf 3.0882 Tw 72.00 110.06 Td (-- 1,360,544x faster than a legacy 50ms marine PLC -- ensuring instant physical weapon safe/de-arming if) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 97.91 Td (human-in-the-loop custody or stabilization envelopes \(pitch/roll launch limits\) are violated.) Tj 0 Tw ET
 0.10 0.16 0.26 RG 0.8 w
 72.00 48.00 m 540.00 48.00 l S
 0.25 0.25 0.25 rg
@@ -134,11 +135,11 @@ xref
 0000000197 00000 n 
 0000000272 00000 n 
 0000000408 00000 n 
-0000007300 00000 n 
-0000007436 00000 n 
+0000007420 00000 n 
+0000007556 00000 n 
 trailer
 << /Size 9 /Root 1 0 R >>
 startxref
-12467
+12587
 %%EOF
-% HVF-WORM-SHA256: 5b3244f49b5e2fac5527a8e7373466bb3dc0aba148c163bcd333b28d787e60d0
+% HVF-WORM-SHA256: d566f7921ddf1511be711e7b2a712c28228a4c3891959fa5fcd324fecd1bd9d8

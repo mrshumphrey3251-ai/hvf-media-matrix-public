@@ -6,7 +6,7 @@
 **Principal Investigator:** Jeffery Humphrey, Founder, President & CEO | (572) 358-9978 | humphreyvirtualfarm@gmail.com
 **Public Verification Repository:** https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public
 **Shared Core C2 Cryptographic Merkle Root (SHA-256):** d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb
-**Cross-Referenced Active Filings:** DoD CDAO Tradewinds Docket 10-26-4046 (Status: Compliant/Queued for Assessment -- Oct 29, 2026), U.S. Army DEVCOM ARL BAA W911NF-23-S-0001 ($750K White Paper Transmitted), USACE ERDC BAA ($1.2M), and DHS S&T LRBAA ($1.0M OIP Confirmed)
+**Cross-Referenced Active Filings:** DoD CDAO Tradewinds Docket 10-26-4046 (Status: Compliant/Queued for Assessment -- Oct 29, 2026), DIU Portfolio Network Intake (Status: Received -- Oct 31, 2026), U.S. Army DEVCOM ARL BAA W911NF-23-S-0001 ($750K White Paper Transmitted), USACE ERDC BAA ($1.2M), and DHS S&T LRBAA ($1.0M OIP Confirmed)
 
 ---
 
