@@ -46,8 +46,8 @@
   },
   "DHS-ST-LRBAA-26-CIP": {
     "status": "Completed",
-    "notes": "DHS OIP Portal Account Registered & Email Confirmed (Oct 29, 2026 | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5); 2-Page Flush-72pt %PDF-1.4 White Paper (DHS_ST_LRBAA_26_CIP_WHITE_PAPER_HVF.pdf | $1.0M Phase-1 Effort) staged for immediate upload upon OIP review email under Merkle Root d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb",
-    "updated": "2026-10-29T16:40:00.000000Z"
+    "notes": "DHS OIP Portal Registered & Email Confirmed + Flush-72pt White Paper PDF (DHS_ST_LRBAA_26_CIP_WHITE_PAPER_HVF.pdf | SHA-256: 396ca5f52e280405...) transmitted to OIPPortalHelpDesk@hq.dhs.gov under Merkle Root d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb",
+    "updated": "2026-10-31T16:50:00.000000+00:00"
   },
   "ARL-ARO-BAA-2026-AI": {
     "status": "Completed",

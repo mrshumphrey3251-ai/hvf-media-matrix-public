@@ -16,58 +16,58 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
 endobj
 6 0 obj
-<< /Length 6720 >>
+<< /Length 6578 >>
 stream
 0.10 0.16 0.26 rg
-BT /F2 8.0 Tf 0 Tw 72.00 748.00 Td (HUMPHREY VIRTUAL FARMS LLC // CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 // DHS-ST-LRBAA-26-CIP WHITE PAPER) Tj ET
+BT /F2 8.0 Tf 0 Tw 72.00 748.00 Td (HUMPHREY VIRTUAL FARMS LLC // CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 // DHS S&T LRBAA \(DHS-ST-LRBAA-26-CIP\) WHITE PAPER) Tj ET
 0.10 0.16 0.26 RG 1.2 w
 72.00 740.00 m 540.00 740.00 l S
 0 0 0 rg 0 0 0 RG
-BT /F2 11.20 Tf 0.0000 Tw 72.00 720.00 Td (DHS S&T LONG RANGE BAA \(DHS-ST-LRBAA-26-CIP\): TECHNICAL WHITE PAPER) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0564 Tw 72.00 698.27 Td (Title: Project Ebony v8.0.0: Air-Gapped Critical Infrastructure SCADA/OT Isolation, Modeled 36.75ns SiC MOSFET) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 685.76 Td (Safety Cutoff & 52-Table WORM Provenance Enclave) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.6824 Tw 72.00 669.74 Td (Submitting Entity: Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | 701 E Drew,) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 657.23 Td (Madill, OK 73446\)) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 641.22 Td (Principal Investigator: Jeffery Humphrey, CEO | [REDACTED-FOR-PUBLIC-RELEASE]) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 625.21 Td (Current Readiness Level: TRL 4 \(Laboratory Software Emulation Testbed on 127.0.0.1 -> Phase-1 Target: TRL 6\)) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0173 Tw 72.00 609.20 Td (Cross-Referenced Filings: DoD CDAO Tradewinds Docket 10-26-4046 \(Status: Received\) & USACE ERDC Rolling) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 596.68 Td (BAA \(2026\)) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 580.67 Td (Shared Core C2 Merkle Root \(SHA-256\):) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 568.16 Td (d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.6155 Tw 72.00 552.15 Td (Proposed Phase-1 Effort: 12 Months | $1,000,000.00 Fixed-Price \($150,000.00 Day 15-30 Mobilization | 0% Cost) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 539.64 Td (Share | DFARS 252.227-7018 / FAR 52.227-14\)) Tj 0 Tw ET
-0.55 0.58 0.62 RG 0.8 w 72.00 521.12 m 540.00 521.12 l S 0 0 0 RG
-0.12 0.18 0.28 rg BT /F2 10.00 Tf 0 Tw 72.00 506.12 Td (1. OPERATIONAL PROBLEM & CRITICAL INFRASTRUCTURE PHYSICS GAP) Tj ET 0 0 0 rg
-0.75 0.78 0.82 RG 0.6 w 72.00 502.12 m 540.00 502.12 l S 0 0 0 RG
-BT /F1 9.20 Tf 8.1940 Tw 72.00 486.02 Td (Per U.S. Government Accountability Office Reports GAO-21-81 and GAO-24-106137 and Joint) Tj 0 Tw ET
-BT /F1 9.20 Tf 1.3971 Tw 72.00 473.51 Td (CISA/NSA/FBI/DoD Cybersecurity Advisories AA23-144A and AA24-038A \(Volt Typhoon\), U.S. municipal water) Tj 0 Tw ET
-BT /F1 9.20 Tf 1.3637 Tw 72.00 461.00 Td (treatment facilities, electrical substations, agricultural grain/microgrid corridors, and defense installations rely on) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.4839 Tw 72.00 448.49 Td (legacy commercial digital PLCs \(Siemens SIMATIC S7-1500, Rockwell ControlLogix, Schneider Electric Triconex\)) Tj 0 Tw ET
-BT /F1 9.20 Tf 1.4993 Tw 72.00 435.98 Td (scanning at 50ms to 200ms. Because high-voltage 480V/4.16kV arc-flash backfeeds propagate to catastrophic) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.2343 Tw 72.00 423.46 Td (busbar destruction in less than 4.16ms \(one-quarter of a 60Hz AC cycle\) and thermal excursions cross irreversible) Tj 0 Tw ET
-BT /F1 9.20 Tf 2.0828 Tw 72.00 410.95 Td (damage thresholds in 6.0ms, 50-200ms digital PLC scan loops arrive 8x to 33x too late to prevent physical) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.9496 Tw 72.00 398.44 Td (equipment destruction when state-sponsored adversaries corrupt PLC ladder logic while spoofing operator HMIs) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 385.93 Td (\(as demonstrated in the TRISIS/Triton safety-system attack\).) Tj 0 Tw ET
-0.12 0.18 0.28 rg BT /F2 10.00 Tf 0 Tw 72.00 359.92 Td (2. TECHNICAL APPROACH: THREE-BRAIN AIR-GAPPED ARCHITECTURE \(TRL 4 VERIFIED\)) Tj ET 0 0 0 rg
-0.75 0.78 0.82 RG 0.6 w 72.00 355.92 m 540.00 355.92 l S 0 0 0 RG
-BT /F1 9.20 Tf 0.4827 Tw 72.00 339.82 Td (Project Ebony v8.0.0 operates 100% offline on local loopback \(127.0.0.1\) with 0% commercial cloud dependency,) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.3552 Tw 72.00 327.30 Td (0 external APIs, and 0 open WAN ports across 640 compiled Python C2 modules, 85 / 85 passing automated unit) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 314.79 Td (test suites, and 1,420 / 1,420 verified engineering assessment questions:) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.4033 Tw 72.00 295.28 Td ([+] Brain One \(Controller -- Deterministic SCADA Safety Core\): Models a sub-50us bare-metal safety loop, 2.04us) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.1475 Tw 72.00 282.77 Td (RS-485 Modbus RTU \(Function Code 05\) emergency coil actuation, and a 36.75ns Silicon Carbide \(SiC\) MOSFET) Tj 0 Tw ET
-BT /F1 9.20 Tf 1.8277 Tw 72.00 270.26 Td (Analog Kinetic Guillotine gate cutoff design target \(1,360,544x faster than a 50ms PLC\) drawing 28.5W on a) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 257.74 Td (standard 24V DC DIN-rail bus.) Tj 0 Tw ET
-BT /F1 9.20 Tf 2.2521 Tw 72.00 239.23 Td ([+] Brain Two \(Analyst -- Zero-Cloud Edge Neural Inference\): Executes offline multi-spectral Non-Destructive) Tj 0 Tw ET
-BT /F1 9.20 Tf 2.3960 Tw 72.00 226.72 Td (Evaluation \(NDE\), EPA 40 CFR Part 60 Subpart OOOOb optical gas imaging, and ASTM D6433 structural) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 214.21 Td (diagnostics across a strictly unidirectional read-only isolation buffer with zero physical wire to the actuator bus.) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.1978 Tw 72.00 195.70 Td ([+] Brain Three \(Arbiter -- Cryptographic WORM Provenance Vault\): Chains every state vector and actuation event) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.2337 Tw 72.00 183.18 Td (in less than 0.2ms into a local 52-table bare-metal SQLite Write-Once-Read-Many \(WORM\) SHA-256 Merkle DAG) Tj 0 Tw ET
-BT /F1 9.20 Tf 3.9526 Tw 72.00 170.67 Td (\(matrix_ledger.db [22 tables] + hvf_memory_vault.db [30 tables]\), blocking 17 / 17 simulated Red-Team) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 158.16 Td (penetration vectors with automatic single-letter tamper zeroization.) Tj 0 Tw ET
-0.12 0.18 0.28 rg BT /F2 10.00 Tf 0 Tw 72.00 133.15 Td (3. QUANTITATIVE ANALYSIS OF ALTERNATIVES \(5-VENDOR BENCHMARK MATRIX\)) Tj ET 0 0 0 rg
-0.75 0.78 0.82 RG 0.6 w 72.00 129.15 m 540.00 129.15 l S 0 0 0 RG
-BT /F1 9.20 Tf 0.0109 Tw 72.00 113.05 Td (Unlike passive network Intrusion Detection Systems \(IDS\) or cloud-dependent AI wrappers, Project Ebony v8.0.0 is) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 100.54 Td (the only architecture engineered to satisfy all 6 / 6 Critical Infrastructure Survival Gates:) Tj 0 Tw ET
+BT /F2 10.60 Tf 0.0000 Tw 72.00 720.00 Td (DHS S&T LONG RANGE BAA \(DHS-ST-LRBAA-26-CIP\) TECHNICAL WHITE PAPER:) Tj 0 Tw ET
+BT /F2 10.60 Tf 0.0000 Tw 72.00 705.69 Td (PROJECT EBONY V8.0.0 AIR-GAPPED TRI-BRAIN CRITICAL INFRASTRUCTURE SCADA/OT) Tj 0 Tw ET
+BT /F2 10.60 Tf 0.0000 Tw 72.00 691.38 Td (SAFETY INTERLOCK & WORM PROVENANCE TESTBED) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.0641 Tw 72.00 670.57 Td (Solicitation: Department of Homeland Security \(DHS\) Science & Technology Directorate \(S&T\) Long Range Broad) Tj 0 Tw ET
+BT /F1 9.00 Tf 6.9381 Tw 72.00 658.42 Td (Agency Announcement \(LRBAA\) -- Critical Infrastructure Protection & Cyber-Physical OT Resilience) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 646.27 Td (\(DHS-ST-LRBAA-26-CIP\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.0935 Tw 72.00 630.62 Td (Submitting Entity: Humphrey Virtual Farms LLC \(HQ: 701 E Drew, Madill, OK 73446-2620 | 100% U.S. Sovereign) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 618.47 Td (Small Business, 0% FOCI\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0829 Tw 72.00 602.82 Td (Statutory Identifiers: CAGE Code: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | Active Federal Prime Contractor \(100%) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 590.67 Td (Section 889 NDAA Compliant\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 11.1526 Tw 72.00 575.02 Td (Principal Investigator: Jeffery Humphrey, Founder, President & CEO | \(572\) 358-9978 |) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 562.87 Td (humphreyvirtualfarm@gmail.com) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 547.22 Td (Public Verification Repository: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public) Tj 0 Tw ET
+BT /F1 9.00 Tf 14.5890 Tw 72.00 531.57 Td (Shared Core C2 Cryptographic Merkle Root \(640 Compiled Python C2 Modules\):) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 519.42 Td (d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb) Tj 0 Tw ET
+BT /F1 9.00 Tf 3.5361 Tw 72.00 503.77 Td (Cross-Referenced Active Filings: DoD CDAO Tradewinds Solutions Marketplace Docket 10-26-4046 \(Status:) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.5599 Tw 72.00 491.62 Td (Compliant/Queued for Assessment -- Oct 29, 2026\), Defense Innovation Unit \(DIU\) Portfolio Network & SWAP-USV) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.7039 Tw 72.00 479.47 Td (Sprint 2 \(Confirmed Oct 31, 2026\), U.S. Army DEVCOM ARL BAA W911NF-23-S-0001 \($750K White Paper) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.6548 Tw 72.00 467.32 Td (Submitted Oct 30, 2026\), and USACE ERDC Rolling BAA \($1.2M Re-Baselined White Paper Submitted Oct 31,) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 455.17 Td (2026\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.6103 Tw 72.00 439.52 Td (Proposed Phase-1 Effort: $1,000,000.00 Fixed-Price Research & Prototype Effort \(12 Months | $200,000.00 Day) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 427.37 Td (15-30 Mobilization Tranche | 0% Cost Share | TRL 4 Verified Baseline Advancing to TRL 6\)) Tj 0 Tw ET
+0.55 0.58 0.62 RG 0.8 w 72.00 409.22 m 540.00 409.22 l S 0 0 0 RG
+0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 395.22 Td (1. EXECUTIVE BLUF & HOMELAND SECURITY CRITICAL INFRASTRUCTURE ALIGNMENT) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 391.22 m 540.00 391.22 l S 0 0 0 RG
+BT /F1 9.00 Tf 0.3012 Tw 72.00 375.49 Td (Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5\) submits Project Ebony v8.0.0 under the DHS) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.5246 Tw 72.00 363.34 Td (S&T Long Range BAA for Critical Infrastructure Protection \(DHS-ST-LRBAA-26-CIP\). Project Ebony v8.0.0 is a TRL) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.3485 Tw 72.00 351.19 Td (4 verified, deterministic, zero-cloud Three-Brain cyber-physical SCADA/OT protection, edge anomaly diagnostic, and) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.3347 Tw 72.00 339.04 Td (52-table Write-Once-Read-Many \(WORM\) Merkle provenance architecture operating on local loopback \(127.0.0.1\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 326.89 Td (across 640 compiled Python C2 modules \(Shared Core C2 Merkle Root:) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 314.74 Td (d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb\).) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.2168 Tw 72.00 296.09 Td ([+] Eliminating Cloud-Dependent SCADA/OT Vulnerabilities in U.S. Utilities & Municipal Infrastructure: U.S. municipal) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.3843 Tw 72.00 283.94 Td (water treatment facilities, electrical substations, pipeline compressor stations, and agricultural/food-supply microgrids) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.3490 Tw 72.00 271.79 Td (face escalating nation-state cyber-physical attacks targeting programmable logic controllers \(PLCs\) and remote) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.4163 Tw 72.00 259.64 Td (terminal units \(RTUs\). Legacy cloud-tethered intrusion detection systems introduce unacceptable latency \(>50ms\)) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.0041 Tw 72.00 247.49 Td (and external attack surfaces. Project Ebony v8.0.0 enforces deterministic physical cutoff in <50 microseconds with) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 235.34 Td (0% commercial cloud dependency.) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.7370 Tw 72.00 217.19 Td ([+] Verified 640-Module C2 & Forensic Audit Baseline: Verified across 640 compiled Python C2 modules, 85/85) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.0258 Tw 72.00 205.04 Td (passing automated test suites, 17/17 blocked Red-Team penetration vectors with automatic single-letter tamper) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.2559 Tw 72.00 192.89 Td (zeroization, and 52 bare-metal SQLite WORM/vault tables \(matrix_ledger.db [22 tables] and hvf_memory_vault.db) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 180.74 Td ([30 tables]\).) Tj 0 Tw ET
+0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 157.09 Td (2. THREE-BRAIN HARDWARE-ENFORCED ARCHITECTURE \(28.5W / 24V DC\)) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 153.09 m 540.00 153.09 l S 0 0 0 RG
+BT /F1 9.00 Tf 3.1029 Tw 72.00 137.36 Td (Project Ebony v8.0.0 physically and logically isolates critical infrastructure actuator safety from neural threat) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 125.21 Td (diagnostics and forensic telemetry sealing:) Tj 0 Tw ET
 0.10 0.16 0.26 RG 0.8 w
 72.00 48.00 m 540.00 48.00 l S
 0.25 0.25 0.25 rg
@@ -80,40 +80,38 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
 endobj
 8 0 obj
-<< /Length 4330 >>
+<< /Length 4315 >>
 stream
 0.10 0.16 0.26 rg
-BT /F2 8.0 Tf 0 Tw 72.00 748.00 Td (HUMPHREY VIRTUAL FARMS LLC // CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 // DHS-ST-LRBAA-26-CIP WHITE PAPER) Tj ET
+BT /F2 8.0 Tf 0 Tw 72.00 748.00 Td (HUMPHREY VIRTUAL FARMS LLC // CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 // DHS S&T LRBAA \(DHS-ST-LRBAA-26-CIP\) WHITE PAPER) Tj ET
 0.10 0.16 0.26 RG 1.2 w
 72.00 740.00 m 540.00 740.00 l S
 0 0 0 rg 0 0 0 RG
-BT /F1 9.20 Tf 1.9427 Tw 72.00 719.50 Td ([+] Project Ebony v8.0.0 \(Humphrey Virtual Farms LLC\): Passes 6 / 6 Survival Gates. Modeled 36.75ns SiC) Tj 0 Tw ET
-BT /F1 9.20 Tf 1.8786 Tw 72.00 706.99 Td (MOSFET cutoff \(<50us software loop\); 28.5W on 24V DC; 100% air-gapped zero-cloud operation; sub-0.2ms) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 694.48 Td (52-table SQLite WORM Merkle DAG; drop-in RS-485 Modbus RTU \(FC05\) interoperability.) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.5052 Tw 72.00 675.96 Td ([+] Siemens SIMATIC S7-1500 / Rockwell ControlLogix: Passes 0 / 6 Survival Gates. 50ms to 200ms digital scan) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.7899 Tw 72.00 663.45 Td (loop \(arrives 8x to 33x after a 4.16ms arc-flash\); 150W to 450W rack power draw; vulnerable to unauthenticated) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 650.94 Td (CIP/S7 protocol command injection and HMI spoofing.) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.4103 Tw 72.00 632.43 Td ([+] Schneider Electric Triconex SIS: Passes 0 / 6 Survival Gates. 10ms to 50ms Triple-Modular Redundant \(TMR\)) Tj 0 Tw ET
-BT /F1 9.20 Tf 5.1716 Tw 72.00 619.92 Td (relay cycle; 200W to 600W power draw; compromised in the real-world TRISIS/Triton petrochemical) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 607.40 Td (safety-controller breach.) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0262 Tw 72.00 588.89 Td ([+] Dragos Platform / Nozomi Networks Guardian: Passes 0 / 6 Survival Gates. Passive SPAN/TAP network packet) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.5195 Tw 72.00 576.38 Td (monitoring only with zero physical cutoff authority to open breaker gates during a kinetic transient; requires 300W) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 563.87 Td (to 1,200W server appliances.) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.6972 Tw 72.00 545.36 Td ([+] Commercial Cloud AI Wrappers: Passes 0 / 6 Survival Gates. Greater than 250ms wide-area cloud round-trip) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 532.84 Td (latency; fails completely under RF jamming, EMCON, or substation air-gap isolation.) Tj 0 Tw ET
-0.12 0.18 0.28 rg BT /F2 10.00 Tf 0 Tw 72.00 507.83 Td (4. PHASE-1 MILESTONES, DELIVERABLES & FIXED-PRICE BUDGET \($1,000,000.00 / 12 MONTHS\)) Tj ET 0 0 0 rg
-0.75 0.78 0.82 RG 0.6 w 72.00 503.83 m 540.00 503.83 l S 0 0 0 RG
-BT /F1 9.20 Tf 1.2818 Tw 72.00 487.73 Td ([+] Milestone 1 \(Months 1-3 | $250,000.00\): Day 15-30 Mobilization \($150,000.00\), STM32H7 Cortex-M7 & SiC) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.6400 Tw 72.00 475.22 Td (MOSFET PCB schematic capture, and completed 110-control NIST SP 800-171 Rev 2 & NIST SP 800-82 Rev 2) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 462.71 Td (substation compliance package.) Tj 0 Tw ET
-BT /F1 9.20 Tf 1.6104 Tw 72.00 444.20 Td ([+] Milestone 2 \(Months 4-6 | $250,000.00\): Bare-metal PCB assembly, optical isolation barrier validation, and) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 431.68 Td (sub-50us RS-485 Modbus RTU \(Function Code 05\) hardware-in-the-loop \(HIL\) bench verification.) Tj 0 Tw ET
-BT /F1 9.20 Tf 1.0433 Tw 72.00 413.17 Td ([+] Milestone 3 \(Months 7-9 | $250,000.00\): High-voltage <4.16ms arc-flash and 6.0ms thermal cutoff laboratory) Tj 0 Tw ET
-BT /F1 9.20 Tf 3.4681 Tw 72.00 400.66 Td (verification with Brain Three sub-0.2ms WORM Merkle DAG telemetry chaining and 17-vector Red-Team) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 388.15 Td (penetration testing.) Tj 0 Tw ET
-BT /F1 9.20 Tf 1.6550 Tw 72.00 369.64 Td ([+] Milestone 4 \(Months 10-12 | $250,000.00\): TRL 6 municipal water/electrical substation pilot demonstration,) Tj 0 Tw ET
-BT /F1 9.20 Tf 2.6983 Tw 72.00 357.12 Td (DHS S&T CISA transition package, and dual-use commercialization rollout \(retaining 100% Small Business) Tj 0 Tw ET
-BT /F1 9.20 Tf 0.0000 Tw 72.00 344.61 Td (Background IP under FAR 52.227-14 / DFARS 252.227-7018\).) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.8816 Tw 72.00 719.50 Td ([+] Brain One \(Deterministic SCADA Safety Core & Kinetic Guillotine\): Executes a <50 microsecond bare-metal) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.0604 Tw 72.00 707.35 Td (safety loop monitoring municipal water chemical dosing pumps, grid breaker relays, and pressure relief valves.) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.8202 Tw 72.00 695.20 Td (Models a 2.04 microsecond RS-485 Modbus RTU \(Function Code 05\) emergency actuator disconnect and a 36.75) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.2204 Tw 72.00 683.05 Td (nanosecond Silicon Carbide \(SiC\) MOSFET solid-state gate cutoff target -- 1,360,544x faster than a legacy 50ms) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 670.90 Td (PLC scan cycle -- operating at 28.5W continuous draw on native 24V DC substation/panel power.) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.8152 Tw 72.00 652.75 Td ([+] Brain Two \(Zero-Cloud Cognitive Drift & Cyber-Physical Anomaly Analyst\): Executes air-gapped edge neural) Tj 0 Tw ET
+BT /F1 9.00 Tf 3.1655 Tw 72.00 640.60 Td (inference to detect subtle multi-sensor process drift, false-data injection attacks, and structural/environmental) Tj 0 Tw ET
+BT /F1 9.00 Tf 1.8346 Tw 72.00 628.45 Td (anomalies without internet connectivity. Brain Two communicates with Brain One strictly across a unidirectional,) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.8826 Tw 72.00 616.30 Td (read-only memory diode with zero physical wire to SCADA actuator coils, mathematically preventing adversarial AI) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 604.15 Td (manipulation from triggering physical valve or breaker actuation.) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.3291 Tw 72.00 586.00 Td ([+] Brain Three \(Sub-Millisecond 52-Table SQLite WORM Merkle DAG Arbiter\): Computes and seals a cryptographic) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.2074 Tw 72.00 573.85 Td (SHA-256 WORM Merkle Directed Acyclic Graph across 52 local SQLite tables in <0.2 milliseconds per event,) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 561.70 Td (providing CISA, DHS S&T, and utility operators with court-admissible, tamper-evident post-incident telemetry.) Tj 0 Tw ET
+0.12 0.18 0.28 rg BT /F2 9.80 Tf 0 Tw 72.00 538.05 Td (3. 12-MONTH PHASE-1 STATEMENT OF WORK \($1,000,000.00 FIXED-PRICE\)) Tj ET 0 0 0 rg
+0.75 0.78 0.82 RG 0.6 w 72.00 534.05 m 540.00 534.05 l S 0 0 0 RG
+BT /F1 9.00 Tf 1.0766 Tw 72.00 518.32 Td ([+] Milestone 1 \(Months 1-3 | $250,000.00 -- Includes $200,000.00 Day 15-30 Mobilization\): Deliver ICDs for DHS) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.1144 Tw 72.00 506.17 Td (S&T / CISA water and electrical substation testbeds; bind Brain One RS-485 Modbus RTU and SiC MOSFET) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 494.02 Td (solid-state cutoff relays to representative SCADA hardware.) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.6943 Tw 72.00 475.87 Td ([+] Milestone 2 \(Months 4-8 | $450,000.00 -- Red-Team Fault-Injection & HIL Benchmarking\): Execute 10,000-cycle) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.7344 Tw 72.00 463.72 Td (hardware-in-the-loop SCADA PLC spoofing, chemical-dosing overrun, and grid-relay transient benchmarks verifying) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 451.57 Td (<50us deterministic isolation and 0% cloud dependency.) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.6186 Tw 72.00 433.42 Td ([+] Milestone 3 \(Months 9-12 | $300,000.00 -- TRL 6 Municipal Utility Pilot & WORM Audit Package\): Deliver TRL 6) Tj 0 Tw ET
+BT /F1 9.00 Tf 2.9349 Tw 72.00 421.27 Td (turnkey critical-infrastructure protection appliance, 52-table WORM forensic verification suite, and Government) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.1004 Tw 72.00 409.12 Td (Purpose Rights interface documentation while retaining 100% Small Business background IP under FAR/DFARS and) Tj 0 Tw ET
+BT /F1 9.00 Tf 0.0000 Tw 72.00 396.97 Td (100% Section 889 NDAA compliance.) Tj 0 Tw ET
 0.10 0.16 0.26 RG 0.8 w
 72.00 48.00 m 540.00 48.00 l S
 0.25 0.25 0.25 rg
@@ -131,11 +129,11 @@ xref
 0000000197 00000 n 
 0000000272 00000 n 
 0000000408 00000 n 
-0000007180 00000 n 
-0000007316 00000 n 
+0000007038 00000 n 
+0000007174 00000 n 
 trailer
 << /Size 9 /Root 1 0 R >>
 startxref
-11698
+11541
 %%EOF
-% HVF-WORM-SHA256: 45e369d2a6664cbf7364a1b5f2b718a01e0e4d648bade79eabfe672426b7fac4
+% HVF-WORM-SHA256: 6b46ca9c5ce3ce34b40236710342783798a5549e6d4953c4f735080c586291ff
