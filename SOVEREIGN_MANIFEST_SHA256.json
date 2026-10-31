@@ -4,7 +4,7 @@
   "uei": "S1M4ENLHTDH5",
   "docket": "10-26-4046 (Status: Compliant/Queued for Assessment | Superseding 10-26-4014, 10-26-3976 & 9-26-3703)",
   "stage": "8F-9",
-  "timestamp_utc": "2026-10-31T16:42:00.000000+00:00",
+  "timestamp_utc": "2026-10-31T16:45:00.000000+00:00",
   "c2_cockpit_python_modules": 640,
   "level5_extension_modules": 15,
   "total_python_modules": 1781,
@@ -435,7 +435,8 @@
     "c2_cockpit/proposals/DIU_SWAP_USV_SPRINT2_SOLUTION_BRIEF.md": "faf46e88ac8bd91550476f8c6c144bc47a372dd7849afd0eefb61ba483076dbd",
     "c2_cockpit/proposals/DIU_SWAP_USV_SPRINT2_SOLUTION_BRIEF_HVF.pdf": "e77831c55cd68687cae534441e3171b7c3f9cabec0653d49ccb211d44aa3e454",
     "c2_cockpit/proposals/TRADEWINDS_RESUBMISSION_SCRIPT_10_26_4046.pdf": "a5a12f1216514626a7b9844b830cdce05bde94c31beafb89561a865d625f5819",
-    "c2_cockpit/proposals/USACE_ERDC_BAA_2026_WHITE_PAPER_HVF.pdf": "87e5b2d24fe52e1e0fd7ab9717d3b8bd7c5b0628ce71d02a16a89821a9ec0dda",
+    "c2_cockpit/proposals/USACE_ERDC_BAA_2026_WHITE_PAPER.md": "418a58da26f053718331bc5be4495159cb97122ed789871201f3acdb1cbc5691",
+    "c2_cockpit/proposals/USACE_ERDC_BAA_2026_WHITE_PAPER_HVF.pdf": "303edcaf058941f05fe964f64e82dd3c970f529882ec5c1b9fc8b4b8b4a6289d",
     "c2_cockpit/proposals/WHITE_PAPER_ARL_ARO_BAA_2026.md": "33b92a3f0bddf7fdfe13fdf0a8704f82a5641de54703d53662f75b89ee50d978",
     "c2_cockpit/proposals/WHITE_PAPER_DHS_ST_LRBAA_2026.md": "4a75f25aacb2dd0c489cf024efeecafab4e6bcd04cd2be6c0afd67bce384d1c5",
     "c2_cockpit/proposals/WHITE_PAPER_USACE_ERDC_BAA_2026.md": "993aba1202706de4224fbfd0641929ab6303f0286fbd0477c16a3b894317a31a",
@@ -672,6 +673,7 @@
     "level5_extensions/migrate_users_table.py": "cb94891e8201a39f0aa08d240d3d2a245e08fe0a54e825c4f8b267eeb49f447a",
     "level5_extensions/sovereign_weather_scada.py": "676af327c238811f9a846587d69d8af609aacf6f17c686cbf01b73ccdfacef82",
     "public_verification/arl_aro_baa_w911nf_23_s_0001_dispatch_receipt_public.md": "665f2c29cea096dad1b3f5aa931c2404010d39117125db16b098ea71da9c60b6",
-    "public_verification/diu_onramp_and_cso_submission_receipt_20261031_public.md": "5b97e3e5bee2eaa97ceda5463f434cb4b861705ddd2140a9688b6e4f5ee60ecd"
+    "public_verification/diu_onramp_and_cso_submission_receipt_20261031_public.md": "91cad7c7e6408500b352a0c16a56f777f163ea5fb1c956c38bab89696f47888c",
+    "public_verification/usace_erdc_baa_2026_superseding_dispatch_receipt_public.md": "3ec6db6de40dd3fbc23080a2098e98172415e7e5e0ae4dfae9c7234619e4fb65"
   }
 }

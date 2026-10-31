@@ -41,8 +41,8 @@
   },
   "USACE-ERDC-BAA-2026": {
     "status": "Completed",
-    "notes": "ERDCWERX Submittable ID 55639130 (Topic 0008) closed Oct 30, 2026 due to lack of Topic 0008 project funding (0 technical flaws; encouraged to submit to other topics); Direct ERDC-BAA@usace.army.mil GSL/ITL White Paper & DoD CDAO Tradewinds Docket 10-26-4046 (Compliant/Queued) active under Merkle Root d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb",
-    "updated": "2026-10-30T21:15:00.000000+00:00"
+    "notes": "Superseding Flush-72pt USACE ERDC Rolling BAA (GSL/ITL) White Paper PDF (SHA-256: 303edcaf058941f0...) re-baselined on Oct 31, 2026 under official humphreyvirtualfarm@gmail.com inbox, Tradewinds Docket 10-26-4046 (Compliant/Queued), and Merkle Root d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb",
+    "updated": "2026-10-31T16:45:00.000000+00:00"
   },
   "DHS-ST-LRBAA-26-CIP": {
     "status": "Completed",
@@ -62,6 +62,6 @@
   "DIU-CSO-2026": {
     "status": "Completed",
     "notes": "Triple-Locked DIU Submission Confirmed Oct 31, 2026: (1) DIU Network Intake ('Received'), (2) SWAP-USV Sprint 2 Portal + 11:22 AM DIU Email Confirmation ('Thank you for your submission'), & (3) SWAP@diu.mil CRADA/Teaming/10 U.S.C. 4023 Dispatch with 8-Slide 16:9 Deck (SHA-256: e77831c55cd68687...) under Merkle Root d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb",
-    "updated": "2026-10-31T16:42:00.000000+00:00"
+    "updated": "2026-10-31T16:45:00.000000+00:00"
   }
 }
