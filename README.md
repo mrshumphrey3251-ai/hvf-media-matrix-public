@@ -66,3 +66,11 @@ Under **10 U.S.C. § 4022**, Humphrey Virtual Farms LLC proposes a **12-Month, $
 3. **Months 7–9 (Q3):** Execute accredited third-party Hardware-in-the-Loop (HIL) oscilloscope verification of the `36.75ns` gate cutoff and perform formal NIST SP 800-171 / 800-82 cybersecurity auditing (`TRL 6`).
 4. **Months 10–12 (Q4):** Deliver ruggedized MIL-SPEC Tactical Control Units for DoD microgrid/OT field demonstration (`TRL 4 (Phase-1 OTA Target: TRL 6)`) and 10 U.S.C. § 4022(f) follow-on production readiness.
 
+
+---
+
+## Phase 8 (8f -- 8o) Sovereign SAM.gov API, TLS 1.3 & Capture Pipeline Architecture
+- **Entity Legal Name:** HUMPHREY VIRTUAL FARMS LLC (`UEI: S1M4ENLHTDH5` | `CAGE: 1AHA8`)
+- **SAM.gov Registration Status:** `ACTIVE` (All Awards -- Valid through `2027-03-17`)
+- **Active FSD.gov Role Approval Ticket:** `INC-GSAFSD21854398` (`State: New` -- Signed Template 1 PDF `123.9 KB` Attached)
+- **Master Architecture Index:** See [`docs/PHASE_8_MASTER_PIPELINE_INDEX.md`](docs/PHASE_8_MASTER_PIPELINE_INDEX.md) for the complete 5-stage pipeline (`8f`--`8k`) and 4 zero-rewrite extension hooks (`8l`--`8o`).
