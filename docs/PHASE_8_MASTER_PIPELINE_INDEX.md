@@ -1,4 +1,4 @@
-﻿# Phase 8 (8f -- 8n) Master Sovereign SAM.gov & C2 Capture Pipeline Index
+﻿# Phase 8 (8f -- 8o) Master Sovereign SAM.gov & C2 Capture Pipeline Index
 
 - **Entity Legal Name:** HUMPHREY VIRTUAL FARMS LLC
 - **Unique Entity ID (UEI):** `S1M4ENLHTDH5` | **CAGE Code:** `1AHA8`
@@ -6,7 +6,7 @@
 - **Active FSD.gov Role Approval Ticket:** `INC-GSAFSD21854398` (`State: New` -- Signed Template 1 PDF `123.9 KB` Attached)
 - **Classification:** Public Redacted Compliance & Architecture Index (`ZERO_SECRETS_EXPOSED`)
 
-## 1. Complete Phase 8 Module & Blueprint Registry (100% Coverage: 8f -- 8n)
+## 1. Complete Phase 8 Module & Blueprint Registry (100% Coverage: 8f -- 8o)
 
 | Stage | Public Redacted Blueprint (`hvf-media-matrix-public`) | Private Sovereign Module (`hvf-media-matrix-private`) | Core Capability & Verification Status |
 | :--- | :--- | :--- | :--- |
@@ -19,3 +19,4 @@
 | **Phase 8l** | `docs/PHASE_8L_WHITEPAPER_PACKAGER_BLUEPRINT.md` | `c2_cockpit/sam_whitepaper_packager_ext.py` | Extension Hook #1 generating standalone `DARPA-SN-27-17` & `BAA-N6893625S0001-0001` whitepapers (`100% PASS`) |
 | **Phase 8m** | `docs/PHASE_8M_COMPLETE_SUBMISSION_MANIFEST_BLUEPRINT.md` | `c2_cockpit/sam_nasa_scan_whitepaper_ext.py` | Extension Hook #2 completing 3-of-3 whitepaper coverage (`80MSFC27ENG1026`) & sealing `SUBMISSION_PACKAGE_MANIFEST.md` (`100% PASS`) |
 | **Phase 8n** | `docs/PHASE_8N_LATEX_PDF_COMPILER_BLUEPRINT.md` | `c2_cockpit/sam_latex_pdf_compiler_ext.py` | Extension Hook #3 compiling typeset DAF TENCAP `.tex` sources into `tencap_factsheet.pdf` & `tencap_whitepaper.pdf` (`100% PASS`) |
+| **Phase 8o** | `docs/PHASE_8O_MARKDOWN_PDF_COMPILER_BLUEPRINT.md` | `c2_cockpit/sam_markdown_pdf_compiler_ext.py` | Extension Hook #4 compiling typeset Markdown whitepapers into `docs/submissions/*.pdf` & export vault (`100% PASS`) |
