@@ -26,3 +26,10 @@
 - **Attached Artifact:** FSD_Template_1_Entity_Admin_Appointment_S1M4ENLHTDH5.pdf (123.9 KB)
 - **FSD Upload Timestamp:** 2026-11-04 11:26:55 EST (INC-GSAFSD21852287)
 - **Escalation Directive Posted:** 2026-11-04 11:27:27 EST (Referenced KB0016652, KB0072291, KB0095293, and prior approved notarized filing INC-GSAFSD20793512)
+
+## 4. Active Tier-2 Appointment Letter Upload Incident (`INC-GSAFSD21854398`)
+- **Active Incident Number:** `INC-GSAFSD21854398` (`State: New` -- Routed directly to SAM Entity Administrator Letter Approval Queue)
+- **Short Description:** `ENTITY ADMINISTRATOR APPOINTMENT LETTER UPLOAD (KB0016652 TEMPLATE 1) — UEI: S1M4ENLHTDH5 / CAGE: 1AHA8`
+- **Form Routing Parameters Verified:** `Has the form been notarized? = No` (per `KB0016652`) | `Attestation signed? = Yes`
+- **Attached Artifact at Creation:** `FSD_Template_1_Entity_Admin_Appointment_S1M4ENLHTDH5.pdf` (`123.9 KB`)
+- **Cross-Referenced Chain of Custody:** `INC-GSAFSD21852287` (`Resolved`) & `INC-GSAFSD20793512` (`Closed / Approved Notarized Letter: 2026-03-24`)
