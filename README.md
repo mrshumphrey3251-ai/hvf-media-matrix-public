@@ -1,5 +1,5 @@
-# HUMPHREY VIRTUAL FARMS LLC // PROJECT EBONY v8.0.0 SOVEREIGN C2 ENCLAVE
-> **DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE — DOCKET 10-26-4046 (OCT 28, 2026 v8.0.0 VERIFICATION GATE)**
+﻿# HUMPHREY VIRTUAL FARMS LLC // PROJECT EBONY v8.0.0 SOVEREIGN C2 ENCLAVE
+> **DOD CDAO TRADEWINDS SOLUTIONS MARKETPLACE â€” DOCKET 10-26-4046 (OCT 28, 2026 v8.0.0 VERIFICATION GATE)**
 > * **New Submission Title:** `Project Ebony v8.0.0: Deterministic Zero-Cloud OT/SCADA Interlock Testbed & WORM Merkle Provenance Architecture (TRL 4 Assessor-Aligned Resubmission)`
 > * **Submitting Prime:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5` | `100% U.S. Sovereign Small Business`)
 > * **Current Readiness Baseline:** `TRL 4` (Laboratory Software Emulation Testbed on `127.0.0.1` Loopback -> Phase-1 OTA Target: `TRL 6`)
@@ -9,9 +9,9 @@
 > * **Shared Core C2 Cryptographic Merkle Root (SHA-256):** `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`
 
 ---
-# Humphrey Virtual Farms LLC — Project Ebony (v8.0.0)
+# Humphrey Virtual Farms LLC â€” Project Ebony (v8.0.0)
 **Official CDAO Tradewinds Solutions Marketplace (TSM) Verification Repository**  
-**Active TSM Docket:** `10-26-4046` (`Status: Received` — Resubmission of Prior Docket `9-26-3703`)  
+**Active TSM Docket:** `10-26-4046` (`Status: Received` â€” Resubmission of Prior Docket `9-26-3703`)  
 **Current Readiness Level:** `TRL 4` (Laboratory Software Emulation Testbed & Mathematical Architecture)  
 **Contractor:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5`)  
 **Founder, CEO & Chief Architect:** Jeffery Humphrey (`[REDACTED-FOR-PUBLIC-RELEASE]`)  
@@ -23,14 +23,14 @@
 This repository serves as the public architectural blueprint and TRL 4 software-bench verification record for **Project Ebony (v8.0.0)** under Tradewinds Docket **`10-26-4046`**.
 
 * **TRL 4 Software Emulation Scope:** Project Ebony is currently at **TRL 4** (laboratory software testbed and mathematical emulation running on an air-gapped local workstation under Master SHA-256 Merkle Root `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`).
-* **Software-Bench Verification vs. Physical Silicon Target:** References in pitch transcripts and legacy dossiers to *"bench verified,"* `83/83` passed unit/stress suites, `17/17` simulated red-team vectors, and `NIST SP 800-171 / 800-82` mappings reflect local Python/C/SQLite software-bench emulation and architectural modeling. Physical Cortex-M7/RISC-V PCB fabrication, third-party high-voltage SiC MOSFET electrical testing, and formal DoD SPRS third-party auditing are scheduled Phase-1 milestones under our proposed **12-Month, $1.485M Prototype OTA (`10 U.S.C. § 4022`)**.
+* **Software-Bench Verification vs. Physical Silicon Target:** References in pitch transcripts and legacy dossiers to *"bench verified,"* `83/83` passed unit/stress suites, `17/17` simulated red-team vectors, and `NIST SP 800-171 / 800-82` mappings reflect local Python/C/SQLite software-bench emulation and architectural modeling. Physical Cortex-M7/RISC-V PCB fabrication, third-party high-voltage SiC MOSFET electrical testing, and formal DoD SPRS third-party auditing are scheduled Phase-1 milestones under our proposed **12-Month, $1.485M Prototype OTA (`10 U.S.C. Â§ 4022`)**.
 
 ---
 
 ## 2. Defining the Problem (DoD Operational Scale & Physics Gap)
 * **DoD Infrastructure Footprint:** Per **GAO-21-81** and **GAO-24-106137**, the Department of Defense operates **500+ installations**, **300,000+ buildings**, and **$4.2B+ in annual operational technology (OT) and energy assets** governed by commercial digital PLCs scanning at **50ms to 200ms**.
 * **Adversarial Pre-Positioning:** Per **CISA/NSA/DoD Joint Advisories AA23-144A & AA24-038A (Volt Typhoon)** and historical **TRISIS/Triton** and **Industroyer2** incidents, advanced persistent threats corrupt controller logic while spoofing operator HMIs.
-* **The Sub-Millisecond Physics Gap:** Because electrical arc-flash backfeeds propagate in **less than 4.16ms** and prompt-critical microreactor excursions occur in **6.0ms**, legacy 50ms–200ms digital PLC scan loops are **8x to 33x too slow** to arrest physical equipment destruction.
+* **The Sub-Millisecond Physics Gap:** Because electrical arc-flash backfeeds propagate in **less than 4.16ms** and prompt-critical microreactor excursions occur in **6.0ms**, legacy 50msâ€“200ms digital PLC scan loops are **8x to 33x too slow** to arrest physical equipment destruction.
 
 ---
 
@@ -51,20 +51,20 @@ Project Ebony models a zero-cloud, zero-OS dependency architecture (`0%` cloud d
 | System / Architecture | Primary Authority Mechanism | Cutoff / Scan Latency | Power Budget | Cloud / OS Dependency |
 | :--- | :--- | :--- | :--- | :--- |
 | **Project Ebony (Modeled Target)** | **Analog Comparator + Bare-Metal Silicon** | **`36.75ns` (Analog Target) / `< 50us` (Loop)** | **`28.5W` @ 24V DC** | **0% (Air-Gapped Bare Metal)** |
-| **Siemens S7-1500 / Rockwell ControlLogix** | OS-Dependent Digital PLC Scan | `50ms – 200ms` | `150W – 450W` | High (Vendor Firmware / SCADA) |
-| **Schneider Triconex SIS** | Triple-Modular Digital Voting | `10ms – 50ms` | `200W – 600W` | Breached in TRISIS Malware |
-| **Dragos / Nozomi Guardian** | Passive Network IDS / Telemetry | `> 250ms` (Human-in-Loop) | `300W – 1,200W` | Zero Physical Cutoff Authority |
+| **Siemens S7-1500 / Rockwell ControlLogix** | OS-Dependent Digital PLC Scan | `50ms â€“ 200ms` | `150W â€“ 450W` | High (Vendor Firmware / SCADA) |
+| **Schneider Triconex SIS** | Triple-Modular Digital Voting | `10ms â€“ 50ms` | `200W â€“ 600W` | Breached in TRISIS Malware |
+| **Dragos / Nozomi Guardian** | Passive Network IDS / Telemetry | `> 250ms` (Human-in-Loop) | `300W â€“ 1,200W` | Zero Physical Cutoff Authority |
 
 ---
 
-## 5. Business Model & 12-Month Phase-1 Prototype OTA Roadmap (`10 U.S.C. § 4022`)
-All agricultural microgrid acreage, state infrastructure inspections, and 3-tier pricing figures (`$19.99/mo` Tier-1, `$499–$2,500/mo` Tier-2, and `$1.485M` Tier-3 OTA) represent our dual-use commercialization roadmap and economic projections.
+## 5. Business Model & 12-Month Phase-1 Prototype OTA Roadmap (`10 U.S.C. Â§ 4022`)
+All agricultural microgrid acreage, state infrastructure inspections, and 3-tier pricing figures (`$19.99/mo` Tier-1, `$499â€“$2,500/mo` Tier-2, and `$1.485M` Tier-3 OTA) represent our dual-use commercialization roadmap and economic projections.
 
-Under **10 U.S.C. § 4022**, Humphrey Virtual Farms LLC proposes a **12-Month, $1.485M Phase-1 Prototype Other Transaction Agreement (OTA)** structured to transition Project Ebony from **TRL 4 software emulation** to **TRL 6/7 operational hardware**:
-1. **Months 1–3 (Q1):** Subcontract electrical/PCB layout engineering and fabricate Revision-A Cortex-M7 + SiC MOSFET Kinetic Guillotine breadboards.
-2. **Months 4–6 (Q2):** Port TRL 4 C/Python deterministic control loops and Brain Three SHA-256 WORM ledger onto physical bare-metal silicon (`TRL 5`).
-3. **Months 7–9 (Q3):** Execute accredited third-party Hardware-in-the-Loop (HIL) oscilloscope verification of the `36.75ns` gate cutoff and perform formal NIST SP 800-171 / 800-82 cybersecurity auditing (`TRL 6`).
-4. **Months 10–12 (Q4):** Deliver ruggedized MIL-SPEC Tactical Control Units for DoD microgrid/OT field demonstration (`TRL 4 (Phase-1 OTA Target: TRL 6)`) and 10 U.S.C. § 4022(f) follow-on production readiness.
+Under **10 U.S.C. Â§ 4022**, Humphrey Virtual Farms LLC proposes a **12-Month, $1.485M Phase-1 Prototype Other Transaction Agreement (OTA)** structured to transition Project Ebony from **TRL 4 software emulation** to **TRL 6/7 operational hardware**:
+1. **Months 1â€“3 (Q1):** Subcontract electrical/PCB layout engineering and fabricate Revision-A Cortex-M7 + SiC MOSFET Kinetic Guillotine breadboards.
+2. **Months 4â€“6 (Q2):** Port TRL 4 C/Python deterministic control loops and Brain Three SHA-256 WORM ledger onto physical bare-metal silicon (`TRL 5`).
+3. **Months 7â€“9 (Q3):** Execute accredited third-party Hardware-in-the-Loop (HIL) oscilloscope verification of the `36.75ns` gate cutoff and perform formal NIST SP 800-171 / 800-82 cybersecurity auditing (`TRL 6`).
+4. **Months 10â€“12 (Q4):** Deliver ruggedized MIL-SPEC Tactical Control Units for DoD microgrid/OT field demonstration (`TRL 4 (Phase-1 OTA Target: TRL 6)`) and 10 U.S.C. Â§ 4022(f) follow-on production readiness.
 
 
 ---
@@ -79,5 +79,6 @@ Under **10 U.S.C. § 4022**, Humphrey Virtual Farms LLC proposes a **12-Month, $
 - **Mandate Source:** `docs/SYSTEM_AUDIT_ROADMAP.md` (100% Fully Implemented)
 - **Phase 9 Master Index:** See [`docs/PHASE_9_MASTER_PIPELINE_INDEX.md`](docs/PHASE_9_MASTER_PIPELINE_INDEX.md) for the 5 infrastructure upgrades (Fail-Over Scheduler, ABR Edge Buffering, TSDB Sharding, PWA Offline C2, and ML Confidence Vetoes) attached via zero-rewrite orchestration.
 
-## Phase 10 (10a) Unified E.B.O.N.Y. C2 Tactical UI
+## Phase 10 (10a -- 10b) Unified E.B.O.N.Y. C2 Tactical UI
 - **Phase 10 Master Index:** See [`docs/PHASE_10_MASTER_PIPELINE_INDEX.md`](docs/PHASE_10_MASTER_PIPELINE_INDEX.md) for the live HUD telemetry injector integrating Phase 8 compliance and Phase 9 edge metrics directly into the native tactical C2 interface.
+
