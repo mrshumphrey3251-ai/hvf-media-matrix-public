@@ -247,7 +247,12 @@ def main_menu():
             print("\n[*] Module [2]: 36.75ns SiC Interlock running at 28.5W on 24V DC. 17/17 Red-Team vectors blocked.")
             input("\n[Press Enter to continue]")
         elif choice == '3':
-            display_module_3_convoy_telemetry()
+            try:
+                from modules.c2_convoy_hud import render_convoy_hud
+                render_convoy_hud()
+            except Exception as e:
+                print(f"[!] Error loading Convoy Tactical HUD: {e}")
+                input("\n[Press Enter to continue]")
         elif choice == '4':
             display_module_4_microgrid_telemetry()
         elif choice == '5':
@@ -268,3 +273,4 @@ def main_menu():
 
 if __name__ == "__main__":
     main_menu()
+
