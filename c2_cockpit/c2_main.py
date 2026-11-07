@@ -108,6 +108,42 @@ def presentation_sub_menu():
         elif choice in ('b', 'back', 'q', 'exit'):
             break
 
+def display_module_4_microgrid_telemetry():
+    """Module 4: 480V 3-Phase Tactical Microgrid & Concrete Batch Plant Load Profile."""
+    os.system('cls' if os.name == 'nt' else 'clear')
+    w = 88
+    print("=" * w)
+    print("  PROJECT E.B.O.N.Y. v8.0.0 // MODULE 4: TACTICAL MICROGRID & BATCH PLANT TELEMETRY")
+    print("  Feeder Export: 480V 3-Phase AC (60 Hz) // Nominal Capacity: 150kW Steady / 300kW Surge")
+    print("=" * w)
+    print("\n  [+] EXPEDITIONARY / COMMERCIAL LOAD PROFILE: 60 yd³/hr MOBILE CONCRETE BATCH PLANT")
+    print("  " + "-" * (w - 4))
+    print("   Subsystem Motor / Component          Running kW    Surge Inrush    Feeder Status")
+    print("  " + "-" * (w - 4))
+    print("   * Twin-Shaft Main Mixer (Dual 30kW)   48.5 kW       185.0 kW (LRA)  [ONLINE / NOMINAL]")
+    print("   * Inclined Radial Aggregate Conveyor  11.2 kW        34.0 kW (LRA)  [ONLINE / NOMINAL]")
+    print("   * Cement Silo Discharge Auger Screw    7.5 kW        22.5 kW (LRA)  [ONLINE / NOMINAL]")
+    print("   * Batch Air Compressor & Weigh Hoppers 5.8 kW        18.0 kW (LRA)  [ONLINE / NOMINAL]")
+    print("   * High-Pressure Slurry Water Pump      4.2 kW        12.0 kW (LRA)  [ONLINE / NOMINAL]")
+    print("   * Batch Automation PLC & QC Office     1.8 kW         1.8 kW (RMS)  [ONLINE / ISOLATED]")
+    print("   * Site Perimeter LED Mast Lighting     2.0 kW         2.0 kW (RMS)  [ONLINE / AUX]")
+    print("  " + "-" * (w - 4))
+    print("   TOTAL ACTIVE DEMAND                  81.0 kW       275.3 kW PEAK   [POWER FACTOR: 0.92]")
+    print("\n  [+] PRIME GENERATION & ENERGY RESERVOIR TELEMETRY")
+    print("  " + "-" * (w - 4))
+    print("   * Underbelly 150kW Micro-Turbine   : 100.0 kW Output (66.7% Max Continuous Load)")
+    print("   * Matte ETFE Tactical Solar Canopy : 14.8 kW Real-Time Harvest (Irradiance: 880 W/m²)")
+    print("   * NDAA KORE Power 500 kWh LFP Bank : 94.2% SoC (Float Mode // 300kW Inrush Buffer)")
+    print("   * Trailer Underbelly Fuel Cell     : 650.0 Gal JP-8 / Diesel (100% Full)")
+    print("   * Tractor Frame Saddle Tanks       : 300.0 Gal JP-8 / Diesel Reserve (100% Full)")
+    print("   * Continuous Fuel Consumption Rate : 7.2 Gallons/Hour @ 81.0 kW Net Batch Load")
+    print("   * Estimated Autonomous Plant Uptime: 90.2 Continuous Hours (132.0 hrs with Tractor)")
+    print("   * Total Concrete Output Capacity   : 5,412 Cubic Yards (Approx. 7.7 Miles 2-Lane Shoulder)")
+    print("  " + "-" * (w - 4))
+    print("   INTERLOCK STATUS: 36.75ns SiC Kinetic Guillotine ARMED [Zero Arc-Flash Propagation]")
+    print("=" * w)
+    input("\n[Press Enter to return to Main C2 Cockpit]")
+
 def main_menu():
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -121,7 +157,7 @@ def main_menu():
         print("   [1] 30-Minute Executive Technical Briefing & Turnkey Voiceover Suite (9 Slides)")
         print("   [2] 36.75ns SiC Kinetic Interlock Telemetry & Arc-Flash Fault Simulation")
         print("   [3] 7,500-Mile Series-Hybrid Convoy Powertrain & Energy Scavenging Matrix")
-        print("   [4] 480V 3-Phase Tactical Microgrid & Matte ETFE Solar Harvest Diagnostics")
+        print("   [4] 480V 3-Phase Tactical Microgrid & Concrete Batch Plant Load Telemetry")
         print("   [5] Cryptographic Merkle DAG Provenance & Single-Byte Tamper Zeroization")
         print("   [6] Phase-1 Supplier Sourcing Tracker & CapEx Ledger Status")
         print("   [Q] Exit Cockpit")
@@ -137,8 +173,7 @@ def main_menu():
             print("\n[*] Module [3]: 7,500-Mile Convoy: 950-Gal JP-8 / 150kW Turbine / Option A eAxle / Option C TEG.")
             input("\n[Press Enter to continue]")
         elif choice == '4':
-            print("\n[*] Module [4]: Microgrid: 500 kWh LFP / 18kW Matte ETFE Solar / 480V 3-Phase (300kW Surge).")
-            input("\n[Press Enter to continue]")
+            display_module_4_microgrid_telemetry()
         elif choice == '5':
             print("\n[*] Module [5]: Merkle Root: bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1")
             input("\n[Press Enter to continue]")
