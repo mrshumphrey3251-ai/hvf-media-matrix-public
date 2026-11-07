@@ -76,12 +76,18 @@ matrix_ledger.db-journal
 
 server.key
 server.cert
-
-!c2_cockpit/matrix_ledger.db
-
-# Sovereign Credential Boundary
-c2_cockpit/email_accounts.json
 c2_cockpit/offline_textbooks/*.pdf
+
+# Track Sovereign C2 Databases in Private Vault
+!c2_cockpit/matrix_ledger.db
+!c2_cockpit/hvf_memory_vault.db
 # Microsoft Office temporary lock files
 ~$*
 *.tmp
+
+c2_cockpit/logs/*.jsonl
+
+c2_cockpit/logs/*.json
+
+# Whitelist Project E.B.O.N.Y. Executive Briefing Audio Tracks
+!c2_cockpit/presentations/audio/*.wav
