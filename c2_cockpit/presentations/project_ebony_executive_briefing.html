@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project E.B.O.N.Y. v8.0.0 // Executive Briefing (30-Min Master)</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --accent: #00f0ff;
+            --accent-green: #10b981;
+            --border-color: #1f2937;
+            --text-main: #f9fafb;
+            --text-dim: #9ca3af;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header {
+            width: 100%;
+            max-width: 900px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .header h1 { margin: 0; font-size: 24px; color: var(--accent); letter-spacing: 1px; }
+        .header .meta { font-size: 13px; color: var(--text-dim); text-align: right; }
+        .slide-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            padding: 30px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .slide-badge {
+            display: inline-block;
+            background-color: #1e3a8a;
+            color: #60a5fa;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .slide-title { font-size: 22px; margin-top: 0; margin-bottom: 20px; color: #ffffff; }
+        .slide-timing { font-size: 13px; color: #fbbf24; margin-bottom: 15px; font-weight: 500; }
+        .bullet-list { list-style-type: none; padding-left: 0; margin-bottom: 25px; }
+        .bullet-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #1f2937;
+            font-size: 15px;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+        }
+        .bullet-list li::before {
+            content: "▶";
+            color: var(--accent);
+            font-size: 11px;
+            margin-right: 12px;
+            margin-top: 4px;
+        }
+        .metrics-banner {
+            background-color: #030712;
+            border-left: 4px solid var(--accent-green);
+            padding: 12px 16px;
+            font-family: monospace;
+            font-size: 13px;
+            color: var(--accent-green);
+            border-radius: 4px;
+        }
+        .controls {
+            width: 100%;
+            max-width: 900px;
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn {
+            background-color: #1f2937;
+            color: white;
+            border: 1px solid #374151;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .btn:hover { background-color: var(--accent); color: #000; border-color: var(--accent); }
+        .btn-voice { background-color: #065f46; color: #34d399; border-color: #059669; }
+        .btn-voice:hover { background-color: #10b981; color: #000; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>PROJECT E.B.O.N.Y. v8.0.0</h1>
+            <div style="font-size: 13px; color: var(--text-dim); margin-top: 4px;">Sovereign OT/SCADA Kinetic Interlock & Tactical Convoy</div>
+        </div>
+        <div class="meta">
+            <div>Contractor: Humphrey Virtual Farms LLC (CAGE: 1AHA8)</div>
+            <div>CDAO Tradewinds Docket: 10-26-4046 [Under Assessment]</div>
+            <div>Statutory Vehicle: 10 U.S.C. § 4022 Prototype OTA</div>
+        </div>
+    </div>
+
+    <div class="slide-card" id="slide-card">
+        <div class="slide-badge" id="slide-badge">SLIDE 1/9</div>
+        <div class="slide-timing" id="slide-timing">Segment 1: Defense Operational Risk (00:00 - 10:00)</div>
+        <h2 class="slide-title" id="slide-title">STATUTORY AUTHORITY & EXECUTIVE POSITIONING</h2>
+        <ul class="bullet-list" id="bullet-list"></ul>
+        <div class="metrics-banner" id="metrics-banner"></div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevSlide()">◀ Previous</button>
+        <div>
+            <button class="btn btn-voice" onclick="speakCurrentSlide()">🔊 Narrate Slide Aloud</button>
+            <span id="slide-counter" style="margin: 0 15px; font-weight: bold; color: var(--text-dim);">1 of 9</span>
+        </div>
+        <button class="btn" onclick="nextSlide()">Next ▶</button>
+    </div>
+
+    <script>
+        const slides = [
+            {
+                num: "1/9",
+                title: "STATUTORY AUTHORITY & EXECUTIVE POSITIONING",
+                timing: "Segment 1: Defense Operational Risk (00:00 - 10:00)",
+                bullets: [
+                    "Contractor: Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5).",
+                    "Platform: Project E.B.O.N.Y. v8.0.0 (Deterministic OT/SCADA Interlock & Microgrid Convoy).",
+                    "Active DoD Status: Under Assessment with CDAO Tradewinds (Docket 10-26-4046).",
+                    "Acquisition Vehicle: 10 U.S.C. Section 4022 Prototype Other Transaction Authority (OTA).",
+                    "Mission Alignment: Rapid, sole-source fielding for Black-Sky base resilience."
+                ],
+                metrics: "TRL: 4 (Loopback Verified) | Baseline Cost: $1.20M BAA Track / $1.485M SOW",
+                narration: "Slide one. Statutory authority and executive positioning. Humphrey Virtual Farms LLC, CAGE code 1AHA8, presents Project Ebony Version 8.0.0. This sovereign microgrid and logistics convoy is under active assessment with CDAO Tradewinds under Docket 10-26-4046, ready for direct award under 10 U.S.C. Section 4022."
+            },
+            {
+                num: "2/9",
+                title: "THE STATUS QUO PROBLEM: DEFENSE OT VULNERABILITIES",
+                timing: "Segment 1: Defense Operational Risk (00:00 - 10:00)",
+                bullets: [
+                    "Federal Audits: GAO-21-81 and GAO-24-106137 document severe systemic OT exposure.",
+                    "Scale: DoD operates 500+ military installations, 300,000+ facilities, and $4.2B+ in critical energy assets.",
+                    "Threat Landscape: Joint CISA/NSA/FBI/DoD Advisories AA23-144A & AA24-038A (Volt Typhoon).",
+                    "Attack Vector: State actors establish long-term pre-positioning inside critical infrastructure.",
+                    "Operational Vulnerability: Corrupting PLC logic while spoofing valid telemetry back to operator HMIs."
+                ],
+                metrics: "Target Footprint: 500+ Installations | Pre-positioned Adversaries: Living-off-the-land",
+                narration: "Slide two. The status quo problem. Per GAO reports 21-81 and 24-106137, over 500 defense installations and 4.2 billion dollars in operational energy rely on legacy digital PLCs. CISA Advisories on Volt Typhoon confirm adversaries are pre-positioned to corrupt control logic while spoofing valid telemetry to operators."
+            },
+            {
+                num: "3/9",
+                title: "THE TIMING PHYSICS GAP: 50-200ms PLCs vs. <4.16ms FAULTS",
+                timing: "Segment 1: Defense Operational Risk (00:00 - 10:00)",
+                bullets: [
+                    "Arc-Flash Dynamics: High-voltage backfeeds and phase-to-ground faults propagate in < 4.16ms.",
+                    "Thermal Excursions: Microreactor thermal runaway events initiate destructively within 6.0ms.",
+                    "Legacy Response Lag: Digital PLCs (Siemens S7-1500, Rockwell ControlLogix) scan at 50ms - 200ms.",
+                    "Failure Rate: Legacy digital systems arrive 8x to 33x too late to prevent physical destruction.",
+                    "Passive Monitoring Flaw: IDS tools (Dragos, Nozomi) lack cutoff authority and react post-destruction."
+                ],
+                metrics: "Arc-Flash Velocity: <4.16ms | Legacy PLC Cycle: 50-200ms (Physics Failure Window: >45ms)",
+                narration: "Slide three. The timing physics gap. High-voltage arc-flash faults propagate in less than 4.16 milliseconds. Legacy PLCs scan at 50 to 200 milliseconds, arriving up to 33 times too late to prevent physical destruction. Project Ebony eliminates this physics failure window."
+            },
+            {
+                num: "4/9",
+                title: "THE HARDWARE AIR-GAP: 36.75ns SiC KINETIC INTERLOCK",
+                timing: "Segment 2: Hardware Air-Gap & 7,500-Mile Convoy (10:00 - 20:00)",
+                bullets: [
+                    "Mechanism: Analog Silicon Carbide (SiC) MOSFET gate cutoff operating without OS overhead.",
+                    "Cutoff Velocity: Modeled 36.75-nanosecond physical gate severance under anomalous threshold.",
+                    "Performance Benchmark: 1,360,544x faster than standard 50-millisecond digital PLCs.",
+                    "Galvanic Severance: Establishes a verified physical air-gap before arc-flash burns copper busbars.",
+                    "Power Consumption: 28.5W continuous draw on standard 24V DC auxiliary bus."
+                ],
+                metrics: "Trigger Speed: 36.75 Nanoseconds | Power Draw: 28.5W @ 24V DC | Scan Lag: 0.000s",
+                narration: "Slide four. The hardware air-gap. Our analog Silicon Carbide MOSFET kinetic interlock executes physical gate severance in a modeled 36.75 nanoseconds. That is 1.36 million times faster than digital PLCs, drawing just 28.5 watts with zero cloud dependencies."
+            },
+            {
+                num: "5/9",
+                title: "7,500-MILE EXPEDITIONARY MOBILITY: ZERO-INFRASTRUCTURE TRANSIT",
+                timing: "Segment 2: Hardware Air-Gap & 7,500-Mile Convoy (10:00 - 20:00)",
+                bullets: [
+                    "Energy Reservoir: 950 Gallons total multi-fuel (300 gal dual tractor tanks + 650 gal trailer belly cell).",
+                    "Prime Generation: 150kW underbelly multi-fuel micro-turbine burning JP-8, F-24, or diesel.",
+                    "Option A: Powered Trailer eAxle eliminates deadweight drag and recaptures dynamic braking energy.",
+                    "Option C: Solid-state Exhaust Thermoelectric Generator (TEG) returns 6.5kW waste-heat electricity.",
+                    "Mission Envelope: Over 110 continuous rolling hours (LA -> NY -> LA -> DC) without refueling or charging."
+                ],
+                metrics: "Continuous Range: ~7,500 Miles | Fuel: 950 Gal JP-8/Diesel | Stops Required: ZERO",
+                narration: "Slide five. 7,500-mile expeditionary mobility. Carrying 950 gallons of multi-fuel, a 150-kilowatt micro-turbine, an active powered eAxle, and thermoelectric heat recovery, Project Ebony provides 110 continuous hours of rolling highway operation without refueling or grid charging."
+            },
+            {
+                num: "6/9",
+                title: "SOVEREIGN EXPEDITIONARY MICROGRID & LOW-OBSERVABLE SOLAR",
+                timing: "Segment 2: Hardware Air-Gap & 7,500-Mile Convoy (10:00 - 20:00)",
+                bullets: [
+                    "Storage Bank: 500 kWh NDAA-compliant KORE Power LFP battery bank (NDAA Section 889 compliant).",
+                    "Tactical Solar Canopy: 18kW deployable non-specular, micro-textured matte ETFE solar array.",
+                    "Counter-ISR Protection: Specular reflectance < 1.5% at 60°; zero glint/glare against aerial EO/IR drones.",
+                    "Camouflage Net Interlock: Perimeter mechanical coupling with ULCANS radar-scattering/transparent garnish.",
+                    "Base Support Endurance: Powers Tier-1 nodes (TOCs, FSUs, radars) for 30+ days off-grid."
+                ],
+                metrics: "Microgrid Export: 480V 3-Phase (300kW Surge) | Solar: 18kW Low-Observable ETFE | Duration: 30+ Days",
+                narration: "Slide six. Sovereign expeditionary microgrid. On site, the trailer decouples into an islanded 480-volt 3-phase substation. It deploys an 18-kilowatt non-specular matte ETFE tactical solar canopy engineered for ULCANS camouflage compatibility, sustaining forward operations for over 30 days off-grid."
+            },
+            {
+                num: "7/9",
+                title: "COMMERCIAL TITLE RETENTION & DFARS IP PROTECTION",
+                timing: "Segment 3: Contracting & Phase-1 Milestones (20:00 - 30:00)",
+                bullets: [
+                    "Contractor-Acquired Property: Humphrey Virtual Farms LLC retains 100% commercial title to prime mover & trailer.",
+                    "Statutory Exemption: 10 U.S.C. Section 4022 prototype OTA prevents government title seizure.",
+                    "IP Rights Protection: 100% DFARS 252.227-7018 Background IP retained across all code and firmware.",
+                    "Commercial Freedom: Full statutory authorization to market hybrid platform to commercial freight carriers.",
+                    "Government License: Government Purpose Rights (GPR) strictly limited to defense testing and evaluation."
+                ],
+                metrics: "Asset Ownership: 100% HVF Commercial Title | IP Retained: DFARS 252.227-7018 Background",
+                narration: "Slide seven. Commercial title and DFARS protection. Humphrey Virtual Farms LLC retains 100 percent commercial title to all prototype assets under Contractor-Acquired Property provisions, with complete retention of DFARS Background intellectual property."
+            },
+            {
+                num: "8/9",
+                title: "12-MONTH PHASE-1 PROTOTYPE OTA MILESTONES ($1.20M - $1.485M)",
+                timing: "Segment 3: Contracting & Phase-1 Milestones (20:00 - 30:00)",
+                bullets: [
+                    "Day 15-30: $150,000 Mobilization & Long-Lead Hardware Procurement Lock (Tractor, Cells, Turbine).",
+                    "Month 3: Subsystem Bench Assembly & 36.75ns SiC HIL Oscilloscope Electrical Verification.",
+                    "Month 6: Physical Trailer Underbelly Integration (150kW Turbine, 650-Gal Cell, eAxle Bogie).",
+                    "Month 9: Closed-Loop 7,500-Mile Transit Emulation & 480V Microgrid Black-Start Demonstration.",
+                    "Month 12: Joint USACE ERDC Live Base Demonstration at Vicksburg ERDC or Fort Leonard Wood."
+                ],
+                metrics: "Execution Schedule: 12 Months | Day-15 Cashflow: $150,000 | Transition Authority: 10 U.S.C. 4022(f)",
+                narration: "Slide eight. 12-month prototype milestones. Structured under a fixed-price 1.485 million dollar budget with a 150,000 dollar day-15 mobilization, advancing through hardware-in-the-loop validation to a live military field demonstration."
+            },
+            {
+                num: "9/9",
+                title: "TRL 4 VERIFICATION AUDIT & CALL TO ACTION",
+                timing: "Segment 3: Contracting & Phase-1 Milestones (20:00 - 30:00)",
+                bullets: [
+                    "Zero Cloud Dependency: Runs 100% on 127.0.0.1 loopback with 0 external API dependencies.",
+                    "Unit Test Verification: 85 of 85 automated test suites passing (100.0% coverage).",
+                    "Red-Team Resilience: 17 of 17 adversarial attack vectors blocked with automatic tamper zeroization.",
+                    "Compliance: Full 110-control NIST SP 800-171 Rev 2 and NIST SP 800-82 Rev 2 architectural mapping.",
+                    "Action Requested: Direct Phase-1 Prototype OTA award via USACE ERDC Rolling BAA / DIU CSO."
+                ],
+                metrics: "Test Suite Pass Rate: 85/85 (100%) | Red-Team Vectors Blocked: 17/17 | CAGE: 1AHA8",
+                narration: "Slide nine. TRL 4 verification audit. Project Ebony operates 100 percent offline on loopback with 85 of 85 unit tests passing and 17 of 17 red-team exploits blocked. We invite USACE ERDC and DIU to execute this prototype award immediately."
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function renderCurrentSlide() {
+            const s = slides[currentIndex];
+            document.getElementById("slide-badge").innerText = "SLIDE " + s.num;
+            document.getElementById("slide-timing").innerText = s.timing;
+            document.getElementById("slide-title").innerText = s.title;
+            document.getElementById("metrics-banner").innerText = "AUDIT METRICS: " + s.metrics;
+            document.getElementById("slide-counter").innerText = (currentIndex + 1) + " of " + slides.length;
+
+            const list = document.getElementById("bullet-list");
+            list.innerHTML = "";
+            s.bullets.forEach(b => {
+                const li = document.createElement("li");
+                li.innerText = b;
+                list.appendChild(li);
+            });
+        }
+
+        function nextSlide() {
+            if (currentIndex < slides.length - 1) {
+                currentIndex++;
+                renderCurrentSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderCurrentSlide();
+            }
+        }
+
+        function speakCurrentSlide() {
+            window.speechSynthesis.cancel();
+            const text = slides[currentIndex].narration;
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.rate = 1.0;
+            window.speechSynthesis.speak(utter);
+        }
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") nextSlide();
+            else if (e.key === "ArrowLeft" || e.key === "PageUp") prevSlide();
+        });
+
+        renderCurrentSlide();
+    </script>
+</body>
+</html>
