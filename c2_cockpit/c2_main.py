@@ -108,6 +108,45 @@ def presentation_sub_menu():
         elif choice in ('b', 'back', 'q', 'exit'):
             break
 
+def display_module_3_convoy_telemetry():
+    """Module 3: 7,500-Mile Series-Hybrid Convoy Powertrain & Energy Scavenging Matrix."""
+    os.system('cls' if os.name == 'nt' else 'clear')
+    w = 96
+    print("=" * w)
+    print("  PROJECT E.B.O.N.Y. v8.0.0 // MODULE 3: 7,500-MILE CONVOY POWERTRAIN & ENERGY MATRIX")
+    print("  Contractor: Humphrey Virtual Farms LLC (CAGE: 1AHA8) // Operational Envelope: 82,000 lbs GVWR")
+    print("  Target: Contested Logistics High-Endurance Heavy Freight Corridor (Zero Cloud / Local Air-Gap)")
+    print("=" * w)
+    print("\n  [+] HIGHWAY PROPULSION & TRACTION ARCHITECTURE")
+    print("  " + "-" * (w - 4))
+    print("   * Prime Mover Chassis        : Class-8 Day Cab Tractor (6x4 Tandem Drive e-Axles)")
+    print("   * Continuous Electric Drive  : 400 hp (300 kW) Continuous / 500 hp (375 kW) Peak Surge")
+    print("   * Peak Wheel Torque          : 23,000 lb-ft Instantaneous Electric Torque")
+    print("   * Tractor High-Voltage Buffer: 150 kWh LFP Internal Pack (Thermal Glycol Conditioned)")
+    print("   * High-Voltage DC Interlock  : 750V DC Nominal Trailer Umbilical Bus (SAE J1939 CAN Synced)")
+    print("   * Trailer Auxiliary Drive    : Option A Powered eAxle (Range Energy / ZF AxTrax)")
+    print("   * Grade Traction Assist      : 150 kW Boost on >= 4% Incline // 120 kW Regen Braking Recapture")
+    print("\n  [+] EXPEDITIONARY FUEL RESERVES & RANGE EXTENSION")
+    print("  " + "-" * (w - 4))
+    print("   * Tractor Frame Saddle Tanks : Dual 150-Gal Aluminum Tanks = 300.0 Gallons JP-8 / ULSD")
+    print("   * Trailer Underbelly Fuel Cell: Baffled Low-Profile Tank    = 650.0 Gallons JP-8 / ULSD")
+    print("   * Total On-Board Fuel Reserve: 950.0 Gallons Liquid Fuel (100% Usable Multi-Fuel JP-8/Jet-A)")
+    print("   * Primary Generator APU      : 150 kW Multi-Fuel Micro-Turbine (Capstone Series-Hybrid)")
+    print("   * Turbine Operating Mode     : Continuous Fixed-RPM Thermal Sweet-Spot (Zero Idle Wet-Stacking)")
+    print("   * Net Cruising Fuel Burn     : 7.6 Gallons/Hour @ 60.0 mph Continuous Highway Transit")
+    print("   * Continuous Operating Time  : 125.0 Hours Continuous Rolling Transit (5.2 Days Non-Stop)")
+    print("   * Unrefueled Highway Range   : 7,500.0 Miles (Coast-to-Coast and Return without Depot Stops)")
+    print("\n  [+] MULTI-SPECTRAL ENERGY SCAVENGING MATRIX")
+    print("  " + "-" * (w - 4))
+    print("   * Tactical Solar Canopy      : 18 kW Matte Anti-Glint ETFE Panels (Solbian / Sunman)")
+    print("   * Solar Harvest Yield        : 14.8 kW Peak @ 880 W/m² (ULCANS Border Camouflage Trim)")
+    print("   * Exhaust Waste-Heat TEG     : Option C Thermoelectric Generator (Gentherm / Hi-Z Modules)")
+    print("   * Waste-Heat Recovery Output : 3.8 kW Continuous Electric Conversion from 550°C Turbine Exhaust")
+    print("   * NDAA Storage Buffer        : 500 kWh KORE Power LFP System (Subframe Tray Mount)")
+    print("   * Net Parasitic Load Offset  : +18.6 kW Free Energy Harvesting to High-Voltage Bus")
+    print("=" * w)
+    input("\n[Press Enter to return to Main C2 Cockpit]")
+
 def display_module_4_microgrid_telemetry():
     """Module 4: 480V 3-Phase Tactical Microgrid & Concrete Batch Plant Load Profile."""
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -208,13 +247,16 @@ def main_menu():
             print("\n[*] Module [2]: 36.75ns SiC Interlock running at 28.5W on 24V DC. 17/17 Red-Team vectors blocked.")
             input("\n[Press Enter to continue]")
         elif choice == '3':
-            print("\n[*] Module [3]: 7,500-Mile Convoy: 950-Gal JP-8 / 150kW Turbine / Option A eAxle / Option C TEG.")
-            input("\n[Press Enter to continue]")
+            display_module_3_convoy_telemetry()
         elif choice == '4':
             display_module_4_microgrid_telemetry()
         elif choice == '5':
-            print("\n[*] Module [5]: Merkle Root: bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1")
-            input("\n[Press Enter to continue]")
+            try:
+                from modules.c2_merkle_provenance import run_merkle_console
+                run_merkle_console()
+            except Exception as e:
+                print(f"[!] Error running Merkle DAG audit: {e}")
+            input("\n[Press Enter to return to Main C2 Cockpit]")
         elif choice == '6':
             display_module_6_sourcing_tracker()
         elif choice in ('q', 'exit', 'quit'):
