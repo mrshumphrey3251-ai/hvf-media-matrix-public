@@ -1,0 +1,17 @@
+﻿Line,Item_Description,Category,Target_Vendor,Allocated_Budget_USD,Statutory_Authority,Title_Vesting,Lead_Time_Weeks,NDAA_Compliant,Status
+01,Class-8 Electric Tractor Prime Mover,Prime Mover & Trailer,Freightliner / Peterbilt,385000.00,10 U.S.C. 4022,Contractor-Acquired Property,16,YES,100% SPECIFIED
+02,Dual 150-Gal Frame Saddle Tanks,Prime Mover & Trailer,Merritt / Transfer Flow,12500.00,10 U.S.C. 4022,Contractor-Acquired Property,4,YES,100% SPECIFIED
+03,650-Gal Underbelly Fuel Cell,Prime Mover & Trailer,Custom Marine Fab,18500.00,10 U.S.C. 4022,Contractor-Acquired Property,6,YES,100% SPECIFIED
+04,150kW Micro-Turbine APU,Prime Mover & Trailer,Capstone Green Energy,145000.00,10 U.S.C. 4022,Contractor-Acquired Property,12,YES,100% SPECIFIED
+05,Trailer Powered eAxle,Prime Mover & Trailer,Range Energy / ZF,65000.00,10 U.S.C. 4022,Contractor-Acquired Property,10,YES,100% SPECIFIED
+06,18kW Matte ETFE Solar Canopy,Kinetic & Power,Sunman Energy / Solbian,32000.00,10 U.S.C. 4022,Contractor-Acquired Property,6,YES,100% SPECIFIED
+07,Exhaust TEG Generator Modules,Kinetic & Power,Gentherm / Hi-Z,28000.00,10 U.S.C. 4022,Contractor-Acquired Property,8,YES,100% SPECIFIED
+08,MIL-STD-188-125 EMP Rack Enclosure,Prime Mover & Trailer,Transtector / PolyPhaser,22000.00,10 U.S.C. 4022,Contractor-Acquired Property,6,YES,100% SPECIFIED
+09,Rugged Tactical Compute Server,Compute & Air-Gap,Crystal Group (RS378),20000.00,10 U.S.C. 4022,Contractor-Acquired Property,8,YES,100% SPECIFIED
+10,Hardware Optical Data Diode,Compute & Air-Gap,Owl Cyber Defense,18500.00,10 U.S.C. 4022,Contractor-Acquired Property,4,YES,100% SPECIFIED
+11,1200V SiC MOSFET Array,Kinetic & Power,Wolfspeed (XM3),14200.00,10 U.S.C. 4022,Contractor-Acquired Property,4,YES,100% SPECIFIED
+12,480V 3-Phase Inverter Stack,Kinetic & Power,Victron Quattro,38500.00,10 U.S.C. 4022,Contractor-Acquired Property,6,YES,100% SPECIFIED
+13,500 kWh LFP Energy Storage System,Kinetic & Power,KORE Power,175000.00,10 U.S.C. 4022,Contractor-Acquired Property,14,YES,100% SPECIFIED
+14,Infiniium 4-Ch Oscilloscope,Lab Verification & Badging,Keysight Technologies,32500.00,10 U.S.C. 4022,Contractor-Acquired Property,4,YES,100% SPECIFIED
+15,PXIe Real-Time HIL Chassis,Lab Verification & Badging,National Instruments,48000.00,10 U.S.C. 4022,Contractor-Acquired Property,8,YES,100% SPECIFIED
+16,MIL-SPEC Asset Badging Plates,Lab Verification & Badging,Metalphoto of Cincinnati,4500.00,10 U.S.C. 4022,Contractor-Acquired Property,2,YES,100% SPECIFIED
