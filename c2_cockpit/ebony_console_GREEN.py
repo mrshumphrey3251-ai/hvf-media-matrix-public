@@ -1182,7 +1182,7 @@ with st.sidebar:
         "🎨 Asset Synthesis",
         "📘 Omni-Industry Matrix",
     ]
-    all_nav_options = canonical_nav_options + [k for k in DYNAMIC_MODULES.keys() if k not in canonical_nav_options]
+    all_nav_options = canonical_nav_options  # Level-5 extensions contained; unrouted utilities excluded
     render_tier_switcher_sidebar()
     active_module = st.radio("Navigation", all_nav_options, key="ebony_c2_authoritative_nav_selector", label_visibility="collapsed")
 
