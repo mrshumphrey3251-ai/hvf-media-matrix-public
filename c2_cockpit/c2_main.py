@@ -109,7 +109,7 @@ def presentation_sub_menu():
             break
 
 def display_module_3_convoy_telemetry():
-    """Module 3: 7,500-Mile Series-Hybrid Convoy Powertrain & Energy Scavenging Matrix."""
+    """Module 3: Extended Expeditionary Series-Hybrid Powertrain Matrix (3,500 - 4,200 Mi)."""
     os.system('cls' if os.name == 'nt' else 'clear')
     w = 96
     print("=" * w)
@@ -233,7 +233,7 @@ def main_menu():
         print("  CORE MISSION MODULES:")
         print("   [1] 30-Minute Executive Technical Briefing & Turnkey Voiceover Suite (9 Slides)")
         print("   [2] 36.75ns SiC Kinetic Interlock Telemetry & Arc-Flash Fault Simulation")
-        print("   [3] 7,500-Mile Series-Hybrid Convoy Powertrain & Energy Scavenging Matrix")
+        print("   [3] Extended Expeditionary Series-Hybrid Powertrain Matrix (3,500 - 4,200 Mi)")
         print("   [4] 480V 3-Phase Tactical Microgrid & Concrete Batch Plant Load Telemetry")
         print("   [5] Cryptographic Merkle DAG Provenance & Single-Byte Tamper Zeroization")
         print("   [6] Phase-1 Supplier Sourcing Tracker & CapEx Ledger Status (16/16 Sourced)")

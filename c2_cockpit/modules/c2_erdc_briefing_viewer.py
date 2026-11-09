@@ -64,7 +64,7 @@ SLIDES: List[Dict[str, str]] = [
     },
     {
         "num": "5/9",
-        "title": "7,500-MILE EXPEDITIONARY MOBILITY: ZERO-INFRASTRUCTURE TRANSIT",
+        "title": "EXTENDED EXPEDITIONARY MOBILITY: SERIES-HYBRID LOGISTICS (3,500-4,200 MI)",
         "segment": "Segment 2: Hardware Air-Gap & 7,500-Mile Convoy (10:00 - 20:00)",
         "bullets": [
             "Energy Reservoir: 950 Gallons total multi-fuel (300 gal dual tractor tanks + 650 gal trailer belly cell).",
