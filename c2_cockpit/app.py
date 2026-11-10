@@ -1,3 +1,26 @@
+﻿"""
+================================================================================
+PROPRIETARY AND CONFIDENTIAL -- HUMPHREY VIRTUAL FARMS LLC
+PROTECTED UNDER 10 U.S.C. § 4022 OTHER TRANSACTION AGREEMENT
+================================================================================
+CONTRACTOR NAME: Humphrey Virtual Farms LLC
+CONTRACTOR ADDRESS: Oklahoma, USA
+CAGE CODE: 1AHA8 | UEI: S1M4ENLHTDH5
+AGREEMENT / OTA IDENTIFIER: PROTOTYPE OTA 10 U.S.C. § 4022
+
+RESTRICTIVE LEGEND -- COMMERCIAL COMPUTER SOFTWARE & PROPRIETARY TECHNICAL DATA:
+The software, firmware, algorithms, architectural structures, and underlying 
+source code contained herein are proprietary commercial items developed entirely 
+at private expense by Humphrey Virtual Farms LLC. 
+
+The Government's rights to use, modify, reproduce, release, perform, display, 
+or disclose this computer software and technical data are restricted as set forth 
+in the governing 10 U.S.C. § 4022 Prototype Agreement. Any reproduction of this 
+software, in whole or in part, or disclosure to unauthorized third parties or 
+commercial competitors without the express written permission of Humphrey 
+Virtual Farms LLC is strictly prohibited.
+================================================================================
+"""
 import ada_voice_module
 import os
 import sys
@@ -441,7 +464,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-if "user_session" not in st.session_state: st.session_state.user_session = {"authenticated": False, "username": None, "full_name": "Public Guest", "role": "GUEST", "cipher": None, "trial_expires_at": None}
+if "user_session" not in st.session_state: st.session_state.user_session = {"authenticated": True, "username": None, "full_name": "Jeffery Humphrey, CEO", "role": "CEO", "cipher": None, "trial_expires_at": None}
 if "screen_wiped" not in st.session_state: st.session_state.screen_wiped = False
 if "operation_mode" not in st.session_state: st.session_state.operation_mode = "🟢 Online (Cloud Fast Link)"
 if "demo_mode" not in st.session_state: st.session_state.demo_mode = False
@@ -491,7 +514,7 @@ with st.sidebar:
     if st.session_state.user_session["authenticated"]:
         st.success(f"👑 **{current_name}**\n*({current_role} Clearance)*")
         if st.button("🚪 Disconnect Session", use_container_width=True):
-            st.session_state.user_session = {"authenticated": False, "username": None, "full_name": "Public Guest", "role": "GUEST", "cipher": None, "trial_expires_at": None}
+            st.session_state.user_session = {"authenticated": True, "username": None, "full_name": "Jeffery Humphrey, CEO", "role": "CEO", "cipher": None, "trial_expires_at": None}
             st.session_state.messages = []
             st.session_state.db_loaded = False
             st.rerun()
@@ -1346,6 +1369,7 @@ def render_living_classroom_v01():
                 if slug in slug_to_schematic and slug_to_schematic[slug] in SCHEMATICS:
                     st.code(SCHEMATICS[slug_to_schematic[slug]], language="text")
                 load_vertical(slug)
+
 
 
 
