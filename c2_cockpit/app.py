@@ -464,7 +464,8 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-if "user_session" not in st.session_state: st.session_state.user_session = {"authenticated": True, "username": None, "full_name": "Jeffery Humphrey, CEO", "role": "CEO", "cipher": None, "trial_expires_at": None}
+if "user_session" not in st.session_state: st.session_state.terms_accepted = False
+    st.session_state.user_session = {"authenticated": True, "username": None, "full_name": "Jeffery Humphrey, CEO", "role": "CEO", "cipher": None, "trial_expires_at": None}
 if "screen_wiped" not in st.session_state: st.session_state.screen_wiped = False
 if "operation_mode" not in st.session_state: st.session_state.operation_mode = "🟢 Online (Cloud Fast Link)"
 if "demo_mode" not in st.session_state: st.session_state.demo_mode = False
@@ -512,9 +513,23 @@ with st.sidebar:
     is_online = "Online" in mode_selection
 
     if st.session_state.user_session["authenticated"]:
+
+    # --- EXECUTIVE STATUTORY GATE INTERLOCK ---
+    if not st.session_state.get("terms_accepted", False):
+        st.markdown("<br><br>", unsafe_allow_html=True)
+        st.title("📜 Sovereign Executive Legal Brief & Statutory Compact")
+        st.info("**Entity:** Humphrey Virtual Farms LLC | **CAGE:** 1AHA8 | **UEI:** S1M4ENLHTDH5")
+        st.warning("IMMUTABLE ATTESTATION: By proceeding, you affirm Level-5 Executive Authority and absolute compliance with OK Title 61, OK HB 2992, and NIST SP 800-82 Rev 2 Zero-Cloud Sovereignty.")
+        
+        if st.button("I AFFIRM AND ACCEPT THE STATUTORY COMPACT", type="primary", use_container_width=True):
+            st.session_state.terms_accepted = True
+            st.rerun()
+        st.stop()  # Blocks all subsequent dashboard rendering until accepted
+    # ------------------------------------------
         st.success(f"👑 **{current_name}**\n*({current_role} Clearance)*")
         if st.button("🚪 Disconnect Session", use_container_width=True):
-            st.session_state.user_session = {"authenticated": True, "username": None, "full_name": "Jeffery Humphrey, CEO", "role": "CEO", "cipher": None, "trial_expires_at": None}
+            st.session_state.terms_accepted = False
+    st.session_state.user_session = {"authenticated": True, "username": None, "full_name": "Jeffery Humphrey, CEO", "role": "CEO", "cipher": None, "trial_expires_at": None}
             st.session_state.messages = []
             st.session_state.db_loaded = False
             st.rerun()
@@ -551,7 +566,8 @@ with st.sidebar:
             if st.button("Sign In"):
                 user_match, status_msg = verify_user(login_user, login_pass)
                 if user_match and status_msg == "OK":
-                    st.session_state.user_session = {"authenticated": True, "username": user_match[0], "full_name": user_match[1], "role": user_match[2], "cipher": derive_user_cipher(login_pass, user_match[0]), "trial_expires_at": user_match[4]}
+                    st.session_state.terms_accepted = False
+    st.session_state.user_session = {"authenticated": True, "username": user_match[0], "full_name": user_match[1], "role": user_match[2], "cipher": derive_user_cipher(login_pass, user_match[0]), "trial_expires_at": user_match[4]}
                     st.session_state.messages = []
                     st.session_state.db_loaded = False
                     st.rerun()
