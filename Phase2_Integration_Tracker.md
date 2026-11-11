@@ -13,7 +13,7 @@
 - [x] Deploy 24V DC bus for low-voltage subsystems (lighting, HMI, sensors)
 - [ ] Fit SiC MOSFET-based DC-DC converters (1200V -> 48V -> 24V) with redundancy (DC-DC-RED-A/B)
 - [x] Route shielded power cables per IEC 60364-4-41 with grounding straps
-- [ ] Install circuit protection (MCCB, fuses, surge protectors) per UL 508A for branch circuits
+- [x] Install circuit protection (MCCB, fuses, surge protectors) per UL 508A for branch circuits
 - [ ] Conduct initial load-bank test to verify 100% off-grid power margin (LOAD-TEST-01)
 
 ## Air-Gapped Network & Rack Topologies
