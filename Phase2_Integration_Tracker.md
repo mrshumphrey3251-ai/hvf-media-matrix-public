@@ -9,7 +9,7 @@
 - [x] Perform computational fluid dynamics (CFD) validation for airflow balance (CFD-VAL-2026-01)
 
 ## 480V / 24V Power Distribution
-- [ ] Install Victron 480V 3-Phase Inverter with Modbus-TCP (INV-480-MOD-001)
+- [x] Install Victron 480V 3-Phase Inverter with Modbus-TCP (INV-480-MOD-001)
 - [ ] Deploy 24V DC bus for low-voltage subsystems (lighting, HMI, sensors)
 - [ ] Fit SiC MOSFET-based DC-DC converters (1200V -> 48V -> 24V) with redundancy (DC-DC-RED-A/B)
 - [ ] Route shielded power cables per IEC 60364-4-41 with grounding straps
