@@ -1,7 +1,7 @@
 # Mobile Command Center - Interior & System Integration (Phase 2 Tracker)
 
 ## Structural & Thermal Ducting
-- [ ] Verify trailer chassis reinforcement to support 5-ton MIL-SPEC ECU and Crystal Group RS-Series rack (FASTEN-001)
+- [x] Verify trailer chassis reinforcement to support 5-ton MIL-SPEC ECU and Crystal Group RS-Series rack (FASTEN-001)
 - [ ] Install modular steel frame for rack mounting (ISO-9001-RACK-FRM)
 - [ ] Route high-efficiency insulated ductwork from ECU evaporator to each compute node (NEMA-4X-DUCT-STD)
 - [ ] Integrate heat-recovery exchangers with waste-heat TEG modules (TEG-HX-INT)
