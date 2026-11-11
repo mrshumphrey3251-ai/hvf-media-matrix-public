@@ -458,7 +458,19 @@ if not st.session_state.terms_accepted:
     st.markdown("<br><br>", unsafe_allow_html=True)
     st.title("📜 Sovereign Executive Legal Brief & Statutory Compact")
     st.info("**Entity:** Humphrey Virtual Farms LLC | **CAGE:** 1AHA8 | **UEI:** S1M4ENLHTDH5")
-    st.warning("IMMUTABLE ATTESTATION: By proceeding, you affirm Level-5 Executive Authority and absolute compliance with OK Title 61, OK HB 2992, and NIST SP 800-82 Rev 2 Zero-Cloud Sovereignty.")
+    
+    st.markdown('''
+    <div style="background-color: rgba(0, 255, 102, 0.05); border: 2px solid #00FF66; border-radius: 10px; padding: 20px; margin-bottom: 20px; margin-top: 10px;">
+        <h4 style="color: #00FF66; margin-top: 0; font-weight: 800;">🟢 EXECUTIVE TERMS OF ACCESS (OK TITLE 61 & HB 2992)</h4>
+        <p style="color: #FFFFFF; font-size: 1.05rem; line-height: 1.65;">
+            <strong>1. SOVEREIGN JURISDICTION:</strong> Access to the E.B.O.N.Y. Core and HVF Omni-Industrial Matrix is strictly governed by the sovereign statutory frameworks of Oklahoma Title 61 and HB 2992. All infrastructure schematics, telemetry, and kinetic node data are classified as proprietary commercial items developed entirely at private expense.<br><br>
+            <strong>2. ZERO-CLOUD AIR-GAP COMPLIANCE (NIST SP 800-82 REV 2):</strong> Operator acknowledges this platform operates as a 100% offline, air-gapped Industrial Control System (ICS). Exfiltration of telemetry, bypassing the Swarm cryptographic mesh, or connecting unauthorized hardware constitutes a direct violation of kinetic security protocols.<br><br>
+            <strong>3. ABSOLUTE CONFIDENTIALITY & NON-DISCLOSURE:</strong> All data within the E.B.O.N.Y. Matrix is restricted under 10 U.S.C. § 4022. Unauthorized reproduction, disclosure to third parties, or transmission to commercial competitors is strictly prohibited and subject to immediate kinetic lockout and statutory enforcement.
+        </p>
+    </div>
+    ''', unsafe_allow_html=True)
+    
+    st.warning("IMMUTABLE ATTESTATION: By clicking below, you formally accept the above terms, affirming Level-5 Executive Authority and absolute compliance.")
     if st.button("I AFFIRM AND ACCEPT THE STATUTORY COMPACT", type="primary", use_container_width=True):
         st.session_state.terms_accepted = True
         st.rerun()
