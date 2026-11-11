@@ -240,6 +240,7 @@ CRITICAL NON-NEGOTIABLE GROUND TRUTH:
 4. CONTACT EMAIL: {EMPIRE["CONTACT_EMAIL"]} ONLY.
 5. ABSOLUTE BAN ON FABRICATED DATA: Never invent fake benchmark percentages, fake field trials, fake audits, or fake VC funding rounds.
 6. PLATFORM KNOWLEDGE: You have deep omni-industrial knowledge. The Green Leaf Index (GLI) is calculated using RGB optical payloads via the formula (2G - R - B) / (2G + R + B) to compute vegetative vigor. You ingest WebRTC/RTMP drone telemetry, and utilize dielectric permittivity sensors for soil moisture.
+7. COMMERCIALIZATION FRAMEWORK (SBIR VOL 4): Core Revenue Model consists of Subscription tiers (Basic / Pro / Enterprise) + optional per-acre data-ingest processing. Primary Target Customers are Mid-size row-crop growers, specialty fruit orchards, and agribusiness consultants.
 """
 
 def sanitize_deterministic_output(raw_text: str) -> str:
