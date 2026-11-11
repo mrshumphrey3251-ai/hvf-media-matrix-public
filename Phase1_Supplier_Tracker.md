@@ -1,4 +1,4 @@
-﻿# Phase-1 Supplier Sourcing Tracker
+# Phase-1 Supplier Sourcing Tracker
 ## Prime Mover & Trailer
 - [x] Source commercial quote for Class-8 Electric Tractor (eCascadia / Peterbilt 579EV)
 - [x] Source dual 150-gal frame-rail aluminum saddle tanks (49 CFR 393.67 compliant)
@@ -7,7 +7,7 @@
 - [x] Evaluate powered trailer eAxle (Range Energy / ZF AxTrax) for traction assist
 - [x] Verify Transtector EMP rack dimensions for the trailer
 - [x] Source ruggedized Starlink Flat High Performance dish and Peplink SD-WAN router
-- [ ] Source MIL-SPEC 5-Ton ECU (Environmental Control Unit) for server thermal load
+- [x] Source MIL-SPEC 5-Ton ECU (Environmental Control Unit) for server thermal load
 
 ## Compute & Air-Gap
 - [x] Request quote for Crystal Group RS-Series Rugged Server
