@@ -662,6 +662,20 @@ if active_module == "💬 Sovereign Command":
             st.session_state.db_loaded = True
 
         full_sys_prompt = f"You are {EMPIRE['AI_PERSONA']}, Sovereign AI for {EMPIRE['FARM_NAME']}. Founder: {EMPIRE['FOUNDER_NAME']}.\n{STRICT_GROUND_RULES}\n{load_all_entity_memories(current_user)}"
+        # --- AUTONOMOUS THIRD-BRAIN FILE MOUNT ---
+        import glob
+        tracker_data = ""
+        search_paths = ["C:/hvf_c2/hvf-media-matrix-private/**/*.md", "C:/hvf_c2/hvf-media-matrix-private/**/*.json"]
+        for search_path in search_paths:
+            for file in glob.glob(search_path, recursive=True):
+                try:
+                    with open(file, "r", encoding="utf-8") as f:
+                        tracker_data += "\n[CONTENTS OF " + file + "]:\n" + f.read()[:2000]
+                except Exception: pass
+        
+        full_sys_prompt += "\n\n[THIRD-BRAIN REPOSITORY DATA]:\n" + tracker_data
+        # -----------------------------------------
+
         conversation_payload = [{"role": "system", "content": full_sys_prompt}] + st.session_state.messages[-6:]
 
         if is_online:
