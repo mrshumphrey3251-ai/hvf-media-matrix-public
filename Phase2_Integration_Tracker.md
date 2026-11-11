@@ -2,7 +2,7 @@
 
 ## Structural & Thermal Ducting
 - [x] Verify trailer chassis reinforcement to support 5-ton MIL-SPEC ECU and Crystal Group RS-Series rack (FASTEN-001)
-- [ ] Install modular steel frame for rack mounting (ISO-9001-RACK-FRM)
+- [x] Install modular steel frame for rack mounting (ISO-9001-RACK-FRM)
 - [ ] Route high-efficiency insulated ductwork from ECU evaporator to each compute node (NEMA-4X-DUCT-STD)
 - [ ] Integrate heat-recovery exchangers with waste-heat TEG modules (TEG-HX-INT)
 - [ ] Seal all penetrations with MIL-SPEC fire-rated gaskets (FIRE-GASK-M)
