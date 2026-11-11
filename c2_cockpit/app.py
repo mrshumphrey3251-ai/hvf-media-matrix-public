@@ -439,6 +439,31 @@ UPLINK_URL = f"http://{ACTIVE_IP}:8501"
 WEBRTC_STREAM_URL = f"http://192.168.1.175:8889/live/stream"
 RTMP_INGEST_URL = f"rtmp://192.168.1.175:1935/live/stream"
 
+# --- EXECUTIVE STATUTORY GATE INTERLOCK ---
+import streamlit as st
+if "terms_accepted" not in st.session_state:
+    st.session_state.terms_accepted = False
+
+# Force CEO Authentication (Overrides the default Guest logic)
+st.session_state.user_session = {
+    "authenticated": True, 
+    "username": "jhumphrey", 
+    "full_name": "Jeffery Humphrey, CEO", 
+    "role": "CEO", 
+    "cipher": None, 
+    "trial_expires_at": None
+}
+
+if not st.session_state.terms_accepted:
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.title("📜 Sovereign Executive Legal Brief & Statutory Compact")
+    st.info("**Entity:** Humphrey Virtual Farms LLC | **CAGE:** 1AHA8 | **UEI:** S1M4ENLHTDH5")
+    st.warning("IMMUTABLE ATTESTATION: By proceeding, you affirm Level-5 Executive Authority and absolute compliance with OK Title 61, OK HB 2992, and NIST SP 800-82 Rev 2 Zero-Cloud Sovereignty.")
+    if st.button("I AFFIRM AND ACCEPT THE STATUTORY COMPACT", type="primary", use_container_width=True):
+        st.session_state.terms_accepted = True
+        st.rerun()
+    st.stop()
+# ------------------------------------------
 st.set_page_config(page_title=f"{EMPIRE['FARM_NAME']} | {EMPIRE['AI_PERSONA']}", page_icon="⚡", layout="wide", initial_sidebar_state="expanded")
 
 # --- ADA VOICE MATRIX OMNIPRESENT SIDEBAR ---
