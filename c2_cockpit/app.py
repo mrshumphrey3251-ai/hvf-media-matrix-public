@@ -438,21 +438,21 @@ ACTIVE_IP = get_tailscale_or_local_ip_cached()
 UPLINK_URL = f"http://{ACTIVE_IP}:8501"
 WEBRTC_STREAM_URL = f"http://192.168.1.175:8889/live/stream"
 RTMP_INGEST_URL = f"rtmp://192.168.1.175:1935/live/stream"
-
 # --- EXECUTIVE STATUTORY GATE INTERLOCK ---
 import streamlit as st
 if "terms_accepted" not in st.session_state:
     st.session_state.terms_accepted = False
 
-# Force CEO Authentication (Overrides the default Guest logic)
-st.session_state.user_session = {
-    "authenticated": True, 
-    "username": "jhumphrey", 
-    "full_name": "Jeffery Humphrey, CEO", 
-    "role": "CEO", 
-    "cipher": None, 
-    "trial_expires_at": None
-}
+# Force Level-5 CEO Authentication
+if "user_session" not in st.session_state:
+    st.session_state.user_session = {
+        "authenticated": True,
+        "username": "jhumphrey",
+        "full_name": "Jeffery Humphrey, CEO",
+        "role": "CEO",
+        "cipher": None,
+        "trial_expires_at": None
+    }
 
 if not st.session_state.terms_accepted:
     st.markdown("<br><br>", unsafe_allow_html=True)
@@ -464,6 +464,7 @@ if not st.session_state.terms_accepted:
         st.rerun()
     st.stop()
 # ------------------------------------------
+
 st.set_page_config(page_title=f"{EMPIRE['FARM_NAME']} | {EMPIRE['AI_PERSONA']}", page_icon="⚡", layout="wide", initial_sidebar_state="expanded")
 
 # --- ADA VOICE MATRIX OMNIPRESENT SIDEBAR ---
@@ -471,7 +472,7 @@ with st.sidebar:
     ada_voice_module.render_voice_matrix()
 # --------------------------------------------
 
-st.markdown("""
+st.markdown('''
 <style>
     html, body, [class*="css"], .stApp { background-color: #050709 !important; color: #FFFFFF !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important; }
     header[data-testid="stHeader"] { background-color: #050709 !important; border-bottom: 1px solid #243042 !important; }
@@ -487,10 +488,8 @@ st.markdown("""
     .pricing-price { color: #FFFFFF; font-size: 1.85rem; font-weight: 900; margin: 10px 0; }
     pre, code { background-color: #000000 !important; color: #00FF66 !important; font-size: 1rem !important; border: 1px solid #243042 !important; }
 </style>
-""", unsafe_allow_html=True)
+''', unsafe_allow_html=True)
 
-if "user_session" not in st.session_state: st.session_state.terms_accepted = False
-    st.session_state.user_session = {"authenticated": True, "username": None, "full_name": "Jeffery Humphrey, CEO", "role": "CEO", "cipher": None, "trial_expires_at": None}
 if "screen_wiped" not in st.session_state: st.session_state.screen_wiped = False
 if "operation_mode" not in st.session_state: st.session_state.operation_mode = "🟢 Online (Cloud Fast Link)"
 if "demo_mode" not in st.session_state: st.session_state.demo_mode = False
@@ -505,11 +504,11 @@ groq_client = Groq(api_key=GROQ_KEY) if GROQ_KEY else None
 def query_local_ollama_chat(messages_payload: list) -> str:
     try:
         res = requests.post(
-            OLLAMA_CHAT_URL, 
-            json={"model": LOCAL_MODEL, "messages": messages_payload, "stream": False, "options": {"temperature": 0.0}}, 
+            OLLAMA_CHAT_URL,
+            json={"model": LOCAL_MODEL, "messages": messages_payload, "stream": False, "options": {"temperature": 0.0}},
             timeout=45
         )
-        if res.status_code == 200: 
+        if res.status_code == 200:
             return sanitize_deterministic_output(res.json().get("message", {}).get("content", ""))
         return f"⚠️ Local Node returned HTTP {res.status_code}."
     except requests.exceptions.RequestException as e:
@@ -538,23 +537,10 @@ with st.sidebar:
     is_online = "Online" in mode_selection
 
     if st.session_state.user_session["authenticated"]:
-
-    # --- EXECUTIVE STATUTORY GATE INTERLOCK ---
-    if not st.session_state.get("terms_accepted", False):
-        st.markdown("<br><br>", unsafe_allow_html=True)
-        st.title("📜 Sovereign Executive Legal Brief & Statutory Compact")
-        st.info("**Entity:** Humphrey Virtual Farms LLC | **CAGE:** 1AHA8 | **UEI:** S1M4ENLHTDH5")
-        st.warning("IMMUTABLE ATTESTATION: By proceeding, you affirm Level-5 Executive Authority and absolute compliance with OK Title 61, OK HB 2992, and NIST SP 800-82 Rev 2 Zero-Cloud Sovereignty.")
-        
-        if st.button("I AFFIRM AND ACCEPT THE STATUTORY COMPACT", type="primary", use_container_width=True):
-            st.session_state.terms_accepted = True
-            st.rerun()
-        st.stop()  # Blocks all subsequent dashboard rendering until accepted
-    # ------------------------------------------
         st.success(f"👑 **{current_name}**\n*({current_role} Clearance)*")
         if st.button("🚪 Disconnect Session", use_container_width=True):
+            st.session_state.user_session = {"authenticated": False, "username": None, "full_name": "Public Guest", "role": "GUEST", "cipher": None, "trial_expires_at": None}
             st.session_state.terms_accepted = False
-    st.session_state.user_session = {"authenticated": True, "username": None, "full_name": "Jeffery Humphrey, CEO", "role": "CEO", "cipher": None, "trial_expires_at": None}
             st.session_state.messages = []
             st.session_state.db_loaded = False
             st.rerun()
@@ -591,8 +577,8 @@ with st.sidebar:
             if st.button("Sign In"):
                 user_match, status_msg = verify_user(login_user, login_pass)
                 if user_match and status_msg == "OK":
+                    st.session_state.user_session = {"authenticated": True, "username": user_match[0], "full_name": user_match[1], "role": user_match[2], "cipher": derive_user_cipher(login_pass, user_match[0]), "trial_expires_at": user_match[4]}
                     st.session_state.terms_accepted = False
-    st.session_state.user_session = {"authenticated": True, "username": user_match[0], "full_name": user_match[1], "role": user_match[2], "cipher": derive_user_cipher(login_pass, user_match[0]), "trial_expires_at": user_match[4]}
                     st.session_state.messages = []
                     st.session_state.db_loaded = False
                     st.rerun()
@@ -607,7 +593,7 @@ with st.sidebar:
                 ok, msg = register_7day_trial(t_u, t_p, t_fn, t_farm)
                 if ok: st.success(msg)
                 else: st.error(msg)
-                
+
     # Sidebar Command Navigation Module Integration
     st.divider()
     st.markdown("### 🎛️ Command Modules")
@@ -1410,7 +1396,6 @@ def render_living_classroom_v01():
                 if slug in slug_to_schematic and slug_to_schematic[slug] in SCHEMATICS:
                     st.code(SCHEMATICS[slug_to_schematic[slug]], language="text")
                 load_vertical(slug)
-
 
 
 
