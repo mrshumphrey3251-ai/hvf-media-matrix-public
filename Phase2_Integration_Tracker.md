@@ -6,7 +6,7 @@
 - [ ] Route high-efficiency insulated ductwork from ECU evaporator to each compute node (NEMA-4X-DUCT-STD)
 - [x] Integrate heat-recovery exchangers with waste-heat TEG modules (TEG-HX-INT)
 - [x] Seal all penetrations with MIL-SPEC fire-rated gaskets (FIRE-GASK-M)
-- [ ] Perform computational fluid dynamics (CFD) validation for airflow balance (CFD-VAL-2026-01)
+- [x] Perform computational fluid dynamics (CFD) validation for airflow balance (CFD-VAL-2026-01)
 
 ## 480V / 24V Power Distribution
 - [ ] Install Victron 480V 3-Phase Inverter with Modbus-TCP (INV-480-MOD-001)
