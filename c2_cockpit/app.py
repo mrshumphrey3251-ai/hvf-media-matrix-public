@@ -665,15 +665,18 @@ if active_module == "💬 Sovereign Command":
         # --- AUTONOMOUS THIRD-BRAIN FILE MOUNT ---
         import glob
         tracker_data = ""
-        search_paths = ["C:/hvf_c2/hvf-media-matrix-private/**/*.md", "C:/hvf_c2/hvf-media-matrix-private/**/*.json"]
+        # Focused targeted RAG to prevent Cognitive Payload Overflow
+        search_paths = ["C:/hvf_c2/hvf-media-matrix-private/**/*[Tt]racker*.md", "C:/hvf_c2/hvf-media-matrix-private/**/*[Ll]edger*.json"]
         for search_path in search_paths:
             for file in glob.glob(search_path, recursive=True):
                 try:
                     with open(file, "r", encoding="utf-8") as f:
-                        tracker_data += "\n[CONTENTS OF " + file + "]:\n" + f.read()[:2000]
+                        file_name = file.split("\\")[-1].split("/")[-1]
+                        tracker_data += "\n[FILE: " + file_name + "]:\n" + f.read()[:1500]
                 except Exception: pass
         
-        full_sys_prompt += "\n\n[THIRD-BRAIN REPOSITORY DATA]:\n" + tracker_data
+        # Hard cap at 7,500 characters to protect API limits
+        full_sys_prompt += "\n\n[THIRD-BRAIN REPOSITORY DATA]:\n" + tracker_data[:7500]
         # -----------------------------------------
 
         conversation_payload = [{"role": "system", "content": full_sys_prompt}] + st.session_state.messages[-6:]
