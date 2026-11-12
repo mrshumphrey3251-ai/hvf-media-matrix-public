@@ -20,7 +20,7 @@
 - [x] Rack-mount Crystal Group RS-Series Rugged Server in sealed enclosure (RACK-ENC-001)
 - [ ] Install Owl Cyber Defense Data Diode between internal compute zone and external comms zone (DIOD-INT-EXT)
 - [ ] Configure isolated VLANs (VLAN 10: Compute Core, VLAN 20: Control PLCs, VLAN 30: Management)
-- [ ] Deploy edge firewall appliance with FIPS-140-2 validated firmware (FW-EDGE-FIPS)
+- [x] Deploy edge firewall appliance with FIPS-140-2 validated firmware (FW-EDGE-FIPS)
 - [ ] Map copper-to-fiber media converters for intra-rack links (FC-CONV-01)
 - [ ] Perform air-gap integrity test with penetration verification (AIR-GAP-VAL-2026-02)
 
