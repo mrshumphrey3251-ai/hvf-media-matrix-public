@@ -73,11 +73,12 @@ def refresh_repo_vault() -> tuple[int, int]:
     conn.close()
     return len(repos), total_files
 
-def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 15000) -> str:
+def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 15500) -> str:
     """
-    Zero-overflow multi-repository context builder:
-    - Lists ALL repositories with exact file counts and ALL blueprint specs without slicing.
-    - Injects full, untruncated contents of Phase 1 & Phase 2 trackers + matched repo files.
+    Deterministic multi-repository context builder:
+    - Reports exact file counts for EVERY repository (zero undisclosed counts).
+    - Lists EVERY blueprint specification directory under blueprints/.
+    - Injects full, untruncated trackers and query-matched files within safe payload bounds.
     """
     repo_count, file_count = refresh_repo_vault()
     conn = sqlite3.connect(str(VAULT_DB))
@@ -93,18 +94,18 @@ def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 15000) -> st
     header = [
         "=== E.B.O.N.Y. OMNI-REPOSITORY FULL-READ VAULT ===",
         f"Total Indexed Repositories: {repo_count} | Total Readable Files: {file_count}",
-        "DIRECTIVE: Verify all facts directly against the complete repository manifest and untruncated files below."
+        "DIRECTIVE: Speak with absolute certainty. Never hedge or say 'technically'. Verify all facts directly below."
     ]
 
     for rname in sorted(by_repo.keys()):
         paths = by_repo[rname]
-        root_files = [p for p in paths if "/" not in p]
         bp_files = [p for p in paths if p.startswith("blueprints/")]
-        summary_parts = [f"root({len(root_files)}): {', '.join(root_files[:8])}"]
         if bp_files:
-            bp_names = [p.split("/")[1] for p in bp_files]
-            summary_parts.append(f"blueprints({len(bp_files)}): {', '.join(bp_names)}")
-        header.append(f"* {rname} [{len(paths)} files] -> " + " | ".join(summary_parts))
+            bp_list = ", ".join(p.split("/", 1)[1] for p in bp_files)
+            header.append(f"* {rname}: {len(paths)} files | blueprints ({len(bp_files)}): {bp_list}")
+        else:
+            root_sample = ", ".join([p for p in paths if "/" not in p][:5])
+            header.append(f"* {rname}: {len(paths)} files | root: {root_sample}")
 
     manifest_block = "\n".join(header)
 
@@ -117,9 +118,11 @@ def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 15000) -> st
     for rname, rpath, clen, content in rows:
         low_key = f"{rname}/{rpath}".lower()
         score = 0
-        if "phase1" in low_key and "tracker" in low_key:
-            score += 160
+        if "phase3" in low_key and "tracker" in low_key:
+            score += 170
         elif "phase2" in low_key and "tracker" in low_key:
+            score += 160
+        elif "phase1" in low_key and "tracker" in low_key:
             score += 155
         elif rpath == "MASTER_STATE_INDEX.json":
             score += 110
@@ -127,10 +130,10 @@ def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 15000) -> st
             score += 65
         for tok in tokens:
             if tok in low_key:
-                score += 45
+                score += 50
         if rname.endswith("-public") and rname.replace("-public", "-private") in by_repo:
             if rpath in by_repo[rname.replace("-public", "-private")]:
-                score -= 85
+                score -= 90
         if score > 0:
             scored.append((score, rname, rpath, content))
 
