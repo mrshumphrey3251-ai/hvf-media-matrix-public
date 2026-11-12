@@ -7,7 +7,7 @@
 - [x] Execute NI PXIe HIL real-time bus injection across 480V inverter & SiC DC-DC converters (`HIL-PWR-01`)
 - [ ] Validate sub-16ms solid-state microgrid islanding & ANSI 25 sync-check under synthetic grid fault (`HIL-ISO-02`)
 - [x] Inject synthetic CAN-FD (`0x180`-`0x1FF`) and Modbus-TCP (`Port 502`) fault frames into `ENV-PANEL-01` (`HIL-ENV-03`)
-- [ ] Verify 5-ton MIL-SPEC ECU over-temperature (`> 45°C`) and over-pressure (`> 150 kPa`) interlock trip within <= 200 ms (`HIL-ECU-04`)
+- [x] Verify 5-ton MIL-SPEC ECU over-temperature (`> 45°C`) and over-pressure (`> 150 kPa`) interlock trip within <= 200 ms (`HIL-ECU-04`)
 - [ ] Validate dual-redundant Hall-effect drive-by-wire failover latency (< 10 ms) on NI PXIe rig (`HIL-DBW-05`)
 
 ## 2. Full-Load Powertrain, Microgrid & Thermal Endurance Run
