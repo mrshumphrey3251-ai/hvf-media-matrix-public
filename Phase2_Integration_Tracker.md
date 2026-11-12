@@ -22,7 +22,7 @@
 - [ ] Configure isolated VLANs (VLAN 10: Compute Core, VLAN 20: Control PLCs, VLAN 30: Management)
 - [x] Deploy edge firewall appliance with FIPS-140-2 validated firmware (FW-EDGE-FIPS)
 - [x] Map copper-to-fiber media converters for intra-rack links (FC-CONV-01)
-- [ ] Perform air-gap integrity test with penetration verification (AIR-GAP-VAL-2026-02)
+- [x] Perform air-gap integrity test with penetration verification (AIR-GAP-VAL-2026-02)
 
 ## Workstation Human-Machine Interfaces (HMI)
 - [ ] Install ruggedized 24-inch touch-screen workstations (MIL-SPEC HMI-TS-24)
