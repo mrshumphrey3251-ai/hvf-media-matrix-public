@@ -15,7 +15,7 @@
 - [x] Verify 150 kW JP-8/Diesel turbine APU auto-start & closed-transition load pickup at 20% BESS SoC (`ENDUR-APU-07`)
 - [x] Measure full-load cabin thermal gradient across all 4 PT1000 quadrants under 45°C ambient soak (`ENDUR-THM-08`)
 - [ ] Verify cabin continuous acoustic noise ceiling <= 55 dBA at operator ear during peak HVAC/inverter load (`ENDUR-ACO-09`)
-- [ ] Validate 650-gal underbelly fuel-cell transfer pump & dual 150-gal saddle-tank balance telemetry (`ENDUR-FUEL-10`)
+- [x] Validate 650-gal underbelly fuel-cell transfer pump & dual 150-gal saddle-tank balance telemetry (`ENDUR-FUEL-10`)
 
 ## 3. Contested Comms, Air-Gap Penetration & C2 Swarm Field Trials
 - [ ] Execute live RF/cyber penetration audit across Owl Data Diode & FIPS-140-2 edge firewall (`FLD-SEC-11`)
