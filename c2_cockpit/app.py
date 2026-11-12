@@ -670,7 +670,16 @@ if active_module == "💬 Sovereign Command":
         full_sys_prompt += "\n\n" + build_omni_repo_context(user_input, max_deep_chars=14500)
         # ------------------------------------------------------------------------------------
 
-        conversation_payload = [{"role": "system", "content": full_sys_prompt}] + st.session_state.messages[-6:]
+        # PAYLOAD_GOVERNOR_ACTIVE: Prevent Online Fast-Link token overflow permanently
+        if len(full_sys_prompt) > 13500:
+            full_sys_prompt = full_sys_prompt[:13500] + '\n[Context condensed to protect Online Fast-Link ceiling]'
+        recent_msgs = []
+        for m in st.session_state.messages[-3:]:
+            c_txt = m.get('content', '')
+            if len(c_txt) > 1800:
+                c_txt = c_txt[:1800] + '... [truncated in history; full record in SQLite]'
+            recent_msgs.append({'role': m['role'], 'content': c_txt})
+        conversation_payload = [{'role': 'system', 'content': full_sys_prompt}] + recent_msgs
 
         if is_online:
             try:
