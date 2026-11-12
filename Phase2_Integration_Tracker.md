@@ -30,4 +30,4 @@
 - [x] Deploy operator console software stack (SCADA, AI inference UI, telemetry dashboard)
 - [ ] Provide hardware key-card reader and biometric fingerprint scanner for multi-factor access (SEC-AUTH-HW)
 - [ ] Mount environmental sensor panel (temperature, humidity, vibration) within operator cabin (ENV-PANEL-01)
-- [ ] Conduct ergonomic validation per ISO 9241-210 (ERG-VAL-2026-03)
+- [x] Conduct ergonomic validation per ISO 9241-210 (ERG-VAL-2026-03)
