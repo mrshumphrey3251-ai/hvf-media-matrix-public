@@ -527,7 +527,7 @@ def query_local_ollama_chat(messages_payload: list) -> str:
         res = requests.post(
             OLLAMA_CHAT_URL,
             json={"model": LOCAL_MODEL, "messages": messages_payload, "stream": False, "options": {"temperature": 0.0}},
-            timeout=45
+            timeout=180
         )
         if res.status_code == 200:
             return sanitize_deterministic_output(res.json().get("message", {}).get("content", ""))
