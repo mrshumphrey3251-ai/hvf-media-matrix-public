@@ -11,7 +11,7 @@
 - [x] Validate dual-redundant Hall-effect drive-by-wire failover latency (< 10 ms) on NI PXIe rig (`HIL-DBW-05`)
 
 ## 2. Full-Load Powertrain, Microgrid & Thermal Endurance Run
-- [ ] Conduct 24-hour continuous off-grid islanded endurance run (LFP BESS + ETFE Solar + TEG recovery) (`ENDUR-PWR-06`)
+- [x] Conduct 24-hour continuous off-grid islanded endurance run (LFP BESS + ETFE Solar + TEG recovery) (`ENDUR-PWR-06`)
 - [ ] Verify 150 kW JP-8/Diesel turbine APU auto-start & closed-transition load pickup at 20% BESS SoC (`ENDUR-APU-07`)
 - [ ] Measure full-load cabin thermal gradient across all 4 PT1000 quadrants under 45°C ambient soak (`ENDUR-THM-08`)
 - [ ] Verify cabin continuous acoustic noise ceiling <= 55 dBA at operator ear during peak HVAC/inverter load (`ENDUR-ACO-09`)
