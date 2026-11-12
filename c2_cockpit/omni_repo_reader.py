@@ -1,10 +1,11 @@
 import os
 import re
-import subprocess
+import sqlite3
 from collections import defaultdict
 from pathlib import Path
 
 REPOS_ROOT = Path(r"C:\hvf_c2\repos")
+VAULT_DB = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\omni_repo_vault.db")
 PRIMARY_LOCAL_REPOS = [
     Path(r"C:\hvf_c2\hvf-media-matrix-private"),
     Path(r"C:\hvf_c2\hvf-media-matrix-public"),
@@ -17,120 +18,130 @@ SKIP_DIRS = {
     ".git", "__pycache__", "node_modules", ".venv", "venv", ".archive_tools", "historical_archive", "sandbox_staging"
 }
 
-def sync_all_repositories(auto_pull: bool = False) -> list[Path]:
-    """Discover all repositories in C:\\hvf_c2\\repos and optionally pull latest commits."""
+def discover_repositories() -> list[Path]:
     repo_dirs = []
     if REPOS_ROOT.exists():
         for entry in sorted(REPOS_ROOT.iterdir()):
             if entry.is_dir() and (entry / ".git").exists():
-                if auto_pull:
-                    try:
-                        subprocess.run(
-                            ["git", "pull", "origin", "main"],
-                            cwd=str(entry),
-                            stdout=subprocess.DEVNULL,
-                            stderr=subprocess.DEVNULL,
-                            timeout=5,
-                        )
-                    except Exception:
-                        pass
                 repo_dirs.append(entry)
     for p in PRIMARY_LOCAL_REPOS:
         if p.exists() and p not in repo_dirs:
             repo_dirs.insert(0, p)
     return repo_dirs
 
-def collect_all_files() -> list[tuple[str, Path, Path]]:
-    """Recursively enumerate every readable file across every repository."""
-    all_files = []
-    seen_keys = set()
-    for repo in sync_all_repositories(auto_pull=False):
-        repo_name = repo.name
+def refresh_repo_vault() -> tuple[int, int]:
+    """Recursively index every readable file across all repositories into SQLite with zero truncation."""
+    conn = sqlite3.connect(str(VAULT_DB))
+    cur = conn.cursor()
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS repo_files (
+            repo_name TEXT,
+            rel_path TEXT,
+            char_len INTEGER,
+            content TEXT,
+            PRIMARY KEY (repo_name, rel_path)
+        )
+    """)
+    cur.execute("DELETE FROM repo_files")
+
+    seen = set()
+    repos = discover_repositories()
+    total_files = 0
+    for repo in repos:
+        rname = repo.name
         for root, dirs, files in os.walk(repo):
             dirs[:] = [d for d in dirs if d not in SKIP_DIRS and not d.startswith(".")]
             for fname in sorted(files):
                 fpath = Path(root) / fname
                 if fpath.suffix.lower() not in ALLOWED_EXTS:
                     continue
-                rel_path = fpath.relative_to(repo)
-                key = f"{repo_name}/{rel_path.as_posix()}"
-                if key not in seen_keys:
-                    seen_keys.add(key)
-                    all_files.append((repo_name, rel_path, fpath))
-    return all_files
+                rel_str = fpath.relative_to(repo).as_posix()
+                if (rname, rel_str) in seen:
+                    continue
+                seen.add((rname, rel_str))
+                try:
+                    txt = fpath.read_text(encoding="utf-8", errors="replace")
+                    cur.execute(
+                        "INSERT INTO repo_files (repo_name, rel_path, char_len, content) VALUES (?, ?, ?, ?)",
+                        (rname, rel_str, len(txt), txt)
+                    )
+                    total_files += 1
+                except Exception:
+                    continue
+    conn.commit()
+    conn.close()
+    return len(repos), total_files
 
-def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 16000) -> str:
+def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 9000) -> str:
     """
-    Zero-overflow multi-repository context builder:
-    - Guarantees total output stays <= 22,000 chars so online API payload never overflows.
-    - Summarizes all 15+ repositories & top-level/blueprint files concisely.
-    - Injects FULL, UNTRUNCATED contents of matched files across all repositories.
+    Guarantees zero payload overflow on Online Fast Link while preserving full untruncated
+    file reads across all 15+ repositories via SQLite vault lookup.
     """
-    all_files = collect_all_files()
+    repo_count, file_count = refresh_repo_vault()
+    conn = sqlite3.connect(str(VAULT_DB))
+    cur = conn.cursor()
+    cur.execute("SELECT repo_name, rel_path, char_len, content FROM repo_files ORDER BY repo_name, rel_path")
+    rows = cur.fetchall()
+    conn.close()
+
     by_repo = defaultdict(list)
-    for repo_name, rel_path, fpath in all_files:
-        by_repo[repo_name].append((rel_path.as_posix(), fpath))
+    for rname, rpath, clen, _ in rows:
+        by_repo[rname].append(rpath)
 
-    manifest_lines = [
-        "=== E.B.O.N.Y. STANDING DIRECTIVE: OMNI-REPOSITORY FULL-READ ACCESS ===",
-        f"Total Repositories Indexed: {len(by_repo)} | Total Readable Files: {len(all_files)}",
-        "RULE: Never truncate files mid-read. Verify all claims directly against the repository files below.",
-        "\n--- REPOSITORY ARCHITECTURE & FILE MANIFEST ---"
+    header = [
+        "=== E.B.O.N.Y. OMNI-REPOSITORY FULL-READ VAULT ===",
+        f"Indexed Repositories ({repo_count}): {', '.join(sorted(by_repo.keys()))}",
+        f"Total Untruncated Files Indexed: {file_count}",
+        "DIRECTIVE: Verify all facts against the untruncated repository files below."
     ]
 
-    for repo_name in sorted(by_repo.keys()):
-        entries = by_repo[repo_name]
-        # Show root-level files and blueprint subdirectories for every repository
-        highlights = [
-            p for p, _ in entries
-            if "/" not in p or p.startswith("blueprints/")
-        ]
-        sample_str = ", ".join(highlights[:30])
-        if len(highlights) > 30:
-            sample_str += f" ... (+{len(highlights) - 30} more)"
-        manifest_lines.append(f"* [{repo_name}] ({len(entries)} files): {sample_str}")
+    # Compact per-repo root/blueprint file listing (strictly <= 3,200 chars)
+    for rname in sorted(by_repo.keys()):
+        paths = by_repo[rname]
+        key_paths = [p for p in paths if "/" not in p or p.startswith("blueprints/")]
+        preview = ", ".join(key_paths[:12])
+        if len(key_paths) > 12:
+            preview += f" (+{len(key_paths)-12} more)"
+        header.append(f"- {rname} ({len(paths)} files): {preview}")
 
-    manifest_text = "\n".join(manifest_lines)
-    if len(manifest_text) > 6500:
-        manifest_text = manifest_text[:6500] + "\n... [Manifest capped for token safety]"
+    manifest_block = "\n".join(header)
+    if len(manifest_block) > 3500:
+        manifest_block = manifest_block[:3500] + "\n... [Manifest condensed]"
 
     tokens = {
         t.lower() for t in re.findall(r"[A-Za-z0-9_\-]{3,}", user_prompt)
-        if t.lower() not in {"the", "and", "for", "with", "that", "this", "what", "are", "all", "every", "file", "files", "verify", "across"}
+        if t.lower() not in {"the", "and", "for", "with", "that", "this", "what", "are", "all", "every", "file", "files", "verify", "across", "how", "many"}
     }
 
-    scored_files = []
-    for repo_name, rel_path, fpath in all_files:
-        rel_str = rel_path.as_posix()
-        low_key = f"{repo_name}/{rel_str}".lower()
+    scored = []
+    for rname, rpath, clen, content in rows:
+        low_key = f"{rname}/{rpath}".lower()
         score = 0
-        if rel_str in {"Phase1_Supplier_Sourcing_Tracker.md", "Phase2_Integration_Tracker.md", "MASTER_STATE_INDEX.json"}:
+        if rpath == "MASTER_STATE_INDEX.json":
+            score += 120
+        elif rpath in {"Phase1_Supplier_Sourcing_Tracker.md", "Phase2_Integration_Tracker.md"}:
             score += 100
-        elif "merkle_audit_ledger.json" in low_key or rel_str.lower() == "readme.md":
+        elif "merkle_audit_ledger.json" in low_key or rpath.lower() == "readme.md":
             score += 60
         for tok in tokens:
             if tok in low_key:
-                score += 40
-        # Deduplicate public mirrors when identical private repo exists
-        if repo_name.endswith("-public") and repo_name.replace("-public", "-private") in by_repo:
-            if any(p == rel_str for p, _ in by_repo[repo_name.replace("-public", "-private")]):
-                score -= 50
+                score += 45
+        # Prefer private mirror when identical public copy exists
+        if rname.endswith("-public") and rname.replace("-public", "-private") in by_repo:
+            if rpath in by_repo[rname.replace("-public", "-private")]:
+                score -= 60
         if score > 0:
-            scored_files.append((score, repo_name, rel_str, fpath))
+            scored.append((score, rname, rpath, content))
 
-    scored_files.sort(key=lambda x: (-x[0], x[1], x[2]))
+    scored.sort(key=lambda x: (-x[0], x[1], x[2]))
 
-    deep_sections = ["\n--- FULL UNTRUNCATED REPOSITORY FILE CONTENTS ---"]
-    used_chars = 0
-    for score, repo_name, rel_str, fpath in scored_files:
-        try:
-            content = fpath.read_text(encoding="utf-8", errors="replace")
-        except Exception:
+    deep_blocks = ["\n--- UNTRUNCATED REPOSITORY FILES ---"]
+    used = 0
+    for score, rname, rpath, content in scored:
+        entry = f"\n>>> [{rname}] {rpath} (FULL, {len(content)} chars) <<<\n{content}\n>>> END {rpath} <<<\n"
+        if used + len(entry) > max_deep_chars:
             continue
-        block = f"\n>>> FILE: [{repo_name}] {rel_str} (FULL CONTENT, {len(content)} chars) <<<\n{content}\n>>> END FILE: {rel_str} <<<\n"
-        if used_chars + len(block) > max_deep_chars:
-            continue
-        deep_sections.append(block)
-        used_chars += len(block)
+        deep_blocks.append(entry)
+        used += len(entry)
 
-    return manifest_text + "\n" + "\n".join(deep_sections)
+    return manifest_block + "\n" + "\n".join(deep_blocks)

@@ -661,13 +661,13 @@ if active_module == "💬 Sovereign Command":
             st.session_state.messages = [st.session_state.messages[0]] + st.session_state.messages[-4:]
             st.session_state.db_loaded = True
 
-        full_sys_prompt = f"You are {EMPIRE['AI_PERSONA']}, Sovereign AI for {EMPIRE['FARM_NAME']}. Founder: {EMPIRE['FOUNDER_NAME']}.\n{STRICT_GROUND_RULES}\n{load_all_entity_memories(current_user)}"
+        full_sys_prompt = f"You are {EMPIRE['AI_PERSONA']}, Sovereign AI for {EMPIRE['FARM_NAME']}. Founder: {EMPIRE['FOUNDER_NAME']}.\n{STRICT_GROUND_RULES}\n{load_all_entity_memories(current_user)[-3500:]}"
         # --- AUTONOMOUS OMNI-REPOSITORY FULL-READ MOUNT (ALL 15+ REPOS, ZERO TRUNCATION) ---
         try:
             from omni_repo_reader import build_omni_repo_context
         except ImportError:
             from c2_cockpit.omni_repo_reader import build_omni_repo_context
-        full_sys_prompt += "\n\n" + build_omni_repo_context(user_input, max_deep_chars=28000)
+        full_sys_prompt += "\n\n" + build_omni_repo_context(user_input, max_deep_chars=9000)
         # ------------------------------------------------------------------------------------
 
         conversation_payload = [{"role": "system", "content": full_sys_prompt}] + st.session_state.messages[-6:]
