@@ -526,7 +526,7 @@ def query_local_ollama_chat(messages_payload: list) -> str:
     try:
         res = requests.post(
             OLLAMA_CHAT_URL,
-            json={"model": LOCAL_MODEL, "messages": messages_payload, "stream": False, "options": {"temperature": 0.0}},
+            json={"model": LOCAL_MODEL, "messages": messages_payload, "stream": False, "keep_alive": "24h", "options": {"num_ctx": 4096, "num_predict": 900, "temperature": 0.2}, "options": {"temperature": 0.0}},
             timeout=180
         )
         if res.status_code == 200:
