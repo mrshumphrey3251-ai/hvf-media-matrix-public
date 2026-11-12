@@ -1,3 +1,26 @@
+﻿"""
+================================================================================
+PROPRIETARY AND CONFIDENTIAL -- HUMPHREY VIRTUAL FARMS LLC
+PROTECTED UNDER 10 U.S.C. § 4022 OTHER TRANSACTION AGREEMENT
+================================================================================
+CONTRACTOR NAME: Humphrey Virtual Farms LLC
+CONTRACTOR ADDRESS: Oklahoma, USA
+CAGE CODE: 1AHA8 | UEI: S1M4ENLHTDH5
+AGREEMENT / OTA IDENTIFIER: PROTOTYPE OTA 10 U.S.C. § 4022
+
+RESTRICTIVE LEGEND -- COMMERCIAL COMPUTER SOFTWARE & PROPRIETARY TECHNICAL DATA:
+The software, firmware, algorithms, architectural structures, and underlying 
+source code contained herein are proprietary commercial items developed entirely 
+at private expense by Humphrey Virtual Farms LLC. 
+
+The Government's rights to use, modify, reproduce, release, perform, display, 
+or disclose this computer software and technical data are restricted as set forth 
+in the governing 10 U.S.C. § 4022 Prototype Agreement. Any reproduction of this 
+software, in whole or in part, or disclosure to unauthorized third parties or 
+commercial competitors without the express written permission of Humphrey 
+Virtual Farms LLC is strictly prohibited.
+================================================================================
+"""
 # =====================================================================
 # PROJECT EBONY // UNIVERSAL SOVEREIGN COMMAND DECK
 # AUTHORITY: LEVEL 5 CEO // SINGLE-FILE MONOLITHIC DEPLOYMENT
@@ -100,3 +123,4 @@ if seal_telemetry_block:
     st.markdown(f"<div style='text-align: center; color: #00FF00; font-family: monospace; font-size: 14px;'><b>⚡ LIVE FORENSIC SILICON LOG // CHRONUS LEDGER SECURED ⚡</b><br>[MERKLE SEALED] HASH: {merkle_hash}</div>", unsafe_allow_html=True)
 else:
     st.markdown(f"<div style='text-align: center; color: #FF0000; font-family: monospace; font-size: 14px;'><b>CRITICAL: CHRONUS LEDGER NEURAL BRIDGE SEVERED</b></div>", unsafe_allow_html=True)
+
