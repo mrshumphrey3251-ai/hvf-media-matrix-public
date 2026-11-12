@@ -20,17 +20,19 @@ SKIP_DIRS = {
 
 def discover_repositories() -> list[Path]:
     repo_dirs = []
+    # Prioritize live working directories first so latest local commits always win
+    for p in PRIMARY_LOCAL_REPOS:
+        if p.exists():
+            repo_dirs.append(p)
     if REPOS_ROOT.exists():
         for entry in sorted(REPOS_ROOT.iterdir()):
             if entry.is_dir() and (entry / ".git").exists():
-                repo_dirs.append(entry)
-    for p in PRIMARY_LOCAL_REPOS:
-        if p.exists() and p not in repo_dirs:
-            repo_dirs.insert(0, p)
+                if entry.name not in {r.name for r in repo_dirs}:
+                    repo_dirs.append(entry)
     return repo_dirs
 
 def refresh_repo_vault() -> tuple[int, int]:
-    """Recursively index every readable file across all repositories into SQLite with zero truncation."""
+    """Recursively index every readable file across all 15+ repositories into SQLite with zero truncation."""
     conn = sqlite3.connect(str(VAULT_DB))
     cur = conn.cursor()
     cur.execute("""
@@ -72,10 +74,12 @@ def refresh_repo_vault() -> tuple[int, int]:
     conn.close()
     return len(repos), total_files
 
-def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 9000) -> str:
+def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 14500) -> str:
     """
-    Guarantees zero payload overflow on Online Fast Link while preserving full untruncated
-    file reads across all 15+ repositories via SQLite vault lookup.
+    Zero-overflow multi-repository context builder across all 15 repositories:
+    - Lists all 15 repositories, root files, and all blueprints/ subdirectories.
+    - Injects full, untruncated contents of Phase1_Supplier_Tracker.md,
+      Phase2_Integration_Tracker.md, and top query-matched files across all repos.
     """
     repo_count, file_count = refresh_repo_vault()
     conn = sqlite3.connect(str(VAULT_DB))
@@ -95,41 +99,44 @@ def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 9000) -> str
         "DIRECTIVE: Verify all facts against the untruncated repository files below."
     ]
 
-    # Compact per-repo root/blueprint file listing (strictly <= 3,200 chars)
     for rname in sorted(by_repo.keys()):
         paths = by_repo[rname]
-        key_paths = [p for p in paths if "/" not in p or p.startswith("blueprints/")]
-        preview = ", ".join(key_paths[:12])
-        if len(key_paths) > 12:
-            preview += f" (+{len(key_paths)-12} more)"
-        header.append(f"- {rname} ({len(paths)} files): {preview}")
+        root_files = [p for p in paths if "/" not in p]
+        bp_files = [p for p in paths if p.startswith("blueprints/")]
+        preview_list = root_files[:10]
+        if bp_files:
+            preview_list.append(f"blueprints/ ({len(bp_files)} specs: {', '.join(p.split('/')[1] for p in bp_files)})")
+        elif len(paths) > len(root_files):
+            sub_sample = [p for p in paths if "/" in p][:6]
+            preview_list.extend(sub_sample)
+        header.append(f"- {rname} ({len(paths)} files): {', '.join(preview_list)}")
 
     manifest_block = "\n".join(header)
-    if len(manifest_block) > 3500:
-        manifest_block = manifest_block[:3500] + "\n... [Manifest condensed]"
+    if len(manifest_block) > 4800:
+        manifest_block = manifest_block[:4800] + "\n... [Manifest condensed]"
 
     tokens = {
         t.lower() for t in re.findall(r"[A-Za-z0-9_\-]{3,}", user_prompt)
-        if t.lower() not in {"the", "and", "for", "with", "that", "this", "what", "are", "all", "every", "file", "files", "verify", "across", "how", "many"}
+        if t.lower() not in {"the", "and", "for", "with", "that", "this", "what", "are", "all", "every", "file", "files", "verify", "across", "how", "many", "out"}
     }
 
     scored = []
     for rname, rpath, clen, content in rows:
         low_key = f"{rname}/{rpath}".lower()
         score = 0
-        if rpath == "MASTER_STATE_INDEX.json":
-            score += 120
-        elif rpath in {"Phase1_Supplier_Sourcing_Tracker.md", "Phase2_Integration_Tracker.md"}:
-            score += 100
+        if rpath in {"Phase1_Supplier_Tracker.md", "Phase1_Supplier_Sourcing_Tracker.md", "Phase2_Integration_Tracker.md"}:
+            score += 150
+        elif rpath == "MASTER_STATE_INDEX.json":
+            score += 110
         elif "merkle_audit_ledger.json" in low_key or rpath.lower() == "readme.md":
-            score += 60
+            score += 65
         for tok in tokens:
             if tok in low_key:
                 score += 45
-        # Prefer private mirror when identical public copy exists
+        # Deduplicate public mirror when identical private repo exists
         if rname.endswith("-public") and rname.replace("-public", "-private") in by_repo:
             if rpath in by_repo[rname.replace("-public", "-private")]:
-                score -= 60
+                score -= 80
         if score > 0:
             scored.append((score, rname, rpath, content))
 
