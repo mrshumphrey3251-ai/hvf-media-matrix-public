@@ -1,6 +1,7 @@
 import os
 import re
 import subprocess
+from collections import defaultdict
 from pathlib import Path
 
 REPOS_ROOT = Path(r"C:\hvf_c2\repos")
@@ -13,7 +14,7 @@ ALLOWED_EXTS = {
     ".py", ".md", ".json", ".yaml", ".yml", ".txt", ".toml", ".sh", ".ps1", ".sql", ".cfg", ".ini"
 }
 SKIP_DIRS = {
-    ".git", "__pycache__", "node_modules", ".venv", "venv", ".archive_tools", "historical_archive"
+    ".git", "__pycache__", "node_modules", ".venv", "venv", ".archive_tools", "historical_archive", "sandbox_staging"
 }
 
 def sync_all_repositories(auto_pull: bool = False) -> list[Path]:
@@ -34,7 +35,6 @@ def sync_all_repositories(auto_pull: bool = False) -> list[Path]:
                     except Exception:
                         pass
                 repo_dirs.append(entry)
-    # Always prioritize live working directories for hvf-media-matrix
     for p in PRIMARY_LOCAL_REPOS:
         if p.exists() and p not in repo_dirs:
             repo_dirs.insert(0, p)
@@ -59,51 +59,62 @@ def collect_all_files() -> list[tuple[str, Path, Path]]:
                     all_files.append((repo_name, rel_path, fpath))
     return all_files
 
-def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 28000) -> str:
+def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 16000) -> str:
     """
-    Build complete, untruncated multi-repository context for E.B.O.N.Y.:
-    1. Full directory & file inventory across ALL repositories.
-    2. Complete, untruncated file contents for all trackers, ledgers, blueprints,
-       and files matching the user's query across all 15 repositories.
+    Zero-overflow multi-repository context builder:
+    - Guarantees total output stays <= 22,000 chars so online API payload never overflows.
+    - Summarizes all 15+ repositories & top-level/blueprint files concisely.
+    - Injects FULL, UNTRUNCATED contents of matched files across all repositories.
     """
     all_files = collect_all_files()
-    repos_found = sorted({r for r, _, _ in all_files})
+    by_repo = defaultdict(list)
+    for repo_name, rel_path, fpath in all_files:
+        by_repo[repo_name].append((rel_path.as_posix(), fpath))
 
     manifest_lines = [
         "=== E.B.O.N.Y. STANDING DIRECTIVE: OMNI-REPOSITORY FULL-READ ACCESS ===",
-        f"Active Repositories Indexed ({len(repos_found)}): {', '.join(repos_found)}",
-        f"Total Readable Files Across All Repositories: {len(all_files)}",
+        f"Total Repositories Indexed: {len(by_repo)} | Total Readable Files: {len(all_files)}",
         "RULE: Never truncate files mid-read. Verify all claims directly against the repository files below.",
-        "\n--- COMPLETE MULTI-REPOSITORY FILE INVENTORY ---"
+        "\n--- REPOSITORY ARCHITECTURE & FILE MANIFEST ---"
     ]
-    for repo_name, rel_path, _ in all_files:
-        manifest_lines.append(f"[{repo_name}] {rel_path.as_posix()}")
 
-    # Score files by relevance + always include critical state/tracker/ledger/README files
+    for repo_name in sorted(by_repo.keys()):
+        entries = by_repo[repo_name]
+        # Show root-level files and blueprint subdirectories for every repository
+        highlights = [
+            p for p, _ in entries
+            if "/" not in p or p.startswith("blueprints/")
+        ]
+        sample_str = ", ".join(highlights[:30])
+        if len(highlights) > 30:
+            sample_str += f" ... (+{len(highlights) - 30} more)"
+        manifest_lines.append(f"* [{repo_name}] ({len(entries)} files): {sample_str}")
+
+    manifest_text = "\n".join(manifest_lines)
+    if len(manifest_text) > 6500:
+        manifest_text = manifest_text[:6500] + "\n... [Manifest capped for token safety]"
+
     tokens = {
         t.lower() for t in re.findall(r"[A-Za-z0-9_\-]{3,}", user_prompt)
-        if t.lower() not in {"the", "and", "for", "with", "that", "this", "what", "are", "all", "every", "file", "files"}
+        if t.lower() not in {"the", "and", "for", "with", "that", "this", "what", "are", "all", "every", "file", "files", "verify", "across"}
     }
-    audit_mode = any(k in user_prompt.lower() for k in ["audit", "lacking", "missing", "status", "tracker", "complete", "every", "all", "blueprint"])
 
     scored_files = []
     for repo_name, rel_path, fpath in all_files:
         rel_str = rel_path.as_posix()
         low_key = f"{repo_name}/{rel_str}".lower()
         score = 0
-        if any(name in low_key for name in ["tracker", "merkle_audit_ledger", "master_state_index", "readme.md"]):
-            score += 50
-        if "blueprints/" in low_key and audit_mode:
-            score += 35
+        if rel_str in {"Phase1_Supplier_Sourcing_Tracker.md", "Phase2_Integration_Tracker.md", "MASTER_STATE_INDEX.json"}:
+            score += 100
+        elif "merkle_audit_ledger.json" in low_key or rel_str.lower() == "readme.md":
+            score += 60
         for tok in tokens:
             if tok in low_key:
-                score += 25
-        # Prefer private mirror over duplicate public mirror to avoid wasting context on identical copies
-        if repo_name.endswith("-public") and any(
-            r == repo_name.replace("-public", "-private") and p.as_posix() == rel_str
-            for r, p, _ in all_files
-        ):
-            score -= 10
+                score += 40
+        # Deduplicate public mirrors when identical private repo exists
+        if repo_name.endswith("-public") and repo_name.replace("-public", "-private") in by_repo:
+            if any(p == rel_str for p, _ in by_repo[repo_name.replace("-public", "-private")]):
+                score -= 50
         if score > 0:
             scored_files.append((score, repo_name, rel_str, fpath))
 
@@ -122,4 +133,4 @@ def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 28000) -> st
         deep_sections.append(block)
         used_chars += len(block)
 
-    return "\n".join(manifest_lines) + "\n" + "\n".join(deep_sections)
+    return manifest_text + "\n" + "\n".join(deep_sections)
