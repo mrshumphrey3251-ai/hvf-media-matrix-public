@@ -27,7 +27,7 @@
 ## Workstation Human-Machine Interfaces (HMI)
 - [ ] Install ruggedized 24-inch touch-screen workstations (MIL-SPEC HMI-TS-24)
 - [ ] Integrate dual-redundant joystick/trackball controls for drive-by-wire operation (CTRL-RED-01)
-- [ ] Deploy operator console software stack (SCADA, AI inference UI, telemetry dashboard)
+- [x] Deploy operator console software stack (SCADA, AI inference UI, telemetry dashboard)
 - [ ] Provide hardware key-card reader and biometric fingerprint scanner for multi-factor access (SEC-AUTH-HW)
 - [ ] Mount environmental sensor panel (temperature, humidity, vibration) within operator cabin (ENV-PANEL-01)
 - [ ] Conduct ergonomic validation per ISO 9241-210 (ERG-VAL-2026-03)
