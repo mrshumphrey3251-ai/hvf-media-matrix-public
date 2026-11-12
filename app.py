@@ -1,4 +1,4 @@
-﻿"""
+"""
 ================================================================================
 PROPRIETARY AND CONFIDENTIAL -- HUMPHREY VIRTUAL FARMS LLC
 PROTECTED UNDER 10 U.S.C. § 4022 OTHER TRANSACTION AGREEMENT

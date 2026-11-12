@@ -59,7 +59,7 @@ def collect_all_files() -> list[tuple[str, Path, Path]]:
                     all_files.append((repo_name, rel_path, fpath))
     return all_files
 
-def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 120000) -> str:
+def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 28000) -> str:
     """
     Build complete, untruncated multi-repository context for E.B.O.N.Y.:
     1. Full directory & file inventory across ALL repositories.

@@ -1,4 +1,4 @@
-﻿"""
+"""
 ================================================================================
 PROPRIETARY AND CONFIDENTIAL -- HUMPHREY VIRTUAL FARMS LLC
 PROTECTED UNDER 10 U.S.C. § 4022 OTHER TRANSACTION AGREEMENT
@@ -667,7 +667,7 @@ if active_module == "💬 Sovereign Command":
             from omni_repo_reader import build_omni_repo_context
         except ImportError:
             from c2_cockpit.omni_repo_reader import build_omni_repo_context
-        full_sys_prompt += "\n\n" + build_omni_repo_context(user_input, max_deep_chars=120000)
+        full_sys_prompt += "\n\n" + build_omni_repo_context(user_input, max_deep_chars=28000)
         # ------------------------------------------------------------------------------------
 
         conversation_payload = [{"role": "system", "content": full_sys_prompt}] + st.session_state.messages[-6:]
