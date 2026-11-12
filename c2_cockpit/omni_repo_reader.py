@@ -20,7 +20,6 @@ SKIP_DIRS = {
 
 def discover_repositories() -> list[Path]:
     repo_dirs = []
-    # Prioritize live working directories first so latest local commits always win
     for p in PRIMARY_LOCAL_REPOS:
         if p.exists():
             repo_dirs.append(p)
@@ -32,7 +31,7 @@ def discover_repositories() -> list[Path]:
     return repo_dirs
 
 def refresh_repo_vault() -> tuple[int, int]:
-    """Recursively index every readable file across all 15+ repositories into SQLite with zero truncation."""
+    """Recursively index every readable file across all repositories into SQLite with zero truncation."""
     conn = sqlite3.connect(str(VAULT_DB))
     cur = conn.cursor()
     cur.execute("""
@@ -74,12 +73,11 @@ def refresh_repo_vault() -> tuple[int, int]:
     conn.close()
     return len(repos), total_files
 
-def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 14500) -> str:
+def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 15000) -> str:
     """
-    Zero-overflow multi-repository context builder across all 15 repositories:
-    - Lists all 15 repositories, root files, and all blueprints/ subdirectories.
-    - Injects full, untruncated contents of Phase1_Supplier_Tracker.md,
-      Phase2_Integration_Tracker.md, and top query-matched files across all repos.
+    Zero-overflow multi-repository context builder:
+    - Lists ALL repositories with exact file counts and ALL blueprint specs without slicing.
+    - Injects full, untruncated contents of Phase 1 & Phase 2 trackers + matched repo files.
     """
     repo_count, file_count = refresh_repo_vault()
     conn = sqlite3.connect(str(VAULT_DB))
@@ -94,26 +92,21 @@ def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 14500) -> st
 
     header = [
         "=== E.B.O.N.Y. OMNI-REPOSITORY FULL-READ VAULT ===",
-        f"Indexed Repositories ({repo_count}): {', '.join(sorted(by_repo.keys()))}",
-        f"Total Untruncated Files Indexed: {file_count}",
-        "DIRECTIVE: Verify all facts against the untruncated repository files below."
+        f"Total Indexed Repositories: {repo_count} | Total Readable Files: {file_count}",
+        "DIRECTIVE: Verify all facts directly against the complete repository manifest and untruncated files below."
     ]
 
     for rname in sorted(by_repo.keys()):
         paths = by_repo[rname]
         root_files = [p for p in paths if "/" not in p]
         bp_files = [p for p in paths if p.startswith("blueprints/")]
-        preview_list = root_files[:10]
+        summary_parts = [f"root({len(root_files)}): {', '.join(root_files[:8])}"]
         if bp_files:
-            preview_list.append(f"blueprints/ ({len(bp_files)} specs: {', '.join(p.split('/')[1] for p in bp_files)})")
-        elif len(paths) > len(root_files):
-            sub_sample = [p for p in paths if "/" in p][:6]
-            preview_list.extend(sub_sample)
-        header.append(f"- {rname} ({len(paths)} files): {', '.join(preview_list)}")
+            bp_names = [p.split("/")[1] for p in bp_files]
+            summary_parts.append(f"blueprints({len(bp_files)}): {', '.join(bp_names)}")
+        header.append(f"* {rname} [{len(paths)} files] -> " + " | ".join(summary_parts))
 
     manifest_block = "\n".join(header)
-    if len(manifest_block) > 4800:
-        manifest_block = manifest_block[:4800] + "\n... [Manifest condensed]"
 
     tokens = {
         t.lower() for t in re.findall(r"[A-Za-z0-9_\-]{3,}", user_prompt)
@@ -124,8 +117,10 @@ def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 14500) -> st
     for rname, rpath, clen, content in rows:
         low_key = f"{rname}/{rpath}".lower()
         score = 0
-        if rpath in {"Phase1_Supplier_Tracker.md", "Phase1_Supplier_Sourcing_Tracker.md", "Phase2_Integration_Tracker.md"}:
-            score += 150
+        if "phase1" in low_key and "tracker" in low_key:
+            score += 160
+        elif "phase2" in low_key and "tracker" in low_key:
+            score += 155
         elif rpath == "MASTER_STATE_INDEX.json":
             score += 110
         elif "merkle_audit_ledger.json" in low_key or rpath.lower() == "readme.md":
@@ -133,10 +128,9 @@ def build_omni_repo_context(user_prompt: str, max_deep_chars: int = 14500) -> st
         for tok in tokens:
             if tok in low_key:
                 score += 45
-        # Deduplicate public mirror when identical private repo exists
         if rname.endswith("-public") and rname.replace("-public", "-private") in by_repo:
             if rpath in by_repo[rname.replace("-public", "-private")]:
-                score -= 80
+                score -= 85
         if score > 0:
             scored.append((score, rname, rpath, content))
 
