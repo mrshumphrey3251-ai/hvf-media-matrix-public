@@ -21,7 +21,7 @@
 - [x] Execute live RF/cyber penetration audit across Owl Data Diode & FIPS-140-2 edge firewall (`FLD-SEC-11`)
 - [x] Validate dual-link Starlink Flat HP + Peplink SD-WAN failover and sovereign air-gap sever drill (`FLD-COM-12`)
 - [x] Conduct live sUAS multi-spectral/LiDAR ingest over 915 MHz LoRaWAN & Jetson AGX Orin edge GPU (`FLD-UAS-13`)
-- [ ] Verify 7-display C2 Command Wall (`HMI-WALL-001`) matrix switching & PIV/CAC + biometric zero-trust session lock (`FLD-HMI-14`)
+- [x] Verify 7-display C2 Command Wall (`HMI-WALL-001`) matrix switching & PIV/CAC + biometric zero-trust session lock (`FLD-HMI-14`)
 - [ ] Execute timed <= 15 s emergency egress drill under simulated blackout lighting per NFPA 101 (`FLD-EGR-15`)
 
 ## 4. SBIR Volume 5 Technical Data Package & Final WORM Merkle Sealing
