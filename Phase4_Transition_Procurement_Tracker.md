@@ -13,5 +13,5 @@
 
 ## Category 3: Physical Hardware-in-the-Loop Regression, C2 Hardening & Field Delivery
 - [x] `p4-6` (`FLD-HIL-06`): Execute physical hardware-in-the-loop (HIL) regression test campaign on arriving production hardware against all 64 baseline acceptance thresholds
-- [ ] `p4-7` (`FLD-C2-07`): Lock production C2 firmware & zero-trust PIV/CAC + biometric credential rotation under `FIPS 140-2` / `DFARS 252.204-7012` audit
+- [x] `p4-7` (`FLD-C2-07`): Lock production C2 firmware & zero-trust PIV/CAC + biometric credential rotation under `FIPS 140-2` / `DFARS 252.204-7012` audit
 - [ ] `p4-8` (`FLD-DAR-08`): Execute DoD Delivery Acceptance Report (DAR) & Ready for Operational Test (ROT) field hand-off signed by Jeffery Humphrey, CEO
