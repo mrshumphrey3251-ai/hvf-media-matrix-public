@@ -12,6 +12,6 @@
 - [x] `p4-5` (`PROC-PO-05`): Execute Purchase Orders (POs) & lead-time tracking for long-lead powertrain, 5-ton MIL-SPEC ECU, and rugged compute hardware
 
 ## Category 3: Physical Hardware-in-the-Loop Regression, C2 Hardening & Field Delivery
-- [ ] `p4-6` (`FLD-HIL-06`): Execute physical hardware-in-the-loop (HIL) regression test campaign on arriving production hardware against all 64 baseline acceptance thresholds
+- [x] `p4-6` (`FLD-HIL-06`): Execute physical hardware-in-the-loop (HIL) regression test campaign on arriving production hardware against all 64 baseline acceptance thresholds
 - [ ] `p4-7` (`FLD-C2-07`): Lock production C2 firmware & zero-trust PIV/CAC + biometric credential rotation under `FIPS 140-2` / `DFARS 252.204-7012` audit
 - [ ] `p4-8` (`FLD-DAR-08`): Execute DoD Delivery Acceptance Report (DAR) & Ready for Operational Test (ROT) field hand-off signed by Jeffery Humphrey, CEO
