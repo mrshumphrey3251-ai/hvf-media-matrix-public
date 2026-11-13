@@ -9,7 +9,7 @@
 
 ## Category 2: Physical Prototype BOM Procurement (As-Built Phase-3 Baseline)
 - [x] `p4-4` (`PROC-RFQ-04`): Issue NDAA Section 889 / DFARS 252.204-7012 compliant RFQs across verified U.S./TAA suppliers (`KORE Power LFP`, `Wolfspeed SiC`, `Crystal Group RS-Series`, `Owl Cyber Defense`, `NVIDIA Jetson AGX Orin`, `NI PXIe`)
-- [ ] `p4-5` (`PROC-PO-05`): Execute Purchase Orders (POs) & lead-time tracking for long-lead powertrain, 5-ton MIL-SPEC ECU, and rugged compute hardware
+- [x] `p4-5` (`PROC-PO-05`): Execute Purchase Orders (POs) & lead-time tracking for long-lead powertrain, 5-ton MIL-SPEC ECU, and rugged compute hardware
 
 ## Category 3: Physical Hardware-in-the-Loop Regression, C2 Hardening & Field Delivery
 - [ ] `p4-6` (`FLD-HIL-06`): Execute physical hardware-in-the-loop (HIL) regression test campaign on arriving production hardware against all 64 baseline acceptance thresholds
