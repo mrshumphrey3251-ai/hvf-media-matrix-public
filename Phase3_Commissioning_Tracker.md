@@ -27,6 +27,6 @@
 ## 4. SBIR Volume 5 Technical Data Package & Final WORM Merkle Sealing
 - [x] Compile all 44 Phase 1/2 test logs and 20 Phase 3 field telemetry datasets into SBIR Volume 5 appendix (`SBIR-V5-16`)
 - [x] Verify 100% NDAA Section 889 / DFARS 252.204-7012 compliance across final as-built BOM (`SBIR-COMP-17`)
-- [ ] Recompute Master SHA-256 Merkle Root across all 64 program milestones and seal in `matrix_ledger.db` (`SBIR-MRK-18`)
+- [x] Recompute Master SHA-256 Merkle Root across all 64 program milestones and seal in `matrix_ledger.db` (`SBIR-MRK-18`)
 - [ ] Mirror redacted public verification receipts to `hvf-media-matrix-public` & `ebony-chronos-public` (`SBIR-PUB-19`)
 - [ ] Execute CEO Level-5 HMAC-SHA256 Final Operational Readiness Sign-Off (`SBIR-CEO-20`)
