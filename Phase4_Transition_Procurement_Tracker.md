@@ -3,7 +3,7 @@
 **Sole Authorized Executive:** Jeffery Humphrey, Chief Executive Officer | **Baseline Merkle Root:** `0c5caaf75f9a358d1b5745a61a4a06ea304acff9f543cc9be1cdf1db193b3023`
 
 ## Category 1: DoD SBIR Phase II/III Contract & Contracting Officer (CO) Transition
-- [ ] `p4-1` (`TRANS-PROP-01`): Finalize DoD SBIR Phase II/III Technical, Commercial (Vol 2), & Cost (Vol 3) Submission Package incorporating sealed 64-milestone TDP (`SBIR-V5-16`, `SBIR-MRK-18`, `SBIR-CEO-20`)
+- [x] `p4-1` (`TRANS-PROP-01`): Finalize DoD SBIR Phase II/III Technical, Commercial (Vol 2), & Cost (Vol 3) Submission Package incorporating sealed 64-milestone TDP (`SBIR-V5-16`, `SBIR-MRK-18`, `SBIR-CEO-20`)
 - [ ] `p4-2` (`TRANS-CO-02`): Transmit DoD Contracting Officer (CO) Executive Review Brief & Cryptographic Merkle Proof Packet (`CAGE: 1AHA8`)
 - [ ] `p4-3` (`TRANS-FRO-03`): Execute SBIR Phase II/III Funding Release Order (FRO) & Treasury Allocation (`Cerberus_Treasury_Matrix.py`)
 
