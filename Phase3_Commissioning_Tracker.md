@@ -5,7 +5,7 @@
 
 ## 1. NI PXIe Hardware-in-the-Loop (HIL) Closed-Loop Validation
 - [x] Execute NI PXIe HIL real-time bus injection across 480V inverter & SiC DC-DC converters (`HIL-PWR-01`)
-- [ ] Validate sub-16ms solid-state microgrid islanding & ANSI 25 sync-check under synthetic grid fault (`HIL-ISO-02`)
+- [x] Validate sub-16ms solid-state microgrid islanding & ANSI 25 sync-check under synthetic grid fault (`HIL-ISO-02`)
 - [x] Inject synthetic CAN-FD (`0x180`-`0x1FF`) and Modbus-TCP (`Port 502`) fault frames into `ENV-PANEL-01` (`HIL-ENV-03`)
 - [x] Verify 5-ton MIL-SPEC ECU over-temperature (`> 45°C`) and over-pressure (`> 150 kPa`) interlock trip within <= 200 ms (`HIL-ECU-04`)
 - [x] Validate dual-redundant Hall-effect drive-by-wire failover latency (< 10 ms) on NI PXIe rig (`HIL-DBW-05`)
@@ -14,7 +14,7 @@
 - [x] Conduct 24-hour continuous off-grid islanded endurance run (LFP BESS + ETFE Solar + TEG recovery) (`ENDUR-PWR-06`)
 - [x] Verify 150 kW JP-8/Diesel turbine APU auto-start & closed-transition load pickup at 20% BESS SoC (`ENDUR-APU-07`)
 - [x] Measure full-load cabin thermal gradient across all 4 PT1000 quadrants under 45°C ambient soak (`ENDUR-THM-08`)
-- [ ] Verify cabin continuous acoustic noise ceiling <= 55 dBA at operator ear during peak HVAC/inverter load (`ENDUR-ACO-09`)
+- [x] Verify cabin continuous acoustic noise ceiling <= 55 dBA at operator ear during peak HVAC/inverter load (`ENDUR-ACO-09`)
 - [x] Validate 650-gal underbelly fuel-cell transfer pump & dual 150-gal saddle-tank balance telemetry (`ENDUR-FUEL-10`)
 
 ## 3. Contested Comms, Air-Gap Penetration & C2 Swarm Field Trials
@@ -29,4 +29,4 @@
 - [x] Verify 100% NDAA Section 889 / DFARS 252.204-7012 compliance across final as-built BOM (`SBIR-COMP-17`)
 - [x] Recompute Master SHA-256 Merkle Root across all 64 program milestones and seal in `matrix_ledger.db` (`SBIR-MRK-18`)
 - [x] Mirror redacted public verification receipts to `hvf-media-matrix-public` & `ebony-chronos-public` (`SBIR-PUB-19`)
-- [ ] Execute CEO Level-5 HMAC-SHA256 Final Operational Readiness Sign-Off (`SBIR-CEO-20`)
+- [x] Execute CEO Level-5 HMAC-SHA256 Final Operational Readiness Sign-Off (`SBIR-CEO-20`)
