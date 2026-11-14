@@ -91,3 +91,8 @@ c2_cockpit/logs/*.json
 
 # Whitelist Project E.B.O.N.Y. Executive Briefing Audio Tracks
 !c2_cockpit/presentations/audio/*.wav
+
+# SQLite WAL transient runtime files
+*.db-wal
+*.db-shm
+
