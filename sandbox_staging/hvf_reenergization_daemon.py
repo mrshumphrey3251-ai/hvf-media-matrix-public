@@ -341,7 +341,7 @@ def render():
 
                 "battery_pct": 92.1,
 
-                "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+                "stream_url": "rtsp://127.0.0.1:8554/live/optical_crop_feed",
 
                 "flight_status": "POST_STORM_PERIMETER_SWEEP",
 

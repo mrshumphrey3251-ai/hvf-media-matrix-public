@@ -187,7 +187,7 @@ class HVFThreatInterlock:
             "latitude": self.base_landing_pad["lat"],
             "longitude": self.base_landing_pad["lon"],
             "battery_pct": (d_row[4] - 1.2) if d_row else 90.0,
-            "stream_url": d_row[5] if d_row else "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+            "stream_url": d_row[5] if d_row else "rtsp://127.0.0.1:8554/live/optical_crop_feed",
             "flight_status": "EMERGENCY_RTH_RECALLED",
             "recorded_at": now_ts
         }

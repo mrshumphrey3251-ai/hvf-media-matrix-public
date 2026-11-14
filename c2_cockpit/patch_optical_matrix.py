@@ -35,11 +35,11 @@ with gw_c2:
 with gw_c3:
     network_gw = st.selectbox(
         "Stream Gateway Link",
-        ["Tailscale Swarm (100.87.162.117)", "Localhost (127.0.0.1)"],
+        ["Tailscale Swarm (127.0.0.1)", "Localhost (127.0.0.1)"],
         key="opt_network_gw_sel"
     )
 
-gw_ip = "100.87.162.117" if "Tailscale" in network_gw else "127.0.0.1"
+gw_ip = "127.0.0.1" if "Tailscale" in network_gw else "127.0.0.1"
 
 # Switch Action Button
 col_sw_act1, col_sw_act2 = st.columns([1.5, 2.5])

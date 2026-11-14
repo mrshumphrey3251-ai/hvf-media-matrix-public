@@ -23,7 +23,7 @@
     "min_battery_pct": 92.5,
     "telemetry_transport": "HTTP_MAVLINK_PORT_8088",
     "hmi_station_id": "KOKC",
-    "live_stream_feed": "rtsp://100.87.162.117:8554/live/optical_crop_feed"
+    "live_stream_feed": "rtsp://127.0.0.1:8554/live/optical_crop_feed"
   },
   "waypoints": [
     {
@@ -35,7 +35,7 @@
       "latitude": 35.4675,
       "longitude": -97.5165,
       "battery_pct": 98.0,
-      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "stream_url": "rtsp://127.0.0.1:8554/live/optical_crop_feed",
       "flight_status": "CLIMBING_EN_ROUTE",
       "recorded_at": "2026-09-26 22:46:54"
     },
@@ -48,7 +48,7 @@
       "latitude": 35.4682,
       "longitude": -97.5158,
       "battery_pct": 96.5,
-      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "stream_url": "rtsp://127.0.0.1:8554/live/optical_crop_feed",
       "flight_status": "SURVEYING_SOLAR_PV",
       "recorded_at": "2026-09-26 22:46:55"
     },
@@ -61,7 +61,7 @@
       "latitude": 35.469,
       "longitude": -97.515,
       "battery_pct": 95.0,
-      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "stream_url": "rtsp://127.0.0.1:8554/live/optical_crop_feed",
       "flight_status": "SPECTRAL_CANOPY_SCAN",
       "recorded_at": "2026-09-26 22:46:55"
     },
@@ -74,7 +74,7 @@
       "latitude": 35.4685,
       "longitude": -97.5142,
       "battery_pct": 93.8,
-      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "stream_url": "rtsp://127.0.0.1:8554/live/optical_crop_feed",
       "flight_status": "THERMAL_PUMP_AUDIT",
       "recorded_at": "2026-09-26 22:46:55"
     },
@@ -87,7 +87,7 @@
       "latitude": 35.4678,
       "longitude": -97.5155,
       "battery_pct": 92.5,
-      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "stream_url": "rtsp://127.0.0.1:8554/live/optical_crop_feed",
       "flight_status": "HOLDING_PERIMETER_ORBIT",
       "recorded_at": "2026-09-26 22:46:56"
     }

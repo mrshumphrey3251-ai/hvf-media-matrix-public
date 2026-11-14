@@ -12,4 +12,4 @@
 
 ### 2. Append-Only WORM Ledger Sealing (`matrix_ledger.db`) & Sole CEO Attestation
 - **WORM Database Enforcement:** Append-only SQLite WAL ledger (`WITHOUT ROWID`, `PRIMARY KEY(entry_id)`) storing `SBIR-MRK-18-p3-18`, UTC timestamp, Master Merkle Root, Manifest SHA-256, and CEO Level-5 clearance (`5`).
-- **Sole Signatory Attestation:** Signed exclusively by **Jeffery Humphrey (CEO, Humphrey Virtual Farm, CAGE: 1AHA8)** via `EBONY_TIER_1_CEO` HMAC-SHA256 (`signature.b64`), with redacted public proof mirrored to `hvf-media-matrix-public` and `ebony-chronos-public`.
+- **Sole Signatory Attestation:** Signed exclusively by **Jeffery Humphrey (CEO, Humphrey Virtual Farm, CAGE: 1AHA8)** via `EXECUTIVE_ADMIN_ROLE` HMAC-SHA256 (`signature.b64`), with redacted public proof mirrored to `hvf-media-matrix-public` and `ebony-chronos-public`.

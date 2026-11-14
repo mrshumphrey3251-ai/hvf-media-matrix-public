@@ -46,7 +46,7 @@ def verify_mfa_token(input_token: str, seed: str, window_minutes=1) -> bool:
     
 if __name__ == "__main__":
     # Generate the live CEO token for kinetic testing
-    master_seed = "EBONY_TIER_1_CEO"
+    master_seed = "EXECUTIVE_ADMIN_ROLE"
     print("==================================================")
     print("🛡️ KINETIC MFA GENERATOR ONLINE")
     print("==================================================")

@@ -107,7 +107,7 @@ def render():
 
     with sw_c4:
 
-        gw_choice = st.selectbox("Gateway", ["100.87.162.117", "127.0.0.1"], key="gw_tactical_v2")
+        gw_choice = st.selectbox("Gateway", ["127.0.0.1", "127.0.0.1"], key="gw_tactical_v2")
 
 
 
@@ -149,7 +149,7 @@ def render():
 
                     <div style="color: #94a3b8; font-size: 0.88em; margin-top: 8px;">
 
-                        Mobile operating systems (iOS/Android) prohibit browser camera access over insecure HTTP connections (http://100.87.162.117).
+                        Mobile operating systems (iOS/Android) prohibit browser camera access over insecure HTTP connections (http://127.0.0.1).
 
                         To stream video from your phone, an SSL/HTTPS domain is required.
 

@@ -55,7 +55,7 @@
     "audio_hardware_link": "SHOKZ_OPENRUN_BONE_CONDUCTION",
     "voice_module_entry": "render_voice_matrix",
     "c2_daemon_port": 8501,
-    "swarm_uplink": "http://100.87.162.117:8501/"
+    "swarm_uplink": "http://127.0.0.1:8501/"
   },
   "cryptographic_ledger": {
     "algorithm": "ED25519_ASYMMETRIC",

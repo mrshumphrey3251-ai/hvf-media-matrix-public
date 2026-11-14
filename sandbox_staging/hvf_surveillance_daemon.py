@@ -139,7 +139,7 @@ def render():
 
                     batt,
 
-                    "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+                    "rtsp://127.0.0.1:8554/live/optical_crop_feed",
 
                     sec["status"]
 

@@ -51,11 +51,11 @@ def render():
 
     with gw_col1:
 
-        st.caption("Active Secure Mesh Transport: Tailscale Encrypted WireGuard (100.87.162.117)")
+        st.caption("Active Secure Mesh Transport: Tailscale Encrypted WireGuard (127.0.0.1)")
 
     with gw_col2:
 
-        active_gw = st.selectbox("Mesh Gateway", ["100.87.162.117", "127.0.0.1"], key="triad_gw_select")
+        active_gw = st.selectbox("Mesh Gateway", ["127.0.0.1", "127.0.0.1"], key="triad_gw_select")
 
 
 

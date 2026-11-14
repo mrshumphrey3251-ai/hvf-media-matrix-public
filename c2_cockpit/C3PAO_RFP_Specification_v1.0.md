@@ -10,7 +10,7 @@
 
 ### 1. Enclave Scope & Technical Architecture
 - **Boundary Identifier:** HVFNexus Sovereign Industrial C2 Edge Enclave
-- **Hardware Anchor:** Dedicated Edge Node (100.87.162.117:8501)
+- **Hardware Anchor:** Dedicated Edge Node (127.0.0.1:8501)
 - **Controlled Unclassified Information (CUI) Segmentation:** Air-gapped from commercial commodity interfaces; secured via TLS 1.3 and FIPS 140-2 validated encryption.
 - **Physical Locations:** Sovereign Edge Compute Nodes, Industrial SCADA Telemetry Modules, and Aerial Diagnostics Fleet.
 

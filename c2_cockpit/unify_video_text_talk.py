@@ -19,9 +19,9 @@ st.markdown("Unified sovereign matrix: **Live Video**, **Encrypted Text Dispatch
 # 1. GATEWAY NETWORK LINK
 gw_col1, gw_col2 = st.columns([3, 1])
 with gw_col1:
-    st.caption("Active Secure Mesh Transport: Tailscale Encrypted WireGuard (100.87.162.117)")
+    st.caption("Active Secure Mesh Transport: Tailscale Encrypted WireGuard (127.0.0.1)")
 with gw_col2:
-    active_gw = st.selectbox("Mesh Gateway", ["100.87.162.117", "127.0.0.1"], key="triad_gw_select")
+    active_gw = st.selectbox("Mesh Gateway", ["127.0.0.1", "127.0.0.1"], key="triad_gw_select")
 
 # --- PILLAR 1: LIVE VIDEO STREAM (ARDUCAM-1080P-HDR) ---
 st.subheader("🔴 1. LIVE OPTICAL FEED // ARDUCAM-1080P-HDR")

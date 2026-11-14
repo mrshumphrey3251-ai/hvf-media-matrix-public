@@ -15,7 +15,7 @@ if marker in content:
     st.caption("One-way optical ingestion from the WebRTC Master Media Router.")
     
     st.components.v1.html(
-        '<iframe src="http://100.87.162.117:8889/live/stream" width="100%" height="600" style="border:none;" allow="autoplay; fullscreen; camera"></iframe>',
+        '<iframe src="http://127.0.0.1:8889/live/stream" width="100%" height="600" style="border:none;" allow="autoplay; fullscreen; camera"></iframe>',
         height=620
     )
     st.markdown("---")

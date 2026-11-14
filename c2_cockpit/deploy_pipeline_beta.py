@@ -131,7 +131,7 @@ marker = 'st.markdown("### 💬 Encrypted P2P Dispatch")'
 if marker in content and "🎥 Sovereign P2P Video Link" not in content:
     injection = """st.markdown("### 🎥 Sovereign P2P Video Link")
     st.markdown(
-        '<iframe src="https://100.87.162.117:8890/intercom" width="100%" height="450" style="border:1px solid #00ff00; border-radius: 8px;" allow="camera; microphone; autoplay; fullscreen"></iframe>',
+        '<iframe src="https://127.0.0.1:8890/intercom" width="100%" height="450" style="border:1px solid #00ff00; border-radius: 8px;" allow="camera; microphone; autoplay; fullscreen"></iframe>',
         unsafe_allow_html=True
     )
     st.markdown("---")

@@ -31,7 +31,7 @@
 14. **System & Information Integrity (SI):** SIEM log anomaly detection and AST compile-time verification for all deployed code.
 
 ### 3. Asset Inventory
-- **HVFNexus C2 Master Node:** Bare-Metal Workstation (`100.87.162.117:8501`)
+- **HVFNexus C2 Master Node:** Bare-Metal Workstation (`127.0.0.1:8501`)
 - **Telemetry Bridge:** Industrial Wireless Edge Sensors (FCC Title 47 compliant)
 - **Aerial Fleet:** Autonomous Diagnostics Drones (FAA 14 CFR Part 107 Remote ID verified)
 - **Storage Subsystems:** `matrix_ledger.db` and `hvf_memory_vault.db` (AES-256 encrypted at rest)

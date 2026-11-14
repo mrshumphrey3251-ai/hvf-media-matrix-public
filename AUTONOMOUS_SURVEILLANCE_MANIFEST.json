@@ -21,7 +21,7 @@
       "PERIMETER_ORBIT"
     ],
     "c2_cockpit_port": 8501,
-    "telemetry_stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed"
+    "telemetry_stream_url": "rtsp://127.0.0.1:8554/live/optical_crop_feed"
   },
   "circuit_telemetry": [
     {
@@ -33,7 +33,7 @@
       "latitude": 35.4682,
       "longitude": -97.5158,
       "battery_pct": 96.8,
-      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "stream_url": "rtsp://127.0.0.1:8554/live/optical_crop_feed",
       "flight_status": "SURVEYING_SOLAR_PV",
       "recorded_at": "2026-09-26 22:57:52"
     },
@@ -46,7 +46,7 @@
       "latitude": 35.469,
       "longitude": -97.515,
       "battery_pct": 96.39999999999999,
-      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "stream_url": "rtsp://127.0.0.1:8554/live/optical_crop_feed",
       "flight_status": "SPECTRAL_CANOPY_SCAN",
       "recorded_at": "2026-09-26 22:57:52"
     },
@@ -59,7 +59,7 @@
       "latitude": 35.4685,
       "longitude": -97.5142,
       "battery_pct": 96.0,
-      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "stream_url": "rtsp://127.0.0.1:8554/live/optical_crop_feed",
       "flight_status": "THERMAL_PUMP_AUDIT",
       "recorded_at": "2026-09-26 22:57:52"
     },
@@ -72,7 +72,7 @@
       "latitude": 35.4678,
       "longitude": -97.5155,
       "battery_pct": 95.6,
-      "stream_url": "rtsp://100.87.162.117:8554/live/optical_crop_feed",
+      "stream_url": "rtsp://127.0.0.1:8554/live/optical_crop_feed",
       "flight_status": "PERIMETER_PATROL_SWEEP",
       "recorded_at": "2026-09-26 22:57:52"
     }

@@ -81,7 +81,7 @@ def render():
 
                 <b>Local Gateway:</b> http://127.0.0.1:8502<br>
 
-                <b>Swarm Link:</b> http://100.87.162.117:8502<br>
+                <b>Swarm Link:</b> http://127.0.0.1:8502<br>
 
                 <b>Encoding:</b> RFC 2046 Multipart MJPEG<br>
 

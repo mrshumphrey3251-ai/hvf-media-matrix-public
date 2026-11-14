@@ -34,7 +34,7 @@ with opt_c2:
             <b>Bus Protocol:</b> DirectShow USB Bus<br>
             <b>Ingest Stream:</b> 1280x720 HD @ 30 FPS<br>
             <b>Local Gateway:</b> http://127.0.0.1:8502<br>
-            <b>Swarm Link:</b> http://100.87.162.117:8502<br>
+            <b>Swarm Link:</b> http://127.0.0.1:8502<br>
             <b>Encoding:</b> RFC 2046 Multipart MJPEG<br>
             <b>Compliance:</b> DFARS 252.227-7018
         </div>

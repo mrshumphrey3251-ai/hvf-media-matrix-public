@@ -16,6 +16,6 @@
   "approval_required": "CEO (Jeffery Humphrey) - MFA Token 6-digit verification",
   "ledger_entry_id": "MCC-PRM-2026-001",
   "approval_status": "APPROVED_BY_CEO",
-  "authorization_mechanism": "HMAC-SHA256(EBONY_TIER_1_CEO) Token 515757",
+  "authorization_mechanism": "HMAC-SHA256(EXECUTIVE_ADMIN_ROLE) Token 515757",
   "approved_at": "2026-11-11T16:12:42Z"
 }

@@ -13,4 +13,4 @@
   - Full `64`-threshold physical HIL regression campaign, third-party `MIL-STD-461G / 810H` & `NFPA 101` verification, and DoD Delivery Acceptance Report (`DAR`).
 
 ### 2. Cryptographic Treasury Release & WORM Audit Controls
-- Every WBS disbursement transaction is hashed via SHA-256 into `matrix_ledger.db`, bound to Master Merkle Root `0c5caaf75f9a358d1b5745a61a4a06ea304acff9f543cc9be1cdf1db193b3023`, and authorized solely by **Jeffery Humphrey, CEO (`CAGE: 1AHA8`)** via `EBONY_TIER_1_CEO` HMAC-SHA256.
+- Every WBS disbursement transaction is hashed via SHA-256 into `matrix_ledger.db`, bound to Master Merkle Root `0c5caaf75f9a358d1b5745a61a4a06ea304acff9f543cc9be1cdf1db193b3023`, and authorized solely by **Jeffery Humphrey, CEO (`CAGE: 1AHA8`)** via `EXECUTIVE_ADMIN_ROLE` HMAC-SHA256.

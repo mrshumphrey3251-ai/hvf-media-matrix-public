@@ -27,7 +27,7 @@ if marker in content:
         st.info("WebRTC Matrix streaming via Sovereign Tailscale Link.")
         # Injecting the live Master Media Router feed directly into the UI
         st.components.v1.html(
-            f'<iframe src="http://100.87.162.117:8889/live/stream" width="100%" height="450" style="border:none;" allow="autoplay; fullscreen"></iframe>',
+            f'<iframe src="http://127.0.0.1:8889/live/stream" width="100%" height="450" style="border:none;" allow="autoplay; fullscreen"></iframe>',
             height=470
         )
 

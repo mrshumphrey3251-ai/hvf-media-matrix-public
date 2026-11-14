@@ -83,7 +83,7 @@ def render():
 
             "Stream Gateway Link",
 
-            ["Tailscale Swarm (100.87.162.117)", "Localhost (127.0.0.1)"],
+            ["Tailscale Swarm (127.0.0.1)", "Localhost (127.0.0.1)"],
 
             key="opt_network_gw_sel"
 
@@ -91,7 +91,7 @@ def render():
 
 
 
-    gw_ip = "100.87.162.117" if "Tailscale" in network_gw else "127.0.0.1"
+    gw_ip = "127.0.0.1" if "Tailscale" in network_gw else "127.0.0.1"
 
 
 

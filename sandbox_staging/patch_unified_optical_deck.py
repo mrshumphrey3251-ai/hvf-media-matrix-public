@@ -61,7 +61,7 @@ def render():
 
         with opt_c1:
 
-            # Auto-aligning dynamic host viewport: automatically binds to localhost or 100.87.162.117
+            # Auto-aligning dynamic host viewport: automatically binds to localhost or 127.0.0.1
 
             st.markdown('''
 
@@ -93,9 +93,9 @@ def render():
 
                 <script>
 
-                    // Dynamically extract connecting hostname (localhost on PC, 100.87.162.117 on Tablet)
+                    // Dynamically extract connecting hostname (localhost on PC, 127.0.0.1 on Tablet)
 
-                    const hostName = window.location.hostname || "100.87.162.117";
+                    const hostName = window.location.hostname || "127.0.0.1";
 
                     const imgElem = document.getElementById("arducam_live_feed");
 

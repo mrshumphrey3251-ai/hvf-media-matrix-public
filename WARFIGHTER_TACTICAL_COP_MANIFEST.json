@@ -23,7 +23,7 @@
       "elevation_m": 385.0
     },
     "c2_cockpit_port": 8501,
-    "swarm_uplink": "http://100.87.162.117:8501/"
+    "swarm_uplink": "http://127.0.0.1:8501/"
   },
   "ground_forces": [
     {

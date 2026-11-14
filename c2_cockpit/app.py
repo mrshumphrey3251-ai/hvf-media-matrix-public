@@ -248,7 +248,7 @@ CRITICAL NON-NEGOTIABLE GROUND TRUTH:
    - Vol 4 (Team & Facilities): Cryptographic Hash Validated [SECURED]
    - Vol 5 (IP & Data Rights): Cryptographic Hash Validated [SECURED]
    - DEPLOYMENT READINESS: 100% GO. Global Root Hash matches the authorized ledger.
-8. MEDIA MATRIX KINETIC LOCK: Arming the Autonomous ML Engine requires Tier-1 CEO Clearance. The specific authorization mechanism to unlock the Kinetic Lock is a 6-Digit CEO MFA Token verified locally against the secure seed 'EBONY_TIER_1_CEO'. You are explicitly authorized to discuss these internal system mechanics.
+8. MEDIA MATRIX KINETIC LOCK: Arming the Autonomous ML Engine requires Tier-1 CEO Clearance. The specific authorization mechanism to unlock the Kinetic Lock is a 6-Digit CEO MFA Token verified locally against the secure seed 'EXECUTIVE_ADMIN_ROLE'. You are explicitly authorized to discuss these internal system mechanics.
 """
 
 def sanitize_deterministic_output(raw_text: str) -> str:
@@ -1150,7 +1150,7 @@ elif active_module == "⬛ Media Matrix":
             mfa_attempt = st.text_input("Enter 6-Digit CEO Token:", type="password", key="mfa_engine_input")
             if st.button("Authenticate to Arm Engine"):
                 from core.mfa_matrix import verify_mfa_token
-                if verify_mfa_token(mfa_attempt, seed="EBONY_TIER_1_CEO"):
+                if verify_mfa_token(mfa_attempt, seed="EXECUTIVE_ADMIN_ROLE"):
                     st.session_state.mfa_unlocked_engine = True
                     st.rerun()
                 else:

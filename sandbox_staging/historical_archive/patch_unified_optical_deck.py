@@ -24,7 +24,7 @@ tab_desktop, tab_tablet = st.tabs(["🖥️ Desktop Arducam Stream", "📱 Table
 with tab_desktop:
     opt_c1, opt_c2 = st.columns([2.3, 1])
     with opt_c1:
-        # Auto-aligning dynamic host viewport: automatically binds to localhost or 100.87.162.117
+        # Auto-aligning dynamic host viewport: automatically binds to localhost or 127.0.0.1
         st.markdown('''
             <div style="position: relative; width: 100%; background-color: #0b0e14; border: 1px solid #242d3d; border-radius: 2px; overflow: hidden;">
                 <div style="position: absolute; top: 8px; left: 10px; z-index: 10; font-family: monospace; font-size: 0.75em; background-color: rgba(11,14,20,0.85); padding: 2px 8px; border: 1px solid #242d3d; border-radius: 2px;">
@@ -40,8 +40,8 @@ with tab_desktop:
                 </div>
             </div>
             <script>
-                // Dynamically extract connecting hostname (localhost on PC, 100.87.162.117 on Tablet)
-                const hostName = window.location.hostname || "100.87.162.117";
+                // Dynamically extract connecting hostname (localhost on PC, 127.0.0.1 on Tablet)
+                const hostName = window.location.hostname || "127.0.0.1";
                 const imgElem = document.getElementById("arducam_live_feed");
                 if (imgElem) {
                     imgElem.src = "http://" + hostName + ":8502/video_feed";

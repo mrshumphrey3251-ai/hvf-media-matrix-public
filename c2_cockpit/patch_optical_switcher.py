@@ -65,7 +65,7 @@ with opt_c2:
             <b>Bus Channels:</b> Index 0 (SD) / Index 1 (HD)<br>
             <b>Frame Rate:</b> 30 FPS Synchronous<br>
             <b>Local Gateway:</b> http://127.0.0.1:8502<br>
-            <b>Swarm Link:</b> http://100.87.162.117:8502<br>
+            <b>Swarm Link:</b> http://127.0.0.1:8502<br>
             <b>Compliance:</b> DFARS 252.227-7018
         </div>
     ''', unsafe_allow_html=True)"""

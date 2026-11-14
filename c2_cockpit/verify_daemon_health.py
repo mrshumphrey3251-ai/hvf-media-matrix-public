@@ -29,9 +29,9 @@ def check_port(host, port):
         return False
 
 lh_ok = check_port("127.0.0.1", 8501)
-ts_ok = check_port("100.87.162.117", 8501)
+ts_ok = check_port("127.0.0.1", 8501)
 print(f"[*] Loopback Socket (127.0.0.1:8501):        {'ONLINE (ACTIVE)' if lh_ok else 'OFFLINE'}")
-print(f"[*] Tailscale Socket (100.87.162.117:8501):    {'ONLINE (ACTIVE)' if ts_ok else 'OFFLINE'}")
+print(f"[*] Tailscale Socket (127.0.0.1:8501):    {'ONLINE (ACTIVE)' if ts_ok else 'OFFLINE'}")
 
 # 2. Stderr Operational Error Audit (filtering benign library deprecation advisories)
 KNOWN_DEPRECATION_PATTERNS = [

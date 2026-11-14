@@ -17,4 +17,4 @@
 
 ### 3. CUI Encryption, Access Control & WORM Attestation Sealing
 - **Data-at-Rest & Data-in-Transit:** `AES-256-GCM` encryption via `FIPS 140-2` validated key management; `TLS 1.3` (`ECDHE-P-256` / `AES-256-GCM`) across internal `VLAN 10/20/30` segments and `FW-EDGE-FIPS` perimeter firewall.
-- **WORM Sealing & Sole Signatory Approval:** Final As-Built BOM CSV hashed via SHA-256, sealed in append-only `matrix_ledger.db` (`SBIR-COMP-17-WORM-001`), and signed exclusively by **Jeffery Humphrey, CEO (CAGE: 1AHA8)** via `EBONY_TIER_1_CEO` HMAC-SHA256.
+- **WORM Sealing & Sole Signatory Approval:** Final As-Built BOM CSV hashed via SHA-256, sealed in append-only `matrix_ledger.db` (`SBIR-COMP-17-WORM-001`), and signed exclusively by **Jeffery Humphrey, CEO (CAGE: 1AHA8)** via `EXECUTIVE_ADMIN_ROLE` HMAC-SHA256.

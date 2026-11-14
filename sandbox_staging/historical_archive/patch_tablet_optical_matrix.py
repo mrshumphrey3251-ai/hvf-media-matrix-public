@@ -234,7 +234,7 @@ with sw_c2:
         st.rerun()
 
 with sw_c3:
-    gw_choice = st.selectbox("Gateway", ["100.87.162.117", "127.0.0.1"], key="gw_tactical_v4")
+    gw_choice = st.selectbox("Gateway", ["127.0.0.1", "127.0.0.1"], key="gw_tactical_v4")
 
 # Tablet Endpoint Configuration Expander
 with st.expander("⚙️ Configure Tablet Streaming Endpoint", expanded=False):

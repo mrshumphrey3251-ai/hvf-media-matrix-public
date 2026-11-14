@@ -48,7 +48,7 @@ with btn_c3:
         st.rerun()
 
 with btn_c4:
-    gw_choice = st.selectbox("Gateway", ["100.87.162.117", "127.0.0.1"], key="tactical_gw_choice_val")
+    gw_choice = st.selectbox("Gateway", ["127.0.0.1", "127.0.0.1"], key="tactical_gw_choice_val")
 
 stream_gw = gw_choice
 

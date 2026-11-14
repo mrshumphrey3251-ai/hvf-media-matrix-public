@@ -884,7 +884,7 @@ def render():
 
 
 
-    ACTIVE_IP = "100.87.162.117"
+    ACTIVE_IP = "127.0.0.1"
 
     UPLINK_URL = f"http://{ACTIVE_IP}:8501"
 

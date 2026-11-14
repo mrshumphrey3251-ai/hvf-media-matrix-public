@@ -16,7 +16,7 @@ except ImportError:
 key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
 subject = issuer = x509.Name([
     x509.NameAttribute(NameOID.ORGANIZATION_NAME, u"Project Ebony Sovereign Matrix"),
-    x509.NameAttribute(NameOID.COMMON_NAME, u"100.87.162.117")
+    x509.NameAttribute(NameOID.COMMON_NAME, u"127.0.0.1")
 ])
 cert = x509.CertificateBuilder().subject_name(subject).issuer_name(issuer).public_key(key.public_key()).serial_number(x509.random_serial_number()).not_valid_before(datetime.datetime.utcnow()).not_valid_after(datetime.datetime.utcnow() + datetime.timedelta(days=365)).sign(key, hashes.SHA256())
 
@@ -136,7 +136,7 @@ print("[*] Upgrading Comms Deck Iframe to HTTPS...")
 file_path = "ebony_console_GREEN.py"
 with open(file_path, "r", encoding="utf-8") as f:
     content = f.read()
-content = content.replace('http://100.87.162.117:8889/live/stream', 'https://100.87.162.117:8889/live/stream')
+content = content.replace('http://127.0.0.1:8889/live/stream', 'https://127.0.0.1:8889/live/stream')
 with open(file_path, "w", encoding="utf-8") as f:
     f.write(content)
 print("[SUCCESS] Architecture fully migrated to HTTPS.")

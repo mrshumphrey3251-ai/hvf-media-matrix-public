@@ -143,7 +143,7 @@ def render():
 
                 <b>Local Gateway:</b> http://127.0.0.1:8502<br>
 
-                <b>Swarm Link:</b> http://100.87.162.117:8502<br>
+                <b>Swarm Link:</b> http://127.0.0.1:8502<br>
 
                 <b>Compliance:</b> DFARS 252.227-7018
 

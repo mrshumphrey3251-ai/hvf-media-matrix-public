@@ -47,7 +47,7 @@ with sw_c3:
         st.rerun()
 
 with sw_c4:
-    gw_choice = st.selectbox("Gateway", ["100.87.162.117", "127.0.0.1"], key="gw_tactical_v2")
+    gw_choice = st.selectbox("Gateway", ["127.0.0.1", "127.0.0.1"], key="gw_tactical_v2")
 
 stream_gw = gw_choice
 
@@ -68,7 +68,7 @@ with opt_c1:
             <div style="border: 1px solid #ef4444; border-radius: 2px; padding: 30px 20px; background-color: #121722; text-align: center;">
                 <div style="color: #ef4444; font-family: monospace; font-size: 1.1em; font-weight: bold;">⚠️ BROWSER SECURITY NOTICE: HTTPS REQUIRED FOR PHONE CAMERA</div>
                 <div style="color: #94a3b8; font-size: 0.88em; margin-top: 8px;">
-                    Mobile operating systems (iOS/Android) prohibit browser camera access over insecure HTTP connections (http://100.87.162.117).
+                    Mobile operating systems (iOS/Android) prohibit browser camera access over insecure HTTP connections (http://127.0.0.1).
                     To stream video from your phone, an SSL/HTTPS domain is required.
                 </div>
                 <div style="margin-top: 15px;">

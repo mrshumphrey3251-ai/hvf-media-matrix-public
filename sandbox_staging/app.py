@@ -2135,7 +2135,7 @@ def render():
 
                     from core.mfa_matrix import verify_mfa_token
 
-                    if verify_mfa_token(mfa_attempt, seed="EBONY_TIER_1_CEO"):
+                    if verify_mfa_token(mfa_attempt, seed="EXECUTIVE_ADMIN_ROLE"):
 
                         st.session_state.mfa_unlocked_engine = True
 
