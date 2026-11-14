@@ -234,3 +234,6 @@ except NameError:
     def render_voice_matrix():
         import streamlit as st
         st.info("🎙️ Ada Voice Module — Autonomous Speech Uplink (Matrix Alias Online)")
+# --- BACKWARDS-COMPATIBLE ENTRYPOINT ALIAS (PRESERVES LEGACY & FUTURE CALLERS) ---
+def render_voice_matrix(*args, **kwargs):
+    return render(*args, **kwargs)

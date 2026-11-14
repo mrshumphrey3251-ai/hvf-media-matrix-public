@@ -201,3 +201,6 @@ def render():
 
 if __name__ == "__main__":
     render()
+# --- BACKWARDS-COMPATIBLE ENTRYPOINT ALIAS (PRESERVES LEGACY & FUTURE CALLERS) ---
+def render_voice_matrix(*args, **kwargs):
+    return render(*args, **kwargs)
