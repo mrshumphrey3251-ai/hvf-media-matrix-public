@@ -820,7 +820,8 @@ elif active_module == "🌾 Drone Diagnostics":
                         st.session_state.messages.append({"role": "assistant", "content": ai_reply})
                         save_encrypted_message(current_user, "user", prompt, current_cipher)
                         save_encrypted_message(current_user, "assistant", ai_reply, current_cipher)
-                    except: pass
+                    except Exception as mem_err:
+                        st.warning(f"[VAULT NOTICE] Encrypted memory persistence degraded: {mem_err}")
 
                 except Exception as e:
                     st.error(f"NEURAL CORE OFFLINE OR API REJECTED. Error: {e}")
