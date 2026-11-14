@@ -1,7 +1,6 @@
 import asyncio
 import os
 import subprocess
-import sys
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
@@ -145,13 +144,11 @@ def render_slide(idx, slide):
     draw = ImageDraw.Draw(img)
     accent = slide["accent"]
 
-    # Subtle architectural grid lines
     for gx in range(0, W, 90):
         draw.line([(gx, 0), (gx, H)], fill=(19, 26, 42), width=1)
     for gy in range(0, H, 90):
         draw.line([(0, gy), (W, gy)], fill=(19, 26, 42), width=1)
 
-    # Outer tactical frame & top accent bar
     draw.rectangle([36, 36, W - 36, H - 36], outline=(38, 49, 74), width=2)
     draw.rectangle([36, 36, W - 36, 50], fill=accent)
 
@@ -161,24 +158,20 @@ def render_slide(idx, slide):
     f_body = load_font(34, bold=False)
     f_foot = load_font(23, bold=True)
 
-    # Header tag + slide counter
     draw.text((76, 86), slide["tag"], font=f_tag, fill=accent)
     num_w = draw.textbbox((0, 0), slide["num"], font=f_num)[2]
     draw.text((W - 76 - num_w, 84), slide["num"], font=f_num, fill=(148, 163, 184))
 
-    # Headline
     y = 165
     for raw_line in slide["title"].split("\n"):
         for line in wrap_text(draw, raw_line, f_title, W - 152):
             draw.text((76, y), line, font=f_title, fill=(248, 250, 252))
             y += 72
 
-    # Divider bar
     y += 22
     draw.rectangle([76, y, 280, y + 6], fill=accent)
     y += 56
 
-    # Bullet cards
     for b in slide["bullets"]:
         wrapped = wrap_text(draw, b, f_body, W - 220)
         card_h = max(84, len(wrapped) * 46 + 34)
@@ -190,7 +183,6 @@ def render_slide(idx, slide):
             ty += 46
         y += card_h + 24
 
-    # Footer bar
     draw.line([(76, H - 115), (W - 76, H - 115)], fill=(38, 49, 74), width=2)
     draw.text((76, H - 90), "HVF OMNI-INDUSTRIAL MATRIX // E.B.O.N.Y. SOVEREIGN AI", font=f_foot, fill=(148, 163, 184))
     cage_txt = "CAGE: 1AHA8"
@@ -199,7 +191,7 @@ def render_slide(idx, slide):
 
     out_png = OUT_DIR / f"Slide_{idx:02d}.png"
     img.save(out_png, "PNG")
-    return out_png
+    return out_png, img
 
 async def synth_voice(idx, text):
     out_mp3 = OUT_DIR / f"Voice_{idx:02d}.mp3"
@@ -209,7 +201,6 @@ async def synth_voice(idx, text):
         await comm.save(str(out_mp3))
         return out_mp3
     except Exception:
-        # Offline Windows SAPI fallback if air-gapped
         out_wav = OUT_DIR / f"Voice_{idx:02d}.wav"
         ps_cmd = (
             "Add-Type -AssemblyName System.Speech; "
@@ -225,9 +216,11 @@ async def main():
     import imageio_ffmpeg
     ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
     segments = []
+    pil_pages = []
 
     for idx, slide in enumerate(SLIDES, start=1):
-        png_path = render_slide(idx, slide)
+        png_path, pil_img = render_slide(idx, slide)
+        pil_pages.append(pil_img.convert("RGB"))
         aud_path = await synth_voice(idx, slide["narration"])
         seg_mp4 = OUT_DIR / f"Segment_{idx:02d}.mp4"
         subprocess.run([
@@ -241,6 +234,18 @@ async def main():
         segments.append(seg_mp4)
         print(f"[+] Rendered Slide {idx:02d}/06 + Voiceover Segment")
 
+    # Export multi-page LinkedIn Carousel PDF
+    carousel_pdf = OUT_DIR / "LinkedIn_EBONY_Carousel.pdf"
+    pil_pages[0].save(
+        carousel_pdf,
+        "PDF",
+        resolution=150.0,
+        save_all=True,
+        append_images=pil_pages[1:],
+        title="When a Single Line of Cloud Code Stops the World - E.B.O.N.Y. Sovereign AI",
+        author="Jeffery Humphrey, CEO - Humphrey Virtual Farm (CAGE: 1AHA8)"
+    )
+
     concat_list = OUT_DIR / "concat.txt"
     concat_list.write_text("\n".join([f"file '{s.as_posix()}'" for s in segments]), encoding="utf-8")
 
@@ -252,7 +257,9 @@ async def main():
         str(final_mp4)
     ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    print(f"\n[SUCCESS] 6 Carousel PNGs + Final Narrated MP4 Ready at:\n  -> {final_mp4}")
+    print(f"\n[SUCCESS] Carousel PDF + 6 PNGs + Narrated MP4 Ready:")
+    print(f"  -> PDF Carousel: {carousel_pdf}")
+    print(f"  -> Video MP4:    {final_mp4}")
 
 if __name__ == "__main__":
     asyncio.run(main())
