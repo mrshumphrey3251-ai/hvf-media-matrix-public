@@ -1,4 +1,4 @@
-﻿"""
+"""
 c2_cockpit/tests/test_c2_hil_engine.py
 Project E.B.O.N.Y. v8.0.0 - Automated HIL Test Suite & Kinematic Trip Verification
 Contractor: Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 HUMPHREY VIRTUAL FARMS LLC // STAGE 8G OKLAHOMA DoD & USACE TULSA DISTRICT CUSTOMER-PULL COMPILER

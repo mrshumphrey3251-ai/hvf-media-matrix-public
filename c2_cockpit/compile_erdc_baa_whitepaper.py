@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 HUMPHREY VIRTUAL FARMS LLC // USACE ERDC BAA (ITL & GSL) 12-PT TIMES NEW ROMAN PDF COMPILER

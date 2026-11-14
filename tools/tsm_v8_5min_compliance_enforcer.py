@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 HVF Project Ebony v8.0.0 — Windows PowerShell Native
 TSM Revision V.10 5-Minute Video Compliance Enforcer

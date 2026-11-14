@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import subprocess, sys
 
 p = Path("c2_cockpit/compile_erdc_baa_whitepaper.py")

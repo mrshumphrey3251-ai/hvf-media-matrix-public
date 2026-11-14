@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Unit Test Suite: Stage 8G Oklahoma DoD & USACE Tulsa District Customer-Pull Packet Compiler

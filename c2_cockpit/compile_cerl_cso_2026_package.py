@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 HUMPHREY VIRTUAL FARMS LLC // USACE ERDC CERL CSO (2026) 4-DOCUMENT PDF SUITE COMPILER

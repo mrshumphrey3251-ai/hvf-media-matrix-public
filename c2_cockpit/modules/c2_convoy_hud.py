@@ -1,4 +1,4 @@
-﻿"""
+"""
 c2_cockpit/modules/c2_convoy_hud.py
 Project E.B.O.N.Y. v8.0.0 - Mobile Command Convoy Tactical HUD
 Contractor: Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)

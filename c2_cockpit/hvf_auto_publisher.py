@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 HUMPHREY VIRTUAL FARMS LLC // SOVEREIGN DUAL-REPOSITORY AUTO-PUBLISHER ENGINE (v8.0.0+)

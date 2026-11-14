@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 HVF Project Ebony v8.0.0 — Global Docket 10-26-4046 Repository Synchronizer
 Author: Jeffery Humphrey, Founder, President & CEO, Humphrey Virtual Farms LLC (CAGE: 1AHA8)

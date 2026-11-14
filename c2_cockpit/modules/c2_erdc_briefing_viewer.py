@@ -1,4 +1,4 @@
-﻿"""
+"""
 c2_cockpit/modules/c2_erdc_briefing_viewer.py
 Project E.B.O.N.Y. v8.0.0 - USACE ERDC 30-Minute Executive Technical Briefing Viewer
 Classification: HVF Proprietary // 10 U.S.C. § 4022 Prototype OTA

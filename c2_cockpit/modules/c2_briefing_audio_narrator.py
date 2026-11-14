@@ -1,4 +1,4 @@
-﻿"""
+"""
 c2_cockpit/modules/c2_briefing_audio_narrator.py
 Project E.B.O.N.Y. v8.0.0 - USACE ERDC / DIU Executive Briefing Synchronized Narrator
 Classification: HVF Proprietary // 10 U.S.C. § 4022 Prototype OTA
