@@ -2,6 +2,7 @@
 HVF Sovereign WORM-Protected SHA-256 Merkle Ingestion Bridge (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)
 Extensible, thread-safe cryptographic ledger bridge that seals every authenticated
 telemetry ingestion event into an append-only, WORM-enforced SQLite Merkle chain.
+Hardened against DELETE, UPDATE, REPLACE INTO, and primary-key overwrite attacks.
 """
 from datetime import datetime, timezone
 import hashlib
@@ -28,6 +29,7 @@ class SovereignMerkleLedger:
         conn = sqlite3.connect(str(self.db_path), timeout=30.0)
         conn.execute("PRAGMA journal_mode = WAL;")
         conn.execute("PRAGMA synchronous = NORMAL;")
+        conn.execute("PRAGMA recursive_triggers = ON;")
         conn.execute("PRAGMA busy_timeout = 30000;")
         return conn
 
@@ -63,6 +65,18 @@ class SovereignMerkleLedger:
                     BEFORE DELETE ON sovereign_merkle_ingest_ledger
                     BEGIN
                         SELECT RAISE(ABORT, 'WORM VIOLATION: DELETE prohibited on sovereign_merkle_ingest_ledger');
+                    END;
+                    """
+                )
+                conn.execute(
+                    """
+                    CREATE TRIGGER IF NOT EXISTS trg_merkle_worm_no_replace
+                    BEFORE INSERT ON sovereign_merkle_ingest_ledger
+                    WHEN NEW.block_id IS NOT NULL AND EXISTS (
+                        SELECT 1 FROM sovereign_merkle_ingest_ledger WHERE block_id = NEW.block_id
+                    )
+                    BEGIN
+                        SELECT RAISE(ABORT, 'WORM VIOLATION: REPLACE/OVERWRITE prohibited on sovereign_merkle_ingest_ledger');
                     END;
                     """
                 )
