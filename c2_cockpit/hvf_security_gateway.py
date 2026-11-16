@@ -1,3 +1,26 @@
+"""
+================================================================================
+PROPRIETARY AND CONFIDENTIAL -- HUMPHREY VIRTUAL FARMS LLC
+PROTECTED UNDER 10 U.S.C. § 4022 OTHER TRANSACTION AGREEMENT
+================================================================================
+CONTRACTOR NAME: Humphrey Virtual Farms LLC
+CONTRACTOR ADDRESS: Oklahoma, USA
+CAGE CODE: 1AHA8 | UEI: S1M4ENLHTDH5
+AGREEMENT / OTA IDENTIFIER: PROTOTYPE OTA 10 U.S.C. § 4022
+
+RESTRICTIVE LEGEND -- COMMERCIAL COMPUTER SOFTWARE & PROPRIETARY TECHNICAL DATA:
+The software, firmware, algorithms, architectural structures, and underlying 
+source code contained herein are proprietary commercial items developed entirely 
+at private expense by Humphrey Virtual Farms LLC. 
+
+The Government's rights to use, modify, reproduce, release, perform, display, 
+or disclose this computer software and technical data are restricted as set forth 
+in the governing 10 U.S.C. § 4022 Prototype Agreement. Any reproduction of this 
+software, in whole or in part, or disclosure to unauthorized third parties or 
+commercial competitors without the express written permission of Humphrey 
+Virtual Farms LLC is strictly prohibited.
+================================================================================
+"""
 # hvf_security_gateway.py - HVF Media Matrix Security Perimeter (Private)
 # Engineered for zero-compromise authentication and forward-compatibility.
 
