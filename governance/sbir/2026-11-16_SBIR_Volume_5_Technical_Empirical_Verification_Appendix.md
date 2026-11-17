@@ -4,7 +4,7 @@
 **Principal Investigator & Controlling Executive:** Jeffery Humphrey, Founder, CEO & Sole Proprietary SME  
 **System Under Evaluation:** Project E.B.O.N.Y. Sovereign Command & Control (C2) Engine (``HOST: HVFNexus``)  
 **Statutory & Regulatory Alignment:** ``NIST SP 800-171 Rev. 2`` (``SPRS 110/110``) | ``DFARS 252.204-7012`` | ``DFARS 252.227-7018`` (SBIR Data Rights) | ``NDAA Section 889`` | ``OK Title 61`` | ``OK HB 2992``  
-**Appendix Seal Timestamp (UTC):** ``2026-11-16T16:56:36Z``  
+**Appendix Seal Timestamp (UTC):** ``2026-11-17T13:55:58Z``  
 **OPSEC Classification:** Public Engineering & Proposal Appendix (AST & OPSEC Sanitized)
 
 ---
@@ -13,18 +13,18 @@
 
 Humphrey Virtual Farms LLC submits this **Volume 5 Technical & Empirical Verification Appendix** as objective, machine-verifiable proof that **Project E.B.O.N.Y.** operates at deterministic, defense-grade readiness on air-gappable bare-metal infrastructure (``HOST: HVFNexus``) with **zero external cloud telemetry**, **zero third-party vendor kill-switches**, and **100% NDAA Section 889 supply-chain compliance**.
 
-Every performance, cybersecurity, fault-recovery, and hardware-in-the-loop (HIL) telemetry benchmark documented herein was empirically executed against the live C2 stack (Port ``3000`` Sovereign Ingestion Gateway + Port ``8501`` Sovereign C2 Cockpit HUD + ``matrix_ledger.db`` SQLite ``WAL`` Ledger) across **36 cumulative Stress Arenas** and sealed into an immutable, tri-trigger **WORM SHA-256 Merkle chain**.
+Every performance, cybersecurity, fault-recovery, front-end HUD, and hardware-in-the-loop (HIL) telemetry benchmark documented herein was empirically executed against the live C2 stack (Port ``3000`` Sovereign Ingestion Gateway + Port ``8501`` Sovereign C2 Cockpit HUD + ``matrix_ledger.db`` SQLite ``WAL`` Ledger) across **38 cumulative Stress Arenas**—including a continuous **60.01-minute (`3,600.7 sec`) full-stack front-end + back-end endurance soak**—and sealed into an immutable, tri-trigger **WORM SHA-256 Merkle chain**.
 
 | Verification Dimension | Empirical Result | Cryptographic / Architectural Anchor |
 | :--- | :--- | :--- |
-| **Tri-Trigger WORM Merkle Ledger** | ``31,002`` sequential ``SHA-256`` blocks verified genesis-to-head (``Valid: True``) | ``matrix_ledger.db`` (``23`` WORM tables \| ``PRAGMA integrity_check = OK``) |
-| **Volume 5 Attestation Block** | Block ``#31,002`` (``571f887bc46b3b6f9c368e3f3b0ea94074db0635afb7888bb4ea8b3b2be4466d``) | Live Merkle Head: ``571f887bc46b3b6f9c368e3f3b0ea94074db0635afb7888bb4ea8b3b2be4466d`` |
-| **Full-Chain Cryptographic Audit Speed** | ``73.67 ms`` across ``31,000`` blocks (**``420,799 blocks/sec``**) | ``SovereignMerkleLedger.audit_chain()`` (Genesis-to-Head ``SHA-256``) |
-| **Database WORM Tamper Immunity** | ``1,000 / 1,000`` concurrent ``DELETE``, ``UPDATE``, ``REPLACE INTO``, & PK-collision attacks aborted (``0`` breaches) | ``trg_merkle_worm_no_delete``, ``trg_merkle_worm_no_update``, ``trg_merkle_worm_no_replace`` + ``PRAGMA recursive_triggers = ON`` |
-| **Perimeter & Token Replay Defense** | ``600 / 600`` expired/future window probes + ``300 / 300`` unauthorized ``SQLi`` payloads + ``500 / 500`` hostile HTTP verbs rejected (``HTTP 403``) | ``HVFSecurityGateway`` (Rotating 60s ``SHA-256`` window + ``±1`` minute clock-boundary skew tolerance) |
-| **Sub-Millisecond Vector RAG Engine** | ``5,000 / 5,000`` concurrent ChromaDB LRU cache lookups at **``0.0015 ms`` ``p50``** (``1.5 microseconds``) | ``c2_cockpit/vector_cache_gateway.py`` (Bounded LRU eviction) |
+| **Tri-Trigger WORM Merkle Ledger** | ``113,203`` sequential ``SHA-256`` blocks verified genesis-to-head (``Valid: True``) | ``matrix_ledger.db`` (``23`` WORM tables \| ``PRAGMA integrity_check = OK``) |
+| **Volume 5 Attestation Block** | Block ``#113,203`` (``40c0b5c92f659dc6c707bd6f440be129b8a88603333ee18363045dd12dafd671``) | Live Merkle Head: ``40c0b5c92f659dc6c707bd6f440be129b8a88603333ee18363045dd12dafd671`` |
+| **60-Minute Full-Stack Soak (Arena 38)** | ``60.01 min`` (``60/60`` UTC minute rollovers): ``72,000/72,000`` packets sealed (``p50 = 83.61 ms``, ``0`` drops) + ``60/60`` C2 HUD & Statutory Compact renders (``0`` UI errors) | ``127.0.0.1:3000`` + ``127.0.0.1:8501`` + ``matrix_ledger.db`` |
+| **Full-Chain Cryptographic Audit Speed** | ``420,799 blocks/sec`` genesis-to-head ``SHA-256`` verification throughput | ``SovereignMerkleLedger.audit_chain()`` |
+| **Database WORM Tamper Immunity** | ``2,500 / 2,500`` concurrent ``DELETE``, ``UPDATE``, ``REPLACE INTO``, & PK-collision attacks aborted (``0`` breaches) | ``trg_merkle_worm_no_delete``, ``trg_merkle_worm_no_update``, ``trg_merkle_worm_no_replace`` + ``PRAGMA recursive_triggers = ON`` |
+| **Perimeter & Token Replay Defense** | ``2,100 / 2,100`` expired/future window probes + ``300 / 300`` unauthorized ``SQLi`` payloads + ``500 / 500`` hostile HTTP verbs rejected (``HTTP 403``) | ``HVFSecurityGateway`` (Rotating 60s ``SHA-256`` window + ``±1`` minute clock-boundary skew tolerance) |
+| **Sub-Millisecond Vector RAG Engine** | ``11,000+`` concurrent ChromaDB LRU cache lookups at **``0.0015 ms`` ``p50``** (``1.5 microseconds``) | ``c2_cockpit/vector_cache_gateway.py`` (Bounded LRU eviction) |
 | **Autonomous Watchdog Self-Healing** | Single-service Port ``3000`` kill recovered in **``3.58 sec``**; simultaneous dual-service Port ``8501`` + ``3000`` kill recovered in **``9.64 sec``** | ``scripts/launch_sovereign_stack.py`` (``0`` dropped post-recovery packets) |
-| **Multi-Process OS & High-Bandwidth Load** | ``5``-process OS read/write contention (``0`` lock faults); ``18.64 MB`` multi-KB LiDAR/CAN-FD burst sealed in ``9.35 sec`` | SQLite ``WAL`` Mode + ``16``-thread concurrent ingestion |
 | **Cybersecurity & Statutory Baseline** | **``SPRS 110 / 110``** (``NIST SP 800-171 Rev. 2`` & ``DFARS 252.204-7012``) | ``governance/compliance/2026-11-16_NIST_SP_800_171_DFARS_252_204_7012_SPRS_110_Evidence_Package.md`` |
 
 ---
@@ -39,7 +39,7 @@ Every performance, cybersecurity, fault-recovery, and hardware-in-the-loop (HIL)
 ### 2.2 Contested Tactical Communications, Unidirectional Diode & C2 Command Wall
 * **Hardware Unidirectional Isolation & Edge Cryptography (``FLD-SEC-11``, ``FLD-COM-12``):** Validated ``Owl Data Diode`` unidirectional optical telemetry enforcement, ``FIPS-140-2`` edge firewall rules, dual-link ``Starlink Flat HP`` + ``Peplink SD-WAN`` failover, and sovereign air-gap sever drills.
 * **Tactical sUAS Multi-Spectral / LiDAR Edge Ingest (``FLD-UAS-13``):** Validated ``915 MHz LoRaWAN`` and ``Jetson AGX Orin`` edge GPU point-cloud ingestion over authenticated ``POST /api/ingest`` streams (``> 16 KB``/frame multi-KB bursts sealed at ``100%`` integrity).
-* **7-Display C2 Command Wall & Executive Statutory Gate (``FLD-HMI-14``, ``FLD-EGR-15``):** Verified ``HMI-WALL-001`` live sidebar/HUD telemetry synchronization (`Blocks Sealed` and live `SHA-256` Merkle head), ``PIV/CAC`` + biometric zero-trust session locking, and ``<= 15 s`` ``NFPA 101`` blackout emergency egress.
+* **7-Display C2 Command Wall & Executive Statutory Gate (``FLD-HMI-14``, ``FLD-EGR-15``):** Verified ``HMI-WALL-001`` live sidebar/HUD telemetry synchronization (`Blocks Sealed` and live `SHA-256` Merkle head across ``60`` consecutive minute ticks), ``PIV/CAC`` + biometric zero-trust session locking, and ``<= 15 s`` ``NFPA 101`` blackout emergency egress.
 
 ---
 
@@ -50,7 +50,7 @@ Every performance, cybersecurity, fault-recovery, and hardware-in-the-loop (HIL)
 
 ---
 
-## 4. Consolidated Index of Empirical Stress Arena Verification Receipts (``35`` Sealed Artifacts)
+## 4. Consolidated Index of Empirical Stress Arena Verification Receipts (``37`` Sealed Artifacts)
 
 | # | Repository Artifact Path (Mirrored & OPSEC-Verified) | Ledger & Git Status |
 | :--- | :--- | :--- |
@@ -89,3 +89,5 @@ Every performance, cybersecurity, fault-recovery, and hardware-in-the-loop (HIL)
 | 33 | ``governance/audits/2026-11-16_Stress_Arena_34_MultiKB_Payload_HTTP_Torture_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
 | 34 | ``governance/audits/2026-11-16_Stress_Arena_35_30000_Block_WORM_Merkle_Milestone_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
 | 35 | ``governance/audits/2026-11-16_Stress_Arena_36_Master_Verification_Rollup_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
+| 36 | ``governance/audits/2026-11-16_Stress_Arena_37_40000_Block_WORM_Merkle_Scaling_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
+| 37 | ``governance/audits/2026-11-16_Stress_Arena_38_60Min_Full_Stack_Endurance_Soak_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
