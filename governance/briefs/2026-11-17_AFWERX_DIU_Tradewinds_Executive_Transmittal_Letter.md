@@ -4,8 +4,8 @@
 **TO:** Defense Evaluation & Acquisition Panels — AFWERX (SBIR/STTR / TACFI / STRATFI), Defense Innovation Unit (DIU), and Chief Digital and Artificial Intelligence Office (CDAO) Tradewinds Solutions Marketplace  
 **FROM:** Jeffery Humphrey, Founder, Chief Executive Officer & Sole Proprietary Subject Matter Expert, Humphrey Virtual Farms LLC  
 **ENTITY IDENTIFIERS:** CAGE Code: ``1AHA8`` | SAM.gov UEI: ``S1M4ENLHTDH5`` | Contact: ``humphreyvirtualfarm@gmail.com``  
-**TRANSMITTAL WORM SEAL:** ``matrix_ledger.db`` Block ``#113,206`` (``1f40aa8f49aa2e3511e1d49f6cc8552155cf5d4e529b012f5557d6490174f4ce``) | Issued (UTC): ``2026-11-17T14:16:41Z``  
-**SUBJECT:** Executive Transmittal — **Project E.B.O.N.Y.** Air-Gapped Bare-Metal Sovereign C2 & Autonomous Edge Capabilities Dossier (``113,206``-Block WORM ``SHA-256`` Merkle Verified | ``SPRS 110 / 110``)
+**TRANSMITTAL WORM SEAL:** ``matrix_ledger.db`` Block ``#113,207`` (``1cd631bbe5642e24c04aef1b6de17dcb958f151e66c787cd5c2d2f8ce05a67fa``) | Issued (UTC): ``2026-11-17T14:20:29Z``  
+**SUBJECT:** Executive Transmittal — **Project E.B.O.N.Y.** Air-Gapped Bare-Metal Sovereign C2 & Autonomous Edge Capabilities Dossier (``113,207``-Block WORM ``SHA-256`` Merkle Verified | ``SPRS 110 / 110``)
 
 ---
 
@@ -19,17 +19,17 @@ Modern warfighting and critical-infrastructure operations in contested, denied, 
 
 Rather than theoretical concept architecture, **Project E.B.O.N.Y.** is backed by **38 cumulative empirical Stress Arenas** (``37`` archived, OPSEC-verified engineering receipts) executed directly against our live bare-metal C2 stack with **zero faults, zero security breaches, and zero UI exceptions**:
 
-* **``113,206``-Block Tri-Trigger WORM ``SHA-256`` Merkle Ledger (``matrix_ledger.db``):** Every telemetry packet, sensor frame, and executive authorization is cryptographically chained in SQLite ``WAL`` mode across ``23`` active WORM tables and protected against modification or deletion by three database-engine ``BEFORE`` triggers (``trg_merkle_worm_no_delete``, ``trg_merkle_worm_no_update``, ``trg_merkle_worm_no_replace``) with ``PRAGMA recursive_triggers = ON``. Genesis-to-head ``SHA-256`` integrity is verified across **``113,206`` sequential blocks** (``Valid: True`` | Merkle Head: ``1f40aa8f49aa2e3511e1d49f6cc8552155cf5d4e529b012f5557d6490174f4ce`` | ``PRAGMA integrity_check = OK``) at **``> 420,000 blocks/sec``**.
+* **``113,207``-Block Tri-Trigger WORM ``SHA-256`` Merkle Ledger (``matrix_ledger.db``):** Every telemetry packet, sensor frame, and executive authorization is cryptographically chained in SQLite ``WAL`` mode across ``23`` active WORM tables and protected against modification or deletion by three database-engine ``BEFORE`` triggers (``trg_merkle_worm_no_delete``, ``trg_merkle_worm_no_update``, ``trg_merkle_worm_no_replace``) with ``PRAGMA recursive_triggers = ON``. Genesis-to-head ``SHA-256`` integrity is verified across **``113,207`` sequential blocks** (``Valid: True`` | Merkle Head: ``1cd631bbe5642e24c04aef1b6de17dcb958f151e66c787cd5c2d2f8ce05a67fa`` | ``PRAGMA integrity_check = OK``) at **``> 420,000 blocks/sec``**.
 * **60.01-Minute Continuous Full-Stack Endurance Soak (Stress Arena 38):** Validated across ``60`` consecutive real-time UTC minute-window rollovers (``3,600.7 sec``), sealing **``72,000 / 72,000``** live authenticated ``POST /api/ingest`` HIL/CAN-FD frames (``p50 = 83.61 ms``, ``0`` drops), neutralizing **``1,500 / 1,500``** expired-token HTTP intrusion probes (``HTTP 403``) and **``1,500 / 1,500``** direct SQLite ``DELETE`` tamper attacks (``0`` breaches), serving **``6,000 / 6,000``** local ChromaDB LRU vector RAG lookups (``0.0015 ms`` ``p50`` lookup latency), and executing **``60 / 60``** live C2 Cockpit HUD & Statutory Compact renders (``p50 = 897.3 ms``, ``0`` UI errors).
 * **Autonomous Watchdog & High-Bandwidth Edge Determinism:** Dual-service process supervisor (``scripts/launch_sovereign_stack.py``) autonomously recovers single-service Port ``3000`` kills in **``3.58 sec``** and simultaneous dual-service Port ``8501`` + ``3000`` kills in **``9.64 sec``**, while sealing **``18.64 MB``** multi-kilobyte LiDAR/CAN-FD bursts (``> 16 KB``/frame across ``16`` threads) in **``9.35 sec``** with zero dropped sockets.
 * **Cybersecurity, Supply-Chain & Statutory Compliance (``SPRS 110 / 110``):** Fully compliant with all **110 controls of NIST SP 800-171 Rev. 2**, **DFARS 252.204-7012** (Safeguarding Covered Defense Information and Cyber Incident Reporting), **CMMC Level 2**, **NDAA Section 889**, **Oklahoma Statutes Title 61**, and **Oklahoma House Bill 2992**.
 
 ## Transmitted Sovereign Evidence Vault (``hvf-media-matrix-public`` & ``hvf-media-matrix-private``)
 
-All flagship deliverables below are cryptographically anchored inside ``matrix_ledger.db`` (Blocks ``#113,201`` through ``#113,206``), AST- and OPSEC-verified via ``scripts/sync_sovereign_release.py``, and mirrored for immediate evaluator inspection:
+All flagship deliverables below are cryptographically anchored inside ``matrix_ledger.db`` (Blocks ``#113,201`` through ``#113,207``), AST- and OPSEC-verified via ``scripts/sync_sovereign_release.py``, and mirrored for immediate evaluator inspection:
 
 1. **AFWERX / DIU / Tradewinds Executive Transmittal Cover Letter (This Document):**  
-   ``governance/briefs/2026-11-17_AFWERX_DIU_Tradewinds_Executive_Transmittal_Letter.md`` (WORM Block ``#113,206``)
+   ``governance/briefs/2026-11-17_AFWERX_DIU_Tradewinds_Executive_Transmittal_Letter.md`` (WORM Block ``#113,207``)
 2. **CEO Level-5 Operational Readiness Sign-Off Certificate & Master Submission Dossier Index:**  
    ``governance/dossiers/2026-11-17_CEO_Level5_Operational_Readiness_Certificate_Master_Dossier_Index.md`` (WORM Block ``#113,205`` | Dossier Root ``SHA-256``: ``42860b67a6e55f682eae64ebe7c7fe6b8a9a78a6063ef0952dc53d05b3839599``)
 3. **DoD / AFWERX / DIU / Tradewinds Executive Capabilities & Empirical Past-Performance Brief:**  
