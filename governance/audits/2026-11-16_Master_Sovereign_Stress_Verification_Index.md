@@ -61,3 +61,7 @@
 ### Stress Arena 40 — Hard Blackout Crash & SQLite WAL Torn-Page Forensic Recovery
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_40_Hard_Blackout_WAL_Crash_Recovery.md`
 - **Verified Result:** Inflicted abrupt OS process termination (`TerminateProcess`) mid-write during active 16-thread HIL/CAN-FD ingestion above `125,000` blocks; verified `PRAGMA integrity_check = OK`, zero torn WAL pages, zero broken `SHA-256` Merkle links, and sub-second cold-boot continuity recovery.
+
+### Stress Arena 41 — FAA-Style Telemetry Tsunami & Rogue AI Prompt-Injection / Actuator-Spoof Flood
+- **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_41_FAA_Telemetry_Tsunami_Rogue_AI_Flood.md`
+- **Verified Result:** Bombarded the Reality Firewall and intake perimeter with `12,000` concurrent malformed, HMAC-spoofed, and rogue-AI autonomous override frames across `16` flood threads while simultaneously sealing `1,000` authenticated `CAN-FD` control frames into `matrix_ledger.db`; verified `12,000 / 12,000` hostile rejections, `0` actuator bleeds, `0` control-loop drops, and `Valid: True` across `126,607` sequential WORM blocks.
