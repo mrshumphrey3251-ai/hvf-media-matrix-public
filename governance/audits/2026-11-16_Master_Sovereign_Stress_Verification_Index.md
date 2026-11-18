@@ -77,3 +77,7 @@
 ### Stress Arena 44 — Electronic Warfare Clock-Spoof & Nonce-Replay Attack
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_44_EW_Clock_Spoof_Nonce_Replay.md`
 - **Verified Result:** Injected `5,000` captured `CAN-FD` replay packets, backwards NTP clock jumps (`-45 s`), future GPS clock spoofs (`+60 s`), and duplicate nonces alongside `500` live monotonic control frames; verified `5,000 / 5,000` (`100.00%`) rejected, `0` false accepts, `500 / 500` live frames sealed, and `Valid: True` across `127,360` sequential WORM blocks.
+
+### Stress Arena 45 — Live Dual-Service Crash-Loop & Autonomous Watchdog Resurrection
+- **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_45_Dual_Service_CrashLoop_Watchdog.md`
+- **Verified Result:** Executed `6` consecutive forced OS process terminations across live loopback C2 Cockpit and SCADA backend services (including simultaneous dual-service kills) while continuously sealing HIL telemetry into `matrix_ledger.db`; verified `6 / 6` (`100.00%`) autonomous resurrections with `0` dropped WORM blocks and `Valid: True` across the entire chain.
