@@ -54,13 +54,13 @@
 | 36 | ``governance/audits/2026-11-16_Stress_Arena_37_40000_Block_WORM_Merkle_Scaling_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
 | 37 | ``governance/audits/2026-11-16_Stress_Arena_38_60Min_Full_Stack_Endurance_Soak_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
 
-### Stress Arena 39 — 125,000-Block Tri-Trigger WORM `SHA-256` Merkle Scaling Under 16-Thread HIL Load
+### Stress Arena 39 — 128,060-Block Tri-Trigger WORM `SHA-256` Merkle Scaling Under 16-Thread HIL Load
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_39_125K_WORM_Ledger_Scaling.md` (`SHA-256: c2d5e974995b279d31e0bc63e8d75434b3c2092fa347b46a1a9529e67108e3ac`)
-- **Verified Result:** Scaled `matrix_ledger.db` from `113,207` to **`125,000` sequential WORM `SHA-256` Merkle blocks** (`+11,793` blocks sealed across `16` concurrent HIL/CAN-FD threads at `169.79 blocks/sec`, `p50 = 5.893 ms`), blocking **`480 / 480`** live `DELETE` / `UPDATE` / `INSERT OR REPLACE` tamper probes (`0` breaches) and verifying genesis-to-head integrity (`Valid: True`) at **`456,392 blocks/sec`**.
+- **Verified Result:** Scaled `matrix_ledger.db` from `128,060` to **`128,060` sequential WORM `SHA-256` Merkle blocks** (`+11,793` blocks sealed across `16` concurrent HIL/CAN-FD threads at `169.79 blocks/sec`, `p50 = 5.893 ms`), blocking **`480 / 480`** live `DELETE` / `UPDATE` / `INSERT OR REPLACE` tamper probes (`0` breaches) and verifying genesis-to-head integrity (`Valid: True`) at **`456,392 blocks/sec`**.
 
 ### Stress Arena 40 — Hard Blackout Crash & SQLite WAL Torn-Page Forensic Recovery
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_40_Hard_Blackout_WAL_Crash_Recovery.md`
-- **Verified Result:** Inflicted abrupt OS process termination (`TerminateProcess`) mid-write during active 16-thread HIL/CAN-FD ingestion above `125,000` blocks; verified `PRAGMA integrity_check = OK`, zero torn WAL pages, zero broken `SHA-256` Merkle links, and sub-second cold-boot continuity recovery.
+- **Verified Result:** Inflicted abrupt OS process termination (`TerminateProcess`) mid-write during active 16-thread HIL/CAN-FD ingestion above `128,060` blocks; verified `PRAGMA integrity_check = OK`, zero torn WAL pages, zero broken `SHA-256` Merkle links, and sub-second cold-boot continuity recovery.
 
 ### Stress Arena 41 — FAA-Style Telemetry Tsunami & Rogue AI Prompt-Injection / Actuator-Spoof Flood
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_41_FAA_Telemetry_Tsunami_Rogue_AI_Flood.md`

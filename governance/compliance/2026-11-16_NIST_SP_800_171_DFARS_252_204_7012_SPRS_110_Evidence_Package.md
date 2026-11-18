@@ -20,7 +20,7 @@ Humphrey Virtual Farms LLC maintains a **Zero-Cloud, Bare-Metal Edge Sovereign C
 | **Cumulative WORM Merkle Chain Height** | ``113,203`` sequential ``SHA-256`` blocks verified genesis-to-head (``Valid: True``) |
 | **Latest Cryptographic Merkle Head (``SHA-256``)** | ``40c0b5c92f659dc6c707bd6f440be129b8a88603333ee18363045dd12dafd671`` |
 | **SPRS 110 Evidence Seal Block ID** | Block ``#113,202`` (``995727ac18501fb8acc4986806b03148e0a0495eb61bd494c6bbbb02ea71d335``) |
-| **Stress Arena Certification Coverage** | ``38`` Empirical Stress Arenas including ``60.01``-Minute Full-Stack Endurance Soak (``38`` archived receipts; ``100% PASS — ZERO FAULTS``) |
+| **Stress Arena Certification Coverage** | ``38`` Empirical Stress Arenas including ``60.01``-Minute Full-Stack Endurance Soak (``44`` archived receipts; ``100% PASS — ZERO FAULTS``) |
 
 ---
 

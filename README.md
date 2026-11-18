@@ -11,11 +11,11 @@
 
 ## 1. Executive Navigation & WORM-Sealed Submission Dossier Index
 
-All six flagship governance packages below are cryptographically anchored inside `matrix_ledger.db` (**Blocks `#113,201`–`#125,000`**), AST- and OPSEC-verified via `scripts/sync_sovereign_release.py`, and mirrored for immediate evaluator inspection:
+All six flagship governance packages below are cryptographically anchored inside `matrix_ledger.db` (**Blocks `#113,201`–`#128,060`**), AST- and OPSEC-verified via `scripts/sync_sovereign_release.py`, and mirrored for immediate evaluator inspection:
 
 | # | Flagship Sovereign Deliverable | Direct Repository Link | WORM Ledger Seal |
 | :--- | :--- | :--- | :--- |
-| **1** | **AFWERX / DIU / Tradewinds Executive Transmittal Cover Letter** | [`governance/briefs/2026-11-17_AFWERX_DIU_Tradewinds_Executive_Transmittal_Letter.md`](governance/briefs/2026-11-17_AFWERX_DIU_Tradewinds_Executive_Transmittal_Letter.md) | **Block `#125,000`** |
+| **1** | **AFWERX / DIU / Tradewinds Executive Transmittal Cover Letter** | [`governance/briefs/2026-11-17_AFWERX_DIU_Tradewinds_Executive_Transmittal_Letter.md`](governance/briefs/2026-11-17_AFWERX_DIU_Tradewinds_Executive_Transmittal_Letter.md) | **Block `#128,060`** |
 | **2** | **CEO Level-5 Operational Readiness Sign-Off Certificate & Master Dossier Index** | [`governance/dossiers/2026-11-17_CEO_Level5_Operational_Readiness_Certificate_Master_Dossier_Index.md`](governance/dossiers/2026-11-17_CEO_Level5_Operational_Readiness_Certificate_Master_Dossier_Index.md) | **Block `#113,205`** |
 | **3** | **DoD / AFWERX / DIU / Tradewinds Executive Capabilities & Past-Performance Brief** | [`governance/briefs/2026-11-17_DoD_AFWERX_DIU_Tradewinds_Executive_Capabilities_Brief.md`](governance/briefs/2026-11-17_DoD_AFWERX_DIU_Tradewinds_Executive_Capabilities_Brief.md) | **Block `#113,204`** |
 | **4** | **SBIR Phase II / Direct-to-Phase-II Volume 5 Technical & Verification Appendix** | [`governance/sbir/2026-11-16_SBIR_Volume_5_Technical_Empirical_Verification_Appendix.md`](governance/sbir/2026-11-16_SBIR_Volume_5_Technical_Empirical_Verification_Appendix.md) | **Block `#113,203`** |
