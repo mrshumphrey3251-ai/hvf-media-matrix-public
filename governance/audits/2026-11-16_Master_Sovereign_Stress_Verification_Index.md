@@ -93,3 +93,7 @@
 ### Stress Arena 48 — Sustained 10,000-Block Continuous High-Throughput WORM Endurance & WAL Checkpoint Stress
 - **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_48_Sustained_10K_WORM_Endurance.md`
 - **Verified Result:** Streamed `10,000` authenticated multi-bus telemetry frames (`CH1`–`CH4`) continuously into `matrix_ledger.db` under active `PRAGMA wal_checkpoint(TRUNCATE)` cycles every `2,500` blocks; verified `10,000 / 10,000` (`100.00%`) sealed with `0` drops and `Valid: True` across `138,566` sequential WORM blocks.
+
+### Stress Arena 49 — Cryptographic Key-Rotation & Zero-Downtime Bus Re-Keying
+- **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_49_Cryptographic_Key_Rotation.md`
+- **Verified Result:** Cycled `4` sequential `CAN-FD` HMAC cryptographic key epochs mid-stream across `2,000` live telemetry frames while injecting `1,000` stale-key downgrade/replay probes; verified `2,000 / 2,000` (`100.00%`) zero-drop control cycles, `1,000 / 1,000` stale-key frames trapped in `SovereignDeceptionTarpit` (`0` accepted), and `Valid: True` across `138,567` sequential WORM blocks.
