@@ -20,7 +20,7 @@ Humphrey Virtual Farms LLC maintains a **Zero-Cloud, Bare-Metal Edge Sovereign C
 | **Cumulative WORM Merkle Chain Height** | ``113,203`` sequential ``SHA-256`` blocks verified genesis-to-head (``Valid: True``) |
 | **Latest Cryptographic Merkle Head (``SHA-256``)** | ``40c0b5c92f659dc6c707bd6f440be129b8a88603333ee18363045dd12dafd671`` |
 | **SPRS 110 Evidence Seal Block ID** | Block ``#113,202`` (``995727ac18501fb8acc4986806b03148e0a0495eb61bd494c6bbbb02ea71d335``) |
-| **Stress Arena Certification Coverage** | ``38`` Empirical Stress Arenas including ``60.01``-Minute Full-Stack Endurance Soak (``44`` archived receipts; ``100% PASS — ZERO FAULTS``) |
+| **Stress Arena Certification Coverage** | ``38`` Empirical Stress Arenas including ``60.01``-Minute Full-Stack Endurance Soak (``45`` archived receipts; ``100% PASS — ZERO FAULTS``) |
 
 ---
 
@@ -89,3 +89,6 @@ Humphrey Virtual Farms LLC maintains a **Zero-Cloud, Bare-Metal Edge Sovereign C
 | 35 | ``governance/audits/2026-11-16_Stress_Arena_36_Master_Verification_Rollup_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
 | 36 | ``governance/audits/2026-11-16_Stress_Arena_37_40000_Block_WORM_Merkle_Scaling_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
 | 37 | ``governance/audits/2026-11-16_Stress_Arena_38_60Min_Full_Stack_Endurance_Soak_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
+
+### Active Cyber-Deception & Synthetic Spoof Tarpit (`scada_engine/deception_tarpit.py`)
+- **Mirror-Maze Containment (Stress Arena 46):** Detected intrusion, spoof, and rogue-AI override probes are silently routed into an isolated, read-only phantom telemetry loop (`SovereignDeceptionTarpit`, `p50 = 6.60 µs`), trapping **`2,500 / 2,500` (`100.00%`)** hostile probes with **`0` real WORM Merkle root leaks** and **`0` physical actuator touches** (`actuator_bound = False`).

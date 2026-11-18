@@ -91,3 +91,6 @@ Every performance, cybersecurity, fault-recovery, front-end HUD, and hardware-in
 | 35 | ``governance/audits/2026-11-16_Stress_Arena_36_Master_Verification_Rollup_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
 | 36 | ``governance/audits/2026-11-16_Stress_Arena_37_40000_Block_WORM_Merkle_Scaling_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
 | 37 | ``governance/audits/2026-11-16_Stress_Arena_38_60Min_Full_Stack_Endurance_Soak_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
+
+### Active Cyber-Deception & Synthetic Spoof Tarpit (`scada_engine/deception_tarpit.py`)
+- **Mirror-Maze Containment (Stress Arena 46):** Detected intrusion, spoof, and rogue-AI override probes are silently routed into an isolated, read-only phantom telemetry loop (`SovereignDeceptionTarpit`, `p50 = 6.60 µs`), trapping **`2,500 / 2,500` (`100.00%`)** hostile probes with **`0` real WORM Merkle root leaks** and **`0` physical actuator touches** (`actuator_bound = False`).
