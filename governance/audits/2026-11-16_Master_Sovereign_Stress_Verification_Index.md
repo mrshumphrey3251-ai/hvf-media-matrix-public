@@ -81,3 +81,7 @@
 ### Stress Arena 45 — Live Dual-Service Crash-Loop & Autonomous Watchdog Resurrection
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_45_Dual_Service_CrashLoop_Watchdog.md`
 - **Verified Result:** Executed `6` consecutive forced OS process terminations across live loopback C2 Cockpit and SCADA backend services (including simultaneous dual-service kills) while continuously sealing HIL telemetry into `matrix_ledger.db`; verified `6 / 6` (`100.00%`) autonomous resurrections with `0` dropped WORM blocks and `Valid: True` across the entire chain.
+
+### Stress Arena 46 — Active Cyber-Deception & Synthetic Spoof Tarpit (`scada_engine/deception_tarpit.py`)
+- **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_46_Active_Cyber_Deception_Tarpit.md`
+- **Verified Result:** Deployed modular zero-rewrite `SovereignDeceptionTarpit` engine and bombarded the perimeter with `2,500` adversarial reconnaissance, spoof, and rogue-AI override probes alongside `500` real authenticated `CAN-FD` control frames; verified `2,500 / 2,500` (`100.00%`) hostile probes silently trapped in synthetic phantom telemetry with `0` real data leaks, `0` physical actuator touches, and `Valid: True` across `128,562` sequential WORM blocks.
