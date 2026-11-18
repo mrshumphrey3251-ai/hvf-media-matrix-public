@@ -65,3 +65,7 @@
 ### Stress Arena 41 — FAA-Style Telemetry Tsunami & Rogue AI Prompt-Injection / Actuator-Spoof Flood
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_41_FAA_Telemetry_Tsunami_Rogue_AI_Flood.md`
 - **Verified Result:** Bombarded the Reality Firewall and intake perimeter with `12,000` concurrent malformed, HMAC-spoofed, and rogue-AI autonomous override frames across `16` flood threads while simultaneously sealing `1,000` authenticated `CAN-FD` control frames into `matrix_ledger.db`; verified `12,000 / 12,000` hostile rejections, `0` actuator bleeds, `0` control-loop drops, and `Valid: True` across `126,607` sequential WORM blocks.
+
+### Stress Arena 42 — Oklahoma HB 2992 Cascading Grid Collapse & Black-Start Islanding
+- **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_42_HB2992_Grid_Collapse_BlackStart_Islanding.md`
+- **Verified Result:** Executed `250` consecutive cascading utility brownout/underfrequency collapse and black-start re-synchronization cycles across `CH1_UTILITY_GRID`, `CH2_PV_ARRAYS`, `CH3_BESS_STORAGE`, and `CH4_AUX_GENERATOR`; verified `250 / 250` (`100.00%`) sub-`16.0 ms` solid-state islanding transitions, phase-locked black-start re-synchronization, and immutable WORM ledger sealing across `126,858` sequential blocks.
