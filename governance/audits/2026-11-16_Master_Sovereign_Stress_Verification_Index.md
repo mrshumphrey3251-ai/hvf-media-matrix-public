@@ -69,3 +69,7 @@
 ### Stress Arena 42 — Oklahoma HB 2992 Cascading Grid Collapse & Black-Start Islanding
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_42_HB2992_Grid_Collapse_BlackStart_Islanding.md`
 - **Verified Result:** Executed `250` consecutive cascading utility brownout/underfrequency collapse and black-start re-synchronization cycles across `CH1_UTILITY_GRID`, `CH2_PV_ARRAYS`, `CH3_BESS_STORAGE`, and `CH4_AUX_GENERATOR`; verified `250 / 250` (`100.00%`) sub-`16.0 ms` solid-state islanding transitions, phase-locked black-start re-synchronization, and immutable WORM ledger sealing across `126,858` sequential blocks.
+
+### Stress Arena 43 — SolarWinds-Style Supply-Chain AST Poison & Insider Binary Tamper Siege
+- **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_43_Supply_Chain_AST_Poison_Siege.md`
+- **Verified Result:** Bombarded the AST & OPSEC Gatekeeper with `250` weaponized code and configuration payloads (reverse shells, cloud exfiltration hooks, `eval`/`exec`/`__import__` backdoors, malformed AST bombs, and OPSEC/PII leaks) alongside `25` clean release candidates; verified `250 / 250` (`100.00%`) blocked, `0` false promotions, `25 / 25` clean promotions passed, and immutable WORM sealing at Block `#126,859`.
