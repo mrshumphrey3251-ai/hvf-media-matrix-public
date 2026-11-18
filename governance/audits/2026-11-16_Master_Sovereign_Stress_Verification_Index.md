@@ -73,3 +73,7 @@
 ### Stress Arena 43 — SolarWinds-Style Supply-Chain AST Poison & Insider Binary Tamper Siege
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_43_Supply_Chain_AST_Poison_Siege.md`
 - **Verified Result:** Bombarded the AST & OPSEC Gatekeeper with `250` weaponized code and configuration payloads (reverse shells, cloud exfiltration hooks, `eval`/`exec`/`__import__` backdoors, malformed AST bombs, and OPSEC/PII leaks) alongside `25` clean release candidates; verified `250 / 250` (`100.00%`) blocked, `0` false promotions, `25 / 25` clean promotions passed, and immutable WORM sealing at Block `#126,859`.
+
+### Stress Arena 44 — Electronic Warfare Clock-Spoof & Nonce-Replay Attack
+- **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_44_EW_Clock_Spoof_Nonce_Replay.md`
+- **Verified Result:** Injected `5,000` captured `CAN-FD` replay packets, backwards NTP clock jumps (`-45 s`), future GPS clock spoofs (`+60 s`), and duplicate nonces alongside `500` live monotonic control frames; verified `5,000 / 5,000` (`100.00%`) rejected, `0` false accepts, `500 / 500` live frames sealed, and `Valid: True` across `127,360` sequential WORM blocks.
