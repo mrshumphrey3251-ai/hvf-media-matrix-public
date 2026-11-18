@@ -137,3 +137,6 @@ Under **10 U.S.C. Â§ 4022**, Humphrey Virtual Farms LLC proposes a **12-Month,
 
 ### Active Cyber-Deception & Synthetic Spoof Tarpit (`scada_engine/deception_tarpit.py`)
 - **Stress Arena 46 Verified:** Silently routes detected intrusion, spoof, and rogue-AI override probes into an isolated phantom telemetry mirror-maze (`2,500 / 2,500` trapped | `p50 = 6.60 µs` | `0` real data leaks | `0` physical actuator touches).
+
+### Oklahoma Critical Infrastructure & HB 2992 Pilot Scoping Agenda
+- **15-Minute CTO Briefing Brief:** [`governance/briefs/2026-11-17_Oklahoma_Commerce_15Min_Pilot_Scoping_Agenda.md`](governance/briefs/2026-11-17_Oklahoma_Commerce_15Min_Pilot_Scoping_Agenda.md) — Parallel shadow-mode site topology, `` liquid cash escrow in-kind match model, and 90-day deployment roadmap (Block #128,564).

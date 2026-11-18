@@ -55,3 +55,7 @@ All four flagship submission packages below are dynamically anchored to the live
 
 ### Active Cyber-Deception & Synthetic Spoof Tarpit (`scada_engine/deception_tarpit.py`)
 - **Mirror-Maze Containment (Stress Arena 46):** Detected intrusion, spoof, and rogue-AI override probes are silently routed into an isolated, read-only phantom telemetry loop (`SovereignDeceptionTarpit`, `p50 = 6.60 µs`), trapping **`2,500 / 2,500` (`100.00%`)** hostile probes with **`0` real WORM Merkle root leaks** and **`0` physical actuator touches** (`actuator_bound = False`).
+
+### Oklahoma Department of Commerce — 15-Minute Pilot Scoping Agenda
+- **Archived Brief:** `governance/briefs/2026-11-17_Oklahoma_Commerce_15Min_Pilot_Scoping_Agenda.md`
+- **Scope:** Minute-by-minute CTO scoping structure covering parallel shadow-mode `CH1`–`CH4` site topology, `` liquid cash escrow OCAST/`2 CFR 200.306` in-kind match structure, and 90-day deployment milestones (Block #128,564).
