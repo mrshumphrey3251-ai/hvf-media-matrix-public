@@ -20,7 +20,7 @@ All six flagship governance packages below are cryptographically anchored inside
 | **3** | **DoD / AFWERX / DIU / Tradewinds Executive Capabilities & Past-Performance Brief** | [`governance/briefs/2026-11-17_DoD_AFWERX_DIU_Tradewinds_Executive_Capabilities_Brief.md`](governance/briefs/2026-11-17_DoD_AFWERX_DIU_Tradewinds_Executive_Capabilities_Brief.md) | **Block `#113,204`** |
 | **4** | **SBIR Phase II / Direct-to-Phase-II Volume 5 Technical & Verification Appendix** | [`governance/sbir/2026-11-16_SBIR_Volume_5_Technical_Empirical_Verification_Appendix.md`](governance/sbir/2026-11-16_SBIR_Volume_5_Technical_Empirical_Verification_Appendix.md) | **Block `#113,203`** |
 | **5** | **NIST SP 800-171 Rev. 2 / DFARS 252.204-7012 / SPRS 110 Evidence Package** | [`governance/compliance/2026-11-16_NIST_SP_800_171_DFARS_252_204_7012_SPRS_110_Evidence_Package.md`](governance/compliance/2026-11-16_NIST_SP_800_171_DFARS_252_204_7012_SPRS_110_Evidence_Package.md) | **Block `#113,202`** |
-| **6** | **Master Sovereign Stress & Cryptographic Verification Index (`51` Arenas / `50` Receipts)** | [`governance/audits/2026-11-16_Master_Sovereign_Stress_Verification_Index.md`](governance/audits/2026-11-16_Master_Sovereign_Stress_Verification_Index.md) | **Block `#113,201`** |
+| **6** | **Master Sovereign Stress & Cryptographic Verification Index (`52` Arenas / `51` Receipts)** | [`governance/audits/2026-11-16_Master_Sovereign_Stress_Verification_Index.md`](governance/audits/2026-11-16_Master_Sovereign_Stress_Verification_Index.md) | **Block `#113,201`** |
 
 ---
 
