@@ -85,3 +85,7 @@
 ### Stress Arena 46 — Active Cyber-Deception & Synthetic Spoof Tarpit (`scada_engine/deception_tarpit.py`)
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_46_Active_Cyber_Deception_Tarpit.md`
 - **Verified Result:** Deployed modular zero-rewrite `SovereignDeceptionTarpit` engine and bombarded the perimeter with `2,500` adversarial reconnaissance, spoof, and rogue-AI override probes alongside `500` real authenticated `CAN-FD` control frames; verified `2,500 / 2,500` (`100.00%`) hostile probes silently trapped in synthetic phantom telemetry with `0` real data leaks, `0` physical actuator touches, and `Valid: True` across `128,562` sequential WORM blocks.
+
+### Stress Arena 47 — Cascading Multi-Stage Grid Collapse, Black-Start Load Pickup & Rogue Breaker Re-Close Siege
+- **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_47_Cascading_Grid_Collapse_Black_Start.md`
+- **Verified Result:** Executed `250` severe utility sag/frequency collapse cycles (`480V -> 342V`, `60.0 Hz -> 57.8 Hz`) with simultaneous `CH3_BESS_STORAGE` + `CH4_AUX_GENERATOR` black-start load pickup and `1,000` concurrent hostile breaker re-close spoofs; verified `250 / 250` (`100.00%`) sub-`16.0 ms` isolation, `1,000 / 1,000` spoofs trapped in `SovereignDeceptionTarpit` (`0` unauthorized re-closes), and `Valid: True` across `128,565` sequential WORM blocks.
