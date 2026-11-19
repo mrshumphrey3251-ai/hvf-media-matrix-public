@@ -156,3 +156,7 @@ Under **10 U.S.C. Â§ 4022**, Humphrey Virtual Farms LLC proposes a **12-Month,
 * **Historic `Block #1,000,000` `SHA-256` Hash:** `0236b82ec965146931cde942733b7dffbdc2f58ecc95b2812552b0f3e5de5361` (`2026-11-19T01:10:08.056322Z`)
 * **Live Merkle Head (`Block #5,577,003`):** `e20a16b7af91510a6ac5217a950eabf6f683f683636517712b3bba93c803d49b`
 * **16-Writer Multi-Process Concurrency:** **`16` simultaneous bare-metal OS writers** (`265.1 blk/s` sustained, `286.3 blk/s` peak, `0` WORM collisions) | **`4.49M+` adversarial spoofs trapped** (`0` actuator bleeds)
+
+### Consolidated Executive Submission Dossier & Checksum Manifest
+* **Consolidated Submission Dossier (Markdown):** `governance/dossiers/2026-11-19_Project_EBONY_Consolidated_Executive_Submission_Dossier_55_Arenas.md`
+* **Consolidated Submission Dossier (Print-Ready PDF):** `governance/dossiers/2026-11-19_Project_EBONY_Consolidated_Executive_Submission_Dossier_55_Arenas.pdf`

@@ -77,3 +77,7 @@ All four flagship submission packages below are dynamically anchored to the live
 | **Live Merkle Head (`Block #5,577,003`)** | `e20a16b7af91510a6ac5217a950eabf6f683f683636517712b3bba93c803d49b` |
 | **Historic `Block #1,000,000` `SHA-256` Hash** | `0236b82ec965146931cde942733b7dffbdc2f58ecc95b2812552b0f3e5de5361` (`2026-11-19T01:10:08.056322Z`) |
 | **Stress Arena 55 Overnight Endurance (`6.41 hrs`)** | **`+4,576,961` Blocks** (`8` Simultaneous OS Writers @ `198.3 blk/s` Sustained) | **`36,615,688 / 36,615,688` Spoofs Trapped** (`0` Actuator Bleeds) | **`1,144,243` Sub-16ms Islanding Cycles** (`max = 8.29 ms` | `0` Breaches) |
+
+### Consolidated Executive Submission Dossier & SHA-256 Checksum Manifest (5,577,003 WORM Blocks | 55 Stress Arenas)
+- **Markdown Source:** `governance/dossiers/2026-11-19_Project_EBONY_Consolidated_Executive_Submission_Dossier_55_Arenas.md` (SHA-256: `ef682c6396bff68642b0f729eab2a8c7def2bb636c6894517e9bec1f7083c701`)
+- **Print-Ready PDF Bundle:** `governance/dossiers/2026-11-19_Project_EBONY_Consolidated_Executive_Submission_Dossier_55_Arenas.pdf` (SHA-256: `5ee7434f4f1b24fe89828ff8d54e3b0d5e1dcfb4446ccaa235f120f5a168edd6`)

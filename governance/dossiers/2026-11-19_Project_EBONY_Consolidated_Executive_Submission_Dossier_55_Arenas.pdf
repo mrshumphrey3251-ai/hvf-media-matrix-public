@@ -1,0 +1,445 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R] /Count 7 >> endobj
+3 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+4 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Courier >> endobj
+5 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >> endobj
+6 0 obj << /Length 3759 >> stream
+BT
+/F2 8.5 Tf
+36 756 Td
+13 TL
+(PROJECT E.B.O.N.Y. | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DOCKET 10-26-4046 | PAGE 1/7) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(# PROJECT E.B.O.N.Y. - CONSOLIDATED EXECUTIVE SUBMISSION DOSSIER & SHA-256 CHECKSUM MANIFEST) Tj T*
+(## Sovereign Air-Gapped Deterministic Control Plane for Defense & Critical Infrastructure) Tj T*
+() Tj T*
+(* Prime Contractor: Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5\)) Tj T*
+(* Chief Executive Officer & Principal Architect: Jeffery Humphrey) Tj T*
+(* Federal Procurement Docket: DoD Tradewinds Solutions Marketplace \(Docket 10-26-4046\) |) Tj T*
+(AFWERX | DIU | Oklahoma Department of Commerce) Tj T*
+(* Dossier Compilation Timestamp \(UTC\): 2026-11-19T16:16:50Z) Tj T*
+(* Public Verification Mirror: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public) Tj T*
+(* Cybersecurity Compliance Posture: NIST SP 800-171 Rev. 2 / DFARS 252.204-7012 \(SPRS Score:) Tj T*
+(110 / 110\)) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(### 1. Executive Summary & Architectural Value Proposition) Tj T*
+() Tj T*
+(Project E.B.O.N.Y. eliminates the single largest failure mode in autonomous AI and critical) Tj T*
+(infrastructure control: granting probabilistic software agents shared credentials, network) Tj T*
+(reachability, or physical actuator authority. Engineered from bare metal upward for air-gapped) Tj T*
+(defense installations, microgrids, and industrial control environments, Project E.B.O.N.Y.) Tj T*
+(enforces three non-negotiable deterministic invariants:) Tj T*
+() Tj T*
+(1. Zero Shared Credentials & Read-Only AI Isolation: Offline advisory models execute strictly) Tj T*
+(read-only with zero internet connectivity, zero shared secrets, and zero actuator bindings.) Tj T*
+(Unauthorized override attempts are automatically diverted into SovereignDeceptionTarpit-a) Tj T*
+(deterministic read-only mirror maze that traps hostile reconnaissance while maintaining zero) Tj T*
+(physical actuator bleed.) Tj T*
+(2. Deterministic Sub-Cycle Hardware & Cryptographic Interlocks: Every state transition) Tj T*
+(requires per-epoch HMAC-SHA256 cryptographic authentication and enforces deterministic) Tj T*
+(sub-cycle grid-collapse islanding cutoffs well below the 16.0 ms \(16,000 us\) single-cycle 60) Tj T*
+(Hz statutory/engineering threshold \(Oklahoma HB 2992 & IEEE 1547 alignment\).) Tj T*
+(3. Immutable WORM-Protected SHA-256 Merkle Audit Trail: Every authenticated telemetry frame,) Tj T*
+(policy state, and human out-of-band override seals atomically into an append-only,) Tj T*
+(trigger-enforced Write-Once-Read-Many \(WORM\) SQLite SHA-256 Merkle ledger) Tj T*
+(\(SovereignMerkleLedger\), protected against UPDATE, DELETE, and REPLACE/OVERWRITE tampering,) Tj T*
+(serialized across concurrent OS writers via BEGIN IMMEDIATE, and bounded on disk by a hard) Tj T*
+(256.00 MB \(268,435,456 bytes\) WAL size cap \(PRAGMA journal_size_limit\).) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(### 2. Empirical Bare-Metal Verification Summary \(55 Stress Arenas | 5,577,003 WORM Blocks\)) Tj T*
+() Tj T*
+(All claims in this dossier are backed by 55 empirical Stress Arenas \(54 archived cryptographic) Tj T*
+(receipts\) executed directly on bare-metal hardware with full genesis-to-head mathematical) Tj T*
+(verification:) Tj T*
+() Tj T*
+(| Empirical Verification Metric | Verified Bare-Metal Result |) Tj T*
+(| :--- | :--- |) Tj T*
+(| Sequential WORM SHA-256 Merkle Chain Height | 5,577,003 sequential blocks \(Valid: True) Tj T*
+(verified genesis-to-head @ 210,220 blocks/sec\) |) Tj T*
+(| Live Merkle Head \(Block #5,577,003\) |) Tj T*
+(e20a16b7af91510a6ac5217a950eabf6f683f683636517712b3bba93c803d49b |) Tj T*
+ET
+endstream endobj
+7 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >> endobj
+8 0 obj << /Length 3659 >> stream
+BT
+/F2 8.5 Tf
+36 756 Td
+13 TL
+(PROJECT E.B.O.N.Y. | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DOCKET 10-26-4046 | PAGE 2/7) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(| Historic Block #1,000,000 SHA-256 Hash |) Tj T*
+(0236b82ec965146931cde942733b7dffbdc2f58ecc95b2812552b0f3e5de5361 \(2026-11-19T01:10:08.056322Z\)) Tj T*
+(|) Tj T*
+(| SQLite WORM Database Integrity | PRAGMA integrity_check = OK \(3/3 tamper vectors blocked:) Tj T*
+(UPDATE, DELETE, REPLACE\) |) Tj T*
+(| Multi-Process Write Concurrency \(Arenas 53-54\) | 16 simultaneous OS writers \(265.1 blk/s) Tj T*
+(sustained, 286.3 blk/s peak, 0 WORM collisions\) |) Tj T*
+(| Overnight Unattended Endurance Soak \(Arena 55\) | 6.41 hours \(23,084.5s\) across 8 concurrent) Tj T*
+(writers \(+4,576,961 blocks @ 198.3 blk/s sustained, 0 failures\) |) Tj T*
+(| Adversarial Cyber-Deception Tarpit Defense | 36,615,688 / 36,615,688 \(100.00%\) spoofs) Tj T*
+(trapped in Arena 55 alone \(41.5M+ cumulative \\| 0 actuator bleeds\) |) Tj T*
+(| Sub-Cycle Grid Islanding Latency \(< 16.0 ms\) | 1,144,243 cycles in Arena 55 \(max = 8.29 ms /) Tj T*
+(8,292.20 us under full 8-writer saturation \\| 0 breaches\) |) Tj T*
+(| Bounded Multi-Day Storage Architecture | PRAGMA journal_size_limit = 268,435,456 \(256.00 MB) Tj T*
+(hard WAL cap\) + bounded TRUNCATE checkpointing |) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(### 3. Human Out-of-Band Override & Governance Architecture) Tj T*
+() Tj T*
+(Project E.B.O.N.Y. never "unlocks" an AI agent to act on a human operator's behalf; advisory) Tj T*
+(AI models remain permanently read-only. When emergency operational intervention is required,) Tj T*
+(named human operators bypass the AI entirely via a separate, out-of-band physical and) Tj T*
+(cryptographic control plane governed by:) Tj T*
+() Tj T*
+(1. Dual-Operator / Role-Bound Cryptographic Authority: Critical state overrides require named) Tj T*
+(operator authentication using hardware-bound per-epoch keys-never an AI session token.) Tj T*
+(2. Deterministic Hardware Safety Ceilings: Out-of-band human commands remain subject to) Tj T*
+(deterministic < 16.0 ms physical hardware interlocks.) Tj T*
+(3. Non-Repudiable WORM Attribution: Every manual override command, operator identity, UTC) Tj T*
+(timestamp, and pre/post telemetry state seals permanently into the SHA-256 Merkle ledger.) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(### 4. Consolidated SHA-256 Cryptographic Checksum Manifest \(126 Archived Governance Artifacts\)) Tj T*
+() Tj T*
+(Every governance brief, compliance package, SBIR volume, and empirical Stress Arena receipt) Tj T*
+(listed below is archived in governance/ and verifiable against its exact SHA-256 digest:) Tj T*
+() Tj T*
+(| Repository Relative Artifact Path | File Size | Verified SHA-256 Cryptographic Digest |) Tj T*
+(| :--- | :--- | :--- |) Tj T*
+(| governance/architecture/ACTION_ITEMS.json | 1.0 KB |) Tj T*
+(3c9bdd786a31190b85073d0f8b6d90b9254735a2c3483f0109f30d55e544e437 |) Tj T*
+(| governance/architecture/BATCH_PATCH_LOG.json | 14.4 KB |) Tj T*
+(1df046003d8ea02a9d36fdbaca179fa54e733141fea35b45e8a225c3aeb95a4d |) Tj T*
+(| governance/architecture/DEEP_AUDIT_REPORT.json | 141.0 KB |) Tj T*
+(889b99ada8f6906583ec7005ca597a61f8ec56e60a32271997101e46ebf0e0e0 |) Tj T*
+(| governance/architecture/DOCKET_REGISTRY.json | 0.8 KB |) Tj T*
+(c350144a47ee7e1415e8310c1dcba166cfea161f6fb2e3d196b45f991fd7e4f6 |) Tj T*
+(| governance/architecture/EBONY_COMMAND_REGISTRY.json | 2.0 KB |) Tj T*
+(f9278d09fac2fd7df873a615c61e6cba25dd7b1cc92274700c9ac570bec7f697 |) Tj T*
+(| governance/architecture/ENGINEERING_CODEX.md | 1.6 KB |) Tj T*
+ET
+endstream endobj
+9 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 10 0 R >> endobj
+10 0 obj << /Length 4503 >> stream
+BT
+/F2 8.5 Tf
+36 756 Td
+13 TL
+(PROJECT E.B.O.N.Y. | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DOCKET 10-26-4046 | PAGE 3/7) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(f630e1daa276110cf3238c68897dd488973711cbbe49eb1cc76d8ac67b27ac11 |) Tj T*
+(| governance/architecture/EXTERNAL_ENGAGEMENTS.json | 1.5 KB |) Tj T*
+(6f724e6b66b0da99a8f1c1da7cd033705b2bc68636ac34cadc063eb077bf0e58 |) Tj T*
+(| governance/architecture/MERKLE_AUDIT_LEDGER.json | 1.5 KB |) Tj T*
+(2bd5606246ea4b16f194f37d2de8a6481d81f7a6bf39837b7be6484ee1d01f5f |) Tj T*
+(| governance/architecture/MERKLE_AUTHORIZATION_LEDGER.json | 10.1 KB |) Tj T*
+(f7fb7e7434737343b8c707709304b19426eefb7aa4ee7049d2fb0dc148e9d357 |) Tj T*
+(| governance/architecture/SIDEBAR_MODULES.json | 1.1 KB |) Tj T*
+(1217a5aad860497e0c72d75c0f10d58b160af664e93a663ec88131c12118cfb5 |) Tj T*
+(| governance/architecture/SOVEREIGN_PARTITION_SPEC.md | 1.3 KB |) Tj T*
+(ef8a2e21fa805e81468cdc2e384f06c5aad65019cb40e4dabcebacef35e1df31 |) Tj T*
+(| governance/articles/2026-09-25_sovereign_resilience.md | 5.2 KB |) Tj T*
+(c52743c6a54583eef9d48da0c2ecbee453528a63f0373330b3bd0f736fb4d93f |) Tj T*
+(| governance/audits/2026-11-14_EBONY_System_Hardening_Audit_Certificate.md | 1.8 KB |) Tj T*
+(ebd798ccd84eba0e5b34d41598a881ba6e60620c9b8a560a2f13456dcf24cb86 |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_10_Master_Certification.md | 2.3 KB |) Tj T*
+(1187cf9ce408f55022f33fa078d89c378f18cdad75fb864848423b9954943789 |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_11_30Min_Endurance_Certificate.md | 1.7 KB |) Tj T*
+(df0aa5fdf2ce97a77402d6730cda96d72427cfe85bc4743b752502633738ba7e |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_12_Real_Modules_Vector_Receipt.md | 1.0 KB |) Tj T*
+(7b75a89d2e4479a11685bb201d3e90fb87acf06b3370752a19c036ae8195e71c |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_13_Deep_Import_Sweep_Receipt.md | 1.0 KB |) Tj T*
+(e5efc31b925a6474f516f3424a995c15eacdf2a0c010b8fe23dd526fc1a70262 |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_14_API_Perimeter_E2E_Receipt.md | 1.0 KB |) Tj T*
+(364ea0aa81d18fdcfd01311aa4f25de90e0e9d7035bc6a2ffb7bd349864f60c3 |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_1_WAL_WORM_Receipt.md | 1.0 KB |) Tj T*
+(f9b189c82cad8e6a797737048b83e724f24fc12e5b3b0bac2daba62e20836607 |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_2_Import_Sweep_Receipt.md | 0.6 KB |) Tj T*
+(8ac8fab6e98ff9bdd627f8b5f24529a634cc815eb78def3dd74e702aa3ca068a |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_3_Fuzzing_Receipt.md | 0.7 KB |) Tj T*
+(4dc0efaf05ff91b4a7c646e766eefbb773d0544340fa6e5a4748e3d0dc693ec8 |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_4_Master_Stress_Certificate.md | 1.1 KB |) Tj T*
+(a6f0d96766ff7230b1d1a542e6512cf5e184edbae197ef088557686640e3e5d7 |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_5_Protocol_Endurance_Receipt.md | 1.1 KB |) Tj T*
+(5c12f13b45192d0eabf9ba97f307e316f2ace56b9f74c292bb0fe36c06395165 |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_6_Master_Certification.md | 1.6 KB |) Tj T*
+(665b1a8a0426f2ebd32921f9351da8d783872f8b11a994778cc6bb2806991050 |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_7_MultiProcess_Watchdog_Receipt.md | 0.8 KB |) Tj T*
+(eb68b99a196270e182d80d534e49f5af14176b267e2e4d0e3fec5e417222771b |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_8_Complete_Master_Certification.md | 1.9 KB |) Tj T*
+(6fabe20888c794e83fbfd299c7bea52f32ee8233ce026bd3602f15d810233049 |) Tj T*
+(| governance/audits/2026-11-14_Stress_Arena_9_Crypto_Parity_Receipt.md | 1.0 KB |) Tj T*
+(08d16fcb2b69d5ee263ef4ef197fecc1dc20c7b6f9ff91d5c597b642db67938d |) Tj T*
+(| governance/audits/2026-11-15_Stress_Arena_16_Overnight_Endurance_Certificate.md | 2.0 KB |) Tj T*
+(a449bc496f4d125994600ece4bcffcf3800def460c71e86df25858081ee6ba56 |) Tj T*
+(| governance/audits/2026-11-16_Master_Sovereign_Stress_Verification_Index.md | 17.1 KB |) Tj T*
+(b34ddb50aa9aed024b2eca839796f2e27e11427be5b44aa861b0bbca160655dc |) Tj T*
+(| governance/audits/2026-11-16_Milestone_8f_Sovereign_Architecture_Hardening_Receipt.md | 1.6) Tj T*
+(KB | f14befe5b4063a3f5be0c8c7af16f03f26b86dfeb8a7b257d9ba8018e2617095 |) Tj T*
+(| governance/audits/2026-11-16_Milestone_9_WORM_Merkle_Ingest_C2_HUD_Receipt.md | 1.4 KB |) Tj T*
+(a229ac4916ac2fb81d7a4ddc22a52b42603225a45258c53bb502c902667c788a |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_17_UI_Buttons_Callbacks_Receipt.md | 1.2 KB |) Tj T*
+ET
+endstream endobj
+11 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 12 0 R >> endobj
+12 0 obj << /Length 4934 >> stream
+BT
+/F2 8.5 Tf
+36 756 Td
+13 TL
+(PROJECT E.B.O.N.Y. | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DOCKET 10-26-4046 | PAGE 4/7) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(aa2a721e1242b23e529c5f3d017e977232c3ab17c24c9b0aaf4eff1523d109d9 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_18_Concurrent_WORM_Merkle_Cache_Receipt.md | 1.3) Tj T*
+(KB | 0bfa50f83d6d87e3b917abdf596a7445223151f74dfad116e11454011c923978 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_19_Live_HTTP_Ingest_Merkle_Burst_Receipt.md | 1.0) Tj T*
+(KB | 6f86497b313323951d9dc9e9ab2e6e9b54bd265522f83bcb062ccf91efabb301 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_20_Fault_Injection_Self_Healing_Receipt.md | 1.0) Tj T*
+(KB | f00d58a37768f4d86cb0fee1aecbd58a68a1e350feb86341e5cac0ecd4e7e576 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_21_Adversarial_Fuzzing_SQLi_Receipt.md | 1.0 KB |) Tj T*
+(c60f0506c230c0674e49ad6823e53e98129c8449d14d97280e717d688b2524b0 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_22_Closed_Loop_API_C2_HUD_Sync_Receipt.md | 1.0 KB) Tj T*
+(| d7cb806d2715b55c410f433ef2275d7286c6663cc3861ebccc3b0bec282e13aa |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_23_8Node_HIL_5000_Block_Scaling_Receipt.md | 1.0) Tj T*
+(KB | 23c751d81f5862f6925434280cde2de4f0b8123f9e25833a3e9be2a61d0e59d7 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_24_Dual_Service_Chaos_Recovery_Receipt.md | 1.0 KB) Tj T*
+(| d323ae8392c03d729bbbc1b38320626922188cb66703dc5f06aad8015953fd67 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_25_10000_Block_WORM_Merkle_Certification_Receipt.md) Tj T*
+(| 1.0 KB | b411cc0f52cffb391de311dd23e630b1e42a2c84a30878486af7796d31070c6f |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_26_Concurrent_WORM_Tamper_Torture_Receipt.md | 1.2) Tj T*
+(KB | 7387879382c92b39535c518c0d25b03fa4c78a8ec130b6350ac67de44e6e64a3 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_27_WAL_Checkpoint_LRU_Eviction_Receipt.md | 1.0 KB) Tj T*
+(| 53dc116b565da97b741542b8f944a515dca79c540da15563fd54ca5ebf4e33ab |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_28_Token_Window_Replay_Defense_Receipt.md | 0.9 KB) Tj T*
+(| 739c537f796b9f7e45805e9015f9019f4593d3af29fd1a9d399a532f5bdb93cc |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_29_OPSEC_Gatekeeper_13000_Block_Receipt.md | 1.0) Tj T*
+(KB | cdaef1fd36881feae4fa383cff270971e57e406da04d53182c0520d84a2345e4 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_30_Capstone_15000_Block_Gauntlet_Receipt.md | 1.1) Tj T*
+(KB | e98a56550c3e1c2aaafcd62f6cae19d569b471081894401ecd9e633be6cc1a87 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_31_20000_Block_WORM_Merkle_Scaling_Receipt.md |) Tj T*
+(1.0 KB | f28d328ba9e6d1551209384951c79c99c272f8bef2fc3f6e7b0aac8598672096 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_32_MultiProcess_OS_Contention_Receipt.md | 1.0 KB) Tj T*
+(| 21ce5f2ba2d24e7159c8c7dd6772904b448d95a7280e3ae5e781b7dcd61e195c |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_33_25000_Block_WORM_Merkle_Milestone_Receipt.md |) Tj T*
+(1.0 KB | e111bf5a02d8ca4478c7693ddc979fad39195038c45d49bbb783a8f3a0b0ee13 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_34_MultiKB_Payload_HTTP_Torture_Receipt.md | 1.0) Tj T*
+(KB | 5dcac0874b31bbf99d04b4827ef167223de28c12bab86ae72adf39fc76b46138 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_35_30000_Block_WORM_Merkle_Milestone_Receipt.md |) Tj T*
+(1.0 KB | 6d03dc667b98c0e872ecd0397a987a87d30c156824f1d8a93deaedad2d010a71 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_36_Master_Verification_Rollup_Receipt.md | 1.0 KB) Tj T*
+(| 97cda148f1044ab6a08650d37b178af45f16f6cee264b8905bd6f2d23884831d |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_37_40000_Block_WORM_Merkle_Scaling_Receipt.md |) Tj T*
+(1.1 KB | 1d225057e6c0884712548fd4d429daa3dfa65bc4376464336d1e99cb365aeb88 |) Tj T*
+(| governance/audits/2026-11-16_Stress_Arena_38_60Min_Full_Stack_Endurance_Soak_Receipt.md |) Tj T*
+(1.2 KB | 4a560514b0c3c929161cd878cf000d18baef72a555394fbadc398698b95d202b |) Tj T*
+(| governance/audits/2026-11-17_Stress_Arena_39_125K_WORM_Ledger_Scaling.md | 2.3 KB |) Tj T*
+(c2d5e974995b279d31e0bc63e8d75434b3c2092fa347b46a1a9529e67108e3ac |) Tj T*
+(| governance/audits/2026-11-17_Stress_Arena_40_Hard_Blackout_WAL_Crash_Recovery.md | 2.2 KB |) Tj T*
+(f9b687709a30e9ca2e1961eed7192f777cd9353e194a8d1c4d63330b8c02fb15 |) Tj T*
+(| governance/audits/2026-11-17_Stress_Arena_41_FAA_Telemetry_Tsunami_Rogue_AI_Flood.md | 2.0) Tj T*
+(KB | b3ca7b1d4cdfddf9cf333c6242e4e0ccae9141f297011501e172853d853bd483 |) Tj T*
+(| governance/audits/2026-11-17_Stress_Arena_42_HB2992_Grid_Collapse_BlackStart_Islanding.md |) Tj T*
+(1.7 KB | 4da2ae538804383db0e38617611e7529ea0b9f18983219898c9dc167198afff3 |) Tj T*
+(| governance/audits/2026-11-17_Stress_Arena_43_Supply_Chain_AST_Poison_Siege.md | 1.9 KB |) Tj T*
+ET
+endstream endobj
+13 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 14 0 R >> endobj
+14 0 obj << /Length 4659 >> stream
+BT
+/F2 8.5 Tf
+36 756 Td
+13 TL
+(PROJECT E.B.O.N.Y. | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DOCKET 10-26-4046 | PAGE 5/7) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(2078404f663f50525fa0c4551d6d94287426d8b4ce6b57229e4859cb3cd3deae |) Tj T*
+(| governance/audits/2026-11-17_Stress_Arena_44_EW_Clock_Spoof_Nonce_Replay.md | 1.9 KB |) Tj T*
+(ff934ca9139f44e56aee42ed405db3c225efa174be11f9b4355eb311aac7e5bb |) Tj T*
+(| governance/audits/2026-11-17_Stress_Arena_45_Dual_Service_CrashLoop_Watchdog.md | 1.5 KB |) Tj T*
+(b04b4f96914e5d009811725d42040d8368b03230014bbd77fbc14df9aef8fa70 |) Tj T*
+(| governance/audits/2026-11-17_Stress_Arena_46_Active_Cyber_Deception_Tarpit.md | 2.0 KB |) Tj T*
+(f2f61ef9a8949aa34d628764706b7afde88581b2f747f15ca7435c57eaf6fec8 |) Tj T*
+(| governance/audits/2026-11-18_Oklahoma_Commerce_Executive_Outreach_Dispatch_Log.md | 2.6 KB |) Tj T*
+(afa71a60e957c7d6c2eaa8b6970341f0f1da79dab6686e63ad77d056b493e553 |) Tj T*
+(| governance/audits/2026-11-18_Stress_Arena_47_Cascading_Grid_Collapse_Black_Start.md | 1.6 KB) Tj T*
+(| d44f594dd981853b8f10ab59db51dd3619eeef35ee3e834bb7fc3b1d5c21e1ca |) Tj T*
+(| governance/audits/2026-11-18_Stress_Arena_48_Sustained_10K_WORM_Endurance.md | 1.7 KB |) Tj T*
+(06edbdf0a29991a459b2a6a264327ac7afd5c8ac8014e22c4ae14a74f4a5d49e |) Tj T*
+(| governance/audits/2026-11-18_Stress_Arena_49_Cryptographic_Key_Rotation.md | 1.6 KB |) Tj T*
+(65e7f8befc02c825e4ecebab45644230b718f8deda2ec39c6d1680c310694de4 |) Tj T*
+(| governance/audits/2026-11-18_Stress_Arena_50_Forensic_Merkle_Inclusion_Tamper_Audit.md | 1.6) Tj T*
+(KB | 0632ce130d2ac2cf04948fbe88da52cbf239ce6c0748c3ea980364107552f19b |) Tj T*
+(| governance/audits/2026-11-18_Stress_Arena_51_90Min_Redline_Breaking_Point_Siege.md | 3.3 KB) Tj T*
+(| 52a9435787bdbddb67bf02ec696813cc47b7c75155d2e6dc107315899e442bb6 |) Tj T*
+(| governance/audits/2026-11-18_Stress_Arena_52_Unbounded_MultiProcess_Break_Siege.md | 1.6 KB) Tj T*
+(| eb454123ae6704d387b0237d6cb3281a2af51cdba42bf1beeadc92fe8f76e78e |) Tj T*
+(| governance/audits/2026-11-18_Stress_Arena_53_Hardened_MultiProcess_16_Writer_Siege.md | 1.5) Tj T*
+(KB | af608b73a816a87fb6a29a7a1b9531824eeb9f66668a9500204daf0e3575e1eb |) Tj T*
+(| governance/audits/2026-11-18_Stress_Arena_54_One_Million_Block_WORM_Milestone.md | 2.9 KB |) Tj T*
+(5cb3300086c0b442d431e996f1182bae57ccbdaa6a3ff38e55288e3da1968ea0 |) Tj T*
+(| governance/audits/2026-11-19_Stress_Arena_55_Overnight_0800_Endurance_Soak.md | 4.6 KB |) Tj T*
+(f02ee9bbab1ad172655ed06e5302d60683f9ba3c323a5d67a19ca835d0a1a691 |) Tj T*
+(| governance/audits/preflight_full_regression.py | 1.5 KB |) Tj T*
+(f1912400df8e8a2a264fb11bd4600ccd037215b477c4f98e723a5e7b59117994 |) Tj T*
+(| governance/briefings/2026-09-25_executive_speaker_track_and_qa_matrix.md | 14.3 KB |) Tj T*
+(d910f1beb70603752cb79fed3518b90b64b32fcd3e51b326be9bbe2b7e488653 |) Tj T*
+(| governance/briefings/2026-09-25_oklahoma_commerce_executive_briefing.html | 17.8 KB |) Tj T*
+(5a5d9d5a653a88d7a6d6886b811d06e97efb66c633de0bf5002208d147980f38 |) Tj T*
+(| governance/briefings/2026-09-25_oklahoma_commerce_executive_briefing.md | 6.3 KB |) Tj T*
+(cd74be74bb77e151e0ecfeb5fe9dc18d573d17aa8c25740bec07c7dd2af465d5 |) Tj T*
+(| governance/briefings/build_briefing_html.py | 12.8 KB |) Tj T*
+(fe07620add3864b30513e3d370609b796d7d12b99e9cbce592e92669746298e9 |) Tj T*
+(| governance/briefings/OK_COMMERCE_EXECUTIVE_BRIEFING_2026.md | 1.2 KB |) Tj T*
+(e96429d2f5aa92b84188c5089d48c040173e20e6a976f71a367a268e452e799b |) Tj T*
+(| governance/briefings/OK_COMMERCE_SLIDE_OUTLINE.md | 1.5 KB |) Tj T*
+(a973631d556464cf2e53fbe4713f155c441996a38c290537b0f50136b50d6e78 |) Tj T*
+(| governance/briefs/2026-11-17_AFWERX_DIU_Tradewinds_Executive_Transmittal_Letter.md | 8.3 KB) Tj T*
+(| 2904eb82a3b87f1fddc787abb372f6adb3a57e98f1bc507791fd6dc94bc77e04 |) Tj T*
+(| governance/briefs/2026-11-17_DoD_AFWERX_DIU_Tradewinds_Executive_Capabilities_Brief.md | 9.3) Tj T*
+(KB | 6da0e72675913855a80b393256322e2ad42e2e2d3458839cf5459d69d894dbb3 |) Tj T*
+(| governance/briefs/2026-11-17_Oklahoma_Commerce_15Min_Pilot_Scoping_Agenda.md | 4.5 KB |) Tj T*
+(1416c12889435e166410325fc058bc9a7220feffcb48f8258cf8cda52c8df106 |) Tj T*
+(| governance/comms/2026-11-14_LinkedIn_TOCTOU_Comment.md | 0.9 KB |) Tj T*
+(f27ce5d81a1690b7df4b58a8720eeff9de81592e4cdd3bc8ec615eba6e2092bf |) Tj T*
+(| governance/compliance/2026-11-16_NIST_SP_800_171_DFARS_252_204_7012_SPRS_110_Evidence_Package) Tj T*
+(.md | 13.0 KB | f2d4cbb7bc6ec21bf415b2c5bd53544d299cba71aff9ea4befe4f6343bba8c14 |) Tj T*
+(| governance/contracts/Definitive_LOI_HVF_SignalLink_Executed.md | 3.2 KB |) Tj T*
+ET
+endstream endobj
+15 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 16 0 R >> endobj
+16 0 obj << /Length 3954 >> stream
+BT
+/F2 8.5 Tf
+36 756 Td
+13 TL
+(PROJECT E.B.O.N.Y. | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DOCKET 10-26-4046 | PAGE 6/7) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(f4ddd48ecff96ddec7c34147ac49b6c1430e237b6d79186f9f4066d39b5b645a |) Tj T*
+(| governance/contracts/SIGNALLINK_INTEGRATION_CONTRACT.md | 1.2 KB |) Tj T*
+(02b78ac6bd05bb5ad98d204ee2de1d38edfce60891bc99a7a1e8ff055fe9da0b |) Tj T*
+(| governance/contracts/SignalLink_Sandbox_Transmission.md | 0.6 KB |) Tj T*
+(55757c0e67ce9e18ce57f3130214870b84a27dc5117bbb460a637f3cac70529e |) Tj T*
+(| governance/Document_Execution_Ledger.md | 0.6 KB |) Tj T*
+(b57aaf3ac201c394ea7fb57b7dfe4de8a472daa5d768d49cff809bceb9e97a8a |) Tj T*
+(| governance/dossiers/2026-11-17_CEO_Level5_Operational_Readiness_Certificate_Master_Dossier_In) Tj T*
+(dex.md | 8.2 KB | a0d9451648dfa9a0aa55a3133340b035e4f41441e3e2d402a5fd4ac9e855036f |) Tj T*
+(| governance/evidence/conversation_log.txt | 35.8 KB |) Tj T*
+(8e5f7356513f0df158203bdd0a990136dbe746962f803781c72e403f8fcdc578 |) Tj T*
+(| governance/Executive_Communications_Log.md | 6.9 KB |) Tj T*
+(21d4a26726a42dc712c5bd3eb3d18ac44eef1d7406acfd1a8d60d7e82b937eac |) Tj T*
+(| governance/EXECUTIVE_LEDGER_2026.md | 1.0 KB |) Tj T*
+(4a57d4501a4d832e452dcdd6b26dceed98bee6c098279d041f68a9e3226b120b |) Tj T*
+(| governance/Federal_Compliance_Ledger.md | 0.6 KB |) Tj T*
+(45091f91b235c136641813a5e60be67dc34027618db8839d9755a9ad1fa256a6 |) Tj T*
+(| governance/generate_fs288_compliance.py | 6.2 KB |) Tj T*
+(fc31f22644e0db35bd04bb8108b1c94e1cbe966b4a256187aca96f5820a448a6 |) Tj T*
+(| governance/hvf_financial_doctrine.md | 0.7 KB |) Tj T*
+(0df3f386974f9437ab20f5e3632c84c41948024255f1b7abec22fa917ab68fd6 |) Tj T*
+(| governance/ingest_drew_phillips.py | 3.2 KB |) Tj T*
+(ec2588d35149f2baa7dd70f18d1154a051ef6e9c44894bd3dc1b3a177678508c |) Tj T*
+(| governance/legal/MUTUAL_NDA_VANDERPOOL_ENERGY_DESIGN.pdf | 71.5 KB |) Tj T*
+(6060b5263d218997fcaf148c555b172b6614ad999bfe0d407584e869fcbfef1c |) Tj T*
+(| governance/legal/MUTUAL_NDA_VANDERPOOL_ENERGY_DESIGN_FINAL.md | 3.9 KB |) Tj T*
+(7bcea0d4ae87859d1133ef6e70d7c5efb258372c3f3c9aa4631292b2dfb7486f |) Tj T*
+(| governance/legal/temp_nda.html | 4.3 KB |) Tj T*
+(32d9df3ec7e53c9c603ca369da461522bc811a268de9f401d59519a9834c59fb |) Tj T*
+(| governance/record_breach_dossier.py | 5.1 KB |) Tj T*
+(f807f705dd5ff795d4e8cff9d265e8a8935c944f720aff5f645fad433e4a5ed3 |) Tj T*
+(| governance/record_compliance_extension.py | 4.7 KB |) Tj T*
+(c97d4674205ff8b10206a40588c024608b1cd1b2c61f970dc16e7053c4bc02e0 |) Tj T*
+(| governance/record_final_legal_demand.py | 4.7 KB |) Tj T*
+(4b053d211d478f26b069fa5a007e095ca4373271cd0a6692d8a9d88508135a5e |) Tj T*
+(| governance/sbir/2026-11-16_SBIR_Volume_5_Technical_Empirical_Verification_Appendix.md | 12.8) Tj T*
+(KB | 88381d64aece6396def861f351881c74d709f6291287ad959d31c4dea0f5b414 |) Tj T*
+(| governance/security/__pycache__/hvf_security_gateway.cpython-311.pyc | 3.7 KB |) Tj T*
+(f2759fcccc31493852df45312065aa57ba92acc4a76281965f94784e1d30d773 |) Tj T*
+(| governance/security/check_keys.py | 2.2 KB |) Tj T*
+(0851ef5952822429de7d5aa96cef2ea4e2531060ef051d6b7fa76c489a2b410c |) Tj T*
+(| governance/security/deploy_blocklist.py | 16.3 KB |) Tj T*
+(b1308049b0cb6d787011e87ef10abe7ea4585f80796ac7c266a32fe3a8a1dc1b |) Tj T*
+(| governance/security/forge_matrix_ssl.py | 7.2 KB |) Tj T*
+(ab4b63ec6cf1f9d71a92cd442cd6f63e6682a776d4d675fa737b20e484ce9c70 |) Tj T*
+(| governance/security/gen_pilot_keys.py | 1.9 KB |) Tj T*
+(c62e83d2eb0a54606aede579a5242e26eda95e1e7b44888935cb1051883d4b7d |) Tj T*
+(| governance/security/hvf_cipher_audit.py | 3.0 KB |) Tj T*
+(60fd5360b1dda064cadcf67df59520e2abe98046f80f9e694448980abda35971 |) Tj T*
+(| governance/security/hvf_compliance_guard.py | 3.1 KB |) Tj T*
+(6399e136a0613d18b576cc5308f00daa4019143610b44bdbdb0b9d44e8642009 |) Tj T*
+(| governance/security/hvf_penetration_test.py | 2.6 KB |) Tj T*
+ET
+endstream endobj
+17 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 18 0 R >> endobj
+18 0 obj << /Length 2539 >> stream
+BT
+/F2 8.5 Tf
+36 756 Td
+13 TL
+(PROJECT E.B.O.N.Y. | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | DOCKET 10-26-4046 | PAGE 7/7) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(89eafa085304855edcce57d681f15e2939bcdb67b3aa049ff9e82787efd60af3 |) Tj T*
+(| governance/security/hvf_security.py | 2.4 KB |) Tj T*
+(6c07cde80f9d11cb41fc545bced62c8d7b7ad9b1553c4ad260d4746afd54ef05 |) Tj T*
+(| governance/security/hvf_security_audit.py | 3.5 KB |) Tj T*
+(d933388efb5653d139d4dd00bce023c4115bef03ea6f4ddf30b5ba3aef9388bc |) Tj T*
+(| governance/security/hvf_security_gateway.py | 2.8 KB |) Tj T*
+(cd1f75ef79fc276e26ae568c816e66a305fcc76919962acfaa0076d6cde3d89d |) Tj T*
+(| governance/security/hvf_shell_bouncer.ps1 | 0.5 KB |) Tj T*
+(c010b2442a8ba8a5a7c29482ffc6da351507afa1c8ef8d5c6e957473a702c0de |) Tj T*
+(| governance/security/hvf_shell_override.ps1 | 5.0 KB |) Tj T*
+(6d32bb21012db823463df5df5a8e038c7a708d11c2268a85f170dbf055d81213 |) Tj T*
+(| governance/security/kinetic_guillotine_enforcer.py | 3.9 KB |) Tj T*
+(46ad9e6222cbda6a0d7e18bc9695f830e33e11a29eb616df06f9457063a24d31 |) Tj T*
+(| governance/security/protocol_lambda_diode.py | 4.0 KB |) Tj T*
+(f509c0f34ed83ec4b748ce27a287c7d279509aa7444463740f5492d691012e38 |) Tj T*
+(| governance/security/Sandbox_Credentials_Vault.md | 0.4 KB |) Tj T*
+(6ecaef1410de8db182f458d77348f454d243ed6526c3ae5ac0cea06fdabfdaad |) Tj T*
+(| governance/security/SECURITY_PERIMETER_SPEC.md | 1.1 KB |) Tj T*
+(4fb95db60b265a9dde31680ddf5b48c0d1467287d3d5574cad85fd55f1faf8a4 |) Tj T*
+(| governance/security/sovereign_sentinel.py | 2.6 KB |) Tj T*
+(2bf9e74c5f966c9281fc1df0d8fddcbd081c1adf26e73c63515d2a5edef23aa4 |) Tj T*
+(| governance/security/tapo_credentials.json | 0.2 KB |) Tj T*
+(a9c39ac3463ee26edd154e047b5ae351184ae32d890f1ffd5482b8d292c45696 |) Tj T*
+(| governance/security/test_cleanroom_provenance.py | 3.0 KB |) Tj T*
+(a868f0b949669d6790ef73c2a26d084be39343c114f9b1bf6de4be6d9ae716e8 |) Tj T*
+(| governance/security/test_sanitizer.py | 3.3 KB |) Tj T*
+(92a1c3aee9f26d89315a6f500aaf3063533317c830c8536df545a02506708943 |) Tj T*
+(| governance/statutes/OK_HB_2992_STATUTORY_DIGEST.md | 2.0 KB |) Tj T*
+(d0dbf26f3fee74ac5490301953135cf714903d6a3edf5f339652b4b31ef052ad |) Tj T*
+(| governance/Strategic_Directive_Federal_Hold.md | 0.6 KB |) Tj T*
+(b1260e2021de2c7a9f9b9fe3dea1f25972435a3c6d60adb4ed9d29738b955d0d |) Tj T*
+(| governance/Treasury_Matrix_SOP.md | 1.7 KB |) Tj T*
+(32778caf85c8f833f612ce42e12da5ab26ed1f72a11a19643719a28a2a0d90f9 |) Tj T*
+ET
+endstream endobj
+xref
+0 19
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000155 00000 n 
+0000000225 00000 n 
+0000000293 00000 n 
+0000000429 00000 n 
+0000004240 00000 n 
+0000004376 00000 n 
+0000008087 00000 n 
+0000008224 00000 n 
+0000012780 00000 n 
+0000012918 00000 n 
+0000017905 00000 n 
+0000018043 00000 n 
+0000022755 00000 n 
+0000022893 00000 n 
+0000026900 00000 n 
+0000027038 00000 n 
+trailer << /Size 19 /Root 1 0 R >>
+startxref
+29630
+%%EOF
