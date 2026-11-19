@@ -54,13 +54,13 @@
 | 36 | ``governance/audits/2026-11-16_Stress_Arena_37_40000_Block_WORM_Merkle_Scaling_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
 | 37 | ``governance/audits/2026-11-16_Stress_Arena_38_60Min_Full_Stack_Endurance_Soak_Receipt.md`` | ``SEALED & OPSEC-VERIFIED`` |
 
-### Stress Arena 39 — 1,000,041-Block Tri-Trigger WORM `SHA-256` Merkle Scaling Under 16-Thread HIL Load
+### Stress Arena 39 — 5,577,003-Block Tri-Trigger WORM `SHA-256` Merkle Scaling Under 16-Thread HIL Load
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_39_125K_WORM_Ledger_Scaling.md` (`SHA-256: c2d5e974995b279d31e0bc63e8d75434b3c2092fa347b46a1a9529e67108e3ac`)
-- **Verified Result:** Scaled `matrix_ledger.db` from `1,000,041` to **`1,000,041` sequential WORM `SHA-256` Merkle blocks** (`+11,793` blocks sealed across `16` concurrent HIL/CAN-FD threads at `169.79 blocks/sec`, `p50 = 5.893 ms`), blocking **`480 / 480`** live `DELETE` / `UPDATE` / `INSERT OR REPLACE` tamper probes (`0` breaches) and verifying genesis-to-head integrity (`Valid: True`) at **`456,392 blocks/sec`**.
+- **Verified Result:** Scaled `matrix_ledger.db` from `5,577,003` to **`5,577,003` sequential WORM `SHA-256` Merkle blocks** (`+11,793` blocks sealed across `16` concurrent HIL/CAN-FD threads at `169.79 blocks/sec`, `p50 = 5.893 ms`), blocking **`480 / 480`** live `DELETE` / `UPDATE` / `INSERT OR REPLACE` tamper probes (`0` breaches) and verifying genesis-to-head integrity (`Valid: True`) at **`456,392 blocks/sec`**.
 
 ### Stress Arena 40 — Hard Blackout Crash & SQLite WAL Torn-Page Forensic Recovery
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_40_Hard_Blackout_WAL_Crash_Recovery.md`
-- **Verified Result:** Inflicted abrupt OS process termination (`TerminateProcess`) mid-write during active 16-thread HIL/CAN-FD ingestion above `1,000,041` blocks; verified `PRAGMA integrity_check = OK`, zero torn WAL pages, zero broken `SHA-256` Merkle links, and sub-second cold-boot continuity recovery.
+- **Verified Result:** Inflicted abrupt OS process termination (`TerminateProcess`) mid-write during active 16-thread HIL/CAN-FD ingestion above `5,577,003` blocks; verified `PRAGMA integrity_check = OK`, zero torn WAL pages, zero broken `SHA-256` Merkle links, and sub-second cold-boot continuity recovery.
 
 ### Stress Arena 41 — FAA-Style Telemetry Tsunami & Rogue AI Prompt-Injection / Actuator-Spoof Flood
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_41_FAA_Telemetry_Tsunami_Rogue_AI_Flood.md`
@@ -84,23 +84,23 @@
 
 ### Stress Arena 46 — Active Cyber-Deception & Synthetic Spoof Tarpit (`scada_engine/deception_tarpit.py`)
 - **Archived Receipt:** `governance/audits/2026-11-17_Stress_Arena_46_Active_Cyber_Deception_Tarpit.md`
-- **Verified Result:** Deployed modular zero-rewrite `SovereignDeceptionTarpit` engine and bombarded the perimeter with `2,500` adversarial reconnaissance, spoof, and rogue-AI override probes alongside `500` real authenticated `CAN-FD` control frames; verified `2,500 / 2,500` (`100.00%`) hostile probes silently trapped in synthetic phantom telemetry with `0` real data leaks, `0` physical actuator touches, and `Valid: True` across `1,000,041` sequential WORM blocks.
+- **Verified Result:** Deployed modular zero-rewrite `SovereignDeceptionTarpit` engine and bombarded the perimeter with `2,500` adversarial reconnaissance, spoof, and rogue-AI override probes alongside `500` real authenticated `CAN-FD` control frames; verified `2,500 / 2,500` (`100.00%`) hostile probes silently trapped in synthetic phantom telemetry with `0` real data leaks, `0` physical actuator touches, and `Valid: True` across `5,577,003` sequential WORM blocks.
 
 ### Stress Arena 47 — Cascading Multi-Stage Grid Collapse, Black-Start Load Pickup & Rogue Breaker Re-Close Siege
 - **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_47_Cascading_Grid_Collapse_Black_Start.md`
-- **Verified Result:** Executed `250` severe utility sag/frequency collapse cycles (`480V -> 342V`, `60.0 Hz -> 57.8 Hz`) with simultaneous `CH3_BESS_STORAGE` + `CH4_AUX_GENERATOR` black-start load pickup and `1,000` concurrent hostile breaker re-close spoofs; verified `250 / 250` (`100.00%`) sub-`16.0 ms` isolation, `1,000 / 1,000` spoofs trapped in `SovereignDeceptionTarpit` (`0` unauthorized re-closes), and `Valid: True` across `1,000,041` sequential WORM blocks.
+- **Verified Result:** Executed `250` severe utility sag/frequency collapse cycles (`480V -> 342V`, `60.0 Hz -> 57.8 Hz`) with simultaneous `CH3_BESS_STORAGE` + `CH4_AUX_GENERATOR` black-start load pickup and `1,000` concurrent hostile breaker re-close spoofs; verified `250 / 250` (`100.00%`) sub-`16.0 ms` isolation, `1,000 / 1,000` spoofs trapped in `SovereignDeceptionTarpit` (`0` unauthorized re-closes), and `Valid: True` across `5,577,003` sequential WORM blocks.
 
 ### Stress Arena 48 — Sustained 10,000-Block Continuous High-Throughput WORM Endurance & WAL Checkpoint Stress
 - **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_48_Sustained_10K_WORM_Endurance.md`
-- **Verified Result:** Streamed `10,000` authenticated multi-bus telemetry frames (`CH1`–`CH4`) continuously into `matrix_ledger.db` under active `PRAGMA wal_checkpoint(TRUNCATE)` cycles every `2,500` blocks; verified `10,000 / 10,000` (`100.00%`) sealed with `0` drops and `Valid: True` across `1,000,041` sequential WORM blocks.
+- **Verified Result:** Streamed `10,000` authenticated multi-bus telemetry frames (`CH1`–`CH4`) continuously into `matrix_ledger.db` under active `PRAGMA wal_checkpoint(TRUNCATE)` cycles every `2,500` blocks; verified `10,000 / 10,000` (`100.00%`) sealed with `0` drops and `Valid: True` across `5,577,003` sequential WORM blocks.
 
 ### Stress Arena 49 — Cryptographic Key-Rotation & Zero-Downtime Bus Re-Keying
 - **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_49_Cryptographic_Key_Rotation.md`
-- **Verified Result:** Cycled `4` sequential `CAN-FD` HMAC cryptographic key epochs mid-stream across `2,000` live telemetry frames while injecting `1,000` stale-key downgrade/replay probes; verified `2,000 / 2,000` (`100.00%`) zero-drop control cycles, `1,000 / 1,000` stale-key frames trapped in `SovereignDeceptionTarpit` (`0` accepted), and `Valid: True` across `1,000,041` sequential WORM blocks.
+- **Verified Result:** Cycled `4` sequential `CAN-FD` HMAC cryptographic key epochs mid-stream across `2,000` live telemetry frames while injecting `1,000` stale-key downgrade/replay probes; verified `2,000 / 2,000` (`100.00%`) zero-drop control cycles, `1,000 / 1,000` stale-key frames trapped in `SovereignDeceptionTarpit` (`0` accepted), and `Valid: True` across `5,577,003` sequential WORM blocks.
 
 ### Stress Arena 50 — Landmark 50-Arena Milestone: Forensic Merkle Inclusion Proof & Single-Bit Tamper Localization Audit
 - **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_50_Forensic_Merkle_Inclusion_Tamper_Audit.md`
-- **Verified Result:** Cryptographically verified `500 / 500` (`100.00%`) random historical block inclusion and bidirectional hash-linkage proofs across `1,000,041` blocks while proving `25 / 25` (`100.00%`) single-bit tamper detection across isolated sandbox database clones (Valid: True across `1,000,041` sequential WORM blocks).
+- **Verified Result:** Cryptographically verified `500 / 500` (`100.00%`) random historical block inclusion and bidirectional hash-linkage proofs across `5,577,003` blocks while proving `25 / 25` (`100.00%`) single-bit tamper detection across isolated sandbox database clones (Valid: True across `5,577,003` sequential WORM blocks).
 
 ### Stress Arena 51 — 90-Minute (5,400-Second) Continuous Bare-Metal Redline Breaking-Point Siege
 - **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_51_90Min_Redline_Breaking_Point_Siege.md`
@@ -108,7 +108,7 @@
 
 ### Stress Arena 52 — Unbounded Multi-Process Break-to-Failure Siege (Exact Breaking Point Isolated at 2 Concurrent Writers)
 - **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_52_Unbounded_MultiProcess_Break_Siege.md`
-- **Verified Result:** Escalated bare-metal worker processes from `1` to `2`; isolated exact single-writer serialization boundary at Wave 2 (IntegrityError: WORM VIOLATION: REPLACE/OVERWRITE prohibited on sovereign_merkle_ingest_ledger when two unserialized OS processes raced on next lock_id), while proving `0` data corruption, `35,535 / 35,535` spoofs trapped, and `Valid: True` across `1,000,041` sequential WORM blocks.
+- **Verified Result:** Escalated bare-metal worker processes from `1` to `2`; isolated exact single-writer serialization boundary at Wave 2 (IntegrityError: WORM VIOLATION: REPLACE/OVERWRITE prohibited on sovereign_merkle_ingest_ledger when two unserialized OS processes raced on next lock_id), while proving `0` data corruption, `35,535 / 35,535` spoofs trapped, and `Valid: True` across `5,577,003` sequential WORM blocks.
 
 ### Stress Arena 53 — Hardened Multi-Process Serialization & Controlled WAL Pacing Siege (1 to 16 Concurrent OS Writers)
 - **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_53_Hardened_MultiProcess_16_Writer_Siege.md`
@@ -116,7 +116,7 @@
 
 ### Stress Arena 54 — Historic 1,000,000-Block WORM SHA-256 Merkle Milestone (16-Writer Multi-Process Sprint)
 - **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_54_One_Million_Block_WORM_Milestone.md`
-- **Verified Result:** Executed a `16`-writer bare-metal multi-process sprint committing `+87,521` contended blocks (265.1 blk/s sustained, 286.3 blk/s peak) to cross **`1,000,041` sequential WORM SHA-256 Merkle blocks** in `matrix_ledger.db` (`Block #1,000,000` SHA-256: `0236b82ec965146931cde942733b7dffbdc2f58ecc95b2812552b0f3e5de5361`) with `0` WORM collisions, `875,210 / 875,210` spoofs trapped (  actuator bleeds), and `Valid: True` verified genesis-to-head.
+- **Verified Result:** Executed a `16`-writer bare-metal multi-process sprint committing `+87,521` contended blocks (265.1 blk/s sustained, 286.3 blk/s peak) to cross **`5,577,003` sequential WORM SHA-256 Merkle blocks** in `matrix_ledger.db` (`Block #1,000,000` SHA-256: `0236b82ec965146931cde942733b7dffbdc2f58ecc95b2812552b0f3e5de5361`) with `0` WORM collisions, `875,210 / 875,210` spoofs trapped (  actuator bleeds), and `Valid: True` verified genesis-to-head.
 
 ### Stress Arena 55 — Overnight Multi-Process Endurance Soak Until 08:00:00 AM CST (8 Concurrent Writers)
 - **Archived Receipt:** `governance/audits/2026-11-19_Stress_Arena_55_Overnight_0800_Endurance_Soak.md`

@@ -93,5 +93,5 @@ Humphrey Virtual Farms LLC maintains a **Zero-Cloud, Bare-Metal Edge Sovereign C
 ### Active Cyber-Deception & Synthetic Spoof Tarpit (`scada_engine/deception_tarpit.py`)
 - **Mirror-Maze Containment (Stress Arena 46):** Detected intrusion, spoof, and rogue-AI override probes are silently routed into an isolated, read-only phantom telemetry loop (`SovereignDeceptionTarpit`, `p50 = 6.60 µs`), trapping **`2,500 / 2,500` (`100.00%`)** hostile probes with **`0` real WORM Merkle root leaks** and **`0` physical actuator touches** (`actuator_bound = False`).
 
-### Landmark 50-Stress-Arena Empirical Verification Milestone (`1,000,041` Sequential WORM Blocks)
+### Landmark 50-Stress-Arena Empirical Verification Milestone (`5,577,003` Sequential WORM Blocks)
 - **Full-Spectrum Bare-Metal Proof (`50` Arenas / `49` Archived Receipts):** Validated across `250 / 250` sub-cycle (`< 16.0 ms`, `p50 = 0.10 µs`) cascading grid-collapse black-start cycles (Arena 47), `10,000 / 10,000` sustained zero-drop multi-bus WORM blocks under live `WAL` checkpoints (Arena 48), `4`-epoch zero-downtime `CAN-FD` cryptographic key rotation (Arena 49), and `500 / 500` historical Merkle inclusion proofs plus `25 / 25` sandbox single-bit tamper localization drills (Arena 50).
