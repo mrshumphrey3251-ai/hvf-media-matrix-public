@@ -160,3 +160,6 @@ Under **10 U.S.C. Â§ 4022**, Humphrey Virtual Farms LLC proposes a **12-Month,
 ### Consolidated Executive Submission Dossier & Checksum Manifest
 * **Consolidated Submission Dossier (Markdown):** `governance/dossiers/2026-11-19_Project_EBONY_Consolidated_Executive_Submission_Dossier_55_Arenas.md`
 * **Consolidated Submission Dossier (Print-Ready PDF):** `governance/dossiers/2026-11-19_Project_EBONY_Consolidated_Executive_Submission_Dossier_55_Arenas.pdf`
+
+* **Post-Awardable DoD Buyer Capability & ROM Pilot Pricing One-Pager (Markdown):** `governance/briefs/2026-11-19_Project_EBONY_Post_Awardable_DoD_Buyer_Capability_and_ROM_Pricing_OnePager.md`
+* **Post-Awardable DoD Buyer Capability & ROM Pilot Pricing One-Pager (2-Page PDF):** `governance/briefs/2026-11-19_Project_EBONY_Post_Awardable_DoD_Buyer_Capability_and_ROM_Pricing_OnePager.pdf`

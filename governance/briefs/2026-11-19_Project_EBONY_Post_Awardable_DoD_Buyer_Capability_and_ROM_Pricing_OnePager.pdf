@@ -1,0 +1,133 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >> endobj
+3 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+4 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Courier >> endobj
+5 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >> endobj
+6 0 obj << /Length 4170 >> stream
+BT
+/F2 8.2 Tf
+36 760 Td
+12.2 TL
+(PROJECT E.B.O.N.Y. | DOD TRADEWINDS DOCKET 10-26-4046 | CAGE: 1AHA8 | PAGE 1 OF 2) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(# PROJECT E.B.O.N.Y. - POST-AWARDABLE DOD BUYER CAPABILITY & ROM PILOT PRICING BRIEF) Tj T*
+(## Rapid Sole-Source / OT Acquisition Package via DoD Tradewinds Solutions Marketplace \(Docket) Tj T*
+(10-26-4046\)) Tj T*
+() Tj T*
+(* Prime Contractor: Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | SPRS) Tj T*
+(Score: 110 / 110\)) Tj T*
+(* Executive Point of Contact: Jeffery Humphrey, CEO & Principal Architect) Tj T*
+(\(humphreyvirtualfarm@gmail.com\)) Tj T*
+(* Acquisition Vehicle: DoD Tradewinds Solutions Marketplace \(Docket 10-26-4046 - 10 U.S.C.) Tj T*
+(Sec. 4022 Prototype OT / FAR Commercial\)) Tj T*
+(* Public Audit & Verification Mirror:) Tj T*
+(https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public) Tj T*
+(* Release Timestamp \(UTC\): 2026-11-19T16:23:15Z) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(### 1. Mission Problem & Deterministic Architecture \(Page 1 of 2\)) Tj T*
+() Tj T*
+(#### The Operational Vulnerability) Tj T*
+(DoD installations, microgrids, and defense industrial control networks face a dual threat: \(1\)) Tj T*
+(cyber-kinetic grid disruption capable of collapsing installation bus voltage within a single) Tj T*
+(60 Hz cycle \(< 16.0 ms\), and \(2\) unauthorized actuation or credential compromise introduced) Tj T*
+(when probabilistic AI agents or compromised edge nodes are granted write access to SCADA/ICS) Tj T*
+(controllers.) Tj T*
+() Tj T*
+(#### The Project E.B.O.N.Y. Solution) Tj T*
+(Project E.B.O.N.Y. is an air-gapped, bare-metal deterministic control and cryptographic audit) Tj T*
+(plane engineered for zero-trust installation energy resilience \(10 U.S.C. Sec. 2911 & NIST SP) Tj T*
+(800-82\):) Tj T*
+() Tj T*
+(1. Zero Shared Credentials & Read-Only AI Isolation: Offline advisory models operate strictly) Tj T*
+(read-only with zero internet access, zero shared secrets, and zero actuator authority.) Tj T*
+(Unauthorized override probes divert automatically into SovereignDeceptionTarpit-a) Tj T*
+(deterministic read-only mirror maze with zero physical actuator bleed.) Tj T*
+(2. Sub-Cycle Hardware & Cryptographic Interlocks \(< 16.0 ms\): Every command requires per-epoch) Tj T*
+(HMAC-SHA256 authentication and enforces deterministic sub-cycle islanding protection \(8.29 ms) Tj T*
+(max measured latency under full multi-writer load vs. 16.0 ms single-cycle threshold\).) Tj T*
+(3. Immutable WORM-Protected SHA-256 Merkle Ledger: Every telemetry frame, state transition,) Tj T*
+(and human out-of-band override seals atomically into an append-only, trigger-enforced) Tj T*
+(Write-Once-Read-Many \(WORM\) SQLite SHA-256 Merkle chain \(SovereignMerkleLedger\), protected) Tj T*
+(against UPDATE, DELETE, and REPLACE/OVERWRITE tampering \(3/3 tamper vectors blocked\) and) Tj T*
+(bounded on disk by a 256.00 MB \(268,435,456 bytes\) WAL size cap.) Tj T*
+() Tj T*
+(#### Bare-Metal Empirical Proof Baseline \(55 Stress Arenas | 5,577,003 Sequential WORM Blocks\)) Tj T*
+() Tj T*
+(| Verification Benchmark | Cryptographically Verified Result |) Tj T*
+(| :--- | :--- |) Tj T*
+(| Sequential WORM SHA-256 Merkle Chain | 5,577,003 blocks \(Valid: True verified) Tj T*
+(genesis-to-head @ 210,220 blocks/sec\) |) Tj T*
+(| Live Merkle Head \(Block #5,577,003\) |) Tj T*
+(e20a16b7af91510a6ac5217a950eabf6f683f683636517712b3bba93c803d49b |) Tj T*
+(| Multi-Process Write Concurrency | 16 simultaneous OS writers \(265.1 blk/s sustained, 286.3) Tj T*
+(blk/s peak, 0 WORM collisions\) |) Tj T*
+(| Overnight Unattended Endurance Soak | 6.41 hours \(23,084.5s\) across 8 concurrent writers) Tj T*
+(\(+4,576,961 blocks @ 198.3 blk/s, 0 failures\) |) Tj T*
+(| Adversarial Tarpit Spoof Containment | 36,615,688 / 36,615,688 \(100.00%\) spoofs trapped in) Tj T*
+(Arena 55 \(41.5M+ cumulative \\| 0 actuator bleeds\) |) Tj T*
+(| Sub-Cycle Grid Islanding Ceiling | 1,144,243 cycles \(max = 8.29 ms / 8,292.20 us under full) Tj T*
+(saturation \\| 0 breaches\) |) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+ET
+endstream endobj
+7 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >> endobj
+8 0 obj << /Length 2622 >> stream
+BT
+/F2 8.2 Tf
+36 760 Td
+12.2 TL
+(PROJECT E.B.O.N.Y. | DOD TRADEWINDS DOCKET 10-26-4046 | CAGE: 1AHA8 | PAGE 2 OF 2) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(### 2. Pilot Deployment Tiers & Rough Order of Magnitude \(ROM\) Pricing \(Page 2 of 2\)) Tj T*
+() Tj T*
+(DoD Program Offices, AFWERX/SpaceWERX units, DIU portfolios, and installation energy managers) Tj T*
+(can execute direct awards via DoD Tradewinds \(Docket 10-26-4046\) across three modular,) Tj T*
+(milestone-based pilot tiers:) Tj T*
+() Tj T*
+(| Pilot Tier & Scope | Period of Performance | Key Technical Deliverables & Acceptance) Tj T*
+(Criteria | Rough Order of Magnitude \(ROM\) |) Tj T*
+(| :--- | :--- | :--- | :--- |) Tj T*
+(| Tier 1: Shadow-Mode Cyber-Deception & WORM Audit Enclave | 90 Days \(3 Months\) | Air-gapped) Tj T*
+(bare-metal deployment of SovereignMerkleLedger + SovereignDeceptionTarpit on read-only SCADA) Tj T*
+(tap; live ingestion of installation telemetry; 100% spoof trapping verification & RMF/ATO) Tj T*
+(evidence package. | $245,000 *\(Firm-Fixed-Price / Milestone\)* |) Tj T*
+(| Tier 2: Single-Substation / Microgrid Sub-16ms Islanding Pilot | 180 Days \(6 Months\) | Full) Tj T*
+(Tier 1 enclave plus hardware-in-the-loop \(HIL\) sub-16ms islanding interlock integration) Tj T*
+(\(Utility / PV / BESS / Aux Gen\), dual-operator out-of-band override console, and live) Tj T*
+(grid-collapse fault validation. | $685,000 *\(Prototype OT / Milestone\)* |) Tj T*
+(| Tier 3: Multi-Node Installation Resilience & Brigade/Wing Rollout | 12 Months \(Base +) Tj T*
+(Option\) | Multi-substation federated WORM Merkle synchronization across 4+ critical facility) Tj T*
+(nodes, automated compliance telemetry export, operator training, and full Authority to Operate) Tj T*
+(\(ATO\) transition support. | $1,450,000 *\(Prototype OT / Production Transition\)* |) Tj T*
+() Tj T*
+(#### Rapid Acquisition & Onboarding Timeline \(Post-Selection\)) Tj T*
+(1. Days 1-5 \(Customer Scoping & SOW Alignment\): 30-minute technical scoping session with) Tj T*
+(installation energy/cyber stakeholders to lock site bus architecture and milestone acceptance) Tj T*
+(criteria.) Tj T*
+(2. Days 6-15 \(Tradewinds OT / Commercial Award Execution\): Direct award execution under 10) Tj T*
+(U.S.C. Sec. 4022 / Tradewinds Marketplace procedures \(CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | SPRS:) Tj T*
+(110/110\).) Tj T*
+(3. Day 30 \(Initial Operating Capability on Site\): Bare-metal control plane staged in) Tj T*
+(shadow-audit mode with live SHA-256 Merkle verification active from Block #1.) Tj T*
+ET
+endstream endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000259 00000 n 
+0000000395 00000 n 
+0000004617 00000 n 
+0000004753 00000 n 
+trailer << /Size 9 /Root 1 0 R >>
+startxref
+7427
+%%EOF

@@ -81,3 +81,7 @@ All four flagship submission packages below are dynamically anchored to the live
 ### Consolidated Executive Submission Dossier & SHA-256 Checksum Manifest (5,577,003 WORM Blocks | 55 Stress Arenas)
 - **Markdown Source:** `governance/dossiers/2026-11-19_Project_EBONY_Consolidated_Executive_Submission_Dossier_55_Arenas.md` (SHA-256: `ef682c6396bff68642b0f729eab2a8c7def2bb636c6894517e9bec1f7083c701`)
 - **Print-Ready PDF Bundle:** `governance/dossiers/2026-11-19_Project_EBONY_Consolidated_Executive_Submission_Dossier_55_Arenas.pdf` (SHA-256: `5ee7434f4f1b24fe89828ff8d54e3b0d5e1dcfb4446ccaa235f120f5a168edd6`)
+
+### Post-Awardable DoD Buyer Capability & ROM Pilot Pricing One-Pager (Docket 10-26-4046)
+- **Markdown Brief:** `governance/briefs/2026-11-19_Project_EBONY_Post_Awardable_DoD_Buyer_Capability_and_ROM_Pricing_OnePager.md` (SHA-256: `e49cc32b62d14d5592db97654ca0c792db966998a325d43915864e71387327ba`)
+- **Print-Ready 2-Page PDF:** `governance/briefs/2026-11-19_Project_EBONY_Post_Awardable_DoD_Buyer_Capability_and_ROM_Pricing_OnePager.pdf` (SHA-256: `5ee7434f4f1b24fe89828ff8d54e3b0d5e1dcfb4446ccaa235f120f5a168edd6`)
