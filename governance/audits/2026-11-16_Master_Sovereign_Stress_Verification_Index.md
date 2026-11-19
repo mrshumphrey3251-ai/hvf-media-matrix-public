@@ -113,3 +113,7 @@
 ### Stress Arena 53 — Hardened Multi-Process Serialization & Controlled WAL Pacing Siege (1 to 16 Concurrent OS Writers)
 - **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_53_Hardened_MultiProcess_16_Writer_Siege.md`
 - **Verified Result:** Upgraded `scada_engine/merkle_ingest_bridge.py` with atomic `BEGIN IMMEDIATE` inter-process write serialization and deterministic `1,000`-block `WAL` checkpointing; re-ran the `1` to `16` simultaneous OS process siege with `0` WORM collisions, `0` data corruption, and `Valid: True` across the full WORM Merkle chain.
+
+### Stress Arena 54 — Historic 1,000,000-Block WORM SHA-256 Merkle Milestone (16-Writer Multi-Process Sprint)
+- **Archived Receipt:** `governance/audits/2026-11-18_Stress_Arena_54_One_Million_Block_WORM_Milestone.md`
+- **Verified Result:** Executed a `16`-writer bare-metal multi-process sprint committing `+87,521` contended blocks (265.1 blk/s sustained, 286.3 blk/s peak) to cross **`1,000,041` sequential WORM SHA-256 Merkle blocks** in `matrix_ledger.db` (`Block #1,000,000` SHA-256: `0236b82ec965146931cde942733b7dffbdc2f58ecc95b2812552b0f3e5de5361`) with `0` WORM collisions, `875,210 / 875,210` spoofs trapped (  actuator bleeds), and `Valid: True` verified genesis-to-head.
