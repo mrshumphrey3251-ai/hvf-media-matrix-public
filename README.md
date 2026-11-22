@@ -163,3 +163,7 @@ Under **10 U.S.C. Â§ 4022**, Humphrey Virtual Farms LLC proposes a **12-Month,
 
 * **Post-Awardable DoD Buyer Capability & ROM Pilot Pricing One-Pager (Markdown):** `governance/briefs/2026-11-19_Project_EBONY_Post_Awardable_DoD_Buyer_Capability_and_ROM_Pricing_OnePager.md`
 * **Post-Awardable DoD Buyer Capability & ROM Pilot Pricing One-Pager (2-Page PDF):** `governance/briefs/2026-11-19_Project_EBONY_Post_Awardable_DoD_Buyer_Capability_and_ROM_Pricing_OnePager.pdf`
+
+### Gold-Standard Final DoD Tradewinds Resubmission Dossier (Docket 10-26-4046)
+* **Gold-Standard Final Resubmission Dossier (Markdown):** `governance/dossiers/2026-11-22_Project_EBONY_Gold_Standard_Final_TSM_Resubmission_Dossier.md`
+* **Gold-Standard Final Resubmission Dossier (Print-Ready PDF):** `governance/dossiers/2026-11-22_Project_EBONY_Gold_Standard_Final_TSM_Resubmission_Dossier.pdf`

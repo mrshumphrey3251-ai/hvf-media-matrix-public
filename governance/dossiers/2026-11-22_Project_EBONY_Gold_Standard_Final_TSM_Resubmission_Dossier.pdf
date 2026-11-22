@@ -1,0 +1,325 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R] /Count 5 >> endobj
+3 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+4 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Courier >> endobj
+5 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >> endobj
+6 0 obj << /Length 4127 >> stream
+BT
+/F2 8.2 Tf
+36 760 Td
+12.5 TL
+(PROJECT E.B.O.N.Y. | DOD TRADEWINDS DOCKET 10-26-4046 | CAGE: 1AHA8 | PAGE 1/5) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(# PROJECT E.B.O.N.Y. - GOLD-STANDARD FINAL SUBMISSION DOSSIER) Tj T*
+(## DoD Tradewinds Solutions Marketplace \(Docket 10-26-4046\) - Complete Evaluator-Aligned) Tj T*
+(Evidence, Plan of Inclusion, TRL 4 -> TRL 6 HIL Maturation & DFARS Acquisition Package) Tj T*
+() Tj T*
+(* Prime Contractor: Humphrey Virtual Farms LLC \(CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5\)) Tj T*
+(* Submission Version: Final Gold-Standard Resubmission \(Docket 10-26-4046\)) Tj T*
+(* Compilation Timestamp \(UTC\): 2026-11-22T16:18:17Z) Tj T*
+(* Verification Baseline: 5,577,006 Sequential WORM SHA-256 Merkle Blocks \(PRAGMA) Tj T*
+(integrity_check = OK\) | 59 Empirical Bare-Metal Stress Arenas) Tj T*
+(* Live Merkle Head \(Block #5,577,006\):) Tj T*
+(d3bca5eafdee96d5dcec3cbcb035ffae4aba3792101024547d99be46805d252d) Tj T*
+(* Detached Out-of-Band Cryptographic Anchor \(SHA-256 HMAC\):) Tj T*
+(582e443283897d91876d47b00979af9ab6e72cdda9f7ea620752b5e55e63afdb) Tj T*
+(* Reproducible Bare-Metal Proof Script: scripts/prove_every_tsm_claim_arena59.py) Tj T*
+(* Cybersecurity Compliance Posture: NIST SP 800-171 Rev. 2 \(SPRS Score: 110 / 110\) | CMMC) Tj T*
+(Level 2 Self-Assessment | 100% Offline Air-Gapped Execution) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## CRITERION 1: DEFINING THE PROBLEM) Tj T*
+(### Representative DoD Substation Topology, Dedicated Relays vs. Supervisory SCADA Gap, Shared) Tj T*
+(Root Cause & IEEE 1584 / $I^2t$ Proof) Tj T*
+() Tj T*
+(#### 1.1 Resolving Dedicated Protective Relays vs. Compromised OT/SCADA Supervisory Control) Tj T*
+(Dedicated microprocessor protective relays \(such as SEL-751 feeder relays\) detect local) Tj T*
+(hardwired overcurrent faults in 0.25-0.5 cycles \(4-8 ms\) and trip local circuit breakers in) Tj T*
+(40-58 ms total clearing time when uncompromised. Project E.B.O.N.Y. does not claim to replace) Tj T*
+(local hardwired overcurrent relays. Instead, Project E.B.O.N.Y. closes the 70-150+ ms) Tj T*
+(unauthenticated supervisory OT/SCADA control gap governing multi-source DoD installation) Tj T*
+(microgrids \(Utility Feeder + Solar PV + Battery Energy Storage System [BESS] + Backup Diesel) Tj T*
+(Generators\), where islanding transfer-trip, inverter current-limiting, and load-shedding rely) Tj T*
+(on polled Modbus TCP / DNP3 telemetry \(50-100 ms polling intervals + 20-50 ms PLC scan cycles\)) Tj T*
+(lacking per-frame cryptographic authentication.) Tj T*
+() Tj T*
+(#### 1.2 Single Shared Operational Root Cause Across Cyber Spoofing, Electrical Faults &) Tj T*
+(Thermal Excursions) Tj T*
+(Adversarial cyber manipulation, multi-cycle arc-flash escalation, and conductor/transformer) Tj T*
+(thermal excursions share one single operational root cause:) Tj T*
+(> Shared Root Cause: *Unauthenticated trust in supervisory SCADA/PLC telemetry and commands) Tj T*
+(across shared OT network buses, combined with a > 16.0 ms \(1 60 Hz cycle\) deterministic gap) Tj T*
+(between anomaly detection, cryptographic validation, and protective trip assertion.*) Tj T*
+() Tj T*
+(When a living-off-the-land adversary \(CISA Advisory AA24-038A - Volt Typhoon\) injects spoofed) Tj T*
+(telemetry masking a voltage sag or issues an unauthorized out-of-phase breaker command, the) Tj T*
+(compromised or polled supervisory controller fails to assert a protective trip within a single) Tj T*
+(60 Hz cycle \(16.67 ms\), directly driving multi-cycle arc-flash energy \($E \\propto I_{arc}) Tj T*
+(imes t_{arc}$\) and adiabatic thermal heating \($\\int i\(t\)^2 dt = I^2 t$\).) Tj T*
+() Tj T*
+(#### 1.3 Representative DoD Installation Substation Configuration & Empirical Fault Equations) Tj T*
+(* Representative Topology: 13.8 kV utility point-of-common-coupling \(PCC\) stepping down via a) Tj T*
+(5 MVA \(13.8 kV / 480 V, Z = 5.75%\) pad-mount transformer to a 480 V critical-mission) Tj T*
+(distribution bus \(6,014 A rated full-load current; 104,592 A maximum bolted 3-phase fault) Tj T*
+ET
+endstream endobj
+7 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >> endobj
+8 0 obj << /Length 3976 >> stream
+BT
+/F2 8.2 Tf
+36 760 Td
+12.5 TL
+(PROJECT E.B.O.N.Y. | DOD TRADEWINDS DOCKET 10-26-4046 | CAGE: 1AHA8 | PAGE 2/5) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(current\) feeding a 2.5 MW backup diesel generator, 1.5 MW BESS inverter bank, and Tier-III) Tj T*
+(C2/SCADA loads.) Tj T*
+(* Verified Quantitative Impact \(Arena 59 Proof 1\):) Tj T*
+(  1. IEEE Std 1584-2018 Supervisory Arc-Flash Duration Reduction: Cutting supervisory trip) Tj T*
+(assertion from 100 ms \(6 cycles\) to < 16.0 ms \(1 cycle\) reduces the supervisory control) Tj T*
+(contribution to arc-flash incident energy by 84.0% \($E \\propto I_{arc} 	imes t_{arc}$\).) Tj T*
+(  2. IEEE C57.91 Adiabatic Busbar Thermal $I^2t$ Reduction: Limiting fault persistence from) Tj T*
+(100 ms to 16.0 ms reduces thermal let-through energy by 6.25x \($W = \\int_0^{t_{clear}} i\(t\)^2) Tj T*
+(dt$\).) Tj T*
+() Tj T*
+(#### 1.4 Authoritative Government & Standards Traceability Matrix) Tj T*
+(| Source Citation | Specific Documented Finding | Project E.B.O.N.Y. Engineering Alignment |) Tj T*
+(| :--- | :--- | :--- |) Tj T*
+(| GAO-21-81 *\(Oct 2020\)* | DoD operational systems exhibited unencrypted OT communications,) Tj T*
+(shared credentials, and lack of tamper detection. | Zero shared credentials; per-epoch) Tj T*
+(HMAC-SHA256 authentication; immutable WORM SHA-256 Merkle ledger. |) Tj T*
+(| GAO-24-106137 *\(Feb 2024\)* | DoD installations face escalating grid outages and microgrid) Tj T*
+(control vulnerabilities requiring verified islanding. | Autonomous air-gapped islanding logic) Tj T*
+(\(< 16.0 ms cycle budget\) with zero external cloud dependency. |) Tj T*
+(| CISA AA24-038A *\(Feb 2024\)* | PRC Volt Typhoon actors pre-position inside critical) Tj T*
+(infrastructure OT/IT networks using valid credentials for disruptive cyber-kinetic effects. |) Tj T*
+(Strictly read-only offline AI diagnostics; SovereignDeceptionTarpit \(0 actuator bleeds\);) Tj T*
+(out-of-band human key gating. |) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## CRITERION 2: ACCELERATING THE MISSION) Tj T*
+(### Stage-by-Stage Bare-Metal Measurements, Plan of Inclusion \(Relay Integration & Fail-Safe\),) Tj T*
+(Privileged-User Tamper Guard & TRL 4 -> TRL 6 HIL Maturation Plan) Tj T*
+() Tj T*
+(#### 2.1 Complete 5-Stage Protective Workflow Benchmark \(10,000 Bare-Metal Trials - Arena 59\)) Tj T*
+(To eliminate all ambiguity between verified software execution \(TRL 4\) and physical) Tj T*
+(high-voltage switching hardware \(TRL 5 -> TRL 6\), every stage of the protective workflow is) Tj T*
+(benchmarked independently in scripts/prove_every_tsm_claim_arena59.py:) Tj T*
+() Tj T*
+(| Pipeline Stage | Function Executed | Verified Bare-Metal Latency \(TRL 4\) | Maturity) Tj T*
+(Classification |) Tj T*
+(| :--- | :--- | :--- | :--- |) Tj T*
+(| Stage 1: Detection | Telemetry frame parse & < 432 V undervoltage check | p50 = 0.30 us |) Tj T*
+(Verified TRL 4 Bare-Metal |) Tj T*
+(| Stage 2: Cryptographic Validation | Per-epoch HMAC-SHA256 constant-time signature verify |) Tj T*
+(p50 = 2.10 us | Verified TRL 4 Bare-Metal |) Tj T*
+(| Stage 3: Deterministic Decision | Interlock state evaluation \(trip_cmd\) | p50 = 0.10 us |) Tj T*
+(Verified TRL 4 Bare-Metal |) Tj T*
+(| Stage 4: Trip Command Assertion | Hardware trip register / GPIO command word assertion) Tj T*
+(\(0xAA55\) | p50 = 0.10 us | Verified TRL 4 Bare-Metal |) Tj T*
+(| Combined Fast Control Loop \(Stages 1-4\) | Complete detection-through-trip-assertion software) Tj T*
+(loop | p50 = 2.60 us \\| p99 = 4.50 us | Verified TRL 4 Bare-Metal |) Tj T*
+(| Stage 5: Immutable Audit Seal | Asynchronous WORM SHA-256 Merkle block commit \(500 trials\) |) Tj T*
+(p50 = 6.04 ms | Verified TRL 4 Bare-Metal |) Tj T*
+(| Stage 6: Physical Switch / Breaker Cutoff | Solid-state/MOSFET gate transition \(36.75 ns) Tj T*
+(device spec\) + breaker opening | *Scheduled for Phase I Hardware-in-the-Loop \(HIL\) testing* |) Tj T*
+ET
+endstream endobj
+9 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 10 0 R >> endobj
+10 0 obj << /Length 4193 >> stream
+BT
+/F2 8.2 Tf
+36 760 Td
+12.5 TL
+(PROJECT E.B.O.N.Y. | DOD TRADEWINDS DOCKET 10-26-4046 | CAGE: 1AHA8 | PAGE 3/5) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(TRL 5 $) Tj T*
+(ightarrow$ TRL 6 Deliverable |) Tj T*
+() Tj T*
+(#### 2.2 Plan of Inclusion: How Project E.B.O.N.Y. Integrates Into Existing DoD Substations) Tj T*
+(* Hardware Platform: Industrial ruggedized DIN-rail x86_64/ARM64 controller with hardware TPM) Tj T*
+(2.0, dual optically isolated Ethernet/RS-485 interfaces, hardware watchdog timer, and) Tj T*
+(optically isolated dry-contact / solid-state trip outputs.) Tj T*
+(* Non-Disruptive Relay Integration \(SEL-751 / SEL-351\): Project E.B.O.N.Y. installs as a) Tj T*
+(parallel authenticated supervisory gateway and high-speed trip interlock. It never disables or) Tj T*
+(bypasses existing hardwired local relay overcurrent trips.) Tj T*
+(* Fail-Safe & Functional Safety Mitigation \(IEC 61508 / IEEE C37.90\): Physical trip contacts) Tj T*
+(use fail-safe de-energize-to-trip / hardware watchdog fallback-if the E.B.O.N.Y. controller) Tj T*
+(loses power or suffers a hardware fault, the watchdog relay cleanly releases supervisory) Tj T*
+(override and leaves existing substation protection 100% intact.) Tj T*
+() Tj T*
+(#### 2.3 Privileged-Admin Root Tamper Prevention & Detection \(SovereignOutOfBandAnchor\)) Tj T*
+(In addition to SQLite database triggers \(BEFORE UPDATE, BEFORE DELETE, BEFORE INSERT\) that) Tj T*
+(block 5 / 5 \(100%\) SQL tamper/upsert attempts \(Arena 56\), Project E.B.O.N.Y. solves the) Tj T*
+(privileged root/admin insider threat via Detached Out-of-Band Cryptographic Anchoring) Tj T*
+(\(governance/audits/sovereign_oob_merkle_anchor.json\):) Tj T*
+(1. Every checkpoint signs block_id | timestamp_utc | block_hash with a detached HMAC-SHA256) Tj T*
+(key and transmits the compact anchor across a one-way serial/optical diode to write-once) Tj T*
+(\(WORM\) or HSM storage.) Tj T*
+(2. Empirical Proof \(Arena 59 Proof 3\): When a simulated privileged root admin replaced) Tj T*
+(matrix_ledger.db on disk with a newly forged SQLite ledger containing valid internal SHA-256) Tj T*
+(hashes, verify_oob_anchor\(\) detected the substitution immediately) Tj T*
+(\(PRIVILEGED_ADMIN_DB_REPLACEMENT_OR_ROLLBACK_DETECTED\).) Tj T*
+() Tj T*
+(#### 2.4 Comprehensive Test Coverage vs. Remaining Untested Scope \(59 Stress Arenas\)) Tj T*
+(* Empirically Verified at TRL 4 \(59 Stress Arenas / 5,577,006 WORM Blocks\):) Tj T*
+(  * 1,024-writer OS process concurrency \(2,048 / 2,048 blocks committed, Valid = True - Arena) Tj T*
+(58\).) Tj T*
+(  * 2.0 GB \(2,048 MB\) single-block canonical JSON serialization \(Arena 58\).) Tj T*
+(  * 6.41-hour continuous zero-drift endurance soak \(5,577,000 blocks - Arena 54\).) Tj T*
+(  * 4x \(400%\) CPU core oversubscription \(64 active spin processes $) Tj T*
+(ightarrow$ 50,000 cycles, max = 117.10 us, 0 breaches of 16,000 us - Arena 57\).) Tj T*
+(  * 41.5M+ adversarial tarpit spoof probes across 16 cores \(148,709-193,993 ops/sec, 0) Tj T*
+(actuator bleeds - Arenas 56-57\).) Tj T*
+(* Explicitly Untested Physical Phenomena \(Scheduled for Phase I HIL\):) Tj T*
+(  * High-current \(> 10 kA\) physical arc-flash interruption, physical CT/PT magnetic saturation) Tj T*
+(under DC offset, and IEEE C37.90.2 electromagnetic interference \(EMI\) susceptibility.) Tj T*
+() Tj T*
+(#### 2.5 Phased TRL 4 -> TRL 6 Hardware-in-the-Loop \(HIL\) Maturation Schedule \(180 Days\)) Tj T*
+(| Phase & Window | Target TRL | Hardware & Sensor Integration Scope | Exit Gate Verification) Tj T*
+(Metric |) Tj T*
+(| :--- | :--- | :--- | :--- |) Tj T*
+(| Milestone 1 \(Days 1-45\) | TRL 4 -> TRL 5 | Wire bare-metal controller to CT/PT) Tj T*
+(voltage/current transducers, SEL-751 protective relay, and OPAL-RT / 480 V benchtop HIL) Tj T*
+(simulator. | Verified Modbus TCP / DNP3 frame ingestion and hardware GPIO trip pulse assertion) Tj T*
+(\(< 1.0 ms wire-to-coil\). |) Tj T*
+(| Milestone 2 \(Days 46-120\) | TRL 5 | Execute 500+ representative 480 V undervoltage,) Tj T*
+(phase-loss, and live HMAC-spoof injection scenarios under resistive/inductive loads. | 0 false) Tj T*
+ET
+endstream endobj
+11 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 12 0 R >> endobj
+12 0 obj << /Length 3712 >> stream
+BT
+/F2 8.2 Tf
+36 760 Td
+12.5 TL
+(PROJECT E.B.O.N.Y. | DOD TRADEWINDS DOCKET 10-26-4046 | CAGE: 1AHA8 | PAGE 4/5) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(trips, 0 spoofed actuator actuations, and verified wall-plug power envelope \(28-45 W\). |) Tj T*
+(| Milestone 3 \(Days 121-180\) | TRL 6 | Independent third-party / DoD lab \(USACE ERDC or host) Tj T*
+(installation\) witness testing across full sensor-to-breaker interruption. | Certified < 16.0) Tj T*
+(ms solid-state / < 50 ms mechanical breaker clearing + signed RMF ATO evidence package. |) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## CRITERION 3: ADVANCING THE STATE OF THE ART) Tj T*
+(### Equivalent-Condition 5-Stage Protective Workflow Benchmark & Full-System Power Budget) Tj T*
+() Tj T*
+(#### 3.1 Apples-to-Apples 4-Architecture Comparison Under Identical Compromised-Bus Conditions) Tj T*
+(\(Arena 59 Proof 4\)) Tj T*
+(Rather than comparing uncalibrated vendor marketing numbers, all four architectures were) Tj T*
+(evaluated against the exact same operational scenario \(< 432 V undervoltage fault concurrent) Tj T*
+(with 1,000 spoofed CLOSE_OUT_OF_PHASE packets while completely disconnected from external) Tj T*
+(WAN/cloud networks\):) Tj T*
+() Tj T*
+(| Control / Security Architecture | Disconnected Operation | Cryptographic Spoof Rejection) Tj T*
+(\(1,000 Probes\) | End-to-End Decision-to-Trip Latency | Tamper-Evident Audit |) Tj T*
+(| :--- | :--- | :--- | :--- | :--- |) Tj T*
+(| Conventional Polled PLC \(IEC 61131-3 / Modbus TCP\) | Local only \(no AI\) | 0%) Tj T*
+(\(unauthenticated cleartext coils\) | 70-150+ ms \(poll + scan cycle\) | Mutable local logs |) Tj T*
+(| Passive OT Network Monitor \(NIST SP 800-82 IDS\) | Local span port | Alert-only \(zero inline) Tj T*
+(blocking\) | N/A \(no actuator trip authority\) | Mutable SIEM database |) Tj T*
+(| Cloud-Connected Energy/SIEM Platform | Fails when air-gapped | Fails on WAN sever |) Tj T*
+(250-2,000+ ms \(WAN round-trip\) | External cloud dependency |) Tj T*
+(| Project E.B.O.N.Y. \(Verified TRL 4\) | 100% Air-Gapped | 1,000 / 1,000 \(100%\) trapped in) Tj T*
+(Tarpit | p50 = 5.40 us \(max = 48.50 us\) | WORM SHA-256 Merkle + OOB Anchor |) Tj T*
+() Tj T*
+(#### 3.2 Full-System Wall-Plug Power Budget \(28-45 W Total Enclave\)) Tj T*
+(Accounting for all supporting enclave hardware \(not bare processor TDP\): ruggedized industrial) Tj T*
+(edge compute node \(15 W\), dual optically isolated NICs and one-way serial/optical anchor diode) Tj T*
+(\(8 W\), and industrial AC/DC power supply + transducer conditioning \(5-12 W\) = 28-45 W total) Tj T*
+(continuous wall-plug draw \(< 0.045 kW\), compared to multi-kilowatt rack/middleware server) Tj T*
+(stacks.) Tj T*
+() Tj T*
+(---) Tj T*
+() Tj T*
+(## CRITERION 4: BUSINESS MODEL) Tj T*
+(### Explicit Contract Status Disclosure, Milestone-Gated CLIN Deliverables, DFARS Data Rights) Tj T*
+(& Customer Discovery Evidence) Tj T*
+() Tj T*
+(#### 4.1 Explicit Contract & Funding Disclosure) Tj T*
+(Humphrey Virtual Farms LLC \(CAGE: 1AHA8\) currently holds $0 awarded federal contracts. All) Tj T*
+(CLIN packages and 10 U.S.C. Sec. 4022 Prototype Other Transaction \(OT\) structures below are) Tj T*
+(Proposed Acquisition Options designed for rapid, milestone-gated execution upon "Awardable") Tj T*
+(designation in the Tradewinds Solutions Marketplace.) Tj T*
+() Tj T*
+(#### 4.2 Proposed Milestone-Gated CLIN Acquisition Packages) Tj T*
+(| Proposed CLIN / Tier | Period & Proposed Price | Node Hardware & Software Configuration |) Tj T*
+(Included Support | Concrete Deliverables & Pass/Fail Acceptance Criteria |) Tj T*
+(| :--- | :--- | :--- | :--- | :--- |) Tj T*
+ET
+endstream endobj
+13 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 14 0 R >> endobj
+14 0 obj << /Length 3700 >> stream
+BT
+/F2 8.2 Tf
+36 760 Td
+12.5 TL
+(PROJECT E.B.O.N.Y. | DOD TRADEWINDS DOCKET 10-26-4046 | CAGE: 1AHA8 | PAGE 5/5) Tj T*
+----------------------------------------------------------------------------------------------- Tj T*
+(| CLIN 0001: Tier 1 Benchtop HIL & Digital Twin Pilot | 90 Days \\| $245,000) Tj T*
+(*\(Firm-Fixed-Price\)* | 1 Ruggedized E.B.O.N.Y. Edge Node + SEL-751 / Modbus-DNP3 Adapter Suite) Tj T*
+(+ OOB Anchor Module | 160 Engineering Hours + Weekly Technical Reviews | Deliverables:) Tj T*
+(Benchtop HIL integration, 500-fault test report, SPRS 110/110 SSP/POA&M) Tj T*
+(artifact.<br>Acceptance Criteria: 100% spoof rejection \(0 bleeds\), < 1.0 ms wire-to-trip) Tj T*
+(assertion, 100% OOB anchor pass. |) Tj T*
+(| CLIN 0002: Tier 2 Substation HIL & Microgrid Prototype | 180 Days \\| $685,000 *\(Milestone) Tj T*
+(OT\)* | 3 Ruggedized E.B.O.N.Y. Edge Nodes + Optical Diode OOB Anchor + 480 V HIL Load-Bank) Tj T*
+(Harness | 480 Engineering Hours + On-Site Commissioning | Deliverables: TRL 6 independent) Tj T*
+(witness report, RMF ATO control inheritance package, operator SOPs.<br>Acceptance Criteria:) Tj T*
+(Certified < 16.0 ms solid-state / < 50 ms breaker clearing under load; 28-45 W verified power) Tj T*
+(draw. |) Tj T*
+(| CLIN 0003: Tier 3 Multi-Feeder Installation Prototype \(10 U.S.C. Sec. 4022\) | 12 Months \\|) Tj T*
+($1,450,000 *\(Milestone OT\)* | 10 Production-Hardened Edge Nodes + Enclave Aggregator +) Tj T*
+(Multi-Substation OOB HSM Anchoring | 1,200 Engineering Hours + 12-Month Sustainment |) Tj T*
+(Deliverables: Installation-wide deployment across up to 10 feeders, CVPA cyber test support,) Tj T*
+(production follow-on readiness.<br>Acceptance Criteria: 99.999% uptime over 90-day operational) Tj T*
+(evaluation with 0 unverified actuation events. |) Tj T*
+() Tj T*
+(#### 4.3 DFARS 252.227-7013 / 7014 Software & Data Rights Allocation) Tj T*
+(* Government Purpose Rights \(GPR\): Granted to the U.S. Government on all site-specific HIL) Tj T*
+(integration adapters, substation configuration profiles, RMF/ATO test reports, and 100% of) Tj T*
+(generated WORM Merkle audit logs and sensor telemetry \(eliminating vendor lock-in\).) Tj T*
+(* Restricted Rights \(Commercial Computer Software developed exclusively at private expense\):) Tj T*
+(Retained by Humphrey Virtual Farms LLC \(CAGE: 1AHA8\) on the core SovereignMerkleLedger kernel,) Tj T*
+(SovereignDeceptionTarpit engine, and deterministic interlock runtime, licensed per node with) Tj T*
+(perpetual DoD mission-use options.) Tj T*
+() Tj T*
+(#### 4.4 Dual-Use Commercial & Government Customer Discovery Validation) Tj T*
+(* Origin in Harsh-Environment Structural/Bridge Telemetry: Project E.B.O.N.Y.'s deterministic) Tj T*
+(edge ledger was originally engineered to guarantee tamper-proof sensor provenance in) Tj T*
+(zero-connectivity bridge and civil-infrastructure inspection-proving reliable bare-metal) Tj T*
+(capture in harsh field environments prior to specialization for DoD OT/SCADA energy protection.) Tj T*
+(* Active Government & Dual-Use Engagement Pipeline:) Tj T*
+(  * State Critical Infrastructure Leadership: Scheduled executive pilot-scoping briefing for) Tj T*
+(December 8-10, 2026 with Rob Teel, Chief Technology Officer, Oklahoma Department of Commerce) Tj T*
+(\(Rob.Teel@okcommerce.gov\) regarding Oklahoma HB 2992 sub-cycle critical infrastructure) Tj T*
+(protection.) Tj T*
+(  * Federal & Dual-Use Sector Outreach: Technical white papers and capability briefs submitted) Tj T*
+(to USACE ERDC and DIU, alongside documented public operator demand across municipal) Tj T*
+(water/wastewater treatment, hydroelectric dam spillways, and nuclear isolation \(10 CFR 73.54\).) Tj T*
+ET
+endstream endobj
+xref
+0 15
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000141 00000 n 
+0000000211 00000 n 
+0000000279 00000 n 
+0000000415 00000 n 
+0000004594 00000 n 
+0000004730 00000 n 
+0000008758 00000 n 
+0000008895 00000 n 
+0000013141 00000 n 
+0000013279 00000 n 
+0000017044 00000 n 
+0000017182 00000 n 
+trailer << /Size 15 /Root 1 0 R >>
+startxref
+20935
+%%EOF

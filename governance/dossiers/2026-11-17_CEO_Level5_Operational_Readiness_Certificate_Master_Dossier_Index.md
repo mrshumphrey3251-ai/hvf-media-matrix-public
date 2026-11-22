@@ -85,3 +85,7 @@ All four flagship submission packages below are dynamically anchored to the live
 ### Post-Awardable DoD Buyer Capability & ROM Pilot Pricing One-Pager (Docket 10-26-4046)
 - **Markdown Brief:** `governance/briefs/2026-11-19_Project_EBONY_Post_Awardable_DoD_Buyer_Capability_and_ROM_Pricing_OnePager.md` (SHA-256: `e49cc32b62d14d5592db97654ca0c792db966998a325d43915864e71387327ba`)
 - **Print-Ready 2-Page PDF:** `governance/briefs/2026-11-19_Project_EBONY_Post_Awardable_DoD_Buyer_Capability_and_ROM_Pricing_OnePager.pdf` (SHA-256: `5ee7434f4f1b24fe89828ff8d54e3b0d5e1dcfb4446ccaa235f120f5a168edd6`)
+
+### Gold-Standard Final TSM Resubmission Dossier (Docket 10-26-4046 | 59 Stress Arenas | 5,577,007 Blocks)
+- **Markdown Source:** `governance/dossiers/2026-11-22_Project_EBONY_Gold_Standard_Final_TSM_Resubmission_Dossier.md` (SHA-256: `98fe9f9cfd4763b81ae2472151a2a64265b13d62bab152799ed155e078658cd0`)
+- **Print-Ready PDF Bundle:** `governance/dossiers/2026-11-22_Project_EBONY_Gold_Standard_Final_TSM_Resubmission_Dossier.pdf` (SHA-256: `dc5fea88bb2fe7dd25daa6e51d2b01fe010d9e263832d9483befe12e696116b7`)
