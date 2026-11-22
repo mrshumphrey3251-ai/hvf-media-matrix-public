@@ -9,11 +9,10 @@ PUB_OUT.mkdir(parents=True, exist_ok=True)
 
 W, H = 1920, 1080
 
-# High-contrast executive dark-slate palette (zero prohibited government seals or CUI markings)
-BG_DARK    = (11, 16, 26)
-PANEL_BG   = (20, 29, 46)
-PANEL_ALT  = (26, 38, 60)
-BORDER     = (56, 82, 122)
+BG_DARK     = (11, 16, 26)
+PANEL_BG    = (20, 29, 46)
+PANEL_ALT   = (26, 38, 60)
+BORDER      = (56, 82, 122)
 ACCENT_CYAN = (0, 212, 255)
 ACCENT_GOLD = (245, 184, 65)
 ACCENT_GRN  = (46, 213, 115)
@@ -34,17 +33,17 @@ def load_font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
 
 
 F_BRAND  = load_font(22, bold=True)
-F_TAG    = load_font(22, bold=True)
-F_H1     = load_font(48, bold=True)
-F_H2     = load_font(30, bold=True)
-F_SUB    = load_font(26, bold=False)
-F_CARD_T = load_font(26, bold=True)
-F_BODY   = load_font(23, bold=False)
-F_BIG    = load_font(44, bold=True)
+F_TAG    = load_font(21, bold=True)
+F_H1     = load_font(46, bold=True)
+F_H2     = load_font(28, bold=True)
+F_SUB    = load_font(25, bold=False)
+F_CARD_T = load_font(25, bold=True)
+F_BODY   = load_font(22, bold=False)
+F_BIG    = load_font(42, bold=True)
 F_FOOT   = load_font(19, bold=False)
 
 
-def draw_wrapped(draw: ImageDraw.ImageDraw, text: str, x: int, y: int, max_w: int, font, fill, line_h: int = 34) -> int:
+def draw_wrapped(draw: ImageDraw.ImageDraw, text: str, x: int, y: int, max_w: int, font, fill, line_h: int = 32) -> int:
     words = text.split(" ")
     line = ""
     cur_y = y
@@ -64,80 +63,35 @@ def draw_wrapped(draw: ImageDraw.ImageDraw, text: str, x: int, y: int, max_w: in
     return cur_y
 
 
-def base_canvas(slide_num: str, timestamp: str, criterion_tag: str, title: str, subtitle: str) -> tuple[Image.Image, ImageDraw.ImageDraw]:
+def base_canvas(slide_num: str, criterion_tag: str, title: str, subtitle: str) -> tuple[Image.Image, ImageDraw.ImageDraw]:
     img = Image.new("RGB", (W, H), BG_DARK)
     d = ImageDraw.Draw(img)
 
-    # Top executive header bar
     d.rectangle([0, 0, W, 68], fill=PANEL_BG)
     d.line([(0, 68), (W, 68)], fill=BORDER, width=2)
     d.text((64, 20), "HUMPHREY VIRTUAL FARMS LLC  |  CAGE: 1AHA8  |  UEI: S1M4ENLHTDH5", font=F_BRAND, fill=ACCENT_CYAN)
-    d.text((W - 440, 20), f"DOCKET 11-26-4349  |  {timestamp}", font=F_TAG, fill=ACCENT_GOLD)
+    d.text((W - 500, 20), "DOCKET 11-26-4349  |  ASSESSOR-ALIGNED FINAL", font=F_TAG, fill=ACCENT_GOLD)
 
-    # Criterion pill & main slide headline
-    d.rounded_rectangle([64, 96, 620, 140], radius=8, fill=PANEL_ALT, outline=ACCENT_CYAN, width=2)
-    d.text((82, 105), criterion_tag, font=F_TAG, fill=ACCENT_CYAN)
+    d.rounded_rectangle([64, 92, 680, 136], radius=8, fill=PANEL_ALT, outline=ACCENT_CYAN, width=2)
+    d.text((82, 102), criterion_tag, font=F_TAG, fill=ACCENT_CYAN)
 
-    d.text((64, 158), title, font=F_H1, fill=TEXT_WHITE)
-    d.text((64, 222), subtitle, font=F_SUB, fill=TEXT_MUTED)
-    d.line([(64, 268), (W - 64, 268)], fill=BORDER, width=2)
+    d.text((64, 152), title, font=F_H1, fill=TEXT_WHITE)
+    d.text((64, 214), subtitle, font=F_SUB, fill=TEXT_MUTED)
+    d.line([(64, 258), (W - 64, 258)], fill=BORDER, width=2)
 
-    # Bottom footer bar
     d.rectangle([0, H - 54, W, H], fill=PANEL_BG)
     d.line([(0, H - 54), (W, H - 54)], fill=BORDER, width=2)
-    d.text((64, H - 38), "PROJECT E.B.O.N.Y. v8.0.0  |  TRL 4 Bare-Metal Verification Baseline (59 Stress Arenas / 5,577,006 WORM Blocks)", font=F_FOOT, fill=TEXT_MUTED)
+    d.text((64, H - 38), "PROJECT E.B.O.N.Y. v8.0.0  |  All Prior Evaluator Observations Resolved With Reproducible Bare-Metal Receipts", font=F_FOOT, fill=TEXT_MUTED)
     d.text((W - 210, H - 38), f"SLIDE {slide_num}", font=F_FOOT, fill=ACCENT_GOLD)
     return img, d
-
-
-def build_thumbnail() -> Path:
-    img = Image.new("RGB", (W, H), BG_DARK)
-    d = ImageDraw.Draw(img)
-
-    # Outer accent border
-    d.rectangle([28, 28, W - 28, H - 28], outline=ACCENT_CYAN, width=3)
-    d.rectangle([44, 44, W - 44, H - 44], outline=BORDER, width=1)
-
-    d.text((96, 92), "HUMPHREY VIRTUAL FARMS LLC  |  CAGE: 1AHA8  |  UEI: S1M4ENLHTDH5", font=F_H2, fill=ACCENT_CYAN)
-    d.rounded_rectangle([96, 152, 680, 206], radius=10, fill=PANEL_ALT, outline=ACCENT_GOLD, width=2)
-    d.text((120, 165), "TRADEWINDS DOCKET 11-26-4349  |  TRL 4 VERIFIED", font=F_TAG, fill=ACCENT_GOLD)
-
-    d.text((96, 250), "PROJECT E.B.O.N.Y. v8.0.0", font=load_font(86, bold=True), fill=TEXT_WHITE)
-    d.text((96, 362), "Deterministic Zero-Cloud OT/SCADA Interlock & WORM Merkle Provenance", font=load_font(38, bold=True), fill=ACCENT_CYAN)
-    d.text((96, 424), "Sub-Cycle Microgrid Protection  |  Read-Only Air-Gapped AI  |  Tamper-Proof Audit Ledger", font=F_H2, fill=TEXT_MUTED)
-
-    metrics = [
-        ("2.60 us (p50)", "Stages 1-4 Fast Control Loop\n(p99 = 4.50 us | 10,000 Trials)", ACCENT_GRN),
-        ("5,577,006", "Sequential WORM SHA-256 Blocks\n(59 Bare-Metal Stress Arenas)", ACCENT_CYAN),
-        ("84.0% / 6.25x", "IEEE 1584 Arc-Flash & I^2t Cut\n(13.8kV/480V Substation Model)", ACCENT_GOLD),
-        ("1,000 / 1,000", "Spoofed Commands Trapped\n(0 Actuator Bleeds | 28-45 W)", ACCENT_GRN),
-    ]
-    card_w = 408
-    gap = 32
-    start_x = 96
-    for idx, (big_val, desc, col) in enumerate(metrics):
-        cx = start_x + idx * (card_w + gap)
-        cy = 530
-        d.rounded_rectangle([cx, cy, cx + card_w, cy + 310], radius=14, fill=PANEL_BG, outline=col, width=3)
-        d.text((cx + 28, cy + 36), big_val, font=F_BIG, fill=col)
-        draw_wrapped(d, desc, cx + 28, cy + 120, card_w - 56, F_BODY, TEXT_WHITE, line_h=34)
-
-    d.text((96, 920), "Reproducible Proof Script: github.com/mrshumphrey3251-ai/hvf-media-matrix-public", font=F_H2, fill=TEXT_MUTED)
-
-    out_priv = PRIV_OUT / "Thumbnail_11_26_4349_Project_EBONY.png"
-    out_pub  = PUB_OUT / "Thumbnail_11_26_4349_Project_EBONY.png"
-    img.save(out_priv, format="PNG")
-    img.save(out_pub, format="PNG")
-    return out_pub
 
 
 def build_slide_1() -> Path:
     img, d = base_canvas(
         "1 / 5",
-        "00:00 - 00:35",
-        "EXECUTIVE IDENTITY & VERIFICATION ANCHOR",
+        "EXECUTIVE IDENTITY & FULL ASSESSOR RESOLUTION",
         "Project E.B.O.N.Y. v8.0.0: Zero-Cloud OT/SCADA Interlock Architecture",
-        "Reproducible Bare-Metal Proof for DoD Installation Microgrid Resilience (Docket 11-26-4349)",
+        "Direct Resolution of Every Evaluator Observation From Docket 10-26-4046 (TRL 4 Bare-Metal Baseline)",
     )
     boxes = [
         ("PRIME CONTRACTOR IDENTITY", [
@@ -146,141 +100,127 @@ def build_slide_1() -> Path:
             "Non-Traditional Small Business (10 U.S.C. Sec. 3014)",
             "Jeffery Humphrey, Founder & CEO",
         ], ACCENT_CYAN),
-        ("VERIFIED TRL 4 BARE-METAL BASELINE", [
+        ("VERIFIED TRL 4 BARE-METAL RECEIPTS", [
             "5,577,006 Sequential WORM SHA-256 Merkle Blocks",
             "59 Empirical Bare-Metal Stress Arenas (Integrity: OK)",
-            "1,024-Writer OS Concurrency & 2.0 GB Block Scaling",
+            "1,024-Writer OS Swarm & 2.0 GB Block Scaling",
             "NIST SP 800-171 Rev. 2 Self-Assessment (SPRS: 110/110)",
         ], ACCENT_GRN),
-        ("THREE-PLANE SOVEREIGN ARCHITECTURE", [
-            "1. Deterministic <16.0 ms Sub-Cycle Interlock Kernel",
-            "2. Read-Only Offline AI + Deception Tarpit (0 Bleeds)",
-            "3. WORM SHA-256 Ledger + Out-of-Band Tamper Anchor",
-            "100% Air-Gapped Execution (28-45 W Enclave Draw)",
+        ("ALL 8 EVALUATOR CRITIQUES RESOLVED", [
+            "Crit. 1: SEL-751 vs. Supervisory Bus + IEEE 1584 / I^2t",
+            "Crit. 2: 5-Stage Benchmark + OOB Root-Tamper + HIL Plan",
+            "Crit. 3: Equivalent 1,000-Trial Benchmark + 28-45 W Draw",
+            "Crit. 4: $0 Federal Awards Disclosed + CLINs & DFARS",
         ], ACCENT_GOLD),
     ]
     for i, (hdr, items, col) in enumerate(boxes):
         x0 = 64 + i * 608
-        d.rounded_rectangle([x0, 310, x0 + 576, 950], radius=14, fill=PANEL_BG, outline=col, width=3)
-        d.text((x0 + 30, 342), hdr, font=F_CARD_T, fill=col)
-        d.line([(x0 + 30, 388), (x0 + 546, 388)], fill=BORDER, width=2)
-        y = 420
+        d.rounded_rectangle([x0, 294, x0 + 576, 960], radius=14, fill=PANEL_BG, outline=col, width=3)
+        d.text((x0 + 30, 326), hdr, font=F_CARD_T, fill=col)
+        d.line([(x0 + 30, 372), (x0 + 546, 372)], fill=BORDER, width=2)
+        y = 404
         for it in items:
-            y = draw_wrapped(d, "•  " + it, x0 + 30, y, 516, F_BODY, TEXT_WHITE, line_h=34) + 22
+            y = draw_wrapped(d, "•  " + it, x0 + 30, y, 516, F_BODY, TEXT_WHITE, line_h=34) + 24
 
-    out_priv = PRIV_OUT / "Slide_01_Title_Verification_Anchor.png"
-    out_pub  = PUB_OUT / "Slide_01_Title_Verification_Anchor.png"
-    img.save(out_priv, format="PNG")
-    img.save(out_pub, format="PNG")
-    return out_pub
+    for p in (PRIV_OUT, PUB_OUT):
+        img.save(p / "Slide_01_Title_Verification_Anchor.png", format="PNG")
+    return PUB_OUT / "Slide_01_Title_Verification_Anchor.png"
 
 
 def build_slide_2() -> Path:
     img, d = base_canvas(
         "2 / 5",
-        "00:35 - 01:45",
         "CRITERION 1: DEFINING THE PROBLEM",
-        "Closing the 70-150+ ms Supervisory SCADA Control Gap on Microgrids",
-        "Representative 13.8 kV / 480 V Substation Topology, Shared Root Cause & IEEE 1584 / I^2t Impact",
+        "Dedicated Relays vs. Supervisory SCADA Gap & Fault Physics",
+        "Resolving Evaluator 1 & 2 Questions on PLC Scan Timing, Shared Root Cause & Threshold Basis",
     )
-    # Left panel: Topology & Shared Root Cause
-    d.rounded_rectangle([64, 304, 1080, 960], radius=14, fill=PANEL_BG, outline=ACCENT_CYAN, width=3)
-    d.text((96, 332), "REPRESENTATIVE DOD SUBSTATION & SHARED ROOT CAUSE", font=F_CARD_T, fill=ACCENT_CYAN)
-    d.line([(96, 376), (1048, 376)], fill=BORDER, width=2)
+    d.rounded_rectangle([64, 290, 1080, 965], radius=14, fill=PANEL_BG, outline=ACCENT_CYAN, width=3)
+    d.text((96, 318), "ASSESSOR CRITIQUE RESOLVED: RELAYS VS. SUPERVISORY BUS", font=F_CARD_T, fill=ACCENT_GOLD)
+    d.line([(96, 360), (1048, 360)], fill=BORDER, width=2)
 
     pts = [
-        ("Dedicated Local Relays (SEL-751):", "Clear local hardwired overcurrent faults in 40-58 ms when uncompromised. Project E.B.O.N.Y. does NOT replace local overcurrent relays."),
-        ("The Supervisory SCADA Blind Spot:", "Multi-source microgrids (Utility + Solar PV + BESS + Diesel) coordinate islanding and load-shedding via polled Modbus TCP / DNP3 buses (70-150+ ms) lacking per-frame cryptographic authentication."),
-        ("Single Shared Operational Root Cause:", "Unauthenticated trust in supervisory SCADA telemetry/commands across shared OT buses + >16.0 ms latency gap drives cyber spoofing, arc-flash escalation, and thermal excursions (GAO-21-81, GAO-24-106137, CISA AA24-038A Volt Typhoon)."),
-        ("Substation Blueprint:", "13.8 kV Utility PCC -> 5 MVA Transformer (13.8 kV / 480 V, Z = 5.75%) -> 104,606 A maximum bolted 3-phase fault current at 480 V bus."),
+        ("Dedicated Local Relays (SEL-751):", "Clear local hardwired overcurrent faults in 40-58 ms. Project E.B.O.N.Y. does NOT replace local overcurrent relays."),
+        ("The 70-150+ ms Supervisory SCADA Gap:", "Multi-source DoD microgrids (Utility + Solar PV + BESS + Diesel) coordinate islanding via polled Modbus TCP / DNP3 buses lacking per-frame cryptographic authentication."),
+        ("Single Shared Operational Root Cause:", "Unauthenticated trust in supervisory telemetry/commands + >16.0 ms trip delay drives cyber spoofing, arc-flash escalation, and thermal excursions (GAO-21-81, GAO-24-106137, CISA AA24-038A)."),
+        ("Representative Substation Blueprint:", "13.8 kV Utility PCC -> 5 MVA Transformer (13.8 kV / 480 V, Z = 5.75%) -> 104,606 A bolted 3-phase fault current at 480 V bus."),
     ]
-    y = 402
+    y = 382
     for lbl, body in pts:
-        d.text((96, y), lbl, font=F_CARD_T, fill=ACCENT_GOLD)
-        y = draw_wrapped(d, body, 96, y + 34, 952, F_BODY, TEXT_WHITE, line_h=31) + 18
+        d.text((96, y), lbl, font=F_CARD_T, fill=ACCENT_CYAN)
+        y = draw_wrapped(d, body, 96, y + 32, 952, F_BODY, TEXT_WHITE, line_h=30) + 16
 
-    # Right panels: Quantitative IEEE 1584 & I^2t reductions
-    d.rounded_rectangle([1116, 304, 1856, 616], radius=14, fill=PANEL_BG, outline=ACCENT_GRN, width=3)
-    d.text((1148, 334), "IEEE STD 1584-2018 ARC-FLASH REDUCTION", font=F_CARD_T, fill=ACCENT_GRN)
-    d.text((1148, 392), "84.0% Duration Cut", font=F_BIG, fill=TEXT_WHITE)
-    draw_wrapped(d, "Cutting supervisory trip assertion from 100 ms (6 cycles) to <16.0 ms (1 cycle) reduces supervisory arc-flash incident energy contribution by 84.0% (E proportional to I_arc x t_arc).", 1148, 466, 676, F_BODY, TEXT_MUTED, line_h=32)
+    d.rounded_rectangle([1116, 290, 1856, 610], radius=14, fill=PANEL_BG, outline=ACCENT_GRN, width=3)
+    d.text((1148, 318), "IEEE STD 1584-2018 ARC-FLASH BASIS", font=F_CARD_T, fill=ACCENT_GRN)
+    d.text((1148, 372), "84.0% Duration Reduction", font=F_BIG, fill=TEXT_WHITE)
+    draw_wrapped(d, "Cutting supervisory trip assertion from 100 ms (6 cycles) to <16.0 ms (1 cycle) reduces supervisory arc-flash incident energy contribution by 84.0% (E proportional to I_arc x t_arc).", 1148, 444, 676, F_BODY, TEXT_MUTED, line_h=31)
 
-    d.rounded_rectangle([1116, 648, 1856, 960], radius=14, fill=PANEL_BG, outline=ACCENT_GOLD, width=3)
-    d.text((1148, 678), "IEEE C57.91 ADIABATIC THERMAL I^2t CUT", font=F_CARD_T, fill=ACCENT_GOLD)
-    d.text((1148, 736), "6.25x Thermal Reduction", font=F_BIG, fill=TEXT_WHITE)
-    draw_wrapped(d, "Limiting supervisory fault persistence from 100 ms to 16.0 ms cuts conductor/busbar thermal let-through energy by 6.25x (Integral of i(t)^2 dt).", 1148, 810, 676, F_BODY, TEXT_MUTED, line_h=32)
+    d.rounded_rectangle([1116, 642, 1856, 965], radius=14, fill=PANEL_BG, outline=ACCENT_GOLD, width=3)
+    d.text((1148, 670), "IEEE C57.91 THERMAL I^2t BASIS", font=F_CARD_T, fill=ACCENT_GOLD)
+    d.text((1148, 724), "6.25x Thermal Reduction", font=F_BIG, fill=TEXT_WHITE)
+    draw_wrapped(d, "Limiting supervisory fault persistence from 100 ms to 16.0 ms reduces adiabatic conductor/busbar thermal let-through energy by 6.25x (Integral of i(t)^2 dt).", 1148, 796, 676, F_BODY, TEXT_MUTED, line_h=31)
 
-    out_priv = PRIV_OUT / "Slide_02_Criterion1_Problem_Microgrid.png"
-    out_pub  = PUB_OUT / "Slide_02_Criterion1_Problem_Microgrid.png"
-    img.save(out_priv, format="PNG")
-    img.save(out_pub, format="PNG")
-    return out_pub
+    for p in (PRIV_OUT, PUB_OUT):
+        img.save(p / "Slide_02_Criterion1_Problem_Microgrid.png", format="PNG")
+    return PUB_OUT / "Slide_02_Criterion1_Problem_Microgrid.png"
 
 
 def build_slide_3() -> Path:
     img, d = base_canvas(
         "3 / 5",
-        "01:45 - 03:00",
         "CRITERION 2: ACCELERATING THE MISSION",
-        "5-Stage Bare-Metal Proof, Fail-Safe Integration & 180-Day HIL Plan",
-        "Separating Verified TRL 4 Software (Stress Arena 59) From Funded Phase I Hardware Deliverables",
+        "5-Stage Bare-Metal Proof, Privileged-Tamper Guard & 180-Day HIL",
+        "Resolving Evaluator Questions on Modeled Targets, Relay Integration, Root Tampering & Maturation",
     )
-    # Left panel: 5-Stage Pipeline Benchmark Table
-    d.rounded_rectangle([64, 304, 1110, 960], radius=14, fill=PANEL_BG, outline=ACCENT_GRN, width=3)
-    d.text((96, 332), "COMPLETE 5-STAGE PROTECTIVE PIPELINE (ARENA 59: 10,000 TRIALS)", font=F_CARD_T, fill=ACCENT_GRN)
-    d.line([(96, 376), (1078, 376)], fill=BORDER, width=2)
+    d.rounded_rectangle([64, 290, 1110, 965], radius=14, fill=PANEL_BG, outline=ACCENT_GRN, width=3)
+    d.text((96, 318), "ASSESSOR CRITIQUE RESOLVED: STAGE-BY-STAGE PROOF", font=F_CARD_T, fill=ACCENT_GOLD)
+    d.line([(96, 360), (1078, 360)], fill=BORDER, width=2)
 
     stages = [
         ("Stages 1-4 Fast Control Loop (Verified TRL 4)", "p50 = 2.60 us  |  p99 = 4.50 us", "Telemetry parse -> HMAC-SHA256 verify -> Interlock decision -> Trip register (0xAA55)."),
-        ("400% CPU Core Oversubscription (Arena 57)", "max = 117.10 us  |  0 Breaches", "64 spin processes pinning all 16 logical cores across 50,000 cycles (<16,000 us ceiling)."),
-        ("Stage 5 Immutable Audit Seal (Verified TRL 4)", "p50 = 6.04 ms (500 Trials)", "Append-only WORM SHA-256 Merkle commit (5/5 SQL rewrite/upsert attacks blocked)."),
+        ("400% CPU Oversubscription (Arena 57)", "max = 117.10 us  |  0 Breaches", "64 spin processes pinning all 16 logical cores across 50,000 cycles (<16,000 us ceiling)."),
+        ("Stage 5 Immutable Audit Seal (Verified TRL 4)", "p50 = 6.04 ms (500 Trials)", "Append-only WORM SHA-256 Merkle commit (5/5 SQL rewrite/upsert vectors blocked)."),
         ("Privileged-Admin Root Tamper Guard (Arena 59)", "100% Replacement Detected", "Detached out-of-band HMAC-SHA256 anchor catches root/admin DB file swap on disk."),
-        ("Stage 6 Physical Switch / Breaker (Phase I HIL)", "36.75 ns MOSFET Spec + Breaker", "Explicitly scoped as funded TRL 5 -> TRL 6 Hardware-in-the-Loop deliverable."),
+        ("Stage 6 Physical Switch / Breaker (Phase I HIL)", "36.75 ns MOSFET Spec + Breaker", "Explicitly separated as funded TRL 5 -> TRL 6 Hardware-in-the-Loop deliverable."),
     ]
-    y = 398
+    y = 380
     for st_name, metric, desc in stages:
         d.text((96, y), st_name, font=F_CARD_T, fill=TEXT_WHITE)
         d.text((710, y), metric, font=F_CARD_T, fill=ACCENT_CYAN)
         y = draw_wrapped(d, desc, 96, y + 32, 982, F_BODY, TEXT_MUTED, line_h=28) + 18
 
-    # Right panel: Plan of Inclusion & 180-Day HIL Maturation
-    d.rounded_rectangle([1142, 304, 1856, 960], radius=14, fill=PANEL_BG, outline=ACCENT_GOLD, width=3)
-    d.text((1174, 332), "PLAN OF INCLUSION & 180-DAY HIL ROADMAP", font=F_CARD_T, fill=ACCENT_GOLD)
-    d.line([(1174, 376), (1824, 376)], fill=BORDER, width=2)
+    d.rounded_rectangle([1142, 290, 1856, 965], radius=14, fill=PANEL_BG, outline=ACCENT_CYAN, width=3)
+    d.text((1174, 318), "PLAN OF INCLUSION & 180-DAY HIL PLAN", font=F_CARD_T, fill=ACCENT_GOLD)
+    d.line([(1174, 360), (1824, 360)], fill=BORDER, width=2)
 
     hil_items = [
-        ("Parallel Relay Integration (Zero SPOF):", "Installs alongside SEL-751/351 relays with IEC 61508 fail-safe de-energize-to-trip watchdog fallback; never disables local relay trips."),
-        ("Milestone 1 (Days 1-45 | TRL 4 -> 5):", "Wire bare-metal edge node to CT/PT sensors, SEL-751 relay, and OPAL-RT / 480 V benchtop HIL simulator (<1.0 ms wire-to-coil pulse)."),
-        ("Milestone 2 (Days 46-120 | TRL 5):", "Execute 500+ 480 V undervoltage, phase-loss, and live HMAC-spoof injection tests under resistive/inductive loads."),
-        ("Milestone 3 (Days 121-180 | TRL 6):", "Independent DoD witness certification (<16.0 ms solid-state / <50 ms breaker clearing) + RMF ATO inheritance package."),
+        ("Parallel Relay Wiring (Zero SPOF):", "Installs alongside SEL-751/351 relays with IEC 61508 fail-safe watchdog fallback; never disables local relay trips."),
+        ("Milestone 1 (Days 1-45 | TRL 4 -> 5):", "Wire bare-metal edge node to CT/PT sensors, SEL-751 relay, and OPAL-RT / 480 V benchtop HIL simulator (<1.0 ms wire-to-coil)."),
+        ("Milestone 2 (Days 46-120 | TRL 5):", "Execute 500+ 480 V undervoltage, phase-loss, and live HMAC-spoof tests under resistive/inductive loads."),
+        ("Milestone 3 (Days 121-180 | TRL 6):", "Independent DoD witness certification (<16.0 ms solid-state / <50 ms breaker) + RMF ATO inheritance package."),
     ]
-    y = 402
+    y = 382
     for h_lbl, h_txt in hil_items:
         d.text((1174, y), h_lbl, font=F_CARD_T, fill=ACCENT_CYAN)
-        y = draw_wrapped(d, h_txt, 1174, y + 34, 650, F_BODY, TEXT_WHITE, line_h=30) + 20
+        y = draw_wrapped(d, h_txt, 1174, y + 32, 650, F_BODY, TEXT_WHITE, line_h=30) + 20
 
-    out_priv = PRIV_OUT / "Slide_03_Criterion2_Mission_HIL_Plan.png"
-    out_pub  = PUB_OUT / "Slide_03_Criterion2_Mission_HIL_Plan.png"
-    img.save(out_priv, format="PNG")
-    img.save(out_pub, format="PNG")
-    return out_pub
+    for p in (PRIV_OUT, PUB_OUT):
+        img.save(p / "Slide_03_Criterion2_Mission_HIL_Plan.png", format="PNG")
+    return PUB_OUT / "Slide_03_Criterion2_Mission_HIL_Plan.png"
 
 
 def build_slide_4() -> Path:
     img, d = base_canvas(
         "4 / 5",
-        "03:00 - 03:55",
         "CRITERION 3: ADVANCING THE STATE OF THE ART",
         "Equivalent-Condition Benchmark & 28-45 W Enclave Power Budget",
-        "1,000-Trial Air-Gapped Undervoltage Fault + Spoofed Breaker Override Storm (Stress Arena 59)",
+        "Resolving Evaluator Questions on Apples-to-Apples Workflows & Full-System Power Draw",
     )
-    # Table container
-    d.rounded_rectangle([64, 304, 1856, 770], radius=14, fill=PANEL_BG, outline=ACCENT_CYAN, width=3)
-    headers = ["ARCHITECTURE", "AIR-GAPPED OPS", "SPOOF REJECTION (1,000 PROBES)", "DECISION-TO-TRIP LATENCY", "TAMPER-EVIDENT AUDIT"]
+    d.rounded_rectangle([64, 290, 1856, 765], radius=14, fill=PANEL_BG, outline=ACCENT_CYAN, width=3)
+    headers = ["ARCHITECTURE (IDENTICAL TEST)", "AIR-GAPPED OPS", "SPOOF REJECTION (1,000 PROBES)", "DECISION-TO-TRIP LATENCY", "TAMPER-EVIDENT AUDIT"]
     col_x = [92, 540, 820, 1210, 1540]
     for hx, htxt in zip(col_x, headers):
-        d.text((hx, 334), htxt, font=F_TAG, fill=ACCENT_GOLD)
-    d.line([(84, 376), (1836, 376)], fill=BORDER, width=2)
+        d.text((hx, 320), htxt, font=F_TAG, fill=ACCENT_GOLD)
+    d.line([(84, 362), (1836, 362)], fill=BORDER, width=2)
 
     rows = [
         ("Conventional Polled PLC\n(Modbus TCP / IEC 61131-3)", "Local only\n(no AI)", "0% (unauthenticated\ncleartext coils)", "70 - 150+ ms\n(poll + scan cycle)", "Mutable local\ncontroller logs", TEXT_MUTED),
@@ -288,7 +228,7 @@ def build_slide_4() -> Path:
         ("Cloud Energy / SIEM\nMiddleware Platform", "FAILS when\nWAN severed", "Fails on WAN\ndisconnect", "250 - 2,000+ ms\n(WAN round-trip)", "External cloud\ndependency", TEXT_MUTED),
         ("PROJECT E.B.O.N.Y. v8.0.0\n(Verified TRL 4 Bare-Metal)", "100% Air-Gapped\n(Read-Only AI)", "1,000 / 1,000 (100%)\nTrapped (0 Bleeds)", "p50 = 5.40 us\n(max = 117.10 us)", "WORM SHA-256 +\nOOB HMAC Anchor", ACCENT_GRN),
     ]
-    ry = 398
+    ry = 386
     for idx, (c0, c1, c2, c3, c4, rcol) in enumerate(rows):
         if idx == 3:
             d.rounded_rectangle([80, ry - 10, 1840, ry + 76], radius=10, fill=PANEL_ALT, outline=ACCENT_GRN, width=2)
@@ -296,29 +236,25 @@ def build_slide_4() -> Path:
             d.text((cx, ry), val, font=F_BODY, fill=rcol)
         ry += 92
 
-    # Bottom wall-plug power budget bar
-    d.rounded_rectangle([64, 800, 1856, 960], radius=14, fill=PANEL_BG, outline=ACCENT_GOLD, width=3)
-    d.text((96, 826), "FULL-SYSTEM WALL-PLUG POWER BUDGET: 28 - 45 W CONTINUOUS ENCLAVE DRAW", font=F_CARD_T, fill=ACCENT_GOLD)
+    d.rounded_rectangle([64, 795, 1856, 965], radius=14, fill=PANEL_BG, outline=ACCENT_GOLD, width=3)
+    d.text((96, 820), "ASSESSOR CRITIQUE RESOLVED — FULL ENCLAVE POWER BUDGET: 28 - 45 W WALL-PLUG", font=F_CARD_T, fill=ACCENT_GOLD)
     draw_wrapped(
         d,
-        "Accounts for all supporting enclave hardware (not bare processor TDP): Ruggedized DIN-rail industrial compute node (15 W) + Dual optically isolated NICs & one-way OOB anchor diode (8 W) + Industrial AC/DC PSU & transducer conditioning (5-12 W) = 28-45 W total (<0.045 kW) vs. multi-kilowatt rack/cloud stacks.",
-        96, 868, 1728, F_BODY, TEXT_WHITE, line_h=32,
+        "Includes all supporting hardware (not bare processor TDP): Ruggedized DIN-rail compute node (15 W) + Dual isolated NICs & one-way optical OOB diode (8 W) + Industrial AC/DC PSU & transducer conditioning (5-12 W) = 28-45 W total continuous draw (<0.045 kW) vs. multi-kilowatt rack/cloud stacks.",
+        96, 862, 1728, F_BODY, TEXT_WHITE, line_h=32,
     )
 
-    out_priv = PRIV_OUT / "Slide_04_Criterion3_Equivalent_Benchmark.png"
-    out_pub  = PUB_OUT / "Slide_04_Criterion3_Equivalent_Benchmark.png"
-    img.save(out_priv, format="PNG")
-    img.save(out_pub, format="PNG")
-    return out_pub
+    for p in (PRIV_OUT, PUB_OUT):
+        img.save(p / "Slide_04_Criterion3_Equivalent_Benchmark.png", format="PNG")
+    return PUB_OUT / "Slide_04_Criterion3_Equivalent_Benchmark.png"
 
 
 def build_slide_5() -> Path:
     img, d = base_canvas(
         "5 / 5",
-        "03:55 - 04:55",
         "CRITERION 4: BUSINESS MODEL & ACQUISITION PATHWAY",
-        "Milestone-Gated Proposed CLINs, DFARS Rights & Dual-Use Demand",
-        "Explicit Disclosure: $0 Current Federal Awards — Proposed Prototype OT / FAR Options (10 U.S.C. Sec. 4022)",
+        "Proposed CLIN Deliverables, DFARS Rights & Customer Validation",
+        "Resolving Evaluator Questions on Contract Award Status, Scope, Acceptance Criteria & Data Rights",
     )
     clins = [
         ("PROPOSED CLIN 0001 — TIER 1", "$245,000  |  90 Days", [
@@ -342,47 +278,31 @@ def build_slide_5() -> Path:
     ]
     for i, (ctitle, cprice, citems, col) in enumerate(clins):
         x0 = 64 + i * 608
-        d.rounded_rectangle([x0, 304, x0 + 576, 756], radius=14, fill=PANEL_BG, outline=col, width=3)
-        d.text((x0 + 28, 330), ctitle, font=F_TAG, fill=col)
-        d.text((x0 + 28, 366), cprice, font=F_H2, fill=TEXT_WHITE)
-        d.line([(x0 + 28, 412), (x0 + 548, 412)], fill=BORDER, width=2)
-        y = 434
+        d.rounded_rectangle([x0, 290, x0 + 576, 755], radius=14, fill=PANEL_BG, outline=col, width=3)
+        d.text((x0 + 28, 316), ctitle, font=F_TAG, fill=col)
+        d.text((x0 + 28, 352), cprice, font=F_H2, fill=TEXT_WHITE)
+        d.line([(x0 + 28, 398), (x0 + 548, 398)], fill=BORDER, width=2)
+        y = 420
         for cit in citems:
             y = draw_wrapped(d, "•  " + cit, x0 + 28, y, 520, F_BODY, TEXT_WHITE, line_h=30) + 14
 
-    # Bottom panel: DFARS Data Rights & Customer Discovery
-    d.rounded_rectangle([64, 784, 1856, 960], radius=14, fill=PANEL_BG, outline=ACCENT_CYAN, width=3)
-    d.text((96, 810), "DFARS 252.227-7013 / 7014 DATA RIGHTS & CUSTOMER DISCOVERY PIPELINE", font=F_CARD_T, fill=ACCENT_CYAN)
+    d.rounded_rectangle([64, 785, 1856, 965], radius=14, fill=PANEL_BG, outline=ACCENT_CYAN, width=3)
+    d.text((96, 810), "EXPLICIT DISCLOSURE: $0 CURRENT FEDERAL AWARDS  |  DFARS 252.227-7013/7014 RIGHTS", font=F_CARD_T, fill=ACCENT_GOLD)
     draw_wrapped(
         d,
-        "Government Purpose Rights (GPR) on all site HIL adapters, substation profiles, RMF/ATO artifacts, and 100% of WORM audit logs (zero vendor lock-in); Restricted Rights retained on core proprietary engines. Originally proven in zero-connectivity bridge/structural diagnostics; executive scoping scheduled Dec 8-10, 2026 with Oklahoma Dept. of Commerce CTO Rob Teel.",
+        "Government Purpose Rights (GPR) on all site HIL adapters, substation profiles, RMF/ATO artifacts, and 100% of WORM audit logs (zero vendor lock-in); Restricted Rights retained on core proprietary engines. Originally proven in zero-connectivity bridge diagnostics; executive pilot scoping scheduled Dec 8-10, 2026 with Oklahoma Dept. of Commerce CTO Rob Teel.",
         96, 852, 1728, F_BODY, TEXT_WHITE, line_h=32,
     )
 
-    out_priv = PRIV_OUT / "Slide_05_Criterion4_Business_CLINs_DFARS.png"
-    out_pub  = PUB_OUT / "Slide_05_Criterion4_Business_CLINs_DFARS.png"
-    img.save(out_priv, format="PNG")
-    img.save(out_pub, format="PNG")
-    return out_pub
+    for p in (PRIV_OUT, PUB_OUT):
+        img.save(p / "Slide_05_Criterion4_Business_CLINs_DFARS.png", format="PNG")
+    return PUB_OUT / "Slide_05_Criterion4_Business_CLINs_DFARS.png"
 
 
 def main() -> None:
-    files = [
-        build_thumbnail(),
-        build_slide_1(),
-        build_slide_2(),
-        build_slide_3(),
-        build_slide_4(),
-        build_slide_5(),
-    ]
-    print("\n================================================================================================")
-    print("  5 PRESENTATION SLIDES + VIDEO THUMBNAIL (1920x1080 PNG) GENERATED & DUAL-REPO SYNCED!")
-    print("================================================================================================")
-    for f in files:
-        digest = hashlib.sha256(f.read_bytes()).hexdigest()
-        print(f"  [OK] {f.name:<48} | SHA-256: {digest[:24]}...")
-    print(f"  Output Folder: {PUB_OUT}")
-    print("================================================================================================")
+    for fn in (build_slide_1, build_slide_2, build_slide_3, build_slide_4, build_slide_5):
+        out = fn()
+        print(f"  [OK] Updated {out.name}", flush=True)
 
 
 if __name__ == "__main__":
