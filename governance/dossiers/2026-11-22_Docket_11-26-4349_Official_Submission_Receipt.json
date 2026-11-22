@@ -1,0 +1,31 @@
+{
+  "submission_receipt_version": "1.0.0",
+  "docket_number": "11-26-4349",
+  "supersedes_docket": "10-26-4046",
+  "portal_status": "Received",
+  "date_submitted_portal": "Nov 22, 2026 1:59 PM",
+  "solution_title": "11-26-4349 | Project E.B.O.N.Y. v8.0.0: Deterministic Zero-Cloud OT/SCADA Interlock & WORM Merkle Provenance Architecture (Gold-Standard Final Submission)",
+  "prime_contractor": {
+    "legal_name": "Humphrey Virtual Farms LLC",
+    "cage_code": "1AHA8",
+    "sam_uei": "S1M4ENLHTDH5",
+    "commanding_authority": "Jeffery Humphrey, Founder & CEO",
+    "email": "humphreyvirtualfarm@gmail.com",
+    "phone": "(442) 800-4947",
+    "business_classification": "100% U.S.-Owned Non-Traditional Small Business (10 U.S.C. Sec. 3014)"
+  },
+  "submitted_media_and_repository_anchors": {
+    "pitch_video_file": "EBONY_V8_TSM_FINAL_11_26_4349_v2.mp4",
+    "pitch_video_runtime": "04:32.94 (272.94s — Strictly < 05:00 Section VII.d.i Cap)",
+    "pitch_video_sha256": "c61d1faa4664bd9f6644c8428d4853ebf0af452d3179c710e0d2b11f7513369d",
+    "thumbnail_file": "Thumbnail_11_26_4349_Project_EBONY.png",
+    "public_verification_repository": "https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public",
+    "verified_public_commit": "fe988f8",
+    "verified_private_commit": "8c39a11",
+    "worm_merkle_ledger_height": 5577006,
+    "worm_merkle_head_prefix": "d3bca5eafdee96d5",
+    "stress_arenas_passed": 59,
+    "sprs_score": "110/110"
+  },
+  "assessor_critiques_resolved": "8 / 8 (100% Visual, Spoken, Abstract, External Link & Cross-Walk Comment Parity)"
+}
