@@ -1,4 +1,3 @@
-import hashlib
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
@@ -8,7 +7,6 @@ PRIV_OUT.mkdir(parents=True, exist_ok=True)
 PUB_OUT.mkdir(parents=True, exist_ok=True)
 
 W, H = 1920, 1080
-
 BG_DARK     = (11, 16, 26)
 PANEL_BG    = (20, 29, 46)
 PANEL_ALT   = (26, 38, 60)
