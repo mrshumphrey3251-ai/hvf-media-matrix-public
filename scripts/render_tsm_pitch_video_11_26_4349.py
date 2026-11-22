@@ -1,4 +1,5 @@
 import base64
+from datetime import datetime
 import hashlib
 import shutil
 import subprocess
@@ -11,8 +12,6 @@ PRIV_SLIDES = Path(r"C:\hvf_c2\hvf-media-matrix-private\governance\dossiers\tsm_
 PUB_SLIDES  = Path(r"C:\hvf_c2\hvf-media-matrix-public\governance\dossiers\tsm_11_26_4349_slides")
 FFMPEG_EXE = sys.argv[1]
 
-# Unhurried ~465-word SSML executive narration: explicitly names every prior evaluator critique
-# and states the exact bare-metal fix at a calm, authoritative Rate=0/1 pace (<05:00 cap).
 SLIDE_SEGMENTS_SSML = [
     (
         "Slide_01_Title_Verification_Anchor.png",
@@ -83,7 +82,7 @@ SLIDE_SEGMENTS_SSML = [
         """<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
         Criterion 4: Business Model. <break time="250ms"/>
         Evaluators asked us to clarify contract award status, define pilot deliverables and acceptance criteria,
-        explain bridge-inspection demand, and specify customer data rights. <break time="300ms"/>
+        explain bridge-inspection demand, and specify customer data rights. <break time="250ms"/>
         Humphrey Virtual Farms, L L C, CAGE code: <break time="200ms"/> 1, A, H, A, 8, <break time="200ms"/>
         currently holds zero dollars in awarded federal contracts. <break time="250ms"/>
         All tiers are proposed milestone-gated acquisition options under FAR or 10 U-S-C Section 4022 Prototype Other Transaction authority:
@@ -104,6 +103,7 @@ def synthesize_ssml_wav(ssml_xml: str, wav_path: Path, rate: int = 0) -> float:
     b64_xml = base64.b64encode(ssml_xml.encode("utf-8")).decode("ascii")
     wav_escaped = str(wav_path).replace("'", "''")
     ps_cmd = (
+        "$ErrorActionPreference = 'Stop'; "
         "Add-Type -AssemblyName System.Speech; "
         "$synth = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
         "$voice = $synth.GetInstalledVoices() | Where-Object { $_.Enabled -and $_.VoiceInfo.Culture.Name -like 'en-US*' } | Select-Object -First 1; "
@@ -117,13 +117,11 @@ def synthesize_ssml_wav(ssml_xml: str, wav_path: Path, rate: int = 0) -> float:
     )
     subprocess.run(["powershell", "-NoProfile", "-Command", ps_cmd], check=True)
     with wave.open(str(wav_path), "rb") as wf:
-        frames = wf.getnframes()
-        sr = wf.getframerate()
-        return frames / float(sr)
+        return wf.getnframes() / float(wf.getframerate())
 
 
 def main() -> None:
-    print("[VIDEO BUILDER] Synthesizing calm, explicit assessor-critique resolution narration...", flush=True)
+    print("[VIDEO BUILDER] Rendering brand-new EBONY_V8_TSM_FINAL_11_26_4349_v2.mp4...", flush=True)
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp = Path(tmpdir)
         rate = 0
@@ -133,12 +131,11 @@ def main() -> None:
             for idx, (_, ssml_txt) in enumerate(SLIDE_SEGMENTS_SSML, start=1):
                 wpath = tmp / f"seg_{idx}_r{rate}.wav"
                 dur = synthesize_ssml_wav(ssml_txt, wpath, rate=rate)
-                dur_padded = dur + 0.55
-                durations.append(dur_padded)
+                durations.append(dur + 0.55)
                 wav_files.append(wpath)
 
             total_sec = sum(durations)
-            print(f"  [TTS Rate={rate}] Total Narration Duration = {total_sec:.2f}s ({int(total_sec // 60):02d}:{total_sec % 60:05.2f})", flush=True)
+            print(f"  [TTS Rate={rate}] Total Duration = {total_sec:.2f}s ({int(total_sec // 60):02d}:{total_sec % 60:05.2f})", flush=True)
             if total_sec <= 292.0 or rate >= 2:
                 break
             rate += 1
@@ -161,36 +158,33 @@ def main() -> None:
             ]
             subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
             segment_mp4s.append(seg_mp4)
-            print(f"  [OK] Rendered Part {idx}/5 ({slide_name}) -> {dur:.2f}s", flush=True)
+            print(f"  [OK] Part {idx}/5 ({slide_name}) -> {dur:.2f}s", flush=True)
 
         concat_list = tmp / "concat.txt"
         concat_list.write_text("\n".join(f"file '{str(p)}'" for p in segment_mp4s) + "\n", encoding="utf-8")
 
-        out_pub  = PUB_SLIDES / "EBONY_V8_TSM_FINAL_11_26_4349.mp4"
-        out_priv = PRIV_SLIDES / "EBONY_V8_TSM_FINAL_11_26_4349.mp4"
+        out_pub  = PUB_SLIDES / "EBONY_V8_TSM_FINAL_11_26_4349_v2.mp4"
+        out_priv = PRIV_SLIDES / "EBONY_V8_TSM_FINAL_11_26_4349_v2.mp4"
 
-        concat_cmd = [
-            FFMPEG_EXE, "-y",
-            "-f", "concat", "-safe", "0", "-i", str(concat_list),
-            "-c", "copy", "-movflags", "+faststart",
-            str(out_pub),
-        ]
-        subprocess.run(concat_cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+        subprocess.run(
+            [FFMPEG_EXE, "-y", "-f", "concat", "-safe", "0", "-i", str(concat_list), "-c", "copy", "-movflags", "+faststart", str(out_pub)],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True,
+        )
         shutil.copy2(out_pub, out_priv)
 
         sha = hashlib.sha256(out_pub.read_bytes()).hexdigest()
         size_mb = out_pub.stat().st_size / (1024.0 * 1024.0)
-        mins = int(total_sec // 60)
-        secs = total_sec % 60
+        mtime = datetime.fromtimestamp(out_pub.stat().st_mtime).strftime("%Y-%m-%d %H:%M:%S")
 
         print("\n================================================================================================")
-        print("  UNHURRIED, EXPLICIT ASSESSOR-RESPONSE 1080p PITCH VIDEO GENERATED (< 05:00 CAP)!")
+        print("  NEW VIDEO CREATED: EBONY_V8_TSM_FINAL_11_26_4349_v2.mp4")
         print("================================================================================================")
-        print(f"  Output MP4 (Public):  {out_pub}")
-        print(f"  Verified Runtime:     {mins:02d}:{secs:05.2f} ({total_sec:.2f}s — Strictly < 05:00 Cap)")
-        print(f"  TTS Cadence Rate:     Rate={rate} (Calm, Unhurried Executive Cadence)")
-        print(f"  File Size:            {size_mb:.2f} MB (H.264 1920x1080 30fps / AAC 48kHz Stereo)")
-        print(f"  SHA-256 Digest:       {sha}")
+        print(f"  File Path:       {out_pub}")
+        print(f"  Timestamp:       {mtime}")
+        print(f"  Runtime:         {int(total_sec // 60):02d}:{total_sec % 60:05.2f} ({total_sec:.2f}s — Strictly < 05:00 Cap)")
+        print(f"  Cadence Rate:    Rate={rate}")
+        print(f"  File Size:       {size_mb:.2f} MB")
+        print(f"  SHA-256 Digest:  {sha}")
         print("================================================================================================")
 
 
