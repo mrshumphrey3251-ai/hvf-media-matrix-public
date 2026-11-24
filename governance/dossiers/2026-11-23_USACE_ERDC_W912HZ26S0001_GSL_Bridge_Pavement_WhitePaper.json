@@ -1,5 +1,5 @@
 {
-  "white_paper_version": "2.0.0-final-sealed",
+  "white_paper_version": "2.1.0-patent-pending-64137158",
   "solicitation": "W912HZ26S0001",
   "agency": "U.S. Army Engineer Research and Development Center (ERDC) — Geotechnical & Structures Laboratory (GSL)",
   "gsl_topics": [
@@ -16,28 +16,16 @@
     "phone": "(442) 800-4947",
     "sprs_score": 110
   },
-  "inspection_domains": [
-    "Under-deck steel/concrete bridge NDE & Military Load Classification (MLC)",
-    "Dams, levees, spillways & hydraulic navigation structures (NID Periodic Inspections, IR seepage & GPR crown consistency)",
-    "Structural buildings, hangars & facility envelopes (<0.2 mm facade/truss crack mapping & roof/wall thermal moisture)",
-    "Airfield runways/aprons & highway/roadway pavement surface condition (IRI/PCI) & GPR layer depth uniformity"
-  ],
-  "mandatory_baa_declarations": {
-    "us_citizens_only": true,
-    "foreign_national_participation": "None (0%)",
-    "human_or_animal_subjects": "None",
-    "airspace_compliance": "FAA 14 CFR Part 107 & DoD/USACE Installation Range Safety"
+  "intellectual_property": {
+    "uspto_provisional_application_number": "64/137,158",
+    "filing_date": "2026-08-20",
+    "status": "Patent Pending",
+    "owner": "Humphrey Virtual Farms LLC"
   },
   "rom_budget_usd": {
     "total_value": 745000,
     "cost_share_required": 0,
-    "period_of_performance_months": 12,
-    "clins": [
-      {"clin": "CLIN 0001", "description": "2x Modular NDAA UAS + E.B.O.N.Y. Multi-Domain Bridge, Dam, Building & Pavement NDE Payloads", "price": 245000},
-      {"clin": "CLIN 0002", "description": "Under-Bridge, Dam/Levee, Building & Pavement Depth/Consistency Calibration (TRL 6)", "price": 215000},
-      {"clin": "CLIN 0003", "description": "150-Sortie Multi-Site Installation & Civil Works Validation Campaign ($250/sortie benchmark)", "price": 165000},
-      {"clin": "CLIN 0004", "description": "USACE Engineering Handoff, Operator Training & Final Technical Report", "price": 120000}
-    ]
+    "period_of_performance_months": 12
   },
   "frozen_validation_anchor": "DoD Tradewinds Docket 11-26-4349"
 }
