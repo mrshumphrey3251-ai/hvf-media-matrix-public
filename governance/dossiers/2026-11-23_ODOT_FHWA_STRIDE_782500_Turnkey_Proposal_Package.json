@@ -4,7 +4,7 @@
   "state_sponsor": "Oklahoma Department of Transportation (ODOT) / STIC — Endorsed by Oklahoma Dept. of Commerce CTO Rob Teel",
   "prime_technology_partner": {
     "legal_name": "Humphrey Virtual Farms LLC",
-    "headquarters": "Madill, Oklahoma 73446",
+    "headquarters": "Oklahoma",
     "cage_code": "1AHA8",
     "sam_uei": "S1M4ENLHTDH5",
     "ceo": "Jeffery Humphrey",
@@ -20,7 +20,7 @@
     "new_local_jobs_created": 4,
     "flight_crews_formed": 2,
     "crew_structure": "2x two-person FAA Part 107 dual-operator crews (Pilot-in-Command + Sensor/Visual Observer) matching the 2-aircraft fleet 1-for-1 with full backup redundancy",
-    "location": "Madill / Marshall & Bryan County Corridor, Oklahoma",
+    "location": "Marshall & Bryan County Corridor, Oklahoma",
     "certifications_funded": ["FAA Part 107 Commercial Remote Pilot", "FHWA NHI / NBIS Bridge & Highway Inspection Safety"],
     "direct_apprentice_budget_usd": 114000,
     "stackable_state_programs": ["Oklahoma Works WIOA On-the-Job Training (OJT)", "Oklahoma CareerTech Training for Industry Program (TIP)"]

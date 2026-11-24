@@ -2,7 +2,7 @@
 ## Project E.B.O.N.Y. Unmanned Aerial Bridge NDE, Highway Pavement Depth & Consistency Profiling, Immutable WORM SHA-256 Provenance & 4-Operator Oklahoma UAS Apprenticeship
 
 - **Eligible State Applicant:** Oklahoma Department of Transportation (`ODOT`) / Oklahoma State Transportation Innovation Council (`STIC`), Endorsed by the Oklahoma Department of Commerce (`CTO Rob Teel`)
-- **Primary Technology Partner:** Humphrey Virtual Farms LLC (`Madill, Oklahoma` | `CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5` | `100%` U.S.-Owned Non-Traditional Small Business, `10 U.S.C. § 3014` | `SPRS: 110/110`)
+- **Primary Technology Partner:** Humphrey Virtual Farms LLC (`Oklahoma` | `CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5` | `100%` U.S.-Owned Non-Traditional Small Business, `10 U.S.C. § 3014` | `SPRS: 110/110`)
 - **Commanding Authority:** Jeffery Humphrey, Founder & CEO (`humphreyvirtualfarm@gmail.com` | `(442) 800-4947`)
 - **Federal Program Authority:** FHWA State Transportation Roadway Innovation Deployment Excellence (`STRIDE`, `23 U.S.C. § 503(c)`) & FHWA Workforce Development (`23 U.S.C. § 504(e)`) — `EDC-8` Integrated Digital Project Delivery (Bridges & Pavements)
 - **Total Project Value:** **`$782,500`** (`$626,000` Federal `80%` Share + `$156,500` ODOT/State `20%` Non-Federal Match | `$0` Private Cash Match)
