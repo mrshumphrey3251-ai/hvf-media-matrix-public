@@ -1,5 +1,5 @@
 {
-  "proposal_package_version": "1.2.0-four-operator-two-crew",
+  "proposal_package_version": "1.3.0-bridge-highway-depth-consistency",
   "program": "FHWA STRIDE (23 U.S.C. Sec. 503(c)) & FHWA Workforce Development (23 U.S.C. Sec. 504(e)) / EDC-8",
   "state_sponsor": "Oklahoma Department of Transportation (ODOT) / STIC — Endorsed by Oklahoma Dept. of Commerce CTO Rob Teel",
   "prime_technology_partner": {
@@ -11,12 +11,17 @@
     "email": "humphreyvirtualfarm@gmail.com",
     "phone": "(442) 800-4947"
   },
+  "inspection_scope": [
+    "Under-deck bridge structural NDE (EO <0.2 mm crack mapping, radiometric IR concrete delamination, MEMS vibration)",
+    "Highway & roadway surface condition (IRI/PCI rutting/roughness via solid-state LiDAR & nadir EO)",
+    "Subsurface pavement depth & layer consistency profiling (drone-borne GPR thickness uniformity & IR moisture/debonding)"
+  ],
   "workforce_apprenticeship": {
     "new_local_jobs_created": 4,
     "flight_crews_formed": 2,
     "crew_structure": "2x two-person FAA Part 107 dual-operator crews (Pilot-in-Command + Sensor/Visual Observer) matching the 2-aircraft fleet 1-for-1 with full backup redundancy",
     "location": "Madill / Marshall & Bryan County Corridor, Oklahoma",
-    "certifications_funded": ["FAA Part 107 Commercial Remote Pilot", "FHWA NHI / NBIS Bridge Inspection Safety"],
+    "certifications_funded": ["FAA Part 107 Commercial Remote Pilot", "FHWA NHI / NBIS Bridge & Highway Inspection Safety"],
     "direct_apprentice_budget_usd": 114000,
     "stackable_state_programs": ["Oklahoma Works WIOA On-the-Job Training (OJT)", "Oklahoma CareerTech Training for Industry Program (TIP)"]
   },
@@ -26,17 +31,17 @@
     "state_match_20_pct": 156500,
     "private_cash_match": 0,
     "clins": [
-      {"clin": "CLIN 0001", "description": "2x Modular NDAA UAS + E.B.O.N.Y. NDE & WORM Payloads", "total": 250000, "federal": 200000, "state": 50000},
-      {"clin": "CLIN 0002", "description": "TRL 4 to TRL 6 Field Qualification & NBI Audit Pipeline", "total": 195000, "federal": 156000, "state": 39000},
-      {"clin": "CLIN 0003", "description": "Oklahoma UAS Bridge NDE Apprenticeship (4 Jobs / 2 Crews) + 250-Bridge Campaign", "total": 212500, "federal": 170000, "state": 42500},
+      {"clin": "CLIN 0001", "description": "2x Modular NDAA UAS + E.B.O.N.Y. Bridge & Highway NDE Payloads", "total": 250000, "federal": 200000, "state": 50000},
+      {"clin": "CLIN 0002", "description": "TRL 4 to TRL 6 Field Qualification, NBI & Pavement Depth/Consistency Pipeline", "total": 195000, "federal": 156000, "state": 39000},
+      {"clin": "CLIN 0003", "description": "Oklahoma UAS Infrastructure NDE Apprenticeship (4 Jobs / 2 Crews) + 250-Sortie Campaign", "total": 212500, "federal": 170000, "state": 42500},
       {"clin": "CLIN 0004", "description": "ODOT/County Engineer Certification, Sustainment & Data Handoff", "total": 125000, "federal": 100000, "state": 25000}
     ]
   },
   "hardware_bom_per_unit_usd": {
     "ndaa_airframe_and_gcs": 32000,
-    "universal_quick_release_gimbal_24v_bus": 4500,
+    "universal_quick_release_dual_orientation_gimbal_24v_bus": 4500,
     "ebony_sovereign_compute_and_oob_worm_vault": 4800,
-    "bridge_nde_sensor_pod_eo_ir_mems": 14500,
+    "bridge_and_highway_nde_sensor_pod_eo_ir_lidar_gpr": 14500,
     "spares_cases_remote_id": 4200,
     "single_unit_total": 60000,
     "two_unit_fleet_total": 120000,
@@ -46,7 +51,7 @@
     }
   },
   "bridge_roi_model": {
-    "pilot_bridges": 250,
+    "pilot_sorties": 250,
     "ebony_cost_per_sortie_usd": 250,
     "legacy_snooper_cost_per_bridge_usd": 4600,
     "ebony_equivalent_sortie_cost_usd": 62500,
