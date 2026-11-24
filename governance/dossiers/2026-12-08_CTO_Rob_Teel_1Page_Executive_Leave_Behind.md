@@ -12,7 +12,7 @@
 
 Oklahoma maintains nearly `23,000` bridges (`188` at-risk and `10` structurally deficient spans in ODOT's `$7.3B` `2027–2034` Construction Work Plan) plus thousands of miles of state and county highways requiring continuous **surface condition (`IRI/PCI`), overlay depth uniformity, and subsurface layer consistency** verification. Conventional under-deck snooper trucks (`$4,600/bridge`) and destructive pavement core sampling create major cost backlogs and live-traffic hazards.
 
-Humphrey Virtual Farms LLC (`Oklahoma`) delivers a turnkey **FHWA STRIDE (`23 U.S.C. § 503(c)`) / EDC-8** deployment combining **two (`2x`) modular dual-orientation NDAA inspection UAS platforms** with our air-gapped **Project E.B.O.N.Y. Sovereign NDE & WORM Merkle Payload (`28–45 W` enclave)**—generating **`$1,087,500` in direct net savings** while creating **4 new skilled-trade aviation & NDE jobs** in southern Oklahoma.
+Humphrey Virtual Farms LLC (`Oklahoma`) delivers a turnkey **FHWA STRIDE (`23 U.S.C. § 503(c)`) / EDC-8** deployment combining **two (`2x`) modular dual-orientation NDAA inspection UAS platforms** with our air-gapped **Project E.B.O.N.Y. Sovereign NDE & WORM Merkle Payload (`28–45 W` enclave)**—generating **`$1,087,500` in direct net savings** while creating **4 new skilled-trade aviation & NDE jobs** in Oklahoma.
 
 | Core Value Metric | Legacy Inspection Methods | Project E.B.O.N.Y. UAS | Direct Oklahoma Impact |
 | :--- | :--- | :--- | :--- |
@@ -45,5 +45,5 @@ Every aircraft uses a tool-less `24 V DC` / isolated Ethernet quick-release payl
 ## 4. Three Immediate Decisions Requested (`Dec 8–10, 2026`)
 
 1. **Route Turnkey Package to State Grant Writers & ODOT `STIC`:** Endorse routing the completed `$782,500` FHWA STRIDE proposal package (`80%` Federal / `20%` State match) to ODOT Bridge & Roadway Divisions.
-2. **Designate `2–3` Initial Test Bridges & Highway Corridors:** Select `2–3` Marshall / Bryan / Johnston County or ODOT spans and adjacent highway segments for Days `46–60` calibration.
-3. **Align `Oklahoma Works / WIOA` Apprentice Co-Funding:** Connect Humphrey Virtual Farms LLC with southern Oklahoma `WIOA / CareerTech` representatives to stack On-the-Job Training (`OJT`) support onto our `4` new apprentice positions.
+2. **Designate `2–3` Initial Test Bridges & Highway Corridors:** Select `2–3` ODOT-designated Oklahoma state and county bridge spans and adjacent highway segments for Days `46–60` calibration.
+3. **Align `Oklahoma Works / WIOA` Apprentice Co-Funding:** Connect Humphrey Virtual Farms LLC with Oklahoma `WIOA / CareerTech` representatives to stack On-the-Job Training (`OJT`) support onto our `4` new apprentice positions.
