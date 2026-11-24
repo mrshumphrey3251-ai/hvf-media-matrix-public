@@ -4,7 +4,7 @@
 - **Prepared For:** Rob Teel, Chief Technology Officer — Oklahoma Department of Commerce (`December 8–10, 2026`)
 - **Prime Oklahoma Technology Partner:** Humphrey Virtual Farms LLC (`Oklahoma` | `CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5` | `100%` U.S.-Owned Non-Traditional Small Business, `10 U.S.C. § 3014` | `SPRS: 110/110`)
 - **Commanding Authority:** Jeffery Humphrey, Founder & CEO (`humphreyvirtualfarm@gmail.com` | `(442) 800-4947`)
-- **Federal Validation Anchor:** DoD Tradewinds Solutions Marketplace **Docket `11-26-4349`** (`Compliant & Queued for Dec 1–14, 2026 Assessment` | `5,577,006` WORM `SHA-256` Merkle Blocks | `59` Bare-Metal Stress Arenas)
+- **Federal Validation Anchor:** DoD Tradewinds Solutions Marketplace **Docket `11-26-4349`** (`Compliant & Queued for Dec 1–14, 2026 Assessment` | `5,577,006` WORM `SHA-256` Merkle Blocks | `59` Bare-Metal Stress Arenas) | **IP Protection:** `U.S. Provisional Patent Application No. 64/137,158` (`Filed August 20, 2026` | `Patent Pending`)
 
 ---
 
