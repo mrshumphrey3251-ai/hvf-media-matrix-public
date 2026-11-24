@@ -1,0 +1,27 @@
+{
+  "white_paper_version": "1.0.0",
+  "solicitation": "W912HZ26S0001",
+  "agency": "U.S. Army Engineer Research and Development Center (ERDC) — Geotechnical & Structures Laboratory (GSL)",
+  "prime_offeror": {
+    "legal_name": "Humphrey Virtual Farms LLC",
+    "headquarters": "Madill, Oklahoma 73446",
+    "cage_code": "1AHA8",
+    "sam_uei": "S1M4ENLHTDH5",
+    "pi_ceo": "Jeffery Humphrey",
+    "email": "humphreyvirtualfarm@gmail.com",
+    "phone": "(442) 800-4947",
+    "sprs_score": 110
+  },
+  "rom_budget_usd": {
+    "total_value": 745000,
+    "cost_share_required": 0,
+    "period_of_performance_months": 12,
+    "clins": [
+      {"clin": "CLIN 0001", "description": "2x Modular NDAA UAS + E.B.O.N.Y. Dual-Orientation NDE Payloads", "price": 245000},
+      {"clin": "CLIN 0002", "description": "Under-Bridge GPS-Denied & Airfield Pavement Depth/Consistency Calibration", "price": 215000},
+      {"clin": "CLIN 0003", "description": "150-Sortie Multi-Site Installation & Civil Corridor Validation Campaign", "price": 165000},
+      {"clin": "CLIN 0004", "description": "USACE Engineering Handoff, Operator Training & Final Technical Report", "price": 120000}
+    ]
+  },
+  "frozen_validation_anchor": "DoD Tradewinds Docket 11-26-4349"
+}
