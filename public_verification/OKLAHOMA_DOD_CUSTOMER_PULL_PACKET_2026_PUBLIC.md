@@ -4,7 +4,7 @@ OKLAHOMA DoD & USACE TULSA DISTRICT DIRECT CUSTOMER-PULL BRIEF (10 U.S.C. 4022 /
 
 Project Ebony v8.0.0: Air-Gapped Tri-Brain OT/SCADA Interlock, Bridge NDE & WORM Enclave
 
-Prime Offeror: Humphrey Virtual Farms LLC (701 E Drew St., Madill, OK 73446 | SDB, Minority-Owned & NTDC)
+Prime Offeror: Humphrey Virtual Farms LLC ([REDACTED-FACILITY-ADDRESS] | SDB, Minority-Owned & NTDC)
 
 Identifiers: CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | NAICS: 541715, 541511, 541330, 541690
 

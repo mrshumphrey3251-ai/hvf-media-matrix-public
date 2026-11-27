@@ -16,17 +16,17 @@ import textwrap
 from pathlib import Path
 from typing import List
 
-ROOT_PRIV = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+ROOT_PRIV = Path(r"[REDACTED-PRIVATE-ROOT]")
 ROOT_PUB  = Path(r"C:\hvf_c2\hvf-media-matrix-public")
 DESKTOP   = Path(r"C:\Users\mrshu\OneDrive\Desktop")
 
 PARAGRAPHS = [
     ("B", "USACE ERDC BROAD AGENCY ANNOUNCEMENT (ITL & GSL) PRE-PROPOSAL WHITE PAPER"),
     ("B", "Title: Project Ebony v8.0.0: Air-Gapped Tri-Brain OT/SCADA Safety Interlock, Automated Bridge/Pavement NDE & WORM Merkle Provenance Testbed"),
-    ("N", "Submitting Organization: Humphrey Virtual Farms LLC (701 E Drew St., Madill, OK 73446)"),
+    ("N", "Submitting Organization: Humphrey Virtual Farms LLC ([REDACTED-FACILITY-ADDRESS])"),
     ("N", "Socioeconomic Status: Small Business, Small Disadvantaged Business (SDB), Minority-Owned, Non-Traditional Defense Contractor"),
     ("N", "SAM.gov UEI: S1M4ENLHTDH5 | CAGE Code: 1AHA8 | NAICS: 541715, 541511, 541330"),
-    ("N", "Principal Investigator: Jeffery Humphrey, Founder, President & CEO | (572) 358-9978 | humphreyvirtualfarm@gmail.com"),
+    ("N", "Principal Investigator: Jeffery Humphrey, Founder, President & CEO | [REDACTED-PUBLIC-PHONE] | [REDACTED-PUBLIC-EMAIL]"),
     ("N", "ERDC Topic Areas: ITL-4 (Cybersecurity), ITL-8 (Edge Computing), GSL-19 (Bridge Research), GSL-21 (Military Structures), GSL-23 (Advanced Maneuver / Airfield Pavements)"),
     ("N", "Research Classification: Applied Research and Development (TRL 4 Laboratory Software Testbed advancing to TRL 6 Prototype; Non-Proprietary Pre-Proposal Summary)"),
     ("N", "Cross-Referenced DoD CDAO Tradewinds Docket: 10-26-4046 (Status: Received | Video SHA-256: c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd | Merkle Root: bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1)"),
@@ -238,8 +238,8 @@ def generate_erdc_clean_pdf_text() -> str:
     )
     raw = raw.replace("**", "").replace("`", "")
     if is_public:
-        raw = raw.replace("humphreyvirtualfarm@gmail.com", "[REDACTED-PUBLIC-EMAIL]")
-        raw = raw.replace("(572) 358-9978", "[REDACTED-PUBLIC-PHONE]")
+        raw = raw.replace("[REDACTED-PUBLIC-EMAIL]", "[REDACTED-PUBLIC-EMAIL]")
+        raw = raw.replace("[REDACTED-PUBLIC-PHONE]", "[REDACTED-PUBLIC-PHONE]")
     return raw
 
 

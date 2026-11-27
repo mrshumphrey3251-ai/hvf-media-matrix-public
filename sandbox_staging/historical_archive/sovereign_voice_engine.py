@@ -29,4 +29,4 @@ class SovereignVoiceEngine:
             $synth.Speak($text)
             $synth.Dispose()
             """
-            subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", ps])
+            subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", ps])

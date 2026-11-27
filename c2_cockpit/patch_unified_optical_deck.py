@@ -3,7 +3,7 @@ import sys
 import re
 import py_compile
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 TARGET_FILES = [
     os.path.join(BASE_DIR, "ebony_console.py"),
     os.path.join(BASE_DIR, "ebony_console_GREEN.py")
@@ -88,8 +88,8 @@ with col_text:
                 from datetime import datetime
                 from cryptography.fernet import Fernet
                 
-                key_path = r"C:\\HVF_Repos\\hvf-media-matrix-private\\memory_core\\vault.key"
-                db_path = r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db"
+                key_path = r"[REDACTED-PRIVATE-ROOT]\\memory_core\\vault.key"
+                db_path = r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db"
                 with open(key_path, "rb") as kf:
                     cipher = Fernet(kf.read().strip())
                 enc_payload = cipher.encrypt(p2p_msg.encode("utf-8")).decode("utf-8")
@@ -109,8 +109,8 @@ with col_text:
     try:
         import sqlite3
         from cryptography.fernet import Fernet
-        key_path = r"C:\\HVF_Repos\\hvf-media-matrix-private\\memory_core\\vault.key"
-        db_path = r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db"
+        key_path = r"[REDACTED-PRIVATE-ROOT]\\memory_core\\vault.key"
+        db_path = r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db"
         with open(key_path, "rb") as kf:
             dec_cipher = Fernet(kf.read().strip())
             

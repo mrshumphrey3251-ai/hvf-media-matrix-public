@@ -3,7 +3,7 @@ import sys
 import re
 from pathlib import Path
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 current_script_name = Path(__file__).name
 
 # Segmented pattern literals to prevent rule definition self-matching

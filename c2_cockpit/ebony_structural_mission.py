@@ -11,7 +11,7 @@ import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
-base_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+base_dir = Path(r"[REDACTED-PRIVATE-ROOT]")
 cockpit_dir = base_dir / "c2_cockpit"
 db_candidates = [cockpit_dir / "matrix_ledger.db", base_dir / "matrix_ledger.db"]
 target_db = next((p for p in db_candidates if p.exists()), cockpit_dir / "matrix_ledger.db")

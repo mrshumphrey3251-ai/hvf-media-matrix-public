@@ -5,7 +5,7 @@ import json
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-base_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+base_dir = Path(r"[REDACTED-PRIVATE-ROOT]")
 cockpit_dir = base_dir / "c2_cockpit"
 release_root = Path(r"C:\hvf_c2\releases\ebony_client_rob_teel")
 release_cockpit = release_root / "c2_cockpit"

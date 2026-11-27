@@ -31,4 +31,4 @@ if __name__ == "__main__":
     simulation_firewall(authorized_user="Ebony")
     
     final_report = generate_report()
-    print(final_report)
+    print(final_report)

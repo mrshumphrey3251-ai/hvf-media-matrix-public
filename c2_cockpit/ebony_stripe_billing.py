@@ -8,7 +8,7 @@ import sys
 import json
 from pathlib import Path
 
-COCKPIT_DIR = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+COCKPIT_DIR = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 STRIPE_CONFIG_FILE = COCKPIT_DIR / "stripe_config.json"
 
 STRIPE_TIER_CATALOG = {

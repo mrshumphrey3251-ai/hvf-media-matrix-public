@@ -3,7 +3,7 @@ import re
 import urllib.request
 from pathlib import Path
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 s3_pattern = re.compile(r'https?://[a-zA-Z0-9.\-_]*amazonaws\.com[a-zA-Z0-9./_\-?&=%]*')
 
 print("=" * 84)

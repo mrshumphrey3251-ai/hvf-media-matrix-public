@@ -30,4 +30,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "full":
         full_deploy()
     else:
-        canary_deploy(percentage=5)
+        canary_deploy(percentage=5)

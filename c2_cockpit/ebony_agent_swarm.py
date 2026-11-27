@@ -10,7 +10,7 @@ import os
 
 def dispatch_swarm_task(agent_type: str = "all") -> str:
     now_ts = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-    repo_root = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+    repo_root = Path(r"[REDACTED-PRIVATE-ROOT]")
     
     if agent_type == "recon":
         asset_count = 0

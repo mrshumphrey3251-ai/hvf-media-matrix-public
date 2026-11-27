@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 import sys
 
-_cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+_cdir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 if str(_cdir) not in sys.path:
     sys.path.insert(0, str(_cdir))
 

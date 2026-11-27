@@ -9,7 +9,7 @@ import hashlib
 from datetime import datetime
 from pathlib import Path
 
-cockpit_dir = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit")
+cockpit_dir = Path("[REDACTED-PRIVATE-ROOT]/c2_cockpit")
 db_path = cockpit_dir / "matrix_ledger.db"
 pipeline_path = cockpit_dir / "solicitation_pipeline.json"
 

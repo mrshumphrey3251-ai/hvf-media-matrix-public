@@ -6,7 +6,7 @@ import sys
 import subprocess
 from pathlib import Path
 
-repo_dir = Path("C:/hvf_c2/hvf-media-matrix-private")
+repo_dir = Path("[REDACTED-PRIVATE-ROOT]")
 cockpit_dir = repo_dir / "c2_cockpit"
 
 print(f"[*] Python Executable: {sys.executable}")

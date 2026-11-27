@@ -1,7 +1,7 @@
 from pathlib import Path
 import re
 
-repo = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+repo = Path(r"[REDACTED-PRIVATE-ROOT]")
 
 print("[*] Scanning portal controllers for status string definitions...")
 for py_file in repo.rglob("*.py"):

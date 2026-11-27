@@ -2,8 +2,8 @@ import os
 import sqlite3
 import json
 
-DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
-PROP_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\proposals"
+DB_PATH = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\hvf_memory_vault.db"
+PROP_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\proposals"
 os.makedirs(PROP_DIR, exist_ok=True)
 
 conn = sqlite3.connect(DB_PATH, timeout=10.0, isolation_level=None)

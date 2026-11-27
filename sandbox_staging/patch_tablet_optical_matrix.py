@@ -21,7 +21,7 @@ def render():
 
 
 
-    BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+    BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 
     DAEMON_FILE = os.path.join(BASE_DIR, "optical_stream_daemon.py")
 
@@ -83,7 +83,7 @@ def render():
 
     PORT = 8502
 
-    BASE_DIR = r"C:\\HVF_Repos\\hvf-media-matrix-private"
+    BASE_DIR = r"[REDACTED-PRIVATE-ROOT]"
 
     CONFIG_FILE = os.path.join(BASE_DIR, "tablet_config.json")
 
@@ -489,7 +489,7 @@ def render():
 
     with st.expander("⚙️ Configure Tablet Streaming Endpoint", expanded=False):
 
-        tab_cfg_file = r"C:\\HVF_Repos\\hvf-media-matrix-private\\tablet_config.json"
+        tab_cfg_file = r"[REDACTED-PRIVATE-ROOT]\\tablet_config.json"
 
         current_url = "http://192.168.1.100:8080/video"
 

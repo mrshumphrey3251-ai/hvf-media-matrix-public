@@ -6,7 +6,7 @@ import hashlib
 from datetime import datetime
 from pathlib import Path
 
-DB_PATH = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit/matrix_ledger.db")
+DB_PATH = Path("[REDACTED-PRIVATE-ROOT]/c2_cockpit/matrix_ledger.db")
 
 CONTROL_FAMILIES = [
     ("AC", "Access Control", 22, "ENFORCED"),

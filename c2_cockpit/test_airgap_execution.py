@@ -8,7 +8,7 @@ import sys
 import sqlite3
 from pathlib import Path
 
-repo_dir = Path("C:/hvf_c2/hvf-media-matrix-private")
+repo_dir = Path("[REDACTED-PRIVATE-ROOT]")
 cockpit_dir = repo_dir / "c2_cockpit"
 db_path = cockpit_dir / "matrix_ledger.db"
 

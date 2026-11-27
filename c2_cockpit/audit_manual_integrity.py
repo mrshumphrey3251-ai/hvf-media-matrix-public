@@ -1,7 +1,7 @@
 import hashlib
 from pathlib import Path
 
-target = Path(r"C:\hvf_c2\hvf-media-matrix-private\EBONY_USER_MANUAL_AND_LEGAL_DISCLAIMER.md")
+target = Path(r"[REDACTED-PRIVATE-ROOT]\EBONY_USER_MANUAL_AND_LEGAL_DISCLAIMER.md")
 
 print("\n" + "=" * 86)
 print("     E.B.O.N.Y. CLICK-BY-CLICK USER MANUAL AUDIT REPORT     ")

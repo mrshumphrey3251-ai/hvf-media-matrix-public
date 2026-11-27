@@ -1,8 +1,8 @@
 # HUMPHREY VIRTUAL FARMS LLC // POST-BLITZ PRE-AWARD READINESS & ZERO-CRUMB AUDIT (`2026-11-01`)
 
-* **Entity:** Humphrey Virtual Farms LLC (`701 E Drew, Madill, OK 73446-2620` | `100% U.S. Sovereign Small Business, 0% FOCI`)
+* **Entity:** Humphrey Virtual Farms LLC (`[REDACTED-FACILITY-ADDRESS]` | `100% U.S. Sovereign Small Business, 0% FOCI`)
 * **Statutory Identifiers:** `CAGE Code: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5` | `Section 889 FY19 NDAA Certified`
-* **Principal Investigator & CEO:** Jeffery Humphrey (`humphreyvirtualfarm@gmail.com` | `(572) 358-9978`)
+* **Principal Investigator & CEO:** Jeffery Humphrey (`[REDACTED-PUBLIC-EMAIL]` | `[REDACTED-PUBLIC-PHONE]`)
 * **Shared Core C2 Cryptographic Merkle Root (`640` Compiled Python Modules):** `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`
 * **SQLite WORM & Memory Vault Schemas:** `matrix_ledger.db` (`23` tables) + `hvf_memory_vault.db` (`31` tables) = `54` Verified Tables (`0%` Cloud Dependency)
 * **Sovereign Field Engineering Academy:** `1,420 / 1,420` Unique Verified Questions (`800` Ch. 1 Milestone + `620` Ch. 5 State Exam across `15` Extensions & `4` Offline Manuals)
@@ -35,5 +35,5 @@
 ---
 
 ## 3. PRE-AWARD CONTRACTING & INVOICING READINESS CHECKLIST
-* **[VERIFIED] Active SAM.gov Entity Registration:** `CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5` | Physical Address: `701 E Drew, Madill, OK 73446-2620` | Official Contracting Inbox: `humphreyvirtualfarm@gmail.com`.
+* **[VERIFIED] Active SAM.gov Entity Registration:** `CAGE: 1AHA8` | `UEI: S1M4ENLHTDH5` | Physical Address: `[REDACTED-FACILITY-ADDRESS]` | Official Contracting Inbox: `[REDACTED-PUBLIC-EMAIL]`.
 * **[VERIFIED] Public Cryptographic Verification Enclave:** `https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public` (`640` C2 modules, `0` leaked `.db`/`.sqlite`/`.pyc` files, `100%` manifest hash parity).

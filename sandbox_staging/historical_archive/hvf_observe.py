@@ -20,4 +20,4 @@ if __name__ == "__main__":
     logging.info("/// DEPLOYING OBSERVABILITY STACK ///")
     # Gatekeeper: Verify executive authorization before injecting telemetry hooks
     simulation_firewall(authorized_user="Ebony")
-    deploy_observability()
+    deploy_observability()

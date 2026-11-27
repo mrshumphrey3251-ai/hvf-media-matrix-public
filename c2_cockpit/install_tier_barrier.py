@@ -3,7 +3,7 @@ import re
 from pathlib import Path
 import py_compile
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 if not cockpit_dir.exists():
     print(f"[CRITICAL ERROR] Cockpit directory not found: {cockpit_dir}")
     sys.exit(1)
@@ -268,7 +268,7 @@ lines = content.splitlines(keepends=True)
 # Ensure imports at the top
 tier_import_statement = """import sys
 from pathlib import Path
-_cdir = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit")
+_cdir = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit")
 if str(_cdir) not in sys.path:
     sys.path.insert(0, str(_cdir))
 from ebony_tier_manager import (

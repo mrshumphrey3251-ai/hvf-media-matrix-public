@@ -4,9 +4,9 @@ import py_compile
 
 # 1. Inject render_interactive_course into all resolved and legacy paths
 course_paths = [
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\sandbox_staging\hvf_course_runner.py"),
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\sandbox_staging\hvf_course_runner.py"),
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_course_runner.py")
+    Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\sandbox_staging\hvf_course_runner.py"),
+    Path(r"[REDACTED-PRIVATE-ROOT]\sandbox_staging\hvf_course_runner.py"),
+    Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\hvf_course_runner.py")
 ]
 
 course_func_code = """
@@ -35,7 +35,7 @@ for cp in course_paths:
         print(f"[!] Warning on {cp}: {e}")
 
 # 2. Patch line 206 in ebony_console_GREEN.py with defensive fallback
-target_console = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py")
+target_console = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\ebony_console_GREEN.py")
 if not target_console.exists():
     print(f"[CRITICAL ERROR] Target console not found: {target_console}")
     sys.exit(1)

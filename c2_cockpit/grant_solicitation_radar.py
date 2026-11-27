@@ -2,7 +2,7 @@ import os
 import sqlite3
 from datetime import datetime
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 
 conn = sqlite3.connect(DB_PATH, timeout=10.0, isolation_level=None)

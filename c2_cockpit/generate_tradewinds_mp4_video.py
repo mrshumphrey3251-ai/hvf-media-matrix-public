@@ -76,8 +76,8 @@ def capture_live_workstation_proof() -> list[str]:
     except Exception:
         captured.append("  Compiled C2 Python Modules : 636 / 636 | Academy Qs: 1,420 / 1,420")
 
-    priv_ledger = Path(r"C:\hvf_c2\hvf-media-matrix-private\matrix_ledger.db")
-    priv_vault = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db")
+    priv_ledger = Path(r"[REDACTED-PRIVATE-ROOT]\matrix_ledger.db")
+    priv_vault = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\hvf_memory_vault.db")
     if priv_ledger.exists() and priv_vault.exists():
         try:
             c1 = sqlite3.connect(str(priv_ledger))

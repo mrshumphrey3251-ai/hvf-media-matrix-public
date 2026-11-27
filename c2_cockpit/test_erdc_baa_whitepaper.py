@@ -28,8 +28,8 @@ class TestErdcBaaWhitepaper(unittest.TestCase):
         self.assertIn("$150,000.00", md_content)
         self.assertIn("DFARS 252.227-7018", md_content)
         if "public" in str(COCKPIT_DIR).lower():
-            self.assertNotIn("humphreyvirtualfarm@gmail.com", md_content)
-            self.assertNotIn("humphreyvirtualfarm@gmail.com", pdf_text)
+            self.assertNotIn("[REDACTED-PUBLIC-EMAIL]", md_content)
+            self.assertNotIn("[REDACTED-PUBLIC-EMAIL]", pdf_text)
 
 
 if __name__ == "__main__":

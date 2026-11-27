@@ -31,7 +31,7 @@ def render():
 
 
 
-    DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
+    DB_PATH = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\hvf_memory_vault.db"
 
 
 

@@ -2,7 +2,7 @@ import sqlite3
 import sys
 from pathlib import Path
 
-db_path = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\matrix_ledger.db")
+db_path = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\matrix_ledger.db")
 
 if not db_path.exists():
     print(f"[CRITICAL ERROR] Database not found at {db_path}")

@@ -37,13 +37,13 @@ class TradewindsDispatchPackager:
         posture = self.service.inspect_system_posture()
         log_summary = self.logger.get_audit_summary()
 
-        priv_root = r"C:\hvf_c2\hvf-media-matrix-private"
+        priv_root = r"[REDACTED-PRIVATE-ROOT]"
         pub_root = r"C:\hvf_c2\hvf-media-matrix-public"
         priv_rev = subprocess.run(["git", "rev-parse", "HEAD"], cwd=priv_root, capture_output=True, text=True).stdout.strip()
         pub_rev = subprocess.run(["git", "rev-parse", "HEAD"], cwd=pub_root, capture_output=True, text=True).stdout.strip()
 
         now_utc = datetime.datetime.now(datetime.timezone.utc).isoformat()
-        contact_email = "[REDACTED-FOR-PUBLIC-RELEASE]" if is_public else "humphreyvirtualfarm@gmail.com"
+        contact_email = "[REDACTED-FOR-PUBLIC-RELEASE]" if is_public else "[REDACTED-PUBLIC-EMAIL]"
 
         record = {
             "dispatch_protocol": "HVF-TRADEWINDS-DISPATCH-v8.0",

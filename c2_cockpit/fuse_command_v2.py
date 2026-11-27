@@ -1,7 +1,7 @@
 import os
 import re
 
-file_path = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\c2_cockpit\ebony_console_GREEN.py"
+file_path = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\c2_cockpit\ebony_console_GREEN.py"
 
 with open(file_path, "r", encoding="utf-8") as f:
     code = f.read()

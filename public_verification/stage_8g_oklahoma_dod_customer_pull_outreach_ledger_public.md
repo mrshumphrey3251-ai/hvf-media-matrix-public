@@ -1,6 +1,6 @@
 # EXECUTIVE RECORD // STAGE 8G OKLAHOMA DOD & USACE TULSA DISTRICT CUSTOMER-PULL OUTREACH LEDGER
 **Contractor:** Humphrey Virtual Farms LLC (CAGE: `1AHA8` | UEI: `S1M4ENLHTDH5`)  
-**Commanding Authority:** Jeffery Humphrey, Founder, President & CEO (`humphreyvirtualfarm@gmail.com` | [REDACTED-CEO-DIRECT-LINE])  
+**Commanding Authority:** Jeffery Humphrey, Founder, President & CEO (`[REDACTED-PUBLIC-EMAIL]` | [REDACTED-CEO-DIRECT-LINE])  
 **Active TSM Docket ID:** `10-26-4046` (Superseding `9-26-3703`)  
 **Timestamp (UTC):** `2026-10-30T18:04:03Z`  
 **Shared Core C2 Merkle Root (SHA-256):** `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`  
@@ -11,9 +11,9 @@
 STAGE 8G // OKLAHOMA DoD & USACE TULSA DISTRICT DIRECT CUSTOMER-PULL OUTREACH LEDGER
 ====================================================================================
 - Commanding Authority: Jeffery Humphrey, Founder, President & CEO
-- Prime Contractor: Humphrey Virtual Farms LLC (701 E Drew St., Madill, OK 73446)
+- Prime Contractor: Humphrey Virtual Farms LLC ([REDACTED-FACILITY-ADDRESS])
 - Identifiers: CAGE Code: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | SDB & Non-Traditional Defense Contractor (NTDC)
-- Contact: [REDACTED-CEO-DIRECT-LINE] | humphreyvirtualfarm@gmail.com
+- Contact: [REDACTED-CEO-DIRECT-LINE] | [REDACTED-PUBLIC-EMAIL]
 - Public Verification Repo: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public
 - Compiled 1-Page Executive Brief PDF: c2_cockpit/proposals/OKLAHOMA_DOD_CUSTOMER_PULL_PACKET_2026.pdf
 - 1-Page Executive Brief PDF SHA-256: fdaaad07a65d0a409367a7fc474de37cd8b49d62b3628d6236e96c85984dc046

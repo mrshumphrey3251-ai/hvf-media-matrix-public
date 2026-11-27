@@ -12,7 +12,7 @@ import argparse
 from datetime import datetime, timezone
 from pathlib import Path
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 if str(cockpit_dir) not in sys.path:
     sys.path.insert(0, str(cockpit_dir))
 

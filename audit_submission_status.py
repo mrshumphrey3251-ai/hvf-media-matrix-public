@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 targets = [
-    Path(r"C:\hvf_c2\hvf-media-matrix-private"),
+    Path(r"[REDACTED-PRIVATE-ROOT]"),
     Path(r"C:\HVF_Repos\hvf-media-matrix-public")
 ]
 

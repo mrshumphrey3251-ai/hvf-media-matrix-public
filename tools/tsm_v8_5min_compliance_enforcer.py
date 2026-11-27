@@ -119,7 +119,7 @@ class TSMVideoComplianceEnforcer:
 
         private_content = f"""# OFFICIAL EXECUTIVE REMEDIATION LEDGER — TSM DOCKET 10-26-4046 (5:00 VIDEO CAP ENFORCEMENT)
 **Contractor:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)  
-**Commanding Authority:** Jeffery Humphrey, Founder, President & CEO (`humphreyvirtualfarm@gmail.com` | (572) 358-9978)  
+**Commanding Authority:** Jeffery Humphrey, Founder, President & CEO (`[REDACTED-PUBLIC-EMAIL]` | [REDACTED-PUBLIC-PHONE])  
 **Timestamp (UTC):** {manifest['timestamp_utc']}  
 **Execution Environment:** Windows PowerShell ({manifest['os_environment']})  
 **Shared Core C2 Merkle Root (SHA-256):** `{self.SHARED_MERKLE_ROOT}`  

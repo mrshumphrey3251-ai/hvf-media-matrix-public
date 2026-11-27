@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import py_compile
 
-base_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+base_dir = Path(r"[REDACTED-PRIVATE-ROOT]")
 cockpit_dir = base_dir / "c2_cockpit"
 err_log = base_dir / "streamlit_err.log"
 
@@ -51,7 +51,7 @@ import sys
 import json
 from pathlib import Path
 
-COCKPIT_DIR = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit")
+COCKPIT_DIR = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit")
 STRIPE_CONFIG_FILE = COCKPIT_DIR / "stripe_config.json"
 
 STRIPE_TIER_CATALOG = {

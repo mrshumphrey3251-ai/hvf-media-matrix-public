@@ -37,4 +37,4 @@ if __name__ == "__main__":
         simulation_firewall(authorized_user="Ebony")
         logging.info("[SUCCESS]: Firewall successfully validated executive override.")
     except PermissionError:
-        logging.error("Firewall failed to recognize authorized override.")
+        logging.error("Firewall failed to recognize authorized override.")

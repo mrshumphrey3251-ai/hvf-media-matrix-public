@@ -4,7 +4,7 @@ import json
 import socket
 import cv2
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 CONFIG_FILE = os.path.join(BASE_DIR, "tablet_config.json")
 TAILSCALE_IP = "100.65.79.106"
 PORT = 4747

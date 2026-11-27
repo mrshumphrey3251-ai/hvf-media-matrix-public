@@ -59,4 +59,4 @@ class HVFLinkedInNode:
 
         except Exception as e:
             self.logger.error(f"LinkedIn API Error: {e}")
-            return False
+            return False

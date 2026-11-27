@@ -31,4 +31,4 @@ if api_key:
     except Exception as e:
         print(f"Network Interrogation Failed: {e}")
 else:
-    print("CRITICAL ERROR: API Key not found in .env vault.")
+    print("CRITICAL ERROR: API Key not found in .env vault.")

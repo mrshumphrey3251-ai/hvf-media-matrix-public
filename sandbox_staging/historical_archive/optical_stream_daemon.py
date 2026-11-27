@@ -98,4 +98,4 @@ if __name__ == "__main__":
     server_address = ("0.0.0.0", PORT)
     httpd = ThreadedHTTPServer(server_address, StreamingHandler)
     print(f"[ONLINE] Sovereign Arducam daemon broadcasting on 0.0.0.0:{PORT}")
-    httpd.serve_forever()
+    httpd.serve_forever()

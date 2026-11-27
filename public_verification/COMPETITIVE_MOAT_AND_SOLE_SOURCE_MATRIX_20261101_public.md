@@ -1,8 +1,8 @@
 # HUMPHREY VIRTUAL FARMS LLC // 4-SILO COMPETITIVE MOAT & SOLE-SOURCE ACQUISITION JUSTIFICATION MATRIX (`10 U.S.C. § 4022 / § 4023 / FAR 6.302-1`)
 
-* **Prime Contracting Entity:** Humphrey Virtual Farms LLC (`HQ: 701 E Drew, Madill, OK 73446-2620` | `100% U.S. Sovereign Small Business, 0% FOCI`)
+* **Prime Contracting Entity:** Humphrey Virtual Farms LLC (`HQ: [REDACTED-FACILITY-ADDRESS]` | `100% U.S. Sovereign Small Business, 0% FOCI`)
 * **Statutory Identifiers:** `CAGE Code: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5` | `Section 889 FY19 NDAA Certified` | `DFARS 252.227-7018 Background IP Retained`
-* **Principal Investigator & CEO:** Jeffery Humphrey, Founder, President & Chief Executive Officer (`humphreyvirtualfarm@gmail.com` | `(572) 358-9978`)
+* **Principal Investigator & CEO:** Jeffery Humphrey, Founder, President & Chief Executive Officer (`[REDACTED-PUBLIC-EMAIL]` | `[REDACTED-PUBLIC-PHONE]`)
 * **System Designation:** Project Ebony v8.0.0 -- Hardware-Enforced Air-Gapped Tri-Brain Cyber-Physical Safety Interlock, Autonomous MOSA C2 & WORM Provenance Architecture
 * **Shared Core C2 Cryptographic Merkle Root (`640` Compiled Python Modules):** `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`
 * **Verified Database & Academy Baseline:** `52` Bare-Metal SQLite WORM/Vault Tables (`matrix_ledger.db` [22] + `hvf_memory_vault.db` [30]) | `1,420 / 1,420` Unique Verified Engineering Questions (`800` Ch. 1 + `620` Ch. 5 across `15` Extensions & `4` Manuals)

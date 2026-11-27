@@ -8,8 +8,8 @@ import sys
 # ==============================================================================
 
 TARGET_FILES = [
-    r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console.py",
-    r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py"
+    r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\ebony_console.py",
+    r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\ebony_console_GREEN.py"
 ]
 
 print("=" * 80)

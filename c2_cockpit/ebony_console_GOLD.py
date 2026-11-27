@@ -72,7 +72,7 @@ def inject_ultimate_law(msg_list):
 # -----------------------------------------------
 
 
-CHROMA_DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\chroma_db"
+CHROMA_DB_PATH = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\chroma_db"
 COLLECTION_NAME = "hvf_iron_dome_core"
 
 try:
@@ -106,7 +106,7 @@ load_dotenv(override=True)
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 LINKEDIN_TOKEN = os.getenv("LINKEDIN_ACCESS_TOKEN")
 LINKEDIN_URN = os.getenv("LINKEDIN_AUTHOR_URN")
-REPO_DIR = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+REPO_DIR = os.path.abspath(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 DB_PATH = os.path.join(REPO_DIR, "hvf_memory_vault.db")
 
 DEFAULT_LAT = os.getenv("HVF_LATITUDE", "35.47")

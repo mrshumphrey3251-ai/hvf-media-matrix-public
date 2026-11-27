@@ -1,7 +1,7 @@
 # HUMPHREY VIRTUAL FARMS LLC // EXECUTIVE PUBLIC COMMUNIQUE & LINKEDIN RELEASE (`2026-11-01`)
 
 * **Author:** Jeffery Humphrey, Founder, President & Chief Executive Officer (Apex Architect)
-* **Entity:** Humphrey Virtual Farms LLC (`701 E Drew, Madill, OK 73446-2620` | `CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5`)
+* **Entity:** Humphrey Virtual Farms LLC (`[REDACTED-FACILITY-ADDRESS]` | `CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5`)
 * **Shared Core C2 Cryptographic Merkle Root (`640` C2 Modules):** `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`
 * **Verified Character Count:** `2929 / 3,000` Characters
 * **Release Timestamp (UTC):** `2026-11-01T15:30:00.000000+00:00`

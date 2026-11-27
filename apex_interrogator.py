@@ -1,6 +1,6 @@
 import toml
 try:
-    path = r"C:\hvf_c2\hvf-media-matrix-private\.streamlit\secrets.toml"
+    path = r"[REDACTED-PRIVATE-ROOT]\.streamlit\secrets.toml"
     sec = toml.load(path)
     key = sec.get("GROQ_API_KEY", "").strip()
     from groq import Groq

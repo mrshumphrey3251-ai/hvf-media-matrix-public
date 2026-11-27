@@ -15,7 +15,7 @@ groq_key = os.getenv("GROQ_API_KEY")
 
 if not groq_key:
     print("[PASS] Air-Gapped Bare-Metal Mode: Verifying ChromaDB Iron Dome retrieval offline (Zero Cloud Dependency).")
-    db_path = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\chroma_db"
+    db_path = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\chroma_db"
     chroma_client = chromadb.PersistentClient(path=db_path)
     collection = chroma_client.get_collection("hvf_iron_dome_core")
     res = collection.query(query_texts=["HVF Omni-Industrial Matrix CAGE 1AHA8"], n_results=2)
@@ -23,7 +23,7 @@ if not groq_key:
     sys.exit(0)
 
 client = Groq(api_key=groq_key)
-db_path = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\chroma_db"
+db_path = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\chroma_db"
 chroma_client = chromadb.PersistentClient(path=db_path)
 
 try:

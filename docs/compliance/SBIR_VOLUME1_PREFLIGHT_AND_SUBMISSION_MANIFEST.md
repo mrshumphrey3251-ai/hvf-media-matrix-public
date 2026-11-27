@@ -3,7 +3,7 @@
 **Commercial and Government Entity (CAGE) Code:** 1AHA8  
 **Unique Entity Identifier (UEI):** S1M4ENLHTDH5  
 **System for Award Management (SAM.gov) Status:** Active (Record Expiration: 2027)  
-**Primary Corporate Email:** humphreyvirtualfarm@gmail.com  
+**Primary Corporate Email:** [REDACTED-PUBLIC-EMAIL]  
 **Cryptographic Merkle Root Integrity:** Verified Clean // Zero Mutations Detected  
 
 ---
@@ -22,7 +22,7 @@ When logging into the Defense SBIR/STTR Innovation Portal (DSIP) or Grants.gov, 
 * **Small Business Concern (SBC) Status:** 100% Small Business Concern, Self-Certified, US-Owned
 * **Principal Investigator (PI):** Chief Systems Architect, Humphrey Virtual Farms LLC
 * **Business Official (BO) / Authorized Representative:** Managing Executive, Humphrey Virtual Farms LLC
-* **Primary Notification Email:** humphreyvirtualfarm@gmail.com
+* **Primary Notification Email:** [REDACTED-PUBLIC-EMAIL]
 
 ---
 

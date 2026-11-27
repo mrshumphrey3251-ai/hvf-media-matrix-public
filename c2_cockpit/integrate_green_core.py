@@ -9,10 +9,10 @@ import re
 # System: Additive RAG & Comms Merge into 1,073-Line Production Baseline
 # ==============================================================================
 
-BACKUP_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\_code_backups"
+BACKUP_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\_code_backups"
 TARGET_FILES = [
-    r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console.py",
-    r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py"
+    r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\ebony_console.py",
+    r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\ebony_console_GREEN.py"
 ]
 
 print("=" * 80)
@@ -39,7 +39,7 @@ from chromadb.utils import embedding_functions
 import hvf_memory_vault
 from conversation_logger import ConversationLogger
 
-CHROMA_DB_PATH = r"C:\\HVF_Repos\\hvf-media-matrix-private\\chroma_db"
+CHROMA_DB_PATH = r"[REDACTED-PRIVATE-ROOT]\\chroma_db"
 COLLECTION_NAME = "hvf_iron_dome_core"
 
 try:

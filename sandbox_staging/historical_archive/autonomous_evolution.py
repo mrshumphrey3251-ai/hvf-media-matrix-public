@@ -22,7 +22,7 @@ def autonomously_wire_consciousness():
 
     
 
-    search_dir = r"C:\hvf_c2\hvf-media-matrix-private\pages"
+    search_dir = r"[REDACTED-PRIVATE-ROOT]\pages"
 
     files_modified = 0
 

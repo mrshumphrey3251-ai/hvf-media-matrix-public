@@ -28,4 +28,4 @@ if __name__ == "__main__":
     enable_tls13()
     rotate_vault_keys()
     
-    logging.info("✅ Security hardening tasks executed")
+    logging.info("✅ Security hardening tasks executed")

@@ -2,7 +2,7 @@ import sqlite3
 import secrets
 import os
 
-DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\hvf_memory_vault.db"
+DB_PATH = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\hvf_memory_vault.db"
 
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()
@@ -10,7 +10,7 @@ cur = conn.cursor()
 keys = []
 for i in range(3):
     token = f"HVF-PILOT-{secrets.token_hex(3).upper()}"
-    cur.execute("INSERT INTO member_invite_keys (invite_code, issued_by, is_used) VALUES (?, 'CEO_MR_HUMPHREY', 0)", (token,))
+    cur.execute("INSERT INTO member_invite_keys (invite_code, issued_by, is_used) VALUES (?, 'REDACTED_ADMIN_ID', 0)", (token,))
     keys.append(token)
 
 conn.commit()

@@ -3,7 +3,7 @@ import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
-base_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+base_dir = Path(r"[REDACTED-PRIVATE-ROOT]")
 zip_path = Path(r"C:\hvf_c2\releases\ebony_client_rob_teel.zip")
 target_db = base_dir / "matrix_ledger.db"
 

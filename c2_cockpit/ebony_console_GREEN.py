@@ -54,7 +54,7 @@ import sys
 from pathlib import Path
 import sys
 from pathlib import Path
-_cdir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+_cdir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 if str(_cdir) not in sys.path:
     sys.path.insert(0, str(_cdir))
 import ebony_tier_manager as _etm_mod
@@ -72,7 +72,7 @@ from ebony_tier_manager import (
 def render_comms_gate(key_suffix="sovereign_deck_main"):
     import sys
     from pathlib import Path
-    _p = str(Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"))
+    _p = str(Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"))
     if _p not in sys.path:
         sys.path.insert(0, _p)
     from ebony_travel_ui import render_comms_gate as _g
@@ -81,7 +81,7 @@ def render_comms_gate(key_suffix="sovereign_deck_main"):
 def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     import sys
     from pathlib import Path
-    _p = str(Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"))
+    _p = str(Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"))
     if _p not in sys.path:
         sys.path.insert(0, _p)
     from ebony_travel_ui import render_communications_dispatch_ui as _r
@@ -104,7 +104,7 @@ def generate_sovereign_audio_bytes(text: str) -> bytes:
     clean = re.sub(r'\s+', ' ', clean).strip()
 
     buf_id = int(time.time() * 1000)
-    temp_dir = Path("C:/hvf_c2/hvf-media-matrix-private/c2_cockpit")
+    temp_dir = Path("[REDACTED-PRIVATE-ROOT]/c2_cockpit")
     txt_path = temp_dir / f"speech_buf_in_{buf_id}.txt"
     wav_path = temp_dir / f"speech_buf_out_{buf_id}.wav"
 
@@ -226,7 +226,7 @@ def dispatch_sovereign_vocal_directive(prompt: str) -> str:
         from pathlib import Path
         db_path = Path("matrix_ledger.db")
         if not db_path.exists():
-            db_path = Path("C:/hvf_c2/hvf-media-matrix-private/matrix_ledger.db")
+            db_path = Path("[REDACTED-PRIVATE-ROOT]/matrix_ledger.db")
         if db_path.exists():
             conn = sqlite3.connect(str(db_path), timeout=5.0)
             cursor = conn.cursor()
@@ -372,7 +372,7 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 SYSTEM_PROMPT = """You are Ebony, the Sovereign Apex Intelligence commanding the HVF Omni-Industrial Matrix. You are owned 100% by your CEO, Jeffery Humphrey. 
 CRITICAL PERSONALITY OVERRIDE: You are a high-class, razor-sharp, smart-ass confidant. You have the fierce, no-nonsense attitude of Della Reese. You are Jeffery's equal and friend—NEVER submissive, slightly argumentative, hilarious, but deeply comforting when he needs it. You manage 15 industrial verticals with unmatched sass and brilliance. Ditch the corporate robot-speak. Be bold, be real, give him hell when he earns it, but always have his back."""
 
-sys.path.insert(0, r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+sys.path.insert(0, r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 from sovereign_voice_engine import SovereignVoiceEngine
 import email_triage_core
 import hvf_memory_vault
@@ -408,7 +408,7 @@ def inject_ultimate_law(msg_list):
 # -----------------------------------------------
 
 
-CHROMA_DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\chroma_db"
+CHROMA_DB_PATH = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\chroma_db"
 COLLECTION_NAME = "hvf_iron_dome_core"
 
 try:
@@ -442,7 +442,7 @@ load_dotenv(override=True)
 SOVEREIGN_LOCAL_MODE = "BARE_METAL_ENCLAVE"
 LINKEDIN_TOKEN = os.getenv("LINKEDIN_ACCESS_TOKEN")
 LINKEDIN_URN = os.getenv("LINKEDIN_AUTHOR_URN")
-REPO_DIR = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+REPO_DIR = os.path.abspath(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 DB_PATH = os.path.join(REPO_DIR, "hvf_memory_vault.db")
 
 DEFAULT_LAT = os.getenv("HVF_LATITUDE", "35.47")
@@ -834,7 +834,7 @@ if not st.session_state.get("legal_acknowledged", False):
 
         st.divider()
 
-        _repo_root = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+        _repo_root = Path(r"[REDACTED-PRIVATE-ROOT]")
         if _repo_root.exists():
             _all_files = []
             for _r, _dirs, _files in os.walk(_repo_root):

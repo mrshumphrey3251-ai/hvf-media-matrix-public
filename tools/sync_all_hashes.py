@@ -5,7 +5,7 @@ import shutil
 import subprocess
 import sys
 
-priv_repo = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+priv_repo = Path(r"[REDACTED-PRIVATE-ROOT]")
 pub_repo  = Path(r"C:\hvf_c2\hvf-media-matrix-public")
 desktop   = Path.home() / "Desktop"
 

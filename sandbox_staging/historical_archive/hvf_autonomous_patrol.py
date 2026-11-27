@@ -61,4 +61,4 @@ for idx, target in enumerate(targets, 1):
         time.sleep(3)
 
 master_logger.info("Engagement loop complete. All targets processed successfully.")
-logger.info("Diagnostic cycle complete. Terminating loop to return terminal control.")
+logger.info("Diagnostic cycle complete. Terminating loop to return terminal control.")

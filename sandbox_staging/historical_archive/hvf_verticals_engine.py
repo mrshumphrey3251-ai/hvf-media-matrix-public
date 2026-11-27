@@ -161,5 +161,5 @@ class HVFVerticalsEngine:
         for v in self.loaded_verticals:
             if v["id"].upper() == v_id.upper():
                 return v
-        return None
-
+        return None
+

@@ -15,7 +15,7 @@ import uuid
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-BASE_DIR = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+BASE_DIR = Path(r"[REDACTED-PRIVATE-ROOT]")
 COCKPIT_DIR = BASE_DIR / "c2_cockpit"
 LICENSE_FILE = COCKPIT_DIR / "ebony_license.json"
 PUBLIC_RAW_BASE = "https://raw.githubusercontent.com/mrshumphrey3251-ai/hvf-media-matrix-public/main"

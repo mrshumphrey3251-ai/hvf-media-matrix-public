@@ -12,7 +12,7 @@ import sqlite3
 import hashlib
 from datetime import datetime
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 COMMS_DIR = os.path.join(BASE_DIR, "strategic_comms")
 os.makedirs(COMMS_DIR, exist_ok=True)
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")

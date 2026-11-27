@@ -3,7 +3,7 @@ import sys
 import sqlite3
 import py_compile
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 TARGETS = [
     os.path.join(BASE_DIR, "ebony_console.py"),
@@ -47,8 +47,8 @@ for fpath in TARGETS:
 
     # Literal string replacements - eliminates re.sub regex backslash errors
     code = code.replace("sqlite3.connect(DB_PATH)", "sqlite3.connect(DB_PATH, timeout=30.0)")
-    code = code.replace('sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db")', 'sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db", timeout=30.0)')
-    code = code.replace("sqlite3.connect(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db')", "sqlite3.connect(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db', timeout=30.0)")
+    code = code.replace('sqlite3.connect(r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db")', 'sqlite3.connect(r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db", timeout=30.0)')
+    code = code.replace("sqlite3.connect(r'[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db')", "sqlite3.connect(r'[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db', timeout=30.0)")
 
     # Inject busy timeout pragma on veto write cursor if present
     target_cursor = "cur_up = c_up.cursor()"

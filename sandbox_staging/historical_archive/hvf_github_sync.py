@@ -77,4 +77,4 @@ def execute_dual_sync():
     logging.info("/// DUAL-VAULT SYNC PROTOCOL COMPLETE ///")
 
 if __name__ == "__main__":
-    execute_dual_sync()
+    execute_dual_sync()

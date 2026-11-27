@@ -2,7 +2,7 @@ import os
 import numpy as np
 from PIL import Image, ImageDraw
 
-REPO_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+REPO_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 OUT_PATH = os.path.join(REPO_DIR, "drone_field_view.jpg")
 
 # Create high-res 1200x800 simulated aerial crop scan

@@ -3,7 +3,7 @@ import re
 from pathlib import Path
 import py_compile
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 if not cockpit_dir.exists():
     print(f"[CRITICAL ERROR] Cockpit directory not found: {cockpit_dir}")
     sys.exit(1)
@@ -33,8 +33,8 @@ from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timezone
 from pathlib import Path
 
-DB_PATH = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit\\matrix_ledger.db")
-CONFIG_PATH = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit\\email_accounts.json")
+DB_PATH = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit\\matrix_ledger.db")
+CONFIG_PATH = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit\\email_accounts.json")
 
 def init_email_ledger():
     if not DB_PATH.parent.exists():
@@ -373,7 +373,7 @@ import argparse
 from datetime import datetime, timezone
 from pathlib import Path
 
-cockpit_dir = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit")
 if str(cockpit_dir) not in sys.path:
     sys.path.insert(0, str(cockpit_dir))
 
@@ -460,7 +460,7 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     st.caption("Autonomous Inbound Ingestion, Contextual SMTP Auto-Response & Executive Return Briefing // Level-5 Authority")
 
     col1, col2, col3, col4 = st.columns(4)
-    db_p = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit\\matrix_ledger.db")
+    db_p = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit\\matrix_ledger.db")
     total_count, sent_count, archived_count, flagged_count = 0, 0, 0, 0
     df = pd.DataFrame()
 
@@ -487,7 +487,7 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     with c1:
         if st.button("🚀 ENGAGE TRAVEL AUTOPILOT (AUTO-REPLY ALL)", key=f"btn_autopilot_send_{key_suffix}", use_container_width=True):
             try:
-                _cdir = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit")
+                _cdir = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit")
                 if str(_cdir) not in sys.path: sys.path.insert(0, str(_cdir))
                 from ebony_travel_autopilot import run_travel_cycle
                 res = run_travel_cycle(auto_send=True)
@@ -499,7 +499,7 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     with c2:
         if st.button("📥 RECON INBOX (READ ONLY)", key=f"btn_recon_draft_{key_suffix}", use_container_width=True):
             try:
-                _cdir = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit")
+                _cdir = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit")
                 if str(_cdir) not in sys.path: sys.path.insert(0, str(_cdir))
                 from ebony_travel_autopilot import run_travel_cycle
                 res = run_travel_cycle(auto_send=False)
@@ -511,7 +511,7 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     with c3:
         if st.button("📱 EMAIL DEBRIEF TO MY PHONE", key=f"btn_email_debrief_{key_suffix}", use_container_width=True):
             try:
-                _cdir = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit")
+                _cdir = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit")
                 if str(_cdir) not in sys.path: sys.path.insert(0, str(_cdir))
                 from ebony_travel_autopilot import run_travel_cycle
                 run_travel_cycle(auto_send=False, email_summary_to="[REDACTED_PUBLIC_RELEASE_CONTACT]")
@@ -554,7 +554,7 @@ c_text = console_p.read_text(encoding="utf-8")
 bridge_def = """def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     import sys
     from pathlib import Path
-    _p = str(Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit"))
+    _p = str(Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit"))
     if _p not in sys.path:
         sys.path.insert(0, _p)
     from ebony_travel_ui import render_communications_dispatch_ui as _r

@@ -1,6 +1,6 @@
 # DHS S&T LONG RANGE BAA (DHS-ST-LRBAA-26-CIP): TECHNICAL WHITE PAPER
 **Title:** Project Ebony v8.0.0: Air-Gapped Critical Infrastructure SCADA/OT Isolation, Modeled 36.75ns SiC MOSFET Safety Cutoff & 52-Table WORM Provenance Enclave
-**Submitting Entity:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | 701 E Drew, Madill, OK 73446)
+**Submitting Entity:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | [REDACTED-FACILITY-ADDRESS])
 **Principal Investigator:** Jeffery Humphrey, CEO | [REDACTED-FOR-PUBLIC-RELEASE]
 **Current Readiness Level:** TRL 4 (Laboratory Software Emulation Testbed on 127.0.0.1 -> Phase-1 Target: TRL 6)
 **Cross-Referenced Filings:** DoD CDAO Tradewinds Docket 10-26-4046 (Status: Received) & USACE ERDC Rolling BAA (2026)

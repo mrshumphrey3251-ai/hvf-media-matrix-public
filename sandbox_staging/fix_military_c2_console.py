@@ -31,7 +31,7 @@ def render():
 
 
 
-    BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+    BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 
     TARGET_FILE = os.path.join(BASE_DIR, "ebony_console_GREEN.py")
 
@@ -179,7 +179,7 @@ def render():
 
     {indent_str}            import sqlite3
 
-    {indent_str}            conn_b = sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db")
+    {indent_str}            conn_b = sqlite3.connect(r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db")
 
     {indent_str}            cur_b = conn_b.cursor()
 

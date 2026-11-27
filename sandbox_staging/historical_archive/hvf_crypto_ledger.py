@@ -248,5 +248,5 @@ class HVFCryptoLedger:
 
 if __name__ == "__main__":
     ledger = HVFCryptoLedger(db_path=":memory:")
-    ledger.run_self_test()
-
+    ledger.run_self_test()
+

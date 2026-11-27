@@ -223,5 +223,5 @@ class HVFKineticRelay:
 
 if __name__ == "__main__":
     relay = HVFKineticRelay(db_path=":memory:")
-    relay.run_self_test()
-
+    relay.run_self_test()
+

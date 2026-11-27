@@ -9,7 +9,7 @@ import py_compile
 # Design Standard: MIL-STD-1472 Defense Command & Control Interface
 # ==============================================================================
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 FILES_TO_FIX = [
     os.path.join(BASE_DIR, "ebony_console.py"),
     os.path.join(BASE_DIR, "ebony_console_GREEN.py")
@@ -179,7 +179,7 @@ for fpath in FILES_TO_FIX:
                     f"{col_indent}    if st.button('🚫 Block Sender', key=f'btn_block_{{disp_id}}', type='primary'):\n",
                     f"{col_indent}        try:\n",
                     f"{col_indent}            import sqlite3\n",
-                    f"{col_indent}            conn_bk = sqlite3.connect(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db')\n",
+                    f"{col_indent}            conn_bk = sqlite3.connect(r'[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db')\n",
                     f"{col_indent}            cur_bk = conn_bk.cursor()\n",
                     f"{col_indent}            cur_bk.execute('SELECT sender_address FROM staged_email_dispatches WHERE id = ?', (disp_id,))\n",
                     f"{col_indent}            snd_row = cur_bk.fetchone()\n",

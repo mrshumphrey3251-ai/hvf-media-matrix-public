@@ -15,7 +15,7 @@ import textwrap
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-ROOT_PRIV = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+ROOT_PRIV = Path(r"[REDACTED-PRIVATE-ROOT]")
 ROOT_PUB  = Path(r"C:\hvf_c2\hvf-media-matrix-public")
 DESKTOP   = Path(r"C:\Users\mrshu\OneDrive\Desktop")
 
@@ -111,10 +111,10 @@ def build_times_12pt_pdf(paragraphs: List[Tuple[str, str]]) -> bytes:
 COVER_LETTER_PARAS = [
     ("B", "USACE ERDC CONSTRUCTION & ENGINEERING RESEARCH LABORATORY (CERL) COMMERCIAL SOLUTIONS OPENING (CSO 2026) - EXECUTIVE COVER LETTER"),
     ("N", "Date: October 30, 2026"),
-    ("N", "Primary Offeror: Humphrey Virtual Farms LLC (701 E Drew St., Madill, OK 73446)"),
+    ("N", "Primary Offeror: Humphrey Virtual Farms LLC ([REDACTED-FACILITY-ADDRESS])"),
     ("N", "Business Status: Non-Traditional Defense Contractor (NTDC), Small Disadvantaged Business (SDB), Minority-Owned Small Business"),
     ("N", "SAM.gov UEI: S1M4ENLHTDH5 | CAGE Code: 1AHA8 | NAICS: 541715, 541511, 541330"),
-    ("N", "Authorized Representative: Jeffery Humphrey, Founder, President & CEO | (572) 358-9978 | humphreyvirtualfarm@gmail.com"),
+    ("N", "Authorized Representative: Jeffery Humphrey, Founder, President & CEO | [REDACTED-PUBLIC-PHONE] | [REDACTED-PUBLIC-EMAIL]"),
     ("N", "Proposed Solution Title: Project Ebony v8.0.0: Air-Gapped Tri-Brain OT/SCADA Safety Interlock, Automated Bridge/Pavement NDE & WORM Merkle Provenance Testbed"),
     ("N", "CERL Areas of Interest: Operational Energy; Sustainment Management System; Robotics for Engineering Operations"),
     ("N", "Cross-Referenced Federal Filings: Active DoD CDAO Tradewinds Solutions Marketplace Docket 10-26-4046 (Status: Received | Video SHA-256: c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd | Merkle Root: bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1) and USACE ERDC BAA Filings (CERL, ITL-4, GSL-19)."),
@@ -130,7 +130,7 @@ SOLUTION_BRIEF_PARAS = [
     ("B", "USACE ERDC CERL COMMERCIAL SOLUTIONS OPENING (CSO 2026) - SOLUTION BRIEF"),
     ("B", "Title: Project Ebony v8.0.0: Air-Gapped Tri-Brain OT/SCADA Safety Interlock, Automated Bridge/Pavement NDE & WORM Merkle Provenance Testbed"),
     ("N", "Offeror: Humphrey Virtual Farms LLC | CAGE: 1AHA8 | UEI: S1M4ENLHTDH5 | Madill, OK 73446"),
-    ("N", "POC: Jeffery Humphrey, CEO | (572) 358-9978 | humphreyvirtualfarm@gmail.com | Public Repo: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"),
+    ("N", "POC: Jeffery Humphrey, CEO | [REDACTED-PUBLIC-PHONE] | [REDACTED-PUBLIC-EMAIL] | Public Repo: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"),
     ("B", "1. Problem Identification & CERL Operational Energy / Infrastructure Gap"),
     ("N", "Per GAO-21-81 and GAO-24-106137, the Department of Defense and USACE operate 500+ military installations, 300,000+ buildings, and $4.2B+ in operational energy microgrids and facility control systems relying on digital PLCs scanning at 50 to 200 milliseconds. Per Joint CISA/NSA/FBI/DoD Advisories AA23-144A and AA24-038A (Volt Typhoon) and TRISIS, state-sponsored actors pre-position inside installation energy, water, and utility OT networks to corrupt PLC logic while spoofing operator HMIs. Because arc-flash faults destroy switchgear in <4.16ms and thermal excursions occur in 6.0ms, 50-200ms PLC scans react 8x to 33x too late. Simultaneously, conventional facility, bridge, and pavement condition assessments require manual crews and snooper trucks costing $4,600+/day without tamper-evident telemetry logs."),
     ("B", "2. Technical Solution: Air-Gapped Tri-Brain Architecture (TRL 4 Baseline to TRL 6)"),
@@ -175,7 +175,7 @@ PITCH_DECK_PARAS = [
 PRICE_SCHEDULE_PARAS = [
     ("B", "USACE ERDC CERL COMMERCIAL SOLUTIONS OPENING (CSO 2026) - PRICE & ROM SCHEDULE"),
     ("N", "Primary Offeror: Humphrey Virtual Farms LLC (CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5)"),
-    ("N", "Address: 701 E Drew St., Madill, OK 73446 | POC: Jeffery Humphrey, CEO | (572) 358-9978 | humphreyvirtualfarm@gmail.com"),
+    ("N", "Address: [REDACTED-FACILITY-ADDRESS] | POC: Jeffery Humphrey, CEO | [REDACTED-PUBLIC-PHONE] | [REDACTED-PUBLIC-EMAIL]"),
     ("N", "Solution Title: Project Ebony v8.0.0: Air-Gapped Tri-Brain OT/SCADA Safety Interlock, Automated Bridge/Pavement NDE & WORM Merkle Provenance Testbed"),
     ("N", "Contracting Vehicles Supported: Commercial Solutions Opening (CSO) Fixed-Price Agreement, 10 U.S.C. 4022 Prototype OTA (0% Cost Share for NTDC/SDB), or FAR Part 12/13 Commercial Award."),
     ("B", "1. Option A: 12-Month Fixed-Price Phase-1 Prototype Effort (TRL 4 to TRL 6) - $1,200,000.00 Total ROM"),

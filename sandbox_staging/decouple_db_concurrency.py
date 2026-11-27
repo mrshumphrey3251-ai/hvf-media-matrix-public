@@ -17,7 +17,7 @@ def render():
 
 
 
-    BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+    BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 
     CORE_FILE = os.path.join(BASE_DIR, "email_triage_core.py")
 
@@ -75,7 +75,7 @@ def render():
 
     ACTIVE_MODEL = "openai/gpt-oss-120b"
 
-    BASE_DIR = r"C:\\HVF_Repos\\hvf-media-matrix-private"
+    BASE_DIR = r"[REDACTED-PRIVATE-ROOT]"
 
     DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 
@@ -669,9 +669,9 @@ def render():
 
         code = code.replace("sqlite3.connect(DB_PATH)", "sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)")
 
-        code = code.replace('sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db", timeout=30.0)', 'sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db", timeout=30.0, isolation_level=None)')
+        code = code.replace('sqlite3.connect(r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db", timeout=30.0)', 'sqlite3.connect(r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db", timeout=30.0, isolation_level=None)')
 
-        code = code.replace("sqlite3.connect(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db', timeout=30.0)", "sqlite3.connect(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db', timeout=30.0, isolation_level=None)")
+        code = code.replace("sqlite3.connect(r'[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db', timeout=30.0)", "sqlite3.connect(r'[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db', timeout=30.0, isolation_level=None)")
 
 
 

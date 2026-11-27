@@ -8,7 +8,7 @@
 )
 
 $ErrorActionPreference = "Stop"
-$RepoRoot = "C:\hvf_c2\hvf-media-matrix-private"
+$RepoRoot = "[REDACTED-PRIVATE-ROOT]"
 Set-Location $RepoRoot
 
 $ArgsList = @("c2_cockpit\hvf_auto_publisher.py")

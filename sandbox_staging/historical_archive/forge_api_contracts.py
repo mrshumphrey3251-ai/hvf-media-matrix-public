@@ -27,4 +27,4 @@ def generate_contracts():
     logging.info(f"✅ api_contracts.json created at -> {file_path}")
 
 if __name__ == "__main__":
-    generate_contracts()
+    generate_contracts()

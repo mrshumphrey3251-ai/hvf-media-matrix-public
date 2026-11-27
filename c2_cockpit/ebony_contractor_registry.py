@@ -7,7 +7,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-REGISTRY_FILE = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\state_contractor_registry.json")
+REGISTRY_FILE = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\state_contractor_registry.json")
 
 def load_contractor_registry() -> dict:
     if not REGISTRY_FILE.exists():

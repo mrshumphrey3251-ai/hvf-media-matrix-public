@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 import py_compile
 
-target = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py")
+target = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\ebony_console_GREEN.py")
 
 if not target.exists():
     print(f"[CRITICAL ERROR] Target console not found: {target}")
@@ -23,7 +23,7 @@ def render_communications_dispatch_ui():
             try:
                 import sys
                 from pathlib import Path
-                _cockpit_dir = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit")
+                _cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit")
                 if str(_cockpit_dir) not in sys.path:
                     sys.path.insert(0, str(_cockpit_dir))
                 from ebony_email_dispatcher import poll_and_auto_dispatch
@@ -37,7 +37,7 @@ def render_communications_dispatch_ui():
         try:
             import json
             from pathlib import Path
-            cfg_p = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit\\email_accounts.json")
+            cfg_p = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit\\email_accounts.json")
             if cfg_p.exists():
                 cfg = json.loads(cfg_p.read_text(encoding="utf-8"))
                 st.metric("Active Mailboxes", f"{len(cfg)} Configured")
@@ -50,7 +50,7 @@ def render_communications_dispatch_ui():
         import sqlite3
         import pandas as pd
         from pathlib import Path
-        db_p = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit\\matrix_ledger.db")
+        db_p = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit\\matrix_ledger.db")
         if db_p.exists():
             conn = sqlite3.connect(str(db_p))
             q = "SELECT timestamp AS 'Timestamp (UTC)', sender AS 'Sender', subject AS 'Subject', classification AS 'Category', status AS 'Status', drafted_response AS 'Drafted Response' FROM email_dispatch_ledger ORDER BY timestamp DESC LIMIT 25"

@@ -29,9 +29,9 @@ def render():
 
     TARGET_FILES = [
 
-        r"C:\hvf_c2\hvf-media-matrix-private\ebony_console.py",
+        r"[REDACTED-PRIVATE-ROOT]\ebony_console.py",
 
-        r"C:\hvf_c2\hvf-media-matrix-private\ebony_console_GREEN.py"
+        r"[REDACTED-PRIVATE-ROOT]\ebony_console_GREEN.py"
 
     ]
 

@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 import py_compile
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 
 # --- PART A: SURGICALLY REPAIR ebony_console_GOLD.py ---
 gold_file = cockpit_dir / "ebony_console_GOLD.py"
@@ -45,7 +45,7 @@ import urllib.request
 import urllib.parse
 from pathlib import Path
 
-COCKPIT_DIR = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit")
+COCKPIT_DIR = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit")
 STRIPE_CONFIG_FILE = COCKPIT_DIR / "stripe_config.json"
 
 STRIPE_TIER_CATALOG = {

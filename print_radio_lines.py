@@ -1,5 +1,5 @@
 from pathlib import Path
-p = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py")
+p = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\ebony_console_GREEN.py")
 with open(p, "r", encoding="utf-8", errors="replace") as f:
     lines = f.readlines()
 

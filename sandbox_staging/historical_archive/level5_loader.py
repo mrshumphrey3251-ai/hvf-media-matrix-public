@@ -38,4 +38,4 @@ def discover_extensions():
 
 if __name__ == "__main__":
     found = discover_extensions()
-    print(f"[+] Level 5 Extension Loader Online: {len(found)} active extensions found.")
+    print(f"[+] Level 5 Extension Loader Online: {len(found)} active extensions found.")

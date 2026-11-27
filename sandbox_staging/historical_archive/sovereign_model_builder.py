@@ -19,4 +19,4 @@ def build_sovereign_model():
         print("[SYSTEM ERROR] model_index.json not found in local vault.")
 
 if __name__ == "__main__":
-    build_sovereign_model()
+    build_sovereign_model()

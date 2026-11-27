@@ -5,8 +5,8 @@ import sqlite3
 import hashlib
 from pathlib import Path
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
-base_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
+base_dir = Path(r"[REDACTED-PRIVATE-ROOT]")
 releases_dir = Path(r"C:\hvf_c2\releases")
 
 print("\n" + "=" * 94)

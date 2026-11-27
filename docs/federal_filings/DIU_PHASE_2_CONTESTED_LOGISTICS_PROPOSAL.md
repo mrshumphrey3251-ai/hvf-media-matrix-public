@@ -2,7 +2,7 @@
 **Solicitation Pathway:** Defense Innovation Unit (DIU) Commercial Solutions Opening (CSO)  
 **Statutory Authority:** 10 U.S.C. § 4022 Prototype Other Transaction Agreement (OTA)  
 **Contractor:** Humphrey Virtual Farms LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)  
-**Primary Contact:** Jeffery Humphrey, Founder & CEO (humphreyvirtualfarm@gmail.com | 572-358-9978)  
+**Primary Contact:** Jeffery Humphrey, Founder & CEO ([REDACTED-PUBLIC-EMAIL] | [REDACTED-PUBLIC-PHONE])  
 **IP & Title Rights:** DFARS 252.227-7018 Commercial Rights Retained // Contractor-Acquired Property  
 
 ---

@@ -148,4 +148,4 @@ class HVFPenetrationTestSuite:
 
 if __name__ == "__main__":
     suite = HVFPenetrationTestSuite()
-    suite.run_all_tests()
+    suite.run_all_tests()

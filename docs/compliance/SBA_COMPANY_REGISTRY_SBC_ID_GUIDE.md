@@ -2,7 +2,7 @@
 **Contractor Entity:** Humphrey Virtual Farms LLC  
 **Commercial and Government Entity (CAGE) Code:** 1AHA8  
 **Unique Entity Identifier (UEI):** S1M4ENLHTDH5  
-**Primary Corporate Email:** humphreyvirtualfarm@gmail.com  
+**Primary Corporate Email:** [REDACTED-PUBLIC-EMAIL]  
 **Target Action:** Obtain Small Business Concern Identification (SBC ID) on SBIR.gov  
 
 ---
@@ -23,7 +23,7 @@ The registration assigns a unique **Small Business Concern Identification (SBC I
 ### Step 2: Create / Link Company Profile
 1. Enter your corporate Unique Entity Identifier: `S1M4ENLHTDH5`
 2. Enter your corporate Commercial and Government Entity Code: `1AHA8`
-3. Enter your primary corporate notification address: `humphreyvirtualfarm@gmail.com`
+3. Enter your primary corporate notification address: `[REDACTED-PUBLIC-EMAIL]`
 4. Confirm legal entity name matches exactly: **Humphrey Virtual Farms LLC**
 
 ### Step 3: Complete Ownership & Certification Disclosures

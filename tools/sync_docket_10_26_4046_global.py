@@ -92,7 +92,7 @@ class GlobalDocketSynchronizer:
 
 
 if __name__ == "__main__":
-    priv = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+    priv = Path(r"[REDACTED-PRIVATE-ROOT]")
     pub = Path(r"C:\hvf_c2\hvf-media-matrix-public")
     syncer = GlobalDocketSynchronizer([priv, pub])
     report = syncer.run_all()

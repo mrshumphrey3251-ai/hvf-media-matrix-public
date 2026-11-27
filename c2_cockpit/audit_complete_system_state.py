@@ -5,7 +5,7 @@ import sqlite3
 import hashlib
 from pathlib import Path
 
-base_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+base_dir = Path(r"[REDACTED-PRIVATE-ROOT]")
 cockpit_dir = base_dir / "c2_cockpit"
 releases_dir = Path(r"C:\hvf_c2\releases")
 backups_dir = Path(r"C:\hvf_c2\backups")

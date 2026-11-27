@@ -13,7 +13,7 @@ import hashlib
 import subprocess
 from datetime import datetime
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 GOV_DIR = os.path.join(BASE_DIR, "corporate_governance")
 os.makedirs(GOV_DIR, exist_ok=True)
 MSG_FILE = os.path.join(GOV_DIR, "OUTBOUND_UCF_REPLY_MESSAGE.txt")

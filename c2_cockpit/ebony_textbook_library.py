@@ -10,7 +10,7 @@ import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
-DB_PATH = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\matrix_ledger.db")
+DB_PATH = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\matrix_ledger.db")
 
 def init_credit_ledger():
     conn = sqlite3.connect(str(DB_PATH))

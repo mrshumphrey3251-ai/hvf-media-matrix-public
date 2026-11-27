@@ -3,7 +3,7 @@ import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 target_db = cockpit_dir / "matrix_ledger.db"
 
 SCHEMA_SQL = """

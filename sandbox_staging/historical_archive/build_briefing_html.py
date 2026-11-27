@@ -351,4 +351,4 @@ def compile_deck(source_path: str, output_path: str):
 if __name__ == "__main__":
     src = "governance/briefings/2026-09-25_oklahoma_commerce_executive_briefing.md"
     dst = "governance/briefings/2026-09-25_oklahoma_commerce_executive_briefing.html"
-    compile_deck(src, dst)
+    compile_deck(src, dst)

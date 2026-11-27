@@ -2,7 +2,7 @@ import os
 import sys
 import py_compile
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 CORE_FILE = os.path.join(BASE_DIR, "email_triage_core.py")
 CONSOLE_FILES = [
     os.path.join(BASE_DIR, "ebony_console.py"),
@@ -31,7 +31,7 @@ import streamlit as st
 load_dotenv(override=True)
 GROQ_KEY = os.getenv("GROQ_API_KEY")
 ACTIVE_MODEL = "openai/gpt-oss-120b"
-BASE_DIR = r"C:\\HVF_Repos\\hvf-media-matrix-private"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 CHROMA_PATH = os.path.join(BASE_DIR, "chroma_db")
 KEY_FILE = os.path.join(BASE_DIR, "memory_core", "vault.key")
@@ -328,8 +328,8 @@ for fpath in CONSOLE_FILES:
     # Enforce isolation_level=None across all sqlite3 connection calls
     code = code.replace("sqlite3.connect(DB_PATH, timeout=30.0)", "sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)")
     code = code.replace("sqlite3.connect(DB_PATH)", "sqlite3.connect(DB_PATH, timeout=30.0, isolation_level=None)")
-    code = code.replace('sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db", timeout=30.0)', 'sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db", timeout=30.0, isolation_level=None)')
-    code = code.replace("sqlite3.connect(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db', timeout=30.0)", "sqlite3.connect(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db', timeout=30.0, isolation_level=None)")
+    code = code.replace('sqlite3.connect(r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db", timeout=30.0)', 'sqlite3.connect(r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db", timeout=30.0, isolation_level=None)')
+    code = code.replace("sqlite3.connect(r'[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db', timeout=30.0)", "sqlite3.connect(r'[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db', timeout=30.0, isolation_level=None)")
 
     with open(fpath, "w", encoding="utf-8") as f:
         f.write(code)

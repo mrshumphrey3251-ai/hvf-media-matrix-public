@@ -95,4 +95,4 @@ def render():
             else:
                 st.write("❌ Sandbox quarantine verification failed:")
                 st.code(result.get("error", "Unknown validation error"), language="bash")
-                status.update(label="[-] Build Failed Quarantine Validation", state="error", expanded=True)
+                status.update(label="[-] Build Failed Quarantine Validation", state="error", expanded=True)

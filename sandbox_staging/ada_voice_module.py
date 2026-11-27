@@ -16,7 +16,7 @@ import sys
 
 # Hardwire the local native Acoustic Engine
 
-sys.path.insert(0, r"C:\hvf_c2\hvf-media-matrix-private\dispatch_core")
+sys.path.insert(0, r"[REDACTED-PRIVATE-ROOT]\dispatch_core")
 
 try:
 
@@ -28,7 +28,7 @@ except ImportError:
 
 
 
-CHROMA_DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\chroma_db"
+CHROMA_DB_PATH = r"[REDACTED-PRIVATE-ROOT]\chroma_db"
 
 COLLECTION_NAME = "hvf_iron_dome_core"
 

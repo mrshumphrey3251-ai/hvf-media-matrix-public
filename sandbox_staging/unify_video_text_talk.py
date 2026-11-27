@@ -19,7 +19,7 @@ def render():
 
 
 
-    BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+    BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 
     TARGET_FILES = [
 
@@ -155,9 +155,9 @@ def render():
 
 
 
-                    key_path = r"C:\\HVF_Repos\\hvf-media-matrix-private\\memory_core\\vault.key"
+                    key_path = r"[REDACTED-PRIVATE-ROOT]\\memory_core\\vault.key"
 
-                    db_path = r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db"
+                    db_path = r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db"
 
                     with open(key_path, "rb") as kf:
 
@@ -197,9 +197,9 @@ def render():
 
             from cryptography.fernet import Fernet
 
-            key_path = r"C:\\HVF_Repos\\hvf-media-matrix-private\\memory_core\\vault.key"
+            key_path = r"[REDACTED-PRIVATE-ROOT]\\memory_core\\vault.key"
 
-            db_path = r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db"
+            db_path = r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db"
 
             with open(key_path, "rb") as kf:
 

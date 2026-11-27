@@ -3,7 +3,7 @@ import sys
 import re
 import py_compile
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 TARGETS = [
     os.path.join(BASE_DIR, "ebony_console.py"),
     os.path.join(BASE_DIR, "ebony_console_GREEN.py")
@@ -22,8 +22,8 @@ for fpath in TARGETS:
 
     # 1. Ensure sqlite3.connect uses 30-second timeout everywhere
     code = re.sub(r'sqlite3\.connect\(DB_PATH\)', 'sqlite3.connect(DB_PATH, timeout=30.0)', code)
-    code = re.sub(r'sqlite3\.connect\(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault\.db"\)', 'sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db", timeout=30.0)', code)
-    code = re.sub(r"sqlite3\.connect\(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault\.db'\)", 'sqlite3.connect(r"C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db", timeout=30.0)', code)
+    code = re.sub(r'sqlite3\.connect\(r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault\.db"\)', 'sqlite3.connect(r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db", timeout=30.0)', code)
+    code = re.sub(r"sqlite3\.connect\(r'[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault\.db'\)", 'sqlite3.connect(r"[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db", timeout=30.0)', code)
 
     # 2. Inject PRAGMA busy_timeout before write operations on line 1241+
     veto_pattern = r'(c_up\s*=\s*sqlite3\.connect\(DB_PATH[^\)]*\)\s*\n\s*cur_up\s*=\s*c_up\.cursor\(\))'

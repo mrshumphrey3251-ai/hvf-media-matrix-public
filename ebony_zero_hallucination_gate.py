@@ -160,7 +160,7 @@ def wrap_sovereign_comms_router() -> bool:
     if _ROUTER_WRAPPED:
         return True
     try:
-        c2_path = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+        c2_path = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
         if c2_path not in sys.path:
             sys.path.insert(0, c2_path)
         import sovereign_comms
@@ -202,7 +202,7 @@ def render_sovereign_robotics_command_deck() -> None:
     """Renders the top-level Sovereign Robotics, RTOS & 36.75ns Kinetic Guillotine Command Module."""
     import streamlit as st
     import pandas as pd
-    c2_path = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+    c2_path = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
     if c2_path not in sys.path:
         sys.path.insert(0, c2_path)
     import ebony_robotics_rtos as rtos
@@ -316,7 +316,7 @@ def _handle_local_port_8000(method: str, url: str, **kwargs):
     elif "/synthesis/image" in url:
         params = kwargs.get("params") or {}
         prompt_txt = str(params.get("prompt") or "HVF Sovereign Industrial C2 Tactical Asset")[:90]
-        repo_root = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+        repo_root = Path(r"[REDACTED-PRIVATE-ROOT]")
         out_png = repo_root / "c2_cockpit" / "Project_Ebony_Sovereign.png"
         try:
             from PIL import Image, ImageDraw
@@ -354,7 +354,7 @@ def _bind_nested_c2_gate_and_forge_symbols() -> None:
     from datetime import datetime, timezone
     from pathlib import Path
 
-    base_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+    base_dir = Path(r"[REDACTED-PRIVATE-ROOT]")
     c2_dir = base_dir / "c2_cockpit"
     ext_dir = base_dir / "level5_extensions"
     disp_dir = base_dir / "dispatch_core"

@@ -13,7 +13,7 @@ import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
-cockpit_dir = Path(__file__).resolve().parent if '__file__' in globals() else Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+cockpit_dir = Path(__file__).resolve().parent if '__file__' in globals() else Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 reports_dir = Path(r"C:\hvf_c2\reports\certificates") if os.name == "nt" else (Path(__file__).resolve().parent.parent / "reports" / "certificates")
 reports_dir.mkdir(parents=True, exist_ok=True)
 db_path = cockpit_dir / "matrix_ledger.db"

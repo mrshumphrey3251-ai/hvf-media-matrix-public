@@ -31,7 +31,7 @@ class HVFSovereignAutoPublisher:
     via register_hook() without rewriting core logic or compromising security.
     """
 
-    PRIVATE_REPO = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+    PRIVATE_REPO = Path(r"[REDACTED-PRIVATE-ROOT]")
     PUBLIC_REPO = Path(r"C:\hvf_c2\hvf-media-matrix-public")
     CONFIG_FILE = PRIVATE_REPO / "c2_cockpit" / "sovereign_publisher_config.json"
 
@@ -298,7 +298,7 @@ class HVFSovereignAutoPublisher:
 
         priv_md = f"""# EXECUTIVE RECORD // {title.upper()}
 **Contractor:** {self.config['entity_name']} (CAGE: `{self.config['cage_code']}` | UEI: `{self.config['uei']}`)  
-**Commanding Authority:** Jeffery Humphrey, Founder, President & CEO (`humphreyvirtualfarm@gmail.com` | (572) 358-9978)  
+**Commanding Authority:** Jeffery Humphrey, Founder, President & CEO (`[REDACTED-PUBLIC-EMAIL]` | [REDACTED-PUBLIC-PHONE])  
 **Active TSM Docket ID:** `{docket}` (Superseding `{self.config['baseline_docket']}`)  
 **Timestamp (UTC):** `{ts_utc}`  
 **Shared Core C2 Merkle Root (SHA-256):** `{self.config['merkle_root']}`  

@@ -88,4 +88,4 @@ def self_heal_candidate(filename: str, error_trace: str) -> dict:
         py_compile.compile(str(target_path), doraise=True)
         return {"success": True, "message": "Code successfully sanitized, repaired, and compiled clean."}
     except Exception as e:
-        return {"success": False, "error": f"Compilation check failed after repair: {e}"}
+        return {"success": False, "error": f"Compilation check failed after repair: {e}"}

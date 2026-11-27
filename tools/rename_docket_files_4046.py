@@ -3,7 +3,7 @@ import subprocess
 from pathlib import Path
 
 repos = [
-    Path(r"C:\hvf_c2\hvf-media-matrix-private"),
+    Path(r"[REDACTED-PRIVATE-ROOT]"),
     Path(r"C:\hvf_c2\hvf-media-matrix-public"),
 ]
 

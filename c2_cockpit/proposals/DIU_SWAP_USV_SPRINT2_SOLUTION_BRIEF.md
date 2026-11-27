@@ -2,9 +2,9 @@
 
 ## SLIDE 1: TARGETING SPRINT 2 - COUNTER-AIR EVALUATION - CATEGORIES 1, 2, 3 & 4
 **Targeting Sprint 2 - Counter-Air Evaluation - Categories 1, 2, 3 & 4 (Integrated MOSA C2 / Project AVO Interlock & 10 U.S.C. 4023 Payload)**
-**Submitting Entity: Humphrey Virtual Farms LLC (701 E Drew, Madill, OK 73446-2620 | 100% U.S. Sovereign Small Business, 0% FOCI)**
+**Submitting Entity: Humphrey Virtual Farms LLC ([REDACTED-FACILITY-ADDRESS] | 100% U.S. Sovereign Small Business, 0% FOCI)**
 **Statutory Identifiers: CAGE Code: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | Non-Traditional Defense Contractor (10 U.S.C. 4025 / 4022 / 4023)**
-**Principal Investigator & CEO: Jeffery Humphrey | Phone: (572) 358-9978 | Email: humphreyvirtualfarm@gmail.com**
+**Principal Investigator & CEO: Jeffery Humphrey | Phone: [REDACTED-PUBLIC-PHONE] | Email: [REDACTED-PUBLIC-EMAIL]**
 **Public Verification Repository: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public**
 **Shared Core C2 Cryptographic Merkle Root (640 Compiled Python C2 Modules): d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb**
 * Executive BLUF: Project Ebony v8.0.0 delivers a production-ready, software-defined Three-Brain MOSA Command-and-Control (C2), Project AVO Interoperability Bridge, and Fail-Safe Over-the-Horizon Human-in-the-Loop Weapon Safety Interlock Suite engineered for CAT 1 (AGM-114L/AGM-179 GFI TDP), CAT 2 (APKWS), CAT 3 (Stabilized RWS/Stinger/HPL), and CAT 4 Counter-Air USVs.

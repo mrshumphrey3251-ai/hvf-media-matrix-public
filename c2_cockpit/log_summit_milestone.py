@@ -7,7 +7,7 @@ import sqlite3
 from pathlib import Path
 from datetime import datetime, timezone
 
-db_path = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\matrix_ledger.db")
+db_path = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\matrix_ledger.db")
 
 conn = sqlite3.connect(str(db_path))
 cur = conn.cursor()

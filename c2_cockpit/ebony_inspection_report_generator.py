@@ -12,7 +12,7 @@ import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
-base_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+base_dir = Path(r"[REDACTED-PRIVATE-ROOT]")
 cockpit_dir = base_dir / "c2_cockpit"
 reports_dir = Path(r"C:\hvf_c2\reports")
 reports_dir.mkdir(parents=True, exist_ok=True)

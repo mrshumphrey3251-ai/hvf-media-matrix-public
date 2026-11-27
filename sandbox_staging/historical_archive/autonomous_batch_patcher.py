@@ -126,4 +126,4 @@ class AutonomousBatchPatcher:
 
 if __name__ == "__main__":
     patcher = AutonomousBatchPatcher()
-    patcher.execute_batch_remediation()
+    patcher.execute_batch_remediation()

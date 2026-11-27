@@ -2,7 +2,7 @@
 
 * **Solicitation / Topic Number:** `W911NF-23-S-0001` (`Topic ARL-BAA-0032: Advanced Learning-Enabled Cyber-Physical Systems`)
 * **Submitting Entity:** Humphrey Virtual Farms LLC (`CAGE: 1AHA8` | `SAM.gov UEI: S1M4ENLHTDH5`)
-* **Principal Investigator & CEO:** Jeffery Humphrey (`humphreyvirtualfarm@gmail.com` | `(572) 358-9978`)
+* **Principal Investigator & CEO:** Jeffery Humphrey (`[REDACTED-PUBLIC-EMAIL]` | `[REDACTED-PUBLIC-PHONE]`)
 * **Official ARL BAA Recipients:** `usarmy.rtp.devcom-arl.mbx.baa@army.mil`, `arl_baa@army.mil`
 * **Transmission Timestamp (UTC):** `2026-10-30T21:32:00.000000+00:00` (`Oct 30, 2026`)
 * **Attached Deliverable:** `c2_cockpit/proposals/ARL_ARO_BAA_2026_AI_WHITE_PAPER_HVF.pdf` (`2` Pages, Flush `72.00 pt` - `540.00 pt`, `%PDF-1.4`)

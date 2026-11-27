@@ -77,5 +77,5 @@ def launch():
         logging.info("Project Ebony safely disarmed. Session closed.")
 
 if __name__ == "__main__":
-    launch()
-
+    launch()
+

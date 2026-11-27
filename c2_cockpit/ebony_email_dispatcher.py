@@ -27,8 +27,8 @@ if hasattr(sys.stdout, "reconfigure"):
     except Exception:
         pass
 
-DB_PATH = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\matrix_ledger.db")
-CONFIG_PATH = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\email_accounts.json")
+DB_PATH = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\matrix_ledger.db")
+CONFIG_PATH = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\email_accounts.json")
 
 def init_email_ledger():
     if not DB_PATH.parent.exists():

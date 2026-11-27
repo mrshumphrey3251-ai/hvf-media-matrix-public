@@ -19,7 +19,7 @@ $ErrorActionPreference = "SilentlyContinue"
 if ($Target -ne "") {
     $timestamp = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
     $logEntry = "[$timestamp] [BOUNCER_HEARTBEAT] Target: $Target | Command: $Command"
-    $logPath = "C:\hvf_c2\hvf-media-matrix-private\shell_bouncer.log"
+    $logPath = "[REDACTED-PRIVATE-ROOT]\shell_bouncer.log"
     Add-Content -Path $logPath -Value $logEntry -ErrorAction SilentlyContinue
 }
 

@@ -25,7 +25,7 @@ $auditReport = [ordered]@{
 }
 
 # Module 1: Master C2 Cockpit
-$cockpitPath = "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_console_GREEN.py"
+$cockpitPath = "[REDACTED-PRIVATE-ROOT]\\c2_cockpit\\ebony_console_GREEN.py"
 if (Test-Path $cockpitPath) {
     $auditReport.command_modules["1_Master_C2_Cockpit"] = @{
         "status" = "VERIFIED_ACTIVE"
@@ -79,7 +79,7 @@ if ($rawCode -match "Sovereign Command Nexus" -or $rawCode -match "st.chat_input
 }
 
 # Module 5: Level-5 Extensions & Debriefs
-$extPath = "C:\\HVF_Repos\\hvf-media-matrix-private\\level5_extensions\\situational_debrief.py"
+$extPath = "[REDACTED-PRIVATE-ROOT]\\level5_extensions\\situational_debrief.py"
 if (Test-Path $extPath) {
     $auditReport.command_modules["5_Level5_Extensions_Debrief"] = @{
         "status" = "VERIFIED_ACTIVE"

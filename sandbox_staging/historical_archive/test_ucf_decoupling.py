@@ -8,7 +8,7 @@ import os
 import sys
 import sqlite3
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 MSG_FILE = os.path.join(BASE_DIR, "corporate_governance", "OUTBOUND_UCF_REPLY_MESSAGE.txt")
 

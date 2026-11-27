@@ -31,7 +31,7 @@ def render():
 
 
 
-    BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+    BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 
     FILES_TO_FIX = [
 
@@ -371,7 +371,7 @@ def render():
 
                         f"{col_indent}            import sqlite3\n",
 
-                        f"{col_indent}            conn_bk = sqlite3.connect(r'C:\\HVF_Repos\\hvf-media-matrix-private\\hvf_memory_vault.db')\n",
+                        f"{col_indent}            conn_bk = sqlite3.connect(r'[REDACTED-PRIVATE-ROOT]\\hvf_memory_vault.db')\n",
 
                         f"{col_indent}            cur_bk = conn_bk.cursor()\n",
 

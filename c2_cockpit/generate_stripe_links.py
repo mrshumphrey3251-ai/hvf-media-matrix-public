@@ -9,7 +9,7 @@ except ImportError:
     subprocess.check_call([sys.executable, "-m", "pip", "install", "stripe"])
     import stripe
 
-env_path = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\.env"
+env_path = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\.env"
 load_dotenv(dotenv_path=env_path, override=True)
 
 stripe_key = os.getenv("STRIPE_SECRET_KEY")

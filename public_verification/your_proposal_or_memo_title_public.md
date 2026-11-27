@@ -1,6 +1,6 @@
 # EXECUTIVE RECORD // YOUR PROPOSAL OR MEMO TITLE
 **Contractor:** Humphrey Virtual Farms LLC (CAGE: `1AHA8` | UEI: `S1M4ENLHTDH5`)  
-**Commanding Authority:** Jeffery Humphrey, Founder, President & CEO (`humphreyvirtualfarm@gmail.com` | [REDACTED-CEO-DIRECT-LINE])  
+**Commanding Authority:** Jeffery Humphrey, Founder, President & CEO (`[REDACTED-PUBLIC-EMAIL]` | [REDACTED-CEO-DIRECT-LINE])  
 **Active TSM Docket ID:** `10-26-4046` (Superseding `9-26-3703`)  
 **Timestamp (UTC):** `2026-10-30T00:22:28Z`  
 **Shared Core C2 Merkle Root (SHA-256):** `d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb`  

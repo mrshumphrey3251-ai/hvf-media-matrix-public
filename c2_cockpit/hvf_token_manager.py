@@ -24,7 +24,7 @@ class HVFTokenManager:
         
         # SECURE INTEGRATION: Retrieve secret via the Config Manager
         self.config = HVFConfigManager()
-        self._internal_secret = self.config.get_secret("HVF_JWT_SECRET", "FALLBACK_SECURE_KEY_992")
+        self._internal_secret = self.config.get_secret("HVF_JWT_SECRET", "REDACTED_PUBLIC_PLACEHOLDER")
 
     def generate_token(self, entity_id: str, role: str = "standard") -> str:
         """

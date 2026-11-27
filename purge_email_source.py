@@ -3,7 +3,7 @@ import re
 import py_compile
 
 targets = [
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"),
+    Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"),
     Path(r"C:\HVF_Repos\hvf-media-matrix-public\c2_cockpit")
 ]
 

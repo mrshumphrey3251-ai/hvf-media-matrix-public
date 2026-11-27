@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 import py_compile
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 sys.path.insert(0, str(cockpit_dir))
 
 from ebony_tier_manager import (

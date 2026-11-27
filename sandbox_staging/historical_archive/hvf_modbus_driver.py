@@ -234,5 +234,5 @@ class HVFModbusDriver:
 
 if __name__ == "__main__":
     driver = HVFModbusDriver(db_path=":memory:")
-    driver.run_self_test()
-
+    driver.run_self_test()
+

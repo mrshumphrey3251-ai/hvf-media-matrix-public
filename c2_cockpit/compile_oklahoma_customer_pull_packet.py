@@ -16,16 +16,16 @@ import textwrap
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-ROOT_PRIV = Path("C:/hvf_c2/hvf-media-matrix-private")
+ROOT_PRIV = Path("[REDACTED-PRIVATE-ROOT]")
 ROOT_PUB  = Path("C:/hvf_c2/hvf-media-matrix-public")
 DESKTOP   = Path("C:/Users/mrshu/OneDrive/Desktop")
 
 PARAGRAPHS: List[Tuple[str, str]] = [
     ("B", "OKLAHOMA DoD & USACE TULSA DISTRICT DIRECT CUSTOMER-PULL BRIEF (10 U.S.C. 4022 / CSO)"),
     ("B", "Project Ebony v8.0.0: Air-Gapped Tri-Brain OT/SCADA Interlock, Bridge NDE & WORM Enclave"),
-    ("N", "Prime Offeror: Humphrey Virtual Farms LLC (701 E Drew St., Madill, OK 73446 | SDB, Minority-Owned & NTDC)"),
+    ("N", "Prime Offeror: Humphrey Virtual Farms LLC ([REDACTED-FACILITY-ADDRESS] | SDB, Minority-Owned & NTDC)"),
     ("N", "Identifiers: CAGE: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | NAICS: 541715, 541511, 541330, 541690"),
-    ("N", "POC: Jeffery Humphrey, Founder, President & CEO | (572) 358-9978 | humphreyvirtualfarm@gmail.com"),
+    ("N", "POC: Jeffery Humphrey, Founder, President & CEO | [REDACTED-PUBLIC-PHONE] | [REDACTED-PUBLIC-EMAIL]"),
     ("N", "Public Cryptographic Repo: https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public"),
     ("B", "1. Five Active Pre-Positioned Federal Dockets Ready for Immediate Oklahoma DoD Pull"),
     ("N", "- DoD CDAO Tradewinds Solutions Marketplace (TSM): Docket 10-26-4046 (Status: Received | Video SHA-256: c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd | Merkle Root: bb39eeaa66a39ad2e0c0ab74ba4a5c4faac2bf0d98babc0362482b97607151a1)."),
@@ -130,8 +130,8 @@ def generate_oklahoma_clean_pdf_text() -> str:
     )
     raw = raw.replace("**", "").replace("`", "")
     if is_public:
-        raw = raw.replace("humphreyvirtualfarm@gmail.com", "[REDACTED-PUBLIC-EMAIL]")
-        raw = raw.replace("(572) 358-9978", "[REDACTED-PUBLIC-PHONE]")
+        raw = raw.replace("[REDACTED-PUBLIC-EMAIL]", "[REDACTED-PUBLIC-EMAIL]")
+        raw = raw.replace("[REDACTED-PUBLIC-PHONE]", "[REDACTED-PUBLIC-PHONE]")
     return raw
 
 

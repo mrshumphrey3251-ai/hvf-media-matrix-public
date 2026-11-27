@@ -13,7 +13,7 @@ from chromadb.utils import embedding_functions
 
 CONFIG = {
     "master_dir": r"C:\HVF_Repos",
-    "db_dir": r"C:\hvf_c2\hvf-media-matrix-private\chroma_db",
+    "db_dir": r"[REDACTED-PRIVATE-ROOT]\chroma_db",
     "collection_name": "hvf_iron_dome_core",
     "chunk_size": 1000,
     "chunk_overlap": 150,

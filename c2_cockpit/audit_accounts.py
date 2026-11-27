@@ -2,7 +2,7 @@ import json
 import sys
 from pathlib import Path
 
-cfg_path = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\email_accounts.json")
+cfg_path = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\email_accounts.json")
 
 print("\n" + "=" * 86)
 print("     E.B.O.N.Y. SOVEREIGN COMMERCIAL SUBSCRIBER LEDGER AUDIT     ")

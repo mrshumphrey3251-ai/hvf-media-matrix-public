@@ -12,7 +12,7 @@ import email_triage_core
 # Target: [LOCAL_ARCHIVE_ONLY: C:\hvf_c2\Archive] -> HVF_PRIMARY_EXECUTIVE
 # ==============================================================================
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 KEY_FILE = os.path.join(BASE_DIR, "memory_core", "vault.key")
 

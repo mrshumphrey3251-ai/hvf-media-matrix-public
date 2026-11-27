@@ -3,8 +3,8 @@ import re
 from pathlib import Path
 import py_compile
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
-root_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
+root_dir = Path(r"[REDACTED-PRIVATE-ROOT]")
 
 # -------------------------------------------------------------------------
 # 1. UPDATE ebony_tier_manager.py WITH DEVICE SEAT LIMITS
@@ -20,7 +20,7 @@ import json
 from pathlib import Path
 import sys
 
-_cdir = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit")
+_cdir = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit")
 if str(_cdir) not in sys.path:
     sys.path.insert(0, str(_cdir))
 

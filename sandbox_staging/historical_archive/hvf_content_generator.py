@@ -40,5 +40,5 @@ class HVFContentGenerator:
                 payloads["linkedin"] = li_res.text.strip()
             except Exception as e:
                 print(f"Content Gen Error: {e}")
-        return payloads
-
+        return payloads
+

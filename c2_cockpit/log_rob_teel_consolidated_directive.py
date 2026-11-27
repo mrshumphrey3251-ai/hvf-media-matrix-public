@@ -3,7 +3,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-base_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+base_dir = Path(r"[REDACTED-PRIVATE-ROOT]")
 db_paths = [
     base_dir / "matrix_ledger.db",
     base_dir / "c2_cockpit" / "matrix_ledger.db"

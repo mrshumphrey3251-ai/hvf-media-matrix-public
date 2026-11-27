@@ -4,11 +4,11 @@ import re
 from pathlib import Path
 import py_compile
 
-base_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+base_dir = Path(r"[REDACTED-PRIVATE-ROOT]")
 cockpit_dir = base_dir / "c2_cockpit"
 
-legacy_str = r"C:\hvf_c2\hvf-media-matrix-private\hvf_shell_bouncer.ps1"
-active_str = r"C:\hvf_c2\hvf-media-matrix-private\hvf_shell_bouncer.ps1"
+legacy_str = r"[REDACTED-PRIVATE-ROOT]\hvf_shell_bouncer.ps1"
+active_str = r"[REDACTED-PRIVATE-ROOT]\hvf_shell_bouncer.ps1"
 
 retargeted = 0
 for py_file in base_dir.rglob("*.py"):

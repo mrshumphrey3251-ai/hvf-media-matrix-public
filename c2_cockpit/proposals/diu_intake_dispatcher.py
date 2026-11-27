@@ -13,7 +13,7 @@ import subprocess
 import webbrowser
 from datetime import datetime
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 PROP_DIR = os.path.join(BASE_DIR, "proposals")
 PDF_DELIVERABLE = os.path.join(PROP_DIR, "DIU_SOLUTION_BRIEF_PROJECT_EBONY_HVF.pdf")

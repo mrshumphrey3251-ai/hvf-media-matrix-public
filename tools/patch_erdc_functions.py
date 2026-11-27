@@ -16,8 +16,8 @@ def generate_erdc_clean_pdf_text() -> str:
     )
     raw = raw.replace("**", "").replace("`", "")
     if is_public:
-        raw = raw.replace("humphreyvirtualfarm@gmail.com", "[REDACTED-PUBLIC-EMAIL]")
-        raw = raw.replace("(572) 358-9978", "[REDACTED-PUBLIC-PHONE]")
+        raw = raw.replace("[REDACTED-PUBLIC-EMAIL]", "[REDACTED-PUBLIC-EMAIL]")
+        raw = raw.replace("[REDACTED-PUBLIC-PHONE]", "[REDACTED-PUBLIC-PHONE]")
     return raw
 
 
@@ -73,7 +73,7 @@ pub_p = Path(r"C:\hvf_c2\hvf-media-matrix-public\c2_cockpit\compile_erdc_baa_whi
 pub_p.write_text(txt, encoding="utf-8")
 
 for repo_test in [
-    r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\test_erdc_baa_whitepaper.py",
+    r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\test_erdc_baa_whitepaper.py",
     r"C:\hvf_c2\hvf-media-matrix-public\c2_cockpit\test_erdc_baa_whitepaper.py",
 ]:
     proc = subprocess.run([sys.executable, repo_test], capture_output=True, text=True)

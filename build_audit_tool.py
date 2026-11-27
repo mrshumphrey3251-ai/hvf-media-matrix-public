@@ -42,7 +42,7 @@ foreach ($r in $repos) {
 }
 
 # 2. Check C2 Cockpit & Extensions
-$c2 = "C:\\HVF_Repos\\hvf-media-matrix-private\\c2_cockpit\\ebony_console_GREEN.py"
+$c2 = "[REDACTED-PRIVATE-ROOT]\\c2_cockpit\\ebony_console_GREEN.py"
 if (Test-Path $c2) {
     $results.modules["c2_cockpit"] = "ONLINE (ebony_console_GREEN.py active)"
     Write-Host "[+] C2 Cockpit script verified." -ForegroundColor Green
@@ -51,7 +51,7 @@ if (Test-Path $c2) {
 }
 
 # 3. Check Statutory HUD
-$hud = "C:\\HVF_Repos\\hvf-media-matrix-private\\governance\\briefings\\OK_COMMERCE_MEET_HUD.md"
+$hud = "[REDACTED-PRIVATE-ROOT]\\governance\\briefings\\OK_COMMERCE_MEET_HUD.md"
 if (Test-Path $hud) {
     $results.modules["statutory_briefing_hud"] = "READY (OK_COMMERCE_MEET_HUD.md staged)"
     Write-Host "[+] Oklahoma Commerce Briefing HUD verified." -ForegroundColor Green

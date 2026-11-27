@@ -1,7 +1,7 @@
 import sqlite3
 from pathlib import Path
 
-db = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\matrix_ledger.db")
+db = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\matrix_ledger.db")
 
 print("\n" + "=" * 86)
 print("     LIVE WORM LEDGER VERIFICATION // C2 COCKPIT DATABASE AUDIT")

@@ -4,7 +4,7 @@
 # Active Docket: 10-26-4046 (04:24 Master Video SHA-256: c597865785eae6fdad6fdf6803a2710aaa0fb5c2fa28fe512b6ed76ef8b7a7fd)
 
 $Host.UI.RawUI.WindowTitle = "HVF SOVEREIGN C2 // DUAL-GITHUB AUTO-PUBLISHER (DOCKET 10-26-4046)"
-Set-Location "C:\hvf_c2\hvf-media-matrix-private"
+Set-Location "[REDACTED-PRIVATE-ROOT]"
 
 Write-Host "==========================================================================================" -ForegroundColor Cyan
 Write-Host "  HUMPHREY VIRTUAL FARMS LLC (CAGE: 1AHA8 | UEI: S1M4ENLHTDH5)" -ForegroundColor Green

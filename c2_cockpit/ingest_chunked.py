@@ -2,7 +2,7 @@ import json
 import chromadb
 from pathlib import Path
 
-json_path = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\c2_cockpit\SOVEREIGN_CORPUS.json")
+json_path = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\c2_cockpit\SOVEREIGN_CORPUS.json")
 db_path = r"C:\hvf_c2\HVF_Matrix_Core\vector_vault"
 
 print("[*] Initiating Semantic Fragmentation and Ingestion...")

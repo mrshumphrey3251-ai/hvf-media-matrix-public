@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 import py_compile
 
-target = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py")
+target = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\ebony_console_GREEN.py")
 content = target.read_text(encoding="utf-8")
 
 start_idx = content.find("def render_communications_dispatch_ui")
@@ -28,7 +28,7 @@ for line in lines[1:]:
 bridge_func = """def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     import sys
     from pathlib import Path
-    _p = str(Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit"))
+    _p = str(Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit"))
     if _p not in sys.path:
         sys.path.insert(0, _p)
     from ebony_travel_ui import render_communications_dispatch_ui as _r

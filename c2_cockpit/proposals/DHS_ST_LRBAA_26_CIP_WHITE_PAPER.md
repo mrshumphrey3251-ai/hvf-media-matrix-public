@@ -1,9 +1,9 @@
 # DHS S&T LONG RANGE BAA (DHS-ST-LRBAA-26-CIP) TECHNICAL WHITE PAPER: PROJECT EBONY V8.0.0 AIR-GAPPED TRI-BRAIN CRITICAL INFRASTRUCTURE SCADA/OT SAFETY INTERLOCK & WORM PROVENANCE TESTBED
 
 **Solicitation:** Department of Homeland Security (DHS) Science & Technology Directorate (S&T) Long Range Broad Agency Announcement (LRBAA) -- Critical Infrastructure Protection & Cyber-Physical OT Resilience (`DHS-ST-LRBAA-26-CIP`)
-**Submitting Entity:** Humphrey Virtual Farms LLC (HQ: 701 E Drew, Madill, OK 73446-2620 | 100% U.S. Sovereign Small Business, 0% FOCI)
+**Submitting Entity:** Humphrey Virtual Farms LLC (HQ: [REDACTED-FACILITY-ADDRESS] | 100% U.S. Sovereign Small Business, 0% FOCI)
 **Statutory Identifiers:** CAGE Code: 1AHA8 | SAM.gov UEI: S1M4ENLHTDH5 | Active Federal Prime Contractor (100% Section 889 NDAA Compliant)
-**Principal Investigator:** Jeffery Humphrey, Founder, President & CEO | (572) 358-9978 | humphreyvirtualfarm@gmail.com
+**Principal Investigator:** Jeffery Humphrey, Founder, President & CEO | [REDACTED-PUBLIC-PHONE] | [REDACTED-PUBLIC-EMAIL]
 **Public Verification Repository:** https://github.com/mrshumphrey3251-ai/hvf-media-matrix-public
 **Shared Core C2 Cryptographic Merkle Root (640 Compiled Python C2 Modules):** d65049efcf06298f84d41436131794fc3cc5607873a2a596b5ad355f6ee67ccb
 **Cross-Referenced Active Filings:** DoD CDAO Tradewinds Solutions Marketplace Docket 10-26-4046 (Status: Compliant/Queued for Assessment -- Oct 29, 2026), Defense Innovation Unit (DIU) Portfolio Network & SWAP-USV Sprint 2 (Confirmed Oct 31, 2026), U.S. Army DEVCOM ARL BAA W911NF-23-S-0001 ($750K White Paper Submitted Oct 30, 2026), and USACE ERDC Rolling BAA ($1.2M Re-Baselined White Paper Submitted Oct 31, 2026)

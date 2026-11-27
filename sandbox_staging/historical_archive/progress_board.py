@@ -28,4 +28,4 @@ def save_phase(phase: str, status: str, notes: str = ""):
 if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1:
-        exec(sys.argv[1])
+        exec(sys.argv[1])

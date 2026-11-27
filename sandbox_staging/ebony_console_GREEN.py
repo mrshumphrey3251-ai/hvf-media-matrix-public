@@ -238,7 +238,7 @@ def render():
 
 
 
-    sys.path.insert(0, r"C:\hvf_c2\hvf-media-matrix-private")
+    sys.path.insert(0, r"[REDACTED-PRIVATE-ROOT]")
 
     from sovereign_voice_engine import SovereignVoiceEngine
 
@@ -310,7 +310,7 @@ def render():
 
 
 
-    CHROMA_DB_PATH = r"C:\hvf_c2\hvf-media-matrix-private\chroma_db"
+    CHROMA_DB_PATH = r"[REDACTED-PRIVATE-ROOT]\chroma_db"
 
     COLLECTION_NAME = "hvf_iron_dome_core"
 
@@ -378,7 +378,7 @@ def render():
 
     LINKEDIN_URN = os.getenv("LINKEDIN_AUTHOR_URN")
 
-    REPO_DIR = os.path.abspath(r"C:\hvf_c2\hvf-media-matrix-private")
+    REPO_DIR = os.path.abspath(r"[REDACTED-PRIVATE-ROOT]")
 
     DB_PATH = os.path.join(REPO_DIR, "hvf_memory_vault.db")
 

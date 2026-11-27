@@ -26,8 +26,8 @@ class TestOklahomaCustomerPullPacket(unittest.TestCase):
         for token in ["10-26-4046", "#0126", "#0069", "#0008", "#0005", "Tinker", "McAlester", "Tulsa District", "TRL 4", "$1,200,000.00", "$150,000.00", "DFARS 252.227-7018"]:
             self.assertIn(token, md_content)
         if "public" in str(COCKPIT_DIR).lower():
-            self.assertNotIn("humphreyvirtualfarm@gmail.com", md_content)
-            self.assertNotIn("humphreyvirtualfarm@gmail.com", pdf_text)
+            self.assertNotIn("[REDACTED-PUBLIC-EMAIL]", md_content)
+            self.assertNotIn("[REDACTED-PUBLIC-EMAIL]", pdf_text)
 
 
 if __name__ == "__main__":

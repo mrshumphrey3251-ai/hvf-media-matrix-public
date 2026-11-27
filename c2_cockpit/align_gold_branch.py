@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 import py_compile
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 gold_file = cockpit_dir / "ebony_console_GOLD.py"
 
 if gold_file.exists():

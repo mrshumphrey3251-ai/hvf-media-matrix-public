@@ -4,7 +4,7 @@ USACE ERDC BROAD AGENCY ANNOUNCEMENT (ITL & GSL) PRE-PROPOSAL WHITE PAPER
 
 Title: Project Ebony v8.0.0: Air-Gapped Tri-Brain OT/SCADA Safety Interlock, Automated Bridge/Pavement NDE & WORM Merkle Provenance Testbed
 
-Submitting Organization: Humphrey Virtual Farms LLC (701 E Drew St., Madill, OK 73446)
+Submitting Organization: Humphrey Virtual Farms LLC ([REDACTED-FACILITY-ADDRESS])
 
 Socioeconomic Status: Small Business, Small Disadvantaged Business (SDB), Minority-Owned, Non-Traditional Defense Contractor
 

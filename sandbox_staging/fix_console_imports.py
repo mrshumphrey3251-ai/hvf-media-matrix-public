@@ -17,7 +17,7 @@ def render():
 
 
 
-    BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+    BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 
     TARGET_FILES = [
 
@@ -33,7 +33,7 @@ def render():
 
     import os
 
-    sys.path.insert(0, r"C:\\HVF_Repos\\hvf-media-matrix-private")
+    sys.path.insert(0, r"[REDACTED-PRIVATE-ROOT]")
 
     import email_triage_core
 

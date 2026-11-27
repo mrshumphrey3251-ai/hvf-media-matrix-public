@@ -4,7 +4,7 @@ import re
 import json
 import py_compile
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 DAEMON_FILE = os.path.join(BASE_DIR, "optical_stream_daemon.py")
 CONFIG_FILE = os.path.join(BASE_DIR, "tablet_config.json")
 TARGET_FILES = [
@@ -35,7 +35,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import cv2
 
 PORT = 8502
-BASE_DIR = r"C:\\HVF_Repos\\hvf-media-matrix-private"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]"
 CONFIG_FILE = os.path.join(BASE_DIR, "tablet_config.json")
 
 class SovereignOpticalRouter:
@@ -238,7 +238,7 @@ with sw_c3:
 
 # Tablet Endpoint Configuration Expander
 with st.expander("⚙️ Configure Tablet Streaming Endpoint", expanded=False):
-    tab_cfg_file = r"C:\\HVF_Repos\\hvf-media-matrix-private\\tablet_config.json"
+    tab_cfg_file = r"[REDACTED-PRIVATE-ROOT]\\tablet_config.json"
     current_url = "http://192.168.1.100:8080/video"
     if os.path.exists(tab_cfg_file):
         try:

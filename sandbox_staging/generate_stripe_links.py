@@ -31,7 +31,7 @@ def render():
 
 
 
-    env_path = r"C:\hvf_c2\hvf-media-matrix-private\.env"
+    env_path = r"[REDACTED-PRIVATE-ROOT]\.env"
 
     load_dotenv(dotenv_path=env_path, override=True)
 

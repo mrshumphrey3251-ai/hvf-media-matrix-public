@@ -5,9 +5,9 @@ from collections import defaultdict
 from pathlib import Path
 
 REPOS_ROOT = Path(r"C:\hvf_c2\repos")
-VAULT_DB = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\omni_repo_vault.db")
+VAULT_DB = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\omni_repo_vault.db")
 PRIMARY_LOCAL_REPOS = [
-    Path(r"C:\hvf_c2\hvf-media-matrix-private"),
+    Path(r"[REDACTED-PRIVATE-ROOT]"),
     Path(r"C:\hvf_c2\hvf-media-matrix-public"),
 ]
 

@@ -5,7 +5,7 @@ Extracts exact line numbers and code snippets where network calls are executed i
 from pathlib import Path
 import re
 
-repo_dir = Path("C:/hvf_c2/hvf-media-matrix-private")
+repo_dir = Path("[REDACTED-PRIVATE-ROOT]")
 target_files = [
     "ebony_console_GREEN.py",
     "ebony_console.py",

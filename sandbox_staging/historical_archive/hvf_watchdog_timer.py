@@ -214,4 +214,4 @@ class HVFWatchdogTimer:
 
 if __name__ == "__main__":
     wdt = HVFWatchdogTimer(db_path=":memory:")
-    wdt.run_self_test()
+    wdt.run_self_test()

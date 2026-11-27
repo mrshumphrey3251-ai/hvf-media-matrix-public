@@ -3,7 +3,7 @@ import re
 from pathlib import Path
 import py_compile
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 if not cockpit_dir.exists():
     print(f"[CRITICAL ERROR] Cockpit directory not found: {cockpit_dir}")
     sys.exit(1)
@@ -54,7 +54,7 @@ def render_comms_gate(key_suffix="sovereign_deck_main"):
         except Exception:
             pass
 
-    _cdir = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit")
+    _cdir = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit")
     if str(_cdir) not in sys.path:
         sys.path.insert(0, str(_cdir))
 
@@ -151,11 +151,11 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
     st.markdown("## ✈️ EXECUTIVE TRAVEL AUTOPILOT // INBOX GHOSTWRITER & DEBRIEF")
     st.caption("Autonomous Inbound Ingestion, Contextual SMTP Auto-Response & Executive Return Briefing // Level-5 Authority")
 
-    _cdir = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit")
+    _cdir = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit")
     if str(_cdir) not in sys.path:
         sys.path.insert(0, str(_cdir))
 
-    db_p = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit\\matrix_ledger.db")
+    db_p = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit\\matrix_ledger.db")
     total_count, sent_count, archived_count, flagged_count = 0, 0, 0, 0
     records = []
 
@@ -273,7 +273,7 @@ def render_communications_dispatch_ui(key_suffix="sovereign_deck_main"):
                         import ssl
                         from email.mime.text import MIMEText
                         from email.mime.multipart import MIMEMultipart
-                        cfg_p = Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit\\email_accounts.json")
+                        cfg_p = Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit\\email_accounts.json")
                         cfg = json.loads(cfg_p.read_text(encoding="utf-8"))
                         acc = list(cfg.values())[0]
                         
@@ -375,7 +375,7 @@ c_text = console_file.read_text(encoding="utf-8")
 gate_bridge_def = """def render_comms_gate(key_suffix="sovereign_deck_main"):
     import sys
     from pathlib import Path
-    _p = str(Path(r"C:\\hvf_c2\\hvf-media-matrix-private\\c2_cockpit"))
+    _p = str(Path(r"[REDACTED-PRIVATE-ROOT]\\c2_cockpit"))
     if _p not in sys.path:
         sys.path.insert(0, _p)
     from ebony_travel_ui import render_comms_gate as _g

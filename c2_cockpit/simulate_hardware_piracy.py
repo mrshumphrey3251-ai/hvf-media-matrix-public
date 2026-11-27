@@ -2,7 +2,7 @@ import sys
 import json
 from pathlib import Path
 
-cockpit_dir = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+cockpit_dir = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 sys.path.insert(0, str(cockpit_dir))
 
 from ebony_client_updater import check_license_validity, get_hardware_uuid

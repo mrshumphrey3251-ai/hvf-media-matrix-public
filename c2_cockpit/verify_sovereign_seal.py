@@ -18,7 +18,7 @@ import ebony_exam_engine as eee
 
 
 def run_sovereign_verification() -> dict:
-    priv_root = Path(r"C:\hvf_c2\hvf-media-matrix-private")
+    priv_root = Path(r"[REDACTED-PRIVATE-ROOT]")
     pub_root = Path(r"C:\hvf_c2\hvf-media-matrix-public")
     is_public_repo = "public" in str(cockpit_dir).lower()
 

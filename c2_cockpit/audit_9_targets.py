@@ -9,15 +9,15 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 TARGETS = [
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\EBONY_OPERATIONAL_CAPABILITY_SPECIFICATION.md"),
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\OK_DRONE_INFRASTRUCTURE_SPECIFICATION.md"),
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\OK_DRONE_GRANT_BUDGET_PROPOSAL.md"),
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_console_GREEN.py"),
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\DOC_FOLLOWUP_DISPATCH_TEMPLATE.md"),
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\matrix_ledger.db"),
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\audit_briefcase_integrity.py"),
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_scada_poll.py"),
-    Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit\ebony_agent_swarm.py")
+    Path(r"[REDACTED-PRIVATE-ROOT]\EBONY_OPERATIONAL_CAPABILITY_SPECIFICATION.md"),
+    Path(r"[REDACTED-PRIVATE-ROOT]\OK_DRONE_INFRASTRUCTURE_SPECIFICATION.md"),
+    Path(r"[REDACTED-PRIVATE-ROOT]\OK_DRONE_GRANT_BUDGET_PROPOSAL.md"),
+    Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\ebony_console_GREEN.py"),
+    Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\DOC_FOLLOWUP_DISPATCH_TEMPLATE.md"),
+    Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\matrix_ledger.db"),
+    Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\audit_briefcase_integrity.py"),
+    Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\ebony_scada_poll.py"),
+    Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit\ebony_agent_swarm.py")
 ]
 
 print("=" * 86)

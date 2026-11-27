@@ -14,7 +14,7 @@ import os
 import sys
 from pathlib import Path
 
-ROOT = Path("C:/hvf_c2/hvf-media-matrix-private")
+ROOT = Path("[REDACTED-PRIVATE-ROOT]")
 SANDBOX = ROOT / "sandbox_staging"
 
 if str(ROOT) not in sys.path:

@@ -19,9 +19,9 @@ def render():
 
 
 
-    db_path = Path("C:/hvf_c2/hvf-media-matrix-private/hvf_memory_vault.db")
+    db_path = Path("[REDACTED-PRIVATE-ROOT]/hvf_memory_vault.db")
 
-    brief_dir = Path("C:/hvf_c2/hvf-media-matrix-private/proposals")
+    brief_dir = Path("[REDACTED-PRIVATE-ROOT]/proposals")
 
     brief_files = list(brief_dir.glob("TAILORED_BRIEF_DIU-AOI-2026-AUTONOMY.md"))
 

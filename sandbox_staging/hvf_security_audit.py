@@ -17,7 +17,7 @@ def render():
 
 
 
-    REPO_DIR = r"C:\hvf_c2\hvf-media-matrix-private"
+    REPO_DIR = r"[REDACTED-PRIVATE-ROOT]"
 
     DB_PATH = os.path.join(REPO_DIR, "hvf_memory_vault.db")
 

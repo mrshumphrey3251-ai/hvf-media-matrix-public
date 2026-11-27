@@ -11,7 +11,7 @@ import hashlib
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-COCKPIT_DIR = Path(r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit")
+COCKPIT_DIR = Path(r"[REDACTED-PRIVATE-ROOT]\c2_cockpit")
 if str(COCKPIT_DIR) not in sys.path:
     sys.path.insert(0, str(COCKPIT_DIR))
 

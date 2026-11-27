@@ -97,7 +97,7 @@ def render():
 
         # Execute the audit on the Master Edge Node service account
 
-        enforce_monthly_rotation("SVC_EBONY_MASTER_NODE", 1670000000000)
+        enforce_monthly_rotation("REDACTED_SERVICE_NODE", 1670000000000)
 
 
 if __name__ == "__main__":

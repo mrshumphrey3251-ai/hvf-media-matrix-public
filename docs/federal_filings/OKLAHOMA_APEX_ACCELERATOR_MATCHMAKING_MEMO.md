@@ -3,7 +3,7 @@
 **FROM:** Jeffery Humphrey, Founder & CEO (Humphrey Virtual Farms LLC)  
 **CONTRACTOR IDENTIFIERS:** CAGE: 1AHA8 | UEI: S1M4ENLHTDH5  
 **HEADQUARTERS:** Oklahoma Tactical Integration Facility  
-**CONTACT:** humphreyvirtualfarm@gmail.com | 572-358-9978  
+**CONTACT:** [REDACTED-PUBLIC-EMAIL] | [REDACTED-PUBLIC-PHONE]  
 **SUBJECT:** Direct Matchmaking & Expedited Briefing Request for USACE ERDC and DIU Portfolios  
 
 ---

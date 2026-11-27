@@ -12,7 +12,7 @@ import py_compile
 
 
 
-BASE_DIR = r"C:\hvf_c2\hvf-media-matrix-private\c2_cockpit"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]\c2_cockpit"
 
 CORE_FILE = os.path.join(BASE_DIR, "sovereign_comms_core.py")
 
@@ -64,7 +64,7 @@ from cryptography.fernet import Fernet
 
 
 
-BASE_DIR = r"C:\\HVF_Repos\\hvf-media-matrix-private"
+BASE_DIR = r"[REDACTED-PRIVATE-ROOT]"
 
 DB_PATH = os.path.join(BASE_DIR, "hvf_memory_vault.db")
 
