@@ -3,7 +3,7 @@
 **Active Portal Status:** `Received` (Officially Submitted & Routed to CDAO Assessment Queue on Oct 28, 2026 6:55 PM)
 **Prior Superseded Dockets:** `10-26-4046` (Oct 27, 2026) & `9-26-3703` (Sep 24, 2026)
 **Video / Solution Title:** `Project Ebony v8.0.0: Deterministic Zero-Cloud OT/SCADA Interlock Testbed & WORM Merkle Provenance Architecture (TRL 4 Assessor-Aligned Resubmission)`
-**Submitting Organization:** Humphrey Virtual Farms LLC (`UEI: S1M4ENLHTDH5` | `CAGE: 1AHA8` | HQ: 701 E Drew, Madill, Oklahoma 73446, United States)
+**Submitting Organization:** Humphrey Virtual Farms LLC (`UEI: S1M4ENLHTDH5` | `CAGE: 1AHA8` | HQ: [REDACTED-FACILITY-ADDRESS])
 **Primary Point of Contact:** Jeffery Humphrey (`[REDACTED-FOR-PUBLIC-RELEASE]`)
 **Alternate Point of Contact:** Wilhelmine Humphrey (`[REDACTED-FOR-PUBLIC-RELEASE]`)
 **Portal Submission Type:** `TSM Resubmission`
